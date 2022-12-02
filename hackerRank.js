@@ -36,15 +36,15 @@ console.log(diagonalDifference([[11, 2, 4], [4, 5, 6], [10, 8, -12]]));
  * @solution_two
 function plusMinus(arr) {
 		// Write your code here
-		let postiveCount = 0, negativeCount = 0, zero = 0;
+		let positiveCount = 0, negativeCount = 0, zero = 0;
 
 		for (let i = 0; i < arr.length; i++) {
-				if (arr[i] > 0) postiveCount += 1;
+				if (arr[i] > 0) positiveCount += 1;
 				else if (arr[i] < 0) negativeCount += 1;
 				else zero += 1;
 		}
 
-		console.log(postiveCount / arr.length);
+		console.log(positiveCount / arr.length);
 		console.log(negativeCount / arr.length);
 		console.log(zero / arr.length);
 }
@@ -105,7 +105,7 @@ console.log(miniMaxSum([1, 2, 3, 5, 4]));
  */
 
 /**
- * @problwm_four
+ * @problem_four
  * Complete the 'birthdayCakeCandles' function below.
  * The function is expected to return an INTEGER.
  * The function accepts INTEGER_ARRAY candles as parameter.
