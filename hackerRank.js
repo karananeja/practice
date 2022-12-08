@@ -131,3 +131,28 @@ function birthdayCakeCandles(candles) {
 }
 console.log(birthdayCakeCandles([3, 3, 1, 1, 1, 1, 1, 1, 2, 1, 3]));
  */
+
+/**
+ * @problem_five
+ * Given a time in 12-hour AM/PM format, convert it to military (24-hour) time.
+ * Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
+ * - 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
+ */
+/**
+ * @solution_five
+function convertTimeFormat(s) {
+	if (s.toLowerCase().includes('pm')) {
+		let timeWithoutPM = s.replace(/pm/i, '');
+
+		if (parseInt(timeWithoutPM.split(':')[0]) < 12) return timeWithoutPM.replace(timeWithoutPM.split(':')[0], (parseInt(timeWithoutPM.split(':')[0]) + 12).toString());
+		else return timeWithoutPM;
+	} else {
+		let timeWithoutAM = s.replace(/am/i, '');
+
+		if (parseInt(timeWithoutAM.split(':')[0]) === 12) return timeWithoutAM.replace(timeWithoutAM.split(':')[0], '00');
+		else return timeWithoutAM;
+	}
+}
+
+console.log(convertTimeFormat('5:20:00PM'));
+*/
