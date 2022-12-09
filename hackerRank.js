@@ -156,3 +156,32 @@ function convertTimeFormat(s) {
 
 console.log(convertTimeFormat('5:20:00PM'));
 */
+
+/**
+ * @problem_six
+ * HackerLand University has the following grading policy:
+ * Every student receives a grade in the inclusive range from 0 to 100.
+ * Any grade less than 40 is a failing grade.
+ * Sam is a professor at the university and likes to round each student's  according to these rules:
+ * If the difference between the grade and the next multiple of 5 is less than 3, round grade up to the next multiple of 5.
+ * If the value of grade is less than 38, no rounding occurs as the result will still be a failing grade.
+ */
+/**
+ * @solution_six
+function roundGrades(grades) {
+	let roundedGrades = [];
+
+	grades.forEach(element => {
+		if (element >= 38) {
+			let quotient = parseInt(element / 5), remainder = parseInt(element % 5);
+			console.log(element, remainder);
+			if (remainder >= 3) roundedGrades.push((quotient + 1) * 5);
+			else roundedGrades.push(element);
+		} else roundedGrades.push(element);
+	});
+
+	return roundedGrades;
+}
+
+console.log(roundGrades([73, 67, 38, 33]));
+*/
