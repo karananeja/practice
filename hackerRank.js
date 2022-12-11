@@ -6,26 +6,26 @@
  */
 /**
  * @solution_one
+ */
 function diagonalDifference(arr) {
-		// Write your code here
-		let principalDiagonalSum = 0, secondaryDiagonalSum = 0;
+	// Write your code here
+	let principalDiagonalSum = 0, secondaryDiagonalSum = 0;
 
-		for (let i = 0; i < arr.length; i++) {
-				for (let j = 0; j < arr.length; j++) {
-						if (i === j) {
-								principalDiagonalSum += arr[i][j];
-						}
-						if ((i + j) === arr.length - 1) {
-								secondaryDiagonalSum += arr[i][j];
-						}
-				}
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr.length; j++) {
+			if (i === j) {
+				principalDiagonalSum += arr[i][j];
+			}
+			if ((i + j) === arr.length - 1) {
+				secondaryDiagonalSum += arr[i][j];
+			}
 		}
+	}
 
-		if ((principalDiagonalSum - secondaryDiagonalSum) < 0) return -(principalDiagonalSum - secondaryDiagonalSum);
-		else return principalDiagonalSum - secondaryDiagonalSum;
+	if ((principalDiagonalSum - secondaryDiagonalSum) < 0) return -(principalDiagonalSum - secondaryDiagonalSum);
+	else return principalDiagonalSum - secondaryDiagonalSum;
 }
 console.log(diagonalDifference([[11, 2, 4], [4, 5, 6], [10, 8, -12]]));
- */
 
 /**
  * @problem_two
@@ -34,21 +34,21 @@ console.log(diagonalDifference([[11, 2, 4], [4, 5, 6], [10, 8, -12]]));
  */
 /**
  * @solution_two
-function plusMinus(arr) {
-		// Write your code here
-		let positiveCount = 0, negativeCount = 0, zero = 0;
-
-		for (let i = 0; i < arr.length; i++) {
-				if (arr[i] > 0) positiveCount += 1;
-				else if (arr[i] < 0) negativeCount += 1;
-				else zero += 1;
-		}
-
-		console.log(positiveCount / arr.length);
-		console.log(negativeCount / arr.length);
-		console.log(zero / arr.length);
-}
  */
+function plusMinus(arr) {
+	// Write your code here
+	let positiveCount = 0, negativeCount = 0, zero = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] > 0) positiveCount += 1;
+		else if (arr[i] < 0) negativeCount += 1;
+		else zero += 1;
+	}
+
+	console.log(positiveCount / arr.length);
+	console.log(negativeCount / arr.length);
+	console.log(zero / arr.length);
+}
 
 /**
  * @problem_three
@@ -60,24 +60,24 @@ function plusMinus(arr) {
  */
 /**
  * @solution_three
+ */
 function compareTriplets(a, b) {
-		let aliceScore = 0, bobScore = 0, i = 0, result = [];
+	let aliceScore = 0, bobScore = 0, i = 0, result = [];
 
-		while (i < 3) {
-				if (a[i] > b[i]) {
-						aliceScore++;
-				} else if (a[i] < b[i]) {
-						bobScore++;
-				}
-				i++;
+	while (i < 3) {
+		if (a[i] > b[i]) {
+			aliceScore++;
+		} else if (a[i] < b[i]) {
+			bobScore++;
 		}
+		i++;
+	}
 
-		result.push(aliceScore, bobScore);
+	result.push(aliceScore, bobScore);
 
-		return result;
+	return result;
 }
 console.log(compareTriplets([17, 28, 30], [99, 16, 8]));
- */
 
 /**
  * @problem_three
@@ -86,23 +86,23 @@ console.log(compareTriplets([17, 28, 30], [99, 16, 8]));
  */
 /**
  * @solution_three
+ */
 function miniMaxSum(arr) {
-		// Write your code here
-		arr.sort((a, b) => a - b);
-		let minSum = 0, maxSum = 0;
+	// Write your code here
+	arr.sort((a, b) => a - b);
+	let minSum = 0, maxSum = 0;
 
-		for (let i = 0; i < arr.length - 1; i++) {
-				minSum += arr[i];
-		}
+	for (let i = 0; i < arr.length - 1; i++) {
+		minSum += arr[i];
+	}
 
-		for (let i = 1; i < arr.length; i++) {
-				maxSum += arr[i];
-		}
+	for (let i = 1; i < arr.length; i++) {
+		maxSum += arr[i];
+	}
 
-		console.log(minSum, maxSum);
+	console.log(minSum, maxSum);
 }
 console.log(miniMaxSum([1, 2, 3, 5, 4]));
- */
 
 /**
  * @problem_four
@@ -112,6 +112,7 @@ console.log(miniMaxSum([1, 2, 3, 5, 4]));
  */
 /**
  * @solution_four
+ */
 function birthdayCakeCandles(candles) {
 	// Write your code here
 	let count = {}, maxCount = 0;
@@ -130,7 +131,6 @@ function birthdayCakeCandles(candles) {
 	return maxCount;
 }
 console.log(birthdayCakeCandles([3, 3, 1, 1, 1, 1, 1, 1, 2, 1, 3]));
- */
 
 /**
  * @problem_five
@@ -140,6 +140,7 @@ console.log(birthdayCakeCandles([3, 3, 1, 1, 1, 1, 1, 1, 2, 1, 3]));
  */
 /**
  * @solution_five
+ */
 function convertTimeFormat(s) {
 	if (s.toLowerCase().includes('pm')) {
 		let timeWithoutPM = s.replace(/pm/i, '');
@@ -153,9 +154,7 @@ function convertTimeFormat(s) {
 		else return timeWithoutAM;
 	}
 }
-
 console.log(convertTimeFormat('5:20:00PM'));
-*/
 
 /**
  * @problem_six
@@ -168,6 +167,7 @@ console.log(convertTimeFormat('5:20:00PM'));
  */
 /**
  * @solution_six
+ */
 function roundGrades(grades) {
 	let roundedGrades = [];
 
@@ -182,7 +182,6 @@ function roundGrades(grades) {
 
 	return roundedGrades;
 }
-
 console.log(roundGrades([73, 67, 38, 33]));
 
 /**
@@ -194,6 +193,7 @@ console.log(roundGrades([73, 67, 38, 33]));
  */
 /**
  * @solution_seven
+ */
 function countApplesAndOranges(s, t, a, b, apples, oranges) {
 	// sample input -> s = 7, t = 11, a = 5, b = 15, apples = [-2, 2, 1] and oranges = [5, -6]
 	// sample output -> noOfApples = 1, noOfOranges = 1
@@ -211,6 +211,4 @@ function countApplesAndOranges(s, t, a, b, apples, oranges) {
 
 	console.log(noOfApples + '\n' + noOfOranges);
 }
-
 countApplesAndOranges(7, 11, 5, 15, [-2, 2, 1], [5, -6]);
-*/
