@@ -49,6 +49,7 @@ function plusMinus(arr) {
 	console.log(negativeCount / arr.length);
 	console.log(zero / arr.length);
 }
+plusMinus([-4, 3, -9, 0, 4, 1]);
 
 /**
  * @problem_three
