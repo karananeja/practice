@@ -91,7 +91,7 @@ console.log(obj2);
 const object = {
   name: 'john',
   display: () => {
-    console.log(this.name); // empty string as it is pointing to the window object name key
+    console.log(this.name); // empty string as it is pointing to the window object name key because we are using arrow function
   },
 };
 object.display();
