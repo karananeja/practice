@@ -241,3 +241,26 @@ function breakingRecords(scores) {
 	return [maxTimes, minTimes];
 }
 console.log(breakingRecords([10, 5, 20, 20, 4, 5, 2, 25, 1]));
+
+/**
+ * @problem_nine
+ * Complete the function in the editor below by returning a RegExp object, re, that matches any string s satisfying both of the following conditions:
+ * String s starts with the prefix Mr., Mrs., Ms., Dr., or Er.
+ * The remainder of string s (i.e., the rest of the string after the prefix) consists of one or more upper and/or lowercase English alphabetic letters (i.e., [a-z] and [A-Z]).
+ */
+/**
+ * @solution_nine
+ */
+function regexStr(str) {
+	/*
+	 * Declare a RegExp object variable named 're'
+	 * It must match a string that starts with 'Mr.', 'Mrs.', 'Ms.', 'Dr.', or 'Er.', 
+	 * followed by one or more letters.
+	 */
+	const re = /^(Mr|Mrs|Ms|Dr|Er)[\.][a-zA-Z]+$/ig;
+	/*
+	 * Do not remove the return statement
+	 */
+	return str.match(re);
+}
+console.log(!!regexStr('Mr.John'));
