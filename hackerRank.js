@@ -264,3 +264,25 @@ function regexStr(str) {
 	return str.match(re);
 }
 console.log(!!regexStr('Mr.John'));
+
+/**
+ * @problem_ten
+ * Complete the function in the editor below by returning a RegExp object, re, that matches every integer in some string s.
+ */
+/**
+ * @solution_ten
+ */
+function regexNumStr(numString) {
+	/*
+	 * Declare a RegExp object variable named 're'
+	 * It must match ALL occurrences of numbers in a string.
+	 */
+	const re = /\d+/ig;
+
+	/*
+	 * Do not remove the return statement
+	 */
+	return numString.match(re);
+
+}
+console.log(!!regexNumStr('123'));
