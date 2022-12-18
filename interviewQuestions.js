@@ -103,3 +103,26 @@ console.log(41 + '3' + 2 - 6);
 // React coding question - passing props from child to parent
 // currying in js
 // shallow copy and deep copy in js
+
+function findSum(nums) {
+  for (let num = 0; num < nums.length; num++) {
+    let factors = [],
+      factorsSum = 0;
+
+    for (let i = 1; i < nums[num]; i++) {
+      if (nums[num] % i === 0) factors.push(i);
+    }
+
+    for (let i = 0; i < factors.length; i++) {
+      factorsSum += factors[i];
+    }
+
+    if (factorsSum === nums[num]) {
+      console.log('YES');
+    } else {
+      console.log('NO');
+    }
+  }
+}
+
+findSum([2, 6, 28]);
