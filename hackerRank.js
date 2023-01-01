@@ -300,7 +300,6 @@ console.log(!!regexNumStr('123'));
 /**
  * @solution_eleven
  */
-
 function kangaroo(x1, v1, x2, v2) {
 	// Write your code here
 	if ((x1 - x2) * (v1 - v2) > 0) {
@@ -314,3 +313,30 @@ function kangaroo(x1, v1, x2, v2) {
 	}
 }
 console.log(kangaroo(0, 3, 4, 2));
+
+/**
+ * @problem_twelve
+ * Complete the bonAppetit function in the editor below. It should print Bon Appetit if the bill is fairly split. 
+ * Otherwise, it should print the integer amount of money that Brian owes Anna.
+ * bonAppetit has the following parameter(s):
+ * bill: an array of integers representing the cost of each item ordered
+ * k: an integer representing the zero-based index of the item Anna doesn't eat
+ * b: the amount of money that Anna contributed to the bill
+ */
+/**
+ * @solution_twelve
+ */
+function bonAppetit(bill, k, b) {
+	// Write your code here
+	let billTotal = 0, billSplit = 0;
+
+	for (let i = 0; i < bill.length; i++) {
+		if (i !== k) billTotal += bill[i];
+	}
+
+	billSplit = billTotal / 2;
+
+	if (billSplit === b) console.log('Bon Appetit');
+	else console.log(b - billSplit);
+}
+bonAppetit([3, 10, 2, 9], 1, 7);
