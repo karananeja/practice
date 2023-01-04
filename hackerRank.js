@@ -390,3 +390,24 @@ function catAndMouse(x, y, z) {
 	return Math.abs(x - z) === Math.abs(y - z) ? "Mouse C" : Math.abs(x - z) < Math.abs(y - z) ? "Cat A" : "Cat B";
 }
 console.log(catAndMouse(1, 2, 3));
+
+/**
+ * @problem_fifteen
+ * Given an array of integers and a positive integer k, determine the number of (i, j) pairs where i < j and ar[i] + ar[j] is divisible by k.
+ */
+/**
+ * @solution_fifteen
+ */
+function divisibleSumPairs(n, k, ar) {
+	// Write your code here
+	let count = 0;
+
+	for (let i = 0; i < n; i++) {
+		for (let j = 0; j < n; j++) {
+			if (i < j && (ar[i] + ar[j]) % k === 0) count++;
+		}
+	}
+
+	return count;
+}
+console.log(divisibleSumPairs(6, 3, [1, 3, 2, 6, 1, 2]));
