@@ -411,3 +411,25 @@ function divisibleSumPairs(n, k, ar) {
 	return count;
 }
 console.log(divisibleSumPairs(6, 3, [1, 3, 2, 6, 1, 2]));
+
+/**
+ * @problem_sixteen
+ * Complete the getTotalX function in the editor below. It should return the number of integers that are between the sets.
+ * getTotalX has the following parameter(s):
+ * int a[n]: an array of integers
+ * int b[m]: an array of integers
+ */
+/**
+ * @solution_sixteen
+ */
+function getTotalX(a, b) {
+	// Write your code here
+	let count = 0;
+
+	for (let i = a[a.length - 1]; i <= b[0]; i++) {
+		if (a.every((e) => i % e == 0) && b.every((el) => el % i == 0)) count++;
+	}
+
+	return count;
+}
+console.log(getTotalX([2, 4], [16, 32, 96]));
