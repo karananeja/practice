@@ -433,3 +433,34 @@ function getTotalX(a, b) {
 	return count;
 }
 console.log(getTotalX([2, 4], [16, 32, 96]));
+
+/**
+ * @problem_seventeen
+ * Given an array of bird sightings where every element represents a bird type id, determine the id of the most frequently sighted type. 
+ * If more than 1 type has been spotted that maximum amount, return the smallest of their ids.
+ */
+/**
+ * @solution_seventeen
+ */
+function migratoryBirds(arr) {
+	// Write your code here
+	arr = arr.sort((a, b) => a - b);
+
+	let result = [0, 0];
+
+	for (let i = 0; i < arr.length; i++) {
+		let count = 1;
+
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[i] === arr[j]) count += 1;
+		}
+
+		if (count > result[1]) {
+			result[1] = count;
+			result[0] = arr[i];
+		}
+	}
+
+	return result[0];
+}
+console.log(migratoryBirds([1, 4, 4, 4, 5, 3]));
