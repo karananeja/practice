@@ -464,3 +464,23 @@ function migratoryBirds(arr) {
 	return result[0];
 }
 console.log(migratoryBirds([1, 4, 4, 4, 5, 3]));
+
+/**
+ * @problem_eighteen
+ * Complete the dayOfProgrammer function in the editor below. It should return a string representing the date of the 256th day of the year given.
+ * dayOfProgrammer has the following parameter(s):
+ * year: an integer
+ */
+/**
+ * @solution_eighteen
+ */
+function dayOfProgrammer(year) {
+	// Write your code here
+	const dayOfTheProgrammer = 256;
+
+	let isLeapYear = year > 1918 ? (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)) : (year % 4 === 0);
+	let numberOfDaysInFirstEightMonths = isLeapYear ? 244 : year === 1918 ? 230 : 243;
+
+	return `${dayOfTheProgrammer - numberOfDaysInFirstEightMonths}.09.${year}`;
+}
+console.log(dayOfProgrammer(1918));
