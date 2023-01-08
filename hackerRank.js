@@ -484,3 +484,30 @@ function dayOfProgrammer(year) {
 	return `${dayOfTheProgrammer - numberOfDaysInFirstEightMonths}.09.${year}`;
 }
 console.log(dayOfProgrammer(1918));
+
+/**
+ * @problem_nineteen
+ * Complete the sockMerchant function in the editor below.
+ * sockMerchant has the following parameter(s):
+ * int n: the number of socks in the pile
+ * int ar[n]: the colors of each sock
+ */
+/**
+ * @solution_nineteen
+ */
+function sockMerchant(n, arr) {
+	// Write your code here
+	let socksObj = {}, numberOfPairs = 0;
+
+	for (let value of arr) {
+		if (socksObj[value]) socksObj[value] += 1;
+		else socksObj[value] = 1;
+	}
+
+	Object.keys(socksObj).forEach(sock => {
+		if (socksObj[sock] % 2 === 0 || socksObj[sock] > 2) numberOfPairs += Math.floor(socksObj[sock] / 2);
+	});
+
+	return numberOfPairs;
+}
+console.log(sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20]));
