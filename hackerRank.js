@@ -537,3 +537,31 @@ function countingValleys(steps, path) {
 	return result;
 }
 console.log(countingValleys(8, "UDDDUDUU"));
+
+/**
+ * @problem_twentyOne
+ * Complete the getMoneySpent function in the editor below.
+ * getMoneySpent has the following parameter(s):
+ * int keyboards[n]: the keyboard prices
+ * int drives[m]: the drive prices
+ * int b: the budget
+ */
+/**
+ * @solution_twentyOne
+ */
+function getMoneySpent(keyboards, drives, b) {
+	/*
+	 * Write your code here.
+	 */
+	let max = 0;
+
+	keyboards.map(keyboard => {
+		drives.map(drive => {
+			let sum = keyboard + drive;
+			if (sum <= b && sum > max) max = sum;
+		});
+	});
+
+	return (max > 0 ? max : -1);
+}
+console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
