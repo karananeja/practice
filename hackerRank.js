@@ -565,3 +565,26 @@ function getMoneySpent(keyboards, drives, b) {
 	return (max > 0 ? max : -1);
 }
 console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
+
+/**
+ * @problem_twentyTwo
+ * Complete the pageCount function in the editor below.
+ * pageCount has the following parameter(s):
+ * int n: the number of pages in the book
+ * int p: the page number to turn to
+ */
+/**
+ * @solution_twentyTwo
+ */
+function pageCount(n, p) {
+	// Write your code here
+	let result = 0;
+
+	if (n % 2 === 0) {
+		n += 1;
+	}
+
+	result = Math.floor(Math.min((p / 2), ((n - p) / 2)));
+	return result;
+}
+console.log(pageCount(6, 2));
