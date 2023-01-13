@@ -604,3 +604,26 @@ function hurdleRace(k, height) {
 	return k > Math.max(...height) ? 0 : Math.abs(Math.max(...height) - k);
 }
 console.log(hurdleRace(4, [1, 6, 3, 5, 2]));
+
+/**
+ * @problem_twentyFour
+ * Complete the designerPdfViewer function in the editor below. 
+ * designerPdfViewer has the following parameter(s):
+ * int h[26]: the heights of each letter
+ * string word: a string
+ */
+/**
+ * @solution_twentyFour
+ */
+function designerPdfViewer(h, word) {
+	// Write your code here
+	let maxHeight = 0;
+
+	for (let i = 0; i < word.length; i++) {
+		let charCodeValue = word.toLowerCase().charCodeAt(i) - 97;
+		if (maxHeight < h[charCodeValue]) maxHeight = h[charCodeValue];
+	}
+
+	return maxHeight * word.length;
+}
+console.log(designerPdfViewer([1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5], "abc"));
