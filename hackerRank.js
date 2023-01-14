@@ -627,3 +627,31 @@ function designerPdfViewer(h, word) {
 	return maxHeight * word.length;
 }
 console.log(designerPdfViewer([1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5], "abc"));
+
+/**
+ * @problem_twentyFive
+ * Complete the pickingNumbers function in the editor below.
+ * pickingNumbers has the following parameter(s):
+ * int a[n]: an array of integers
+ */
+/**
+ * @solution_twentyFive
+ */
+function pickingNumbers(a) {
+	// Write your code here
+	const arr = a.sort((a, b) => a - b);
+	let longestSuite = 0;
+	let increment = 0;
+	for (let i = 0; i < arr.length; i += increment) {
+		let j = i;
+		let suite = 0;
+		while (arr[j] - arr[i] <= 1) {
+			suite++;
+			j++;
+		}
+		if (suite > longestSuite) longestSuite = suite;
+		increment = suite === 0 ? 1 : suite;
+	}
+	return longestSuite;
+}
+console.log(pickingNumbers([4, 6, 5, 3, 3, 1]));
