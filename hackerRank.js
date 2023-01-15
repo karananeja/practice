@@ -655,3 +655,29 @@ function pickingNumbers(a) {
 	return longestSuite;
 }
 console.log(pickingNumbers([4, 6, 5, 3, 3, 1]));
+
+/**
+ * @problem_twentySix
+ * The first line contains an integer, q, denoting the number of function calls.
+ * Each of the q subsequent lines defines a dataset for a function call in the form of two space-separated 
+ * integers describing the respective values of n and k.
+ */
+/**
+ * @solution_twentySix
+ */
+function getMaxLessThanK(n, k) {
+	let maxBitWiseNumber = 0;
+	let result;
+
+	for (let i = 0; i <= n; i++) {
+		for (let j = i + 1; j <= n; j++) {
+			result = i & j;
+			if (result < k && result > maxBitWiseNumber) {
+				maxBitWiseNumber++;
+			}
+		}
+	}
+
+	return maxBitWiseNumber;
+}
+console.log(getMaxLessThanK(5, 2));
