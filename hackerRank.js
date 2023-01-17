@@ -681,3 +681,27 @@ function getMaxLessThanK(n, k) {
 	return maxBitWiseNumber;
 }
 console.log(getMaxLessThanK(5, 2));
+
+/**
+ * @problem_twentySeven
+ * The Utopian Tree goes through 2 cycles of growth every year. Each spring, it doubles in height. 
+ * Each summer, its height increases by 1 meter.
+ * A Utopian Tree sapling with a height of 1 meter is planted at the onset of spring. How tall will the tree be after n growth cycles?
+ */
+/**
+ * @solution_twentySeven
+ */
+function utopianTree(n) {
+	// Write your code here
+	let heightOfTree = 1;
+
+	for (let i = 1; i <= n; i++) {
+		let isSpring = i % 2 !== 0;
+
+		if (isSpring) heightOfTree *= 2;
+		else heightOfTree += 1;
+	}
+
+	return heightOfTree;
+}
+console.log(utopianTree(4));
