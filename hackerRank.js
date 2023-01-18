@@ -705,3 +705,25 @@ function utopianTree(n) {
 	return heightOfTree;
 }
 console.log(utopianTree(4));
+
+/**
+ * @problem_twentyEight
+ * A Discrete Mathematics professor has a class of students. 
+ * Frustrated with their lack of discipline, the professor decides to cancel class if fewer than some number of students are present when class starts. 
+ * Arrival times go from on time (arrivalTime <= 0) to arrived late (arrivalTime > 0).
+ * Given the arrival time of each student and a threshold number of attendees, determine if the class is cancelled.
+ */
+/**
+ * @solution_twentyEight
+ */
+function angryProfessor(k, a) {
+	// Write your code here
+	let arrivedEarly = 0;
+
+	for (let i = 0; i < a.length; i++) {
+		if (a[i] <= 0) arrivedEarly++;
+	}
+
+	return arrivedEarly >= k ? 'NO' : 'YES';
+}
+console.log(angryProfessor(3, [-1, -3, 4, 2]));
