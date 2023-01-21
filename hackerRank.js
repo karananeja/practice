@@ -756,3 +756,27 @@ function beautifulDays(i, j, k) {
 	return beautifulDays;
 }
 console.log(beautifulDays(20, 23, 6));
+
+/**
+ * @problem_thirty
+ * Complete the viralAdvertising function in the editor below. 
+ * viralAdvertising has the following parameter(s):
+ * int n: the day number to report
+ */
+/**
+ * @solution_thirty
+ */
+function viralAdvertising(n) {
+	// Write your code here
+	let count = 5, likedCount = 0, totalCount = 0;
+	const sharedCount = 3;
+
+	for (let i = 0; i < n; i++) {
+		likedCount = (Math.floor(count / 2));
+		totalCount += likedCount;
+		count = likedCount * sharedCount;
+	}
+
+	return totalCount;
+}
+console.log(viralAdvertising(5));
