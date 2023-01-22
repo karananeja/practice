@@ -780,3 +780,18 @@ function viralAdvertising(n) {
 	return totalCount;
 }
 console.log(viralAdvertising(5));
+
+/**
+ * @problem_thirtyOne
+ * Complete the permutationEquation function in the editor below.
+ * permutationEquation has the following parameter(s):
+ * int p[n]: an array of integers
+ */
+/**
+ * @solution_thirtyOne
+ */
+function permutationEquation(p) {
+	// Write your code here
+	return p.map((element, index) => p.indexOf(p.indexOf(index + 1) + 1) + 1);
+}
+console.log(permutationEquation([5, 2, 1, 3, 4]));
