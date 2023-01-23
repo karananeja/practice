@@ -795,3 +795,25 @@ function permutationEquation(p) {
 	return p.map((element, index) => p.indexOf(p.indexOf(index + 1) + 1) + 1);
 }
 console.log(permutationEquation([5, 2, 1, 3, 4]));
+
+/**
+ * @problem_thirtyTwo
+ * An integer  is a divisor of an integer n if the remainder of n % d = 0.
+ * Given an integer, for each digit that makes up the integer determine whether it is a divisor.
+ * Count the number of divisors occurring within the integer.
+ */
+/**
+ * @solution_thirtyTwo
+ */
+function findDigits(n) {
+	// Write your code here
+	let digits = n.toString().split('');
+	let count = 0;
+
+	for (let digit of digits) {
+		if (n % parseInt(digit) === 0) count++;
+	}
+
+	return count;
+}
+console.log(findDigits(124));
