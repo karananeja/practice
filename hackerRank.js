@@ -817,3 +817,39 @@ function findDigits(n) {
 	return count;
 }
 console.log(findDigits(124));
+
+/**
+ * @problem_thirtyThree
+ * A child is playing a cloud hopping game. In this game, there are sequentially numbered clouds that can be thunderheads or cumulus clouds.
+ * The character must jump from cloud to cloud until it reaches the start again.
+ * There is an array of clouds, c and an energy level e = 100.
+ * The character starts from c[0] and uses 1 unit of energy to make a jump of size k to cloud c[(i + k) % n].
+ * If it lands on a thundercloud, c[i] = 1, its energy (e) decreases by 2 additional units. The game ends when the character lands back on cloud 0.
+ * Given the values of n, k, and the configuration of the clouds as an array c, determine the final value of e after the game ends.
+ */
+/**
+ * @solution_thirtyThree
+ */
+function jumpingOnClouds(c, k) {
+	let energyLevel = 100, i = 0;
+	let cloudsLength = c.length;
+
+	while (i < cloudsLength) {
+		if (c[i] === 0) {
+			energyLevel -= 1;
+		} else {
+			energyLevel -= 3;
+		}
+
+		i += k;
+
+		if (i === cloudsLength) {
+			break;
+		} else if (i > cloudsLength) {
+			i -= cloudsLength;
+		}
+	}
+
+	return energyLevel;
+}
+console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 1, 0], 2));
