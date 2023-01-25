@@ -853,3 +853,25 @@ function jumpingOnClouds(c, k) {
 	return energyLevel;
 }
 console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 1, 0], 2));
+
+/**
+ * @problem_thirtyFour
+ * Complete the extraLongFactorials function in the editor below.
+ * It should print the result and return.
+ * extraLongFactorials has the following parameter(s):
+ * n: an integer
+ */
+/**
+ * @solution_thirtyFour
+ */
+function extraLongFactorials(n) {
+	// Write your code here
+	let fact = BigInt(1);
+
+	for (let i = 1; i <= n; i++) {
+		fact *= BigInt(i);
+	}
+
+	console.log(fact.toString());
+}
+extraLongFactorials(25);
