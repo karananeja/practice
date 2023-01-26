@@ -875,3 +875,41 @@ function extraLongFactorials(n) {
 	console.log(fact.toString());
 }
 extraLongFactorials(25);
+
+/**
+ * @problem_thirtyFive
+ * You are given a number of sticks of varying lengths. 
+ * You will iteratively cut the sticks into smaller sticks, discarding the shortest pieces until there are none left. 
+ * At each iteration you will determine the length of the shortest stick remaining, cut that length from each of the longer sticks and then discard all the pieces of that shortest length. 
+ * When all the remaining sticks are the same length, they cannot be shortened so discard them.
+ * Given the lengths of n sticks, print the number of sticks that are left before each iteration until there are none left.
+ */
+/**
+ * @solution_thirtyFive
+ */
+function cutTheSticks(arr) {
+	// Write your code here
+	let noOfSticksAtStart = arr.length;
+	arr = [...arr].sort((a, b) => a - b);
+	let count = 0, noOfSticks = [];
+
+	while (arr.length > 0) {
+		let smallestStick = arr[0];
+
+		while (count < arr.length) {
+			arr[count] -= smallestStick;
+			count++;
+		}
+
+		noOfSticks.push(arr.length);
+
+		for (let i = 0; i < noOfSticksAtStart; i++) {
+			if (arr[0] === 0) arr.shift();
+		}
+
+		count = 0;
+	}
+
+	return noOfSticks;
+}
+console.log(cutTheSticks([5, 4, 4, 2, 2, 8]));
