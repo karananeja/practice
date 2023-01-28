@@ -889,25 +889,16 @@ extraLongFactorials(25);
  */
 function cutTheSticks(arr) {
 	// Write your code here
-	let noOfSticksAtStart = arr.length;
-	arr = [...arr].sort((a, b) => a - b);
-	let count = 0, noOfSticks = [];
+	let noOfSticks = [];
 
 	while (arr.length > 0) {
-		let smallestStick = arr[0];
+		let smallestStick = arr.sort((a, b) => a - b)[0];
 
-		while (count < arr.length) {
-			arr[count] -= smallestStick;
-			count++;
-		}
+		arr = arr.map(ele => ele -= smallestStick);
 
 		noOfSticks.push(arr.length);
 
-		for (let i = 0; i < noOfSticksAtStart; i++) {
-			if (arr[0] === 0) arr.shift();
-		}
-
-		count = 0;
+		arr = arr.filter(ele => ele > 0);
 	}
 
 	return noOfSticks;
