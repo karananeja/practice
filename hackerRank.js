@@ -904,3 +904,27 @@ function cutTheSticks(arr) {
 	return noOfSticks;
 }
 console.log(cutTheSticks([5, 4, 4, 2, 2, 8]));
+
+/**
+ * @problem_thirtySix
+ * Given an array of integers, determine the minimum number of elements to delete to leave only elements of equal value.
+ */
+/**
+ * @solution_thirtySix
+ */
+function equalizeArray(arr) {
+	// Write your code here
+	let count = {}, maxCount = 0;
+
+	for (let element of arr) {
+		if (count[element]) count[element] += 1;
+		else count[element] = 1;
+	}
+
+	for (let element in count) {
+		if (maxCount < count[element]) maxCount = count[element];
+	}
+
+	return arr.length - maxCount;
+}
+console.log(equalizeArray([3, 3, 2, 1, 3]));
