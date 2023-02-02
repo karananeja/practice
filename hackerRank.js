@@ -928,3 +928,27 @@ function equalizeArray(arr) {
 	return arr.length - maxCount;
 }
 console.log(equalizeArray([3, 3, 2, 1, 3]));
+
+/**
+ * @problem_thirtySeven
+ * Watson likes to challenge Sherlock's math ability.
+ * He will provide a starting and ending value that describe a range of integers, inclusive of the endpoints.
+ * Sherlock must determine the number of square integers within that range.
+ * Note: A square integer is an integer which is the square of an integer, e.g. 1, 4, 9, 16, 25.
+ * Example
+ * a = 24
+ * b = 49
+ * There are three square integers in the range: 25, 36 and 49. Return 3.
+ */
+/**
+ * @solution_thirtySeven
+ */
+function squares(a, b) {
+	// Write your code here
+	let sqrtA = Math.ceil(Math.sqrt(a));
+	let sqrtB = Math.ceil(Math.sqrt(b));
+
+	return Math.pow(sqrtB, 2) === b ? Math.abs(sqrtA - sqrtB) + 1 : Math.abs(sqrtA - sqrtB);
+
+}
+console.log(squares(24, 49));
