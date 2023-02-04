@@ -952,3 +952,26 @@ function squares(a, b) {
 
 }
 console.log(squares(24, 49));
+
+/**
+ * @problem_thirtyEight
+ * The distance between two array values is the number of indices between them.
+ * Given a, find the minimum distance between any pair of equal elements in the array.
+ *  If no such value exists, return -1.
+ */
+/**
+ * @solution_thirtyEight
+ */
+function minimumDistances(a) {
+	// Write your code here
+	let minimumDistance = [];
+
+	for (let i = 0; i < a.length; i++) {
+		for (let j = i + 1; j < a.length; j++) {
+			if ((a[i] === a[j])) minimumDistance.push(Math.abs(i - j));
+		}
+	}
+
+	return minimumDistance.length > 0 ? minimumDistance.sort((a, b) => a - b)[0] : -1;
+}
+console.log(minimumDistances([3, 2, 1, 2, 3]));
