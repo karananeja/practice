@@ -975,3 +975,25 @@ function minimumDistances(a) {
 	return minimumDistance.length > 0 ? minimumDistance.sort((a, b) => a - b)[0] : -1;
 }
 console.log(minimumDistances([3, 2, 1, 2, 3]));
+
+/**
+ * @problem_thirtyNine
+ * Complete the libraryFine function in the editor below.
+ * libraryFine has the following parameter(s):
+ * d1, m1, y1: returned date day, month and year, each an integer
+ * d2, m2, y2: due date day, month and year, each an integer
+ */
+/**
+ * @solution_thirtyNine
+ */
+function libraryFine(d1, m1, y1, d2, m2, y2) {
+	// Write your code here
+	if (d1 > d2 && m1 === m2 && y1 === y2) return 15 * (d1 - d2);
+
+	if (m1 > m2 && y1 === y2) return 500 * (m1 - m2);
+
+	if (y1 > y2) return 10000;
+
+	return 0;
+}
+console.log(libraryFine(2, 7, 1014, 1, 1, 1015));
