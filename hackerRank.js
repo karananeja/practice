@@ -997,3 +997,30 @@ function libraryFine(d1, m1, y1, d2, m2, y2) {
 	return 0;
 }
 console.log(libraryFine(2, 7, 1014, 1, 1, 1015));
+
+/**
+ * @problem_forty
+ * There is a string, s, of lowercase English letters that is repeated infinitely many times. 
+ * Given an integer, n, find and print the number of letter a's in the first n letters of the infinite string.
+ */
+/**
+ * @solution_forty
+ */
+function repeatedString(s, n) {
+	// Write your code here
+	let count = 0;
+	let repeat = Math.floor(n / s.length);
+	let remain = n - s.length * repeat;
+
+	for (let i = 0; i <= s.length; i++) {
+		if (s[i] === 'a') count++;
+	}
+	count *= repeat;
+
+	for (let i = 0; i < remain; i++) {
+		if (s[i] === 'a') count++;
+	}
+
+	return count;
+}
+console.log(repeatedString('aba', 10));
