@@ -1024,3 +1024,26 @@ function repeatedString(s, n) {
 	return count;
 }
 console.log(repeatedString('aba', 10));
+
+/**
+ * @problem_fortyOne
+ * Complete the timeInWords function in the editor below.
+ * timeInWords has the following parameter(s):
+ * int h: the hour of the day
+ * int m: the minutes after the hour
+ */
+/**
+ * @solution_fortyOne
+ */
+function timeInWords(h, m) {
+	// Write your code here
+	const numberToWord = { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten', 11: 'eleven', 12: 'twelve', 13: 'thirteen', 14: 'fourteen', 16: 'sixteen', 17: 'seventeen', 18: 'eighteen', 19: 'nineteen', 20: 'twenty', 21: 'twenty one', 22: 'twenty two', 23: 'twenty three', 24: 'twenty four', 25: 'twenty five', 26: 'twenty six', 27: 'twenty seven', 28: 'twenty eight', 29: 'twenty nine' };
+
+	if (m === 0) return `${numberToWord[h]} o' clock`;
+	if (m === 15) return `quarter past ${numberToWord[h]}`;
+	if (m === 30) return `half past ${numberToWord[h]}`;
+	if (m < 30) return `${numberToWord[m]} ${m > 1 ? 'minutes' : 'minute'} past ${numberToWord[h]}`;
+	if (m === 45) return `quarter to ${numberToWord[h + 1]}`;
+	if (m < 60) return `${numberToWord[60 - m]} minutes to ${numberToWord[h + 1]}`;
+}
+console.log(timeInWords(5, 47));
