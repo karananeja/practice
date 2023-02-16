@@ -1076,3 +1076,32 @@ function timeInWords(h, m) {
 	if (m < 60) return `${numberToWord[60 - m]} minutes to ${numberToWord[h + 1]}`;
 }
 console.log(timeInWords(5, 47));
+
+/**
+ * @problem_fortyTwo
+ * A driver is driving on the freeway. The check engine light of his vehicle is on, and the driver wants to get service immediately. 
+ * Luckily, a service lane runs parallel to the highway. It varies in width along its length.
+ * You will be given an array of widths at points along the road (indices), then a list of the indices of entry and exit points. 
+ * Considering each entry and exit point pair, calculate the maximum size vehicle that can travel that segment of the service lane safely.
+ */
+/**
+ * @solution_fortyTwo
+ */
+function serviceLane(n, cases, width) {
+	// Write your code here
+	let minWidth = [];
+
+	for (let i = 0; i < cases.length; i++) {
+		let possibleWidths = [];
+
+		for (let j = cases[i][0]; j <= cases[i][1] && j < n; j++) possibleWidths.push(width[j]);
+
+		minWidth.push(Math.min(...possibleWidths));
+	}
+
+	return minWidth;
+}
+console.log(serviceLane(8, [[0, 3], [4, 6], [6, 7], [3, 5], [0, 7]], [
+	2, 3, 1, 2,
+	3, 2, 3, 3
+]));
