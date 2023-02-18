@@ -1122,3 +1122,30 @@ function camelCase(s) {
 	return s.match(/[A-Z]/g) ? s.match(/[A-Z]/g).length + 1 : 1;
 }
 console.log(camelCase("saveChangesInTheEditor"));
+
+/**
+ * @problem_fortyFour
+ * Taum is planning to celebrate the birthday of his friend, Diksha.
+ * There are two types of gifts that Diksha wants from Taum: one is black and the other is white. 
+ * To make her happy, Taum has to buy b black gifts and w white gifts.
+ * The cost of each black gift is bc units.
+ * The cost of every white gift is wc units.
+ * The cost to convert a black gift into white gift or vice versa is z units.
+ * Determine the minimum cost of Diksha's gifts.
+ */
+/**
+ * @solution_fortyFour
+ */
+function taumBday(b, w, bc, wc, z) {
+	// Write your code here
+	b = BigInt(b);
+	w = BigInt(w);
+	bc = BigInt(bc);
+	wc = BigInt(wc);
+	z = BigInt(z);
+
+	if (bc > wc + z) return ((b + w) * wc + b * z).toString();
+	else if (wc > bc + z) return ((b + w) * bc + w * z).toString();
+	else return (b * bc + w * wc).toString();
+}
+console.log(taumBday(10, 10, 1, 1, 1));
