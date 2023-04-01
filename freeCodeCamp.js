@@ -119,3 +119,26 @@ function sumPrimes(num) {
 }
 
 console.log(sumPrimes(10));
+
+// Problem - 7
+function dropElements(arr, func) {
+  let originalLen = arr.length;
+  for (let i = 0; i < originalLen; i++) {
+    if (func(arr[0])) {
+      break;
+    } else {
+      arr.shift();
+    }
+  }
+  return arr;
+}
+
+console.log(dropElements([1, 2, 3, 4], function (n) { return n > 5; }));
+
+// Problem - 8
+function steamrollArray(arr) {
+  const flat = [].concat(...arr);
+  return flat.some(Array.isArray) ? steamrollArray(flat) : flat;
+}
+
+console.log(steamrollArray([[["a"]], [["b"]]]));
