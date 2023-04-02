@@ -283,7 +283,6 @@ function regexNumStr(numString) {
 	 * Do not remove the return statement
 	 */
 	return numString.match(re);
-
 }
 console.log(!!regexNumStr('123'));
 
@@ -562,7 +561,7 @@ function getMoneySpent(keyboards, drives, b) {
 		});
 	});
 
-	return (max > 0 ? max : -1);
+	return max > 0 ? max : -1;
 }
 console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
 
@@ -642,16 +641,20 @@ function pickingNumbers(a) {
 	const arr = a.sort((a, b) => a - b);
 	let longestSuite = 0;
 	let increment = 0;
+
 	for (let i = 0; i < arr.length; i += increment) {
 		let j = i;
 		let suite = 0;
+
 		while (arr[j] - arr[i] <= 1) {
 			suite++;
 			j++;
 		}
+
 		if (suite > longestSuite) longestSuite = suite;
 		increment = suite === 0 ? 1 : suite;
 	}
+
 	return longestSuite;
 }
 console.log(pickingNumbers([4, 6, 5, 3, 3, 1]));
@@ -672,6 +675,7 @@ function getMaxLessThanK(n, k) {
 	for (let i = 0; i <= n; i++) {
 		for (let j = i + 1; j <= n; j++) {
 			result = i & j;
+
 			if (result < k && result > maxBitWiseNumber) {
 				maxBitWiseNumber++;
 			}
@@ -772,7 +776,7 @@ function viralAdvertising(n) {
 	const sharedCount = 3;
 
 	for (let i = 0; i < n; i++) {
-		likedCount = (Math.floor(count / 2));
+		likedCount = Math.floor(count / 2);
 		totalCount += likedCount;
 		count = likedCount * sharedCount;
 	}
@@ -792,7 +796,7 @@ console.log(viralAdvertising(5));
  */
 function permutationEquation(p) {
 	// Write your code here
-	return p.map((element, index) => p.indexOf(p.indexOf(index + 1) + 1) + 1);
+	return p.map((_, index) => p.indexOf(p.indexOf(index + 1) + 1) + 1);
 }
 console.log(permutationEquation([5, 2, 1, 3, 4]));
 
@@ -894,11 +898,11 @@ function cutTheSticks(arr) {
 	while (arr.length > 0) {
 		let smallestStick = arr.sort((a, b) => a - b)[0];
 
-		arr = arr.map(ele => ele -= smallestStick);
+		arr = arr.map((ele) => (ele -= smallestStick));
 
 		noOfSticks.push(arr.length);
 
-		arr = arr.filter(ele => ele > 0);
+		arr = arr.filter((ele) => ele > 0);
 	}
 
 	return noOfSticks;
@@ -968,7 +972,7 @@ function minimumDistances(a) {
 
 	for (let i = 0; i < a.length; i++) {
 		for (let j = i + 1; j < a.length; j++) {
-			if ((a[i] === a[j])) minimumDistance.push(Math.abs(i - j));
+			if (a[i] === a[j]) minimumDistance.push(Math.abs(i - j));
 		}
 	}
 
