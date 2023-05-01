@@ -387,3 +387,21 @@ var minimumSum = function (num) {
   return parseInt(numArray[0]) + parseInt(numArray[numArray.length - 1]);
 };
 console.log(minimumSum(2932));
+
+/**
+ * @problem_sixteen
+ * Write a function that checks if a given value is an instance of a given class or superclass.
+ * For this problem, an object is considered an instance of a given class if that object has access to that class's methods.
+ * There are no constraints on the data types that can be passed to the function. For example, the value or the class could be undefined
+ */
+/**
+ * @solution_sixteen
+ * @param {any} object
+ * @param {any} classFunction
+ */
+var checkIfInstanceOf = function (obj, classFunction) {
+  if (obj === null || obj === undefined || typeof classFunction !== 'function')
+    return false;
+  return Object(obj) instanceof classFunction;
+};
+console.log(checkIfInstanceOf(5, Number));
