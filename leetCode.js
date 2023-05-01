@@ -9,25 +9,24 @@
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
-var twoSum = function (nums, target) {
-    // nums = [3, 2, 4]
-    // target = 6
-
-    let resultArray = [];
-
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = i; j < nums.length; j++) {
-            if (nums[i] + nums[j] === target && i !== j) {
-                resultArray.push(i, j);
-            }
-        }
-    }
-
-    return resultArray;
-};
-
-console.log(twoSum([3, 2, 4], 6));
  */
+var twoSum = function (nums, target) {
+  // nums = [3, 2, 4]
+  // target = 6
+
+  let resultArray = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target && i !== j) {
+        resultArray.push(i, j);
+      }
+    }
+  }
+
+  return resultArray;
+};
+console.log(twoSum([3, 2, 4], 6));
 
 /**
  * @problem_two
@@ -38,13 +37,12 @@ console.log(twoSum([3, 2, 4], 6));
  * @solution_two
  * @param {string} s
  * @return {number}
-var lengthOfLastWord = function (s) {
-    let tempString = s.trim().split(' ');
-    return tempString[tempString.length - 1].toString().length;
-};
-
-console.log(lengthOfLastWord('Hello World'));
  */
+var lengthOfLastWord = function (s) {
+  let tempString = s.trim().split(' ');
+  return tempString[tempString.length - 1].toString().length;
+};
+console.log(lengthOfLastWord('Hello World'));
 
 /**
  * @problem_three
@@ -56,17 +54,16 @@ console.log(lengthOfLastWord('Hello World'));
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number}
-var findMedianSortedArrays = function (nums1, nums2) {
-    for (let index = 0; index < nums2.length; index++) nums1.push(nums2[index]);
-
-    nums1.sort((a, b) => a - b);
-
-    if (nums1.length % 2 === 0) return (nums1[nums1.length / 2] + nums1[(nums1.length / 2) - 1]) / 2;
-    else return nums1[(nums1.length - 1) / 2];
-};
-
-console.log(findMedianSortedArrays([1, 2], [3, 4]));
  */
+var findMedianSortedArrays = function (nums1, nums2) {
+  for (let index = 0; index < nums2.length; index++) nums1.push(nums2[index]);
+
+  nums1.sort((a, b) => a - b);
+
+  if (nums1.length % 2 === 0) return (nums1[nums1.length / 2] + nums1[(nums1.length / 2) - 1]) / 2;
+  else return nums1[(nums1.length - 1) / 2];
+};
+console.log(findMedianSortedArrays([1, 2], [3, 4]));
 
 /**
  * @problem_four
@@ -77,57 +74,53 @@ console.log(findMedianSortedArrays([1, 2], [3, 4]));
  * @solution_four
  * @param {number} x
  * @return {number}
-var reverse = function (x) {
-    let temp = 0, reverseNumber = 0;
-
-    if (x > 0) {
-        while (x > 0) {
-            temp = x % 10;
-            x = parseInt(x / 10);
-            reverseNumber = reverseNumber * 10 + temp;
-        }
-    } else {
-        x = -x;
-        while (x > 0) {
-            temp = x % 10;
-            x = parseInt(x / 10);
-            reverseNumber = reverseNumber * 10 + temp;
-        }
-        reverseNumber = -reverseNumber;
-    }
-
-    if (reverseNumber > BigInt(Math.pow(2, 31) - 1) || reverseNumber < BigInt(Math.pow(-2, 31))) return 0;
-    return reverseNumber;
-}
-
-console.log(reverse(-2147483648));
  */
+var reverse = function (x) {
+  let temp = 0, reverseNumber = 0;
 
-// /**
-//  * @problem_five
-//  * You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order,
-//  * and each of their nodes contains a single digit.
-//  * Add the two numbers and return the sum as a linked list.
-//  * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
-//  */
-// /**
-//  * @solution_five
-//  * @param {ListNode} l1
-//  * @param {ListNode} l2
-//  * @return {ListNode}
-//  */
-// /**
-// var addTwoNumbers = function (l1, l2) {
-//     let num1 = parseInt(l1.reverse().toString().split(',').join(''));
-//     let num2 = parseInt(l2.reverse().toString().split(',').join(''));
+  if (x > 0) {
+    while (x > 0) {
+      temp = x % 10;
+      x = parseInt(x / 10);
+      reverseNumber = reverseNumber * 10 + temp;
+    }
+  } else {
+    x = -x;
+    while (x > 0) {
+      temp = x % 10;
+      x = parseInt(x / 10);
+      reverseNumber = reverseNumber * 10 + temp;
+    }
+    reverseNumber = -reverseNumber;
+  }
 
-//     let result = (num1 + num2).toString().split('').reverse();
+  if (reverseNumber > BigInt(Math.pow(2, 31) - 1) || reverseNumber < BigInt(Math.pow(-2, 31))) return 0;
+  return reverseNumber;
+};
+console.log(reverse(-2147483648));
 
-//     return result;
-// };
+/**
+ * @problem_five
+ * You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order,
+ * and each of their nodes contains a single digit.
+ * Add the two numbers and return the sum as a linked list.
+ * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+ */
+/**
+ * @solution_five
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function (l1, l2) {
+  let num1 = parseInt(l1.reverse().toString().split(',').join(''));
+  let num2 = parseInt(l2.reverse().toString().split(',').join(''));
 
-// console.log(addTwoNumbers([2, 4, 3], [5, 6, 4]));
-//  */
+  let result = (num1 + num2).toString().split('').reverse();
+
+  return result;
+};
+console.log(addTwoNumbers([2, 4, 3], [5, 6, 4]));
 
 /**
  * @problem_six
@@ -137,23 +130,22 @@ console.log(reverse(-2147483648));
  * @solution_six
  * @param {number} n
  * @return {boolean}
-var isPowerOfFour = function (n) {
-    let originalNum = n, pow = 0;
-    if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
-
-    if (n === 1) pow = 0;
-    else {
-        while (n >= 4) {
-            pow++;
-            n /= 4;
-        }
-    }
-    if (Math.pow(4, pow) === originalNum) return true;
-    return false;
-};
-
-console.log(isPowerOfFour(-2147483647));
 */
+var isPowerOfFour = function (n) {
+  let originalNum = n, pow = 0;
+  if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
+
+  if (n === 1) pow = 0;
+  else {
+    while (n >= 4) {
+      pow++;
+      n /= 4;
+    }
+  }
+  if (Math.pow(4, pow) === originalNum) return true;
+  return false;
+};
+console.log(isPowerOfFour(-2147483647));
 
 /**
  * @problem_seven
@@ -163,23 +155,22 @@ console.log(isPowerOfFour(-2147483647));
  * @solution_seven
  * @param {number} n
  * @return {boolean}
-var isPowerOfTwo = function (n) {
-    let originalNum = n, pow = 0;
-    if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
-
-    if (n === 1) pow = 0;
-    else {
-        while (n >= 2) {
-            pow++;
-            n /= 2;
-        }
-    }
-    if (Math.pow(2, pow) === originalNum) return true;
-    return false;
-};
-
-console.log(isPowerOfTwo(-2147483647));
 */
+var isPowerOfTwo = function (n) {
+  let originalNum = n, pow = 0;
+  if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
+
+  if (n === 1) pow = 0;
+  else {
+    while (n >= 2) {
+      pow++;
+      n /= 2;
+    }
+  }
+  if (Math.pow(2, pow) === originalNum) return true;
+  return false;
+};
+console.log(isPowerOfTwo(-2147483647));
 
 /**
  * @problem_eight
@@ -189,39 +180,37 @@ console.log(isPowerOfTwo(-2147483647));
  * @solution_eight
  * @param {number} n
  * @return {boolean}
-var isPowerOfThree = function (n) {
-    let originalNum = n, pow = 0;
-    if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
-
-    if (n === 1) pow = 0;
-    else {
-        while (n >= 3) {
-            pow++;
-            n /= 3;
-        }
-    }
-    if (Math.pow(3, pow) === originalNum) return true;
-    return false;
-};
-
-console.log(isPowerOfThree(-2147483647));
  */
+var isPowerOfThree = function (n) {
+  let originalNum = n, pow = 0;
+  if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
 
-// /**
-//  * @problem_nine
-//  * The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1.
-//  * That is,
-//  * F(0) = 0, F(1) = 1
-//  * F(n) = F(n - 1) + F(n - 2), for n > 1.
-//  */
-// /**
-//  * @param {number} n
-//  * @return {number}
-//  */
-// var fib = function (n) {
-// };
+  if (n === 1) pow = 0;
+  else {
+    while (n >= 3) {
+      pow++;
+      n /= 3;
+    }
+  }
+  if (Math.pow(3, pow) === originalNum) return true;
+  return false;
+};
+console.log(isPowerOfThree(-2147483647));
 
-// console.log(fib(4));
+/**
+ * @problem_nine
+ * The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1.
+ * That is,
+ * F(0) = 0, F(1) = 1
+ * F(n) = F(n - 1) + F(n - 2), for n > 1.
+ */
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function (n) {
+};
+console.log(fib(4));
 
 /**
  * @problem_ten
@@ -233,43 +222,40 @@ console.log(isPowerOfThree(-2147483647));
  * @param {string} ransomNote
  * @param {string} magazine
  * @return {boolean}
-var canConstruct = function (ransomNote, magazine) {
-    for (const character of ransomNote) {
-        if (magazine.indexOf(character) !== -1) {
-            magazine = magazine.replace(character, '');
-        } else return false;
-    }
-
-    return true;
-};
-
-console.log(canConstruct('baa', 'aab'));
  */
+var canConstruct = function (ransomNote, magazine) {
+  for (const character of ransomNote) {
+    if (magazine.indexOf(character) !== -1) {
+      magazine = magazine.replace(character, '');
+    } else return false;
+  }
+
+  return true;
+};
+console.log(canConstruct('baa', 'aab'));
 
 /**
  * @problem_eleven
  * Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
  * The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
  * Return the quotient after dividing dividend by divisor.
-*/
+ */
 /**
  * @solution_eleven
  * @param {number} dividend
  * @param {number} divisor
  * @return {number}
-
-var divide = function (dividend, divisor) {
-    let quotient = parseInt(dividend / divisor);
-
-    if (quotient > Math.pow(2, 31) - 1) return Math.pow(2, 31) - 1;
-
-    if (quotient <= Math.pow(-2, 31)) return Math.pow(-2, 31);
-
-    return quotient;
-};
-
-console.log(divide(-2147483648, 1));
  */
+var divide = function (dividend, divisor) {
+  let quotient = parseInt(dividend / divisor);
+
+  if (quotient > Math.pow(2, 31) - 1) return Math.pow(2, 31) - 1;
+
+  if (quotient <= Math.pow(-2, 31)) return Math.pow(-2, 31);
+
+  return quotient;
+};
+console.log(divide(-2147483648, 1));
 
 /**
  * @problem_twelve You are given an integer n. We reorder the digits in any order (including the original order) such that the leading digit is not zero.
@@ -279,26 +265,25 @@ console.log(divide(-2147483648, 1));
  * @solution_twelve
  * @param {number} n
  * @return {boolean}
-var reorderedPowerOf2 = function (n) {
-    n = n.toString().split('').sort((a, b) => a - b).join('');
-    let lengthOfNumber = n.length;
-    let N, pow = 0;
-
-    while (n) {
-        N = (2 ** pow).toString();
-
-        if (N.length === lengthOfNumber) if (N.split('').sort((a, b) => a - b).join('') === n) return true;
-
-        if (N.length > lengthOfNumber) break;
-
-        pow++;
-    }
-
-    return false;
-};
-
-console.log(reorderedPowerOf2(10));
  */
+var reorderedPowerOf2 = function (n) {
+  n = n.toString().split('').sort((a, b) => a - b).join('');
+  let lengthOfNumber = n.length;
+  let N, pow = 0;
+
+  while (n) {
+    N = (2 ** pow).toString();
+
+    if (N.length === lengthOfNumber) if (N.split('').sort((a, b) => a - b).join('') === n) return true;
+
+    if (N.length > lengthOfNumber) break;
+
+    pow++;
+  }
+
+  return false;
+};
+console.log(reorderedPowerOf2(10));
 
 /**
  * @problem_thirteen Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
@@ -308,84 +293,72 @@ console.log(reorderedPowerOf2(10));
  * @solution_thirteen
  * @param {number[]} nums
  * @return {number}
-var singleNumber = function (nums) {
-    let count = {};
-
-    for (let element of nums) {
-        if (count[element]) count[element] += 1;
-        else count[element] = 1;
-    }
-
-    for (let element in count) {
-        if (count[element] === 1) return element;
-    }
-};
-
-console.log(singleNumber([2, 3, 3, 2, 1]));
  */
+var singleNumber = function (nums) {
+  let count = {};
 
-// /**
-//  * @param {string[]} strs
-//  * @return {string}
-//  */
-// var longestCommonPrefix = function (array) {
-//     let prefix = '';
-//     // for (let i = 0; i < strs.length; i++) {
-//     //     for (let j = 0; j < strs[i].length; j++) {
-//     //         if (strs[0][j] === strs[0 + i][j]) {
-//     //             str += strs[i][j];
-//     //         }
-//     //     }
-//     // }
+  for (let element of nums) {
+    if (count[element]) count[element] += 1;
+    else count[element] = 1;
+  }
 
-//     for (let str of array) {
-//         for (let i = 0; i < array.length; i++) {
-//             if (array[i][0].startsWith(str[0])) {
-//                 if (!prefix.includes(str[0])) prefix += str[0];
-//             }
-//         }
-//     }
+  for (let element in count) {
+    if (count[element] === 1) return element;
+  }
+};
+console.log(singleNumber([2, 3, 3, 2, 1]));
 
-//     if (prefix.length > 0) return prefix;
-//     return prefix;
-// };
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (array) {
+  let prefix = '';
 
-// // console.log(longestCommonPrefix(["flower", "flow", "flight"]));
-// console.log(longestCommonPrefix(["dog", "racecar", "car"]));
+  for (let str of array) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i][0].startsWith(str[0])) {
+        if (!prefix.includes(str[0])) prefix += str[0];
+      }
+    }
+  }
 
-// /**
-//  * @param {number[]} nums
-//  * @param {number} val
-//  * @return {number}
-//  */
-// var removeElement = function (nums, val) {
-//     nums = nums.sort((a, b) => a - b);
-//     for (let i = 0; i < nums.length; i++) {
-//         if (nums.includes(val)) nums.pop();
-//     }
-//     return nums;
-// };
+  if (prefix.length > 0) return prefix;
+  return prefix;
+};
+console.log(longestCommonPrefix(["dog", "racecar", "car"]));
 
-// console.log(removeElement([3, 2, 3, 2], 3));
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function (nums, val) {
+  nums = nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) {
+    if (nums.includes(val)) nums.pop();
+  }
+  return nums;
+};
+console.log(removeElement([3, 2, 3, 2], 3));
 
-// /**
-//  * @param {string} s
-//  * @return {number}
-//  */
-// var romanToInt = function (s) {
-//     let romanToInteger = {
-//         1: "I",
-//         5: "V",
-//         10: "X",
-//         50: "L",
-//         100: "C",
-//         500: "D",
-//         1000: "M"
-//     }
-//     if (s === 10) return romanToInteger[s];
-// };
-
-// console.log(romanToInt(10));
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function (s) {
+  let romanToInteger = {
+    1: "I",
+    5: "V",
+    10: "X",
+    50: "L",
+    100: "C",
+    500: "D",
+    1000: "M"
+  };
+  if (s === 10) return romanToInteger[s];
+};
+console.log(romanToInt(10));
 
 /**
  * @problem_fourteen Given a positive integer n, return the smallest positive integer that is a multiple of both 2 and n.
@@ -394,25 +367,23 @@ console.log(singleNumber([2, 3, 3, 2, 1]));
  */
 /**
  * @solution_fourteen
-var smallestEvenMultiple = function (n) {
-    return n % 2 === 0 ? n : n * 2;
-};
-
-console.log(smallestEvenMultiple(5));
  */
+var smallestEvenMultiple = function (n) {
+  return n % 2 === 0 ? n : n * 2;
+};
+console.log(smallestEvenMultiple(5));
 
-// /**
-//  * @problem_fifteen You are given a positive integer num consisting of exactly four digits. Split num into two new integers new1 and new2 by using the digits found in num. 
-//  * Leading zeros are allowed in new1 and new2, and all the digits found in num must be used.
-//  * For example, given num = 2932, you have the following digits: two 2's, one 9 and one 3. 
-//  * Some of the possible pairs [new1, new2] are [22, 93], [23, 92], [223, 9] and [2, 329].
-//  * Return the minimum possible sum of new1 and new2.
-//  * @param {number} num
-//  * @return {number}
-//  */
-// var minimumSum = function (num) {
-//     let numArray = num.toString().split('').sort();
-//     return parseInt(numArray[0]) + parseInt(numArray[numArray.length - 1]);
-// };
-
-// console.log(minimumSum(2932));
+/**
+ * @problem_fifteen You are given a positive integer num consisting of exactly four digits. Split num into two new integers new1 and new2 by using the digits found in num.
+ * Leading zeros are allowed in new1 and new2, and all the digits found in num must be used.
+ * For example, given num = 2932, you have the following digits: two 2's, one 9 and one 3.
+ * Some of the possible pairs [new1, new2] are [22, 93], [23, 92], [223, 9] and [2, 329].
+ * Return the minimum possible sum of new1 and new2.
+ * @param {number} num
+ * @return {number}
+ */
+var minimumSum = function (num) {
+  let numArray = num.toString().split('').sort();
+  return parseInt(numArray[0]) + parseInt(numArray[numArray.length - 1]);
+};
+console.log(minimumSum(2932));
