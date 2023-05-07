@@ -1257,3 +1257,22 @@ function circularArrayRotation(a, k, queries) {
 }
 console.log(circularArrayRotation([1, 2, 3], 2, [0, 1, 2]));
 
+/**
+ * @problem_fortyNine
+ * Complete the function rotLeft in the editor below.
+ * rotLeft has the following parameter(s):
+ * int a[n]: the array to rotate
+ * int d: the number of rotations
+ */
+/**
+ * @solution_fortyNine
+ */
+function rotLeft(a, d) {
+	// Write your code here
+	for (let i = 0; i < d; i++) {
+		a.push(a.shift());
+	}
+
+	return a;
+}
+console.log(rotLeft([1, 2, 3, 4, 5], 4));
