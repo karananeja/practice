@@ -1307,3 +1307,28 @@ function workbook(n, k, arr) {
 	return { n, k, arr };
 }
 console.log(workbook(5, 3, [4, 2, 6, 1, 10]));
+
+/**
+ * @problem_fiftyOne
+ * You have two strings of lowercase English letters. You can perform two types of operations on the first string:
+ * 1. Append a lowercase English letter to the end of the string.
+ * 2. Delete the last character of the string. Performing this operation on an empty string results in an empty string.
+ * Given an integer, k, and two strings, s and t, determine whether or not you can convert s to t by performing exactly k of the above operations on s.
+ * If it's possible, print Yes. Otherwise, print No.
+ */
+/**
+ * @solution_fiftyOne
+ */
+function appendAndDelete(s, t, k) {
+	// Write your code here
+	for (var i = 0; i < s.length; i++) {
+		if (s[i] !== t[i]) break;
+	}
+
+	let z = s.length + t.length - i * 2;
+
+	if (k >= s.length + t.length) return 'Yes';
+	else if (z % 2 === k % 2 && z <= k) return 'Yes';
+	else return 'No';
+}
+console.log(appendAndDelete('hackerhappy', 'hackerrank', 9));
