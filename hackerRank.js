@@ -1332,3 +1332,17 @@ function appendAndDelete(s, t, k) {
 	else return 'No';
 }
 console.log(appendAndDelete('hackerhappy', 'hackerrank', 9));
+
+/**
+ * @problem_fiftyTwo
+ * Complete the introTutorial function in the editor below. It must return an integer representing the zero-based index of V.
+ * introTutorial has the following parameter(s):
+ * int arr[n]: a sorted array of integers
+ * int V: an integer to search for
+ */
+function introTutorial(V, arr) {
+	// Write your code here
+	return arr.indexOf(V);
+}
+
+console.log(introTutorial(4, [1, 4, 5, 9, 12]));
