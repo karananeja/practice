@@ -405,3 +405,14 @@ var checkIfInstanceOf = function (obj, classFunction) {
   return Object(obj) instanceof classFunction;
 };
 console.log(checkIfInstanceOf(5, Number));
+
+/**
+ * @problem_seventeen
+ * Write a function createHelloWorld. It should return a new function that always returns "Hello World".
+ */
+/**
+ * @solution_seventeen
+ */
+var createHelloWorld = function () {
+  return () => "Hello World";
+};
