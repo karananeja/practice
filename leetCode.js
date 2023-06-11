@@ -416,3 +416,26 @@ console.log(checkIfInstanceOf(5, Number));
 var createHelloWorld = function () {
   return () => "Hello World";
 };
+
+/**
+ * @problem_eighteen
+ * Design a parking system for a parking lot. The parking lot has three kinds of parking spaces: big, medium, and small, with a fixed number of slots for each size.
+ */
+/**
+ * @solution_eighteen
+ */
+var ParkingSystem = function (big, medium, small) {
+  this.parkingSpace = {
+    current: [0, 0, 0],
+    allowed: [big, medium, small]
+  };
+};
+
+ParkingSystem.prototype.addCar = function (carType) {
+  if (this.parkingSpace.current[carType - 1] < this.parkingSpace.allowed[carType - 1]) {
+    this.parkingSpace.current[carType - 1] += 1;
+    return true;
+  } else {
+    return false;
+  }
+};
