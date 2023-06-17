@@ -442,3 +442,46 @@ ParkingSystem.prototype.addCar = function (carType) {
     return false;
   }
 };
+
+/**
+ * @problem_nineteen
+ * Design a HashSet without using any built-in hash table libraries.
+ * Implement MyHashSet class:
+ * void add(key) Inserts the value key into the HashSet.
+ * bool contains(key) Returns whether the value key exists in the HashSet or not.
+ * void remove(key) Removes the value key in the HashSet. If key does not exist in the HashSet, do nothing.
+ */
+/**
+ * @solution_nineteen
+ */
+var MyHashSet = function () {
+  this.hashset = [];
+};
+
+/** 
+ * @param {number} key
+ * @return {void}
+ */
+MyHashSet.prototype.add = function (key) {
+  if (!this.hashset.includes(key))
+    this.hashset.push(key);
+};
+
+/** 
+ * @param {number} key
+ * @return {void}
+ */
+MyHashSet.prototype.remove = function (key) {
+  if (this.hashset.includes(key)) {
+    const index = this.hashset.indexOf(key);
+    this.hashset.splice(index, 1);
+  }
+};
+
+/** 
+ * @param {number} key
+ * @return {boolean}
+ */
+MyHashSet.prototype.contains = function (key) {
+  return this.hashset.includes(key);
+};
