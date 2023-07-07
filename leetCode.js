@@ -485,3 +485,31 @@ MyHashSet.prototype.remove = function (key) {
 MyHashSet.prototype.contains = function (key) {
   return this.hashset.includes(key);
 };
+
+/**
+ * @param {number[]} gain
+ * @return {number}
+ */
+var largestAltitude = function (gain) {
+  let altitudes = [], totalAltitude = 0, maxAltitude = 0;
+
+  for (let i = 0; i < gain.length + 1; i++) {
+    if (i === 0) {
+      totalAltitude += 0;
+    } else {
+      totalAltitude = totalAltitude + gain[i - 1];
+    }
+
+    altitudes.push(totalAltitude);
+  }
+
+  for (let i = 0; i < altitudes.length; i++) {
+    if (maxAltitude <= altitudes[i]) {
+      maxAltitude = altitudes[i];
+    }
+  }
+
+  return maxAltitude;
+};
+
+console.log(largestAltitude([-5, 1, 5, 0, -7]));
