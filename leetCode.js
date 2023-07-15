@@ -513,3 +513,19 @@ var largestAltitude = function (gain) {
 };
 
 console.log(largestAltitude([-5, 1, 5, 0, -7]));
+
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var uniqueOccurrences = function (arr) {
+  let myMap = new Map();
+
+  for (let num of arr) {
+    myMap.set(num, (myMap.get(num) || 0) + 1);
+  }
+
+  return myMap.size === new Set(myMap.values()).size;
+};
+
+console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3]));
