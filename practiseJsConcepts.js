@@ -4,10 +4,13 @@ const event = new CustomEvent('click');
 
 // buttonClick.dispatchEvent(event);
 
-buttonClick.addEventListener('click', function (e) {
-  console.log('hello', e);
-}, false);
-
+buttonClick.addEventListener(
+  'click',
+  function (e) {
+    console.log('hello', e);
+  },
+  false
+);
 
 /**
  * Hoisting kicks in and the value of sayHello is declared as undefined so, sayHello() will throw an error as it not a function
