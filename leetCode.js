@@ -529,3 +529,16 @@ var uniqueOccurrences = function (arr) {
 };
 
 console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3]));
+
+function findDuplicate(nums) {
+  let ans = 0;
+  for (let i = 0; i < nums.length; i++) {
+    ans = ans ^ nums[i];
+  }
+  for (let i = 1; i < nums.length; i++) {
+    ans = ans ^ i;
+  }
+  return ans;
+}
+
+console.log(findDuplicate([5, 1, 2, 3, 4, 2]));
