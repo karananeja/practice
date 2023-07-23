@@ -542,3 +542,23 @@ function findDuplicate(nums) {
 }
 
 console.log(findDuplicate([5, 1, 2, 3, 4, 2]));
+
+function findInPeakIndexInMountainArray(arr) {
+  let start = 0, end = arr.length - 1;
+
+  let mid = start + parseInt((end - start) / 2);
+
+  while (start < end) {
+    if (arr[mid] < arr[mid + 1]) {
+      start = mid + 1;
+    } else {
+      end = mid;
+    }
+
+    mid = start + parseInt((end - start) / 2);
+  }
+
+  return start;
+}
+
+console.log(findInPeakIndexInMountainArray([0, 10, 5, 2]));
