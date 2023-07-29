@@ -1,5 +1,6 @@
 * {
-    margin: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -55,4 +56,66 @@ form h1 {
 
 #input-container {
   padding: 80px 80px 40px;
+}
+
+.spinner {
+  height: 20rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  overflow: hidden;
+  position: relative;
+  animation: text-color 2s ease-in-out infinite alternate;
+}
+
+.spinner-section {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 15px solid transparent;
+  mix-blend-mode: darken;
+  animation: spinner var(--duration) var(--timing) infinite;
+  pointer-events: none;
+}
+
+.spinner-section-red {
+  border-top-color: #c0c0c0;
+  --duration: 1.5s;
+  --timing: ease-in-out;
+}
+
+.spinner-section-blue {
+  border-left-color: #b3b3b3;
+  --duration: 2s;
+  --timing: ease-in;
+}
+
+.spinner-section-green {
+  border-right-color: #808080;
+  --duration: 2.5s;
+  --timing: ease-out;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes text-color {
+  0% {
+    color: rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    color: rgba(0, 0, 0, 0.1);
+  }
 }
