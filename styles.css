@@ -99,6 +99,51 @@ form h1 {
   --timing: ease-out;
 }
 
+.spinner-2 {
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  pointer-events: none;
+  animation: rotate 1.2s linear infinite;
+}
+
+.spinner-2-top,
+.spinner-2-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.spinner-2-top-left,
+.spinner-2-top-right,
+.spinner-2-bottom-left,
+.spinner-2-bottom-right {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+}
+
+.spinner-2-top-left {
+  background-color: gray;
+}
+
+.spinner-2-top-right {
+  background-color: #767676;
+}
+
+.spinner-2-bottom-right {
+  background-color: #d4d4d4;
+}
+
+.spinner-2-bottom-left {
+  background-color: #bababa;
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
@@ -117,5 +162,14 @@ form h1 {
   }
   100% {
     color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
   }
 }
