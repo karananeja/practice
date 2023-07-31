@@ -20,6 +20,20 @@ body {
   cursor: pointer;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem;
+}
+
+.container-right {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 form {
   text-align: center;
   border: 1px solid #ccc;
@@ -106,7 +120,6 @@ form h1 {
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  pointer-events: none;
   animation: rotate 1.2s linear infinite;
 }
 
