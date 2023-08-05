@@ -120,7 +120,7 @@ form h1 {
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  animation: rotate 1.2s linear infinite;
+  animation: spinner 1.2s linear infinite;
 }
 
 .spinner-2-top,
@@ -159,10 +159,10 @@ form h1 {
 
 @keyframes spinner {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
   }
 }
 
@@ -175,14 +175,5 @@ form h1 {
   }
   100% {
     color: rgba(0, 0, 0, 0.1);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
   }
 }
