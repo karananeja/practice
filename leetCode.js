@@ -562,3 +562,23 @@ function findInPeakIndexInMountainArray(arr) {
 }
 
 console.log(findInPeakIndexInMountainArray([0, 10, 5, 2]));
+
+var sortPeople = function (names, heights) {
+  for (let i = 0; i < heights.length; i++) {
+    let maxIndex = i;
+
+    for (let j = i + 1; j < heights.length; j++) {
+      if (heights[maxIndex] < heights[j]) maxIndex = j;
+    }
+
+    const temp = heights[i], tempName = names[i];
+    heights[i] = heights[maxIndex];
+    names[i] = names[maxIndex];
+    heights[maxIndex] = temp;
+    names[maxIndex] = tempName;
+  }
+
+  return names;
+};
+
+console.log({ answer: sortPeople(["IEO", "Sgizfdfrims", "QTASHKQ", "Vk", "RPJOFYZUBFSIYp", "EPCFFt", "VOYGWWNCf", "WSpmqvb"], [17233, 32521, 14087, 42738, 46669, 65662, 43204, 8224]) });
