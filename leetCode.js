@@ -582,3 +582,44 @@ var sortPeople = function (names, heights) {
 };
 
 console.log({ answer: sortPeople(["IEO", "Sgizfdfrims", "QTASHKQ", "Vk", "RPJOFYZUBFSIYp", "EPCFFt", "VOYGWWNCf", "WSpmqvb"], [17233, 32521, 14087, 42738, 46669, 65662, 43204, 8224]) });
+
+var getPivot = function (arr) {
+  let start = 0, end = arr.length - 1;
+
+  while (start < end) {
+    let mid = start + parseInt((end - start) / 2);
+
+    (arr[mid] >= arr[0]) ? start = mid + 1 : end = mid;
+  }
+
+  return start;
+};
+
+var findTarget = function (arr, target, start, end) {
+  while (start <= end) {
+    let mid = start + parseInt((end - start) / 2);
+
+    if (arr[mid] === target) {
+      return mid;
+    }
+
+    arr[mid] > target ? end = mid - 1 : start = mid + 1;
+  }
+
+  return -1;
+};
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function (nums, target) {
+  const pivot = getPivot(nums, target);
+
+  if (target >= nums[pivot] && target <= nums[nums.length - 1]) {
+    return findTarget(nums, target, pivot, nums.length - 1);
+  } else {
+    return findTarget(nums, target, 0, pivot - 1);
+  }
+};
