@@ -21,8 +21,31 @@ function sayHi() {
   console.log('Hi');
 }
 
-sayHello();
+// sayHello();
 
 var sayHello = function () {
   console.log('Hello');
 };
+
+let countNotes = (amount) => {
+  switch (amount) {
+    case amount / 100:
+      return amount;
+    default:
+      console.log('something went wrong the previous case!');
+      return null;
+  }
+};
+console.log({ val: countNotes(1330) });
+
+function update(a) {
+  return (a = a / 2);
+}
+
+function a() {
+  let a = 14;
+  let val = update(14);
+  console.log({ a, val });
+}
+
+a();
