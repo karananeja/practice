@@ -114,8 +114,6 @@ form h1 {
 }
 
 .loader-2 {
-  height: 4rem;
-  width: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
