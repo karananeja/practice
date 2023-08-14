@@ -1340,9 +1340,21 @@ console.log(appendAndDelete('hackerhappy', 'hackerrank', 9));
  * int arr[n]: a sorted array of integers
  * int V: an integer to search for
  */
+/**
+ * @solution_fiftyTwo
+ */
 function introTutorial(V, arr) {
 	// Write your code here
-	return arr.indexOf(V);
-}
+	let start = 0, end = arr.length - 1;
 
+	while (start <= end) {
+		let mid = start + parseInt((end - start) / 2);
+
+		if (arr[mid] === V) return mid;
+
+		arr[mid] > V ? end = mid - 1 : start = mid + 1;
+	}
+
+	return -1;
+}
 console.log(introTutorial(4, [1, 4, 5, 9, 12]));
