@@ -1358,3 +1358,23 @@ function introTutorial(V, arr) {
 	return -1;
 }
 console.log(introTutorial(4, [1, 4, 5, 9, 12]));
+
+/**
+* @problem_fiftyThree
+* Function Description
+* Complete the findMedian function in the editor below.
+* findMedian has the following parameter(s):
+* int arr[n]: an unsorted array of integers
+* Returns
+* int: the median of the array
+*/
+/**
+* @solution_fiftyThree
+*/
+function findMedian(arr) {
+	// Write your code here
+	arr = arr.sort((a, b) => a - b);
+	let median = (arr.length + 1) / 2;
+	return arr[median - 1];
+}
+console.log({ median: findMedian([3]) });
