@@ -623,3 +623,55 @@ var search = function (nums, target) {
     return findTarget(nums, target, 0, pivot - 1);
   }
 };
+
+var firstOccurrence = function (nums, target) {
+
+  let start = 0, end = nums.length - 1, ans = -1;
+
+  while (start <= end) {
+    let mid = start + parseInt((end - start) / 2);
+
+    if (nums[mid] === target) {
+      ans = mid;
+      end = mid - 1;
+    } else if (target > nums[mid]) {
+      start = mid + 1;
+    } else if (target < nums[mid]) {
+      end = mid - 1;
+    }
+  }
+
+  return ans;
+};
+
+var lastOccurrence = function (nums, target) {
+
+  let start = 0, end = nums.length - 1, ans = -1;
+
+  while (start <= end) {
+    let mid = start + parseInt((end - start) / 2);
+
+    if (nums[mid] === target) {
+      ans = mid;
+      start = mid + 1;
+    } else if (target > nums[mid]) {
+      start = mid + 1;
+    } else if (target < nums[mid]) {
+      end = mid - 1;
+    }
+  }
+
+  return ans;
+};
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var searchRange = function (nums, target) {
+  const firstIndex = firstOccurrence(nums, target);
+  const lastIndex = lastOccurrence(nums, target);
+
+  return [firstIndex, lastIndex];
+};
