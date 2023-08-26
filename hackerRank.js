@@ -1411,8 +1411,6 @@ function acmTeam(topics) {
 			} else if (numberOfTopics === maxTopicsKnown) {
 				numberOfTeams++;
 			}
-
-
 		}
 	}
 
