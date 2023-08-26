@@ -1378,3 +1378,44 @@ function findMedian(arr) {
 	return arr[median - 1];
 }
 console.log({ median: findMedian([3]) });
+
+/**
+ * @problem_fiftyFour
+ * Function Description
+ * Complete the acmTeam function in the editor below.
+ * acmTeam has the following parameter(s):
+ * string topic: a string of binary digits
+ */
+/**
+ * @solution_fiftyFour
+ */
+function acmTeam(topics) {
+	let maxTopicsKnown = -1, numberOfTeams = 0;
+
+	for (let i = 0; i < topics.length; i++) {
+		const currentTeam = topics[i];
+
+		for (let j = i + 1; j < topics.length; j++) {
+			let numberOfTopics = 0;
+			const nextTeam = topics[j];
+
+			for (let k = 0; k < nextTeam.length; k++) {
+				if (currentTeam[k] | nextTeam[k]) {
+					numberOfTopics++;
+				}
+			}
+
+			if (numberOfTopics > maxTopicsKnown) {
+				maxTopicsKnown = numberOfTopics;
+				numberOfTeams = 1;
+			} else if (numberOfTopics === maxTopicsKnown) {
+				numberOfTeams++;
+			}
+
+
+		}
+	}
+
+	return [maxTopicsKnown, numberOfTeams];
+}
+console.log({ result: acmTeam(["10101", "11110", "00010"]) });
