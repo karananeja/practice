@@ -28,13 +28,31 @@ var sayHello = function () {
 };
 
 let countNotes = (amount) => {
-  switch (amount) {
-    case amount / 100:
-      return amount;
-    default:
-      console.log('something went wrong the previous case!');
-      return null;
+  const notes = {};
+
+  while (amount !== 0) {
+    if (amount >= 1000) {
+      amount -= 1000;
+      notes[1000] ? ++notes[1000] : notes[1000] = 1;
+    } else if (amount >= 500) {
+      amount -= 500;
+      notes[500] ? ++notes[500] : notes[500] = 1;
+    } else if (amount >= 100) {
+      amount -= 100;
+      notes[100] ? ++notes[100] : notes[100] = 1;
+    } else if (amount >= 50) {
+      amount -= 50;
+      notes[50] ? ++notes[50] : notes[50] = 1;
+    } else if (amount >= 20) {
+      amount -= 20;
+      notes[20] ? ++notes[20] : notes[20] = 1;
+    } else if (amount >= 10) {
+      amount -= 10;
+      notes[10] ? ++notes[10] : notes[10] = 1;
+    }
   }
+
+  return notes;
 };
 console.log({ val: countNotes(1330) });
 
