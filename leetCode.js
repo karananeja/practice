@@ -675,3 +675,38 @@ var searchRange = function (nums, target) {
 
   return [firstIndex, lastIndex];
 };
+
+/**
+ * @param {number} num
+ * @returns {number}
+ */
+var integerValue = function (num) {
+  let start = 0, end = num, integer = -1;
+
+  while (start <= end) {
+    let mid = start + parseInt((end - start) / 2);
+
+    const square = mid * mid;
+
+    if (square === num) {
+      return mid;
+    }
+
+    if (square < num) {
+      integer = mid;
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  return integer;
+};
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function (x) {
+  return integerValue(x);
+};
