@@ -209,6 +209,13 @@ console.log(isPowerOfThree(-2147483647));
  * @return {number}
  */
 var fib = function (n) {
+  const series = [0, 1];
+
+  for (let i = 2; i <= n; i++) {
+    series[i] = series[i - 1] + series[i - 2];
+  }
+
+  return n === 0 ? 0 : n === 1 ? 1 : series[series.length - 1];
 };
 console.log(fib(4));
 
