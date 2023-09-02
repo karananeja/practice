@@ -717,3 +717,14 @@ var integerValue = function (num) {
 var mySqrt = function (x) {
   return integerValue(x);
 };
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findKthLargest = function (nums, k) {
+  nums = nums.sort((a, b) => a - b);
+
+  return nums[nums.length - k];
+};
