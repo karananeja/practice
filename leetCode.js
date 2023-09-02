@@ -724,7 +724,6 @@ var mySqrt = function (x) {
  * @return {number}
  */
 var findKthLargest = function (nums, k) {
-  nums = nums.sort((a, b) => a - b);
-
-  return nums[nums.length - k];
+  return nums.sort((a, b) => a - b)[nums.length - k];
 };
+console.log({ kthLargest: findKthLargest([3, 2, 1, 5, 6, 4], 2) });
