@@ -727,3 +727,31 @@ var findKthLargest = function (nums, k) {
   return nums.sort((a, b) => a - b)[nums.length - k];
 };
 console.log({ kthLargest: findKthLargest([3, 2, 1, 5, 6, 4], 2) });
+
+/**
+ * @param {array} operations 
+ * @returns {number}
+ */
+function calPoints(operations) {
+  const score = [];
+
+  for (let i = 0; i < operations.length; i++) {
+    switch (operations[i]) {
+      case "+":
+        const total = score[score.length - 1] + score[score.length - 2];
+        score.push(total);
+        break;
+      case "D":
+        score.push(score[score.length - 1] * 2);
+        break;
+      case "C":
+        score.pop();
+        break;
+      default:
+        score.push(+operations[i]);
+    }
+  }
+
+  return score.length > 0 ? score.reduce((curr, next) => curr + next, 0) : 0;
+};
+console.log({ points: calPoints(["5", "2", "C", "D", "+"]) });
