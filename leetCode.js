@@ -755,3 +755,34 @@ function calPoints(operations) {
   return score.length > 0 ? score.reduce((curr, next) => curr + next, 0) : 0;
 };
 console.log({ points: calPoints(["5", "2", "C", "D", "+"]) });
+
+/**
+ * 
+ * @param {string} char 
+ * @returns {string}
+ */
+function lowerCase(char) {
+  if (char >= "a" && char <= "z") {
+    return char;
+  } else if (char >= "A" && char <= "Z") {
+    return String.fromCharCode(char.charCodeAt(0) + 32);
+  }
+
+  return char;
+}
+
+/**
+ * 
+ * @param {string} s 
+ * @returns {string}
+ */
+function toLowerCase(s) {
+  const result = [];
+
+  for (let i = 0; i < s.length; i++) {
+    result.push(lowerCase(s[i]));
+  }
+
+  return result.join("");
+};
+console.log({ lowerCase: toLowerCase("Hello@WORLD") });
