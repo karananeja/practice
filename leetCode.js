@@ -786,3 +786,25 @@ function toLowerCase(s) {
   return result.join("");
 };
 console.log({ lowerCase: toLowerCase("Hello@WORLD") });
+
+/**
+ * 
+ * @param {array} nums 
+ * @returns {boolean}
+ */
+function isMonotonic(nums) {
+  let start = 0, next = 1;
+
+  while (next < nums.length) {
+    if (nums[0] <= nums[nums.length - 1]) {
+      if (nums[start] > nums[next]) return false;
+    } else {
+      if (nums[start] < nums[next]) return false;
+    }
+    start++;
+    next++;
+  }
+
+  return true;
+};
+console.log({ isMonotonic: isMonotonic([1, 1, 0]) });
