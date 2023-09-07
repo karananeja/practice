@@ -757,7 +757,6 @@ function calPoints(operations) {
 console.log({ points: calPoints(["5", "2", "C", "D", "+"]) });
 
 /**
- * 
  * @param {string} char 
  * @returns {string}
  */
@@ -772,7 +771,6 @@ function lowerCase(char) {
 }
 
 /**
- * 
  * @param {string} s 
  * @returns {string}
  */
@@ -788,7 +786,6 @@ function toLowerCase(s) {
 console.log({ lowerCase: toLowerCase("Hello@WORLD") });
 
 /**
- * 
  * @param {array} nums 
  * @returns {boolean}
  */
