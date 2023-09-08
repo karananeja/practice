@@ -805,3 +805,27 @@ function isMonotonic(nums) {
   return true;
 };
 console.log({ isMonotonic: isMonotonic([1, 1, 0]) });
+
+/**
+ * 
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function repeatedSubstringPattern(s) {
+  const length = s.length;
+
+  for (let i = 0; i <= length / 2; i++) {
+    if (length % i === 0) {
+      let pattern = "";
+
+      for (let j = 0; j < length / i; j++) {
+        pattern += s.substr(0, i);
+      }
+
+      if (pattern === s) return true;
+    }
+  }
+
+  return false;
+};
+console.log({ canBeFormed: repeatedSubstringPattern("ababab") });
