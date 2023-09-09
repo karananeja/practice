@@ -829,3 +829,13 @@ function repeatedSubstringPattern(s) {
   return false;
 };
 console.log({ canBeFormed: repeatedSubstringPattern("ababab") });
+
+/**
+ * @param {number} low 
+ * @param {number} high 
+ * @returns {number}
+ */
+function countOdds(low, high) {
+  return low % 2 === 0 ? Math.round((high - low) / 2) : Math.floor((high - low) / 2) + 1;
+};
+console.log({ count: countOdds(0, 100) });
