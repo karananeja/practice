@@ -219,6 +219,12 @@ var fib = function (n) {
 };
 console.log({ withLoop: fib(4) });
 
+// with recursion
+function fibRecursion(n) {
+  return n < 2 ? n : fib(n - 2) + fib(n - 1);
+};
+console.log({ withRecursion: fibRecursion(4) });
+
 /**
  * @problem_ten
  * Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
