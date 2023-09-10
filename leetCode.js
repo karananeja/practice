@@ -217,7 +217,7 @@ var fib = function (n) {
 
   return n === 0 ? 0 : n === 1 ? 1 : series[series.length - 1];
 };
-console.log(fib(4));
+console.log({ withLoop: fib(4) });
 
 /**
  * @problem_ten
