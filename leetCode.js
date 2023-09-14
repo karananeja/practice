@@ -845,3 +845,48 @@ function countOdds(low, high) {
   return low % 2 === 0 ? Math.round((high - low) / 2) : Math.floor((high - low) / 2) + 1;
 };
 console.log({ count: countOdds(0, 100) });
+
+/**
+ * @param {number[][]} mat 
+ * @returns {num}
+ */
+function principalDiagonal(mat) {
+  let sum = 0;
+
+  for (let row = 0; row < mat.length; row++) {
+    for (let col = 0; col < mat[0].length; col++) {
+      if (row === col) {
+        sum += mat[row][col];
+      }
+    }
+  }
+
+  return sum;
+}
+
+/**
+ * @param {number[][]} mat 
+ * @returns {num}
+ */
+function secondaryDiagonal(mat) {
+  let sum = 0;
+
+  for (let row = 0; row < mat.length; row++) {
+    for (let col = mat[0].length - 1; col >= 0; col--) {
+      if (row !== col && Math.abs(row + col) === mat[0].length - 1) {
+        sum += mat[row][col];
+      }
+    }
+  }
+
+  return sum;
+}
+
+/**
+ * @param {number[][]} mat 
+ * @returns {num}
+ */
+function diagonalSum(mat) {
+  return principalDiagonal(mat) + secondaryDiagonal(mat);
+};
+console.log({ diagonalSum: diagonalSum([[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]) });
