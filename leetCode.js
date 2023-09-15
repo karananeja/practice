@@ -890,3 +890,26 @@ function diagonalSum(mat) {
   return principalDiagonal(mat) + secondaryDiagonal(mat);
 };
 console.log({ diagonalSum: diagonalSum([[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]) });
+
+/**
+ * @param {number[]} salary 
+ * @returns {number}
+ */
+function average(salary) {
+  let averageSalary = 0, maxSalary = -Infinity, minSalary = Infinity;
+
+  for (let i = 0; i < salary.length; i++) {
+    if (maxSalary <= salary[i]) {
+      maxSalary = salary[i];
+    }
+
+    if (minSalary >= salary[i]) {
+      minSalary = salary[i];
+    }
+
+    averageSalary += salary[i];
+  }
+
+  return Number(((averageSalary - minSalary - maxSalary) / (salary.length - 2)).toFixed(5));
+};
+console.log({ averageSalary: average([48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000, 77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000]) });
