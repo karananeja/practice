@@ -937,3 +937,39 @@ function memoize(fn) {
 const memoizedSum = memoize((a, b) => a + b);
 console.log(memoizedSum(2, 3)); // Output: Computing sum, 5
 console.log(memoizedSum(2, 3)); // Output: 5
+
+/**
+ * @param {number[]} numbers 
+ * @returns {number}
+ */
+function countNegativeNumbers(numbers) {
+  let count = 0, start = 0, end = numbers.length - 1;
+
+  while (start <= end) {
+    let mid = start + Math.floor((end - start) / 2);
+
+    if (numbers[mid] >= 0) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+      count = numbers.length - mid;
+    }
+  }
+
+  return count;
+}
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function countNegatives(grid) {
+  let count = 0;
+
+  for (let i = 0; i < grid.length; i++) {
+    count += countNegativeNumbers(grid[i]);
+  }
+
+  return count;
+};
+console.log({ negativeNumbers: countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]) });
