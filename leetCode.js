@@ -969,3 +969,21 @@ function countNegatives(grid) {
   return count;
 };
 console.log({ negativeNumbers: countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]) });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function reverseWords(s) {
+  const string = s.split(" ");
+
+  let reversedString = "", index = string.length - 1;
+
+  while (index >= 0) {
+    if (string[index]) reversedString += `${string[index]} `;
+    index--;
+  }
+
+  return reversedString.trim();
+};
+console.log({ reverseWords: reverseWords("the sky is blue") });
