@@ -524,7 +524,6 @@ var largestAltitude = function (gain) {
 
   return maxAltitude;
 };
-
 console.log(largestAltitude([-5, 1, 5, 0, -7]));
 
 /**
@@ -540,20 +539,21 @@ var uniqueOccurrences = function (arr) {
 
   return myMap.size === new Set(myMap.values()).size;
 };
-
 console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3]));
 
 function findDuplicate(nums) {
   let ans = 0;
+
   for (let i = 0; i < nums.length; i++) {
     ans = ans ^ nums[i];
   }
+
   for (let i = 1; i < nums.length; i++) {
     ans = ans ^ i;
   }
+
   return ans;
 }
-
 console.log(findDuplicate([5, 1, 2, 3, 4, 2]));
 
 function findInPeakIndexInMountainArray(arr) {
@@ -573,7 +573,6 @@ function findInPeakIndexInMountainArray(arr) {
 
   return start;
 }
-
 console.log(findInPeakIndexInMountainArray([0, 10, 5, 2]));
 
 var sortPeople = function (names, heights) {
@@ -593,7 +592,6 @@ var sortPeople = function (names, heights) {
 
   return names;
 };
-
 console.log({ answer: sortPeople(["IEO", "Sgizfdfrims", "QTASHKQ", "Vk", "RPJOFYZUBFSIYp", "EPCFFt", "VOYGWWNCf", "WSpmqvb"], [17233, 32521, 14087, 42738, 46669, 65662, 43204, 8224]) });
 
 var getPivot = function (arr) {
@@ -638,7 +636,6 @@ var search = function (nums, target) {
 };
 
 var firstOccurrence = function (nums, target) {
-
   let start = 0, end = nums.length - 1, ans = -1;
 
   while (start <= end) {
@@ -658,7 +655,6 @@ var firstOccurrence = function (nums, target) {
 };
 
 var lastOccurrence = function (nums, target) {
-
   let start = 0, end = nums.length - 1, ans = -1;
 
   while (start <= end) {
