@@ -987,3 +987,17 @@ function reverseWords(s) {
   return reversedString.trim();
 };
 console.log({ reverseWords: reverseWords("the sky is blue") });
+
+/**
+ * @param {string} s 
+ * @param {string} part 
+ * @returns {string}
+ */
+function removeOccurrences(s, part) {
+  while (s.length !== 0 && s.includes(part)) {
+    s = s.replace(part, "");
+  }
+
+  return s;
+};
+console.log({ removed: removeOccurrences("daabcbaabcbc", "abc") });
