@@ -56,12 +56,12 @@ console.log(lengthOfLastWord('Hello World'));
  * @return {number}
  */
 var findMedianSortedArrays = function (nums1, nums2) {
-  for (let index = 0; index < nums2.length; index++) nums1.push(nums2[index]);
+  const merged = nums1.concat(nums2).sort((a, b) => a - b);
 
-  nums1.sort((a, b) => a - b);
+  const length = merged.length;
 
-  if (nums1.length % 2 === 0) return (nums1[nums1.length / 2] + nums1[(nums1.length / 2) - 1]) / 2;
-  else return nums1[(nums1.length - 1) / 2];
+  if (length % 2 === 0) return (merged[length / 2] + merged[(length / 2) - 1]) / 2;
+  else return merged[(length - 1) / 2];
 };
 console.log(findMedianSortedArrays([1, 2], [3, 4]));
 
