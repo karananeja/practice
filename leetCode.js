@@ -1001,3 +1001,62 @@ function removeOccurrences(s, part) {
   return s;
 };
 console.log({ removed: removeOccurrences("daabcbaabcbc", "abc") });
+
+/**
+ * @param {number[]} a 
+ * @param {number[]} b 
+ * @returns {boolean}
+ */
+function checkEqual(a, b) {
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+
+  return true;
+}
+
+/**
+ * 
+ * @param {string} s1 
+ * @param {string} s2 
+ * @returns {boolean}
+ */
+function checkInclusion(s1, s2) {
+  const count1 = new Array(26).fill(0);
+
+  // character count array
+  for (let i = 0; i < s1.length; i++) {
+    const index = s1[i].charCodeAt(0) - 97;
+    count1[index]++;
+  }
+
+  // traverse s2 string in window of size s1 length and compare
+  let i = 0;
+  const windowSize = s1.length;
+  const count2 = new Array(26).fill(0);
+
+  //first window
+  while (i < windowSize && i < s2.length) {
+    const index = s2[i].charCodeAt(0) - 97;
+    count2[index]++;
+    i++;
+  }
+
+  if (checkEqual(count1, count2)) return true;
+
+  //next windows
+  while (i < s2.length) {
+    const newCharIndex = s2[i].charCodeAt(0) - 97;
+    count2[newCharIndex]++;
+
+    const oldCharIndex = s2[i - windowSize].charCodeAt(0) - 97;
+    count2[oldCharIndex]--;
+
+    i++;
+
+    if (checkEqual(count1, count2)) return true;
+  }
+
+  return false;
+};
+console.log({ checkInclusion: checkInclusion("ab", "eidbaooo") });
