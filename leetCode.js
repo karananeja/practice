@@ -1060,3 +1060,25 @@ function checkInclusion(s1, s2) {
   return false;
 };
 console.log({ checkInclusion: checkInclusion("ab", "eidbaooo") });
+
+/**
+ * @param {number[][]} matrix 
+ * @param {number} target 
+ * @returns {boolean}
+ */
+function searchMatrix(matrix, target) {
+  let row = matrix.length, col = matrix[0].length, start = 0, end = row * col - 1;
+
+  while (start <= end) {
+    let mid = start + Math.floor((end - start) / 2);
+
+    if (matrix[Math.floor(mid / col)][mid % col] === target) {
+      return true;
+    }
+
+    matrix[Math.floor(mid / col)][mid % col] > target ? end = mid - 1 : start = mid + 1;
+  }
+
+  return false;
+};
+console.log({ isPresent: searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3) });
