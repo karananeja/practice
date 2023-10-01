@@ -1090,3 +1090,25 @@ function searchMatrix(matrix, target) {
   return false;
 };
 console.log({ isPresent: searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3) });
+
+/**
+ * @param {number[][]} matrix 
+ * @param {number} target 
+ * @returns {boolean}
+ */
+function searchMatrixLevelTwo(matrix, target) {
+  let rows = matrix.length, cols = matrix[0].length, rowIndex = 0, colIndex = cols - 1;
+
+  while (rowIndex < rows && colIndex >= 0) {
+    let element = matrix[rowIndex][colIndex];
+
+    if (element === target) {
+      return true;
+    }
+
+    element < target ? rowIndex++ : colIndex--;
+  }
+
+  return false;
+};
+console.log({ isPresentInLevelTwo: searchMatrixLevelTwo([[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], 5) });
