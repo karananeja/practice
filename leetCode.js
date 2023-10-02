@@ -1112,3 +1112,37 @@ function searchMatrixLevelTwo(matrix, target) {
   return false;
 };
 console.log({ isPresentInLevelTwo: searchMatrixLevelTwo([[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], 5) });
+
+/**
+ * @param {string[]} chars 
+ * @returns {number}
+ */
+function compress(chars) {
+  let i = 0, ansIndex = 0;
+  const length = chars.length;
+
+  while (i < length) {
+    let j = i + 1;
+
+    while (j < length && chars[i] === chars[j]) {
+      j++;
+    }
+
+    chars[ansIndex++] = chars[i];
+
+    const count = j - i;
+
+    if (count > 1) {
+      const cnt = count.toString();
+
+      for (let i = 0; i < cnt.length; i++) {
+        chars[ansIndex++] = cnt[i];
+      }
+    }
+
+    i = j;
+  }
+
+  return ansIndex;
+};
+console.log({   edString: compress(["a", "a", "b", "b", "c", "c", "c"]) });
