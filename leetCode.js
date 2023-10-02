@@ -1145,4 +1145,4 @@ function compress(chars) {
 
   return ansIndex;
 };
-console.log({   edString: compress(["a", "a", "b", "b", "c", "c", "c"]) });
+console.log({ compressedString: compress(["a", "a", "b", "b", "c", "c", "c"]) });
