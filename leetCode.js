@@ -1146,3 +1146,23 @@ function compress(chars) {
   return ansIndex;
 };
 console.log({ compressedString: compress(["a", "a", "b", "b", "c", "c", "c"]) });
+
+/**
+ * @param {string} s 
+ * @param {string} goal 
+ * @returns {boolean}
+ */
+function rotateString(s, goal) {
+  for (let i = 0; i < goal.length; i++) {
+    if (s[0] === goal[i]) {
+      const firstPart = goal.substr(0, i);
+      const secondPart = goal.substr(i);
+      const lookAlike = `${secondPart}${firstPart}`;
+
+      if (lookAlike === s) return true;
+    }
+  }
+
+  return false;
+};
+console.log({ isRotated: rotateString("abcde", "cdeab") });
