@@ -11,20 +11,15 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  // nums = [3, 2, 4]
-  // target = 6
-
-  let resultArray = [];
+  const keys = {};
 
   for (let i = 0; i < nums.length; i++) {
-    for (let j = i; j < nums.length; j++) {
-      if (nums[i] + nums[j] === target && i !== j) {
-        resultArray.push(i, j);
-      }
+    if (keys[target - nums[i]] !== undefined) {
+      return [keys[target - nums[i]], i];
     }
-  }
 
-  return resultArray;
+    keys[nums[i]] = i;
+  }
 };
 console.log(twoSum([3, 2, 4], 6));
 
