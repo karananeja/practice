@@ -1161,3 +1161,28 @@ function rotateString(s, goal) {
   return false;
 };
 console.log({ isRotated: rotateString("abcde", "cdeab") });
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number[][]}
+ */
+function rotate(matrix) {
+  const rotatedMatrix = [];
+
+  for (let col = 0; col < matrix[0].length; col++) {
+    rotatedMatrix[col] = [];
+
+    for (let row = matrix.length - 1; row >= 0; row--) {
+      rotatedMatrix[col].push(matrix[row][col]);
+    }
+  }
+
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[0].length; col++) {
+      matrix[row][col] = rotatedMatrix[row][col];
+    }
+  }
+
+  return matrix;
+};
+console.log({ matrixRotated: rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
