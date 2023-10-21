@@ -1186,3 +1186,46 @@ function rotate(matrix) {
   return matrix;
 };
 console.log({ matrixRotated: rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number[]}
+ */
+function spiralOrder(matrix) {
+  let rows = matrix.length, cols = matrix[0].length;
+
+  let count = 0, total = rows * cols;
+
+  let startingRow = 0, startingCol = 0, endingRow = rows - 1, endingCol = cols - 1;
+
+  const spiralMatrix = [];
+
+  while (count < total) {
+    for (let index = startingCol; count < total && index <= endingCol; index++) {
+      spiralMatrix.push(matrix[startingRow][index]);
+      count++;
+    }
+    startingRow++;
+
+    for (let index = startingRow; count < total && index <= endingRow; index++) {
+      spiralMatrix.push(matrix[index][endingCol]);
+      count++;
+    }
+    endingCol--;
+
+    for (let index = endingCol; count < total && index >= startingCol; index--) {
+      spiralMatrix.push(matrix[endingRow][index]);
+      count++;
+    }
+    endingRow--;
+
+    for (let index = endingRow; count < total && index >= startingRow; index--) {
+      spiralMatrix.push(matrix[index][startingCol]);
+      count++;
+    }
+    startingCol++;
+  }
+
+  return spiralMatrix;
+}
+console.log({ spiralPattern: spiralOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
