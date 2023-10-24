@@ -1243,3 +1243,20 @@ class NumArray {
     return this.prefixSum[right + 1] - this.prefixSum[left];
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function largestPerimeter(nums) {
+  for (let i = nums.sort((a, b) => a - b).length - 1; i >= 2; i--) {
+    const firstSide = nums[i], secondSide = nums[i - 1], thirdSide = nums[i - 2];
+
+    if (firstSide < secondSide + thirdSide) {
+      return firstSide + secondSide + thirdSide;
+    }
+  }
+
+  return 0;
+};
+console.log({ largestPerimeter: largestPerimeter([2, 1, 2]) });
