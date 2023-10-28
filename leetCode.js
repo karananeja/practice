@@ -342,19 +342,21 @@ console.log(longestCommonPrefix(["dog", "racecar", "car"]));
  * @return {number}
  */
 var removeElement = function (nums, val) {
-  const result = [];
+  let j = 0;
 
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== val) {
-      result.push(nums[i]);
+    if (nums[i] === val) {
+      nums[i] = -Infinity;
+    } else {
+      if (nums[j] === -Infinity) {
+        [nums[j], nums[i]] = [nums[i], nums[j]];
+      }
+
+      j++;
     }
   }
 
-  for (let i = 0; i < result.length; i++) {
-    nums[i] = result[i];
-  }
-
-  return result.length;
+  return j;
 };
 console.log(removeElement([3, 2, 3, 2], 3));
 
