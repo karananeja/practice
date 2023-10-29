@@ -107,15 +107,30 @@ console.log(reverse(-2147483648));
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function (l1, l2) {
-  let num1 = parseInt(l1.reverse().toString().split(',').join(''));
-  let num2 = parseInt(l2.reverse().toString().split(',').join(''));
+var addTwoNumbers = function (l1, l2, carry = 0) {
+  if (l1 === null && l2 === null && carry === 0) return null;
 
-  let result = (num1 + num2).toString().split('').reverse();
+  let a = 0, b = 0;
+
+  if (l1 !== null) {
+    a = l1.val;
+    l1 = l1.next;
+  }
+
+  if (l2 !== null) {
+    b = l2.val;
+    l2 = l2.next;
+  }
+
+  let value = a + b + carry;
+
+  carry = Math.floor(value / 10);
+  value %= 10;
+
+  const result = new ListNode(value, addTs(l1, l2, carry));
 
   return result;
 };
-console.log(addTwoNumbers([2, 4, 3], [5, 6, 4]));
 
 /**
  * @problem_six
