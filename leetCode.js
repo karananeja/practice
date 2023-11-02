@@ -142,18 +142,17 @@ var addTwoNumbers = function (l1, l2, carry = 0) {
  * @return {boolean}
 */
 var isPowerOfFour = function (n) {
-  let originalNum = n, pow = 0;
-  if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
+  if (n <= 0) return false;
 
-  if (n === 1) pow = 0;
-  else {
-    while (n >= 4) {
-      pow++;
-      n /= 4;
-    }
+  if (n === 1) return true;
+
+  if (n % 4 > 0) {
+    return false;
+  } else {
+    n /= 4;
   }
-  if (Math.pow(4, pow) === originalNum) return true;
-  return false;
+
+  return isPowerOfFour(Math.floor(n));
 };
 console.log(isPowerOfFour(-2147483647));
 
@@ -167,18 +166,17 @@ console.log(isPowerOfFour(-2147483647));
  * @return {boolean}
 */
 var isPowerOfTwo = function (n) {
-  let originalNum = n, pow = 0;
-  if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
+  if (n <= 0) return false;
 
-  if (n === 1) pow = 0;
-  else {
-    while (n >= 2) {
-      pow++;
-      n /= 2;
-    }
+  if (n === 1) return true;
+
+  if (n % 2 === 1) {
+    return false;
+  } else {
+    n /= 2;
   }
-  if (Math.pow(2, pow) === originalNum) return true;
-  return false;
+
+  return isPowerOfTwo(Math.floor(n));
 };
 console.log(isPowerOfTwo(-2147483647));
 
@@ -192,18 +190,17 @@ console.log(isPowerOfTwo(-2147483647));
  * @return {boolean}
  */
 var isPowerOfThree = function (n) {
-  let originalNum = n, pow = 0;
-  if (n <= parseInt(Math.pow(-2, 31)) || n >= parseInt(Math.pow(2, 31) - 1)) return false;
+  if (n <= 0) return false;
 
-  if (n === 1) pow = 0;
-  else {
-    while (n >= 3) {
-      pow++;
-      n /= 3;
-    }
+  if (n === 1) return true;
+
+  if (n % 3 > 0) {
+    return false;
+  } else {
+    n /= 3;
   }
-  if (Math.pow(3, pow) === originalNum) return true;
-  return false;
+
+  return isPowerOfThree(Math.floor(n));
 };
 console.log(isPowerOfThree(-2147483647));
 
