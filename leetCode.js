@@ -376,17 +376,23 @@ console.log(removeElement([3, 2, 3, 2], 3));
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function (s) {
-  let romanToInteger = {
-    1: "I",
-    5: "V",
-    10: "X",
-    50: "L",
-    100: "C",
-    500: "D",
-    1000: "M"
-  };
-  if (s === 10) return romanToInteger[s];
+var romanToInt = function (romanNumber) {
+  const symbolValue = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+
+  let charIndex = 0, number = 0;
+
+  while (charIndex < romanNumber.length) {
+    if (symbolValue[romanNumber[charIndex]] < symbolValue[romanNumber[charIndex + 1]]) {
+      number += symbolValue[romanNumber[charIndex + 1]] - symbolValue[romanNumber[charIndex]];
+      charIndex++;
+    } else {
+      number += symbolValue[romanNumber[charIndex]];
+    }
+
+    charIndex++;
+  }
+
+  return number;
 };
 console.log(romanToInt(10));
 
