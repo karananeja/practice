@@ -1013,6 +1013,68 @@ console.log({ reverseWords: reverseWords("the sky is blue") });
 
 /**
  * @param {string} s 
+ * @param {number} k 
+ * @returns {string[]}
+ */
+function createGroups(s, k) {
+  const groups = [];
+  let i = 0;
+
+  while (i < s.length) {
+    let j = 0, charString = '';
+
+    while (j < 2 * k) {
+      if (s[j + (i * 2 * k)] !== undefined) {
+        charString += s[j + (i * 2 * k)];
+      }
+
+      j++;
+    }
+
+    if (charString) groups.push(charString);
+    i++;
+  }
+
+  return groups;
+}
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {string}
+ */
+function partiallyReverseLetters(charGroup, k) {
+  let result = '';
+
+  for (let i = 0; i < charGroup.length; i++) {
+    const chars = charGroup[i].split('');
+    let start = 0, end = k - 1;
+
+    while (start <= end) {
+      [chars[start], chars[end]] = [chars[end], chars[start]];
+      start++;
+      end--;
+    }
+
+    result += chars.join('');
+  }
+
+  return result;
+}
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {string}
+ */
+function reverseWordsVariantTwo(s, k) {
+  const charGroups = createGroups(s, k);
+  return partiallyReverseLetters(charGroups, k);
+};
+console.log({ reverseWordsVariantTwo: reverseWordsVariantTwo("abcdefg", 2) });
+
+/**
+ * @param {string} s 
  * @param {string} part 
  * @returns {string}
  */
