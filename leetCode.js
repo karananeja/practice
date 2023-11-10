@@ -332,18 +332,25 @@ console.log(singleNumber([2, 3, 3, 2, 1]));
  * @param {string[]} strs
  * @return {string}
  */
-var longestCommonPrefix = function (array) {
-  let prefix = '';
+var longestCommonPrefix = function (strs) {
+  let prefix = "";
 
-  for (let str of array) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i][0].startsWith(str[0])) {
-        if (!prefix.includes(str[0])) prefix += str[0];
+  const referenceStr = strs[0];
+
+  for (let i = 0; i < referenceStr.length; i++) {
+    const char = referenceStr[i];
+
+    for (let j = 1; j < strs.length; j++) {
+      const string = strs[j];
+
+      if (char !== string[i]) {
+        return prefix;
       }
     }
+
+    prefix += char;
   }
 
-  if (prefix.length > 0) return prefix;
   return prefix;
 };
 console.log(longestCommonPrefix(["dog", "racecar", "car"]));
