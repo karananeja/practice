@@ -1082,6 +1082,30 @@ console.log({ reverseWordsVariantTwo: reverseWordsVariantTwo("abcdefg", 2) });
 
 /**
  * @param {string} s 
+ * @returns {string}
+ */
+function reverseWordsVariantThree(s) {
+  let reversedString = s.split(' '), result = "";
+
+  for (let i = 0; i < reversedString.length; i++) {
+    const chars = reversedString[i].split('');
+    let start = 0, end = chars.length;
+
+    while (start <= end) {
+      [chars[start], chars[end]] = [chars[end], chars[start]];
+      start++;
+      end--;
+    }
+
+    result += `${chars.join("")} `;
+  }
+
+  return result.trim();
+};
+console.log({ reverseWordsVariantThree: reverseWordsVariantThree("Let's take LeetCode contest") });
+
+/**
+ * @param {string} s 
  * @param {string} part 
  * @returns {string}
  */
