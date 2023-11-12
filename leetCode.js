@@ -1373,3 +1373,29 @@ function largestPerimeter(nums) {
   return 0;
 };
 console.log({ largestPerimeter: largestPerimeter([2, 1, 2]) });
+
+/**
+ * @param {Function} fn 
+ * @param {number} t 
+ * @returns 
+ */
+function timeLimit(fn, t) {
+  return async function (...args) {
+    return new Promise((delayResolve, reject) => {
+      const timeoutId = setTimeout(() => {
+        clearTimeout(timeoutId);
+        reject("Time Limit Exceeded");
+      }, t);
+
+      fn(...args)
+        .then((result) => {
+          clearTimeout(timeoutId);
+          delayResolve(result);
+        })
+        .catch((error) => {
+          clearTimeout(timeoutId);
+          reject(error);
+        });
+    });
+  };
+}
