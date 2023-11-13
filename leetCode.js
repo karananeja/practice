@@ -1399,3 +1399,32 @@ function timeLimit(fn, t) {
     });
   };
 }
+
+/**
+ * @param {number} numRows 
+ * @returns {number[][]}
+ */
+function generate(numRows) {
+  const result = [];
+
+  result.push([1]);
+
+  if (numRows === 1) return result;
+
+  result.push([1, 1]);
+
+  if (numRows === 2) return result;
+
+  for (let i = 2; i < numRows; i++) {
+    result[i] = [1];
+
+    for (let j = 1; j < i; j++) {
+      result[i].push(result[i - 1][j] + result[i - 1][j - 1]);
+    }
+
+    result[i].push(1);
+  }
+
+  return result;
+};
+console.log({ pascalPattern: generate(5) });
