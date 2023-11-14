@@ -1428,3 +1428,39 @@ function generate(numRows) {
   return result;
 };
 console.log({ pascalPattern: generate(5) });
+
+class TimeLimitedCache {
+  constructor() {
+    this.cache = {};
+  }
+
+  set(key, value, duration) {
+    if (this.cache[key] && this.cache[key].timer) {
+      clearTimeout(this.cache[key].timer);
+
+      this.cache[key] = {
+        value,
+        timer: setTimeout(() => delete this.cache[key], duration),
+      };
+
+      return true;
+    } else {
+      this.cache[key] = {
+        value,
+        timer: setTimeout(() => delete this.cache[key], duration),
+      };
+
+      return false;
+    }
+  }
+
+  get(key) {
+    return this.cache[key] && this.cache[key].value
+      ? this.cache[key].value
+      : -1;
+  }
+
+  count() {
+    return Object.keys(this.cache).length;
+  }
+}
