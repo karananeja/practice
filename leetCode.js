@@ -1484,3 +1484,20 @@ function getRow(rowIndex) {
 
   return result[rowIndex];
 };
+
+/**
+ * @param {number} a 
+ * @param {number} b 
+ * @returns {number}
+ */
+function commonFactors(a, b) {
+  let numberOfFactors = 0;
+  const minNum = Math.min(a, b);
+
+  for (let number = 0; number <= minNum; number++) {
+    if (a % number == 0 && b % number === 0) numberOfFactors++;
+  }
+
+  return numberOfFactors;
+};
+console.log({ numberOfFactors: commonFactors(12, 6) });
