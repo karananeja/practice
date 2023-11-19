@@ -1501,3 +1501,13 @@ function commonFactors(a, b) {
   return numberOfFactors;
 };
 console.log({ numberOfFactors: commonFactors(12, 6) });
+
+/**
+ * @param {number} arrivalTime 
+ * @param {number} delayedTime 
+ * @returns {number}
+ */
+function findDelayedArrivalTime(arrivalTime, delayedTime) {
+  return (arrivalTime + delayedTime) % 24;
+};
+console.log({ updatedTime: findDelayedArrivalTime(5, 24) });
