@@ -1511,3 +1511,26 @@ function findDelayedArrivalTime(arrivalTime, delayedTime) {
   return (arrivalTime + delayedTime) % 24;
 };
 console.log({ updatedTime: findDelayedArrivalTime(5, 24) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number} m 
+ * @param {number[]} nums2 
+ * @param {number} n
+ */
+function combine(nums1, m, nums2, n) {
+  let firstIndex = m - 1;
+  let secondIndex = n - 1;
+  let totalLength = m + n - 1;
+
+  while (secondIndex >= 0) {
+    if (firstIndex >= 0 && nums1[firstIndex] > nums2[secondIndex]) {
+      nums1[totalLength--] = nums1[firstIndex--];
+    } else {
+      nums1[totalLength--] = nums2[secondIndex--];
+    }
+  }
+
+  console.log({ nums1 });
+};
+combine([3], 1, [9], 1);
