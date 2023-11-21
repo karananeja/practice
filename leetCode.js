@@ -1534,3 +1534,34 @@ function combine(nums1, m, nums2, n) {
   console.log({ nums1 });
 };
 combine([3], 1, [9], 1);
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minDeletions(s) {
+  const charFrequency = {};
+  const frequency = [];
+
+  let deletions = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    charFrequency[s[i]] = (charFrequency[s[i]] || 0) + 1;
+  }
+
+  for (const value in charFrequency) {
+    let count = charFrequency[value];
+
+    while (frequency.includes(count)) {
+      count--;
+      deletions++;
+    }
+
+    if (count > 0) {
+      frequency.push(count);
+    }
+  }
+
+  return deletions;
+}
+console.log({ deletions: minDeletions("aaabbcdddeef") });
