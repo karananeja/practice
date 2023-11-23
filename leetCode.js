@@ -1565,3 +1565,37 @@ function minDeletions(s) {
   return deletions;
 }
 console.log({ deletions: minDeletions("aaabbcdddeef") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number[]} set 
+ * @param {number} index 
+ * @param {number[][]} subSet 
+ * @returns {void}
+ */
+function getSubsets(nums, set, index, subSet) {
+  if (index >= nums.length) {
+    subSet.push([...set]);
+    return;
+  }
+
+  getSubsets(nums, set, index + 1, subSet);
+  set.push(nums[index]);
+
+  getSubsets(nums, set, index + 1, subSet);
+  set.pop();
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[][]}
+ */
+function subsets(nums) {
+  const subSet = [], set = [];
+  let index = 0;
+
+  getSubsets(nums, set, index, subSet);
+
+  return subSet;
+};
+console.log({ subSets: subsets([1, 2, 3]) });
