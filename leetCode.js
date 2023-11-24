@@ -1599,3 +1599,44 @@ function subsets(nums) {
   return subSet;
 };
 console.log({ subSets: subsets([1, 2, 3]) });
+
+/**
+ * @param {string} digits 
+ * @param {string[]} combination 
+ * @param {number} index 
+ * @param {string[]} combinations 
+ * @param {string[]} mapping 
+ * @returns {void}
+ */
+function createCombination(digits, combination, index, combinations, mapping) {
+  if (index >= digits.length) {
+    combinations.push(combination.join(""));
+    return;
+  }
+
+  const number = parseInt(digits[index]);
+  const value = mapping[number];
+
+  for (let i = 0; i < value.length; i++) {
+    combination.push(value[i]);
+    createCombination(digits, combination, index + 1, combinations, mapping);
+    combination.pop();
+  }
+}
+
+/**
+ * @param {string} digits 
+ * @returns {string[]}
+ */
+function letterCombinations(digits) {
+  const combinations = [];
+  if (digits.length == 0) return combinations;
+
+  const mapping = [null, null, "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"];
+  let index = 0, combination = [];
+
+  createCombination(digits, combination, index, combinations, mapping);
+
+  return combinations;
+};
+console.log({ letterComb: letterCombinations('23') });
