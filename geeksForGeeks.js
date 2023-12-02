@@ -52,3 +52,35 @@ class Solution {
     return M[a][b] === 1;
   }
 }
+
+/**
+ * @problem_two
+ * You are required to complete two methods push() and pop().
+ * The push() method takes one argument, an integer 'x' to be pushed into the stack and pop() which returns an integer present at the top and popped out from the stack.
+ * If the stack is empty then return -1 from the pop() method.
+ */
+/**
+ * @solution_two
+ */
+class MyStack {
+  constructor() {
+    this.top = null;
+    this.stackList = null;
+  }
+
+  push(a) {
+    const tempNode = new StackNode(a);
+    tempNode.next = this.stackList;
+    this.stackList = tempNode;
+  }
+
+  pop() {
+    if (this.stackList === null) {
+      return -1;
+    }
+
+    const removedNodeData = this.stackList.data;
+    this.stackList = this.stackList.next;
+    return removedNodeData;
+  }
+}
