@@ -1640,3 +1640,38 @@ function letterCombinations(digits) {
   return combinations;
 };
 console.log({ letterComb: letterCombinations('23') });
+
+/**
+ * @param {Array<number>} nums 
+ * @param {Array<Array<number>>} permutations 
+ * @param {number} index 
+ * @returns {void}
+ */
+function createPermutation(nums, permutations, index) {
+  if (index >= nums.length) {
+    permutations.push([...nums]);
+    return;
+  }
+
+  for (let swapIndex = index; swapIndex < nums.length; swapIndex++) {
+    [nums[index], nums[swapIndex]] = [nums[swapIndex], nums[index]];
+
+    createPermutation(nums, permutations, index + 1);
+
+    [nums[index], nums[swapIndex]] = [nums[swapIndex], nums[index]];
+  }
+}
+
+/**
+ * @param {Array<number>} nums 
+ * @returns {Array<Array<number>>}
+ */
+function permute(nums) {
+  const permutations = [];
+  const index = 0;
+
+  createPermutation(nums, permutations, index);
+
+  return permutations;
+};
+console.log({ permutations: permute([1, 2, 3]) });
