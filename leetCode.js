@@ -1675,3 +1675,14 @@ function permute(nums) {
   return permutations;
 };
 console.log({ permutations: permute([1, 2, 3]) });
+
+/**
+ * @param {string} command 
+ * @returns {string}
+ */
+function interpret(command) {
+  const map = { '()': 'o', '(al)': 'al' };
+
+  return command.replace(/\(\)|\(al\)/g, a => map[a]);
+};
+console.log({ parsed: interpret("G()(al)") });
