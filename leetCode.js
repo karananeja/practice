@@ -1686,3 +1686,25 @@ function interpret(command) {
   return command.replace(/\(\)|\(al\)/g, a => map[a]);
 };
 console.log({ parsed: interpret("G()(al)") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} target 
+ * @returns {number}
+ */
+function countPairs(nums, target) {
+  let count = 0, left = 0, right = nums.length - 1;
+
+  while (left < right) {
+    if (nums[left] + nums[right] < target) {
+      count += right - left;
+      left++;
+    }
+    else {
+      right--;
+    }
+  }
+
+  return count;
+};
+console.log({ pairs: countPairs([-1, 1, 2, 3, 1], 2) });
