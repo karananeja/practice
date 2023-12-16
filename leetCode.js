@@ -1708,3 +1708,13 @@ function countPairs(nums, target) {
   return count;
 };
 console.log({ pairs: countPairs([-1, 1, 2, 3, 1], 2) });
+
+/**
+ * @param {number[]} hours 
+ * @param {number} target 
+ * @returns {number}
+ */
+function numberOfEmployeesWhoMetTarget(hours, target) {
+  return hours.filter(hour => hour >= target).length;
+};
+console.log({ count: numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2) });
