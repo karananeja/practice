@@ -1718,3 +1718,13 @@ function numberOfEmployeesWhoMetTarget(hours, target) {
   return hours.filter(hour => hour >= target).length;
 };
 console.log({ count: numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2) });
+
+/**
+ * @param {number} num 
+ * @param {number} t 
+ * @returns {number}
+ */
+function theMaximumAchievableX(num, t) {
+  return num + 2 * t;
+};
+console.log({ maxNum: theMaximumAchievableX(4, 1) });
