@@ -1728,3 +1728,28 @@ function theMaximumAchievableX(num, t) {
   return num + 2 * t;
 };
 console.log({ maxNum: theMaximumAchievableX(4, 1) });
+
+/**
+ * @param {number} celsius 
+ * @returns {number}
+ */
+function convertToKelvin(celsius) {
+  return celsius + 273.15;
+}
+
+/**
+ * @param {number} celsius 
+ * @returns {number}
+ */
+function convertToFahrenheit(celsius) {
+  return 1.8 * (celsius) + 32.00;
+}
+
+/**
+ * @param {number} celsius 
+ * @returns {number[]}
+ */
+function convertTemperature(celsius) {
+  return [convertToKelvin(celsius), convertToFahrenheit(celsius)];
+};
+console.log({ convertTemperature: convertTemperature(36.50) });
