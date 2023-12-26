@@ -13,3 +13,12 @@ function arraySum(size, numbers) {
   return `${sum}`;
 }
 console.log({ arraySum: arraySum(5, [1000000001, 1000000002, 1000000003, 1000000004, 1000000005]) });
+
+/**
+ * @param {number} lastNumber 
+ * @returns {"Yes" | "No"}
+ */
+function divisibilityCheckByTen(lastNumber) {
+  return lastNumber % 10 === 0 ? "Yes" : "No";
+}
+console.log({ divisibilityCheckByTen: divisibilityCheckByTen(84) });
