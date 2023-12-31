@@ -1753,3 +1753,22 @@ function convertTemperature(celsius) {
   return [convertToKelvin(celsius), convertToFahrenheit(celsius)];
 };
 console.log({ convertTemperature: convertTemperature(36.50) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findDuplicateOnceAgain(nums) {
+  const frequency = {};
+
+  for (const num of nums) {
+    frequency[num] = (frequency[num] || 0) + 1;
+
+    if (frequency[num] > 1) {
+      return num;
+    }
+  }
+
+  return 0;
+}
+console.log({ duplicate: findDuplicateOnceAgain([1, 2, 3, 4, 5, 2]) });
