@@ -1772,3 +1772,20 @@ function findDuplicateOnceAgain(nums) {
   return 0;
 }
 console.log({ duplicate: findDuplicateOnceAgain([1, 2, 3, 4, 5, 2]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function missingNumber(nums) {
+  let numberToBeFound = 0;
+
+  nums.sort((a, b) => a - b);
+
+  for (let index = 0; index <= nums.length; index++) {
+    if (index !== nums[index]) return numberToBeFound = index;
+  }
+
+  return numberToBeFound;
+};
+console.log({ missingNumber: missingNumber([3, 0, 2, 5, 1]) });
