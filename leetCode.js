@@ -1789,3 +1789,44 @@ function missingNumber(nums) {
   return numberToBeFound;
 };
 console.log({ missingNumber: missingNumber([3, 0, 2, 5, 1]) });
+
+/**
+ * @param {number[][]} mat 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function kWeakestRows(mat, k) {
+  const rows = [];
+
+  for (let row = 0; row < mat.length; row++) {
+    let numberOfSoldiers = 0;
+
+    for (let col = 0; col < mat[row].length; col++) {
+      if (mat[row][col]) numberOfSoldiers++;
+    }
+
+    rows.push([row, numberOfSoldiers]);
+  }
+
+  return rows.sort((a, b) => a[1] - b[1]).splice(0, k).map(count => count[0]);
+};
+console.log({ weakestRow: kWeakestRows([[1, 1, 0, 0, 0], [1, 1, 1, 1, 0], [1, , 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 1, 1, 1]], 3) });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function addDigits(num) {
+  while (Math.floor(num / 10) !== 0) {
+    let sum = 0;
+
+    while (num !== 0) {
+      sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+    num = sum;
+  }
+
+  return num;
+};
+console.log({ digitSum: addDigits(38) });
