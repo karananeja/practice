@@ -1853,3 +1853,18 @@ function checkStraightLine(coordinates) {
   return true;
 };
 console.log({ isStraightLine: checkStraightLine([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]) });
+
+/**
+ * @param {number} n 
+ * @returns {boolean}
+ */
+function isUgly(n) {
+  if (n < 1) return false;
+
+  while (n % 2 === 0) n /= 2;
+  while (n % 3 === 0) n /= 3;
+  while (n % 5 === 0) n /= 5;
+
+  return n === 1;
+};
+console.log({ isUgly: isUgly(6) });
