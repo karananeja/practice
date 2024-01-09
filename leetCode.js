@@ -1868,3 +1868,19 @@ function isUgly(n) {
   return n === 1;
 };
 console.log({ isUgly: isUgly(6) });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {boolean}
+ */
+function isSubsequence(s, t) {
+  let counter = 0;
+
+  for (let index = 0; index < t.length; index++) {
+    if (s[counter] === t[index]) counter++;
+  }
+
+  return counter === s.length;
+};
+console.log({ isSubsequence: isSubsequence("abc", "ahbgdc") });
