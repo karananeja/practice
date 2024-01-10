@@ -1884,3 +1884,92 @@ function isSubsequence(s, t) {
   return counter === s.length;
 };
 console.log({ isSubsequence: isSubsequence("abc", "ahbgdc") });
+
+class MyLinkedList {
+  constructor() {
+    this.head = null;
+    this.len = 0;
+  }
+
+  /**
+   * @param {number} index 
+   * @returns {LinkedListNode | null}
+   */
+  getNodeAtIndex(index) {
+    if (index > -1 && index < this.len) {
+      let node = this.head;
+      let currentIndex = 0;
+      while (currentIndex < index) {
+        node = node.next;
+        currentIndex++;
+      }
+      return node;
+    }
+    return null;
+  }
+
+  /**
+   * @param {number} index 
+   * @returns {number}
+   */
+  get(index) {
+    const node = this.getNodeAtIndex(index);
+    return node === null ? -1 : node.val;
+  }
+
+  /**
+   * @param {number} val 
+   * @returns {void}
+   */
+  addAtHead(val) {
+    const newNode = { val, next: this.head };
+    this.head = newNode;
+    this.len++;
+  }
+
+  /**
+   * @param {number} val 
+   * @returns {void}
+   */
+  addAtTail(val) {
+    const tailNode = this.getNodeAtIndex(this.len - 1);
+    if (!tailNode) {
+      this.addAtHead(val);
+    } else {
+      tailNode.next = { val, next: null };
+      this.len++;
+    }
+  }
+
+  /**
+   * @param {number} index 
+   * @param {number} val 
+   * @returns {void}
+   */
+  addAtIndex(index, val) {
+    if (index === 0) {
+      this.addAtHead(val);
+    } else if (index > 0 && index <= this.len) {
+      const prevNode = this.getNodeAtIndex(index - 1);
+      const nextNode = prevNode.next;
+      prevNode.next = { val, next: nextNode };
+      this.len++;
+    }
+  }
+
+  /**
+   * @param {number} val 
+   * @returns {void}
+   */
+  deleteAtIndex(index) {
+    if (index > -1 && index < this.len) {
+      if (index === 0) {
+        this.head = this.head.next;
+      } else {
+        const prevNode = this.getNodeAtIndex(index - 1);
+        prevNode.next = prevNode.next.next;
+      }
+      this.len--;
+    }
+  }
+}
