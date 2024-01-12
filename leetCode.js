@@ -2008,3 +2008,18 @@ function mergeTwoLists(list1, list2) {
 
   return mergedList.next;
 };
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function reverseList(head) {
+  let previous = null, current = head;
+
+  while (current !== null) {
+    previous = new ListNode(current.val, previous);
+    current = current.next;
+  }
+
+  return previous;
+};
