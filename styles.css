@@ -130,28 +130,29 @@ form h1 {
   gap: 0.25rem;
 }
 
-.spinner-2-top-left,
-.spinner-2-top-right,
-.spinner-2-bottom-left,
-.spinner-2-bottom-right {
+.spinner-2-top::before,
+.spinner-2-top::after,
+.spinner-2-bottom::before,
+.spinner-2-bottom::after {
+  content: '';
   height: 0.5rem;
   width: 0.5rem;
   border-radius: 50%;
 }
 
-.spinner-2-top-left {
+.spinner-2-top::before {
   background-color: gray;
 }
 
-.spinner-2-top-right {
+.spinner-2-top::after {
   background-color: #767676;
 }
 
-.spinner-2-bottom-right {
+.spinner-2-bottom::after {
   background-color: #d4d4d4;
 }
 
-.spinner-2-bottom-left {
+.spinner-2-bottom::before {
   background-color: #bababa;
 }
 
