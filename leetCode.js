@@ -2054,3 +2054,34 @@ function reverseBetween(head, left, right) {
 
   return left > 1 ? head : prev;
 };
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {number}
+ */
+function getLength(head) {
+  let length = 0;
+
+  while (head !== null) {
+    length++;
+    head = head.next;
+  }
+
+  return length;
+}
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function middleNode(head) {
+  const listLength = Math.floor(getLength(head) / 2);
+  let count = 0;
+
+  while (count < listLength) {
+    head = head.next;
+    count++;
+  }
+
+  return head;
+};
