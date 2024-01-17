@@ -561,13 +561,22 @@ console.log(largestAltitude([-5, 1, 5, 0, -7]));
  * @return {boolean}
  */
 var uniqueOccurrences = function (arr) {
-  let myMap = new Map();
+  const count = {}, occurrenceCount = new Set();
 
-  for (let num of arr) {
-    myMap.set(num, (myMap.get(num) || 0) + 1);
+  for (const num of arr) {
+    count[num] = (count[num] || 0) + 1;
   }
 
-  return myMap.size === new Set(myMap.values()).size;
+  for (const key in count) {
+    if (!occurrenceCount.has(count[key])) {
+      occurrenceCount.add(count[key]);
+    }
+    else {
+      return false;
+    }
+  }
+
+  return true;
 };
 console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3]));
 
