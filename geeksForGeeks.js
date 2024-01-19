@@ -84,3 +84,25 @@ class MyStack {
     return removedNodeData;
   }
 }
+
+/**
+ * @problem_three
+ * Given an array of size N-1 such that it only contains distinct integers in the range of 1 to N. Find the missing element.
+ */
+/**
+ * @solution_three
+ */
+class MissingNumber {
+  missingNumber(array, n) {
+    //code here
+    let numSum = (n * (n + 1)) / 2;
+
+    for (let i = 0; i < array.length; i++) {
+      numSum -= array[i];
+    }
+
+    return numSum;
+  }
+}
+const missingNumbers = new MissingNumber();
+console.log({ missingNumbers: missingNumbers.missingNumber([1, 3, 4, 5, 6, 7, 8], 8) });
