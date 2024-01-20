@@ -106,3 +106,28 @@ class MissingNumber {
 }
 const missingNumbers = new MissingNumber();
 console.log({ missingNumbers: missingNumbers.missingNumber([1, 3, 4, 5, 6, 7, 8], 8) });
+
+/**
+ * @problem_four
+ * Given a Queue Q containing N elements. The task is to reverse the Queue. Your task is to complete the function rev(), that reverses the N elements of the queue.
+ */
+/**
+ * @solution_four
+ */
+class MyQueueReversal {
+  rev(q) {
+    const stack = [];
+
+    while (!q.empty()) {
+      const element = q.pop();
+      stack.push(element);
+    }
+
+    while (stack.length !== 0) {
+      const element = stack.pop();
+      q.push(element);
+    }
+
+    return q;
+  }
+}
