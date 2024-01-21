@@ -131,3 +131,46 @@ class MyQueueReversal {
     return q;
   }
 }
+
+/**
+ * @problem_five
+ * Given an array A[] of size N and a positive integer K, find the first negative integer for each and every window(contiguous subarray) of size K.
+ */
+/**
+ * @solution_five
+ */
+class NegativeInteger {
+  printFirstNegativeInteger(n, k, arr) {
+    const indices = [], answer = [];
+
+    for (let i = 0; i < k; i++) {
+      if (arr[i] < 0) {
+        indices.push(i);
+      }
+    }
+
+    if (indices.length !== 0) {
+      answer.push(arr[indices[0]]);
+    } else {
+      answer.push(0);
+    }
+
+    for (let i = k; i < n; i++) {
+      if (indices.length !== 0 && i - indices[0] >= k) {
+        indices.shift();
+      }
+
+      if (arr[i] < 0) {
+        indices.push(i);
+      }
+
+      if (indices.length !== 0) {
+        answer.push(arr[indices[0]]);
+      } else {
+        answer.push(0);
+      }
+    }
+
+    return answer;
+  }
+}
