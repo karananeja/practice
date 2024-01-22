@@ -174,3 +174,23 @@ class NegativeInteger {
     return answer;
   }
 }
+
+/**
+ * @problem_six Your task is to complete the function `height()` which takes root node of the tree as input parameter and returns an integer denoting the height of the tree. If the tree is empty, return 0.
+ */
+/**
+ * @solution_six
+ */
+class TreeHeight {
+  height(node) {
+    //your code here
+    if (node === null) {
+      return 0;
+    }
+
+    const left = this.height(node.left);
+    const right = this.height(node.right);
+    const ans = Math.max(left, right) + 1;
+    return ans;
+  }
+};
