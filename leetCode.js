@@ -2112,3 +2112,22 @@ function deleteDuplicates(head) {
 
   return head;
 };
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {boolean}
+ */
+function isPalindrome(head) {
+  let reversedList = reverseList(head);
+
+  while (reversedList !== null && head !== null) {
+    if (reversedList.val !== head.val) {
+      return false;
+    }
+
+    reversedList = reversedList.next;
+    head = head.next;
+  }
+
+  return true;
+};
