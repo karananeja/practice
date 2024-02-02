@@ -194,3 +194,57 @@ class TreeHeight {
     return ans;
   }
 };
+
+/**
+ * @problem_seven Just complete the function boundary() that takes the root node as input and returns an array containing the boundary values in anti-clockwise.
+ */
+/**
+ * @solution_seven
+ */
+class BoundaryTraversal {
+  traverseLeft(root, nodes) {
+    if (!root || (!root.left && !root.right)) return;
+
+    nodes.push(root.data);
+
+    if (root.left)
+      this.traverseLeft(root.left, nodes);
+    else
+      this.traverseLeft(root.right, nodes);
+  }
+
+  traverseLeaf(root, nodes) {
+    if (!root) return;
+
+    if (!root.left && !root.right) return nodes.push(root.data);
+
+    this.traverseLeaf(root.left, nodes);
+    this.traverseLeaf(root.right, nodes);
+  }
+
+  traverseRight(root, nodes) {
+    if (!root || (!root.left && !root.right)) return;
+
+    if (root.right)
+      this.traverseRight(root.right, nodes);
+    else
+      this.traverseRight(root.left, nodes);
+
+    nodes.push(root.data);
+  }
+
+  boundary(root) {
+    //your goes code here
+    const boundaryNodes = [];
+    if (!root) return boundaryNodes;
+
+    boundaryNodes.push(root.data);
+
+    this.traverseLeft(root.left, boundaryNodes);
+    this.traverseLeaf(root.left, boundaryNodes);
+    this.traverseLeaf(root.right, boundaryNodes);
+    this.traverseRight(root.right, boundaryNodes);
+
+    return boundaryNodes;
+  }
+}
