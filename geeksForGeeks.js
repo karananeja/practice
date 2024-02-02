@@ -248,3 +248,47 @@ class BoundaryTraversal {
     return boundaryNodes;
   }
 }
+
+/**
+ * @problem_eight You do not have to take any input or print anything. You need to complete the function checkPangram() that takes a string as a parameter and returns true if the string is a Panagram, or else it returns false.
+ */
+/**
+ * @solution_eight
+ */
+class Solution {
+  //Function to check if a string is Pangram or not.
+  checkPangram(s) {
+    // code here
+    let tempString = '';
+    const charCount = new Array(26).fill(1);
+
+    for (let i = 0; i < s.length; i++) {
+      if (this.validChar(s[i])) {
+        tempString += this.toLowerCase(s[i]);
+      }
+    }
+
+    for (let i = 0; i < tempString.length; i++) {
+      const index = tempString[i].charCodeAt(0) - 'a'.charCodeAt(0);
+      charCount[index]--;
+    }
+
+    return charCount.every((char) => char <= 0);
+  }
+
+  validChar(char) {
+    return (
+      (char >= 'a' && char <= 'z') ||
+      (char >= 'A' && char <= 'Z') ||
+      (char >= '0' && char <= '9')
+    );
+  }
+
+  toLowerCase(char) {
+    if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')) {
+      return char;
+    } else {
+      return String.fromCharCode(char.charCodeAt(0) + 32);
+    }
+  }
+}
