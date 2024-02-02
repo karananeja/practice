@@ -255,7 +255,7 @@ class BoundaryTraversal {
 /**
  * @solution_eight
  */
-class Solution {
+class Panagram {
   //Function to check if a string is Pangram or not.
   checkPangram(s) {
     // code here
