@@ -292,3 +292,28 @@ class Panagram {
     }
   }
 }
+
+/**
+ * @problem_nine You do not have to take any input or print anything. Complete the function atoi() which takes a string s as an input parameter and returns an integer value representing the given string. If the conversion is not feasible, the function should return -1.
+ */
+/**
+ * @solution_nine
+ */
+class AtoI {
+  atoi(s) {
+    //code here
+    let ans = 0, negative = false;
+
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] >= '0' && s[i] <= '9') {
+        ans = ans * 10 + (s[i] - '0');
+      } else if (s[i] === '-' && i === 0)
+        negative = true;
+      else {
+        return -1;
+      }
+    }
+
+    return ans > 0 && negative ? -ans : ans;
+  }
+}
