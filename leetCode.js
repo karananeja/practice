@@ -2131,3 +2131,20 @@ function isPalindrome(head) {
 
   return true;
 };
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {boolean}
+ */
+function hasCycle(head) {
+  let slow = head, fast = head;
+
+  while (fast) {
+    slow = slow.next;
+    fast = fast.next?.next;
+
+    if (slow && fast && slow === fast) return true;
+  }
+
+  return false;
+};
