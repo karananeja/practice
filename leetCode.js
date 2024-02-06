@@ -2148,3 +2148,20 @@ function hasCycle(head) {
 
   return false;
 };
+
+/**
+ * @param {ListNode | null} head 
+ * @param {number} val 
+ * @returns {ListNode | null}
+ */
+function removeElements(head, val) {
+  if (head === null) return head;
+
+  if (head.val === val) {
+    return removeElements(head.next, val);
+  } else {
+    head.next = removeElements(head.next, val);
+  }
+
+  return head;
+};
