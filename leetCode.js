@@ -2165,3 +2165,19 @@ function removeElements(head, val) {
 
   return head;
 };
+
+/**
+ * @param {ListNode | null} head
+ * @returns {number}
+ */
+function getDecimalValue(head) {
+  let num = 0;
+
+  while (head) {
+    num = num << 1;
+    num += head.val;
+    head = head.next;
+  }
+
+  return num;
+};
