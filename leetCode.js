@@ -2181,3 +2181,11 @@ function getDecimalValue(head) {
 
   return num;
 };
+
+/**
+ * @param {ListNode | null} node 
+ */
+function deleteNode(node) {
+  node.val = node.next.val;
+  node.next = node.next.next;
+};
