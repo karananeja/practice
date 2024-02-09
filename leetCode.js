@@ -2189,3 +2189,42 @@ function deleteNode(node) {
   node.val = node.next.val;
   node.next = node.next.next;
 };
+
+/**
+ * @param {Node | null} head 
+ * @returns {Node | null}
+ */
+function copyRandomList(head) {
+  let current = head;
+
+  while (current) {
+    let temp = current.next;
+    current.next = new Node(current.val);
+    current.next.next = temp;
+    current = temp;
+  }
+
+  current = head;
+
+  while (current) {
+    if (current.next) {
+      current.next.random = current.random ? current.random.next : current.random;
+    }
+    current = current.next.next;
+  }
+
+  let originalHead = head, clonedHead = head?.next;
+  let temp = clonedHead;
+
+  while (originalHead && clonedHead) {
+    originalHead.next = originalHead.next.next;
+
+    if (clonedHead.next)
+      clonedHead.next = clonedHead.next.next;
+
+    originalHead = originalHead.next;
+    clonedHead = clonedHead.next;
+  }
+
+  return temp;
+};
