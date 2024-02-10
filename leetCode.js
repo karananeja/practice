@@ -2228,3 +2228,18 @@ function copyRandomList(head) {
 
   return temp;
 };
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function findMid(head) {
+  let fast = head, slow = head;
+
+  while (fast.next && fast.next.next) {
+    fast = fast.next?.next;
+    slow = slow.next;
+  }
+
+  return slow;
+};
