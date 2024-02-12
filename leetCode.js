@@ -2271,3 +2271,19 @@ function merge(list1, list2) {
 
   return mergedList.next;
 };
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function sortList(head) {
+  if (head === null || head.next === null) return head;
+
+  let mid = findMid(head);
+
+  const right = sortList(mid.next);
+  mid.next = null;
+  const left = sortList(head);
+
+  return merge(left, right);
+};
