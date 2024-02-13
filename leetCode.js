@@ -2287,3 +2287,74 @@ function sortList(head) {
 
   return merge(left, right);
 };
+
+class MyHashMap {
+  constructor() {
+    this.buckets = new Array(this.bucketsNumber).fill(null);
+  }
+
+  put(key, value) {
+    const bucketIndex = this.getBucketIndex(key);
+    const bucket = this.buckets[bucketIndex];
+
+    // Check if the key already exists and update its value in case it does.
+    let node = bucket;
+    while (node) {
+      if (node.key === key) {
+        node.value = value;
+        return;
+      }
+
+      node = node.next;
+    }
+
+    // Otherwise just append the value to the beginning of the list.
+    this.buckets[bucketIndex] = { next: bucket, key, value };
+  }
+
+  get(key) {
+    const bucketIndex = this.getBucketIndex(key);
+    const bucket = this.buckets[bucketIndex];
+
+    let node = bucket;
+    while (node) {
+      if (node.key === key) {
+        return node.value;
+      }
+
+      node = node.next;
+    }
+
+    return -1;
+  }
+
+  remove(key) {
+    const bucketIndex = this.getBucketIndex(key);
+    const bucket = this.buckets[bucketIndex];
+
+    if (!bucket) {
+      return;
+    }
+
+    if (bucket.key === key) {
+      this.buckets[bucketIndex] = bucket.next;
+    } else {
+      let node = bucket.next;
+      let prev = bucket;
+
+      while (node) {
+        if (node.key === key) {
+          prev.next = node.next;
+          return;
+        }
+
+        prev = prev.next;
+        node = node.next;
+      }
+    }
+  }
+
+  getBucketIndex(key) {
+    return key % this.bucketsNumber;
+  };
+}
