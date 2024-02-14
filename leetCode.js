@@ -2358,3 +2358,23 @@ class MyHashMap {
     return key % this.bucketsNumber;
   };
 }
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {string}
+ */
+function findTheDifference(s, t) {
+  const tChars = {};
+
+  for (const char of t) {
+    tChars[char] = (tChars[char] || 0) + 1;
+  }
+
+  for (const char of s) {
+    if (tChars[char]) tChars[char]--;
+  }
+
+  return Object.keys(tChars).find(val => tChars[val] > 0);
+};
+console.log({ difference: findTheDifference("abcd", "abcde") });
