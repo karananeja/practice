@@ -2378,3 +2378,21 @@ function findTheDifference(s, t) {
   return Object.keys(tChars).find(val => tChars[val] > 0);
 };
 console.log({ difference: findTheDifference("abcd", "abcde") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function sortArrayByParity(nums) {
+  let insertPointer = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 === 0) {
+      [nums[insertPointer], nums[i]] = [nums[i], nums[insertPointer]];
+      insertPointer++;
+    }
+  }
+
+  return nums;
+};
+console.log({ sort: sortArrayByParity([3, 1, 2, 4]) });
