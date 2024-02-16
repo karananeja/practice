@@ -315,16 +315,9 @@ console.log(reorderedPowerOf2(10));
  * @return {number}
  */
 var singleNumber = function (nums) {
-  let count = {};
-
-  for (let element of nums) {
-    if (count[element]) count[element] += 1;
-    else count[element] = 1;
-  }
-
-  for (let element in count) {
-    if (count[element] === 1) return element;
-  }
+  let ans = 0;
+  for (const num of nums) ans ^= num;
+  return ans;
 };
 console.log(singleNumber([2, 3, 3, 2, 1]));
 
