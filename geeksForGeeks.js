@@ -317,3 +317,59 @@ class AtoI {
     return ans > 0 && negative ? -ans : ans;
   }
 }
+
+/**
+ * @problem_ten You don't need to read input or print anything. Your task is to complete the function verticalOrder() which takes the root node as input parameter and returns an array containing the vertical order traversal of the tree from the leftmost to the rightmost level. If 2 nodes lie in the same vertical level, they should be printed in the order they appear in the level order traversal of the tree.
+ */
+/**
+ * @solution_ten
+ */
+class VerticalOrder {
+  //Function to find the vertical order traversal of Binary Tree.
+  verticalOrder(root) {
+    //your code here
+    const result = [];
+    if (!root) return result;
+
+    // Using two queues to perform level-order traversal.
+    const queue = [{ node: root, hd: 0 }];
+    let minHD = 0;
+    let maxHD = 0;
+
+    while (queue.length) {
+      const { node, hd } = queue.shift();
+
+      // Update minHD and maxHD to keep track of the range of horizontal distances.
+      minHD = Math.min(minHD, hd);
+      maxHD = Math.max(maxHD, hd);
+
+      // If the result array doesn't have the horizontal distance index, create it.
+      if (typeof result[hd] === 'undefined') {
+        result[hd] = [];
+      }
+
+      // Push the node's value to the array corresponding to its horizontal distance.
+      result[hd].push(node.data);
+
+      // Enqueue the left child with updated horizontal distance.
+      if (node.left) {
+        queue.push({ node: node.left, hd: hd - 1 });
+      }
+
+      // Enqueue the right child with updated horizontal distance.
+      if (node.right) {
+        queue.push({ node: node.right, hd: hd + 1 });
+      }
+    }
+
+    // Flatten the result array and return.
+    const flattenedResult = [];
+    for (let i = minHD; i <= maxHD; i++) {
+      if (result[i]) {
+        flattenedResult.push(...result[i]);
+      }
+    }
+
+    return flattenedResult;
+  }
+}
