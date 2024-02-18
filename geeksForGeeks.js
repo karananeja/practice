@@ -373,3 +373,47 @@ class VerticalOrder {
     return flattenedResult;
   }
 }
+
+/**
+ * @problem_eleven Since this is a function problem. You don't have to take input. Just complete the function topView() that takes root node as parameter and returns a list of nodes visible from the top view from left to right.
+ */
+/**
+ * @solution_eleven
+ */
+class TopView {
+  //Function to return a list of nodes visible from the top view 
+  //from left to right in Binary Tree.
+  topView(root) {
+    //your code here
+    const ans = [];
+
+    if (!root) return ans;
+
+    const nodesMap = {};
+    const nodesQueue = [];
+
+    nodesQueue.push([root, 0]);
+
+    while (nodesQueue.length) {
+      const temp = nodesQueue.shift();
+      const frontNode = temp[0], horizontalDistance = temp[1];
+
+      // Initialize if not exist
+      if (!nodesMap[horizontalDistance]) nodesMap[horizontalDistance] = { value: frontNode.data };
+
+      if (frontNode.left)
+        nodesQueue.push([frontNode.left, horizontalDistance - 1]);
+
+      if (frontNode.right)
+        nodesQueue.push([frontNode.right, horizontalDistance + 1]);
+    }
+
+    const sortedKeys = Object.keys(nodesMap).sort((a, b) => a - b);
+
+    for (const node of sortedKeys) {
+      ans.push(nodesMap[node].value);
+    }
+
+    return ans;
+  }
+}
