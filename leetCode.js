@@ -167,16 +167,7 @@ console.log(isPowerOfFour(-2147483647));
 */
 var isPowerOfTwo = function (n) {
   if (n <= 0) return false;
-
-  if (n === 1) return true;
-
-  if (n % 2 === 1) {
-    return false;
-  } else {
-    n /= 2;
-  }
-
-  return isPowerOfTwo(Math.floor(n));
+  return (n & (n - 1)) === 0;
 };
 console.log(isPowerOfTwo(-2147483647));
 
