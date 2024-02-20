@@ -1771,15 +1771,13 @@ console.log({ duplicate: findDuplicateOnceAgain([1, 2, 3, 4, 5, 2]) });
  * @returns {number}
  */
 function missingNumber(nums) {
-  let numberToBeFound = 0;
+  let numSum = (nums.length * (nums.length + 1)) / 2;
 
-  nums.sort((a, b) => a - b);
-
-  for (let index = 0; index <= nums.length; index++) {
-    if (index !== nums[index]) return numberToBeFound = index;
+  for (let i = 0; i < nums.length; i++) {
+    numSum -= nums[i];
   }
 
-  return numberToBeFound;
+  return numSum;
 };
 console.log({ missingNumber: missingNumber([3, 0, 2, 5, 1]) });
 
