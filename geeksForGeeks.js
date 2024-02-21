@@ -6,7 +6,7 @@
 /**
  * @solution_one
  */
-class Solution {
+class Celebrity {
   celebrity(M, n) {
     const persons = [];
 
