@@ -415,3 +415,27 @@ class TopView {
     return ans;
   }
 }
+
+/**
+ * @problem_twelve You just have to complete the function leftView() that returns an array containing the nodes that are in the left view. The newline is automatically appended by the driver code.
+ */
+/**
+ * @solution_twelve
+ */
+class LeftView {
+  solve(root, ans, level) {
+    if (!root) return;
+
+    if (level === ans.length) ans.push(root.data);
+
+    this.solve(root.left, ans, level + 1);
+    this.solve(root.right, ans, level + 1);
+  }
+
+  leftView(root) {
+    //your code here
+    const ans = [];
+    this.solve(root, ans, 0);
+    return ans;
+  }
+}
