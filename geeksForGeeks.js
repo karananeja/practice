@@ -439,3 +439,27 @@ class LeftView {
     return ans;
   }
 }
+
+/**
+ * @problem_thirteen Just complete the function rightView() that takes node as parameter and returns the right view as a list. 
+ */
+/**
+ * @solution_thirteen
+ */
+class RightView {
+  solve(root, ans, level) {
+    if (!root) return;
+
+    if (level === ans.length) ans.push(root.data);
+
+    this.solve(root.right, ans, level + 1);
+    this.solve(root.left, ans, level + 1);
+  }
+
+  rightView(root) {
+    //your code here
+    const ans = [];
+    this.solve(root, ans, 0);
+    return ans;
+  }
+}
