@@ -463,3 +463,30 @@ class RightView {
     return ans;
   }
 }
+
+/**
+ * @problem_fourteen Your task is to complete the function tour() which takes the required data as inputs and returns an integer denoting a point from where a truck will be able to complete the circle (The truck will stop at each petrol pump and it has infinite capacity). If there exists multiple such starting points, then the function must return the first one out of those. (return -1 otherwise)
+ */
+/**
+ * @solution_fourteen
+ */
+class Tour {
+  //Function to find starting point where the truck can start to get through
+  //the complete circle without exhausting its petrol in between.
+  tour(p, n) {
+    //your code here
+    let deficit = 0, balance = 0, start = 0, i = 0;
+
+    while (i < n) {
+      balance += p[i].petrol - p[i].distance;
+      if (balance < 0) {
+        deficit += balance;
+        start = i + 1;
+        balance = 0;
+      }
+      i++;
+    }
+
+    return deficit + balance >= 0 ? start : -1;
+  }
+}
