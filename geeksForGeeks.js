@@ -490,3 +490,23 @@ class Tour {
     return deficit + balance >= 0 ? start : -1;
   }
 }
+
+/**
+ * @problem_fifteen You don't need to read input or print anything. Your task is to complete the function getMinMax() which takes the array A[] and its size N as inputs and returns the minimum and maximum element of the array.
+ */
+/**
+ * @problem_fifteen
+ */
+class MinMax {
+  getMinMax(arr, n) {
+    //code here
+    let min = Infinity, max = -Infinity;
+
+    for (let i = 0; i < n; i++) {
+      if (min > arr[i]) min = arr[i];
+      if (max < arr[i]) max = arr[i];
+    }
+
+    return [min, max];
+  }
+}
