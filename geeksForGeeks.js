@@ -510,3 +510,20 @@ class MinMax {
     return [min, max];
   }
 }
+
+/**
+ * @problem_sixteen The task is to complete the function search() which takes the array arr[], its size N and the element X as inputs and returns the index of first occurrence of X in the given array. If the element X does not exist in the array, the function should return -1.
+ */
+/**
+ * @solution_sixteen
+ */
+class Search {
+  search(arr, N, X) {
+    // write your code here
+    for (let i = 0; i < N; i++) {
+      if (arr[i] === X) return i;
+    }
+
+    return -1;
+  }
+}
