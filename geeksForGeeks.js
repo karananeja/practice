@@ -527,3 +527,35 @@ class Search {
     return -1;
   }
 }
+
+/**
+ * @problem_seventeen Complete the provided function modifyQueue() that takes queue and K as parameters and returns a modified queue. The printing is done automatically by the driver code.
+ */
+/**
+ * @solution_seventeen
+ */
+class ModifyQueue {
+  // Function to reverse first k elements of a queue.
+  modifyQueue(q, k) {
+    // your code here
+    const tempList = [];
+    let remainingSize = q.arr.length - k;
+
+    for (let i = 0; i < k; i++) {
+      const num = q.pop();
+      tempList.push(num);
+    }
+
+    while (tempList.length !== 0) {
+      const num = tempList.pop();
+      q.push(num);
+    }
+
+    while (remainingSize--) {
+      const element = q.pop();
+      q.push(element);
+    }
+
+    return q;
+  }
+}
