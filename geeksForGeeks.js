@@ -559,3 +559,45 @@ class ModifyQueue {
     return q;
   }
 }
+
+/**
+ * @problem_eighteen This is a functional problem, you don't need to care about input, just complete the function bottomView() which takes the root node of the tree as input and returns an array containing the bottom view of the given tree.
+ */
+/**
+ * @solution_eighteen
+ */
+class BottomView {
+  //Function to return a list containing the bottom view of the given tree.
+  bottomView(root) {
+    //your code here
+    const ans = [];
+
+    if (!root) return ans;
+
+    const nodesMap = {}, nodesQueue = [];
+
+    nodesQueue.push([root, 0]);
+
+    while (nodesQueue.length) {
+      const temp = nodesQueue.shift();
+      const frontNode = temp[0], horizontalDistance = temp[1];
+
+      // Initialize if not exist
+      nodesMap[horizontalDistance] = frontNode.data;
+
+      if (frontNode.left)
+        nodesQueue.push([frontNode.left, horizontalDistance - 1]);
+
+      if (frontNode.right)
+        nodesQueue.push([frontNode.right, horizontalDistance + 1]);
+    }
+
+    const sortedKeys = Object.keys(nodesMap).sort((a, b) => a - b);
+
+    for (const node of sortedKeys) {
+      ans.push(nodesMap[node]);
+    }
+
+    return ans;
+  }
+}
