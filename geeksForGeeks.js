@@ -601,3 +601,39 @@ class BottomView {
     return ans;
   }
 }
+
+/**
+ * @problem_nineteen You don't need to read or print anything. Your task is to complete the function FirstNonRepeating() which takes A as input parameter and returns a string after processing the input stream.
+ */
+/**
+ * @solution_nineteen
+ */
+class FirstNonRepeating {
+  firstNonRepeating(A) {
+    //code here
+    const count = {}, charQueue = [];
+    let ans = "";
+
+    for (let i = 0; i < A.length; i++) {
+      const char = A[i];
+      count[char] = (count[char] || 0) + 1;
+
+      charQueue.push(char);
+
+      while (charQueue.length) {
+        if (count[charQueue[0]] > 1) {
+          charQueue.shift();
+        } else {
+          ans += charQueue[0];
+          break;
+        }
+
+        if (charQueue.length === 0) {
+          ans += "#";
+        }
+      }
+    }
+
+    return ans;
+  }
+}
