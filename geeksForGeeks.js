@@ -637,3 +637,43 @@ class FirstNonRepeating {
     return ans;
   }
 }
+
+/**
+ * @problem_twenty You don't need to read input or print anything. Your task is to complete the function zigZagTraversal() which takes the root node of the Binary Tree as its input and returns a list containing the node values as they appear in the zig-zag level-order traversal of the tree.
+ */
+/**
+ * @solution_twenty
+ */
+class ZigZagTraversal {
+  //Function to store the zig zag order traversal of tree in a list.
+  zigZagTraversal(root) {
+    //your code here
+    const result = [];
+    if (!root) return result;
+
+    const currentQueue = [];
+    currentQueue.push(root);
+
+    let leftToRight = true;
+
+    while (currentQueue.length) {
+      const size = currentQueue.length;
+      const currentRow = [];
+
+      for (let idx = 0; idx < size; idx++) {
+        const frontNode = currentQueue.shift();
+        const index = leftToRight ? idx : size - idx - 1;
+        currentRow[index] = frontNode.val;
+
+        if (frontNode.left) currentQueue.push(frontNode.left);
+
+        if (frontNode.right) currentQueue.push(frontNode.right);
+      }
+
+      leftToRight = !leftToRight;
+      result.push(currentRow);
+    }
+
+    return result;
+  }
+}
