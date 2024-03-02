@@ -677,3 +677,35 @@ class ZigZagTraversal {
     return result;
   }
 }
+
+/**
+ * @problem_twentyOne You don't need to read input or print anything. Your task is to complete the function sumOfLongRootToLeafPath() which takes root node of the tree as input parameter and returns an integer denoting the sum of the longest root to leaf path of the tree.
+ */
+/**
+ * @solution_twentyOne
+ */
+class SumOfLongRootToLeafPath {
+  sumOfLongRootToLeafPath(root) {
+    //code here
+    let maxLen = 0, sum = 0, maxSum = -Infinity;
+
+    function solve(root, sum, len) {
+      if (!root) {
+        if (len > maxLen) {
+          maxLen = len;
+          maxSum = sum;
+        } else if (len === maxLen) {
+          maxSum = Math.max(sum, maxSum);
+        }
+        return;
+      }
+
+      sum += root.data;
+      solve(root.left, sum, len + 1);
+      solve(root.right, sum, len + 1);
+    }
+
+    solve(root, sum, 0);
+    return maxSum;
+  }
+}
