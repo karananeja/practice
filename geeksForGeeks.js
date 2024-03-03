@@ -709,3 +709,26 @@ class SumOfLongRootToLeafPath {
     return maxSum;
   }
 }
+
+/**
+ * @problem_twentyTwo You don't have to read, input, or print anything. Your task is to complete the function lca() that takes nodes, n1, and n2 as parameters and returns the LCA node as output.
+ */
+/**
+ * @solution_twentyTwo
+ */
+class LCA {
+  //Function to return the lowest common ancestor in a Binary Tree.
+  lca(root, n1, n2) {
+    //your code here
+    if (!root) return null;
+    if (root.data === n1 || root.data === n2) return root;
+
+    const leftAns = this.lca(root.left, n1, n2);
+    const rightAns = this.lca(root.right, n1, n2);
+
+    if (leftAns !== null && rightAns !== null) return root;
+    else if (leftAns !== null && !rightAns) return leftAns;
+    else if (!leftAns && rightAns !== null) return rightAns;
+    else return null;
+  }
+}
