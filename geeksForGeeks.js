@@ -732,3 +732,36 @@ class LCA {
     else return null;
   }
 }
+
+/**
+ * @problem_twentyThree You don't need to read input or print anything. Complete the function sumK() which takes root node and integer K as input parameters and returns the number of paths that have sum K. 
+ */
+/**
+ * @solution_twentyThree
+ */
+class SumK {
+  constructor() {
+    this.path = [];
+    this.count = 0;
+  }
+
+  sumK(root, k) {
+    //code here
+    if (!root) return this.count;
+
+    this.path.push(root.data);
+
+    this.sumK(root.left, k);
+    this.sumK(root.right, k);
+
+    let sum = 0;
+
+    for (let i = this.path.length - 1; i >= 0; i--) {
+      sum += this.path[i];
+      if (sum === k) this.count++;
+    }
+
+    this.path.pop();
+    return this.count;
+  }
+}
