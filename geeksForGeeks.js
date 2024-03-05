@@ -765,3 +765,70 @@ class SumK {
     return this.count;
   }
 }
+
+/**
+ * @problem_twentyFour You are asked to complete the function kthAncestor() which accepts root of the tree, k and node as input parameters, and returns the kth ancestor of Node which contains node as its value.
+ */
+/**
+ * @solution_twentyFour
+ */
+class KthAncestor {
+  kthAncestorOne(root, k, baseNode) {
+    //code here
+    const nodePaths = [];
+
+    function getPaths(node, currentPath) {
+      if (!node) return;
+      const path = [...currentPath];
+      path.push(node.data);
+      if (node.data === baseNode) nodePaths.push(path);
+      getPaths(node.left, path);
+      getPaths(node.right, path);
+    }
+
+    getPaths(root, []);
+
+    for (const currentPath of nodePaths) {
+      return currentPath[currentPath.length - 1 - k] ? currentPath[currentPath.length - 1 - k] : -1;
+    }
+  }
+
+  kthAncestorTwo(root, k, node) {
+    //code here
+    function solve(node, nodeValue) {
+      if (!node) return null;
+
+      if (node.data === nodeValue) return node;
+
+      const leftAns = solve(node.left, nodeValue);
+      const rightAns = solve(node.right, nodeValue);
+
+      if (leftAns !== null && !rightAns) {
+        k--;
+
+        if (k <= 0) {
+          k = Infinity;
+          return node;
+        }
+
+        return leftAns;
+      }
+
+      if (!leftAns && rightAns !== null) {
+        k--;
+
+        if (k <= 0) {
+          k = Infinity;
+          return node;
+        }
+
+        return rightAns;
+      }
+
+      return null;
+    }
+
+    const ans = solve(root, node);
+    return !ans || ans.data === node ? -1 : ans.data;
+  }
+}
