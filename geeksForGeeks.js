@@ -832,3 +832,32 @@ class KthAncestor {
     return !ans || ans.data === node ? -1 : ans.data;
   }
 }
+
+/**
+ * @problem_twentyFive You don't need to read input or print anything. You just have to complete function getMaxSum() which accepts root node of the tree as parameter and returns the maximum sum as described.
+ */
+/**
+ * @solution_twentyFive
+ */
+class GetMaxSum {
+  //Function to return the maximum sum of non-adjacent nodes.
+  solve(node) {
+    if (!node) return [0, 0];
+
+    const leftAns = this.solve(node.left);
+    const rightAns = this.solve(node.right);
+
+    const result = [];
+    // maxSum including the root at the current level
+    result[0] = node.data + leftAns[1] + rightAns[1];
+    // maxSum excluding the root at the current level
+    result[1] = Math.max(...leftAns) + Math.max(...rightAns);
+    return result;
+  }
+
+  getMaxSum(root) {
+    //your code here
+    const answer = this.solve(root);
+    return Math.max(...answer);
+  }
+}
