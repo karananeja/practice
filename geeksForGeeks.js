@@ -861,3 +861,40 @@ class GetMaxSum {
     return Math.max(...answer);
   }
 }
+
+/**
+ * @problem_twentySix Your task is to complete the function buildTree() which takes 3 arguments(inorder traversal array, preorder traversal array, and size of tree n) and returns the root node to the tree constructed. You are not required to print anything and a new line is added automatically (The post order of the returned tree is printed by the driver's code.)
+ */
+/**
+ * @solution_twentySix
+ */
+class BuildTreeWithPreOrder {
+  constructor() {
+    this.index = 0;
+    this.nodeToIndex = new Map();
+  }
+
+  findPosition(inorder, element, inorderStart) {
+    for (let i = inorderStart; i < inorder.length; i++) {
+      if (inorder[i] === element) return i;
+    }
+    return -1;
+  }
+
+  solve(inorder, preorder, inorderStart, inorderEnd) {
+    if (this.index >= preorder.length || inorderStart > inorderEnd) return null;
+
+    const element = preorder[this.index++];
+    const root = new Node(element);
+    const position = this.findPosition(inorder, element, inorderStart);
+
+    root.left = this.solve(inorder, preorder, inorderStart, position - 1);
+    root.right = this.solve(inorder, preorder, position + 1, inorderEnd);
+
+    return root;
+  }
+
+  buildTree(inorder, preorder, n) {
+    return this.solve(inorder, preorder, 0, n - 1);
+  }
+}
