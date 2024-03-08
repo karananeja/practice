@@ -898,3 +898,43 @@ class BuildTreeWithPreOrder {
     return this.solve(inorder, preorder, 0, n - 1);
   }
 }
+
+/**
+ * @problem_twentySeven You do not need to read input or print anything. Complete the function buildTree() which takes the inorder, postorder traversals and the number of nodes in the tree as input parameters and returns the root node of the newly constructed Binary Tree.
+The generated output contains the preorder traversal of the constructed tree.
+ */
+/**
+ * @problem_twentySeven
+ */
+class BuildTreeWithPostOrder {
+  constructor() {
+    this.index = 0;
+    this.nodeToIndex = new Map();
+  }
+
+  findPosition(inorder, element, inorderStart) {
+    for (let i = inorderStart; i < inorder.length; i++) {
+      if (inorder[i] === element) return i;
+    }
+    return -1;
+  }
+
+  solve(inorder, postorder, inorderStart, inorderEnd) {
+    if (this.index < 0 || inorderStart > inorderEnd) return null;
+
+    const element = postorder[this.index--];
+    const root = new Node(element);
+    const position = this.findPosition(inorder, element, inorderStart);
+
+    root.right = this.solve(inorder, postorder, position + 1, inorderEnd);
+    root.left = this.solve(inorder, postorder, inorderStart, position - 1);
+
+    return root;
+  }
+  //Function to return a tree created from postorder and inoreder traversals.
+  buildTree(ino, post, n) {
+    this.index = ino.length - 1;
+    //your code here
+    return this.solve(ino, post, 0, n - 1);
+  }
+}
