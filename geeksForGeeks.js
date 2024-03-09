@@ -938,3 +938,76 @@ class BuildTreeWithPostOrder {
     return this.solve(ino, post, 0, n - 1);
   }
 }
+
+/**
+ * @problem_twentyEight You don't need to read input or print anything. Complete the function minTime() which takes the root of the tree and target as input parameters and returns the minimum time required to burn the complete binary tree if the target is set on fire at the 0th second.
+ */
+/**
+ * @solution_twentyEight
+ */
+class MinTime {
+  getParentMapping(node, start) {
+    let targetNode = null;
+    const nodeToParentMap = new Map(), queue = [node];
+
+    while (queue.length) {
+      const frontNode = queue.shift();
+
+      if (frontNode.key === start) targetNode = frontNode;
+
+      if (frontNode.left) {
+        nodeToParentMap.set(frontNode.left, frontNode);
+        queue.push(frontNode.left);
+      }
+
+      if (frontNode.right) {
+        nodeToParentMap.set(frontNode.right, frontNode);
+        queue.push(frontNode.right);
+      }
+    }
+
+    return { nodeToParentMap, targetNode };
+  }
+
+  infectTree(node, nodeToParent) {
+    let timeTaken = 0;
+    const visitedNodes = new Map(), queue = [node];
+    visitedNodes.set(node, true);
+
+    while (queue.length) {
+      const size = queue.length;
+      let flag = false;
+
+      for (let idx = 0; idx < size; idx++) {
+        const frontNode = queue.shift();
+
+        if (frontNode.left && !visitedNodes.get(frontNode.left)) {
+          flag = true;
+          queue.push(frontNode.left);
+          visitedNodes.set(frontNode.left, true);
+        }
+
+        if (frontNode.right && !visitedNodes.get(frontNode.right)) {
+          flag = true;
+          queue.push(frontNode.right);
+          visitedNodes.set(frontNode.right, true);
+        }
+
+        if (nodeToParent.get(frontNode) && !visitedNodes.get(nodeToParent.get(frontNode))) {
+          flag = true;
+          queue.push(nodeToParent.get(frontNode));
+          visitedNodes.set(nodeToParent.get(frontNode), true);
+        }
+      }
+      if (flag) timeTaken++;
+    }
+
+    return timeTaken;
+  }
+
+  minTime(root, target) {
+    //code here
+    const { nodeToParentMap, targetNode } = this.getParentMapping(root, target);
+    return this.infectTree(targetNode, nodeToParentMap);
+  }
+}
