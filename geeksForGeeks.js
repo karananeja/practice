@@ -1011,3 +1011,32 @@ class MinTime {
     return this.infectTree(targetNode, nodeToParentMap);
   }
 }
+
+/**
+ * @problem_twentyNine You don't have to read input or print anything. Your task is to complete the function flatten() which takes the root of the tree and flattens the tree into a linked list without using any auxiliary space.
+ */
+/**
+ * @solution_twentyNine
+ */
+class Flatten {
+  flatten(root) {
+    //code here
+    let current = root;
+
+    while (current) {
+      if (current.left) {
+        let predecessor = current.left;
+
+        while (predecessor.right) predecessor = predecessor.right;
+
+        predecessor.right = current.right;
+        current.right = current.left;
+        current.left = null;
+      }
+
+      current = current.right;
+    }
+
+    return root;
+  }
+}
