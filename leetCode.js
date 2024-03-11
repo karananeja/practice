@@ -2378,3 +2378,24 @@ function sortArrayByParity(nums) {
   return nums;
 };
 console.log({ sort: sortArrayByParity([3, 1, 2, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function numIdenticalPairs(nums) {
+  let goodPair = 0;
+  const numCount = {};
+
+  for (const num of nums) {
+    if (numCount[num]) {
+      goodPair += numCount[num];
+      numCount[num]++;
+    } else {
+      numCount[num] = 1;
+    }
+  }
+
+  return goodPair;
+};
+console.log({ numIdenticalPairs: numIdenticalPairs([1, 2, 3, 1, 1, 3]) });
