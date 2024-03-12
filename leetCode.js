@@ -2399,3 +2399,27 @@ function numIdenticalPairs(nums) {
   return goodPair;
 };
 console.log({ numIdenticalPairs: numIdenticalPairs([1, 2, 3, 1, 1, 3]) });
+
+/**
+ * @param {string} order 
+ * @param {string} s 
+ * @returns {string}
+ */
+function customSortString(order, s) {
+  const charCount = {}, chars = [];
+
+  for (const char of s) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+
+  for (const char of order) {
+    while (charCount[char]-- > 0) chars.push(char);
+  }
+
+  for (const char in charCount) {
+    while (charCount[char]-- > 0) chars.push(char);
+  }
+
+  return chars.join("");
+}
+console.log({ customSortString: customSortString("cba", "abcd") });
