@@ -2423,3 +2423,39 @@ function customSortString(order, s) {
   return chars.join("");
 }
 console.log({ customSortString: customSortString("cba", "abcd") });
+
+/**
+ * @param {TreeNode | null} node 
+ * @returns {TreeNode | null}
+ */
+function minVal(node) {
+  while (node.left) {
+    node = node.left;
+  }
+  return node;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} key 
+ * @returns {TreeNode | null}
+ */
+function deleteNodeInBST(root, key) {
+  if (!root) return null;
+  if (root.val > key) root.left = deleteNodeInBST(root.left, key);
+  if (root.val < key) root.right = deleteNodeInBST(root.right, key);
+
+  if (root.val === key) {
+    if (!root.left && !root.right) return null;
+
+    if (!root.left) return root.right;
+    else if (!root.right) return root.left;
+    else {
+      const minValueNode = minVal(root.right);
+      minValueNode.left = root.left;
+      return root.right;
+    }
+  }
+
+  return root;
+}
