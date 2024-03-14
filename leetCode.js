@@ -2459,3 +2459,26 @@ function deleteNodeInBST(root, key) {
 
   return root;
 }
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function removeZeroSumSublists(head) {
+  const front = new ListNode(0, head);
+  let start = front;
+
+  while (start) {
+    let prefixSum = 0, end = start.next;
+
+    while (end) {
+      prefixSum += end.val;
+      if (prefixSum === 0) start.next = end.next;
+      end = end.next;
+    }
+
+    start = start.next;
+  }
+
+  return front.next;
+};
