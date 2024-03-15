@@ -2482,3 +2482,18 @@ function removeZeroSumSublists(head) {
 
   return front.next;
 };
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function majorityElement(nums) {
+  const elementCount = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    elementCount[nums[i]] = (elementCount[nums[i]] || 0) + 1;
+
+    if (elementCount[nums[i]] >= nums.length / 2) return nums[i];
+  }
+};
+console.log({ majorityElement: majorityElement([3, 2, 3]) });
