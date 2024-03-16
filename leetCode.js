@@ -2497,3 +2497,20 @@ function majorityElement(nums) {
   }
 };
 console.log({ majorityElement: majorityElement([3, 2, 3]) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} min 
+ * @param {number} max 
+ * @returns {boolean}
+ */
+function isValidBST(root, min = -Infinity, max = Infinity) {
+  if (!root) return true;
+  const isValid = min < root.val && root.val < max;
+  if (!isValid) return false;
+
+  const left = isValidBST(root.left, min, root.val);
+  const right = isValidBST(root.right, root.val, max);
+
+  return left && right;
+};
