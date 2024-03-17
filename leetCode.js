@@ -2514,3 +2514,19 @@ function isValidBST(root, min = -Infinity, max = Infinity) {
 
   return left && right;
 };
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function pivotInteger(n) {
+  let leftSum = 0, rightSum = 0, left = 1, right = n;
+
+  while (left < right) {
+    if (leftSum <= rightSum) leftSum += left++;
+    else rightSum += right--;
+  }
+
+  return leftSum === rightSum ? left : -1;
+};
+console.log({ pivotInteger: pivotInteger(8) });
