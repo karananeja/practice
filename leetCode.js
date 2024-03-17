@@ -2530,3 +2530,33 @@ function pivotInteger(n) {
   return leftSum === rightSum ? left : -1;
 };
 console.log({ pivotInteger: pivotInteger(8) });
+
+/**
+ * @param {number[][]} intervals 
+ * @param {number[]} newInterval 
+ * @returns {number[][]}
+ */
+function insert(intervals, newInterval) {
+  const updatedIntervals = [];
+  let idx = 0;
+
+  while (idx < intervals.length && intervals[idx][1] < newInterval[0]) {
+    updatedIntervals.push(intervals[idx]);
+    idx++;
+  }
+
+  while (idx < intervals.length && newInterval[1] >= intervals[idx][0]) {
+    newInterval[0] = Math.min(newInterval[0], intervals[idx][0]);
+    newInterval[1] = Math.max(newInterval[1], intervals[idx][1]);
+    idx++;
+  }
+  updatedIntervals.push(newInterval);
+
+  while (idx < intervals.length) {
+    updatedIntervals.push(intervals[idx]);
+    idx++;
+  }
+
+  return updatedIntervals;
+};
+console.log({ insert: insert([[1, 3], [6, 9]], [2, 5]) });
