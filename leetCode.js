@@ -2499,6 +2499,28 @@ function majorityElement(nums) {
 console.log({ majorityElement: majorityElement([3, 2, 3]) });
 
 /**
+ * @param {number[]} nums
+ * @returns {number[]}
+ */
+function majorityElementVariantTwo(nums) {
+  const elementCount = {}, elementFrequency = [], length = nums.length;
+
+
+  for (let i = 0; i < length; i++) {
+    elementCount[nums[i]] = (elementCount[nums[i]] || 0) + 1;
+
+
+    if (elementCount[nums[i]] > length / 3 && !elementFrequency.includes(nums[i])) {
+      elementFrequency.push(nums[i]);
+    }
+  }
+
+
+  return elementFrequency;
+};
+console.log({ majorityElementVariantTwo: majorityElementVariantTwo([3, 2, 3]) });
+
+/**
  * @param {TreeNode | null} root 
  * @param {number} min 
  * @param {number} max 
