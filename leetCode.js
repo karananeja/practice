@@ -2582,3 +2582,19 @@ function insert(intervals, newInterval) {
   return updatedIntervals;
 };
 console.log({ insert: insert([[1, 3], [6, 9]], [2, 5]) });
+
+/**
+ * @param {number} n 
+ * @returns {number} 
+ */
+function integerBreak(n) {
+  if (n < 4) return n - 1;
+
+  const threes = Math.floor(n / 3), remainder = n % 3;
+
+  if (remainder === 1) return 3 ** (threes - 1) * 4;
+  if (remainder === 2) return 3 ** threes * 2;
+
+  return 3 ** threes;
+};
+console.log({ maxProduct: integerBreak(3) });
