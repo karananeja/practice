@@ -2598,3 +2598,65 @@ function integerBreak(n) {
   return 3 ** threes;
 };
 console.log({ maxProduct: integerBreak(3) });
+
+/**
+ * @param {number[]} startedBlooming 
+ * @param {number} time 
+ * @returns {number}
+ */
+function startCount(startedBlooming, time) {
+  let start = 0, end = startedBlooming.length;
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (startedBlooming[mid] <= time) {
+      start = mid + 1;
+    } else {
+      end = mid;
+    }
+  }
+
+  return start;
+}
+
+/**
+ * @param {number[]} finishedBlooming 
+ * @param {number} time 
+ * @returns {number}
+ */
+function endCount(finishedBlooming, time) {
+  let start = 0, end = finishedBlooming.length;
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (finishedBlooming[mid] < time) {
+      start = mid + 1;
+    } else {
+      end = mid;
+    }
+  }
+
+  return start;
+}
+
+/**
+ * @param {number[][]} flowers 
+ * @param {number[]} people 
+ * @returns {number[]}
+ */
+function fullBloomFlowers(flowers, people) {
+  const startedBlooming = [], finishedBlooming = [];
+
+  for (const flower of flowers) {
+    startedBlooming.push(flower[0]);
+    finishedBlooming.push(flower[1]);
+  }
+
+  startedBlooming.sort((a, b) => a - b);
+  finishedBlooming.sort((a, b) => a - b);
+
+  return people.map(time => startCount(startedBlooming, time) - endCount(finishedBlooming, time));
+};
+console.log({ fullBloomFlowers: fullBloomFlowers([[1, 6], [3, 7], [9, 12], [4, 13]], [2, 3, 7, 11]) });
