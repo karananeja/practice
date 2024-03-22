@@ -2660,3 +2660,82 @@ function fullBloomFlowers(flowers, people) {
   return people.map(time => startCount(startedBlooming, time) - endCount(finishedBlooming, time));
 };
 console.log({ fullBloomFlowers: fullBloomFlowers([[1, 6], [3, 7], [9, 12], [4, 13]], [2, 3, 7, 11]) });
+
+class MountainArray {
+  get(index) { }
+  length() { }
+};
+
+/**
+ * @param {MountainArray} arr 
+ * @returns {number}
+ */
+function getPeakIndex(arr) {
+  let start = 1, end = arr.length() - 2;
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (arr.get(mid) > arr.get(mid + 1)) {
+      end = mid;
+    } else {
+      start = mid + 1;
+    }
+  }
+
+  return start;
+}
+
+/**
+ * @param {MountainArray} arr 
+ * @param {number} endIndex 
+ * @param {number} target 
+ * @returns {number}
+ */
+function getMinIndex(arr, endIndex, target) {
+  let start = 0, end = endIndex;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (arr.get(mid) === target) return mid;
+
+    arr.get(mid) > target ? (end = mid - 1) : (start = mid + 1);
+  }
+
+  return -1;
+}
+
+/**
+ * @param {MountainArray} arr 
+ * @param {number} startIndex 
+ * @param {number} target 
+ * @returns {number}
+ */
+function getMaxIndex(arr, startIndex, target) {
+  let start = startIndex, end = arr.length() - 1;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (arr.get(mid) === target) return mid;
+
+    arr.get(mid) < target ? (end = mid - 1) : (start = mid + 1);
+  }
+
+  return -1;
+}
+
+/**
+ * @param {number} target 
+ * @param {MountainArray} mountainArr 
+ * @returns {number}
+ */
+function findInMountainArray(target, mountainArr) {
+  const peakIndex = getPeakIndex(mountainArr);
+
+  const minIndex = getMinIndex(mountainArr, peakIndex, target);
+
+  if (minIndex === -1) return getMaxIndex(mountainArr, peakIndex, target);
+  return minIndex;
+};
