@@ -1040,3 +1040,49 @@ class Flatten {
     return root;
   }
 }
+/**
+ * @problem_thirty You don't need to read input or print anything. Your task is to complete the function merge() which takes roots of both the BSTs as its input and returns an array of integers denoting the node values of both the BSTs in a sorted order.
+ */
+/**
+ * @solution_thirty
+ */
+class MergeBST {
+  //Function to return a list of integers denoting the node 
+  //values of both the BST in a sorted order.
+  inorder(root, values) {
+    if (!root) return values;
+
+    this.inorder(root.left, values);
+    values.push(root.data);
+    this.inorder(root.right, values);
+
+    return values;
+  }
+
+  mergeArray(nums1, nums2) {
+    const mergedNums = [];
+    let first = 0, second = 0, index = 0;
+
+    while (first < nums1.length && second < nums2.length) {
+      if (nums1[first] < nums2[second]) mergedNums[index++] = nums1[first++]; else mergedNums[index++] = nums2[second++];
+    }
+
+    while (first < nums1.length) {
+      mergedNums[index++] = nums1[first++];
+    }
+
+    while (second < nums2.length) {
+      mergedNums[index++] = nums1[second++];
+    }
+
+    console.log({ mergedNums });
+    return mergedNums;
+  }
+
+  merge(root1, root2) {
+    //your code here
+    const values1 = this.inorder(root1, []);
+    const values2 = this.inorder(root2, []);
+    return this.mergeArray(values1, values2);
+  }
+}
