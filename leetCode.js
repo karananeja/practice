@@ -2739,3 +2739,16 @@ function findInMountainArray(target, mountainArr) {
   if (minIndex === -1) return getMaxIndex(mountainArr, peakIndex, target);
   return minIndex;
 };
+
+/**
+ * @param {number[]} cost 
+ * @returns {number}
+ */
+function minCostClimbingStairs(cost) {
+  for (let index = 2; index < cost.length; index++) {
+    cost[index] += Math.min(cost[index - 1], cost[index - 2]);
+  }
+
+  return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
+};
+console.log({ minCostClimbingStairs: minCostClimbingStairs([10, 15, 20]) });
