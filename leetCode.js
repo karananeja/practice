@@ -2752,3 +2752,19 @@ function minCostClimbingStairs(cost) {
   return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
 };
 console.log({ minCostClimbingStairs: minCostClimbingStairs([10, 15, 20]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function findDuplicates(nums) {
+  const count = {}, duplicates = [];
+
+  for (const num of nums) {
+    count[num] = (count[num] || 0) + 1;
+    if (count[num] === 2) duplicates.push(num);
+  }
+
+  return duplicates;
+};
+console.log({ findDuplicates: findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]) });
