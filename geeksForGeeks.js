@@ -1086,3 +1086,41 @@ class MergeBST {
     return this.mergeArray(values1, values2);
   }
 }
+
+/**
+ * @problem_thirtyOne You don't need to read input or print anything. Your task is to complete the function largestBst() that takes the root node of the Binary Tree as its input and returns the size of the largest subtree which is also the BST. If the complete Binary Tree is a BST, return the size of the complete Binary Tree. 
+ */
+/**
+ * @solution_thirtyOne
+ */
+class LargestBST {
+  constructor() {
+    this.size = 0;
+  }
+
+  solve(node) {
+    if (!node) return { min: Infinity, max: -Infinity, isBST: true, size: 0 };
+
+    const left = this.solve(node.left);
+    const right = this.solve(node.right);
+
+    let currNode = {};
+    currNode.size = left.size + right.size + 1;
+    currNode.max = Math.max(node.key, right.max);
+    currNode.min = Math.min(node.key, left.min);
+
+    if (left.isBST && right.isBST && (node.key > left.max && node.key < right.min))
+      currNode.isBST = true;
+    else currNode.isBST = false;
+
+    if (currNode.isBST) this.size = Math.max(currNode.size, this.size);
+
+    return currNode;
+  }
+
+  largestBst(root) {
+    //code here
+    this.solve(root);
+    return this.size;
+  }
+}
