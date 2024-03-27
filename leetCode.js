@@ -2768,3 +2768,23 @@ function findDuplicates(nums) {
   return duplicates;
 };
 console.log({ findDuplicates: findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]) });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {boolean}
+ */
+function backspaceCompare(s, t) {
+  let firstString = [], secondString = [];
+
+  for (let index = 0; index < s.length; index++) {
+    s[index] !== "#" ? firstString.push(s[index]) : firstString.pop();
+  }
+
+  for (let index = 0; index < t.length; index++) {
+    t[index] !== "#" ? secondString.push(t[index]) : secondString.pop();
+  }
+
+  return firstString.join("") === secondString.join("");
+};
+console.log({ backspaceCompare: backspaceCompare("ab#c", "ad#c") });
