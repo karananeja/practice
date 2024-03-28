@@ -2788,3 +2788,28 @@ function backspaceCompare(s, t) {
   return firstString.join("") === secondString.join("");
 };
 console.log({ backspaceCompare: backspaceCompare("ab#c", "ad#c") });
+
+/**
+ * @param {() => Promise<T>[]} functions 
+ * @returns {Promise<T[]>}
+ */
+async function promiseAll(functions) {
+  return new Promise((resolve, reject) => {
+    const res = new Array(functions.length).fill(null);
+
+    let resolvedCount = 0;
+
+    functions.forEach(async (fn, idx) => {
+      try {
+        const subResult = await fn();
+        res[idx] = subResult;
+        resolvedCount++;
+
+        if (resolvedCount === functions.length) resolve(res);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  });
+};
+promiseAll([() => new Promise(resolve => setTimeout(() => resolve(4), 50)), () => new Promise(resolve => setTimeout(() => resolve(10), 150)), () => new Promise(resolve => setTimeout(() => resolve(16), 100))]).then(res => console.log({ res }));
