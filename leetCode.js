@@ -2813,3 +2813,18 @@ async function promiseAll(functions) {
   });
 };
 promiseAll([() => new Promise(resolve => setTimeout(() => resolve(4), 50)), () => new Promise(resolve => setTimeout(() => resolve(10), 150)), () => new Promise(resolve => setTimeout(() => resolve(16), 100))]).then(res => console.log({ res }));
+
+/**
+ * @param {number[]} pref 
+ * @returns {number[]}
+ */
+function findArray(pref) {
+  const length = pref.length;
+
+  for (let i = length - 1; i > 0; i--) {
+    pref[i] ^= pref[i - 1];
+  }
+
+  return pref;
+};
+console.log({ prefixXOR: findArray([5, 2, 0, 3, 1]) });
