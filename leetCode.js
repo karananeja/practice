@@ -2828,3 +2828,17 @@ function findArray(pref) {
   return pref;
 };
 console.log({ prefixXOR: findArray([5, 2, 0, 3, 1]) });
+
+class ArrayWrapper {
+  constructor(nums) {
+    this.nums = nums;
+  }
+
+  valueOf() {
+    return this.nums.length ? this.nums.reduce((curr, next) => curr + next) : 0;
+  }
+
+  toString() {
+    return `[${this.nums.join(",")}]`;
+  }
+};
