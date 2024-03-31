@@ -2842,3 +2842,27 @@ class ArrayWrapper {
     return `[${this.nums.join(",")}]`;
   }
 };
+
+/**
+ * @param {number[]} target 
+ * @param {number} n 
+ * @returns {string[]} 
+ */
+function buildArray(target, n) {
+  const operations = [];
+  let targetIndex = 0;
+
+  for (let index = 1; index <= n; index++) {
+    if (target[targetIndex] === index) {
+      operations.push("Push");
+      targetIndex++;
+    } else {
+      operations.push("Push", "Pop");
+    }
+
+    if (targetIndex === target.length) break;
+  }
+
+  return operations;
+};
+console.log({ arrayOperations: buildArray([1, 2], 4) });
