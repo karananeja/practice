@@ -33,11 +33,18 @@ console.log(twoSum([3, 2, 4], 6));
  * @param {string} s
  * @return {number}
  */
-var lengthOfLastWord = function (s) {
-  let tempString = s.trim().split(' ');
-  return tempString[tempString.length - 1].toString().length;
+function lengthOfLastWord(s) {
+  const trimmedString = s.trim();
+  let count = 0;
+
+  for (let i = trimmedString.length - 1; i >= 0; i--) {
+    if (trimmedString[i] !== " ") count++;
+    else return count;
+  }
+
+  return count;
 };
-console.log(lengthOfLastWord('Hello World'));
+console.log({ lengthOfLastWord: lengthOfLastWord('Hello World') });
 
 /**
  * @problem_three
