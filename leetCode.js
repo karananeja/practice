@@ -21,7 +21,7 @@ var twoSum = function (nums, target) {
     keys[nums[i]] = i;
   }
 };
-console.log(twoSum([3, 2, 4], 6));
+console.log({ twoSum: twoSum([3, 2, 4], 6) });
 
 /**
  * @problem_two
@@ -65,7 +65,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
   if (length % 2 === 0) return (merged[length / 2] + merged[(length / 2) - 1]) / 2;
   else return merged[(length - 1) / 2];
 };
-console.log(findMedianSortedArrays([1, 2], [3, 4]));
+console.log({ findMedianSortedArrays: findMedianSortedArrays([1, 2], [3, 4]) });
 
 /**
  * @problem_four
@@ -99,7 +99,7 @@ var reverse = function (x) {
   if (reverseNumber > BigInt(Math.pow(2, 31) - 1) || reverseNumber < BigInt(Math.pow(-2, 31))) return 0;
   return reverseNumber;
 };
-console.log(reverse(-2147483648));
+console.log({ reverse: reverse(-2147483648) });
 
 /**
  * @problem_five
@@ -161,7 +161,7 @@ var isPowerOfFour = function (n) {
 
   return isPowerOfFour(Math.floor(n));
 };
-console.log(isPowerOfFour(-2147483647));
+console.log({ isPowerOfFour: isPowerOfFour(-2147483647) });
 
 /**
  * @problem_seven
@@ -176,7 +176,7 @@ var isPowerOfTwo = function (n) {
   if (n <= 0) return false;
   return (n & (n - 1)) === 0;
 };
-console.log(isPowerOfTwo(-2147483647));
+console.log({ isPowerOfTwo: isPowerOfTwo(-2147483647) });
 
 /**
  * @problem_eight
@@ -200,7 +200,7 @@ var isPowerOfThree = function (n) {
 
   return isPowerOfThree(Math.floor(n));
 };
-console.log(isPowerOfThree(-2147483647));
+console.log({ isPowerOfThree: isPowerOfThree(-2147483647) });
 
 /**
  * @problem_nine
@@ -250,7 +250,7 @@ var canConstruct = function (ransomNote, magazine) {
 
   return true;
 };
-console.log(canConstruct('baa', 'aab'));
+console.log({ canConstruct: canConstruct('baa', 'aab') });
 
 /**
  * @problem_eleven
@@ -273,7 +273,7 @@ var divide = function (dividend, divisor) {
 
   return quotient;
 };
-console.log(divide(-2147483648, 1));
+console.log({ divide: divide(-2147483648, 1) });
 
 /**
  * @problem_twelve You are given an integer n. We reorder the digits in any order (including the original order) such that the leading digit is not zero.
@@ -301,7 +301,7 @@ var reorderedPowerOf2 = function (n) {
 
   return false;
 };
-console.log(reorderedPowerOf2(10));
+console.log({ reorderedPowerOf2: reorderedPowerOf2(10) });
 
 /**
  * @problem_thirteen Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
@@ -317,7 +317,7 @@ var singleNumber = function (nums) {
   for (const num of nums) ans ^= num;
   return ans;
 };
-console.log(singleNumber([2, 3, 3, 2, 1]));
+console.log({ singleNumber: singleNumber([2, 3, 3, 2, 1]) });
 
 /**
  * @param {string[]} strs
@@ -344,7 +344,7 @@ var longestCommonPrefix = function (strs) {
 
   return prefix;
 };
-console.log(longestCommonPrefix(["dog", "racecar", "car"]));
+console.log({ longestCommonPrefix: longestCommonPrefix(["dog", "racecar", "car"]) });
 
 /**
  * @param {number[]} nums
@@ -368,7 +368,7 @@ var removeElement = function (nums, val) {
 
   return j;
 };
-console.log(removeElement([3, 2, 3, 2], 3));
+console.log({ removeElement: removeElement([3, 2, 3, 2], 3) });
 
 /**
  * @param {string} s
@@ -392,7 +392,7 @@ var romanToInt = function (romanNumber) {
 
   return number;
 };
-console.log(romanToInt(10));
+console.log({ romanToInt: romanToInt(10) });
 
 /**
  * @problem_fourteen Given a positive integer n, return the smallest positive integer that is a multiple of both 2 and n.
@@ -405,7 +405,7 @@ console.log(romanToInt(10));
 var smallestEvenMultiple = function (n) {
   return n % 2 === 0 ? n : n * 2;
 };
-console.log(smallestEvenMultiple(5));
+console.log({ smallestEvenMultiple: smallestEvenMultiple(5) });
 
 /**
  * @problem_fifteen You are given a positive integer num consisting of exactly four digits. Split num into two new integers new1 and new2 by using the digits found in num.
@@ -420,7 +420,7 @@ var minimumSum = function (num) {
   let numArray = num.toString().split('').sort();
   return parseInt(numArray[0]) + parseInt(numArray[numArray.length - 1]);
 };
-console.log(minimumSum(2932));
+console.log({ minimumSum: minimumSum(2932) });
 
 /**
  * @problem_sixteen
@@ -438,7 +438,7 @@ var checkIfInstanceOf = function (obj, classFunction) {
     return false;
   return Object(obj) instanceof classFunction;
 };
-console.log(checkIfInstanceOf(5, Number));
+console.log({ checkIfInstanceOf: checkIfInstanceOf(5, Number) });
 
 /**
  * @problem_seventeen
@@ -545,7 +545,7 @@ var largestAltitude = function (gain) {
 
   return maxAltitude;
 };
-console.log(largestAltitude([-5, 1, 5, 0, -7]));
+console.log({ largestAltitude: largestAltitude([-5, 1, 5, 0, -7]) });
 
 /**
  * @param {number[]} arr
@@ -569,7 +569,7 @@ var uniqueOccurrences = function (arr) {
 
   return true;
 };
-console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3]));
+console.log({ uniqueOccurrences: uniqueOccurrences([1, 2, 2, 1, 1, 3]) });
 
 function findDuplicate(nums) {
   let ans = 0;
@@ -584,7 +584,7 @@ function findDuplicate(nums) {
 
   return ans;
 }
-console.log(findDuplicate([5, 1, 2, 3, 4, 2]));
+console.log({ findDuplicate: findDuplicate([5, 1, 2, 3, 4, 2]) });
 
 function findInPeakIndexInMountainArray(arr) {
   let start = 0, end = arr.length - 1;
@@ -603,7 +603,7 @@ function findInPeakIndexInMountainArray(arr) {
 
   return start;
 }
-console.log(findInPeakIndexInMountainArray([0, 10, 5, 2]));
+console.log({ findInPeakIndexInMountainArray: findInPeakIndexInMountainArray([0, 10, 5, 2]) });
 
 var sortPeople = function (names, heights) {
   for (let i = 0; i < heights.length; i++) {
@@ -714,6 +714,7 @@ var searchRange = function (nums, target) {
 
   return [firstIndex, lastIndex];
 };
+console.log({ searchRange: searchRange([5, 7, 7, 8, 8, 10], 8) });
 
 /**
  * @param {number} num
