@@ -2874,3 +2874,28 @@ function buildArray(target, n) {
   return operations;
 };
 console.log({ arrayOperations: buildArray([1, 2], 4) });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function isValid(s) {
+  const parenthesesStack = [];
+
+  for (let index = 0; index < s.length; index++) {
+    if (s[index] === "(" || s[index] === "{" || s[index] === "[") {
+      parenthesesStack.push(s[index]);
+    } else if (s[index] === ")" && (parenthesesStack[parenthesesStack.length - 1] === "(")) {
+      parenthesesStack.pop();
+    } else if (s[index] === "}" && (parenthesesStack[parenthesesStack.length - 1] === "{")) {
+      parenthesesStack.pop();
+    } else if (s[index] === "]" && (parenthesesStack[parenthesesStack.length - 1] === "[")) {
+      parenthesesStack.pop();
+    } else {
+      return false;
+    }
+  }
+
+  return parenthesesStack.length === 0;
+};
+console.log({ validParentheses: isValid('()') });
