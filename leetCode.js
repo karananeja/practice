@@ -2899,3 +2899,24 @@ function isValid(s) {
   return parenthesesStack.length === 0;
 };
 console.log({ validParentheses: isValid('()') });
+
+/**
+ * @param {number} n 
+ * @param {number[]} left 
+ * @param {number[]} right 
+ * @returns {number}
+ */
+function getLastMoment(n, left, right) {
+  let ans = 0;
+
+  for (let index = 0; index < left.length; index++) {
+    ans = Math.max(ans, left[index]);
+  }
+
+  for (let index = 0; index < right.length; index++) {
+    ans = Math.max(ans, n - right[index]);
+  }
+
+  return ans;
+};
+console.log({ lastMoment: getLastMoment(5, [3, 4], [2]) });
