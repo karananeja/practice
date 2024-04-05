@@ -2920,3 +2920,34 @@ function getLastMoment(n, left, right) {
   return ans;
 };
 console.log({ lastMoment: getLastMoment(5, [3, 4], [2]) });
+
+/**
+ * @param {number[]} arr 
+ * @param {number} k 
+ * @returns {number}
+ */
+function getWinner(arr, k) {
+  let maxElement = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    maxElement = Math.max(maxElement, arr[i]);
+  }
+
+  let curr = arr[0], winStreak = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    const opponent = arr[i];
+
+    if (curr > opponent) {
+      winStreak++;
+    } else {
+      curr = opponent;
+      winStreak = 1;
+    }
+
+    if (winStreak === k || curr === maxElement) return curr;
+  }
+
+  return -1;
+};
+console.log({ winner: getWinner([3, 2, 1], 10) });
