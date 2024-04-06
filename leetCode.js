@@ -2951,3 +2951,22 @@ function getWinner(arr, k) {
   return -1;
 };
 console.log({ winner: getWinner([3, 2, 1], 10) });
+
+class SeatManager {
+  constructor(n) {
+    this.seatState = Array(n).fill(1);
+  }
+
+  reserve() {
+    for (let i = 0; i < this.seatState.length; i++) {
+      if (this.seatState[i] === 1) {
+        this.seatState[i] = 0;
+        return i + 1;
+      }
+    }
+  }
+
+  unreserve(seatNumber) {
+    this.seatState[seatNumber - 1] = 1;
+  }
+}
