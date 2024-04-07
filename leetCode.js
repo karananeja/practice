@@ -2970,3 +2970,30 @@ class SeatManager {
     this.seatState[seatNumber - 1] = 1;
   }
 }
+
+/**
+ * @param {number[]} dist 
+ * @param {number[]} speed 
+ * @returns {number}
+ */
+function eliminateMaximum(dist, speed) {
+  let eliminatedCount = 0;
+  const timeToArrive = new Array(dist.length);
+
+  for (let index = 0; index < dist.length; index++) {
+    timeToArrive[index] = dist[index] / speed[index];
+  }
+
+  timeToArrive.sort((a, b) => a - b);
+
+  for (let index = 0; index < timeToArrive.length; index++) {
+    if (timeToArrive[index] <= index) {
+      break;
+    }
+
+    eliminatedCount++;
+  }
+
+  return eliminatedCount;
+};
+console.log({ eliminated: eliminateMaximum([1, 3, 4], [1, 1, 1]) });
