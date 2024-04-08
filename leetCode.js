@@ -2997,3 +2997,16 @@ function eliminateMaximum(dist, speed) {
   return eliminatedCount;
 };
 console.log({ eliminated: eliminateMaximum([1, 3, 4], [1, 1, 1]) });
+
+/**
+ * @param {number} sx 
+ * @param {number} sy 
+ * @param {number} fx 
+ * @param {number} fy 
+ * @param {number} t 
+ * @returns {number}
+ */
+function isReachableAtTime(sx, sy, fx, fy, t) {
+  return (sx === fx && sy === fy) ? false : t >= Math.max(Math.abs(fx - sx), Math.abs(fy - sy));
+};
+console.log({ reachable: isReachableAtTime(2, 5, 7, 8, 6) });
