@@ -3010,3 +3010,26 @@ function isReachableAtTime(sx, sy, fx, fy, t) {
   return (sx === fx && sy === fy) ? false : t >= Math.max(Math.abs(fx - sx), Math.abs(fy - sy));
 };
 console.log({ reachable: isReachableAtTime(2, 5, 7, 8, 6) });
+
+class CustomStack {
+  constructor(maxSize) {
+    this.stack = [];
+    this.stackSize = maxSize;
+  }
+
+  push(x) {
+    if (this.stack.length < this.stackSize) this.stack.push(x);
+  }
+
+  pop() {
+    return this.stack.length === 0 ? -1 : this.stack.pop();
+  }
+
+  increment(k, val) {
+    const elementCount = Math.min(k, this.stack.length);
+
+    for (let index = 0; index < elementCount; index++) {
+      this.stack[index] += val;
+    }
+  }
+}
