@@ -3033,3 +3033,21 @@ class CustomStack {
     }
   }
 }
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function countHomogenous(s) {
+  let ans = 0, currStreak = 0;
+  const MOD = 1e9 + 7;
+
+  for (let i = 0; i < s.length; i++) {
+    if (i === 0 || s[i] === s[i - 1]) currStreak++;
+    else currStreak = 1;
+    ans = (ans + currStreak) % MOD;
+  }
+
+  return ans;
+};
+console.log({ homogenous: countHomogenous('aabbb') });
