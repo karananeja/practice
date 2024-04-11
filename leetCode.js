@@ -3051,3 +3051,42 @@ function countHomogenous(s) {
   return ans;
 };
 console.log({ homogenous: countHomogenous('aabbb') });
+
+class MinStack {
+  constructor() {
+    this.stack = [];
+    this.minValue = 0;
+  }
+
+  push(val) {
+    if (this.stack.length === 0) {
+      this.stack.push(val);
+      this.minValue = val;
+    } else {
+      if (val < this.minValue) {
+        this.stack.push(2 * val - this.minValue);
+        this.minValue = val;
+      } else {
+        this.stack.push(val);
+      }
+    }
+  }
+
+  pop() {
+    const currentNum = this.stack.pop();
+
+    if (currentNum < this.minValue) {
+      this.minValue = 2 * this.minValue - currentNum;
+    }
+  }
+
+  top() {
+    const currentNumber = this.stack[this.stack.length - 1];
+
+    return currentNumber < this.minValue ? this.minValue : currentNumber;
+  }
+
+  getMin() {
+    return this.minValue;
+  }
+}
