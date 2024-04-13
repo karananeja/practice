@@ -3090,3 +3090,22 @@ class MinStack {
     return this.minValue;
   }
 }
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function maximumElementAfterDecrementingAndRearranging(arr) {
+  let maxElement = 1;
+
+  arr.sort((a, b) => a - b);
+
+  for (let index = 1; index < arr.length; index++) {
+    if (arr[index] >= maxElement + 1) {
+      maxElement++;
+    }
+  }
+
+  return maxElement;
+};
+console.log({ max: maximumElementAfterDecrementingAndRearranging([2, 3, 4, 6, 6, 7]) });
