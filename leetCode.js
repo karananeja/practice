@@ -3109,3 +3109,27 @@ function maximumElementAfterDecrementingAndRearranging(arr) {
   return maxElement;
 };
 console.log({ max: maximumElementAfterDecrementingAndRearranging([2, 3, 4, 6, 6, 7]) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number[]}
+ */
+function nextGreaterElement(nums1, nums2) {
+  const [numIdx, stack] = [{}, []];
+  const result = new Array(nums1.length).fill(-1);
+
+  nums1.forEach((num, index) => numIdx[num] = index);
+
+  nums2.forEach(num => {
+    while (stack.length > 0 && stack[stack.length - 1] < num) {
+      const poppedNum = stack.pop();
+      const indexInNums1 = numIdx[poppedNum];
+      if (indexInNums1 !== undefined) result[indexInNums1] = num;
+    }
+    stack.push(num);
+  });
+
+  return result;
+};
+console.log({ nextGt: nextGreaterElement([4, 5], [1, 2, 3, 4, 5]) });
