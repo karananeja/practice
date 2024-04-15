@@ -3133,3 +3133,74 @@ function nextGreaterElement(nums1, nums2) {
   return result;
 };
 console.log({ nextGt: nextGreaterElement([4, 5], [1, 2, 3, 4, 5]) });
+
+/**
+ * @param {number[]} numbers 
+ * @returns {number[]}
+ */
+function nextSmallerElements(numbers) {
+  const s = [], ans = new Array(numbers.length).fill(-1);
+  s.push(-1);
+
+  for (let index = numbers.length - 1; index >= 0; index--) {
+    const current = numbers[index];
+
+    while (s[s.length - 1] !== -1 && numbers[s[s.length - 1]] >= current) {
+      s.pop();
+    }
+
+    ans[index] = s[s.length - 1];
+    s.push(index);
+  }
+
+  return ans;
+}
+
+/**
+ * @param {number[]} numbers 
+ * @returns {number[]}
+ */
+function prevSmallerElements(numbers) {
+  const s = [], ans = new Array(numbers.length).fill(-1);
+  s.push(-1);
+
+  for (let index = 0; index < numbers.length; index++) {
+    const current = numbers[index];
+
+    while (s[s.length - 1] !== -1 && numbers[s[s.length - 1]] >= current) {
+      s.pop();
+    }
+
+    ans[index] = s[s.length - 1];
+    s.push(index);
+  }
+
+  return ans;
+}
+
+/**
+ * @param {number[]} heights 
+ * @returns {number}
+ */
+function largestRectangleArea(heights) {
+  const next = nextSmallerElements(heights);
+  const prev = prevSmallerElements(heights);
+
+  let area = -Infinity;
+
+  for (let index = 0; index < heights.length; index++) {
+    const length = heights[index];
+
+    if (next[index] === -1) {
+      next[index] = heights.length;
+    }
+
+    const breadth = next[index] - prev[index] - 1;
+
+    const newArea = length * breadth;
+    area = Math.max(area, newArea);
+  }
+
+  return area;
+};
+console.log({ area: largestRectangleArea([2, 1, 5, 6, 2, 3]) });
