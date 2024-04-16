@@ -3204,3 +3204,40 @@ function largestRectangleArea(heights) {
   return area;
 };
 console.log({ area: largestRectangleArea([2, 1, 5, 6, 2, 3]) });
+
+/**
+ * @param {string[][]} matrix 
+ * @returns {number[][]}
+ */
+function matrixInNumber(matrix) {
+  const convertedMatrix = [...matrix];
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      convertedMatrix[i][j] = Number(matrix[i][j]);
+    }
+  }
+
+  return convertedMatrix;
+}
+
+/**
+ * @param {string[][]} matrix 
+ * @returns {number}
+ */
+function maximalRectangle(matrix) {
+  const convertedMatrix = matrixInNumber(matrix);
+  let largestArea = largestRectangleArea(convertedMatrix[0]);
+
+  for (let i = 1; i < convertedMatrix.length; i++) {
+    for (let j = 0; j < convertedMatrix[0].length; j++) {
+      if (convertedMatrix[i][j] !== 0) convertedMatrix[i][j] = convertedMatrix[i][j] + convertedMatrix[i - 1][j];
+      else convertedMatrix[i][j] = 0;
+    }
+
+    largestArea = Math.max(largestArea, largestRectangleArea(convertedMatrix[i]));
+  }
+
+  return largestArea;
+};
+console.log({ maxArea: maximalRectangle([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"]]) });
