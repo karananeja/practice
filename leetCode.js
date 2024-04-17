@@ -3241,3 +3241,19 @@ function maximalRectangle(matrix) {
   return largestArea;
 };
 console.log({ maxArea: maximalRectangle([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minPairSum(nums) {
+  let maxSum = 0;
+  nums.sort((a, b) => a - b);
+
+  for (let i = 0; i < nums.length / 2; i++) {
+    maxSum = Math.max(maxSum, nums[i] + nums[nums.length - 1 - i]);
+  }
+
+  return maxSum;
+};
+console.log({ maxSum: minPairSum([3, 5, 2, 3]) });
