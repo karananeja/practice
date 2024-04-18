@@ -3257,3 +3257,21 @@ function minPairSum(nums) {
   return maxSum;
 };
 console.log({ maxSum: minPairSum([3, 5, 2, 3]) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function arrangeCoins(n) {
+  let start = 0, end = n;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+    const completedRows = mid / 2 * (mid + 1);
+
+    completedRows <= n ? start = mid + 1 : end = mid - 1;
+  }
+
+  return end;
+};
+console.log({ arrangedCoins: arrangeCoins(8) });
