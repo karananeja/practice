@@ -3275,3 +3275,12 @@ function arrangeCoins(n) {
   return end;
 };
 console.log({ arrangedCoins: arrangeCoins(8) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function countNodes(root) {
+  if (!root) return 0;
+  return countNodes(root.left) + countNodes(root.right) + 1;
+};
