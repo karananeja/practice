@@ -3284,3 +3284,22 @@ function countNodes(root) {
   if (!root) return 0;
   return countNodes(root.left) + countNodes(root.right) + 1;
 };
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function singleNonDuplicate(nums) {
+  let start = 0, end = nums.length - 1;
+
+  while (start <= end) {
+    let mid = start + Math.floor((end - start) / 2);
+
+    if (nums[mid - 1] === nums[mid]) mid = mid - 1;
+
+    mid % 2 === 0 ? start = mid + 2 : end = mid - 1;
+  }
+
+  return nums[end];
+};
+console.log({ singleDigit: singleNonDuplicate([1, 1, 2, 3, 3, 4, 4, 8, 8]) });
