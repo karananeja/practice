@@ -3303,3 +3303,25 @@ function singleNonDuplicate(nums) {
   return nums[end];
 };
 console.log({ singleDigit: singleNonDuplicate([1, 1, 2, 3, 3, 4, 4, 8, 8]) });
+
+class MyQueue {
+  constructor() {
+    this.values = [];
+  }
+
+  push(x) {
+    this.values.push(x);
+  }
+
+  pop() {
+    return this.values.shift();
+  }
+
+  peek() {
+    return this.values[0];
+  }
+
+  empty() {
+    return this.values.length === 0;
+  }
+}
