@@ -3325,3 +3325,22 @@ class MyQueue {
     return this.values.length === 0;
   }
 }
+
+/**
+ * @param {number[]} height 
+ * @returns {number}
+ */
+function maxArea(height) {
+  let left = 0, right = height.length - 1, area = 0;
+
+  while (left < right) {
+    const width = right - left;
+    const minHeight = Math.min(height[left], height[right]);
+    area = Math.max(width * minHeight, area);
+
+    height[left] < height[right] ? left++ : right--;
+  }
+
+  return area;
+};
+console.log({ maxArea: maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]) });
