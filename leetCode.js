@@ -3344,3 +3344,19 @@ function maxArea(height) {
   return area;
 };
 console.log({ maxArea: maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function hammingWeight(n) {
+  let numberOfOneBit = 0;
+
+  while (n !== 0) {
+    if (n & 1) numberOfOneBit++;
+    n >>>= 1;
+  }
+
+  return numberOfOneBit;
+};
+console.log({ hammingWeight: hammingWeight(9) });
