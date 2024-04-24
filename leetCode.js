@@ -3360,3 +3360,13 @@ function hammingWeight(n) {
   return numberOfOneBit;
 };
 console.log({ hammingWeight: hammingWeight(9) });
+
+/**
+ * @param {string[]} word1 
+ * @param {string[]} word2 
+ * @returns {boolean}
+ */
+function arrayStringsAreEqual(word1, word2) {
+  return word1.join("") === word2.join("");
+};
+console.log({ arrayStringsAreEqual: arrayStringsAreEqual(['ab', 'c'], ['a', 'bc']) });
