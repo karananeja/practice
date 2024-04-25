@@ -3370,3 +3370,19 @@ function arrayStringsAreEqual(word1, word2) {
   return word1.join("") === word2.join("");
 };
 console.log({ arrayStringsAreEqual: arrayStringsAreEqual(['ab', 'c'], ['a', 'bc']) });
+
+/**
+ * @param {(...args: number[]) => void} fn 
+ * @param {number} t 
+ * @returns {(...args: number[]) => void}
+ */
+function debounce(fn, t) {
+  let timeOutId;
+
+  return function (...args) {
+    clearTimeout(timeOutId);
+    timeOutId = setTimeout(() => fn(...args), t);
+  };
+};
+const sayHello = () => console.log('hello');
+debounce(sayHello, 10000)();
