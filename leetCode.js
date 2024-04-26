@@ -3386,3 +3386,51 @@ function debounce(fn, t) {
 };
 const sayHello = () => console.log('hello');
 debounce(sayHello, 10000)();
+
+/**
+ * @param {string} chars 
+ * @returns {{ [key: string]: number }}
+ */
+function getCharCount(chars) {
+  const charsCount = {};
+
+  for (const char of chars) {
+    charsCount[char] = (charsCount[char] || 0) + 1;
+  }
+
+  return charsCount;
+}
+
+/**
+ * @param {{ [key: string]: number }} charCountInWord 
+ * @param {{ [key: string]: number }} charsCount 
+ * @returns {number}
+ */
+function getLetterCount(charCountInWord, charsCount) {
+  let letterCount = 0;
+
+  for (const char in charCountInWord) {
+    if (charCountInWord[char] <= charsCount[char]) letterCount += charCountInWord[char];
+  }
+
+  return letterCount;
+}
+
+/**
+ * @param {string[]} words 
+ * @param {string} chars 
+ * @returns {number}
+ */
+function countCharacters(words, chars) {
+  let possibleLength = 0;
+  const charsCount = getCharCount(chars);
+
+  for (const word of words) {
+    const charCountInWord = getCharCount(word);
+    const letterCount = getLetterCount(charCountInWord, charsCount);
+    if (letterCount === word.length) possibleLength += letterCount;
+  }
+
+  return possibleLength;
+};
+console.log({ countCharacters: countCharacters(["cat", "bt", "hat", "tree"], "atach") });
