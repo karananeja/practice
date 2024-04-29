@@ -3434,3 +3434,22 @@ function countCharacters(words, chars) {
   return possibleLength;
 };
 console.log({ countCharacters: countCharacters(["cat", "bt", "hat", "tree"], "atach") });
+
+/**
+ * @param {number[][]} points 
+ * @returns {number}
+ */
+function minTimeToVisitAllPoints(points) {
+  let ans = 0;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const currX = points[i][0];
+    const currY = points[i][1];
+    const targetX = points[i + 1][0];
+    const targetY = points[i + 1][1];
+    ans += Math.max(Math.abs(targetX - currX), Math.abs(targetY - currY));
+  }
+
+  return ans;
+};
+console.log({ minTimeToVisitAllPoints: minTimeToVisitAllPoints([[1, 1], [3, 4], [-1, 0]]) });
