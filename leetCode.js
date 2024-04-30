@@ -3453,3 +3453,23 @@ function minTimeToVisitAllPoints(points) {
   return ans;
 };
 console.log({ minTimeToVisitAllPoints: minTimeToVisitAllPoints([[1, 1], [3, 4], [-1, 0]]) });
+
+/**
+ * @param {string} num 
+ * @returns {string}
+ */
+function largestGoodInteger(num) {
+  let result = "";
+
+  for (let index = 0; index < num.length - 2; index++) {
+    const firstDigit = num[index], secondDigit = num[index + 1], thirdDigit = num[index + 2];
+
+    if (firstDigit === secondDigit && firstDigit === thirdDigit) {
+      const possibleResult = `${firstDigit}${secondDigit}${thirdDigit}`;
+      if (result === "" || result < possibleResult) result = possibleResult;
+    }
+  }
+
+  return result;
+};
+console.log({ largestGoodInteger: largestGoodInteger("6777133339") });
