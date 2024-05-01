@@ -3473,3 +3473,15 @@ function largestGoodInteger(num) {
   return result;
 };
 console.log({ largestGoodInteger: largestGoodInteger("6777133339") });
+
+Array.prototype.groupBy = function (fn) {
+  const groupedArray = {};
+
+  for (let i = 0; i < this.length; i++) {
+    const value = fn(this[i]);
+    if (!groupedArray[value]) groupedArray[value] = [];
+    groupedArray[value].push(this[i]);
+  }
+
+  return groupedArray;
+};
