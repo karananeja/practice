@@ -3485,3 +3485,20 @@ Array.prototype.groupBy = function (fn) {
 
   return groupedArray;
 };
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function numberOfMatches(n) {
+  if (n === 1) return 0;
+
+  let matchCount = Math.floor(n / 2);
+
+  n % 2 === 0 ? n /= 2 : n = Math.floor(n / 2) + 1;
+
+  matchCount += numberOfMatches(n);
+  return matchCount;
+};
+console.log({ numberOfMatches: numberOfMatches(7) });
+
