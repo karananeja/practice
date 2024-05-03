@@ -3502,3 +3502,48 @@ function numberOfMatches(n) {
 };
 console.log({ numberOfMatches: numberOfMatches(7) });
 
+class MyCircularQueue {
+  constructor(k) {
+    this.size = k;
+    this.circularQueue = [];
+    this.front = this.rear = -1;
+  }
+
+  enQueue(value) {
+    if (this.isFull()) return false;
+    else if (this.isEmpty()) this.front = this.rear = 0;
+    else if (this.rear === this.size - 1 && this.front !== 0) this.rear = 0;
+    else this.rear++;
+
+    this.circularQueue[this.rear] = value;
+    return true;
+  }
+
+  deQueue() {
+    if (this.isEmpty()) return false;
+
+    this.circularQueue[this.front] = -1;
+
+    if (this.front === this.rear) this.front = this.rear = -1;
+    else if (this.front === this.size - 1) this.front = 0;
+    else this.front++;
+
+    return true;
+  }
+
+  Front() {
+    return this.circularQueue[this.front] ?? -1;
+  }
+
+  Rear() {
+    return this.circularQueue[this.rear] ?? -1;
+  }
+
+  isEmpty() {
+    return this.front === -1 && this.rear === -1;
+  }
+
+  isFull() {
+    return (this.front === 0 && this.rear === this.size - 1) || this.front - this.rear === 1;
+  }
+}
