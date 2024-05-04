@@ -3547,3 +3547,20 @@ class MyCircularQueue {
     return (this.front === 0 && this.rear === this.size - 1) || this.front - this.rear === 1;
   }
 }
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function totalMoney(n) {
+  const NUMBER_OF_DAYS = 7;
+  let weekCount = 0, moneySaved = 0;
+
+  for (let num = 1; num <= n; num++) {
+    if (num > NUMBER_OF_DAYS && num % NUMBER_OF_DAYS === 1) weekCount++;
+    moneySaved += num - weekCount * (NUMBER_OF_DAYS - 1);
+  }
+
+  return moneySaved;
+};
+console.log({ totalMoney: totalMoney(4) });
