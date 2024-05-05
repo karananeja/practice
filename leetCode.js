@@ -3564,3 +3564,18 @@ function totalMoney(n) {
   return moneySaved;
 };
 console.log({ totalMoney: totalMoney(4) });
+
+/**
+ * @param {string} num 
+ * @returns {string}
+ */
+function largestOddNumber(num) {
+  for (let index = num.length - 1; index >= 0; index--) {
+    if (parseInt(num[index]) % 2 !== 0) {
+      return num.substring(0, index + 1);
+    }
+  }
+
+  return "";
+};
+console.log({ largestOddNumber: largestOddNumber("1234567890") });
