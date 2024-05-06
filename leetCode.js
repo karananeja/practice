@@ -3586,7 +3586,7 @@ console.log({ largestOddNumber: largestOddNumber("1234567890") });
  * @returns {number[]}
  */
 function getInOrderValues(node, values) {
-  if (node === null) return values;
+  if (!node) return values;
 
   getInOrderValues(node.left, values);
   values.push(node.val);
