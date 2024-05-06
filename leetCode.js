@@ -3579,3 +3579,18 @@ function largestOddNumber(num) {
   return "";
 };
 console.log({ largestOddNumber: largestOddNumber("1234567890") });
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number[]} values 
+ * @returns {number[]}
+ */
+function getInOrderValues(node, values) {
+  if (node === null) return values;
+
+  getInOrderValues(node.left, values);
+  values.push(node.val);
+  getInOrderValues(node.right, values);
+
+  return values;
+}
