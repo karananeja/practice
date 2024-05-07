@@ -3594,3 +3594,11 @@ function getInOrderValues(node, values) {
 
   return values;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[]}
+ */
+function inorderTraversal(root) {
+  return getInOrderValues(root, []);
+};
