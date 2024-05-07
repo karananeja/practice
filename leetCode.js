@@ -3602,3 +3602,26 @@ function getInOrderValues(node, values) {
 function inorderTraversal(root) {
   return getInOrderValues(root, []);
 };
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number[]} values 
+ * @returns {number[]}
+ */
+function getPreOrderValues(node, values) {
+  if (!node) return values;
+
+  values.push(node.val);
+  getPreOrderValues(node.left, values);
+  getPreOrderValues(node.right, values);
+
+  return values;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[]}
+ */
+function preorderTraversal(root) {
+  return getPreOrderValues(root, []);
+};
