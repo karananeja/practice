@@ -3625,3 +3625,26 @@ function getPreOrderValues(node, values) {
 function preorderTraversal(root) {
   return getPreOrderValues(root, []);
 };
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number[]} values 
+ * @returns {number[]}
+ */
+function getPostOrderValues(node, values) {
+  if (!node) return values;
+
+  getPostOrderValues(node.left, values);
+  getPostOrderValues(node.right, values);
+  values.push(node.val);
+
+  return values;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[]}
+ */
+function postorderTraversal(root) {
+  return getPostOrderValues(root, []);
+};
