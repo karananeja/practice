@@ -3648,3 +3648,22 @@ function getPostOrderValues(node, values) {
 function postorderTraversal(root) {
   return getPostOrderValues(root, []);
 };
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number[][]}
+ */
+function transpose(matrix) {
+  const rotatedMatrix = [];
+
+  for (let col = 0; col < matrix[0].length; col++) {
+    rotatedMatrix[col] = [];
+
+    for (let row = 0; row < matrix.length; row++) {
+      rotatedMatrix[col][row] = matrix[row][col];
+    }
+  }
+
+  return rotatedMatrix;
+};
+console.log({ transpose: transpose([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
