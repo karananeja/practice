@@ -3667,3 +3667,16 @@ function transpose(matrix) {
   return rotatedMatrix;
 };
 console.log({ transpose: transpose([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function findSpecialInteger(arr) {
+  const oneFourth = Math.min(Math.floor(arr.length / 4), arr.length - 1);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i + oneFourth]) return arr[i];
+  }
+};
+console.log({ findSpecialInteger: findSpecialInteger([1, 2, 2, 6, 6, 6, 6, 7, 0]) });
