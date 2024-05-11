@@ -3680,3 +3680,19 @@ function findSpecialInteger(arr) {
   }
 };
 console.log({ findSpecialInteger: findSpecialInteger([1, 2, 2, 6, 6, 6, 6, 7, 0]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxProduct(nums) {
+  let left = 0, right = nums.length - 1, result = 0;
+
+  while (left < right) {
+    result = Math.max(result, (nums[left] - 1) * (nums[right] - 1));
+    nums[left] < nums[right] ? left++ : right--;
+  }
+
+  return result;
+};
+console.log({ maxProduct: maxProduct([3, 4, 5, 2]) });
