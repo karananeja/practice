@@ -3696,3 +3696,34 @@ function maxProduct(nums) {
   return result;
 };
 console.log({ maxProduct: maxProduct([3, 4, 5, 2]) });
+
+/**
+ * @param {number[][]} mat 
+ * @returns {number}
+ */
+function numSpecial(mat) {
+  const row = mat.length;
+  const col = mat[0].length;
+  let rowCounts = new Array(mat.length).fill(0);
+  let colCounts = new Array(mat[0].length).fill(0);
+
+  for (let x = 0; x < row; x++) {
+    for (let y = 0; y < col; y++) {
+      if (mat[x][y] === 1) {
+        rowCounts[x] += 1;
+        colCounts[y] += 1;
+      }
+    }
+  }
+
+  let result = 0;
+
+  for (let x = 0; x < row; x++) {
+    for (let y = 0; y < col; y++) {
+      if (mat[x][y] === 1 && rowCounts[x] === 1 && colCounts[y] === 1) result++;
+    }
+  }
+
+  return result;
+};
+console.log({ numSpecial: numSpecial([[1, 0, 0], [0, 0, 1], [1, 0, 0]]) });
