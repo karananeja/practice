@@ -3727,3 +3727,21 @@ function numSpecial(mat) {
   return result;
 };
 console.log({ numSpecial: numSpecial([[1, 0, 0], [0, 0, 1], [1, 0, 0]]) });
+
+/**
+ * 
+ * @param {string[][]} paths 
+ * @returns {string}
+ */
+function destCity(paths) {
+  const values = {};
+
+  for (const path of paths) {
+    values[path[0]] = path[1];
+  }
+
+  for (const path of paths) {
+    if (!values[path[1]]) return path[1];
+  }
+};
+console.log({ destCity: destCity([["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]) });
