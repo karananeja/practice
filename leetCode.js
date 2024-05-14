@@ -3745,3 +3745,26 @@ function destCity(paths) {
   }
 };
 console.log({ destCity: destCity([["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]) });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {boolean}
+ */
+function isAnagram(s, t) {
+  if (s.length !== t.length) return false;
+
+  const charFrequency = {};
+
+  for (const char of s) {
+    charFrequency[char] = (charFrequency[char] || 0) + 1;
+  }
+
+  for (const char of t) {
+    if (charFrequency[char]) charFrequency[char]--;
+    else return false;
+  }
+
+  return true;
+};
+console.log({ isAnagram: isAnagram("anagram", "nagaram") });
