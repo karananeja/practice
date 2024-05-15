@@ -3768,3 +3768,17 @@ function isAnagram(s, t) {
   return true;
 };
 console.log({ isAnagram: isAnagram("anagram", "nagaram") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxProductDifference(nums) {
+  nums.sort((a, b) => a - b);
+
+  const firstSmallestNum = nums[0], secondSmallestNum = nums[1];
+  const firstLargestNum = nums[nums.length - 1], secondLargestNum = nums[nums.length - 2];
+
+  return (firstLargestNum * secondLargestNum) - (firstSmallestNum * secondSmallestNum);
+};
+console.log({ maxProductDifference: maxProductDifference([5, 6, 2, 7, 4]) });
