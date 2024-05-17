@@ -3822,3 +3822,18 @@ function imageSmoother(img) {
   return smoothImg;
 };
 console.log({ imageSmoother: imageSmoother([[1, 1, 1], [1, 0, 1], [1, 1, 1]]) });
+
+/**
+ * @param {number[]} prices 
+ * @param {number} money 
+ * @returns {number}
+ */
+function buyChoco(prices, money) {
+  const [price1, price2] = prices.sort((a, b) => a - b);
+
+  const amountRemaining = money - (price1 + price2);
+
+  if (amountRemaining >= 0) return amountRemaining;
+  return money;
+};
+console.log({ buyChoco: buyChoco([1, 2, 2], 3) });
