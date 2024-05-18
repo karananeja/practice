@@ -3837,3 +3837,27 @@ function buyChoco(prices, money) {
   return money;
 };
 console.log({ buyChoco: buyChoco([1, 2, 2], 3) });
+
+/**
+ * @param {number[][]} points 
+ * @returns {number}
+ */
+function maxWidthOfVerticalArea(points) {
+  points.sort((a, b) => a[0] - b[0]);
+  let maxWidth = 0;
+
+  for (let idx = 0; idx < points.length; idx++) {
+    const currentPoint = points[idx];
+
+    if (idx + 1 < points.length) {
+      const nextPoint = points[idx + 1];
+
+      const maxDifference = Math.abs(currentPoint[0] - nextPoint[0]);
+
+      if (maxWidth <= maxDifference) maxWidth = maxDifference;
+    }
+  }
+
+  return maxWidth;
+};
+console.log({ maxWidthOfVerticalArea: maxWidthOfVerticalArea([[8, 7], [9, 9], [7, 4], [9, 7]]) });
