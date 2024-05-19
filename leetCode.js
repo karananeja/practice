@@ -3861,3 +3861,25 @@ function maxWidthOfVerticalArea(points) {
   return maxWidth;
 };
 console.log({ maxWidthOfVerticalArea: maxWidthOfVerticalArea([[8, 7], [9, 9], [7, 4], [9, 7]]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maxScore(s) {
+  let score = s[0] === '0' ? 1 : 0;
+
+  for (let i = 1; i < s.length; i++) {
+    if (s[i] === '1') score++;
+  }
+
+  let maxScore = score;
+
+  for (let i = 1; i < s.length - 1; i++) {
+    s[i] === '1' ? score-- : score++;
+    maxScore = Math.max(maxScore, score);
+  }
+
+  return maxScore;
+};
+console.log({ maxScore: maxScore("011101") });
