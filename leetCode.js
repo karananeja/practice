@@ -877,44 +877,22 @@ console.log({ count: countOdds(0, 100) });
  * @param {number[][]} mat 
  * @returns {num}
  */
-function principalDiagonal(mat) {
-  let sum = 0;
-
-  for (let row = 0; row < mat.length; row++) {
-    for (let col = 0; col < mat[0].length; col++) {
-      if (row === col) {
-        sum += mat[row][col];
-      }
-    }
-  }
-
-  return sum;
-}
-
-/**
- * @param {number[][]} mat 
- * @returns {num}
- */
-function secondaryDiagonal(mat) {
-  let sum = 0;
-
-  for (let row = 0; row < mat.length; row++) {
-    for (let col = mat[0].length - 1; col >= 0; col--) {
-      if (row !== col && Math.abs(row + col) === mat[0].length - 1) {
-        sum += mat[row][col];
-      }
-    }
-  }
-
-  return sum;
-}
-
-/**
- * @param {number[][]} mat 
- * @returns {num}
- */
 function diagonalSum(mat) {
-  return principalDiagonal(mat) + secondaryDiagonal(mat);
+  let ans = 0, size = mat.length;
+
+  for (let i = 0; i < size; i++) {
+    // primary diagonal elements
+    ans += mat[i][i];
+    // secondary diagonal elements
+    ans += mat[size - 1 - i][i];
+  }
+
+  if (size % 2 !== 0) {
+    const middle = Math.floor(size / 2);
+    ans -= mat[middle][middle];
+  }
+
+  return ans;
 };
 console.log({ diagonalSum: diagonalSum([[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]) });
 
