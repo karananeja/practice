@@ -3883,3 +3883,36 @@ function maxScore(s) {
   return maxScore;
 };
 console.log({ maxScore: maxScore("011101") });
+
+/**
+ * @param {string} path 
+ * @returns {boolean}
+ */
+function isPathCrossing(path) {
+  const currentLocation = [0, 0], origin = new Set(['0,0']);
+
+  for (let idx = 0; idx < path.length; idx++) {
+    const point = path[idx];
+
+    switch (point) {
+      case "N":
+        currentLocation[1] += 1;
+        break;
+      case "S":
+        currentLocation[1] -= 1;
+        break;
+      case "E":
+        currentLocation[0] += 1;
+        break;
+      default:
+        currentLocation[0] -= 1;
+        break;
+    }
+
+    if (origin.has(currentLocation.toString())) return true;
+    origin.add(currentLocation.toString());
+  }
+
+  return false;
+};
+console.log({ isPathCrossing: isPathCrossing("NES") });
