@@ -3891,3 +3891,21 @@ function isPathCrossing(path) {
   return false;
 };
 console.log({ isPathCrossing: isPathCrossing("NES") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minOperations(s) {
+  let forOne = 0, forZero = 0;
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const char = s[idx];
+
+    if (idx % 2 === 0) char === '0' ? forOne++ : forZero++;
+    else char === '1' ? forOne++ : forZero++;
+  }
+
+  return Math.min(forOne, forZero);
+};
+console.log({ minOperations: minOperations("0100") });
