@@ -1570,11 +1570,8 @@ function getSubsets(nums, set, index, subSet) {
  * @returns {number[][]}
  */
 function subsets(nums) {
-  const subSet = [], set = [];
-  let index = 0;
-
-  getSubsets(nums, set, index, subSet);
-
+  const subSet = [];
+  getSubsets(nums, [], 0, subSet);
   return subSet;
 };
 console.log({ subSets: subsets([1, 2, 3]) });
