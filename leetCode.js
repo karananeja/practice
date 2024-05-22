@@ -3909,3 +3909,46 @@ function minOperations(s) {
   return Math.min(forOne, forZero);
 };
 console.log({ minOperations: minOperations("0100") });
+
+/**
+ * @param {string} password 
+ * @returns {boolean}
+ */
+function strongPasswordCheckerII(password) {
+  if (password.length < 8) return false;
+
+  const passwordChecks = {
+    lowerCase: false,
+    upperCase: false,
+    oneDigit: false,
+    specialCharacter: false,
+    adjacentCharacters: false,
+  };
+
+  for (let idx = 0; idx < password.length; idx++) {
+    const char = password[idx], charCode = char.charCodeAt(0), charToNum = Number(char);
+
+    if (!passwordChecks.lowerCase && charCode >= 97 && charCode <= 122)
+      passwordChecks.lowerCase = true;
+
+    if (!passwordChecks.upperCase && charCode >= 65 && charCode <= 90)
+      passwordChecks.upperCase = true;
+
+    if (charToNum >= 0 && charToNum <= 9) passwordChecks.oneDigit = true;
+
+    const nextChar = password[idx + 1];
+    if (nextChar)
+      if (!passwordChecks.adjacentCharacters && char === nextChar)
+        passwordChecks.adjacentCharacters = true;
+
+    if (
+      !passwordChecks.specialCharacter &&
+      ((charCode >= 33 && charCode <= 45) || charCode === 64 || charCode === 94)
+    )
+      passwordChecks.specialCharacter = true;
+  }
+
+  return (passwordChecks.lowerCase && passwordChecks.upperCase && passwordChecks.oneDigit && passwordChecks.specialCharacter && !passwordChecks.adjacentCharacters
+  );
+}
+console.log({ strongPasswordCheckerII: strongPasswordCheckerII("IloveLe3tcode!") });
