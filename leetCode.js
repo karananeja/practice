@@ -3952,3 +3952,24 @@ function strongPasswordCheckerII(password) {
   );
 }
 console.log({ strongPasswordCheckerII: strongPasswordCheckerII("IloveLe3tcode!") });
+
+/**
+ * @param {string[]} words 
+ * @returns {boolean}
+ */
+function makeEqual(words) {
+  const charCount = {};
+
+  for (const word of words) {
+    for (const char of word) {
+      charCount[char] = (charCount[char] || 0) + 1;
+    }
+  }
+
+  for (const char in charCount) {
+    if (charCount[char] % words.length !== 0) return false;
+  }
+
+  return true;
+};
+console.log({ makeEqual: makeEqual(["abc", "aabc", "bc"]) });
