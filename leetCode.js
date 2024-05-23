@@ -149,17 +149,7 @@ var addTwoNumbers = function (l1, l2, carry = 0) {
  * @return {boolean}
 */
 var isPowerOfFour = function (n) {
-  if (n <= 0) return false;
-
-  if (n === 1) return true;
-
-  if (n % 4 > 0) {
-    return false;
-  } else {
-    n /= 4;
-  }
-
-  return isPowerOfFour(Math.floor(n));
+  return n > 0 && (n & (n - 1)) === 0 && (n & 0x55555555) !== 0;
 };
 console.log({ isPowerOfFour: isPowerOfFour(-2147483647) });
 
