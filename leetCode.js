@@ -3963,3 +3963,32 @@ function makeEqual(words) {
   return true;
 };
 console.log({ makeEqual: makeEqual(["abc", "aabc", "bc"]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maxLengthBetweenEqualCharacters(s) {
+  let largestSubStringLength = -1;
+  const charIndex = {};
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const char = s[idx];
+
+    if (charIndex[char]) charIndex[char].push(idx);
+    else charIndex[char] = [idx];
+  }
+
+  for (const char in charIndex) {
+    const length = charIndex[char].length;
+    
+    if (length > 1) {
+      const firstIndex = charIndex[char][0], lastIndex = charIndex[char][length - 1];
+      const currentSubStringLength = Math.abs(firstIndex - lastIndex + 1);
+      largestSubStringLength = Math.max(largestSubStringLength, currentSubStringLength);
+    }
+  }
+
+  return largestSubStringLength;
+};
+console.log({ maxLengthBetweenEqualCharacters: maxLengthBetweenEqualCharacters("cbzxy") });
