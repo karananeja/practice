@@ -3981,7 +3981,7 @@ function maxLengthBetweenEqualCharacters(s) {
 
   for (const char in charIndex) {
     const length = charIndex[char].length;
-    
+
     if (length > 1) {
       const firstIndex = charIndex[char][0], lastIndex = charIndex[char][length - 1];
       const currentSubStringLength = Math.abs(firstIndex - lastIndex + 1);
@@ -3992,3 +3992,31 @@ function maxLengthBetweenEqualCharacters(s) {
   return largestSubStringLength;
 };
 console.log({ maxLengthBetweenEqualCharacters: maxLengthBetweenEqualCharacters("cbzxy") });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number[]}
+ */
+function mergeSort(arr) {
+  if (arr.length < 2) return arr;
+
+  const mid = Math.floor(arr.length / 2);
+  const subLeft = mergeSort(arr.slice(0, mid));
+  const subRight = mergeSort(arr.slice(mid));
+
+  return mergeArr(subLeft, subRight);
+}
+
+/**
+ * @param {number[]} a 
+ * @param {number[]} b 
+ * @returns {number[]}
+ */
+function mergeArr(a, b) {
+  const result = [];
+
+  while (a.length && b.length)
+    result.push(a[0] < b[0] ? a.shift() : b.shift());
+
+  return result.concat(a.length ? a : b);
+}
