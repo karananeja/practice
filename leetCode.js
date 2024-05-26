@@ -4036,3 +4036,22 @@ function heightChecker(heights) {
   return indicesDiff;
 };
 console.log({ heightChecker: heightChecker([1, 1, 4, 2, 1, 3]) });
+
+/**
+ * @param {number[]} g 
+ * @param {number[]} s 
+ * @returns {number}
+ */
+function findContentChildren(g, s) {
+  let contentChildren = 0, cookieIndex = 0;
+  g.sort((a, b) => a - b);
+  s.sort((a, b) => a - b);
+
+  while (cookieIndex < s.length && contentChildren < g.length) {
+    if (s[cookieIndex] >= g[contentChildren]) contentChildren++;
+    cookieIndex++;
+  }
+
+  return contentChildren;
+};
+console.log({ findContentChildren: findContentChildren([1, 2, 3], [1, 1]) });
