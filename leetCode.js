@@ -4020,3 +4020,19 @@ function mergeArr(a, b) {
 
   return result.concat(a.length ? a : b);
 }
+
+/**
+ * @param {number[]} heights 
+ * @returns {number}
+ */
+function heightChecker(heights) {
+  let indicesDiff = 0;
+  const sortedHeights = mergeSort(heights);
+
+  for (let idx = 0; idx < heights.length; idx++) {
+    if (heights[idx] !== sortedHeights[idx]) indicesDiff++;
+  }
+
+  return indicesDiff;
+};
+console.log({ heightChecker: heightChecker([1, 1, 4, 2, 1, 3]) });
