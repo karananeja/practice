@@ -4055,3 +4055,29 @@ function findContentChildren(g, s) {
   return contentChildren;
 };
 console.log({ findContentChildren: findContentChildren([1, 2, 3], [1, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[][]}
+ */
+function findMatrix(nums) {
+  const numCount = {}, resultMatrix = [];
+
+  for (const num of nums) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  for (const num in numCount) {
+    const numValue = numCount[num];
+    let index = 0;
+
+    while (index < numValue) {
+      if (resultMatrix[index]) resultMatrix[index].push(parseInt(num));
+      else resultMatrix.push([parseInt(num)]);
+      index++;
+    }
+  }
+
+  return resultMatrix;
+};
+console.log({ findMatrix: findMatrix([1, 3, 4, 1, 2, 3, 1]) });
