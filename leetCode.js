@@ -4081,3 +4081,28 @@ function findMatrix(nums) {
   return resultMatrix;
 };
 console.log({ findMatrix: findMatrix([1, 3, 4, 1, 2, 3, 1]) });
+
+/**
+ * @param {string[]} bank 
+ * @returns {number}
+ */
+function numberOfBeams(bank) {
+  let totalBeams = 0, prevRow = 0;
+
+  for (let idx = 0; idx < bank.length; idx++) {
+    const row = bank[idx];
+    let numberOfBeams = 0;
+
+    for (const position of row) {
+      if (position === "1") numberOfBeams++;
+    }
+
+    if (numberOfBeams !== 0) {
+      totalBeams += prevRow * numberOfBeams;
+      prevRow = numberOfBeams;
+    }
+  }
+
+  return totalBeams;
+};
+console.log({ totalBeams: numberOfBeams(["011001", "000000", "010100", "001000"]) });
