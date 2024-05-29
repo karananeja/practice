@@ -4106,3 +4106,27 @@ function numberOfBeams(bank) {
   return totalBeams;
 };
 console.log({ totalBeams: numberOfBeams(["011001", "000000", "010100", "001000"]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minOperationsToMakeArrayEmpty(nums) {
+  let operationCount = 0;
+  const numCount = {};
+
+  for (const num of nums) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  for (const num in numCount) {
+    const count = numCount[num];
+
+    if (count === 1) return -1;
+
+    operationCount += Math.ceil(count / 3);
+  }
+
+  return operationCount;
+}
+console.log({ minOperations: minOperationsToMakeArrayEmpty([2, 3, 3, 2, 2, 4, 2, 3, 4]) });
