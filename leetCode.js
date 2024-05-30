@@ -4130,3 +4130,32 @@ function minOperationsToMakeArrayEmpty(nums) {
   return operationCount;
 }
 console.log({ minOperations: minOperationsToMakeArrayEmpty([2, 3, 3, 2, 2, 4, 2, 3, 4]) });
+
+/**
+ * @param {number[]} values 
+ * @param {number} low 
+ * @param {number} high 
+ * @returns {number}
+ */
+function getRangeSum(values, low, high) {
+  let sum = 0;
+
+  for (const value of values) {
+    if (value >= low && value <= high) sum += value;
+  }
+
+  return sum;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} low 
+ * @param {number} high 
+ * @returns {number}
+ * @borrows Used `getInOrderValues` method to generate the nodeValues
+ */
+function rangeSumBST(root, low, high) {
+  const nodeValues = getInOrderValues(root, []);
+
+  return getRangeSum(nodeValues, low, high);
+};
