@@ -4159,3 +4159,37 @@ function rangeSumBST(root, low, high) {
 
   return getRangeSum(nodeValues, low, high);
 };
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number[]} values 
+ * @returns {void}
+ */
+function getInOrderValues2(node, values) {
+  if (!node) return;
+
+  getInOrderValues2(node.left, values);
+  if (!node.left && !node.right) values.push(node.val);
+  getInOrderValues2(node.right, values);
+}
+
+/**
+ * @param {TreeNode | null} root1 
+ * @param {TreeNode | null} root2 
+ * @returns {boolean}
+ */
+function leafSimilar(root1, root2) {
+  const root1Values = [];
+  const root2Values = [];
+
+  getInOrderValues2(root1, root1Values);
+  getInOrderValues2(root2, root2Values);
+
+  if (root1Values.length !== root2Values.length) return false;
+
+  for (let idx = 0; idx < root1Values.length; idx++) {
+    if (root1Values[idx] !== root2Values[idx]) return false;
+  }
+
+  return true;
+};
