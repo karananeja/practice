@@ -4193,3 +4193,17 @@ function leafSimilar(root1, root2) {
 
   return true;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function maxDepth(root) {
+  if (!root) return 0;
+
+  const left = maxDepth(root.left);
+  const right = maxDepth(root.right);
+  const treeHeight = Math.max(left, right) + 1;
+
+  return treeHeight;
+};
