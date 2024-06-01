@@ -4207,3 +4207,30 @@ function maxDepth(root) {
 
   return treeHeight;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function diameterOfBinaryTree(root) {
+  let maxDiameter = 0;
+
+  /**
+   * @param {TreeNode | null} root 
+   * @returns {number}
+   */
+  function maxDepth(root) {
+    if (!root) return 0;
+
+    const left = maxDepth(root.left);
+    const right = maxDepth(root.right);
+    const currentDiameter = left + right;
+
+    maxDiameter = Math.max(currentDiameter, maxDiameter);
+
+    return Math.max(left + 1, right + 1);
+  };
+
+  maxDepth(root);
+  return maxDiameter;
+};
