@@ -4266,3 +4266,28 @@ function maxAncestorDiff(root) {
   findDifference(root, root.val, root.val);
   return result;
 };
+
+/**
+ * @param {string} char 
+ * @returns {boolean}
+ */
+function isVowel(char) {
+  if (char === "a" || char === "e" || char === "i" || char === "o" || char === "u") return true;
+  return false;
+}
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function halvesAreAlike(s) {
+  let vowelCount = 0, start = 0, end = s.length - 1;
+
+  while (start < end) {
+    if (isVowel(s[start++].toLowerCase())) vowelCount++;
+    if (isVowel(s[end--].toLowerCase())) vowelCount--;
+  }
+
+  return vowelCount === 0;
+};
+console.log({ halvesAreAlike: halvesAreAlike("book") });
