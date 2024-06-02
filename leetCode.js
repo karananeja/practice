@@ -4234,3 +4234,35 @@ function diameterOfBinaryTree(root) {
   maxDepth(root);
   return maxDiameter;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function maxAncestorDiff(root) {
+  if (!root) return 0;
+
+  let result = 0;
+
+  /**
+   * @param {TreeNode | null} node 
+   * @param {number} min 
+   * @param {number} max 
+   * @returns {void}
+   */
+  function findDifference(node, min, max) {
+    if (!node) return;
+
+    result = Math.max(result,
+      Math.max(Math.abs(min - node.val), Math.abs(max - node.val)));
+
+    min = Math.min(min, node.val);
+    max = Math.max(max, node.val);
+
+    findDifference(node.left, min, max);
+    findDifference(node.right, min, max);
+  }
+
+  findDifference(root, root.val, root.val);
+  return result;
+};
