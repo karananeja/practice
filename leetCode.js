@@ -4291,3 +4291,35 @@ function halvesAreAlike(s) {
   return vowelCount === 0;
 };
 console.log({ halvesAreAlike: halvesAreAlike("book") });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {number}
+ */
+function minSteps(s, t) {
+  let stepsCount = 0;
+  const initCount = new Array(26).fill(0), charCountInS = {}, charCountInT = {};
+
+  for (const char of s) {
+    charCountInS[char] = (charCountInS[char] || 0) + 1;
+  }
+
+  for (const char of t) {
+    charCountInT[char] = (charCountInT[char] || 0) + 1;
+  }
+
+  for (const char in charCountInT) {
+    if (charCountInS[char]) {
+      if (charCountInT[char] > charCountInS[char]) {
+        stepsCount += charCountInT[char] - charCountInS[char];
+      }
+    } else {
+      const charCode = char.charCodeAt(0) - 97;
+      stepsCount += charCountInT[char] - initCount[charCode];
+    }
+  }
+
+  return stepsCount;
+};
+console.log({ minSteps: minSteps("leetcode", "practice") });
