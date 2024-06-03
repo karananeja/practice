@@ -4323,3 +4323,37 @@ function minSteps(s, t) {
   return stepsCount;
 };
 console.log({ minSteps: minSteps("leetcode", "practice") });
+
+/**
+ * @param {string} word1 
+ * @param {string} word2 
+ * @returns {boolean}
+ */
+function closeStrings(word1, word2) {
+  if (word1.length !== word2.length) return false;
+
+  const charsFreqInWord1 = new Array(26).fill(0), charsFreqInWord2 = new Array(26).fill(0);
+
+  for (let i = 0; i < word1.length; i++) {
+    charsFreqInWord1[word1.charCodeAt(i) - 97]++;
+    charsFreqInWord2[word2.charCodeAt(i) - 97]++;
+  }
+
+  const charCount = {};
+
+  for (let i = 0; i < 26; i++) {
+    const charFreqInWord1 = charsFreqInWord1[i], charFreqInWord2 = charsFreqInWord2[i];
+
+    if ((!charFreqInWord1 || !charFreqInWord2) && (charFreqInWord1 !== charFreqInWord2)) return false;
+
+    charCount[charFreqInWord1] = (charCount[charFreqInWord1] || 0) + 1;
+    charCount[charFreqInWord2] = (charCount[charFreqInWord2] || 0) - 1;
+  }
+
+  for (const char in charCount) {
+    if (charCount[char]) return false;
+  }
+
+  return true;
+};
+console.log({ closeStrings: closeStrings("abc", "bca") });
