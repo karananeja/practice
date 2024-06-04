@@ -4357,3 +4357,25 @@ function closeStrings(word1, word2) {
   return true;
 };
 console.log({ closeStrings: closeStrings("abc", "bca") });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {boolean}
+ */
+function isBalanced(root) {
+  /**
+   * @param {TreeNode | null} root 
+   * @returns {[boolean, number]}
+   */
+  function maxDepth(root) {
+    if (!root) return [true, 0];
+
+    const [isLeftTreeBalanced, leftTreeHeight] = maxDepth(root.left);
+    const [isRightTreeBalanced, rightTreeHeight] = maxDepth(root.right);
+    const isTreeBalanced = isLeftTreeBalanced && isRightTreeBalanced && Math.abs(leftTreeHeight - rightTreeHeight) <= 1;
+
+    return [isTreeBalanced, 1 + Math.max(leftTreeHeight, rightTreeHeight)];
+  };
+
+  return maxDepth(root)[0];
+};
