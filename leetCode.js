@@ -4379,3 +4379,19 @@ function isBalanced(root) {
 
   return maxDepth(root)[0];
 };
+
+/**
+ * @param {TreeNode | null} p 
+ * @param {TreeNode | null} q 
+ * @returns {boolean}
+ */
+function isSameTree(p, q) {
+  if (!p && !q) return true;
+  if ((!p && q) || (!q && p)) return false;
+
+  const left = isSameTree(p.left, q.left);
+  const valueSame = p.val === q.val;
+  const right = isSameTree(p.right, q.right);
+
+  return left && right && valueSame;
+};
