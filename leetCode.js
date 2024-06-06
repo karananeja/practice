@@ -4395,3 +4395,30 @@ function isSameTree(p, q) {
 
   return left && right && valueSame;
 };
+
+/**
+ * @param {number[][]} matches 
+ * @returns {number[][]}
+ */
+function findWinners(matches) {
+  const playerLostCount = {}, result = [[], []];
+
+  for (const match of matches) {
+    playerLostCount[match[1]] = (playerLostCount[match[1]] || 0) + 1;
+  }
+
+  for (const match of matches) {
+    if (!playerLostCount[match[0]]) {
+      if (!result[0].includes(match[0])) result[0].push(match[0]);
+    }
+  }
+
+  for (const count in playerLostCount) {
+    if (playerLostCount[count] === 1) result[1].push(parseInt(count));
+  }
+
+  result[0].sort((a, b) => a - b);
+  result[1].sort((a, b) => a - b);
+  return result;
+};
+console.log({ findWinners: findWinners([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [4, 9], [10, 4], [10, 9]]) });
