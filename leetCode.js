@@ -742,12 +742,48 @@ var mySqrt = function (x) {
 };
 
 /**
+ * @param {number[]} nums 
+ * @param {number} idx 
+ * @param {number} heapSize 
+ */
+var heapify = function (nums, idx, heapSize) {
+  let largest = idx;
+  const left = 2 * idx + 1, right = 2 * idx + 2;
+
+  if (left < heapSize && nums[largest] < nums[left]) largest = left;
+  if (right < heapSize && nums[largest] < nums[right]) largest = right;
+
+  if (largest !== idx) {
+    [nums[largest], nums[idx]] = [nums[idx], nums[largest]];
+    heapify(nums, largest, heapSize);
+  }
+};
+
+/**
+ * @param {number[]} nums 
+ */
+var buildMaxHeap = function (nums) {
+  for (let i = Math.floor(nums.length / 2); i >= 0; i--) {
+    heapify(nums, i, nums.length);
+  }
+};
+
+/**
  * @param {number[]} nums
  * @param {number} k
  * @return {number}
  */
 var findKthLargest = function (nums, k) {
-  return nums.sort((a, b) => a - b)[nums.length - k];
+  buildMaxHeap(nums);
+  let heapSize = nums.length;
+
+  for (let i = nums.length - 1; i >= nums.length - k + 1; i--) {
+    [nums[0], nums[i]] = [nums[i], nums[0]];
+    heapSize--;
+    heapify(nums, 0, heapSize);
+  }
+
+  return nums[0];
 };
 console.log({ kthLargest: findKthLargest([3, 2, 1, 5, 6, 4], 2) });
 
