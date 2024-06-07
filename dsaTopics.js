@@ -85,7 +85,18 @@ function buildMaxHeap(nums) {
   }
 }
 
+function heapSort(nums) {
+  let heapSize = nums.length - 1;
+
+  while (heapSize > 1) {
+    [nums[heapSize], nums[0]] = [nums[0], nums[heapSize]];
+    heapSize--;
+    heapify(nums, 0, heapSize);
+  }
+}
+
 const nums = [54, 53, 55, 52, 50];
 
 buildMaxHeap(nums);
+heapSort(nums);
 console.log({ nums });
