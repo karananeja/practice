@@ -4458,3 +4458,33 @@ function findWinners(matches) {
   return result;
 };
 console.log({ findWinners: findWinners([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [4, 9], [10, 4], [10, 9]]) });
+
+class RandomizedSet {
+  constructor() {
+    this.valMap = {};
+    this.valList = [];
+  }
+
+  insert(val) {
+    if (!isNaN(this.valMap[val])) return false;
+    this.valMap[val] = this.valList.length;
+    this.valList.push(val);
+    return true;
+  }
+
+  remove(val) {
+    if (isNaN(this.valMap[val])) return false;
+
+    const index = this.valMap[val];
+    const lastVal = this.valList[this.valList.length - 1];
+    this.valMap[lastVal] = index;
+    this.valList[index] = lastVal;
+    delete this.valMap[val];
+    this.valList.pop();
+    return true;
+  }
+
+  getRandom() {
+    return this.valList[Math.floor(Math.random() * this.valList.length)];
+  }
+}
