@@ -80,16 +80,18 @@ function heapify(nums, idx, heapSize) {
 }
 
 function buildMaxHeap(nums) {
-  for (let i = Math.floor(nums.length / 2); i >= 0; i--) {
-    heapify(nums, i, nums.length);
+  const length = Math.floor(nums.length / 2);
+
+  for (let idx = length; idx >= 0; idx--) {
+    heapify(nums, idx, nums.length);
   }
 }
 
 function heapSort(nums) {
-  let heapSize = nums.length - 1;
+  let heapSize = nums.length;
 
-  while (heapSize > 1) {
-    [nums[heapSize], nums[0]] = [nums[0], nums[heapSize]];
+  while (heapSize) {
+    [nums[heapSize - 1], nums[0]] = [nums[0], nums[heapSize - 1]];
     heapSize--;
     heapify(nums, 0, heapSize);
   }
