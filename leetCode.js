@@ -4532,3 +4532,19 @@ function climbStairs(n) {
   return n <= 3 ? n : 2 * climbStairs(n - 2) + climbStairs(n - 3);
 };
 console.log({ climbStairs: climbStairs(10) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {TreeNode | null}
+ */
+function invertTree(root) {
+  if (!root) return;
+
+  const temp = root.left;
+  root.left = root.right;
+  root.right = temp;
+
+  invertTree(root.left);
+  invertTree(root.right);
+  return root;
+};
