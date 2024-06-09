@@ -4523,3 +4523,12 @@ function zigzagLevelOrder(root) {
 
   return result;
 };
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function climbStairs(n) {
+  return n <= 3 ? n : 2 * climbStairs(n - 2) + climbStairs(n - 3);
+};
+console.log({ climbStairs: climbStairs(10) });
