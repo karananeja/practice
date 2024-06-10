@@ -4548,3 +4548,26 @@ function invertTree(root) {
   invertTree(root.right);
   return root;
 };
+
+/**
+ * @param {number[]} prices 
+ * @returns {number}
+ */
+function maxProfit(prices) {
+  let buyingPrice = Infinity, maxProfit = 0;
+
+  for (let idx = 0; idx < prices.length; idx++) {
+    const currentPrice = prices[idx];
+    if (buyingPrice > currentPrice) {
+      buyingPrice = currentPrice;
+
+      for (let possibleIdx = idx; possibleIdx < prices.length; possibleIdx++) {
+        const currentPrice = prices[possibleIdx];
+        maxProfit = Math.max(maxProfit, currentPrice - buyingPrice);
+      }
+    }
+  }
+
+  return maxProfit;
+};
+console.log({ maxProfit: maxProfit([2, 4, 1]) });
