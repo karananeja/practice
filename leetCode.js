@@ -4571,3 +4571,23 @@ function maxProfit(prices) {
   return maxProfit;
 };
 console.log({ maxProfit: maxProfit([2, 4, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function findErrorNums(nums) {
+  const result = [], numCount = {};
+
+  for (const num of nums) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  for (let idx = 1; idx < nums.length + 1; idx++) {
+    if (!numCount[idx]) result[1] = idx;
+    if (numCount[idx] === 2) result[0] = idx;
+  }
+
+  return result;
+};
+console.log({ findErrorNums: findErrorNums([1, 2, 2, 4]) });
