@@ -4591,3 +4591,25 @@ function findErrorNums(nums) {
   return result;
 };
 console.log({ findErrorNums: findErrorNums([1, 2, 2, 4]) });
+
+/**
+ * @param {number[]} temperatures 
+ * @returns {number[]}
+ */
+function dailyTemperatures(temperatures) {
+  const minDays = new Array(temperatures.length).fill(0), stack = [];
+
+  if (temperatures.length <= 1) return minDays;
+
+  for (let idx = 0; idx < temperatures.length; idx++) {
+    while (temperatures[stack[stack.length - 1]] < temperatures[idx]) {
+      const top = stack.pop();
+      minDays[top] = idx - top;
+    }
+
+    stack.push(idx);
+  }
+
+  return minDays;
+};
+console.log({ dailyTemperatures: dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]) });
