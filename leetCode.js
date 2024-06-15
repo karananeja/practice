@@ -4652,3 +4652,31 @@ function sequentialDigits(low, high) {
   return possibleNos;
 };
 console.log({ sequentialDigits: sequentialDigits(100, 300) });
+
+/**
+ * @param {number[]} arr 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maxSumAfterPartitioning(arr, k) {
+  const cache = {};
+
+  function dfs(i) {
+    if (i >= arr.length) return 0;
+    if (i in cache) return cache[i];
+
+    let currentMax = 0, result = 0;
+
+    for (let j = i; j < Math.min(arr.length, i + k); j++) {
+      currentMax = Math.max(currentMax, arr[j]);
+      const windowSize = j - i + 1;
+      result = Math.max(result, dfs(j + 1) + currentMax * windowSize);
+    }
+
+    cache[i] = result;
+    return result;
+  }
+
+  return dfs(0);
+};
+console.log({ maxSumAfterPartitioning: maxSumAfterPartitioning([[1, 15, 7, 9, 2, 5, 10], 3]) });
