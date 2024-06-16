@@ -4680,3 +4680,23 @@ function maxSumAfterPartitioning(arr, k) {
   return dfs(0);
 };
 console.log({ maxSumAfterPartitioning: maxSumAfterPartitioning([[1, 15, 7, 9, 2, 5, 10], 3]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function firstUniqChar(s) {
+  const charCount = {};
+
+  for (const char of s) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const char = s[idx];
+    if (charCount[char] === 1) return idx;
+  }
+
+  return -1;
+};
+console.log({ firstUniqChar: firstUniqChar("leetcode") });
