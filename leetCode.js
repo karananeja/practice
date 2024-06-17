@@ -4700,3 +4700,26 @@ function firstUniqChar(s) {
   return -1;
 };
 console.log({ firstUniqChar: firstUniqChar("leetcode") });
+
+/**
+ * @param {string[]} strs 
+ * @returns {string[][]}
+ */
+function groupAnagrams(strs) {
+  const result = {};
+
+  for (const str of strs) {
+    const charCount = new Array(26).fill(0);
+
+    for (const char of str) {
+      charCount[char.charCodeAt(0) - "a".charCodeAt(0)]++;
+    }
+
+    const countStr = charCount.toString();
+    if (!result[countStr]) result[countStr] = [];
+    result[countStr].push(str);
+  }
+
+  return Object.values(result);
+}
+console.log({ groupAnagrams: groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]) });
