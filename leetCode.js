@@ -4723,3 +4723,57 @@ function groupAnagrams(strs) {
   return Object.values(result);
 }
 console.log({ groupAnagrams: groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]) });
+
+/**
+ * @param {string} char 
+ * @returns {boolean}
+ */
+function validChar(char) {
+  return (char >= "a" && char <= "z") || (char >= "A" && char <= "Z") || (char >= "0" && char <= "9");
+}
+
+/**
+ * @param {string} char 
+ * @returns {string}
+ */
+function toLowerCase(char) {
+  if ((char >= "a" && char <= "z") || (char >= "0" && char <= "9")) {
+    return char;
+  } else {
+    return String.fromCharCode(char.charCodeAt(0) + 32);
+  }
+}
+
+/**
+ * @param {string} str 
+ * @returns {boolean}
+ */
+function checkPalindrome(str) {
+  let start = 0, end = str.length - 1;
+
+  while (start <= end) {
+    if (str[start] !== str[end]) {
+      return false;
+    } else {
+      start++;
+      end--;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function isStrPalindrome(s) {
+  let tempString = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (validChar(s[i])) tempString.push(toLowerCase(s[i]));
+  }
+
+  return checkPalindrome(tempString.join(""));
+};
+console.log({ isStrPalindrome: isStrPalindrome("A man, a plan, a canal: Panama") });
