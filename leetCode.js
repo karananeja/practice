@@ -4777,3 +4777,16 @@ function isStrPalindrome(s) {
   return checkPalindrome(tempString.join(""));
 };
 console.log({ isStrPalindrome: isStrPalindrome("A man, a plan, a canal: Panama") });
+
+/**
+ * @param {string} words 
+ * @returns {string}
+ */
+function firstPalindrome(words) {
+  for (const word of words) {
+    if (checkPalindrome(word)) return word;
+  }
+
+  return "";
+};
+console.log({ firstPalindrome: firstPalindrome(["abc", "car", "ada", "racecar", "cool"]) });
