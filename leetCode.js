@@ -4790,3 +4790,25 @@ function firstPalindrome(words) {
   return "";
 };
 console.log({ firstPalindrome: firstPalindrome(["abc", "car", "ada", "racecar", "cool"]) });
+
+/**
+ * @param {string} num1 
+ * @param {string} num2 
+ * @returns {string}
+ */
+function addStrings(num1, num2) {
+  let num1Length = num1.length - 1, num2Length = num2.length - 1, result = [], carry = 0;
+
+  while (num1Length >= 0 || num2Length >= 0 || carry > 0) {
+    const firstDigit = +num1[num1Length--] || 0, secondDigit = +num2[num2Length--] || 0;
+    let sum = firstDigit + secondDigit + carry;
+    carry = Math.floor(sum / 10);
+
+    if (sum >= 10) sum %= 10;
+
+    result.unshift(sum);
+  }
+
+  return result.join("");
+};
+console.log({ addStrings: addStrings("1", "9") });
