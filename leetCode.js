@@ -4812,3 +4812,25 @@ function addStrings(num1, num2) {
   return result.join("");
 };
 console.log({ addStrings: addStrings("1", "9") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function rearrangeArray(nums) {
+  const rearrangedNums = [];
+  let posIndex = 0, negIndex = 1;
+
+  for (const num of nums) {
+    if (num > 0) {
+      rearrangedNums[posIndex] = num;
+      posIndex += 2;
+    } else {
+      rearrangedNums[negIndex] = num;
+      negIndex += 2;
+    }
+  }
+
+  return rearrangedNums;
+};
+console.log({ rearrangeArray: rearrangeArray([3, 1, -2, -5, 2, -4]) });
