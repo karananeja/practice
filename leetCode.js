@@ -4834,3 +4834,21 @@ function rearrangeArray(nums) {
   return rearrangedNums;
 };
 console.log({ rearrangeArray: rearrangeArray([3, 1, -2, -5, 2, -4]) });
+
+/**
+ * @param {number} n 
+ * @returns {string[]}
+ */
+function fizzBuzz(n) {
+  const answer = [];
+
+  for (let idx = 1; idx <= n; idx++) {
+    if (idx % 3 === 0 && idx % 5 === 0) answer.push("FizzBuzz");
+    else if (idx % 3 === 0) answer.push("Fizz");
+    else if (idx % 5 === 0) answer.push("Buzz");
+    else answer.push(`${idx}`);
+  }
+
+  return answer;
+};
+console.log({ fizzBuzz: fizzBuzz(3) });
