@@ -4852,3 +4852,25 @@ function fizzBuzz(n) {
   return answer;
 };
 console.log({ fizzBuzz: fizzBuzz(3) });
+
+/**
+ * @param {string} num1 
+ * @param {string} num2 
+ * @returns {string}
+ */
+function addBinary(num1, num2) {
+  let num1Length = num1.length - 1, num2Length = num2.length - 1, result = [], carry = 0;
+
+  while (num1Length >= 0 || num2Length >= 0 || carry > 0) {
+    const firstDigit = +num1[num1Length--] || 0, secondDigit = +num2[num2Length--] || 0;
+    let sum = firstDigit + secondDigit + carry;
+    carry = Math.floor(sum / 2);
+
+    if (sum >= 2) sum %= 2;
+
+    result.unshift(sum);
+  }
+
+  return result.join("");
+};
+console.log({ addBinary: addBinary("11", "1") });
