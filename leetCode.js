@@ -4874,3 +4874,46 @@ function addBinary(num1, num2) {
   return result.join("");
 };
 console.log({ addBinary: addBinary("11", "1") });
+
+/**
+ * @param {number[]} arr 
+ * @param {number} k 
+ * @returns {number}
+ */
+function findLeastNumOfUniqueInts(arr, k) {
+  // Create a map to store the frequency of each number.
+  const freqMap = new Map();
+
+  for (const num of arr) {
+    freqMap.set(num, (freqMap.get(num) || 0) + 1);
+  }
+
+  // Convert the map to an array of [number, frequency] pairs
+  const freqArray = [...freqMap.entries()];
+
+  // Sort the array in ascending order of frequency
+  freqArray.sort((a, b) => a[1] - b[1]);
+
+  // Initialize a variable to count the number of unique integers with the current
+  // lowest frequency.
+  let count = 0;
+
+  // Remove elements from the array until k is reached.
+  while (k > 0 && freqArray.length > 0) {
+    const [, freq] = freqArray[0];
+
+    if (k >= freq) {
+      k -= freq;
+      count++;
+    } else break;
+    freqArray.shift();
+  }
+
+  // If k is a non-negative, return the size of the freqMap minus the updated count variable.
+  // frequency.
+  if (k >= 0) return freqMap.size - count;
+
+  // If we removed all elements from the array and still didn't reach k, return 0.
+  return 0;
+};
+console.log({ findLeastNumOfUniqueInts: findLeastNumOfUniqueInts([5, 5, 4], 1) });
