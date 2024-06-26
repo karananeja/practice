@@ -4917,3 +4917,28 @@ function findLeastNumOfUniqueInts(arr, k) {
   return 0;
 };
 console.log({ findLeastNumOfUniqueInts: findLeastNumOfUniqueInts([5, 5, 4], 1) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number[]} nodes 
+ * @param {number} level 
+ * @returns {number[]}
+ */
+function solve(root, nodes, level) {
+  if (!root) return nodes;
+
+  if (level === nodes.length) nodes.push(root.val);
+
+  solve(root.right, nodes, level + 1);
+  solve(root.left, nodes, level + 1);
+
+  return nodes;
+};
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[]}
+ */
+function rightSideView(root) {
+  return solve(root, [], 0);
+};
