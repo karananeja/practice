@@ -4942,3 +4942,30 @@ function solve(root, nodes, level) {
 function rightSideView(root) {
   return solve(root, [], 0);
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[][]}
+ */
+function levelOrder(root) {
+  const nodeVals = [], nodesQueue = [];
+
+  if (!root) return nodeVals;
+  nodesQueue.push(root);
+
+  while (nodesQueue.length) {
+    const size = nodesQueue.length, currentRow = [];
+
+    for (let idx = 0; idx < size; idx++) {
+      const node = nodesQueue.shift();
+      currentRow[idx] = node.val;
+
+      if (node.left) nodesQueue.push(node.left);
+      if (node.right) nodesQueue.push(node.right);
+    }
+
+    nodeVals.push(currentRow);
+  }
+
+  return nodeVals;
+};
