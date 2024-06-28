@@ -4969,3 +4969,27 @@ function levelOrder(root) {
 
   return nodeVals;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function sumOfLeftLeaves(root) {
+  let sum = 0;
+
+  /**
+   * @param {TreeNode | null} root 
+   * @param {boolean} isLeft 
+   * @returns {void}
+   */
+  function solve(root, isLeft) {
+    if (!root) return;
+    if (!root.left && !root.right && isLeft) sum += root.val;
+
+    solve(root.left, true);
+    solve(root.right, false);
+  }
+
+  solve(root, false);
+  return sum;
+};
