@@ -4993,3 +4993,29 @@ function sumOfLeftLeaves(root) {
   solve(root, false);
   return sum;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} targetSum 
+ * @returns {boolean}
+ */
+function hasPathSum(root, targetSum) {
+  if (!root) return false;
+
+  /**
+   * @param {TreeNode | null} node 
+   * @param {number} currentSum 
+   * @returns {boolean}
+   */
+  function checkPathSum(node, currentSum) {
+    if (!node) return false;
+
+    // Check if it's a leaf node and if the path sum equals the target sum
+    if (!node.left && !node.right && currentSum + node.val === targetSum) return true;
+
+    // Recursively check the left and right subtrees
+    return (checkPathSum(node.left, currentSum + node.val) || checkPathSum(node.right, currentSum + node.val));
+  }
+
+  return checkPathSum(root, 0);
+}
