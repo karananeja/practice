@@ -5019,3 +5019,16 @@ function hasPathSum(root, targetSum) {
 
   return checkPathSum(root, 0);
 }
+
+/**
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {number}
+ */
+function rangeBitwiseAnd(left, right) {
+  while (right > left) {
+    right &= right - 1;
+  }
+  return right;
+};
+console.log({ rangeBitwiseAnd: rangeBitwiseAnd(5, 7) });
