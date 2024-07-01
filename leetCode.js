@@ -5032,3 +5032,24 @@ function rangeBitwiseAnd(left, right) {
   return right;
 };
 console.log({ rangeBitwiseAnd: rangeBitwiseAnd(5, 7) });
+
+/**
+ * @param {number} n 
+ * @param {number[][]} trust 
+ * @returns {number}
+ */
+function findJudge(n, trust) {
+  const inDegree = new Array(n + 1).fill(0), outDegree = new Array(n + 1).fill(0);
+
+  for (const [a, b] of trust) {
+    inDegree[b]++;
+    outDegree[a]++;
+  }
+
+  for (let i = 1; i <= n; i++) {
+    if (inDegree[i] === n - 1 && outDegree[i] == 0) return i;
+  }
+
+  return -1;
+};
+console.log({ findJudge: findJudge(2, [[1, 2]]) });
