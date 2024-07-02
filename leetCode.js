@@ -5053,3 +5053,22 @@ function findJudge(n, trust) {
   return -1;
 };
 console.log({ findJudge: findJudge(2, [[1, 2]]) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {TreeNode | null} p 
+ * @param {TreeNode | null} q 
+ * @returns {TreeNode | null}
+ */
+function lowestCommonAncestor(root, p, q) {
+  if (!root) return null;
+  if (root === p || root === q) return root;
+
+  const leftAns = lowestCommonAncestor(root.left, p, q);
+  const rightAns = lowestCommonAncestor(root.right, p, q);
+
+  if (leftAns && rightAns) return root;
+  else if (leftAns && !rightAns) return leftAns;
+  else if (!leftAns && rightAns) return rightAns;
+  else return null;
+};
