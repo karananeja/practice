@@ -5072,3 +5072,16 @@ function lowestCommonAncestor(root, p, q) {
   else if (!leftAns && rightAns) return rightAns;
   else return null;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {TreeNode | null} p 
+ * @param {TreeNode | null} q 
+ * @returns {TreeNode | null}
+ */
+function lowestCommonAncestorInBST(root, p, q) {
+  if (!root) return null;
+  if (root.val < p.val && root.val < q.val) return lowestCommonAncestorInBST(root.right, p, q);
+  if (root.val > p.val && root.val > q.val) return lowestCommonAncestorInBST(root.left, p, q);
+  return root;
+};
