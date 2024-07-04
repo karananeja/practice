@@ -5085,3 +5085,28 @@ function lowestCommonAncestorInBST(root, p, q) {
   if (root.val > p.val && root.val > q.val) return lowestCommonAncestorInBST(root.left, p, q);
   return root;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {string[]}
+ */
+function binaryTreePaths(root) {
+  const nodePaths = [];
+
+  /**
+   * @param {TreeNode | null} node 
+   * @param {string[]} currentPath 
+   * @returns {void}
+   */
+  function getNodes(node, currentPath) {
+    if (!node) return;
+    const path = [...currentPath];
+    path.push(`${node.val}`);
+    if (!node.left && !node.right) nodePaths.push(path.join("->"));
+    getNodes(node.left, path);
+    getNodes(node.right, path);
+  }
+
+  getNodes(root, []);
+  return nodePaths;
+};
