@@ -5110,3 +5110,31 @@ function binaryTreePaths(root) {
   getNodes(root, []);
   return nodePaths;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function findBottomLeftValue(root) {
+  let maxDepth = -1, bottomLeftValue = 0;
+
+  /**
+   * @param {TreeNode | null} node 
+   * @param {number} depth 
+   * @returns {void}
+   */
+  function getBottomLeftValue(node, depth) {
+    if (!node) return;
+
+    if (depth > maxDepth) {
+      maxDepth = depth;
+      bottomLeftValue = node.val;
+    }
+
+    getBottomLeftValue(node.left, depth + 1);
+    getBottomLeftValue(node.right, depth + 1);
+  }
+
+  getBottomLeftValue(root, 0);
+  return bottomLeftValue;
+};
