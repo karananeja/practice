@@ -5138,3 +5138,40 @@ function findBottomLeftValue(root) {
   getBottomLeftValue(root, 0);
   return bottomLeftValue;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {boolean}
+ */
+function isEvenOddTree(root) {
+  let current = root, even = true;
+  const nodesQueue = [current];
+
+  while (nodesQueue.length) {
+    let size = nodesQueue.length;
+
+    let prev = Infinity;
+    if (even) prev = -Infinity;
+
+    while (size) {
+      current = nodesQueue.shift();
+
+      if (
+        (even && (current.val % 2 === 0 || current.val <= prev)) ||
+        (!even && (current.val % 2 === 1 || current.val >= prev))
+      )
+        return false;
+
+      prev = current.val;
+
+      if (current.left) nodesQueue.push(current.left);
+      if (current.right) nodesQueue.push(current.right);
+
+      size--;
+    }
+
+    even = !even;
+  }
+
+  return true;
+};
