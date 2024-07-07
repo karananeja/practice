@@ -5175,3 +5175,28 @@ function isEvenOddTree(root) {
 
   return true;
 };
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function maximumOddBinaryNumber(s) {
+  let onesCount = 0;
+  const result = [], strLength = s.length;
+
+  for (let idx = 0; idx < strLength; idx++) {
+    if (s[idx] === "1") onesCount++;
+  }
+
+  for (let idx = 0; idx < onesCount - 1; idx++) {
+    result.push(1);
+  }
+
+  for (let idx = 0; idx < (strLength - onesCount); idx++) {
+    result.push(0);
+  }
+
+  result.push(1);
+  return result.join("");
+};
+console.log({ maximumOddBinaryNumber: maximumOddBinaryNumber("010") });
