@@ -5200,3 +5200,26 @@ function maximumOddBinaryNumber(s) {
   return result.join("");
 };
 console.log({ maximumOddBinaryNumber: maximumOddBinaryNumber("010") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function sortedSquares(nums) {
+  let start = 0, end = nums.length - 1, squaredNums = [];
+
+  while (start <= end) {
+    const startSquared = nums[start] ** 2, endSquared = nums[end] ** 2;
+
+    if (startSquared > endSquared) {
+      squaredNums.unshift(startSquared);
+      start++;
+    } else {
+      squaredNums.unshift(endSquared);
+      end--;
+    }
+  }
+
+  return squaredNums;
+};
+console.log({ sortedSquares: sortedSquares([-4, -1, 0, 3, 10]) });
