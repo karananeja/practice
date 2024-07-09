@@ -5223,3 +5223,22 @@ function sortedSquares(nums) {
   return squaredNums;
 };
 console.log({ sortedSquares: sortedSquares([-4, -1, 0, 3, 10]) });
+
+/**
+ * @param {ListNode | null} head 
+ * @param {number} n 
+ * @returns {number}
+ */
+function removeNthFromEnd(head, n) {
+  const listLength = getLength(head);
+  let idx = 0, traverseTill = listLength - n - 1, curr = head;
+  if (traverseTill === -1) return head.next;
+
+  while (idx < traverseTill) {
+    curr = curr.next;
+    idx++;
+  }
+
+  curr.next = curr.next.next;
+  return head;
+};
