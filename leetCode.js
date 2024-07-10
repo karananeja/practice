@@ -5242,3 +5242,29 @@ function removeNthFromEnd(head, n) {
   curr.next = curr.next.next;
   return head;
 };
+
+/**
+ * @param {number[]} tokens 
+ * @param {number} power 
+ * @returns {number}
+ */
+function bagOfTokensScore(tokens, power) {
+  tokens.sort((a, b) => a - b);
+  let low = 0, high = tokens.length - 1, score = 0;
+
+  while (low <= high) {
+    if (power >= tokens[low]) {
+      power -= tokens[low];
+      score += 1;
+      low++;
+    } else if (score > 0 && low !== high) {
+      power += tokens[high];
+      score -= 1;
+      high--;
+    } else {
+      return score;
+    }
+  }
+  return score;
+};
+console.log({ bagOfTokensScore: bagOfTokensScore([100], 50) });
