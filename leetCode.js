@@ -5268,3 +5268,47 @@ function bagOfTokensScore(tokens, power) {
   return score;
 };
 console.log({ bagOfTokensScore: bagOfTokensScore([100], 50) });
+
+/**
+ * @param {number} inorder 
+ * @returns {Map<number, number>}
+ */
+function createMapping(inorder) {
+  const mapIndex = new Map();
+
+  for (let idx = 0; idx < inorder.length; idx++) {
+    mapIndex.set(inorder[idx], idx);
+  }
+
+  return mapIndex;
+}
+
+/**
+ * @param {number[]} preorder 
+ * @param {number[]} inorder 
+ * @returns {TreeNode | null}
+ */
+function buildTreeWithPreOrder(preorder, inorder) {
+  const nodeToIndex = createMapping(inorder);
+  let index = 0;
+
+  /**
+   * @param {number[]} preorder 
+   * @param {number} inorderStart 
+   * @param {number} inorderEnd 
+   * @param {Map<number, number>} nodeToIndex 
+   * @returns {TreeNode | null}
+   */
+  function solve(preorder, inorderStart, inorderEnd, nodeToIndex) {
+    if (index >= preorder.length || inorderStart > inorderEnd) return null;
+
+    const element = preorder[index++];
+    const root = new TreeNode(element), position = nodeToIndex.get(element);
+    root.left = solve(preorder, inorderStart, position - 1, nodeToIndex);
+    root.right = solve(preorder, position + 1, inorderEnd, nodeToIndex);
+
+    return root;
+  }
+
+  return solve(preorder, 0, inorder.length - 1, nodeToIndex);
+};
