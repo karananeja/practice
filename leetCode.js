@@ -5312,3 +5312,33 @@ function buildTreeWithPreOrder(preorder, inorder) {
 
   return solve(preorder, 0, inorder.length - 1, nodeToIndex);
 };
+
+/**
+ * @param {number[]} inorder
+ * @param {number[]} postorder
+ * @returns {TreeNode | null}
+ */
+function buildTreeWithPostOrder(inorder, postorder) {
+  const nodeToIndex = createMapping(inorder);
+  let index = postorder.length - 1;
+
+  /**
+   * @param {number[]} preorder
+   * @param {number} inorderStart
+   * @param {number} inorderEnd
+   * @param {Map<number, number>} nodeToIndex
+   * @returns {TreeNode | null}
+   */
+  function solve(postorder, inorderStart, inorderEnd, nodeToIndex) {
+    if (index < 0 || inorderStart > inorderEnd) return null;
+
+    const element = postorder[index--];
+    const root = new TreeNode(element), position = nodeToIndex.get(element);
+    root.right = solve(postorder, position + 1, inorderEnd, nodeToIndex);
+    root.left = solve(postorder, inorderStart, position - 1, nodeToIndex);
+
+    return root;
+  }
+
+  return solve(postorder, 0, postorder.length - 1, nodeToIndex);
+};
