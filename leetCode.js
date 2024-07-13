@@ -5342,3 +5342,25 @@ function buildTreeWithPostOrder(inorder, postorder) {
 
   return solve(postorder, 0, postorder.length - 1, nodeToIndex);
 };
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minimumLength(s) {
+  let begin = 0, end = s.length - 1;
+
+  while (begin < end && s[begin] === s[end]) {
+    const char = s[begin];
+
+    // Delete consecutive occurrences of char from prefix
+    while (begin <= end && s[begin] === char) begin++;
+
+    // Delete consecutive occurrences of char from suffix
+    while (end > begin && s[end] === char) end--;
+  }
+
+  // Return the number of remaining characters
+  return end - begin + 1;
+};
+console.log({ minimumLength: minimumLength("ca") });
