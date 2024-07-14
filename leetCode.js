@@ -5364,3 +5364,83 @@ function minimumLength(s) {
   return end - begin + 1;
 };
 console.log({ minimumLength: minimumLength("ca") });
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number} start 
+ * @returns {{nodeToParentMap: Map<TreeNode, TreeNode>, targetNode: TreeNode | null}}
+ */
+function getParentMapping(node, start) {
+  let targetNode = null;
+  const nodeToParentMap = new Map(), queue = [node];
+
+  while (queue.length) {
+    const frontNode = queue.shift();
+
+    if (frontNode.val === start) targetNode = frontNode;
+
+    if (frontNode.left) {
+      nodeToParentMap.set(frontNode.left, frontNode);
+      queue.push(frontNode.left);
+    }
+
+    if (frontNode.right) {
+      nodeToParentMap.set(frontNode.right, frontNode);
+      queue.push(frontNode.right);
+    }
+  }
+
+  return { nodeToParentMap, targetNode };
+}
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {Map<TreeNode, TreeNode>} nodeToParent 
+ * @returns {number}
+ */
+function infectTree(node, nodeToParent) {
+  let timeTaken = 0;
+  const visitedNodes = new Map(), queue = [node];
+  visitedNodes.set(node, true);
+
+  while (queue.length) {
+    const size = queue.length;
+    let flag = false;
+
+    for (let idx = 0; idx < size; idx++) {
+      const frontNode = queue.shift();
+
+      if (frontNode.left && !visitedNodes.get(frontNode.left)) {
+        flag = true;
+        queue.push(frontNode.left);
+        visitedNodes.set(frontNode.left, true);
+      }
+
+      if (frontNode.right && !visitedNodes.get(frontNode.right)) {
+        flag = true;
+        queue.push(frontNode.right);
+        visitedNodes.set(frontNode.right, true);
+      }
+
+      if (nodeToParent.get(frontNode) && !visitedNodes.get(nodeToParent.get(frontNode))) {
+        flag = true;
+        queue.push(nodeToParent.get(frontNode));
+        visitedNodes.set(nodeToParent.get(frontNode), true);
+      }
+    }
+
+    if (flag) timeTaken++;
+  }
+
+  return timeTaken;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} start 
+ * @returns {number}
+ */
+function amountOfTime(root, start) {
+  const { nodeToParentMap, targetNode } = getParentMapping(root, start);
+  return infectTree(targetNode, nodeToParentMap);
+}
