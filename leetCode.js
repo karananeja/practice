@@ -5444,3 +5444,25 @@ function amountOfTime(root, start) {
   const { nodeToParentMap, targetNode } = getParentMapping(root, start);
   return infectTree(targetNode, nodeToParentMap);
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {void}
+ */
+function flatten(root) {
+  let current = root;
+
+  while (current) {
+    if (current.left) {
+      let predecessor = current.left;
+
+      while (predecessor.right) predecessor = predecessor.right;
+
+      predecessor.right = current.right;
+      current.right = current.left;
+      current.left = null;
+    }
+
+    current = current.right;
+  }
+};
