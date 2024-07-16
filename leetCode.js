@@ -5466,3 +5466,28 @@ function flatten(root) {
     current = current.right;
   }
 };
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxFrequencyElements(nums) {
+  const numsCount = {};
+  let totalCount = 0, maxCount = -Infinity;
+
+  for (const num of nums) {
+    numsCount[num] = (numsCount[num] || 0) + 1;
+  }
+
+  for (const num in numsCount) {
+    maxCount = Math.max(maxCount, numsCount[num]);
+  }
+
+  for (const num in numsCount) {
+    const numCount = numsCount[num];
+    if (numCount === maxCount) totalCount += numCount;
+  }
+
+  return totalCount;
+}
+console.log({ maxFrequencyElements: maxFrequencyElements([1, 2, 2, 3, 1, 4]) });
