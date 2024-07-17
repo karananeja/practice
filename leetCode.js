@@ -5491,3 +5491,38 @@ function maxFrequencyElements(nums) {
   return totalCount;
 }
 console.log({ maxFrequencyElements: maxFrequencyElements([1, 2, 2, 3, 1, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} target 
+ * @returns {boolean}
+ */
+function findNum(nums, target) {
+  let start = 0, end = nums.length - 1;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (nums[mid] > target) end = mid - 1;
+    else if (nums[mid] < target) start = mid + 1;
+    else return true;
+  }
+
+  return false;
+}
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number}
+ */
+function getCommon(nums1, nums2) {
+  if (nums1.length > nums2.length) return getCommon(nums2, nums1);
+
+  for (const num of nums1) {
+    if (findNum(nums2, num)) return num;
+  }
+
+  return -1;
+}
+console.log({ getCommon: getCommon([1, 2, 3], [2, 4]) });
