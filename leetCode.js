@@ -5526,3 +5526,30 @@ function getCommon(nums1, nums2) {
   return -1;
 }
 console.log({ getCommon: getCommon([1, 2, 3], [2, 4]) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number[]}
+ */
+function intersection(nums1, nums2) {
+  nums1.sort((a, b) => a - b);
+  nums2.sort((a, b) => a - b);
+
+  const commonNumSet = new Set();
+  let first = 0, second = 0;
+
+  while (first < nums1.length && second < nums2.length) {
+    const num1 = nums1[first], num2 = nums2[second];
+
+    if (num1 === num2) {
+      commonNumSet.add(num1);
+      first++;
+      second++;
+    } else if (num1 < num2) first++;
+    else second++;
+  }
+
+  return Array.from(commonNumSet);
+};
+console.log({ intersection: intersection([1, 2, 2, 1], [2, 2]) });
