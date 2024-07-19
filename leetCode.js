@@ -5553,3 +5553,14 @@ function intersection(nums1, nums2) {
   return Array.from(commonNumSet);
 };
 console.log({ intersection: intersection([1, 2, 2, 1], [2, 2]) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} val 
+ * @returns {TreeNode | null}
+ */
+function searchBST(root, val) {
+  if (!root) return null;
+  if (root.val === val) return root;
+  return root.val > val ? searchBST(root.left, val) : searchBST(root.right, val);
+};
