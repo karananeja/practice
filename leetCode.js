@@ -5564,3 +5564,25 @@ function searchBST(root, val) {
   if (root.val === val) return root;
   return root.val > val ? searchBST(root.left, val) : searchBST(root.right, val);
 };
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function productExceptSelf(nums) {
+  const result = [];
+  let prefix = 1, postfix = 1;
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    result[idx] = prefix;
+    prefix *= nums[idx];
+  }
+
+  for (let idx = nums.length - 1; idx >= 0; idx--) {
+    result[idx] *= postfix;
+    postfix *= nums[idx];
+  }
+
+  return result;
+};
+console.log({ productExceptSelf: productExceptSelf([1, 2, 3, 4]) });
