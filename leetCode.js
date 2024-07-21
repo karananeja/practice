@@ -5586,3 +5586,27 @@ function productExceptSelf(nums) {
   return result;
 };
 console.log({ productExceptSelf: productExceptSelf([1, 2, 3, 4]) });
+
+function inOrder(node, values) {
+  if (!node) return values;
+
+  inOrder(node.left, values);
+  values.push(node.val);
+  inOrder(node.right, values);
+
+  return values;
+}
+
+function findTarget(root, k) {
+  const values = inOrder(root, []);
+  let start = 0, end = values.length - 1;
+
+  while (start < end) {
+    const sum = values[start] + values[end];
+    if (sum === k) return true;
+    else if (sum > k) end--;
+    else start++;
+  }
+
+  return false;
+}
