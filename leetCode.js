@@ -5615,17 +5615,14 @@ function findMinArrowShots(points) {
   points.sort((a, b) => a[0] - b[0]);
   let count = points.length, prev = points[0];
 
-
   for (let idx = 1; idx < points.length; idx++) {
     const curr = points[idx];
-
 
     if (curr[0] <= prev[1]) {
       count--;
       prev = [curr[0], Math.min(curr[1], prev[1])];
     } else prev = curr;
   }
-
 
   return count;
 };
