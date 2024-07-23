@@ -5611,6 +5611,10 @@ function findTarget(root, k) {
   return false;
 }
 
+/**
+ * @param {number[]} points 
+ * @returns {number}
+ */
 function findMinArrowShots(points) {
   points.sort((a, b) => a[0] - b[0]);
   let count = points.length, prev = points[0];
