@@ -5631,3 +5631,35 @@ function findMinArrowShots(points) {
   return count;
 };
 console.log({ findMinArrowShots: findMinArrowShots([[10, 16], [2, 8], [1, 6], [7, 12]]) });
+
+/**
+ * @param {ListNode | null} list1 
+ * @param {number} a 
+ * @param {number} b 
+ * @param {ListNode | null} list2 
+ * @returns {ListNode | null}
+ */
+function mergeInBetween(list1, a, b, list2) {
+  let current = list1, idx = 0;
+
+  while (idx < a - 1) {
+    current = current.next;
+    idx++;
+  }
+
+  let head = current;
+
+  while (idx <= b) {
+    current = current.next;
+    idx++;
+  }
+
+  head.next = list2;
+
+  while (list2.next) {
+    list2 = list2.next;
+  }
+
+  list2.next = current;
+  return list1;
+}
