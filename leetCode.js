@@ -626,7 +626,7 @@ var getPivot = function (arr) {
   return start;
 };
 
-var findTarget = function (arr, target, start, end) {
+var findTargetInNums = function (arr, target, start, end) {
   while (start <= end) {
     let mid = start + parseInt((end - start) / 2);
 
@@ -649,9 +649,9 @@ var search = function (nums, target) {
   const pivot = getPivot(nums, target);
 
   if (target >= nums[pivot] && target <= nums[nums.length - 1]) {
-    return findTarget(nums, target, pivot, nums.length - 1);
+    return findTargetInNums(nums, target, pivot, nums.length - 1);
   } else {
-    return findTarget(nums, target, 0, pivot - 1);
+    return findTargetInNums(nums, target, 0, pivot - 1);
   }
 };
 
@@ -2432,6 +2432,14 @@ function customSortString(order, s) {
   return chars.join("");
 }
 console.log({ customSortString: customSortString("cba", "abcd") });
+
+class TreeNode {
+  constructor(val, left, right) {
+    this.val = (val === undefined ? 0 : val);
+    this.left = (left === undefined ? null : left);
+    this.right = (right === undefined ? null : right);
+  }
+}
 
 /**
  * @param {TreeNode | null} node 
@@ -5587,6 +5595,11 @@ function productExceptSelf(nums) {
 };
 console.log({ productExceptSelf: productExceptSelf([1, 2, 3, 4]) });
 
+/**
+ * @param {TreeNode | null} node 
+ * @param {number[]} values 
+ * @returns {number[]}
+ */
 function inOrder(node, values) {
   if (!node) return values;
 
@@ -5597,6 +5610,11 @@ function inOrder(node, values) {
   return values;
 }
 
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} k 
+ * @returns {boolean}
+ */
 function findTarget(root, k) {
   const values = inOrder(root, []);
   let start = 0, end = values.length - 1;
