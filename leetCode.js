@@ -5681,3 +5681,33 @@ function mergeInBetween(list1, a, b, list2) {
   list2.next = current;
   return list1;
 }
+
+/**
+ * @param {ListNode | null} head 
+ * @param {ListNode | null} tail 
+ * @returns {TreeNode | null}
+ */
+function toBST(head, tail) {
+  let slow = head, fast = head;
+
+  if (head === tail) return null;
+
+  while (fast !== tail && fast.next !== tail) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  const currHead = new TreeNode(slow.val);
+  currHead.left = toBST(head, slow);
+  currHead.right = toBST(slow.next, tail);
+
+  return currHead;
+}
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {TreeNode | null}
+ */
+function sortedListToBST(head) {
+  return head === null ? null : toBST(head, null);
+};
