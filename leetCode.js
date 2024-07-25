@@ -5711,3 +5711,37 @@ function toBST(head, tail) {
 function sortedListToBST(head) {
   return head === null ? null : toBST(head, null);
 };
+
+/**
+ * @param {ListNode | null} head
+ * @returns {void}
+ */
+function reorderList(head) {
+  let slow = head, fast = head.next;
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  let second = slow.next, prev = null;
+  slow.next = null;
+
+  while (second) {
+    let temp = second.next;
+    second.next = prev;
+    prev = second;
+    second = temp;
+  }
+
+  let first = head;
+  second = prev;
+
+  while (second) {
+    let temp1 = first.next, temp2 = second.next;
+    first.next = second;
+    second.next = temp1;
+    first = temp1;
+    second = temp2;
+  }
+};
