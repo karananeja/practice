@@ -5745,3 +5745,29 @@ function reorderList(head) {
     second = temp2;
   }
 };
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function firstMissingPositive(nums) {
+  for (let idx = 0; idx < nums.length; idx++) {
+    if (nums[idx] < 0) nums[idx] = 0;
+  }
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    const val = Math.abs(nums[idx]);
+
+    if (val >= 1 && val <= nums.length) {
+      if (nums[val - 1] > 0) nums[val - 1] *= -1;
+      else if (nums[val - 1] === 0) nums[val - 1] = -1 * (nums.length + 1);
+    }
+  }
+
+  for (let idx = 1; idx < nums.length + 1; idx++) {
+    if (nums[idx - 1] >= 0) return idx;
+  }
+
+  return nums.length + 1;
+};
+console.log({ firstMissingPositive: firstMissingPositive([1, 2, 0]) });
