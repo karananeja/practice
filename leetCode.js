@@ -5771,3 +5771,52 @@ function firstMissingPositive(nums) {
   return nums.length + 1;
 };
 console.log({ firstMissingPositive: firstMissingPositive([1, 2, 0]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} size 
+ * @param {number} idx 
+ */
+function heapify(nums, size, idx) {
+  let largest = idx, left = 2 * idx + 1, right = 2 * idx + 2;
+
+  if (left < size && nums[largest] < nums[left]) largest = left;
+
+  if (right < size && nums[largest] < nums[right]) largest = right;
+
+  if (largest !== idx) {
+    [nums[largest], nums[idx]] = [nums[idx], nums[largest]];
+    heapify(nums, size, largest);
+  }
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function heapSort(nums) {
+  let size = nums.length;
+  const length = Math.floor(size / 2);
+
+  for (let idx = length; idx >= 0; idx--) {
+    heapify(nums, size, idx);
+  }
+
+  while (size > 0) {
+    [nums[size - 1], nums[0]] = [nums[0], nums[size - 1]];
+    size--;
+
+    heapify(nums, size, 0);
+  }
+
+  return nums;
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function sortArray(nums) {
+  return heapSort(nums);
+};
+console.log({ sortArray: sortArray([3, 4, 5, 1, 2]) });
