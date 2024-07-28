@@ -5820,3 +5820,25 @@ function sortArray(nums) {
   return heapSort(nums);
 };
 console.log({ sortArray: sortArray([3, 4, 5, 1, 2]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function numSubarrayProductLessThanK(nums, k) {
+  let result = 0, left = 0, product = 1;
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    product *= nums[idx];
+
+    while (left <= idx && product >= k) {
+      product = Math.floor(product / nums[left++]);
+    }
+
+    result += idx - left + 1;
+  }
+
+  return result;
+}
+console.log({ numSubarrayProductLessThanK: numSubarrayProductLessThanK([10, 5, 2, 6], 100) });
