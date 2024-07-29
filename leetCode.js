@@ -5842,3 +5842,26 @@ function numSubarrayProductLessThanK(nums, k) {
   return result;
 }
 console.log({ numSubarrayProductLessThanK: numSubarrayProductLessThanK([10, 5, 2, 6], 100) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maxSubarrayLength(nums, k) {
+  let result = 0, left = 0;
+  const numCount = {};
+
+  for (let right = 0; right < nums.length; right++) {
+    numCount[nums[right]] = (numCount[nums[right]] || 0) + 1;
+
+    while (numCount[nums[right]] > k) {
+      numCount[nums[left++]]--;
+    }
+
+    result = Math.max(result, right - left + 1);
+  }
+
+  return result;
+};
+console.log({ maxSubarrayLength: maxSubarrayLength([9, 6, 7, 4, 1, 3, 4, 5], 3) });
