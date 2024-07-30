@@ -5865,3 +5865,26 @@ function maxSubarrayLength(nums, k) {
   return result;
 };
 console.log({ maxSubarrayLength: maxSubarrayLength([9, 6, 7, 4, 1, 3, 4, 5], 3) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function countSubarrays(nums, k) {
+  const maxNum = Math.max(...nums);
+  let maxCount = 0, left = 0, result = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    if (nums[right] === maxNum) maxCount++;
+
+    while (maxCount === k) {
+      if (nums[left++] === maxNum) maxCount--;
+    }
+
+    result += left;
+  }
+
+  return result;
+};
+console.log({ countSubarrays: countSubarrays([1, 2, 1, 1, 3, 3], 2) });
