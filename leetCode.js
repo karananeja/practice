@@ -5888,3 +5888,32 @@ function countSubarrays(nums, k) {
   return result;
 };
 console.log({ countSubarrays: countSubarrays([1, 2, 1, 1, 3, 3], 2) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function subarraysWithKDistinct(nums, k) {
+  const numCount = new Map();
+  let leftNear = 0, leftFar = 0, result = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    numCount.set(nums[right], (numCount.get(nums[right]) || 0) + 1);
+
+    while (numCount.size > k) {
+      numCount.set(nums[leftNear], numCount.get(nums[leftNear]) - 1);
+      if (numCount.get(nums[leftNear]) === 0) numCount.delete(nums[leftNear++]);
+      leftFar = leftNear;
+    }
+
+    while (numCount.get(nums[leftNear]) > 1) {
+      numCount.set(nums[leftNear], numCount.get(nums[leftNear++]) - 1);
+    }
+
+    if (numCount.size === k) result += leftNear - leftFar + 1;
+  }
+
+  return result;
+}
+console.log({ subarraysWithKDistinct: subarraysWithKDistinct([10, 5, 2, 6], 2) });
