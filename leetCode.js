@@ -5917,3 +5917,24 @@ function subarraysWithKDistinct(nums, k) {
   return result;
 }
 console.log({ subarraysWithKDistinct: subarraysWithKDistinct([10, 5, 2, 6], 2) });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {boolean}
+ */
+function isIsomorphic(s, t) {
+  const mapST = {}, mapTS = {};
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const char1 = s[idx], char2 = t[idx];
+
+    if ((char1 in mapST && mapST[char1] !== char2) || (char2 in mapTS && mapTS[char2] !== char1)) return false;
+
+    mapST[char1] = char2;
+    mapTS[char2] = char1;
+  }
+
+  return true;
+};
+console.log({ isIsomorphic: isIsomorphic("egg", "add") });
