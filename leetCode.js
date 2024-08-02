@@ -5938,3 +5938,20 @@ function isIsomorphic(s, t) {
   return true;
 };
 console.log({ isIsomorphic: isIsomorphic("egg", "add") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maxDepthOfParentheses(s) {
+  let depth = 0, maxDepth = 0;
+
+  for (const char of s) {
+    if (char === "(") depth++;
+    else if (char === ")") depth--;
+    maxDepth = Math.max(maxDepth, depth);
+  }
+
+  return maxDepth;
+};
+console.log({ maxDepthOfParentheses: maxDepthOfParentheses("(1+(2*3)+((8)/4))+1") });
