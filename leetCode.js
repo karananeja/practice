@@ -5955,3 +5955,38 @@ function maxDepthOfParentheses(s) {
   return maxDepth;
 };
 console.log({ maxDepthOfParentheses: maxDepthOfParentheses("(1+(2*3)+((8)/4))+1") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function minRemoveToMakeValid(s) {
+  const result = [], updatedString = [];
+  let count = 0;
+
+  for (const char of s) {
+    if (char === "(") {
+      result.push(char);
+      count++;
+    } else if (char === ")" && count > 0) {
+      result.push(char);
+      count--;
+    } else if (char !== ")") {
+      result.push(char);
+    }
+  }
+
+  for (let idx = result.length - 1; idx >= 0; idx--) {
+    if (result[idx] === "(" && count > 0) count--;
+    else updatedString.push(result[idx]);
+  }
+
+  let start = 0, end = updatedString.length - 1;
+
+  while (start <= end) {
+    [updatedString[start++], updatedString[end--]] = [updatedString[end], updatedString[start]];
+  }
+
+  return updatedString.join("");
+};
+console.log({ minRemoveToMakeValid: minRemoveToMakeValid("lee(t(c)o)de)") });
