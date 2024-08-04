@@ -5990,3 +5990,32 @@ function minRemoveToMakeValid(s) {
   return updatedString.join("");
 };
 console.log({ minRemoveToMakeValid: minRemoveToMakeValid("lee(t(c)o)de)") });
+
+/**
+ * @param {string} num 
+ * @param {number} k 
+ * @returns {string}
+ */
+function removeKdigits(num, k) {
+  const stack = [];
+
+  for (const char of num) {
+    while (k > 0 && stack.length && stack[stack.length - 1] > char) {
+      k--;
+      stack.pop();
+    }
+    stack.push(char);
+  }
+
+  while (k) {
+    stack.pop();
+    k--;
+  }
+
+  while (stack[0] === '0') {
+    stack.shift();
+  }
+
+  return stack.length ? stack.join('') : '0';
+}
+console.log({ removeKdigits: removeKdigits("1432219", 3) });
