@@ -6019,3 +6019,38 @@ function removeKdigits(num, k) {
   return stack.length ? stack.join('') : '0';
 }
 console.log({ removeKdigits: removeKdigits("1432219", 3) });
+
+/**
+ * @param {string} word 
+ * @param {number} idx 
+ * @returns {string}
+ */
+function reverse(word, idx) {
+  const chars = word.split('');
+  let start = 0, end = idx;
+
+  while (start < end) {
+    [chars[start++], chars[end--]] = [chars[end], chars[start]];
+  }
+
+  return chars.join('');
+}
+
+/**
+ * @param {string} word 
+ * @param {string} ch 
+ * @returns {string}
+ */
+function reversePrefix(word, ch) {
+  let charIdx = -1;
+
+  for (let idx = 0; idx < word.length; idx++) {
+    if (word[idx] === ch) {
+      charIdx = idx;
+      break;
+    }
+  }
+
+  return charIdx === -1 ? word : reverse(word, charIdx);
+}
+console.log({ reversePrefix: reversePrefix("abcdefd", "d") });
