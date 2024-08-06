@@ -6054,3 +6054,24 @@ function reversePrefix(word, ch) {
   return charIdx === -1 ? word : reverse(word, charIdx);
 }
 console.log({ reversePrefix: reversePrefix("abcdefd", "d") });
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} val 
+ * @param {number} depth 
+ * @returns {TreeNode | null}
+ */
+function addOneRow(root, val, depth) {
+  if (!root) return null;
+  if (depth === 1) return new TreeNode(val, root, null);
+
+  if (depth === 2) {
+    root.left = new TreeNode(val, root.left, null);
+    root.right = new TreeNode(val, null, root.right);
+  } else {
+    root.left = addOneRow(root.left, val, depth - 1);
+    root.right = addOneRow(root.right, val, depth - 1);
+  }
+
+  return root;
+};
