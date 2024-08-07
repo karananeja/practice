@@ -6075,3 +6075,33 @@ function addOneRow(root, val, depth) {
 
   return root;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {string}
+ */
+function smallestFromLeaf(root) {
+  let smallestString = "";
+
+  /**
+   * @param {TreeNode | null} node 
+   * @param {string} currentString 
+   * @returns {void}
+   */
+  function createString(node, currentString) {
+    if (!node) return;
+
+    currentString = String.fromCharCode(node.val + 97) + currentString;
+
+    if (!node.left && !node.right) {
+      if (smallestString === "" || smallestString > currentString) smallestString = currentString;
+    }
+
+    if (node.right) createString(node.right, currentString);
+
+    if (node.left) createString(node.left, currentString);
+  }
+
+  createString(root, "");
+  return smallestString;
+};
