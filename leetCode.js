@@ -6105,3 +6105,36 @@ function smallestFromLeaf(root) {
   createString(root, "");
   return smallestString;
 };
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function islandPerimeter(grid) {
+  const visited = new Set();
+
+  /**
+   * @param {number} i 
+   * @param {number} j 
+   * @returns {number}
+   */
+  function dfs(i, j) {
+    if (i >= grid.length || j >= grid[0].length || i < 0 || j < 0 || grid[i][j] === 0) return 1;
+    if (visited.has(`${i}:${j}`)) return 0;
+
+    visited.add(`${i}:${j}`);
+    let perimeter = dfs(i, j + 1);
+    perimeter += dfs(i + 1, j);
+    perimeter += dfs(i, j - 1);
+    perimeter += dfs(i - 1, j);
+
+    return perimeter;
+  }
+
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[0].length; col++) {
+      if (grid[row][col]) return dfs(row, col);
+    }
+  }
+}
+console.log({ islandPerimeter: islandPerimeter([[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]) });
