@@ -6138,3 +6138,52 @@ function islandPerimeter(grid) {
   }
 }
 console.log({ islandPerimeter: islandPerimeter([[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]) });
+
+/**
+ * @param {string[][]} grid 
+ * @returns {number}
+ */
+function numIslands(grid) {
+  const rows = grid.length, cols = grid[0].length, visited = new Set();
+  const directions = [[1, 0], [0, 1], [0, -1], [-1, 0]];
+  let islands = 0;
+
+  /**
+   * @param {number} row 
+   * @param {number} col 
+   * @returns {void}
+   */
+  function bfs(row, col) {
+    const queue = [];
+    queue.push([row, col]);
+    visited.add(`${row}-${col}`);
+
+    while (queue.length) {
+      const value = queue.shift();
+
+      for (let idx = 0; idx < 4; idx++) {
+        const dr = value[0] + directions[idx][0], dc = value[1] + directions[idx][1];
+
+        if (dr < 0 || dc < 0 || dr >= rows || dc >= cols) continue;
+        if (dr === row && dc === col) continue;
+
+        if (grid[dr][dc] === '1' && !visited.has(`${dr}-${dc}`)) {
+          visited.add(`${dr}-${dc}`);
+          queue.push([dr, dc]);
+        }
+      }
+    }
+  }
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      if (!visited.has(`${row}-${col}`) && grid[row][col] === '1') {
+        bfs(row, col);
+        islands++;
+      }
+    }
+  }
+
+  return islands;
+}
+console.log({ numIslands: numIslands([["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]) });
