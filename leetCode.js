@@ -6187,3 +6187,34 @@ function numIslands(grid) {
   return islands;
 }
 console.log({ numIslands: numIslands([["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]) });
+
+/**
+ * @param {number[][]} land 
+ * @returns {number[][]}
+ */
+function findFarmland(land) {
+  const ans = [], n = land.length, m = land[0].length;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (land[i][j]) {
+        let x = i, y = j;
+        while (y < m && land[i][y])
+          y++;
+        y--;
+        while (x < n && land[x][j])
+          x++;
+        x--;
+        ans.push([i, j, x, y]);
+
+        for (let k = i; k <= x; k++) {
+          for (let l = j; l <= y; l++)
+            land[k][l] = 0;
+        }
+      }
+    }
+  }
+
+  return ans;
+};
+console.log({ findFarmland: findFarmland([[1, 0, 0], [0, 1, 1], [0, 1, 1]]) });
