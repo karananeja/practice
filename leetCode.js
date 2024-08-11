@@ -6218,3 +6218,23 @@ function findFarmland(land) {
   return ans;
 };
 console.log({ findFarmland: findFarmland([[1, 0, 0], [0, 1, 1], [0, 1, 1]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function sumOfUnique(nums) {
+  const numCount = {};
+  let sum = 0;
+
+  for (const num of nums) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  for (const num in numCount) {
+    if (numCount[num] === 1) sum += +num;
+  }
+
+  return sum;
+};
+console.log({ sumOfUnique: sumOfUnique([1, 2, 3, 2]) });
