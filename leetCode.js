@@ -6238,3 +6238,19 @@ function sumOfUnique(nums) {
   return sum;
 };
 console.log({ sumOfUnique: sumOfUnique([1, 2, 3, 2]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function countAsterisks(s) {
+  let count = 0, shouldCount = true;
+
+  for (const char of s) {
+    if (char === "*" && shouldCount) count++;
+    else if (char === "|") shouldCount = !shouldCount;
+  }
+
+  return count;
+};
+console.log({ countAsterisks: countAsterisks("l|*e*et|c**o|*de|") });
