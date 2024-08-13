@@ -6254,3 +6254,20 @@ function countAsterisks(s) {
   return count;
 };
 console.log({ countAsterisks: countAsterisks("l|*e*et|c**o|*de|") });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function tribonacci(n) {
+  const values = new Array(38);
+  values[0] = 0;
+  values[1] = values[2] = 1;
+
+  for (let idx = 3; idx <= n; idx++) {
+    values[idx] = values[idx - 3] + values[idx - 2] + values[idx - 1];
+  }
+
+  return values[n];
+};
+console.log({ tribonacci: tribonacci(4) });
