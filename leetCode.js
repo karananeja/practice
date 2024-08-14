@@ -6271,3 +6271,19 @@ function tribonacci(n) {
   return values[n];
 };
 console.log({ tribonacci: tribonacci(4) });
+
+/**
+ * @param {string} sentence 
+ * @returns {boolean}
+ */
+function checkIfPangram(sentence) {
+  const charCount = new Array(26).fill(0);
+
+  for (const char of sentence) {
+    const charIdx = char.charCodeAt(0) - 97;
+    charCount[charIdx]++;
+  }
+
+  return charCount.every(count => count >= 1);
+};
+console.log({ checkIfPangram: checkIfPangram("thequickbrownfoxjumpsoverthelazydog") });
