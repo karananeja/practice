@@ -6287,3 +6287,40 @@ function checkIfPangram(sentence) {
   return charCount.every(count => count >= 1);
 };
 console.log({ checkIfPangram: checkIfPangram("thequickbrownfoxjumpsoverthelazydog") });
+
+/**
+ * @param {(number | MultiDimensionalArray)[]} arr 
+ * @param {number} n 
+ * @returns {(number | MultiDimensionalArray)[]}
+ */
+function flat(arr, n) {
+  const result = [];
+  let depth = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    buildNums(arr[i]);
+  }
+
+  /**
+   * @param {(number | MultiDimensionalArray)[] | number} num 
+   * @returns {void}
+   */
+  function buildNums(num) {
+    if (typeof num === "number") {
+      result.push(num);
+    } else {
+      depth++;
+
+      if (depth <= n) {
+        for (let j = 0; j < num.length; j++) {
+          buildNums(num[j]);
+        }
+      } else result.push(num);
+
+      depth--;
+    }
+  }
+
+  return result;
+}
+console.log({ flat: flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 0) });
