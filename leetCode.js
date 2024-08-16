@@ -6324,3 +6324,22 @@ function flat(arr, n) {
   return result;
 }
 console.log({ flat: flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 0) });
+
+/**
+ * @param {string} num 
+ * @returns {boolean}
+ */
+function digitCount(num) {
+  const numCount = new Array(10).fill(0);
+
+  for (const digit of num) {
+    numCount[digit]++;
+  }
+
+  for (let idx = 0; idx < num.length; idx++) {
+    if (numCount[idx] !== +num[idx]) return false;
+  }
+
+  return true;
+};
+console.log({ digitCount: digitCount("1210") });
