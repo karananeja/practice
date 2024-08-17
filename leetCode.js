@@ -6343,3 +6343,23 @@ function digitCount(num) {
   return true;
 };
 console.log({ digitCount: digitCount("1210") });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function guessNumber(n) {
+  let start = 1, end = n;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+    const result = guess(mid);
+
+    if (result === 0) return mid;
+
+    result === 1 ? start = mid + 1 : end = mid - 1;
+  }
+
+  return -1;
+};
+console.log({ guessNumber: guessNumber(10) });
