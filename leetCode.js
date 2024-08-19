@@ -6363,3 +6363,30 @@ function guessNumber(n) {
   return -1;
 };
 console.log({ guessNumber: guessNumber(10) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number[]}
+ */
+function intersect(nums1, nums2) {
+  nums1.sort((a, b) => a - b);
+  nums2.sort((a, b) => a - b);
+
+  const commonNum = [];
+  let first = 0, second = 0;
+
+  while (first < nums1.length && second < nums2.length) {
+    const num1 = nums1[first], num2 = nums2[second];
+
+    if (num1 === num2) {
+      commonNum.push(num1);
+      first++;
+      second++;
+    } else if (num1 < num2) first++;
+    else second++;
+  }
+
+  return commonNum;
+}
+console.log({ intersect: intersect([1, 2, 2, 1], [2, 2]) });
