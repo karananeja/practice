@@ -6390,3 +6390,26 @@ function intersect(nums1, nums2) {
   return commonNum;
 }
 console.log({ intersect: intersect([1, 2, 2, 1], [2, 2]) });
+
+/**
+ * @param {string[]} timeValues 
+ * @returns {number[]}
+ */
+function getTime(timeValues) {
+  return timeValues.map((time) => {
+    const timeDetails = time.split(":");
+    return Number(timeDetails[0]) * 60 + Number(timeDetails[1]);
+  });
+}
+
+/**
+ * @param {string[]} event1 
+ * @param {string[]} event2 
+ * @returns {boolean} 
+ */
+function haveConflict(event1, event2) {
+  const time1 = getTime(event1), time2 = getTime(event2);
+  if ((time2[0] >= time1[0] && time2[0] <= time1[1]) || (time1[0] >= time2[0] && time1[0] <= time2[1])) return true;
+  return false;
+}
+console.log({ haveConflict: haveConflict(["01:15", "02:00"], ["02:00", "03:00"]) });
