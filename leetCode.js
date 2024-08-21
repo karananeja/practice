@@ -6413,3 +6413,24 @@ function haveConflict(event1, event2) {
   return false;
 }
 console.log({ haveConflict: haveConflict(["01:15", "02:00"], ["02:00", "03:00"]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findMaxK(nums) {
+  nums.sort((a, b) => a - b);
+
+  let start = 0, end = nums.length - 1;
+
+  while (start <= end) {
+    const sum = nums[start] + nums[end];
+
+    if (sum > 0) end--;
+    else if (sum < 0) start++;
+    else return nums[end];
+  }
+
+  return -1;
+};
+console.log({ findMaxK: findMaxK([-10, 8, 6, 7, -2, -3]) });
