@@ -6434,3 +6434,23 @@ function findMaxK(nums) {
   return -1;
 };
 console.log({ findMaxK: findMaxK([-10, 8, 6, 7, -2, -3]) });
+
+/**
+ * @param {string} version1 
+ * @param {string} version2 
+ * @returns {number}
+ */
+function compareVersion(version1, version2) {
+  const ver1Values = version1.split("."), ver2Values = version2.split(".");
+  let first = 0, second = 0;
+
+  while (first < ver1Values.length || second < ver2Values.length) {
+    const firstNum = +ver1Values[first++] || 0, secondNum = +ver2Values[second++] || 0;
+
+    if (firstNum > secondNum) return 1;
+    else if (firstNum < secondNum) return -1;
+  }
+
+  return 0;
+};
+console.log({ compareVersion: compareVersion("1.2", "1.10") });
