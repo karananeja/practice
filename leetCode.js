@@ -6454,3 +6454,54 @@ function compareVersion(version1, version2) {
   return 0;
 };
 console.log({ compareVersion: compareVersion("1.2", "1.10") });
+
+/**
+ * @param {ListNode | null} node 
+ * @returns {number[]}
+ */
+function getMaxValues(node) {
+  let maxValue = 0;
+  const maxValues = [];
+
+  while (node) {
+    const value = node.val;
+    maxValue = Math.max(maxValue, value);
+    if (value >= maxValue) maxValues.push(value);
+    node = node.next;
+  }
+
+  return maxValues;
+}
+
+/**
+ * @param {ListNode | null} node 
+ * @param {number[]} maxValues 
+ * @returns {ListNode | null}
+ */
+function shrinkList(node, maxValues) {
+  let updatedList = new ListNode(-1), previous = null;
+
+  while (node) {
+    const topValue = maxValues[maxValues.length - 1];
+
+    if (node.val === topValue) {
+      updatedList.next = new ListNode(topValue, previous);
+      previous = updatedList.next;
+      maxValues.pop();
+    } else {
+      node = node.next;
+    }
+  }
+
+  return updatedList.next;
+}
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function removeNodes(head) {
+  const reversed = reverseList(head), maxValues = getMaxValues(reversed);
+  const updatedList = shrinkList(head, maxValues);
+  return reverseList(updatedList);
+}
