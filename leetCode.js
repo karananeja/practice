@@ -6505,3 +6505,35 @@ function removeNodes(head) {
   const updatedList = shrinkList(head, maxValues);
   return reverseList(updatedList);
 }
+
+/**
+ * @param {ListNode | null} node 
+ * @returns {ListNode | null}
+ */
+function doubleDigits(node) {
+  let carry = 0, current = node, lastNode = null;
+
+  while (current) {
+    const value = carry + 2 * current.val;
+    carry = Math.floor(value / 10);
+    current.val = value % 10;
+
+    if (!current.next) lastNode = current;
+
+    current = current.next;
+  }
+
+  if (carry) lastNode.next = new ListNode(carry);
+
+  return node;
+}
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function doubleIt(head) {
+  const reversedList = reverseList(head);
+  const doubledDigits = doubleDigits(reversedList);
+  return reverseList(doubledDigits);
+}
