@@ -6537,3 +6537,21 @@ function doubleIt(head) {
   const doubledDigits = doubleDigits(reversedList);
   return reverseList(doubledDigits);
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} n 
+ * @returns {number[]} 
+ */
+function shuffle(nums, n) {
+  const shuffled = [];
+  let first = 0, second = n;
+
+  while (first < n) {
+    shuffled.push(nums[first++], nums[second++]);
+
+  }
+
+  return shuffled;
+};
+console.log({ shuffle: shuffle([2, 5, 1, 3, 4, 7], 3) });
