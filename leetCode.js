@@ -6555,3 +6555,20 @@ function shuffle(nums, n) {
   return shuffled;
 };
 console.log({ shuffle: shuffle([2, 5, 1, 3, 4, 7], 3) });
+
+/**
+ * @param {number[]} happiness 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maximumHappinessSum(happiness, k) {
+  happiness.sort((a, b) => b - a);
+  let totalHappinessSum = 0, turns = 0;
+
+  for (let idx = 0; idx < k; idx++) {
+    totalHappinessSum += Math.max(happiness[idx] - turns++, 0);
+  }
+
+  return totalHappinessSum;
+};
+console.log({ maximumHappinessSum: maximumHappinessSum([1, 2, 3], 2) });
