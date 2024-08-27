@@ -6556,6 +6556,29 @@ function shuffle(nums, n) {
 };
 console.log({ shuffle: shuffle([2, 5, 1, 3, 4, 7], 3) });
 
+
+/**
+ * @param {number[]} score 
+ * @returns {string[]}
+ */
+function findRelativeRanks(score) {
+  const scoreToRank = {}, localScores = [...score].sort((a, b) => b - a), ranks = [];
+
+  for (let idx = 0; idx < localScores.length; idx++) {
+    if (idx === 0) scoreToRank[localScores[idx]] = "Gold Medal";
+    else if (idx === 1) scoreToRank[localScores[idx]] = "Silver Medal";
+    else if (idx === 2) scoreToRank[localScores[idx]] = "Bronze Medal";
+    else scoreToRank[localScores[idx]] = `${idx + 1}`;
+  }
+
+  for (const eachScore of score) {
+    ranks.push(scoreToRank[eachScore]);
+  }
+
+  return ranks;
+};
+console.log({ findRelativeRanks: findRelativeRanks([5, 4, 3, 2, 1]) });
+
 /**
  * @param {number[]} happiness 
  * @param {number} k 
