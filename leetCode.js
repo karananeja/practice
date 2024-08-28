@@ -6595,3 +6595,42 @@ function maximumHappinessSum(happiness, k) {
   return totalHappinessSum;
 };
 console.log({ maximumHappinessSum: maximumHappinessSum([1, 2, 3], 2) });
+
+/**
+ * @param {number[]} arr 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function kthSmallestPrimeFraction(arr, k) {
+  let left = 0, right = 1, res = [];
+
+  while (left <= right) {
+    const mid = left + (right - left) / 2, n = arr.length;
+    let j = 1, total = 0, num = 0, den = 0, maxFrac = 0;
+
+    for (let i = 0; i < n; i++) {
+      while (j < n && arr[i] > arr[j] * mid) {
+        j++;
+      }
+
+      total += n - j;
+
+      if (j < n && maxFrac < arr[i] * 1.0 / arr[j]) {
+        maxFrac = arr[i] * 1.0 / arr[j];
+        num = i;
+        den = j;
+      }
+    }
+
+    if (total === k) {
+      res = [arr[num], arr[den]];
+      break;
+    }
+
+    if (total > k) right = mid;
+    else left = mid;
+  }
+
+  return res;
+};
+console.log({ kthSmallestPrimeFraction: kthSmallestPrimeFraction([1, 2, 3, 5], 3) });
