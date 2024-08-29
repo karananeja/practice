@@ -6634,3 +6634,22 @@ function kthSmallestPrimeFraction(arr, k) {
   return res;
 };
 console.log({ kthSmallestPrimeFraction: kthSmallestPrimeFraction([1, 2, 3, 5], 3) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function findDisappearedNumbers(nums) {
+  const numCount = {}, result = [];
+
+  for (const num of nums) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  for (let idx = 1; idx <= nums.length; idx++) {
+    if (!(idx in numCount)) result.push(idx);
+  }
+
+  return result;
+}
+console.log({ findDisappearedNumbers: findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1]) });
