@@ -6653,3 +6653,40 @@ function findDisappearedNumbers(nums) {
   return result;
 }
 console.log({ findDisappearedNumbers: findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1]) });
+
+/**
+ * @param {number[][]} grid 
+ * @param {number} x 
+ * @param {number} y 
+ * @returns {number}
+ */
+function findMax(grid, x, y) {
+  let maxElement = 0;
+
+  for (let i = x; i < x + 3; i++) {
+    for (let j = y; j < y + 3; j++) {
+      maxElement = Math.max(maxElement, grid[i][j]);
+    }
+  }
+
+  return maxElement;
+}
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number[][]}
+ */
+function largestLocal(grid) {
+  const N = grid.length, maxLocal = [];
+
+  for (let i = 0; i < N - 2; i++) {
+    maxLocal[i] = [];
+
+    for (let j = 0; j < N - 2; j++) {
+      maxLocal[i][j] = findMax(grid, i, j);
+    }
+  }
+
+  return maxLocal;
+}
+console.log({ largestLocal: largestLocal([[9, 9, 8, 1], [5, 6, 2, 6], [8, 2, 6, 4], [6, 2, 2, 2]]) });
