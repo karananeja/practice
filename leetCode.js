@@ -6690,3 +6690,45 @@ function largestLocal(grid) {
   return maxLocal;
 }
 console.log({ largestLocal: largestLocal([[9, 9, 8, 1], [5, 6, 2, 6], [8, 2, 6, 4], [6, 2, 2, 2]]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function matrixScore(grid) {
+  let m = grid.length, n = grid[0].length;
+
+  for (let i = 0; i < m; i++) {
+    if (grid[i][0] === 0) {
+      for (let j = 0; j < n; j++) {
+        grid[i][j] = 1 - grid[i][j];
+      }
+    }
+  }
+
+  for (let j = 1; j < n; j++) {
+    let countZero = 0;
+
+    for (let i = 0; i < m; i++) {
+      if (grid[i][j] === 0) countZero++;
+    }
+
+    if (countZero > m - countZero) {
+      for (let i = 0; i < m; i++) {
+        grid[i][j] = 1 - grid[i][j];
+      }
+    }
+  }
+
+  let score = 0;
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      let columnScore = grid[i][j] << (n - j - 1);
+      score += columnScore;
+    }
+  }
+
+  return score;
+}
+console.log({ matrixScore: matrixScore([[0, 0, 1, 1], [1, 0, 1, 0], [1, 1, 0, 0]]) });
