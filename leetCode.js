@@ -6732,3 +6732,45 @@ function matrixScore(grid) {
   return score;
 }
 console.log({ matrixScore: matrixScore([[0, 0, 1, 1], [1, 0, 1, 0], [1, 1, 0, 0]]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function getMaximumGold(grid) {
+  const row = grid.length, col = grid[0].length;
+  let maxGold = 0;
+
+  /**
+   * @param {number} i 
+   * @param {number} j 
+   * @param {number} currentGold 
+   * @returns {number}
+   */
+  function dfsBacktrack(i, j, currentGold) {
+    if (i < 0 || j < 0 || i >= row || j >= col || grid[i][j] === 0) return;
+
+    const goldInCurrentCell = grid[i][j];
+    currentGold += goldInCurrentCell;
+
+    grid[i][j] = 0;
+
+    maxGold = Math.max(maxGold, currentGold);
+
+    dfsBacktrack(i + 1, j, currentGold);
+    dfsBacktrack(i - 1, j, currentGold);
+    dfsBacktrack(i, j + 1, currentGold);
+    dfsBacktrack(i, j - 1, currentGold);
+
+    grid[i][j] = goldInCurrentCell;
+  }
+
+  for (let i = 0; i < row; i++) {
+    for (let j = 0; j < col; j++) {
+      if (grid[i][j] !== 0) dfsBacktrack(i, j, 0);
+    }
+  }
+
+  return maxGold;
+}
+console.log({ getMaximumGold: getMaximumGold([[0, 6, 0], [5, 8, 7], [0, 9, 0]]) });
