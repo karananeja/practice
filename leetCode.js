@@ -6774,3 +6774,20 @@ function getMaximumGold(grid) {
   return maxGold;
 }
 console.log({ getMaximumGold: getMaximumGold([[0, 6, 0], [5, 8, 7], [0, 9, 0]]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function balancedStringSplit(s) {
+  let count = 0, result = 0;
+
+  for (const char of s) {
+    if (char === "L") count++;
+    else count--;
+    if (count === 0) result++;
+  }
+
+  return result;
+};
+console.log({ balancedStringSplit: balancedStringSplit("RLRRLLRLRL") });
