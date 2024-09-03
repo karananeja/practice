@@ -6791,3 +6791,20 @@ function balancedStringSplit(s) {
   return result;
 };
 console.log({ balancedStringSplit: balancedStringSplit("RLRRLLRLRL") });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {boolean} 
+ */
+function evaluateTree(root) {
+  if (!root.left && !root.right) return root.val === 1;
+
+  const leftTree = evaluateTree(root.left);
+  const rightTree = evaluateTree(root.right);
+
+  let status = null;
+
+  if (root.val === 2) status = leftTree || rightTree;
+  else status = leftTree && rightTree;
+  return status;
+}
