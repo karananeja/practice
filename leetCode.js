@@ -6824,3 +6824,27 @@ function removeLeafNodes(root, target) {
   if (!root.left && !root.right && root.val === target) return null;
   return root;
 };
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function distributeCoins(root) {
+  let noOfMoves = 0;
+
+  /**
+   * @param {TreeNode | null} node 
+   * @returns {number}
+   */
+  function getMoves(node) {
+    if (!node) return 0;
+    const leftExtra = getMoves(node.left);
+    const rightExtra = getMoves(node.right);
+    const extraCoins = node.val + leftExtra + rightExtra - 1;
+    noOfMoves += Math.abs(extraCoins);
+    return extraCoins;
+  }
+
+  getMoves(root);
+  return noOfMoves;
+};
