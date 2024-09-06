@@ -6848,3 +6848,46 @@ function distributeCoins(root) {
   getMoves(root);
   return noOfMoves;
 };
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number[][]}
+ */
+function flipRows(matrix) {
+  for (let row = 0; row < matrix.length; row++) {
+    let start = 0, end = matrix[row].length - 1;
+
+    while (start <= end) {
+      const temp = matrix[row][start];
+      matrix[row][start] = matrix[row][end];
+      matrix[row][end] = temp;
+      start++;
+      end--;
+    }
+  }
+
+  return matrix;
+}
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number[][]}
+ */
+function invertRows(matrix) {
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[row].length; col++) {
+      matrix[row][col] ^= 1;
+    }
+  }
+
+  return matrix;
+}
+
+/**
+ * @param {number[][]} image 
+ * @returns {number[][]}
+ */
+function flipAndInvertImage(image) {
+  return invertRows(flipRows(image));
+}
+console.log({ flipAndInvertImage: flipAndInvertImage([[1, 1, 0], [1, 0, 1], [0, 0, 0]]) });
