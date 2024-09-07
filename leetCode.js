@@ -6891,3 +6891,21 @@ function flipAndInvertImage(image) {
   return invertRows(flipRows(image));
 }
 console.log({ flipAndInvertImage: flipAndInvertImage([[1, 1, 0], [1, 0, 1], [0, 0, 0]]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function countGoodSubstrings(s) {
+  let count = 0;
+  const limit = 3;
+
+  for (let idx = 0; idx < s.length - 2; idx++) {
+    const first = s[idx], second = s[idx + 1], third = s[idx + 2];
+    const charSet = new Set([first, second, third]);
+    if (charSet.size === limit) count++;
+  }
+
+  return count;
+};
+console.log({ countGoodSubstrings: countGoodSubstrings("xyzzaz") });
