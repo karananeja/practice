@@ -6909,3 +6909,26 @@ function countGoodSubstrings(s) {
   return count;
 };
 console.log({ countGoodSubstrings: countGoodSubstrings("xyzzaz") });
+
+/**
+ * @param {string[]} words 
+ * @param {string} pref 
+ * @returns {number}
+ */
+function prefixCount(words, pref) {
+  let wordCount = 0;
+
+  for (const word of words) {
+    let idx = 0;
+
+    while (idx < pref.length) {
+      if (word[idx] === pref[idx]) idx++;
+      else break;
+    }
+
+    if (idx === pref.length) wordCount++;
+  }
+
+  return wordCount;
+};
+console.log({ prefixCount: prefixCount(["pay", "attention", "practice", "attend"], "at") });
