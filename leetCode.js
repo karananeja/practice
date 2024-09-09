@@ -6932,3 +6932,18 @@ function prefixCount(words, pref) {
   return wordCount;
 };
 console.log({ prefixCount: prefixCount(["pay", "attention", "practice", "attend"], "at") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function subsetXORSum(nums) {
+  let result = 0;
+
+  for (const num of nums) {
+    result |= num;
+  }
+
+  return result << (nums.length - 1);
+};
+console.log({ subsetXORSum: subsetXORSum([1, 3]) });
