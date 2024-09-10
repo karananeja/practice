@@ -6947,3 +6947,24 @@ function subsetXORSum(nums) {
   return result << (nums.length - 1);
 };
 console.log({ subsetXORSum: subsetXORSum([1, 3]) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number[][]}
+ */
+function findDifference(nums1, nums2) {
+  const first = new Set(nums1), second = new Set(nums2);
+  const result = [[], []];
+
+  for (const num of first) {
+    if (!second.has(num)) result[0].push(num);
+  }
+
+  for (const num of second) {
+    if (!first.has(num)) result[1].push(num);
+  }
+
+  return result;
+};
+console.log({ findDifference: findDifference([1, 2, 3], [2, 4, 6]) });
