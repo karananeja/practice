@@ -6968,3 +6968,26 @@ function findDifference(nums1, nums2) {
   return result;
 };
 console.log({ findDifference: findDifference([1, 2, 3], [2, 4, 6]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minMaxGame(nums) {
+  while (nums.length > 1) {
+    let newNums = [], n = 1;
+
+    for (let idx = 0; idx < nums.length; idx += 2) {
+      if (n % 2 !== 0)
+        newNums.push(Math.min(nums[idx], nums[idx + 1]));
+      else newNums.push(Math.max(nums[idx], nums[idx + 1]));
+      n++;
+    }
+
+    nums = [...newNums];
+    n = 1;
+  }
+
+  return nums[0];
+}
+console.log({ minMaxGame: minMaxGame([1, 3, 5, 2, 4, 8, 2, 2]) });
