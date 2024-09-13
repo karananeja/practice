@@ -7021,3 +7021,20 @@ function twoOutOfThree(nums1, nums2, nums3) {
   return result;
 };
 console.log({ twoOutOfThree: twoOutOfThree([1, 1, 3, 2], [2, 3], [3]) });
+
+/**
+ * @param {string[]} logs 
+ * @returns {number}
+ */
+function minOperations(logs) {
+  let distance = 0;
+
+  for (const path of logs) {
+    if (path === "./" || (path === "../" && distance === 0)) continue;
+    else if (path === "../") distance--;
+    else distance++;
+  }
+
+  return distance;
+}
+console.log({ minOperations: minOperations(["d1/", "d2/", "../", "d21/", "./"]) });
