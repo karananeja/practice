@@ -7038,3 +7038,49 @@ function minOperations(logs) {
   return distance;
 }
 console.log({ minOperations: minOperations(["d1/", "d2/", "../", "d21/", "./"]) });
+
+/**
+ * @param {string} str 
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {boolean}
+ */
+function isSubStrPalindrome(str, left, right) {
+  while (left < right) {
+    if (str[left++] !== str[right--]) return false;
+  }
+
+  return true;
+}
+
+/**
+ * @param {string} s 
+ * @returns {string[][]}
+ */
+function partition(s) {
+  const result = [];
+
+  /**
+   * @param {number} idx 
+   * @param {string[]} part 
+   * @returns 
+   */
+  function getSubStrings(idx, part) {
+    if (idx >= s.length) {
+      result.push([...part]);
+      return;
+    }
+
+    for (let pos = idx; pos < s.length; pos++) {
+      if (isSubStrPalindrome(s, idx, pos)) {
+        part.push(s.slice(idx, pos + 1));
+        getSubStrings(pos + 1, part);
+        part.pop();
+      }
+    }
+  }
+
+  getSubStrings(0, []);
+  return result;
+}
+console.log({ partition: partition("aab") });
