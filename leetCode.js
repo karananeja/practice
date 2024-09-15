@@ -7084,3 +7084,23 @@ function partition(s) {
   return result;
 }
 console.log({ partition: partition("aab") });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function findLucky(arr) {
+  const numCount = {};
+  let largestLuckyNumber = -1;
+
+  for (const num of arr) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  for (const num in numCount) {
+    if (+num === numCount[num]) largestLuckyNumber = Math.max(largestLuckyNumber, +num);
+  }
+
+  return largestLuckyNumber;
+};
+console.log({ findLucky: findLucky([2, 2, 3, 4]) });
