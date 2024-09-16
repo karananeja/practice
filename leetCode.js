@@ -7104,3 +7104,32 @@ function findLucky(arr) {
   return largestLuckyNumber;
 };
 console.log({ findLucky: findLucky([2, 2, 3, 4]) });
+
+/**
+ * @param {string} char 
+ * @returns {boolean}
+ */
+function isLetter(char) {
+  const charCode = char.charCodeAt(0);
+  const isUpperCaseLetter = charCode <= 90 && charCode >= 65;
+  const isLowerCaseLetter = charCode <= 122 && charCode >= 97;
+  return isUpperCaseLetter || isLowerCaseLetter;
+}
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function reverseOnlyLetters(s) {
+  let start = 0, end = s.length - 1;
+  const result = s.split("");
+
+  while (start < end) {
+    if (isLetter(s[start]) && isLetter(s[end])) [result[start++], result[end--]] = [result[end], result[start]];
+    else if (!isLetter(s[start])) start++;
+    else if (!isLetter(s[end])) end--;
+  }
+
+  return result.join("");
+};
+console.log({ reverseOnlyLetters: reverseOnlyLetters("ab-cd") });
