@@ -7133,3 +7133,22 @@ function reverseOnlyLetters(s) {
   return result.join("");
 };
 console.log({ reverseOnlyLetters: reverseOnlyLetters("ab-cd") });
+
+/**
+ * @param {string} text 
+ * @returns {number}
+ */
+function maxNumberOfBalloons(text) {
+  const charCount = { a: 0, b: 0, l: 0, n: 0, o: 0 };
+
+  for (const char of text) {
+    if (char === "a") charCount[char]++;
+    else if (char === "b") charCount[char]++;
+    else if (char === "l") charCount[char]++;
+    else if (char === "n") charCount[char]++;
+    else if (char === "o") charCount[char]++;
+  }
+
+  return Math.min(charCount.a, charCount.b, Math.floor(charCount.l / 2), Math.floor(charCount.o / 2), charCount.n);
+}
+console.log({ maxNumberOfBalloons: maxNumberOfBalloons("nlaebolko") });
