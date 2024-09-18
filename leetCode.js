@@ -6640,14 +6640,15 @@ console.log({ kthSmallestPrimeFraction: kthSmallestPrimeFraction([1, 2, 3, 5], 3
  * @returns {number[]}
  */
 function findDisappearedNumbers(nums) {
-  const numCount = {}, result = [];
-
   for (const num of nums) {
-    numCount[num] = (numCount[num] || 0) + 1;
+    const index = Math.abs(num) - 1;
+    if (nums[index] > 0) nums[index] = -nums[index];
   }
 
-  for (let idx = 1; idx <= nums.length; idx++) {
-    if (!(idx in numCount)) result.push(idx);
+  const result = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > 0) result.push(i + 1);
   }
 
   return result;
