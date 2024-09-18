@@ -7153,3 +7153,38 @@ function maxNumberOfBalloons(text) {
   return Math.min(charCount.a, charCount.b, Math.floor(charCount.l / 2), Math.floor(charCount.o / 2), charCount.n);
 }
 console.log({ maxNumberOfBalloons: maxNumberOfBalloons("nlaebolko") });
+
+/**
+ * 
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function beautifulSubsets(nums, k) {
+  const numCount = {};
+
+  for (const num of nums) {
+    numCount[num] = 0;
+  }
+
+  /**
+   * @param {number} idx 
+   * @returns {number}
+   */
+  function countBeautifulSubsets(idx) {
+    if (idx === nums.length) return 1;
+
+    let totalCount = countBeautifulSubsets(idx + 1);
+
+    if (!numCount[nums[idx] + k] && !numCount[nums[idx] - k]) {
+      numCount[nums[idx]]++;
+      totalCount += countBeautifulSubsets(idx + 1);
+      numCount[nums[idx]]--;
+    }
+
+    return totalCount;
+  }
+
+  return countBeautifulSubsets(0) - 1;
+};
+console.log({ beautifulSubsets: beautifulSubsets([2, 4, 6], 2) });
