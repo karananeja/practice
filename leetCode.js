@@ -7188,3 +7188,20 @@ function beautifulSubsets(nums, k) {
   return countBeautifulSubsets(0) - 1;
 };
 console.log({ beautifulSubsets: beautifulSubsets([2, 4, 6], 2) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findClosestNumber(nums) {
+  let closestNumber = Number.MAX_SAFE_INTEGER;
+
+  for (const num of nums) {
+    const absNum = Math.abs(closestNumber);
+    if (Math.abs(num) < absNum) closestNumber = num;
+    else if (num === absNum) closestNumber = num;
+  }
+
+  return closestNumber;
+};
+console.log({ findClosestNumber: findClosestNumber([-4, -2, 1, 4, 8]) });
