@@ -7205,3 +7205,13 @@ function findClosestNumber(nums) {
   return closestNumber;
 };
 console.log({ findClosestNumber: findClosestNumber([-4, -2, 1, 4, 8]) });
+
+/**
+ * @param {string} coordinates 
+ * @returns {boolean}
+ */
+function squareIsWhite(coordinates) {
+  const char = coordinates[0].charCodeAt(0) - 97, number = +coordinates[1];
+  return ((char % 2 !== 0 && number % 2 !== 0) || (char % 2 === 0 && number % 2 === 0));
+}
+console.log({ squareIsWhite: squareIsWhite("a1") });
