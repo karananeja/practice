@@ -7215,3 +7215,27 @@ function squareIsWhite(coordinates) {
   return ((char % 2 !== 0 && number % 2 !== 0) || (char % 2 === 0 && number % 2 === 0));
 }
 console.log({ squareIsWhite: squareIsWhite("a1") });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[]}
+ */
+function averageOfLevels(root) {
+  const average = [], nodes = [root];
+
+  while (nodes.length) {
+    const length = nodes.length;
+    let sum = 0;
+
+    for (let idx = 0; idx < length; idx++) {
+      const node = nodes.shift();
+      sum += node.val;
+      if (node.left) nodes.push(node.left);
+      if (node.right) nodes.push(node.right);
+    }
+
+    average.push(sum / length);
+  }
+
+  return average;
+};
