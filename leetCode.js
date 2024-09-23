@@ -7252,3 +7252,19 @@ function sortSentence(s) {
     .join(' ');
 }
 console.log({ sortSentence: sortSentence("is2 sentence4 This1 a3") });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function areNumbersAscending(s) {
+  const digits = s.split(' ').filter((word) => +word >= 0);
+
+  for (let idx = 0; idx < digits.length - 1; idx++) {
+    const current = +digits[idx], next = +digits[idx + 1];
+    if (current >= next) return false;
+  }
+
+  return true;
+}
+console.log({ areNumbersAscending: areNumbersAscending("1 box has 3 blue 4 red 6 green and 12 yellow marbles") });
