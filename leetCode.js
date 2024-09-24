@@ -7268,3 +7268,26 @@ function areNumbersAscending(s) {
   return true;
 }
 console.log({ areNumbersAscending: areNumbersAscending("1 box has 3 blue 4 red 6 green and 12 yellow marbles") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function specialArray(nums) {
+  nums.sort((a, b) => a - b);
+  let prevNum = -1, totalRight = nums.length, idx = 0;
+
+  while (idx < nums.length) {
+    if (nums[idx] === totalRight || (prevNum < totalRight && totalRight < nums[idx]))
+      return totalRight;
+
+    while (idx + 1 < nums.length && nums[idx] === nums[idx + 1]) idx++;
+
+    prevNum = nums[idx];
+    idx++;
+    totalRight = nums.length - idx;
+  }
+
+  return -1;
+}
+console.log({ specialArray: specialArray([3, 5]) });
