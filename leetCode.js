@@ -7291,3 +7291,27 @@ function specialArray(nums) {
   return -1;
 }
 console.log({ specialArray: specialArray([3, 5]) });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @param {number} maxCost 
+ * @returns {number}
+ */
+function equalSubstring(s, t, maxCost) {
+  let currentCost = 0, left = 0, result = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    currentCost += Math.abs(s[right].charCodeAt(0) - t[right].charCodeAt(0));
+
+    while (currentCost > maxCost) {
+      currentCost -= Math.abs(s[left].charCodeAt(0) - t[left].charCodeAt(0));
+      left++;
+    }
+
+    result = Math.max(result, right - left + 1);
+  }
+
+  return result;
+};
+console.log({ equalSubstring: equalSubstring("abcd", "bcdf", 3) });
