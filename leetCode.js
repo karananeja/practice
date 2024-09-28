@@ -7315,3 +7315,24 @@ function equalSubstring(s, t, maxCost) {
   return result;
 };
 console.log({ equalSubstring: equalSubstring("abcd", "bcdf", 3) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function numSteps(s) {
+  let stepCount = 0, carry = 0;
+
+  for (let idx = s.length - 1; idx >= 1; idx--) {
+    const digit = (parseInt(s[idx]) + carry) % 2;
+
+    if (digit === 0) stepCount++;
+    else if (digit === 1) {
+      carry = 1;
+      stepCount += 2;
+    }
+  }
+
+  return stepCount + carry;
+}
+console.log({ numSteps: numSteps("1101") });
