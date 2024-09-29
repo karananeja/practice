@@ -7336,3 +7336,24 @@ function numSteps(s) {
   return stepCount + carry;
 }
 console.log({ numSteps: numSteps("1101") });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function countTriplets(arr) {
+  let result = 0;
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    let cur = arr[i];
+
+    for (let k = i + 1; k < arr.length; k++) {
+      cur ^= arr[k];
+
+      if (cur === 0) result += k - i;
+    }
+  }
+
+  return result;
+}
+console.log({ countTriplets: countTriplets([2, 3, 1, 6, 7]) });
