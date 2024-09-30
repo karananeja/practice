@@ -7357,3 +7357,19 @@ function countTriplets(arr) {
   return result;
 }
 console.log({ countTriplets: countTriplets([2, 3, 1, 6, 7]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function scoreOfString(s) {
+  let score = 0;
+
+  for (let idx = 0; idx < s.length - 1; idx++) {
+    const current = s[idx].charCodeAt(0), next = s[idx + 1].charCodeAt(0);
+    score += Math.abs(current - next);
+  }
+
+  return score;
+}
+console.log({ scoreOfString: scoreOfString("hello") });
