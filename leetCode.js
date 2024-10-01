@@ -7373,3 +7373,21 @@ function scoreOfString(s) {
   return score;
 }
 console.log({ scoreOfString: scoreOfString("hello") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function reverseVowels(s) {
+  const chars = s.split("");
+  let left = 0, right = s.length - 1;
+
+  while (left <= right) {
+    if (!isVowel(chars[left].toLowerCase())) left++;
+    else if (!isVowel(chars[right].toLowerCase())) right--;
+    else if (isVowel(chars[left].toLowerCase()) && isVowel(chars[right].toLowerCase())) [chars[left++], chars[right--]] = [chars[right], chars[left]];
+  }
+
+  return chars.join("");
+}
+console.log({ reverseVowels: reverseVowels("IceCreAm") });
