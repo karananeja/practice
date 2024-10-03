@@ -7418,3 +7418,22 @@ function finalString(s) {
   return result.join("");
 };
 console.log({ finalString: finalString("leetcode is the best platform") });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {number}
+ */
+function appendCharacters(s, t) {
+  let first = 0, second = 0;
+
+  while (first < s.length && second < t.length) {
+    if (s[first] === t[second]) {
+      first++;
+      second++;
+    } else first++;
+  }
+
+  return t.length - second;
+};
+console.log({ appendCharacters: appendCharacters("coaching", "coding") });
