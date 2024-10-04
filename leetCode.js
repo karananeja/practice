@@ -7437,3 +7437,22 @@ function appendCharacters(s, t) {
   return t.length - second;
 };
 console.log({ appendCharacters: appendCharacters("coaching", "coding") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function longestPalindrome(s) {
+  const charSeen = new Set();
+  let length = 0;
+
+  for (const char of s) {
+    if (charSeen.has(char)) {
+      charSeen.delete(char);
+      length += 2;
+    } else charSeen.add(char);
+  }
+
+  return charSeen.size > 0 ? length + 1 : length;
+};
+console.log({ longestPalindrome: longestPalindrome("abccccdd") });
