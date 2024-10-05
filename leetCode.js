@@ -7456,3 +7456,37 @@ function longestPalindrome(s) {
   return charSeen.size > 0 ? length + 1 : length;
 };
 console.log({ longestPalindrome: longestPalindrome("abccccdd") });
+
+/**
+ * @param {string[]} words 
+ * @returns {string[]}
+ */
+function commonChars(words) {
+  const commonCharCounts = new Array(26).fill(0), currentCharCounts = new Array(26);
+  const result = [];
+
+  for (const char of words[0]) {
+    commonCharCounts[char.charCodeAt(0) - 97]++;
+  }
+
+  for (let idx = 1; idx < words.length; idx++) {
+    currentCharCounts.fill(0);
+
+    for (const char of words[idx]) {
+      currentCharCounts[char.charCodeAt(0) - 97]++;
+    }
+
+    for (let letter = 0; letter < 26; letter++) {
+      commonCharCounts[letter] = Math.min(commonCharCounts[letter], currentCharCounts[letter]);
+    }
+  }
+
+  for (let letter = 0; letter < 26; letter++) {
+    for (let count = 0; count < commonCharCounts[letter]; count++) {
+      result.push(String.fromCharCode(letter + 97));
+    }
+  }
+
+  return result;
+}
+console.log({ commonChars: commonChars(["bella", "label", "roller"]) });
