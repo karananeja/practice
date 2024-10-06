@@ -7490,3 +7490,34 @@ function commonChars(words) {
   return result;
 }
 console.log({ commonChars: commonChars(["bella", "label", "roller"]) });
+
+/**
+ * @param {number[]} hand 
+ * @param {number} groupSize 
+ * @returns {boolean}
+ */
+function isNStraightHand(hand, groupSize) {
+  if (hand.length % groupSize !== 0) return false;
+
+  const count = new Map();
+
+  for (const card of hand) {
+    count.set(card, (count.get(card) || 0) + 1);
+  }
+
+  const sortedKeys = Array.from(count.keys()).sort((a, b) => a - b);
+
+  for (const key of sortedKeys) {
+    if (count.get(key) > 0) {
+      const num = count.get(key);
+
+      for (let i = 0; i < groupSize; i++) {
+        if ((count.get(key + i) || 0) < num) return false;
+        count.set(key + i, count.get(key + i) - num);
+      }
+    }
+  }
+
+  return true;
+}
+console.log({ isNStraightHand: isNStraightHand([1, 2, 3, 6, 2, 3, 4, 7, 8], 3) });
