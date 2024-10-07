@@ -7521,3 +7521,24 @@ function isNStraightHand(hand, groupSize) {
   return true;
 }
 console.log({ isNStraightHand: isNStraightHand([1, 2, 3, 6, 2, 3, 4, 7, 8], 3) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function checkSubarraySum(nums, k) {
+  let prefixMod = 0;
+  const modSeen = { 0: -1 };
+
+  for (let i = 0; i < nums.length; i++) {
+    prefixMod = (prefixMod + nums[i]) % k;
+
+    if (prefixMod in modSeen) {
+      if ((i - modSeen[prefixMod]) > 1) return true;
+    } else modSeen[prefixMod] = i;
+  }
+
+  return false;
+}
+console.log({ checkSubarraySum: checkSubarraySum([23, 2, 4, 6, 7], 6) });
