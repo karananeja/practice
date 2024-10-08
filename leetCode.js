@@ -7542,3 +7542,23 @@ function checkSubarraySum(nums, k) {
   return false;
 }
 console.log({ checkSubarraySum: checkSubarraySum([23, 2, 4, 6, 7], 6) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function subarraySum(nums, k) {
+  let count = 0, currentSum = 0;
+  const prefixSum = { 0: 1 };
+
+  for (const num of nums) {
+    currentSum += num;
+    const difference = currentSum - k;
+    count += prefixSum[difference] || 0;
+    prefixSum[currentSum] = 1 + (prefixSum[currentSum] || 0);
+  }
+
+  return count;
+}
+console.log({ subarraySum: subarraySum([1, 1, 1], 2) });
