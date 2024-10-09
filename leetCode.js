@@ -7562,3 +7562,26 @@ function subarraySum(nums, k) {
   return count;
 }
 console.log({ subarraySum: subarraySum([1, 1, 1], 2) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function subarraysDivByK(nums, k) {
+  let prefixSum = 0, count = 0;
+  const remainderCount = { 0: 1 };
+
+  for (const num of nums) {
+    prefixSum += num;
+    const remainder = (prefixSum % k + k) % k;
+
+    if (remainder in remainderCount) {
+      count += remainderCount[remainder];
+      remainderCount[remainder]++;
+    } else remainderCount[remainder] = 1;
+  }
+
+  return count;
+}
+console.log({ subarraysDivByK: subarraysDivByK([4, 5, 0, -2, -3, 1], 5) });
