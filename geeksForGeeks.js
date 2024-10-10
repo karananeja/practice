@@ -1124,3 +1124,46 @@ class LargestBST {
     return this.size;
   }
 }
+
+/**
+ * @problem_thirtyOne You don't need to read input or print anything. Your task is to complete the function isHeap() which takes the root of Binary Tree as parameter returns True if the given binary tree is a heap else returns False.
+ */
+/**
+ * @solution_thirtyOne
+ */
+class IsHeap {
+  countNodes(node) {
+    if (!node) return 0;
+    return 1 + this.countNodes(node.left) + this.countNodes(node.right);
+  }
+
+  isCBT(node, index, count) {
+    if (!node) return true;
+
+    if (index >= count) return false;
+    else {
+      const left = this.isCBT(node.left, 2 * index + 1, count);
+      const right = this.isCBT(node.right, 2 * index + 2, count);
+      return left && right;
+    }
+  }
+
+  isMaxOrder(node) {
+    if (!node.left && !node.right) return true;
+
+    if (!node.right) {
+      return (node.data > node.left.data);
+    } else {
+      const left = this.isMaxOrder(node.left);
+      const right = this.isMaxOrder(node.right);
+      return (node.data > node.left.data && node.data > node.right.data) && left &&
+        right;
+    }
+  }
+
+  isHeap(root) {
+    let index = 0;
+    const totalCount = this.countNodes(root);
+    return this.isCBT(root, index, totalCount) && this.isMaxOrder(root);
+  }
+}
