@@ -7585,3 +7585,35 @@ function subarraysDivByK(nums, k) {
   return count;
 }
 console.log({ subarraysDivByK: subarraysDivByK([4, 5, 0, -2, -3, 1], 5) });
+
+/**
+ * @param {number[]} arr1 
+ * @param {number[]} arr2 
+ * @returns {number[]}
+ */
+function relativeSortArray(arr1, arr2) {
+  const maxElement = Math.max(...arr1);
+  const numCount = new Array(maxElement + 1).fill(0);
+  const result = [];
+
+  for (const num of arr1) {
+    numCount[num]++;
+  }
+
+  for (const num of arr2) {
+    while (numCount[num]) {
+      result.push(num);
+      numCount[num]--;
+    }
+  }
+
+  for (let idx = 0; idx <= maxElement; idx++) {
+    while (numCount[idx]) {
+      result.push(idx);
+      numCount[idx]--;
+    }
+  }
+
+  return result;
+}
+console.log({ relativeSortArray: relativeSortArray([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9, 6]) });
