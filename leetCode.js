@@ -7617,3 +7617,20 @@ function relativeSortArray(arr1, arr2) {
   return result;
 }
 console.log({ relativeSortArray: relativeSortArray([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9, 6]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function sortColors(nums) {
+  let low = 0, high = nums.length - 1, mid = 0;
+
+  while (mid <= high) {
+    if (nums[mid] === 0) [nums[low++], nums[mid++]] = [nums[mid], nums[low]];
+    else if (nums[mid] === 1) mid++;
+    else[nums[high--], nums[mid]] = [nums[mid], nums[high]];
+  }
+
+  return nums;
+}
+console.log({ sortColors: sortColors([2, 0, 2, 1, 1, 0]) });
