@@ -7634,3 +7634,21 @@ function sortColors(nums) {
   return nums;
 }
 console.log({ sortColors: sortColors([2, 0, 2, 1, 1, 0]) });
+
+/**
+ * @param {number[]} seats 
+ * @param {number[]} students 
+ * @returns {number}
+ */
+function minMovesToSeat(seats, students) {
+  seats.sort((a, b) => a - b);
+  students.sort((a, b) => a - b);
+  let moves = 0;
+
+  for (let idx = 0; idx < seats.length; idx++) {
+    moves += Math.abs(seats[idx] - students[idx]);
+  }
+
+  return moves;
+}
+console.log({ minMovesToSeat: minMovesToSeat([3, 1, 5], [2, 7, 4]) });
