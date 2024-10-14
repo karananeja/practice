@@ -7652,3 +7652,33 @@ function minMovesToSeat(seats, students) {
   return moves;
 }
 console.log({ minMovesToSeat: minMovesToSeat([3, 1, 5], [2, 7, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minOperations(nums) {
+  let moves = 0;
+
+  for (let idx = 1; idx < nums.length; idx++) {
+    const previous = nums[idx - 1], current = nums[idx];
+
+    if (current <= previous) {
+      const value = Math.max(current, previous + 1);
+      nums[idx] = value;
+      moves += value - current;
+    }
+  }
+
+  return moves;
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minIncrementForUnique(nums) {
+  nums.sort((a, b) => a - b);
+  return minOperations(nums);
+}
+console.log({ minIncrementForUnique: minIncrementForUnique([3, 2, 1, 2, 1, 7]) });
