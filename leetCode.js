@@ -7682,3 +7682,19 @@ function minIncrementForUnique(nums) {
   return minOperations(nums);
 }
 console.log({ minIncrementForUnique: minIncrementForUnique([3, 2, 1, 2, 1, 7]) });
+
+/**
+ * @param {string} columnTitle 
+ * @returns {number}
+ */
+function titleToNumber(columnTitle) {
+  let columnNumber = 0;
+  const length = columnTitle.length;
+
+  for (let idx = 0; idx < length; idx++) {
+    columnNumber += 26 ** (length - idx - 1) * (columnTitle[idx].charCodeAt(0) - 64);
+  }
+
+  return columnNumber;
+}
+console.log({ titleToNumber: titleToNumber("AB") });
