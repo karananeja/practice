@@ -7698,3 +7698,32 @@ function titleToNumber(columnTitle) {
   return columnNumber;
 }
 console.log({ titleToNumber: titleToNumber("AB") });
+
+/**
+ * @param {string} pattern 
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function wordPattern(pattern, s) {
+  const words = s.split(' ');
+
+  if (pattern.length !== words.length) return false;
+
+  const charMap = {};
+  const isWordSeen = new Set();
+
+  for (let idx = 0; idx < pattern.length; idx++) {
+    const char = pattern[idx], word = words[idx];
+    if (!charMap[char] && !isWordSeen.has(word)) {
+      charMap[char] = word;
+      isWordSeen.add(word);
+    }
+  }
+
+  for (let idx = 0; idx < pattern.length; idx++) {
+    if (charMap[pattern[idx]] !== words[idx]) return false;
+  }
+
+  return true;
+}
+console.log({ wordPattern: wordPattern("abba", "dog cat cat dog") });
