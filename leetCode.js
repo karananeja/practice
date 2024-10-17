@@ -7727,3 +7727,22 @@ function wordPattern(pattern, s) {
   return true;
 }
 console.log({ wordPattern: wordPattern("abba", "dog cat cat dog") });
+
+/**
+ * @param {number} num 
+ * @returns {boolean}
+ */
+function isPerfectSquare(num) {
+  let start = 0, end = num;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (mid * mid === num) return true;
+    else if (mid * mid > num) end = mid - 1;
+    else start = mid + 1;
+  }
+
+  return false;
+}
+console.log({ isPerfectSquare: isPerfectSquare(16) });
