@@ -7746,3 +7746,18 @@ function isPerfectSquare(num) {
   return false;
 }
 console.log({ isPerfectSquare: isPerfectSquare(16) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function sumOfSquares(nums) {
+  let specialSum = 0;
+
+  for (let i = 1; i <= nums.length; i++) {
+    if (nums.length % i === 0) specialSum += nums[i - 1] ** 2;
+  }
+
+  return specialSum;
+}
+console.log({ sumOfSquares: sumOfSquares([1, 2, 3, 4]) });
