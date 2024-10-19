@@ -7761,3 +7761,22 @@ function sumOfSquares(nums) {
   return specialSum;
 }
 console.log({ sumOfSquares: sumOfSquares([1, 2, 3, 4]) });
+
+/**
+ * @param {number} c 
+ * @returns {boolean}
+ */
+function judgeSquareSum(c) {
+  let start = 0, end = Math.floor(Math.sqrt(c));
+
+  while (start <= end) {
+    const sumSquared = start ** 2 + end ** 2;
+
+    if (sumSquared === c) return true;
+    else if (sumSquared > c) end--;
+    else start++;
+  }
+
+  return false;
+}
+console.log({ judgeSquareSum: judgeSquareSum(5) });
