@@ -7780,3 +7780,35 @@ function judgeSquareSum(c) {
   return false;
 }
 console.log({ judgeSquareSum: judgeSquareSum(5) });
+
+/**
+ * @param {number[]} difficulty 
+ * @param {number[]} profit 
+ * @param {number[]} worker 
+ * @returns {number}
+ */
+function maxProfitAssignment(difficulty, profit, worker) {
+  let maxProfit = 0, currentIdx = 0;
+  let currentDifficulty = 0;
+  worker.sort((a, b) => a - b);
+
+  const difficultyWithProfit = [];
+
+  for (let idx = 0; idx < difficulty.length; idx++) {
+    difficultyWithProfit.push([difficulty[idx], profit[idx]]);
+  }
+  difficultyWithProfit.sort((a, b) => a[0] - b[0]);
+
+  for (let workerIdx = 0; workerIdx < worker.length; workerIdx++) {
+    for (let idx = currentIdx; idx < difficultyWithProfit.length; idx++) {
+      if (worker[workerIdx] >= difficultyWithProfit[idx][0]) {
+        currentIdx = idx;
+        currentDifficulty = Math.max(currentDifficulty, difficultyWithProfit[idx][1]);
+      }
+    }
+    maxProfit += currentDifficulty;
+  }
+
+  return maxProfit;
+}
+console.log({ maxProfitAssignment: maxProfitAssignment([2, 4, 6, 8, 10], [10, 20, 30, 40, 50], [4, 5, 6, 7]) });
