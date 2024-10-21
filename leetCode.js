@@ -7812,3 +7812,55 @@ function maxProfitAssignment(difficulty, profit, worker) {
   return maxProfit;
 }
 console.log({ maxProfitAssignment: maxProfitAssignment([2, 4, 6, 8, 10], [10, 20, 30, 40, 50], [4, 5, 6, 7]) });
+
+/**
+ * @param {number[]} bloomDay 
+ * @param {number} mid 
+ * @param {number} k 
+ * @returns {number}
+ */
+function getNumOfBouquets(bloomDay, mid, k) {
+  let numOfBouquets = 0, count = 0;
+
+  for (let i = 0; i < bloomDay.length; i++) {
+    if (bloomDay[i] <= mid) count++;
+    else count = 0;
+
+    if (count === k) {
+      numOfBouquets++;
+      count = 0;
+    }
+  }
+
+  return numOfBouquets;
+}
+
+/**
+ * @param {number[]} bloomDay 
+ * @param {number} m 
+ * @param {number} k 
+ * @returns {number}
+ */
+function minDays(bloomDay, m, k) {
+  let start = 0, end = 0;
+
+  for (const day of bloomDay) {
+    end = Math.max(end, day);
+  }
+
+  let minDays = -1;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (getNumOfBouquets(bloomDay, mid, k) >= m) {
+      minDays = mid;
+      end = mid - 1;
+    } else {
+      start = mid + 1;
+    }
+  }
+
+  return minDays;
+}
+console.log({ minDays: minDays([1, 10, 3, 10, 2], 3, 1) });
