@@ -7864,3 +7864,37 @@ function minDays(bloomDay, m, k) {
   return minDays;
 }
 console.log({ minDays: minDays([1, 10, 3, 10, 2], 3, 1) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} mid 
+ * @returns {number}
+ */
+function getDivisor(nums, mid) {
+  let total = 0;
+
+  for (const num of nums) {
+    total += Math.ceil(num / mid);
+  }
+
+  return total;
+}
+
+/**
+ * @param {number[]} piles 
+ * @param {number} h 
+ * @returns {number}
+ */
+function minEatingSpeed(piles, h) {
+  let start = 0, end = Math.max(...piles);
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (getDivisor(piles, mid) > h) start = mid + 1;
+    else end = mid;
+  }
+
+  return start;
+}
+console.log({ minEatingSpeed: minEatingSpeed([3, 6, 7, 11], 8) });
