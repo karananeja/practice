@@ -7898,3 +7898,22 @@ function minEatingSpeed(piles, h) {
   return start;
 }
 console.log({ minEatingSpeed: minEatingSpeed([3, 6, 7, 11], 8) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} threshold 
+ * @returns {number}
+ */
+function smallestDivisor(nums, threshold) {
+  let start = 0, end = Math.max(...nums);
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (getDivisor(nums, mid) > threshold) start = mid + 1;
+    else end = mid;
+  }
+
+  return start;
+}
+console.log({ smallestDivisor: smallestDivisor([1, 2, 5, 9], 6) });
