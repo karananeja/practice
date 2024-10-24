@@ -7917,3 +7917,48 @@ function smallestDivisor(nums, threshold) {
   return start;
 }
 console.log({ smallestDivisor: smallestDivisor([1, 2, 5, 9], 6) });
+
+/**
+ * @param {number[]} arr 
+ * @param {number} dist 
+ * @param {number} balls 
+ * @returns {boolean}
+ */
+function canPlace(arr, dist, balls) {
+  let count = 1, lastPlaced = arr[0];
+
+  for (let idx = 1; idx < arr.length; idx++) {
+    if (arr[idx] - lastPlaced >= dist) {
+      count++;
+      lastPlaced = arr[idx];
+    }
+
+    if (count >= balls) return true;
+  }
+
+  return false;
+}
+
+/**
+ * @param {number[]} position 
+ * @param {number} m 
+ * @returns {number}
+ */
+function maxDistance(position, m) {
+  position.sort((a, b) => a - b);
+
+  let low = 1, result = 1;
+  let high = Math.floor((position[position.length - 1] - position[0]) / (m - 1));
+
+  while (low <= high) {
+    const mid = low + Math.floor((high - low) / 2);
+
+    if (canPlace(position, mid, m)) {
+      result = mid;
+      low = mid + 1;
+    } else high = mid - 1;
+  }
+
+  return result;
+}
+console.log({ maxDistance: maxDistance([1, 2, 8, 4, 9], 3) });
