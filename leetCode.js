@@ -7962,3 +7962,29 @@ function maxDistance(position, m) {
   return result;
 }
 console.log({ maxDistance: maxDistance([1, 2, 8, 4, 9], 3) });
+
+/**
+ * @param {number[]} customers 
+ * @param {number[]} grumpy 
+ * @param {number} minutes 
+ * @returns {number}
+ */
+function maxSatisfied(customers, grumpy, minutes) {
+  let left = 0, satisfied = 0;
+  let currentWindow = 0, maxWindow = 0;
+
+  for (let right = 0; right < customers.length; right++) {
+    if (grumpy[right]) currentWindow += customers[right];
+    else satisfied += customers[right];
+
+    if (right - left + 1 > minutes) {
+      if (grumpy[left]) currentWindow -= customers[left];
+      left++;
+    }
+
+    maxWindow = Math.max(maxWindow, currentWindow);
+  }
+
+  return satisfied + maxWindow;
+}
+console.log({ maxSatisfied: maxSatisfied([1, 0, 1, 2, 1, 1, 7, 5], [0, 1, 0, 1, 0, 1, 0, 1], 3) });
