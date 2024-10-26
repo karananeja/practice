@@ -7988,3 +7988,30 @@ function maxSatisfied(customers, grumpy, minutes) {
   return satisfied + maxWindow;
 }
 console.log({ maxSatisfied: maxSatisfied([1, 0, 1, 2, 1, 1, 7, 5], [0, 1, 0, 1, 0, 1, 0, 1], 3) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function numberOfSubarrays(nums, k) {
+  let count = 0, oddNums = 0;
+  let left = 0, middle = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    if (nums[right] % 2 === 1) oddNums++;
+
+    while (oddNums > k) {
+      if (nums[left] % 2 === 1) oddNums--;
+      middle = ++left;
+    }
+
+    if (oddNums === k) {
+      while (nums[middle] % 2 === 0) middle++;
+      count += middle - left + 1;
+    }
+  }
+
+  return count;
+}
+console.log({ numberOfSubarrays: numberOfSubarrays([1, 1, 2, 1, 1], 3) });
