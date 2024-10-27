@@ -8015,3 +8015,29 @@ function numberOfSubarrays(nums, k) {
   return count;
 }
 console.log({ numberOfSubarrays: numberOfSubarrays([1, 1, 2, 1, 1], 3) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function getPivot(arr) {
+  let start = 0, end = arr.length - 1;
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+    arr[mid] >= arr[0] ? (start = mid + 1) : (end = mid);
+  }
+
+  return start;
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findMin(nums) {
+  const updatedNums = [...new Set(nums)];
+  const pivot = getPivot(updatedNums);
+  return updatedNums[pivot] > updatedNums[0] ? updatedNums[0] : updatedNums[pivot];
+}
+console.log({ findMin: findMin([2, 2, 2, 0, 1]) });
