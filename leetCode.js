@@ -8041,3 +8041,34 @@ function findMin(nums) {
   return updatedNums[pivot] > updatedNums[0] ? updatedNums[0] : updatedNums[pivot];
 }
 console.log({ findMin: findMin([2, 2, 2, 0, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} target 
+ * @returns {boolean}
+ */
+function search(nums, target) {
+  let start = 0, end = nums.length - 1;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+    if (nums[mid] === target) return true;
+
+    if (nums[start] === nums[mid] && nums[mid] === nums[end]) {
+      start++;
+      end--;
+      continue;
+    }
+
+    if (nums[start] <= nums[mid]) {
+      if (nums[start] <= target && target <= nums[mid]) end = mid - 1;
+      else start = mid + 1;
+    } else {
+      if (nums[mid] <= target && target <= nums[end]) start = mid + 1;
+      else end = mid - 1;
+    }
+  }
+
+  return false;
+}
+console.log({ search: search([4, 5, 6, 7, 0, 1, 2], 0) });
