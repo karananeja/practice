@@ -8072,3 +8072,26 @@ function search(nums, target) {
   return false;
 }
 console.log({ search: search([4, 5, 6, 7, 0, 1, 2], 0) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {TreeNode | null}
+ */
+function bstToGst(root) {
+  let nodeSum = 0;
+
+  /**
+   * @param {TreeNode | null} node 
+   */
+  function bstToGstHelper(node) {
+    if (!node) return;
+
+    bstToGstHelper(node.right);
+    nodeSum += node.val;
+    node.val = nodeSum;
+    bstToGstHelper(node.left);
+  }
+
+  bstToGstHelper(root);
+  return root;
+}
