@@ -8095,3 +8095,26 @@ function bstToGst(root) {
   bstToGstHelper(root);
   return root;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {TreeNode | null}
+ */
+function convertBST(root) {
+  let nodeSum = 0;
+  
+  /**
+   * @param {TreeNode | null} node 
+   */
+  function bstToGstHelper(node) {
+    if (!node) return;
+
+    bstToGstHelper(node.right);
+    nodeSum += node.val;
+    node.val = nodeSum;
+    bstToGstHelper(node.left);
+  }
+
+  bstToGstHelper(root);
+  return root;
+}
