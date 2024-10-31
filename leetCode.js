@@ -8102,7 +8102,7 @@ function bstToGst(root) {
  */
 function convertBST(root) {
   let nodeSum = 0;
-  
+
   /**
    * @param {TreeNode | null} node 
    */
@@ -8118,3 +8118,18 @@ function convertBST(root) {
   bstToGstHelper(root);
   return root;
 }
+
+/**
+ * @param {number[][]} nums 
+ * @returns {number}
+ */
+function numberOfPoints(nums) {
+  const points = new Set();
+
+  for (const num of nums) {
+    while (num[0] <= num[1]) points.add(num[0]++);
+  }
+
+  return points.size;
+}
+console.log({ numberOfPoints: numberOfPoints([[1, 3], [2, 5]]) });
