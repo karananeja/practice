@@ -8133,3 +8133,19 @@ function numberOfPoints(nums) {
   return points.size;
 }
 console.log({ numberOfPoints: numberOfPoints([[1, 3], [2, 5]]) });
+
+/**
+ * @param {number[]} mountain 
+ * @returns {number[]}
+ */
+function findPeaks(mountain) {
+  const peakIndices = [];
+
+  for (let idx = 1; idx < mountain.length - 1; idx++) {
+    const prev = mountain[idx - 1], curr = mountain[idx], next = mountain[idx + 1];
+    if (curr > prev && curr > next) peakIndices.push(idx);
+  }
+
+  return peakIndices;
+}
+console.log({ findPeaks: findPeaks([2, 4, 4]) });
