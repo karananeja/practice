@@ -8149,3 +8149,20 @@ function findPeaks(mountain) {
   return peakIndices;
 }
 console.log({ findPeaks: findPeaks([2, 4, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findPeakElement(nums) {
+  let start = 0, end = nums.length - 1;
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+    if (nums[mid] < nums[mid + 1]) start = mid + 1;
+    else end = mid;
+  }
+
+  return start;
+}
+console.log({ findPeakElement: findPeakElement([1, 2, 3, 1]) });
