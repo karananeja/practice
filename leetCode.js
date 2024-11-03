@@ -8166,3 +8166,26 @@ function findPeakElement(nums) {
   return start;
 }
 console.log({ findPeakElement: findPeakElement([1, 2, 3, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function countHillValley(nums) {
+  const uniqueNums = [];
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    if (nums[idx] === nums[idx + 1]) continue;
+    else uniqueNums.push(nums[idx]);
+  }
+
+  let count = 0;
+
+  for (let idx = 1; idx < uniqueNums.length - 1; idx++) {
+    const prev = uniqueNums[idx - 1], curr = uniqueNums[idx], next = uniqueNums[idx + 1];
+    if ((curr > prev && curr > next) || (curr < prev && curr < next)) count++;
+  }
+
+  return count;
+}
+console.log({ countHillValley: countHillValley([2, 4, 1, 1, 6, 5]) });
