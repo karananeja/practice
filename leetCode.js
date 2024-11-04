@@ -8189,3 +8189,26 @@ function countHillValley(nums) {
   return count;
 }
 console.log({ countHillValley: countHillValley([2, 4, 1, 1, 6, 5]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function separateDigits(nums) {
+  const digits = [];
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    let num = nums[idx];
+    const currentDigits = [];
+
+    while (num > 0) {
+      currentDigits.unshift(num % 10);
+      num = Math.floor(num / 10);
+    }
+
+    digits.push(...currentDigits);
+  }
+
+  return digits;
+}
+console.log({ separateDigits: separateDigits([13, 25, 83, 77]) });
