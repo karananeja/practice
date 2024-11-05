@@ -8212,3 +8212,18 @@ function separateDigits(nums) {
   return digits;
 }
 console.log({ separateDigits: separateDigits([13, 25, 83, 77]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {boolean}
+ */
+function threeConsecutiveOdds(arr) {
+  if (arr.length < 3) return false;
+
+  for (let idx = 0; idx < arr.length - 2; idx++) {
+    if (arr[idx] % 2 === 1 && arr[idx + 1] % 2 === 1 && arr[idx + 2] % 2 === 1) return true;
+  }
+
+  return false;
+}
+console.log({ threeConsecutiveOdds: threeConsecutiveOdds([2, 6, 4, 1]) });
