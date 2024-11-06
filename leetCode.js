@@ -8227,3 +8227,22 @@ function threeConsecutiveOdds(arr) {
   return false;
 }
 console.log({ threeConsecutiveOdds: threeConsecutiveOdds([2, 6, 4, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minDifference(nums) {
+  if (nums.length <= 4) return 0;
+
+  nums.sort((a, b) => a - b);
+
+  let minDiff = Number.MAX_SAFE_INTEGER;
+
+  for (let left = 0, right = nums.length - 4; left < 4; left++, right++) {
+    minDiff = Math.min(minDiff, nums[right] - nums[left]);
+  }
+
+  return minDiff;
+}
+console.log({ minDifference: minDifference([5, 3, 2, 4]) });
