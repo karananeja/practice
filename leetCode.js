@@ -8246,3 +8246,35 @@ function minDifference(nums) {
   return minDiff;
 }
 console.log({ minDifference: minDifference([5, 3, 2, 4]) });
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function mergeNodes(head) {
+  let valuePtr = head;
+  let resultList = null;
+  let sum = 0;
+  let isFirstNode = true;
+  let currentResultNode = null;
+
+  while (valuePtr) {
+    sum += valuePtr.val;
+
+    if (valuePtr.val === 0) {
+      if (isFirstNode) {
+        resultList = new ListNode(sum);
+        currentResultNode = resultList;
+        isFirstNode = false;
+      } else {
+        currentResultNode.next = new ListNode(sum);
+        currentResultNode = currentResultNode.next;
+      }
+      sum = 0;
+    }
+
+    valuePtr = valuePtr.next;
+  }
+
+  return resultList.next;
+}
