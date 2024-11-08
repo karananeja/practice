@@ -8278,3 +8278,41 @@ function mergeNodes(head) {
 
   return resultList.next;
 }
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {number[]}
+ */
+function nodesBetweenCriticalPoints(head) {
+  const distance = [-1, -1];
+  let current = head.next, previous = head;
+  let currentIndex = 1, previousCriticalIndex = 0, firstCriticalIndex = 0;
+  let minDistance = Number.MAX_SAFE_INTEGER;
+
+  while (current.next) {
+    const left = previous.val;
+    const center = current.val;
+    const right = current.next.val;
+
+    if ((center > left && center > right) || (center < left && center < right)) {
+      if (previousCriticalIndex === 0) {
+        previousCriticalIndex = currentIndex;
+        firstCriticalIndex = currentIndex;
+      } else {
+        minDistance = Math.min(minDistance, currentIndex - previousCriticalIndex);
+        previousCriticalIndex = currentIndex;
+      }
+    }
+
+    previous = current;
+    current = current.next;
+    currentIndex++;
+  }
+
+  if (minDistance !== Number.MAX_SAFE_INTEGER) {
+    distance[0] = minDistance;
+    distance[1] = previousCriticalIndex - firstCriticalIndex;
+  }
+
+  return distance;
+}
