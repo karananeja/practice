@@ -8316,3 +8316,15 @@ function nodesBetweenCriticalPoints(head) {
 
   return distance;
 }
+
+/**
+ * @param {number} n 
+ * @param {number} time 
+ * @returns {number} 
+ */
+function passThePillow(n, time) {
+  const rounds = Math.floor(time / (n - 1));
+  const remainder = time % (n - 1);
+  return rounds % 2 === 1 ? n - remainder : remainder + 1;
+}
+console.log({ passThePillow: passThePillow(10, 2) });
