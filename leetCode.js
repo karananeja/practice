@@ -8328,3 +8328,22 @@ function passThePillow(n, time) {
   return rounds % 2 === 1 ? n - remainder : remainder + 1;
 }
 console.log({ passThePillow: passThePillow(10, 2) });
+
+/**
+ * @param {number} numBottles 
+ * @param {number} numExchange 
+ * @returns {number}
+ */
+function numWaterBottles(numBottles, numExchange) {
+  if (numExchange > numBottles) return numBottles;
+
+  let emptyBottles = numBottles, extraBottles = 0;
+
+  while (emptyBottles > 0) {
+    emptyBottles = emptyBottles - numExchange + 1;
+    if (emptyBottles > 0) extraBottles++;
+  }
+
+  return numBottles + extraBottles;
+}
+console.log({ numWaterBottles: numWaterBottles(9, 3) });
