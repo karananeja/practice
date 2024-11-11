@@ -8347,3 +8347,19 @@ function numWaterBottles(numBottles, numExchange) {
   return numBottles + extraBottles;
 }
 console.log({ numWaterBottles: numWaterBottles(9, 3) });
+
+/**
+ * @param {number} n 
+ * @param {number} k 
+ * @returns {number}
+ */
+function findTheWinner(n, k) {
+  let ans = 0;
+
+  for (let idx = 2; idx <= n; idx++) {
+    ans = (ans + k) % idx;
+  }
+
+  return ans + 1;
+}
+console.log({ findTheWinner: findTheWinner(5, 2) });
