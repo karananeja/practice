@@ -8363,3 +8363,19 @@ function findTheWinner(n, k) {
   return ans + 1;
 }
 console.log({ findTheWinner: findTheWinner(5, 2) });
+
+/**
+ * @param {number[][]} customers 
+ * @returns {number}
+ */
+function averageWaitingTime(customers) {
+  let waitingTime = 0, currentTime = 0;
+
+  for (const [arrival, wait] of customers) {
+    currentTime = Math.max(currentTime, arrival) + wait;
+    waitingTime += currentTime - arrival;
+  }
+
+  return waitingTime / customers.length;
+}
+console.log({ averageWaitingTime: averageWaitingTime([[1, 2], [2, 5], [4, 3]]) });
