@@ -8379,3 +8379,20 @@ function averageWaitingTime(customers) {
   return waitingTime / customers.length;
 }
 console.log({ averageWaitingTime: averageWaitingTime([[1, 2], [2, 5], [4, 3]]) });
+
+/**
+ * @param {string} s 
+ * @returns {string[]}
+ */
+function cellsInRange(s) {
+  const cells = [];
+
+  for (let charIdx = s[0].charCodeAt(0); charIdx <= s[3].charCodeAt(0); charIdx++) {
+    for (let numIdx = +s[1]; numIdx <= +s[4]; numIdx++) {
+      cells.push(`${String.fromCharCode(charIdx)}${numIdx}`);
+    }
+  }
+
+  return cells;
+}
+console.log({ cellsInRange: cellsInRange("K1:L2") });
