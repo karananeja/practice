@@ -1167,3 +1167,34 @@ class IsHeap {
     return this.isCBT(root, index, totalCount) && this.isMaxOrder(root);
   }
 }
+
+/**
+ * @problem_thirtyTwo Given an array arr[ ], your task is to find the minimum number of increment operations required to make all the elements of the array unique. i.e.- no value in the array should occur more than once. In one operation, a value can be incremented by 1 only.
+ */
+/**
+ * @solution_thirtyTwo
+ */
+class MinIncrements {
+  minOperations(nums) {
+    let moves = 0;
+
+    for (let idx = 1; idx < nums.length; idx++) {
+      const previous = nums[idx - 1], current = nums[idx];
+
+      if (current <= previous) {
+        const value = Math.max(current, previous + 1);
+        nums[idx] = value;
+        moves += value - current;
+      }
+    }
+
+    return moves;
+  }
+
+  // Function to find minimum number of increments/decrements required.
+  minIncrements(arr) {
+    // your code here
+    arr.sort((a, b) => a - b);
+    return this.minOperations(arr);
+  }
+}
