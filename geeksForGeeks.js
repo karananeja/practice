@@ -1198,3 +1198,29 @@ class MinIncrements {
     return this.minOperations(arr);
   }
 }
+
+/**
+ * @problem_thirtyThree Given an array, arr[] of rope lengths, connect all ropes into a single rope with the minimum total cost. The cost to connect two ropes is the sum of their lengths.
+ */
+/**
+ * @solution_thirtyThree
+ */
+class MinCost {
+  // Function to return the minimum cost of connecting the ropes.
+  minCost(arr) {
+    // code here
+    const minHeap = new MinHeap((a, b) => a - b);
+    let cost = 0;
+
+    arr.forEach(num => minHeap.push(num));
+
+    while (minHeap.size > 1) {
+      const first = minHeap.pop(), second = minHeap.pop();
+      const sum = first + second;
+      cost += sum;
+      minHeap.push(sum);
+    }
+
+    return cost;
+  }
+}
