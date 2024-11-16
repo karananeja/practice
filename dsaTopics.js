@@ -102,3 +102,68 @@ const nums = [54, 53, 55, 52, 50];
 buildMaxHeap(nums);
 heapSort(nums);
 console.log({ nums });
+
+export class MinHeap {
+  constructor(compare) {
+    this.compare = compare;
+    this.heap = [];
+  }
+
+  push(item) {
+    this.heap.push(item);
+    this.heapifyUp();
+  }
+
+  pop() {
+    if (this.heap.length === 0) return undefined;
+    const root = this.heap[0];
+    const last = this.heap.pop();
+    if (this.heap.length > 0 && last !== undefined) {
+      this.heap[0] = last;
+      this.heapifyDown();
+    }
+    return root;
+  }
+
+  peek() {
+    return this.heap[0];
+  }
+
+  get size() {
+    return this.heap.length;
+  }
+
+  heapifyUp() {
+    let index = this.heap.length - 1;
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      if (this.compare(this.heap[index], this.heap[parentIndex]) >= 0) break;
+      [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
+      index = parentIndex;
+    }
+  }
+
+  heapifyDown() {
+    let index = 0;
+    const length = this.heap.length;
+
+    while (true) {
+      const leftChildIndex = 2 * index + 1;
+      const rightChildIndex = 2 * index + 2;
+      let smallest = index;
+
+      if (leftChildIndex < length && this.compare(this.heap[leftChildIndex], this.heap[smallest]) < 0) {
+        smallest = leftChildIndex;
+      }
+
+      if (rightChildIndex < length && this.compare(this.heap[rightChildIndex], this.heap[smallest]) < 0) {
+        smallest = rightChildIndex;
+      }
+
+      if (smallest === index) break;
+
+      [this.heap[index], this.heap[smallest]] = [this.heap[smallest], this.heap[index]];
+      index = smallest;
+    }
+  }
+}
