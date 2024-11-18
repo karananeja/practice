@@ -8396,3 +8396,37 @@ function cellsInRange(s) {
   return cells;
 }
 console.log({ cellsInRange: cellsInRange("K1:L2") });
+
+/**
+ * @param {string[]} arr 
+ * @param {number} left 
+ * @param {number} right 
+ */
+function reverseInterval(arr, left, right) {
+  while (left < right) {
+    [arr[left++], arr[right--]] = [arr[right], arr[left]];
+  }
+}
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function reverseParentheses(s) {
+  const result = s.split('');
+  const closingStack = [];
+
+  for (let idx = result.length - 1; idx >= 0; idx--) {
+    if (s.at(idx) === ")") closingStack.push(idx);
+
+    if (s.at(idx) === "(") {
+      const last = closingStack.pop();
+      result[idx] = null;
+      result[last] = null;
+      reverseInterval(result, idx + 1, last - 1);
+    }
+  }
+
+  return result.join('');
+}
+console.log({ reverseParentheses: reverseParentheses("(abcd)") });
