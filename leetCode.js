@@ -8430,3 +8430,18 @@ function reverseParentheses(s) {
   return result.join('');
 }
 console.log({ reverseParentheses: reverseParentheses("(abcd)") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumOperations(nums) {
+  let operations = 0;
+
+  for (const num of nums) {
+    operations += Math.min(num % 3, 3 - (num % 3));
+  }
+
+  return operations;
+}
+console.log({ minimumOperations: minimumOperations([1, 2, 3, 4, 5, 6]) });
