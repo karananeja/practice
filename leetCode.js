@@ -8445,3 +8445,26 @@ function minimumOperations(nums) {
   return operations;
 }
 console.log({ minimumOperations: minimumOperations([1, 2, 3, 4, 5, 6]) });
+
+/**
+ * @param {number[][]} descriptions 
+ * @returns {TreeNode | null}
+ */
+function createBinaryTree(descriptions) {
+  const childrens = new Set();
+  const nodes = {};
+
+  for (const [parent, child, isLeft] of descriptions) {
+    childrens.add(child);
+
+    if (!nodes[parent]) nodes[parent] = new TreeNode(parent);
+    if (!nodes[child]) nodes[child] = new TreeNode(child);
+
+    if (isLeft) nodes[parent].left = nodes[child];
+    else nodes[parent].right = nodes[child];
+  }
+
+  for (const [parent] of descriptions) {
+    if (!childrens.has(parent)) return nodes[parent];
+  }
+}
