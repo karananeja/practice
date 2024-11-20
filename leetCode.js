@@ -8468,3 +8468,4 @@ function createBinaryTree(descriptions) {
     if (!childrens.has(parent)) return nodes[parent];
   }
 }
+console.log({ createBinaryTree: createBinaryTree([[20, 15, 1], [20, 17, 0], [50, 20, 1], [50, 80, 0], [80, 19, 1]]) });
