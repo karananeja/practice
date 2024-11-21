@@ -8469,3 +8469,57 @@ function createBinaryTree(descriptions) {
   }
 }
 console.log({ createBinaryTree: createBinaryTree([[20, 15, 1], [20, 17, 0], [50, 20, 1], [50, 80, 0], [80, 19, 1]]) });
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number} target 
+ * @param {string[]} path 
+ * @returns {boolean}
+ */
+function findPath(node, target, path) {
+  if (!node) return false;
+  if (node.val === target) return true;
+
+  path.push("L");
+  if (findPath(node.left, target, path)) return true;
+  path.pop();
+
+  path.push("R");
+  if (findPath(node.right, target, path)) return true;
+  path.pop();
+
+  return false;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} startValue 
+ * @param {number} destValue 
+ * @returns {string}
+ */
+function getDirections(root, startValue, destValue) {
+  const startPath = [], destPath = [];
+
+  findPath(root, startValue, startPath);
+  findPath(root, destValue, destPath);
+
+  let directions = "", commonPathLength = 0;
+  const maxLength = Math.min(startPath.length, destPath.length);
+
+  while (
+    commonPathLength < maxLength &&
+    startPath[commonPathLength] === destPath[commonPathLength]
+  ) {
+    commonPathLength++;
+  }
+
+  for (let i = 0; i < startPath.length - commonPathLength; i++) {
+    directions += "U";
+  }
+
+  for (let i = commonPathLength; i < destPath.length; i++) {
+    directions += destPath[i];
+  }
+
+  return directions;
+}
