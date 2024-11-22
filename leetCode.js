@@ -8523,3 +8523,34 @@ function getDirections(root, startValue, destValue) {
 
   return directions;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number[]} to_delete 
+ * @returns {Array<TreeNode | null>}
+ */
+function delNodes(root, to_delete) {
+  const toDelete = new Set(to_delete), res = [];
+
+  /**
+   * @param {TreeNode | null} node 
+   * @param {boolean} isRoot 
+   * @returns {TreeNode | null}
+   */
+  function dfs(node, isRoot) {
+    if (!node) return null;
+
+    const deleted = toDelete.has(node.val);
+
+    if (isRoot && !deleted) res.push(node);
+
+    node.left = dfs(node.left, deleted);
+    node.right = dfs(node.right, deleted);
+
+    return deleted ? null : node;
+  }
+
+  dfs(root, true);
+
+  return res;
+}
