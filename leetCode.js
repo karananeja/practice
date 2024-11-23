@@ -8554,3 +8554,40 @@ function delNodes(root, to_delete) {
 
   return res;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} distance 
+ * @returns {number}
+ */
+function countPairs(root, distance) {
+  let ans = 0;
+
+  /**
+   * @param {TreeNode | null} node 
+   * @returns {number[]}
+   */
+  function dfs(node) {
+    if (!node) return [];
+    if (!node.left && !node.right) return [0];
+
+    const leftDistances = dfs(node.left);
+    const rightDistances = dfs(node.right);
+
+    for (const l of leftDistances) {
+      for (const r of rightDistances) {
+        if (l + r + 2 <= distance) ans++;
+      }
+    }
+
+    const distances = [];
+
+    for (const l of leftDistances) distances.push(l + 1);
+    for (const r of rightDistances) distances.push(r + 1);
+
+    return distances;
+  };
+
+  dfs(root);
+  return ans;
+}
