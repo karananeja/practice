@@ -8591,3 +8591,37 @@ function countPairs(root, distance) {
   dfs(root);
   return ans;
 }
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number[]}
+ */
+function luckyNumbers(matrix) {
+  const minValues = [], maxValues = [], luckyNumber = [];
+
+  for (const row of matrix) {
+    minValues.push(Math.min(...row));
+  }
+
+  for (let colIdx = 0; colIdx < matrix[0].length; colIdx++) {
+    const colValues = [];
+
+    for (let rowIdx = 0; rowIdx < matrix.length; rowIdx++) {
+      colValues.push(matrix[rowIdx][colIdx]);
+    }
+
+    maxValues.push(Math.max(...colValues));
+  }
+
+  for (let rowIdx = 0; rowIdx < minValues.length; rowIdx++) {
+    for (let colIdx = 0; colIdx < maxValues.length; colIdx++) {
+      if (minValues[rowIdx] === maxValues[colIdx]) {
+        luckyNumber.push(minValues[rowIdx]);
+        break;
+      }
+    }
+  }
+
+  return luckyNumber;
+}
+console.log({ luckyNumbers: luckyNumbers([[3, 7, 8], [9, 11, 13], [15, 16, 17]]) });
