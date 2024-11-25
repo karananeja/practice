@@ -8625,3 +8625,39 @@ function luckyNumbers(matrix) {
   return luckyNumber;
 }
 console.log({ luckyNumbers: luckyNumbers([[3, 7, 8], [9, 11, 13], [15, 16, 17]]) });
+
+/**
+ * @param {number[]} rowSum 
+ * @param {number[]} colSum 
+ * @returns {number[][]}
+ */
+function restoreMatrix(rowSum, colSum) {
+  const ROWS = rowSum.length, COLS = colSum.length;
+  const res = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+
+  for (let row = 0; row < ROWS; row++) {
+    res[row][0] = rowSum[row];
+  }
+
+  for (let col = 0; col < COLS; col++) {
+    let curColSum = 0;
+
+    for (let row = 0; row < ROWS; row++) {
+      curColSum += res[row][col];
+    }
+
+    let row = 0;
+
+    while (curColSum > colSum[col]) {
+      const diff = curColSum - colSum[col];
+      const maxShift = Math.min(res[row][col], diff);
+      res[row][col] -= maxShift;
+      res[row][col + 1] += maxShift;
+      curColSum -= maxShift;
+      row++;
+    }
+  }
+
+  return res;
+}
+console.log({ restoreMatrix: restoreMatrix([3, 8], [4, 7]) });
