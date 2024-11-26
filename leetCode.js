@@ -8661,3 +8661,27 @@ function restoreMatrix(rowSum, colSum) {
   return res;
 }
 console.log({ restoreMatrix: restoreMatrix([3, 8], [4, 7]) });
+
+/**
+ * @param {string[]} words 
+ * @param {string} x 
+ * @returns {number[]}
+ */
+function findWordsContaining(words, x) {
+  const indices = [];
+
+  for (let idx = 0; idx < words.length; idx++) {
+    const word = words[idx];
+    let start = 0, end = word.length - 1;
+
+    while (start <= end) {
+      if (word[start++] === x || word[end--] === x) {
+        indices.push(idx);
+        break;
+      }
+    }
+  }
+
+  return indices;
+}
+console.log({ findWordsContaining: findWordsContaining(["leet", "code"], "e") });
