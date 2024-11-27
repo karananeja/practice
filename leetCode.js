@@ -8685,3 +8685,26 @@ function findWordsContaining(words, x) {
   return indices;
 }
 console.log({ findWordsContaining: findWordsContaining(["leet", "code"], "e") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function differenceOfSum(nums) {
+  let digitSum = 0;
+
+  const elementSum = nums.reduce((acc, cur) => {
+    let curNum = cur;
+
+    while (curNum > 0) {
+      const digit = curNum % 10;
+      curNum = Math.floor(curNum / 10);
+      digitSum += digit;
+    }
+
+    return cur + acc;
+  }, 0);
+
+  return Math.abs(digitSum - elementSum);
+};
+console.log({ differenceOfSum: differenceOfSum([1, 15, 6, 3]) });
