@@ -8708,3 +8708,13 @@ function differenceOfSum(nums) {
   return Math.abs(digitSum - elementSum);
 };
 console.log({ differenceOfSum: differenceOfSum([1, 15, 6, 3]) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number}
+ */
+function addedInteger(nums1, nums2) {
+  return Math.min(...nums2) - Math.min(...nums1);
+}
+console.log({ addedInteger: addedInteger([5, 7, 3], [2, 6, 8]) });
