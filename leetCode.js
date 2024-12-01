@@ -8780,3 +8780,26 @@ function targetIndices(nums, target) {
   return indices;
 }
 console.log({ targetIndices: targetIndices([1, 2, 5, 2, 3], 2) });
+
+/**
+ * @param {number[]} mapping 
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function sortJumbled(mapping, nums) {
+  const mappedNums = new Map();
+
+  for (const num of nums) {
+    const numStr = `${num}`;
+    let mappedNum = '';
+
+    for (let i = 0; i < numStr.length; i++) {
+      mappedNum += mapping[+numStr.charAt(i)];
+    }
+
+    mappedNums.set(num, +mappedNum);
+  }
+
+  return nums.sort((a, b) => mappedNums.get(a) - mappedNums.get(b));
+}
+console.log({ sortJumbled: sortJumbled([8, 9, 4, 0, 2, 1, 3, 5, 7, 6], [991, 338, 38]) });
