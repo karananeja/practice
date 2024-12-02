@@ -8803,3 +8803,22 @@ function sortJumbled(mapping, nums) {
   return nums.sort((a, b) => mappedNums.get(a) - mappedNums.get(b));
 }
 console.log({ sortJumbled: sortJumbled([8, 9, 4, 0, 2, 1, 3, 5, 7, 6], [991, 338, 38]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function triangularSum(nums) {
+  while (nums.length > 1) {
+    const newNums = [];
+
+    for (let idx = 0; idx < nums.length - 1; idx++) {
+      newNums.push((nums[idx] + nums[idx + 1]) % 10);
+    }
+
+    nums = [...newNums];
+  }
+
+  return nums[0];
+}
+console.log({ triangularSum: triangularSum([1, 2, 3, 4, 5]) });
