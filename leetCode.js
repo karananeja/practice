@@ -8822,3 +8822,33 @@ function triangularSum(nums) {
   return nums[0];
 }
 console.log({ triangularSum: triangularSum([1, 2, 3, 4, 5]) });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {string}
+ */
+function digitSum(s, k) {
+  while (s.length > k) {
+    const nums = [];
+    let num = 0, count = 0;
+
+    for (let idx = 0; idx < s.length; idx++) {
+      num += +s[idx];
+      count++;
+
+      if (count === k) {
+        nums.push(num);
+        num = 0;
+        count = 0;
+      }
+    }
+
+    if (count > 0) nums.push(num);
+
+    s = nums.join("");
+  }
+
+  return s;
+}
+console.log({ digitSum: digitSum("11111222223", 3) });
