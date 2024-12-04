@@ -8852,3 +8852,55 @@ function digitSum(s, k) {
   return s;
 }
 console.log({ digitSum: digitSum("11111222223", 3) });
+
+/**
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function insertGreatestCommonDivisors(head) {
+  if (!head || !head.next) return head;
+
+  /**
+   * @param {number} a 
+   * @param {number} b 
+   * @returns {number}
+   */
+  function gcd(a, b) {
+    while (b) {
+      const temp = b;
+      b = a % b;
+      a = temp;
+    }
+
+    return a;
+  }
+
+  const nums = [];
+  let current = head;
+
+  while (current) {
+    nums.push(current.val);
+    current = current.next;
+  }
+
+  const divisors = [];
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    divisors.push(gcd(nums[i], nums[i + 1]));
+  }
+
+  const newHead = new ListNode();
+  let newCurrent = newHead;
+
+  for (let i = 0; i < nums.length; i++) {
+    newCurrent.next = new ListNode(nums[i]);
+    newCurrent = newCurrent.next;
+
+    if (i < divisors.length) {
+      newCurrent.next = new ListNode(divisors[i]);
+      newCurrent = newCurrent.next;
+    }
+  }
+
+  return newHead.next;
+}
