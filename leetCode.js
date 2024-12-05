@@ -8904,3 +8904,14 @@ function insertGreatestCommonDivisors(head) {
 
   return newHead.next;
 }
+
+/**
+ * @param {number} n 
+ * @param {number} m 
+ * @returns {number}
+ */
+function differenceOfSums(n, m) {
+  const x = Math.floor(n / m);
+  return (n * (n + 1) / 2) - (2 * m * x * (x + 1) / 2);
+}
+console.log({ differenceOfSums: differenceOfSums(10, 2) });
