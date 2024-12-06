@@ -8915,3 +8915,19 @@ function differenceOfSums(n, m) {
   return (n * (n + 1) / 2) - (2 * m * x * (x + 1) / 2);
 }
 console.log({ differenceOfSums: differenceOfSums(10, 2) });
+
+/**
+ * @param {string[]} details 
+ * @returns {number}
+ */
+function countSeniors(details) {
+  let seniorCount = 0;
+
+  for (const detail of details) {
+    const age = +`${detail[11]}${detail[12]}`;
+    if (age > 60) seniorCount++;
+  }
+
+  return seniorCount;
+}
+console.log({ countSeniors: countSeniors(["7868190130M7522", "5303914400F9211", "9273338290F4010"]) });
