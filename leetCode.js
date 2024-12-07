@@ -8931,3 +8931,27 @@ function countSeniors(details) {
   return seniorCount;
 }
 console.log({ countSeniors: countSeniors(["7868190130M7522", "5303914400F9211", "9273338290F4010"]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} pivot 
+ * @returns {number[]}
+ */
+function pivotArray(nums, pivot) {
+  const result = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] < pivot) result.push(nums[i]);
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === pivot) result.push(nums[i]);
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > pivot) result.push(nums[i]);
+  }
+
+  return result;
+}
+console.log({ pivotArray: pivotArray([2, 3, 1, 4, 5], 3) });
