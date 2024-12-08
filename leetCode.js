@@ -8955,3 +8955,12 @@ function pivotArray(nums, pivot) {
   return result;
 }
 console.log({ pivotArray: pivotArray([2, 3, 1, 4, 5], 3) });
+
+/**
+ * @param {number} n 
+ * @returns {number} 
+ */
+function minOperations(n) {
+  return n ** 2 / 4;
+}
+console.log({ minOperations: minOperations(10) });
