@@ -8964,3 +8964,21 @@ function minOperations(n) {
   return n ** 2 / 4;
 }
 console.log({ minOperations: minOperations(10) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minSwaps(nums) {
+  const length = nums.length, totalOnes = nums.filter(num => num === 1).length;
+  let left = 0, windowOnes = 0, maxWindowOnes = 0;
+
+  for (let right = 0; right < 2 * length; right++) {
+    if (nums[right % length]) windowOnes++;
+    if (right - left + 1 > totalOnes) windowOnes -= nums[left++ % length];
+    maxWindowOnes = Math.max(maxWindowOnes, windowOnes);
+  }
+
+  return totalOnes - maxWindowOnes;
+}
+console.log({ minSwaps: minSwaps([0, 1, 0, 1, 1, 0, 0]) });
