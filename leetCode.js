@@ -8982,3 +8982,26 @@ function minSwaps(nums) {
   return totalOnes - maxWindowOnes;
 }
 console.log({ minSwaps: minSwaps([0, 1, 0, 1, 1, 0, 0]) });
+
+/**
+ * @param {number[]} target 
+ * @param {number[]} arr 
+ * @returns {boolean}
+ */
+function canBeEqual(target, arr) {
+  const targetCount = new Map();
+
+  for (const num of arr) {
+    targetCount.set(num, (targetCount.get(num) || 0) + 1);
+  }
+
+  for (const num of target) {
+    if (!targetCount.get(num)) return false;
+
+    targetCount.set(num, targetCount.get(num) - 1);
+    if (targetCount.get(num) === 0) targetCount.delete(num);
+  }
+
+  return targetCount.size === 0;
+}
+console.log({ canBeEqual: canBeEqual([1, 2, 3, 4], [2, 4, 1, 3]) });
