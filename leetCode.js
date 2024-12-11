@@ -9005,3 +9005,34 @@ function canBeEqual(target, arr) {
   return targetCount.size === 0;
 }
 console.log({ canBeEqual: canBeEqual([1, 2, 3, 4], [2, 4, 1, 3]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} n 
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {number}
+ */
+function rangeSum(nums, n, left, right) {
+  const subArraySum = [], MOD = 10 ** 9 + 7;
+
+  for (let i = 0; i < n; i++) {
+    let currentSum = 0;
+
+    for (let j = i; j < n; j++) {
+      currentSum += nums[j];
+      subArraySum.push(currentSum);
+    }
+  }
+
+  subArraySum.sort((a, b) => a - b);
+
+  let rangeSum = 0;
+
+  for (let i = left - 1; i < right; i++) {
+    rangeSum = (rangeSum + subArraySum[i]) % MOD;
+  }
+
+  return rangeSum;
+}
+console.log({ rangeSum: rangeSum([1, 2, 3, 4], 4, 1, 5) });
