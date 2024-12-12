@@ -9036,3 +9036,25 @@ function rangeSum(nums, n, left, right) {
   return rangeSum;
 }
 console.log({ rangeSum: rangeSum([1, 2, 3, 4], 4, 1, 5) });
+
+/**
+ * @param {string[]} arr 
+ * @param {number} k 
+ * @returns {string}
+ */
+function kthDistinct(arr, k) {
+  const strCount = new Map();
+
+  for (const str of arr) {
+    strCount.set(str, (strCount.get(str) || 0) + 1);
+  }
+
+  let distinctCount = 0;
+
+  for (const [str, count] of strCount) {
+    if (count === 1) if (++distinctCount === k) return str;
+  }
+
+  return "";
+}
+console.log({ kthDistinct: kthDistinct(["d", "b", "c", "b", "c", "a"], 2) });
