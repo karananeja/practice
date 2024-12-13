@@ -9058,3 +9058,26 @@ function kthDistinct(arr, k) {
   return "";
 }
 console.log({ kthDistinct: kthDistinct(["d", "b", "c", "b", "c", "a"], 2) });
+
+/**
+ * @param {string} word 
+ * @returns {number}
+ */
+function minimumPushes(word) {
+  const charCount = new Array(26).fill(0);
+
+  for (const char of word) {
+    charCount[char.charCodeAt(0) - "a".charCodeAt(0)]++;
+  }
+
+  charCount.sort((a, b) => b - a);
+
+  let result = 0;
+
+  for (let idx = 0; idx < charCount.length; idx++) {
+    result += charCount[idx] * (1 + Math.floor(idx / 8));
+  }
+
+  return result;
+}
+console.log({ minimumPushes: minimumPushes("abcde") });
