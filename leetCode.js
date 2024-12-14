@@ -9081,3 +9081,24 @@ function minimumPushes(word) {
   return result;
 }
 console.log({ minimumPushes: minimumPushes("abcde") });
+
+/**
+ * @param {string} s 
+ * @param {string} t 
+ * @returns {number}
+ */
+function findPermutationDifference(s, t) {
+  let difference = 0;
+  const charIndexInS = new Map();
+
+  for (let idx = 0; idx < s.length; idx++) {
+    charIndexInS.set(s[idx], idx);
+  }
+
+  for (let idx = 0; idx < t.length; idx++) {
+    difference += Math.abs(charIndexInS.get(t[idx]) - idx);
+  }
+
+  return difference;
+}
+console.log({ findPermutationDifference: findPermutationDifference("abc", "bac") });
