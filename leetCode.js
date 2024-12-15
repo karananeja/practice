@@ -9102,3 +9102,78 @@ function findPermutationDifference(s, t) {
   return difference;
 }
 console.log({ findPermutationDifference: findPermutationDifference("abc", "bac") });
+
+/**
+ * @param {number} num 
+ * @returns {string}
+ */
+function numberToWords(num) {
+  if (num === 0) return 'Zero';
+
+  const ones = {
+    1: 'One',
+    2: 'Two',
+    3: 'Three',
+    4: 'Four',
+    5: 'Five',
+    6: 'Six',
+    7: 'Seven',
+    8: 'Eight',
+    9: 'Nine',
+    10: 'Ten',
+    11: 'Eleven',
+    12: 'Twelve',
+    13: 'Thirteen',
+    14: 'Fourteen',
+    15: 'Fifteen',
+    16: 'Sixteen',
+    17: 'Seventeen',
+    18: 'Eighteen',
+    19: 'Nineteen',
+  };
+
+  const tens = {
+    20: 'Twenty',
+    30: 'Thirty',
+    40: 'Forty',
+    50: 'Fifty',
+    60: 'Sixty',
+    70: 'Seventy',
+    80: 'Eighty',
+    90: 'Ninety',
+  };
+
+  function getString(n) {
+    const res = [];
+    const hundreds = Math.floor(n / 100);
+
+    if (hundreds) res.push(ones[hundreds] + ' Hundred');
+
+    const lastTwo = n % 100;
+
+    if (lastTwo >= 20) {
+      const tensDigit = Math.floor(lastTwo / 10),
+        onesDigit = lastTwo % 10;
+      res.push(tens[tensDigit * 10]);
+      if (onesDigit) res.push(ones[onesDigit]);
+    } else if (lastTwo) res.push(ones[lastTwo]);
+
+    return res.join(' ');
+  }
+
+  const postfix = ['', ' Thousand', ' Million', ' Billion'];
+  let idx = 0;
+
+  const res = [];
+
+  while (num) {
+    const digits = num % 1000;
+    const str = getString(digits);
+    if (str) res.push(str + postfix[idx]);
+    num = Math.floor(num / 1000);
+    idx++;
+  }
+
+  return res.reverse().join(' ');
+}
+console.log({ numberToWords: numberToWords(123) });
