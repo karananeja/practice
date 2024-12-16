@@ -9177,3 +9177,32 @@ function numberToWords(num) {
   return res.reverse().join(' ');
 }
 console.log({ numberToWords: numberToWords(123) });
+
+/**
+ * @param {number} rows 
+ * @param {number} cols 
+ * @param {number} rStart 
+ * @param {number} cStart 
+ * @returns {number[][]}
+ */
+function spiralMatrixIII(rows, cols, rStart, cStart) {
+  const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const res = [];
+
+  for (let step = 1, direction = 0; res.length < rows * cols;) {
+    for (let i = 0; i < 2; ++i) {
+      for (let j = 0; j < step; ++j) {
+        if (rStart >= 0 && rStart < rows && cStart >= 0 && cStart < cols) res.push([rStart, cStart]);
+        rStart += directions[direction][0];
+        cStart += directions[direction][1];
+      }
+
+      direction = (direction + 1) % 4;
+    }
+
+    ++step;
+  }
+
+  return res;
+}
+console.log({ spiralMatrixIII: spiralMatrixIII(1, 4, 0, 0) });
