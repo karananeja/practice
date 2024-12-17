@@ -9206,3 +9206,55 @@ function spiralMatrixIII(rows, cols, rStart, cStart) {
   return res;
 }
 console.log({ spiralMatrixIII: spiralMatrixIII(1, 4, 0, 0) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function numMagicSquaresInside(grid) {
+  const rows = grid.length, cols = grid[0].length;
+
+  /**
+   * @param {number} row 
+   * @param {number} col 
+   * @returns {0 | 1}
+   */
+  function magic(row, col) {
+    const values = new Set();
+
+    for (let i = row; i < row + 3; i++) {
+      for (let j = col; j < col + 3; j++) {
+        if (values.has(grid[i][j]) || grid[i][j] < 1 || grid[i][j] > 9)
+          return 0;
+        values.add(grid[i][j]);
+      }
+    }
+
+    for (let i = row; i < row + 3; i++) {
+      if (grid[i][col] + grid[i][col + 1] + grid[i][col + 2] !== 15) return 0;
+    }
+
+    for (let i = col; i < col + 3; i++) {
+      if (grid[row][i] + grid[row + 1][i] + grid[row + 2][i] !== 15) return 0;
+    }
+
+    if (
+      grid[row][col] + grid[row + 1][col + 1] + grid[row + 2][col + 2] !== 15 ||
+      grid[row][col + 2] + grid[row + 1][col + 1] + grid[row + 2][col] !== 15
+    )
+      return 0;
+
+    return 1;
+  }
+
+  let result = 0;
+
+  for (let row = 0; row < rows - 2; row++) {
+    for (let col = 0; col < cols - 2; col++) {
+      result += magic(row, col);
+    }
+  }
+
+  return result;
+}
+console.log({ numMagicSquaresInside: numMagicSquaresInside([[4, 3, 8, 4], [9, 5, 1, 9], [2, 7, 6, 2]]) });
