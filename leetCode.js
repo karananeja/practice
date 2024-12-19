@@ -9336,3 +9336,75 @@ function regionsBySlashes(grid) {
   return count;
 }
 console.log({ regionsBySlashes: regionsBySlashes([" /", "/ "]) });
+
+class KthLargest {
+  constructor(k, nums) {
+    this.k = k;
+    this.minHeap = [];
+
+    for (const num of nums) {
+      this.add(num);
+    }
+  }
+
+  add(val) {
+    if (this.minHeap.length < this.k || this.minHeap[0] < val) {
+      pushHeap(this.minHeap, val);
+      if (this.minHeap.length > this.k) {
+        popHeap(this.minHeap);
+      }
+    }
+    return this.minHeap[0];
+  }
+}
+
+/**
+ * @param {number[]} arr 
+ * @param {number} value 
+ */
+function pushHeap(arr, value) {
+  arr.push(value);
+  let index = arr.length - 1;
+
+  while (index > 0) {
+    const parentIndex = Math.floor((index - 1) / 2);
+    if (arr[parentIndex] <= arr[index]) break;
+    [arr[index], arr[parentIndex]] = [arr[parentIndex], arr[index]];
+    index = parentIndex;
+  }
+}
+
+/**
+ * @param {number[]} arr 
+ * @returns {number | void}
+ */
+function popHeap(arr) {
+  if (arr.length === 0) return;
+  const root = arr[0];
+  arr[0] = arr.pop();
+  heapify(arr, 0);
+  return root;
+};
+
+/**
+ * @param {number[]} arr 
+ * @param {number} index 
+ */
+function heapify(arr, index) {
+  let smallest = index;
+  const left = 2 * index + 1;
+  const right = 2 * index + 2;
+
+  if (left < arr.length && arr[left] < arr[smallest]) {
+    smallest = left;
+  }
+
+  if (right < arr.length && arr[right] < arr[smallest]) {
+    smallest = right;
+  }
+
+  if (smallest !== index) {
+    [arr[index], arr[smallest]] = [arr[smallest], arr[index]];
+    heapify(arr, smallest);
+  }
+}
