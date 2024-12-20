@@ -9408,3 +9408,41 @@ function heapify(arr, index) {
     heapify(arr, smallest);
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function smallestDistancePair(nums, k) {
+  nums.sort((a, b) => a - b);
+
+  let start = 0, end = Math.max(...nums);
+
+  /**
+   * @param {number} dist 
+   * @returns {number} 
+   */
+  function getPairs(dist) {
+    let left = 0, pairs = 0;
+
+    for (let right = 0; right < nums.length; right++) {
+      while (nums[right] - nums[left] > dist) {
+        left++;
+      }
+
+      pairs += right - left;
+    }
+
+    return pairs;
+  }
+
+  while (start < end) {
+    const mid = start + Math.floor((end - start) / 2);
+    const pairs = getPairs(mid);
+    pairs >= k ? (end = mid) : (start = mid + 1);
+  }
+
+  return start;
+}
+console.log({ smallestDistancePair: smallestDistancePair([1, 3, 1], 1) });
