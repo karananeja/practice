@@ -9446,3 +9446,22 @@ function smallestDistancePair(nums, k) {
   return start;
 }
 console.log({ smallestDistancePair: smallestDistancePair([1, 3, 1], 1) });
+
+/**
+ * @param {number[][]} arrays 
+ * @returns {number} 
+ */
+function maxDistance(arrays) {
+  let currentMin = arrays[0][0], currentMax = arrays[0][arrays[0].length - 1];
+  let result = 0;
+
+  for (let idx = 1; idx < arrays.length; idx++) {
+    const num = arrays[idx];
+    result = Math.max(result, num[num.length - 1] - currentMin, currentMax - num[0]);
+    currentMax = Math.max(currentMax, num[num.length - 1]);
+    currentMin = Math.min(currentMin, num[0]);
+  }
+
+  return result;
+}
+console.log({ maxDistance: maxDistance([[1, 2, 3], [4, 5], [1, 2, 3]]) });
