@@ -9465,3 +9465,27 @@ function maxDistance(arrays) {
   return result;
 }
 console.log({ maxDistance: maxDistance([[1, 2, 3], [4, 5], [1, 2, 3]]) });
+
+/**
+ * @param {string} allowed 
+ * @param {string[]} words 
+ * @returns {number}
+ */
+function countConsistentStrings(allowed, words) {
+  let count = 0;
+  const allowedChars = new Set(allowed);
+
+  for (const word of words) {
+    const distinctChars = new Set(word);
+    let isPresent = true;
+
+    for (const char of distinctChars) {
+      if (!allowedChars.has(char)) isPresent = false;
+    }
+
+    if (isPresent) count++;
+  }
+
+  return count;
+}
+console.log({ countConsistentStrings: countConsistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"]) });
