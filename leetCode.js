@@ -9489,3 +9489,18 @@ function countConsistentStrings(allowed, words) {
   return count;
 }
 console.log({ countConsistentStrings: countConsistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"]) });
+
+/**
+ * @param {number} n 
+ * @param {number} start 
+ * @returns {number}
+ */
+function xorOperation(n, start) {
+  const nums = Array.from({ length: n }, (_, idx) => start + 2 * idx);
+  let result = 0;
+
+  nums.forEach((num) => (result ^= num));
+
+  return result;
+}
+console.log({ xorOperation: xorOperation(5, 0) });
