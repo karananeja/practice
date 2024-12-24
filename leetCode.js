@@ -9504,3 +9504,19 @@ function xorOperation(n, start) {
   return result;
 }
 console.log({ xorOperation: xorOperation(5, 0) });
+
+/**
+ * @param {string} s 
+ * @param {string} letter 
+ * @returns {number}
+ */
+function percentageLetter(s, letter) {
+  let letterCount = 0;
+
+  for (const char of s) {
+    if (char === letter) letterCount++;
+  }
+
+  return Math.floor(letterCount / s.length * 100);
+}
+console.log({ percentageLetter: percentageLetter("hello", "o") });
