@@ -9520,3 +9520,23 @@ function percentageLetter(s, letter) {
   return Math.floor(letterCount / s.length * 100);
 }
 console.log({ percentageLetter: percentageLetter("hello", "o") });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function findComplement(num) {
+  let m = num, mask = 0;
+
+  if (num === 0) return 1;
+
+  while (m !== 0) {
+    mask = (mask << 1) | 1;
+    m = m >> 1;
+  }
+
+  let ans = (~num) & mask;
+
+  return ans;
+}
+console.log({ findComplement: findComplement(5) });
