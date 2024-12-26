@@ -9540,3 +9540,24 @@ function findComplement(num) {
   return ans;
 }
 console.log({ findComplement: findComplement(5) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number[]}
+ */
+function findIntersectionValues(nums1, nums2) {
+  let answer1 = 0, answer2 = 0;
+  const uniqueNums1 = new Set(nums1), uniqueNums2 = new Set(nums2);
+
+  for (const num of nums1) {
+    if (uniqueNums2.has(num)) answer1++;
+  }
+
+  for (const num of nums2) {
+    if (uniqueNums1.has(num)) answer2++;
+  }
+
+  return [answer1, answer2];
+}
+console.log({ findIntersectionValues: findIntersectionValues([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]) });
