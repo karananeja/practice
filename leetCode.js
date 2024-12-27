@@ -9561,3 +9561,71 @@ function findIntersectionValues(nums1, nums2) {
   return [answer1, answer2];
 }
 console.log({ findIntersectionValues: findIntersectionValues([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]) });
+
+/**
+ * @param {number} a 
+ * @param {number} b 
+ * @returns {number}
+ */
+function getCommonDivisor(a, b) {
+  while (b) {
+    [a, b] = [b, a % b];
+  }
+  return Math.abs(a);
+}
+
+/**
+ * @param {string} expression 
+ * @returns {string}
+ */
+function fractionAddition(expression) {
+  const digits = [];
+  let idx = 0;
+
+  while (idx < expression.length) {
+    const char = expression[idx], nextChar = expression[idx + 1];
+
+    if (+char > 1 && +char < 10) {
+      digits.push(+char);
+      idx++;
+    } else if (char === "1" && nextChar === "0") {
+      digits.push(+`${char}${nextChar}`);
+      idx++;
+    } else if (char === "1") {
+      digits.push(+char);
+      idx++;
+    } else {
+      const digit = expression[idx + 1], nextDigit = expression[idx + 2];
+
+      if (char === "-" || char === "+") {
+        if (digit === "1" && nextDigit === "0") {
+          digits.push(+`${char}${digit}${nextDigit}`);
+          idx++;
+        } else digits.push(+`${char}${digit}`);
+      }
+
+      if (char === "/") {
+        if (digit === "1" && nextDigit === "0") {
+          digits.push(+`${digit}${nextDigit}`);
+          idx++;
+        } else digits.push(+digit);
+      }
+
+      idx += 2;
+    }
+  }
+
+  const L_C_M = [...new Set(digits.filter((_, idx) => idx % 2 === 1))].reduce((acc, curr) => (acc *= curr), 1);
+  
+  const numeratorSum = digits.reduce((acc, curr, idx) => {
+    if (idx % 2 === 0) acc += curr * (L_C_M / digits[idx + 1]);
+    return acc;
+  }, 0);
+
+  const commonDivisor = getCommonDivisor(numeratorSum, L_C_M);
+  const numerator = numeratorSum / commonDivisor;
+  const denominator = L_C_M / commonDivisor;
+
+  return numeratorSum === 0 ? "0/1" : `${numerator}/${denominator}`;
+}
+console.log({ fractionAddition: fractionAddition("-1/2+1/2") });
