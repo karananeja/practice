@@ -9616,7 +9616,7 @@ function fractionAddition(expression) {
   }
 
   const L_C_M = [...new Set(digits.filter((_, idx) => idx % 2 === 1))].reduce((acc, curr) => (acc *= curr), 1);
-  
+
   const numeratorSum = digits.reduce((acc, curr, idx) => {
     if (idx % 2 === 0) acc += curr * (L_C_M / digits[idx + 1]);
     return acc;
@@ -9629,3 +9629,24 @@ function fractionAddition(expression) {
   return numeratorSum === 0 ? "0/1" : `${numerator}/${denominator}`;
 }
 console.log({ fractionAddition: fractionAddition("-1/2+1/2") });
+
+/**
+ * @param {string[]} words 
+ * @returns {number}
+ */
+function similarPairs(words) {
+  let pairsCount = 0;
+
+  for (let i = 0; i < words.length; i++) {
+    const wordOne = new Set(words[i]);
+
+    for (let j = i + 1; j < words.length; j++) {
+      const wordTwo = new Set(words[j]);
+
+      if (wordOne.size === wordTwo.size && new Set([...wordOne, ...wordTwo]).size === wordOne.size) pairsCount++;
+    }
+  }
+
+  return pairsCount;
+}
+console.log({ similarPairs: similarPairs("eat", "beat", "ate") });
