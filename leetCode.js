@@ -9650,3 +9650,28 @@ function similarPairs(words) {
   return pairsCount;
 }
 console.log({ similarPairs: similarPairs("eat", "beat", "ate") });
+
+/**
+ * @param {_Node | null} root 
+ * @returns {number[]}
+ */
+function postorder(root) {
+  /**
+   * @param {_Node | null} node 
+   * @param {number[]} values 
+   * @returns {number[]}
+   */
+  function getValues(node, values) {
+    if (!node) return values;
+
+    for (const child of node.children) {
+      getValues(child, values);
+    }
+
+    values.push(node.val);
+
+    return values;
+  }
+
+  return getValues(root, []);
+}
