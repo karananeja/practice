@@ -9675,3 +9675,34 @@ function postorder(root) {
 
   return getValues(root, []);
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function isPossibleDivide(nums, k) {
+  if (nums.length % k !== 0) return false;
+
+  const count = new Map();
+
+  for (const card of nums) {
+    count.set(card, (count.get(card) || 0) + 1);
+  }
+
+  const sortedKeys = Array.from(count.keys()).sort((a, b) => a - b);
+
+  for (const key of sortedKeys) {
+    if (count.get(key) > 0) {
+      const num = count.get(key);
+
+      for (let i = 0; i < k; i++) {
+        if ((count.get(key + i) || 0) < num) return false;
+        count.set(key + i, count.get(key + i) - num);
+      }
+    }
+  }
+
+  return true;
+}
+console.log({ isPossibleDivide: isPossibleDivide([1, 2, 3, 3, 4, 4, 5, 6], 4) });
