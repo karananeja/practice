@@ -9706,3 +9706,24 @@ function isPossibleDivide(nums, k) {
   return true;
 }
 console.log({ isPossibleDivide: isPossibleDivide([1, 2, 3, 3, 4, 4, 5, 6], 4) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function mostFrequentEven(nums) {
+  const numCount = {};
+
+  for (const num of nums) {
+    if (num % 2 === 0) numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  const maxCount = Object.values(numCount).reduce(((acc, curr) => Math.max(acc, curr)), 0);
+  const minElement = Object.keys(numCount).filter(num => {
+    if (numCount[num] === maxCount) return numCount[num];
+  });
+
+  if (minElement.length) return +minElement[0];
+  return -1;
+}
+console.log({ mostFrequentEven: mostFrequentEven([0, 1, 2, 2, 4, 4, 1]) });
