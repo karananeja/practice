@@ -9727,3 +9727,29 @@ function mostFrequentEven(nums) {
   return -1;
 }
 console.log({ mostFrequentEven: mostFrequentEven([0, 1, 2, 2, 4, 4, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function frequencySort(nums) {
+  const sortedNums = [], numCount = {};
+
+  for (const num of nums) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  const sortedNumCount = Object.entries(numCount).sort((a, b) => {
+    if (a[1] === b[1]) return +b[0] - +a[0];
+    return a[1] - b[1];
+  });
+
+  for (const num of sortedNumCount) {
+    for (let idx = 0; idx < num[1]; idx++) {
+      sortedNums.push(+num[0]);
+    }
+  }
+
+  return sortedNums;
+}
+console.log({ frequencySort: frequencySort([2, 1, 2, 3, 4, 5, 6, 4, 2, 3]) });
