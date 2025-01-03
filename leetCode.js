@@ -9777,3 +9777,19 @@ function validMountainArray(arr) {
   return i === n - 1;
 }
 console.log({ validMountainArray: validMountainArray([0, 3, 2, 1]) });
+
+/**
+ * @typedef {Array<MultidimensionalArray | number>} MultidimensionalArray
+ */
+/**
+ * @param {MultidimensionalArray} arr
+ * @returns {Generator<number, void, unknown>}
+ */
+function* inorderTraversal(arr) {
+  for (let idx = 0; idx < arr.length; idx++) {
+    const element = arr[idx];
+    if (Array.isArray(element)) yield* inorderTraversal(element);
+    else yield element;
+  }
+}
+console.log({ inorderTraversal: inorderTraversal([1, [2, 3], [[4, 5], 6], 7]) });
