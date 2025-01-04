@@ -9793,3 +9793,25 @@ function* inorderTraversal(arr) {
   }
 }
 console.log({ inorderTraversal: inorderTraversal([1, [2, 3], [[4, 5], 6], 7]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function countQuadruplets(nums) {
+  const length = nums.length;
+  let count = 0;
+
+  for (let a = 0; a < length; a++) {
+    for (let b = a + 1; b < length; b++) {
+      for (let c = b + 1; c < length; c++) {
+        for (let d = c + 1; d < length; d++) {
+          if (nums[a] + nums[b] + nums[c] === nums[d]) count++;
+        }
+      }
+    }
+  }
+
+  return count;
+}
+console.log({ countQuadruplets: countQuadruplets([9, 6, 7, 7, 6, 5, 4, 3, 2, 1]) });
