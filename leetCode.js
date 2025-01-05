@@ -9815,3 +9815,25 @@ function countQuadruplets(nums) {
   return count;
 }
 console.log({ countQuadruplets: countQuadruplets([9, 6, 7, 7, 6, 5, 4, 3, 2, 1]) });
+
+/**
+ * @param {number[]} original 
+ * @param {number} m 
+ * @param {number} n 
+ * @returns {number[][]}
+ */
+function construct2DArray(original, m, n) {
+  if (original.length !== m * n) return [];
+
+  const result = Array.from({ length: m }, () => new Array(n).fill(0));
+  let idx = 0;
+
+  for (let row = 0; row < m; row++) {
+    for (let col = 0; col < n; col++) {
+      result[row][col] = original[idx++];
+    }
+  }
+
+  return result;
+}
+console.log({ construct2DArray: construct2DArray([1, 2, 3, 4], 2, 2) });
