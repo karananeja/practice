@@ -9837,3 +9837,24 @@ function construct2DArray(original, m, n) {
   return result;
 }
 console.log({ construct2DArray: construct2DArray([1, 2, 3, 4], 2, 2) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function numberOfPairs(nums) {
+  const numCount = {};
+  let pairs = 0, leftOvers = 0;
+
+  for (const num of nums) {
+    numCount[num] = (numCount[num] || 0) + 1;
+  }
+
+  for (const num in numCount) {
+    pairs += Math.floor(numCount[num] / 2);
+    leftOvers += numCount[num] % 2;
+  }
+
+  return [pairs, leftOvers];
+}
+console.log({ numberOfPairs: numberOfPairs([1, 3, 2, 1, 3, 2, 2]) });
