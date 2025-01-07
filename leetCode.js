@@ -9858,3 +9858,27 @@ function numberOfPairs(nums) {
   return [pairs, leftOvers];
 }
 console.log({ numberOfPairs: numberOfPairs([1, 3, 2, 1, 3, 2, 2]) });
+
+/**
+ * @param {number[]} chalk 
+ * @param {number} k 
+ * @returns {number}
+ */
+function chalkReplacer(chalk, k) {
+  let sum = 0;
+
+  for (let i = 0; i < chalk.length; i++) {
+    sum += chalk[i];
+    if (sum > k) break;
+  }
+
+  k = k % sum;
+
+  for (let i = 0; i < chalk.length; i++) {
+    if (k < chalk[i]) return i;
+    k = k - chalk[i];
+  }
+
+  return 0;
+}
+console.log({ chalkReplacer: chalkReplacer([5, 1, 5], 22) });
