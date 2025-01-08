@@ -9882,3 +9882,35 @@ function chalkReplacer(chalk, k) {
   return 0;
 }
 console.log({ chalkReplacer: chalkReplacer([5, 1, 5], 22) });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {number}
+ */
+function getLucky(s, k) {
+  let digitSum = 0;
+
+  for (const char of s) {
+    let digit = char.charCodeAt(0) - 96;
+
+    while (digit > 0) {
+      digitSum += digit % 10;
+      digit = Math.floor(digit / 10);
+    }
+  }
+
+  for (let i = 1; i < k; i++) {
+    let result = 0;
+
+    while (digitSum > 0) {
+      result += digitSum % 10;
+      digitSum = Math.floor(digitSum / 10);
+    }
+
+    digitSum = result;
+  }
+
+  return digitSum;
+}
+console.log({ getLucky: getLucky("abc", 1) });
