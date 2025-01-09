@@ -9914,3 +9914,37 @@ function getLucky(s, k) {
   return digitSum;
 }
 console.log({ getLucky: getLucky("abc", 1) });
+
+/**
+ * @param {number[]} commands 
+ * @param {number[][]} obstacles 
+ * @returns {number}
+ */
+function robotSim(commands, obstacles) {
+  const modes = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  let direction = 0;
+  let x = 0, y = 0;
+  const obstacleSet = new Set(obstacles.map(([ox, oy]) => `${ox},${oy}`));
+  let maxDistSq = 0;
+
+  for (const command of commands) {
+    if (command === -2) direction = (direction + 3) % 4;
+    else if (command === -1) direction = (direction + 1) % 4;
+    else {
+      for (let step = 0; step < command; step++) {
+        const nx = x + modes[direction][0];
+        const ny = y + modes[direction][1];
+
+        if (obstacleSet.has(`${nx},${ny}`)) break;
+
+        x = nx;
+        y = ny;
+
+        maxDistSq = Math.max(maxDistSq, x * x + y * y);
+      }
+    }
+  }
+
+  return maxDistSq;
+}
+console.log({ robotSim: robotSim([4, -1, 3, 1], [[2, 4], [3, 6]]) });
