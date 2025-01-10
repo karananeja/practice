@@ -9948,3 +9948,28 @@ function robotSim(commands, obstacles) {
   return maxDistSq;
 }
 console.log({ robotSim: robotSim([4, -1, 3, 1], [[2, 4], [3, 6]]) });
+
+/**
+ * @param {number[]} rolls 
+ * @param {number} mean 
+ * @param {number} n 
+ * @returns {number[]}
+ */
+function missingRolls(rolls, mean, n) {
+  const noOfRolls = rolls.length, totalSum = mean * (noOfRolls + n);
+  let missingSum = totalSum - rolls.reduce((acc, cur) => (acc += cur), 0);
+
+  if (missingSum > 6 * n || missingSum < n) return [];
+
+  const result = [];
+
+  while (n) {
+    const dice = Math.min(6, missingSum - n + 1);
+    result.push(dice);
+    missingSum -= dice;
+    n--;
+  }
+
+  return result;
+}
+console.log({ missingRolls: missingRolls([3, 2, 4, 3], 4, 2) });
