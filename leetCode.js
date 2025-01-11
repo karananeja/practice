@@ -9973,3 +9973,21 @@ function missingRolls(rolls, mean, n) {
   return result;
 }
 console.log({ missingRolls: missingRolls([3, 2, 4, 3], 4, 2) });
+
+/**
+ * @param {number[]} nums 
+ * @param {ListNode | null} head 
+ * @returns {ListNode | null}
+ */
+function modifiedList(nums, head) {
+  const uniqueNums = new Set(nums);
+  const current = new ListNode(0, head);
+  let previous = current;
+
+  while (previous.next) {
+    if (uniqueNums.has(previous.next.val)) previous.next = previous.next.next;
+    else previous = previous.next;
+  }
+
+  return current.next;
+}
