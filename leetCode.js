@@ -9991,3 +9991,36 @@ function modifiedList(nums, head) {
 
   return current.next;
 }
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {ListNode | null} head 
+ * @returns {boolean}
+ */
+function checkPath(node, head) {
+  if (!node) return false;
+  if (dfs(node, head)) return true;
+  return checkPath(node.left, head) || checkPath(node.right, head);
+}
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {ListNode | null} head 
+ * @returns {boolean}
+ */
+
+function dfs(node, head) {
+  if (!head) return true;
+  if (!node) return false;
+  if (node.val !== head.val) return false;
+  return dfs(node.left, head.next) || dfs(node.right, head.next);
+}
+
+/**
+ * @param {ListNode | null} head 
+ * @param {TreeNode | null} root 
+ * @returns {boolean}
+ */
+function isSubPath(head, root) {
+  return checkPath(root, head);
+}
