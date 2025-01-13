@@ -10024,3 +10024,44 @@ function dfs(node, head) {
 function isSubPath(head, root) {
   return checkPath(root, head);
 }
+
+/**
+ * @param {ListNode | null} head 
+ * @param {number} k 
+ * @returns {Array<ListNode | null>}
+ */
+function splitListToParts(head, k) {
+  const ans = new Array(k);
+  let size = 0, current = head;
+
+  while (current) {
+    size++;
+    current = current.next;
+  }
+
+  const splitSize = Math.floor(size / k);
+  let numRemainingParts = size % k;
+
+  current = head;
+
+  for (let i = 0; i < k; i++) {
+    const newPart = new ListNode(0);
+    let tail = newPart;
+    let currentSize = splitSize;
+
+    if (numRemainingParts > 0) {
+      numRemainingParts--;
+      currentSize++;
+    }
+
+    for (let j = 0; j < currentSize; j++) {
+      tail.next = new ListNode(current.val);
+      tail = tail.next;
+      current = current.next;
+    }
+
+    ans[i] = newPart.next;
+  }
+
+  return ans;
+}
