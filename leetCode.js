@@ -10065,3 +10065,19 @@ function splitListToParts(head, k) {
 
   return ans;
 }
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function removeStars(s) {
+  const chars = [];
+
+  for (const char of s) {
+    if (char === "*") chars.pop();
+    else chars.push(char);
+  }
+
+  return chars.join("");
+}
+console.log({ removeStars: removeStars("leet**cod*e") });
