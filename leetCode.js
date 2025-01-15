@@ -10081,3 +10081,20 @@ function removeStars(s) {
   return chars.join("");
 }
 console.log({ removeStars: removeStars("leet**cod*e") });
+
+/**
+ * @param {number} start 
+ * @param {number} goal 
+ * @returns {number}
+ */
+function minBitFlips(start, goal) {
+  let updatedNum = start ^ goal, result = 0;
+
+  while (updatedNum) {
+    result += updatedNum & 1;
+    updatedNum >>= 1;
+  }
+
+  return result;
+}
+console.log({ minBitFlips: minBitFlips(10, 7) });
