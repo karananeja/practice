@@ -10098,3 +10098,25 @@ function minBitFlips(start, goal) {
   return result;
 }
 console.log({ minBitFlips: minBitFlips(10, 7) });
+
+/**
+ * @param {number[]} arr 
+ * @param {number[][]} queries 
+ * @returns {number[]}
+ */
+function xorQueries(arr, queries) {
+  const prefix = [0];
+
+  for (const num of arr) {
+    prefix.push(prefix[prefix.length - 1] ^ num);
+  }
+
+  const result = [];
+
+  for (const [left, right] of queries) {
+    result.push(prefix[right + 1] ^ prefix[left]);
+  }
+
+  return result;
+}
+console.log({ xorQueries: xorQueries([1, 3, 4, 8], [[0, 1], [1, 2], [0, 3], [3, 3]]) });
