@@ -10120,3 +10120,25 @@ function xorQueries(arr, queries) {
   return result;
 }
 console.log({ xorQueries: xorQueries([1, 3, 4, 8], [[0, 1], [1, 2], [0, 3], [3, 3]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function longestSubarray(nums) {
+  let size = 0, res = 0, curMax = 0;
+
+  for (const num of nums) {
+    if (num > curMax) {
+      curMax = num;
+      size = 1;
+      res = 0;
+    } else if (num === curMax) size++;
+    else size = 0;
+
+    res = Math.max(res, size);
+  }
+
+  return res;
+}
+console.log({ longestSubarray: longestSubarray([1, 4, 5, 6, 23, 54, 45, 44, 46, 56, 3]) });
