@@ -10142,3 +10142,27 @@ function longestSubarray(nums) {
   return res;
 }
 console.log({ longestSubarray: longestSubarray([1, 4, 5, 6, 23, 54, 45, 44, 46, 56, 3]) });
+
+/**
+ * @param {string[]} timePoints 
+ * @returns {number}
+ */
+function findMinDifference(timePoints) {
+  const minutes = [];
+  let min = Infinity;
+
+  for (const timePoint of timePoints) {
+    const [hour, min] = timePoint.split(":");
+    if (hour === "00" && min === "00") minutes.push(24 * 60);
+    else minutes.push(+hour * 60 + +min);
+  }
+
+  minutes.sort((a, b) => a - b);
+
+  for (let idx = 1; idx < minutes.length; idx++) {
+    min = Math.min(min, minutes[idx] - minutes[idx - 1]);
+  }
+
+  return Math.min(min, 24 * 60 - minutes[minutes.length - 1] + minutes[0]);
+}
+console.log({ findMinDifference: findMinDifference(["23:59", "00:00"]) });
