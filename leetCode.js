@@ -10166,3 +10166,19 @@ function findMinDifference(timePoints) {
   return Math.min(min, 24 * 60 - minutes[minutes.length - 1] + minutes[0]);
 }
 console.log({ findMinDifference: findMinDifference(["23:59", "00:00"]) });
+
+class RecentCounter {
+  constructor() {
+    this.pings = [];
+  }
+
+  ping(t) {
+    this.pings.push(t);
+
+    while (this.pings.length > 0 && this.pings[0] < t - 3000) {
+      this.pings.shift();
+    }
+
+    return this.pings.length;
+  }
+}
