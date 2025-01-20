@@ -10182,3 +10182,29 @@ class RecentCounter {
     return this.pings.length;
   }
 }
+
+/**
+ * @param {string} s1 
+ * @param {string} s2 
+ * @returns {string[]}
+ */
+function uncommonFromSentences(s1, s2) {
+  const wordCount = {};
+  const wordsFromS1 = s1.split(" "), wordsFromS2 = s2.split(" ");
+  const unCommonWords = [];
+
+  for (const word of wordsFromS1) {
+    wordCount[word] = (wordCount[word] || 0) + 1;
+  }
+
+  for (const word of wordsFromS2) {
+    wordCount[word] = (wordCount[word] || 0) + 1;
+  }
+
+  for (const word in wordCount) {
+    if (wordCount[word] === 1) unCommonWords.push(word);
+  }
+
+  return unCommonWords;
+}
+console.log({ uncommonFromSentences: uncommonFromSentences("this apple is sweet", "this apple is sour") });
