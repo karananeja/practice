@@ -10208,3 +10208,20 @@ function uncommonFromSentences(s1, s2) {
   return unCommonWords;
 }
 console.log({ uncommonFromSentences: uncommonFromSentences("this apple is sweet", "this apple is sour") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {string}
+ */
+function largestNumber(nums) {
+  const strNums = Array.from({ length: nums.length }, (_, idx) => `${nums[idx]}`);
+
+  strNums.sort((a, b) => {
+    if (a + b > b + a) return -1;
+    else return 1;
+  });
+
+  if (strNums[0] === '0') return '0';
+  return strNums.join("");
+}
+console.log({ largestNumber: largestNumber([3, 30, 34, 5, 9]) });
