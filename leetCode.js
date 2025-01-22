@@ -10225,3 +10225,44 @@ function largestNumber(nums) {
   return strNums.join("");
 }
 console.log({ largestNumber: largestNumber([3, 30, 34, 5, 9]) });
+
+/**
+ * @param {string} expression 
+ * @returns {number[]}
+ */
+function diffWaysToCompute(expression) {
+  const operations= {
+    "+": (x, y) => x + y,
+    "-": (x, y) => x - y,
+    "*": (x, y) => x * y,
+  };
+
+  function evaluateExpressions(left, right) {
+    const result = [];
+
+    for (let idx = left; idx <= right; idx++) {
+      const operation = expression[idx] 
+
+      if (operation in operations) {
+        const leftValues = evaluateExpressions(left, idx - 1);
+        const rightValues = evaluateExpressions(idx + 1, right);
+
+        for (const num1 of leftValues) {
+          for (const num2 of rightValues) {
+            result.push(operations[operation](num1, num2));
+          }
+        }
+      }
+    }
+
+    if (result.length === 0) {
+      const numberStr = expression.slice(left, right + 1);
+      result.push(Number(numberStr));
+    }
+
+    return result;
+  }
+
+  return evaluateExpressions(0, expression.length - 1);
+}
+console.log({ diffWaysToCompute: diffWaysToCompute("2*3-4*5") });
