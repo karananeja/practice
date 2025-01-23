@@ -10266,3 +10266,27 @@ function diffWaysToCompute(expression) {
   return evaluateExpressions(0, expression.length - 1);
 }
 console.log({ diffWaysToCompute: diffWaysToCompute("2*3-4*5") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function shortestPalindrome(s) {
+  let prefix = 0, suffix = 0, lastIndex = 0, power = 1;
+  const base = 29, mod = 10 ** 9 + 7;
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const char = s[idx].charCodeAt(0) - "a".charCodeAt(0) + 1;
+
+    prefix = (prefix * base) % mod;
+    prefix = (prefix + char) % mod;
+
+    suffix = (suffix + char * power) % mod;
+    power = (power * base) % mod;
+
+    if (prefix === suffix) lastIndex = idx;
+  }
+
+  return s.slice(lastIndex + 1).split("").reverse().join("") + s;
+}
+console.log({ shortestPalindrome: shortestPalindrome("aacecaaa") });
