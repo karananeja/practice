@@ -10231,7 +10231,7 @@ console.log({ largestNumber: largestNumber([3, 30, 34, 5, 9]) });
  * @returns {number[]}
  */
 function diffWaysToCompute(expression) {
-  const operations= {
+  const operations = {
     "+": (x, y) => x + y,
     "-": (x, y) => x - y,
     "*": (x, y) => x * y,
@@ -10241,7 +10241,7 @@ function diffWaysToCompute(expression) {
     const result = [];
 
     for (let idx = left; idx <= right; idx++) {
-      const operation = expression[idx] 
+      const operation = expression[idx];
 
       if (operation in operations) {
         const leftValues = evaluateExpressions(left, idx - 1);
@@ -10290,3 +10290,25 @@ function shortestPalindrome(s) {
   return s.slice(lastIndex + 1).split("").reverse().join("") + s;
 }
 console.log({ shortestPalindrome: shortestPalindrome("aacecaaa") });
+
+/**
+ * @param {number} limit 
+ * @returns {number} 
+ */
+function countEven(limit) {
+  let count = 0;
+
+  for (let idx = 1; idx <= limit; idx++) {
+    let digitSum = 0, num = idx;
+
+    while (num > 0) {
+      digitSum += num % 10;
+      num = Math.floor(num / 10);
+    }
+
+    if (digitSum % 2 === 0) count++;
+  }
+
+  return count;
+}
+console.log({ countEven: countEven(10) });
