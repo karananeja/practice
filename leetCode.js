@@ -10312,3 +10312,13 @@ function countEven(limit) {
   return count;
 }
 console.log({ countEven: countEven(10) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findNonMinOrMax(nums) {
+  const maxNum = Math.max(...nums), minNum = Math.min(...nums);
+  return nums.find(num => num !== minNum && num !== maxNum) ?? -1;
+}
+console.log({ findNonMinOrMax: findNonMinOrMax([1, 2, 3, 4]) });
