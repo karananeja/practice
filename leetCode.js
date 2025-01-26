@@ -10322,3 +10322,26 @@ function findNonMinOrMax(nums) {
   return nums.find(num => num !== minNum && num !== maxNum) ?? -1;
 }
 console.log({ findNonMinOrMax: findNonMinOrMax([1, 2, 3, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function thirdMax(nums) {
+  nums.sort((a, b) => b - a);
+
+  let count = 0, maxNum = -Infinity;
+
+  for (const num of nums) {
+
+    if (maxNum !== num) {
+      maxNum = num;
+      count++;
+    }
+
+    if (count === 3) return maxNum;
+  }
+
+  return nums[0];
+}
+console.log({ thirdMax: thirdMax([3, 2, 1]) });
