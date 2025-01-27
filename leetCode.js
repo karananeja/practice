@@ -10345,3 +10345,27 @@ function thirdMax(nums) {
   return nums[0];
 }
 console.log({ thirdMax: thirdMax([3, 2, 1]) });
+
+/**
+ * @param {number} n 
+ * @returns {boolean}
+ */
+function isHappy(n) {
+  const seen = new Set();
+
+  while (n !== 1 && !seen.has(n)) {
+    seen.add(n);
+    let sum = 0;
+
+    while (n > 0) {
+      const digit = n % 10;
+      sum += digit * digit;
+      n = Math.floor(n / 10);
+    }
+
+    n = sum;
+  }
+
+  return n === 1;
+}
+console.log({ isHappy: isHappy(19) });
