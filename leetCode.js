@@ -10369,3 +10369,17 @@ function isHappy(n) {
   return n === 1;
 }
 console.log({ isHappy: isHappy(19) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function isArraySpecial(nums) {
+  for (let idx = 0; idx < nums.length - 1; idx++) {
+    const curNum = nums[idx], nextNum = nums[idx + 1];
+    if ((curNum % 2 === 0 && nextNum % 2 === 0) || (curNum % 2 !== 0 && nextNum % 2 !== 0)) return false;
+  }
+
+  return true;
+}
+console.log({ isArraySpecial: isArraySpecial([1, 2, 3, 4, 5, 6]) });
