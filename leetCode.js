@@ -10383,3 +10383,21 @@ function isArraySpecial(nums) {
   return true;
 }
 console.log({ isArraySpecial: isArraySpecial([1, 2, 3, 4, 5, 6]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function countPairs(nums, k) {
+  let count = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] === nums[j] && (i * j) % k === 0) count++;
+    }
+  }
+
+  return count;
+}
+console.log({ countPairs: countPairs([1, 2, 3, 4, 5, 6], 3) });
