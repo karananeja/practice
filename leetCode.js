@@ -10401,3 +10401,21 @@ function countPairs(nums, k) {
   return count;
 }
 console.log({ countPairs: countPairs([1, 2, 3, 4, 5, 6], 3) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function leftRightDifference(nums) {
+  const differences = [];
+  let leftSum = 0, rightSum = nums.reduce((p, c) => p + c, 0);
+
+  for (const num of nums) {
+    rightSum -= num;
+    differences.push(Math.abs(rightSum - leftSum));
+    leftSum += num;
+  }
+
+  return differences;
+}
+console.log({ leftRightDifference: leftRightDifference([2, 3, 1, 5, 4]) });
