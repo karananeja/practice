@@ -10419,3 +10419,24 @@ function leftRightDifference(nums) {
   return differences;
 }
 console.log({ leftRightDifference: leftRightDifference([2, 3, 1, 5, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function getSneakyNumbers(nums) {
+  for (let idx = 0; idx < nums.length; idx++) {
+    nums[idx] += 1;
+  }
+
+  const sneakyNumbers = [];
+
+  for (const num of nums) {
+    const index = Math.abs(num);
+    if (nums[index] < 0) sneakyNumbers.push(index - 1);
+    else nums[index] = -nums[index];
+  }
+
+  return sneakyNumbers;
+}
+console.log({ getSneakyNumbers: getSneakyNumbers([4, 3, 2, 7, 8, 2, 3, 1]) });
