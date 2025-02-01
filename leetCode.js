@@ -10439,3 +10439,19 @@ function getSneakyNumbers(nums) {
   return sneakyNumbers;
 }
 console.log({ getSneakyNumbers: getSneakyNumbers([4, 3, 2, 7, 8, 2, 3, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function canAliceWin(nums) {
+  let singleDigitSum = 0, doubleDigitSum = 0;
+
+  for (const num of nums) {
+    if (num < 10) singleDigitSum += num;
+    else doubleDigitSum += num;
+  }
+
+  return singleDigitSum !== doubleDigitSum;
+}
+console.log({ canAliceWin: canAliceWin([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) });
