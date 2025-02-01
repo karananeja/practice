@@ -10376,8 +10376,7 @@ console.log({ isHappy: isHappy(19) });
  */
 function isArraySpecial(nums) {
   for (let idx = 0; idx < nums.length - 1; idx++) {
-    const curNum = nums[idx], nextNum = nums[idx + 1];
-    if ((curNum % 2 === 0 && nextNum % 2 === 0) || (curNum % 2 !== 0 && nextNum % 2 !== 0)) return false;
+    if (nums[idx] % 2 === nums[idx + 1] % 2) return false;
   }
 
   return true;
