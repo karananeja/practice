@@ -10455,3 +10455,30 @@ function canAliceWin(nums) {
   return singleDigitSum !== doubleDigitSum;
 }
 console.log({ canAliceWin: canAliceWin([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) });
+
+/**
+ * @param {number[]} arr 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function canArrange(arr, k) {
+  const remainderCount = {};
+
+  for (const num of arr) {
+    const rem = ((num % k) + k) % k;
+    remainderCount[rem] = (remainderCount[rem] || 0) + 1;
+  }
+
+  for (const num of arr) {
+    const rem = ((num % k) + k) % k;
+
+    if (rem === 0) {
+      if (remainderCount[rem] % 2 === 1) return false;
+    } else if (remainderCount[rem] !== remainderCount[k - rem]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+console.log({ canArrange: canArrange([1, 2, 3, 4, 5, 10, 6, 7, 8, 9], 5) });
