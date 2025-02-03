@@ -10482,3 +10482,20 @@ function canArrange(arr, k) {
   return true;
 }
 console.log({ canArrange: canArrange([1, 2, 3, 4, 5, 10, 6, 7, 8, 9], 5) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number[]}
+ */
+function arrayRankTransform(arr) {
+  const temp = [...new Set(arr)].sort((a, b) => a - b);
+  const rankMap = new Map();
+  let rank = 1;
+
+  temp.forEach((num) => rankMap.set(num, rank++));
+
+  arr.forEach((_, idx) => arr[idx] = rankMap.get(arr[idx]));
+
+  return arr;
+}
+console.log({ arrayRankTransform: arrayRankTransform([40, 10, 20, 30]) });
