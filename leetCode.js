@@ -10499,3 +10499,33 @@ function arrayRankTransform(arr) {
   return arr;
 }
 console.log({ arrayRankTransform: arrayRankTransform([40, 10, 20, 30]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} p 
+ * @returns {number}
+ */
+function minSubarray(nums, p) {
+  const total = nums.reduce((acc, cur) => acc + cur);
+  const remainder = total % p;
+
+  if (remainder === 0) return remainder;
+
+  let result = nums.length, curSum = 0;
+  const remainderIndex = { 0: -1 };
+
+  nums.forEach((num, idx) => {
+    curSum = (curSum + num) % p;
+    const prefix = (curSum - remainder + p) % p;
+
+    if (prefix in remainderIndex) {
+      const length = idx - remainderIndex[prefix];
+      result = Math.min(result, length);
+    }
+
+    remainderIndex[curSum] = idx;
+  });
+
+  return result !== nums.length ? result : -1;
+}
+console.log({ minSubarray: minSubarray([3, 1, 4, 2], 6) });
