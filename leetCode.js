@@ -10529,3 +10529,35 @@ function minSubarray(nums, p) {
   return result !== nums.length ? result : -1;
 }
 console.log({ minSubarray: minSubarray([3, 1, 4, 2], 6) });
+
+/**
+ * @param {number[]} skill 
+ * @returns {number}
+ */
+function dividePlayers(skill) {
+  const n = skill.length;
+  let totalSkill = 0;
+  const skillMap = {};
+
+  for (const s of skill) {
+    totalSkill += s;
+    skillMap[s] = (skillMap[s] || 0) + 1;
+  }
+
+  if (totalSkill % (n / 2) !== 0) return -1;
+
+  const targetSkill = totalSkill / (n / 2);
+  let totalChemistry = 0;
+
+  for (const currSkill in skillMap) {
+    const currFreq = skillMap[currSkill];
+    const partnerSkill = targetSkill - Number(currSkill);
+
+    if (!(partnerSkill in skillMap) || currFreq !== skillMap[partnerSkill]) return -1;
+
+    totalChemistry += Number(currSkill) * partnerSkill * currFreq;
+  }
+
+  return totalChemistry / 2;
+}
+console.log({ dividePlayers: dividePlayers([1, 2, 3, 4, 5, 6]) });
