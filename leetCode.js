@@ -10561,3 +10561,29 @@ function dividePlayers(skill) {
   return totalChemistry / 2;
 }
 console.log({ dividePlayers: dividePlayers([1, 2, 3, 4, 5, 6]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maximumProduct(nums) {
+  let a = -Infinity, b = a, c = a, x = Infinity, y = x;
+
+  for (const num of nums) {
+    if (num > a) {
+      c = b;
+      b = a;
+      a = num;
+    } else if (num > b) {
+      c = b;
+      b = num;
+    } else if (num > c) c = num;
+    if (num < x) {
+      y = x;
+      x = num;
+    } else if (num < y) y = num;
+  }
+
+  return Math.max(a * b * c, a * x * y);
+}
+console.log({ maximumProduct: maximumProduct([1, 2, 3, 4]) });
