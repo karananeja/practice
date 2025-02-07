@@ -10587,3 +10587,27 @@ function maximumProduct(nums) {
   return Math.max(a * b * c, a * x * y);
 }
 console.log({ maximumProduct: maximumProduct([1, 2, 3, 4]) });
+
+/**
+ * @param {string} sentence1 
+ * @param {string} sentence2 
+ * @returns {boolean}
+ */
+function areSentencesSimilar(sentence1, sentence2) {
+  const s1Words = sentence1.split(' '), s2Words = sentence2.split(' ');
+  let start = 0, ends1 = s1Words.length - 1, ends2 = s2Words.length - 1;
+
+  if (s1Words.length > s2Words.length) return areSentencesSimilar(sentence2, sentence1);
+
+  while (start < s1Words.length && s1Words[start] === s2Words[start]) {
+    start++;
+  }
+
+  while (ends1 >= 0 && s1Words[ends1] === s2Words[ends2]) {
+    ends1--;
+    ends2--;
+  }
+
+  return ends1 < start;
+}
+console.log({ areSentencesSimilar: areSentencesSimilar("My name is Haley", "My Haley") });
