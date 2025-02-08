@@ -10611,3 +10611,27 @@ function areSentencesSimilar(sentence1, sentence2) {
   return ends1 < start;
 }
 console.log({ areSentencesSimilar: areSentencesSimilar("My name is Haley", "My Haley") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minLength(s) {
+  const updatedString = [];
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const curr = s[idx];
+    const top = updatedString[updatedString.length - 1];
+
+    if (updatedString.length === 0) {
+      updatedString.push(curr);
+      continue;
+    }
+
+    if ((top === "A" && curr === "B") || (top === "C" && curr === "D")) updatedString.pop();
+    else updatedString.push(curr);
+  }
+
+  return updatedString.length;
+}
+console.log({ minLength: minLength("ABCD") });
