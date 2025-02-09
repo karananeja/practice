@@ -10635,3 +10635,39 @@ function minLength(s) {
   return updatedString.length;
 }
 console.log({ minLength: minLength("ABCD") });
+
+/**
+ * @param {TreeNode | null} node 
+ * @returns {number}
+ */
+function countNodes(node) {
+  if (!node) return 0;
+  return 1 + countNodes(node.left) + countNodes(node.right);
+}
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number} index 
+ * @param {number} count 
+ * @returns {boolean}
+ */
+function isCBT(node, index, count) {
+  if (!node) return true;
+
+  if (index >= count) return false;
+  else {
+    const left = isCBT(node.left, 2 * index + 1, count);
+    const right = isCBT(node.right, 2 * index + 2, count);
+    return left && right;
+  }
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {boolean}
+ */
+function isCompleteTree(root) {
+  let idx = 0;
+  const totalCount = countNodes(root);
+  return isCBT(root, idx, totalCount);
+}
