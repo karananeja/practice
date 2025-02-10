@@ -10671,3 +10671,19 @@ function isCompleteTree(root) {
   const totalCount = countNodes(root);
   return isCBT(root, idx, totalCount);
 }
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minAddToMakeValid(s) {
+  let openBrackets = 0, minAddsRequired = 0;
+
+  for (const char of s) {
+    if (char == '(') openBrackets++;
+    else openBrackets > 0 ? openBrackets-- : minAddsRequired++;
+  }
+
+  return minAddsRequired + openBrackets;
+}
+console.log({ minAddToMakeValid: minAddToMakeValid("())") });
