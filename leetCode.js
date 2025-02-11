@@ -10687,3 +10687,31 @@ function minAddToMakeValid(s) {
   return minAddsRequired + openBrackets;
 }
 console.log({ minAddToMakeValid: minAddToMakeValid("())") });
+
+/**
+ * @param {number[][]} intervals 
+ * @returns {number}
+ */
+function minGroups(intervals) {
+  const start = [], end = [];
+
+  intervals.forEach(([left, right]) => {
+    start.push(left);
+    end.push(right);
+  });
+
+  start.sort((a, b) => a - b);
+  end.sort((a, b) => a - b);
+
+  let first = 0, second = 0;
+  let result = 0;
+
+  while (first < intervals.length) {
+    if (start[first] <= end[second]) first++;
+    else second++;
+    result = Math.max(result, first - second);
+  }
+
+  return result;
+}
+console.log({ minGroups: minGroups([[1, 2], [2, 3], [2, 3], [3, 4], [1, 3]]) });
