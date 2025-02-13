@@ -10715,3 +10715,43 @@ function minGroups(intervals) {
   return result;
 }
 console.log({ minGroups: minGroups([[1, 2], [2, 3], [2, 3], [3, 4], [1, 3]]) });
+
+/**
+ * @param {TreeNode | null} node 
+ * @param {number[]} nodes 
+ * @returns {number[]}
+ */
+function getNodes(node, nodes) {
+  if (!node) return nodes;
+
+  getNodes(node.left, nodes);
+  nodes.push(node.val);
+  getNodes(node.right, nodes);
+
+  return nodes;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[]}
+ */
+function findMode(root) {
+  const nodes = getNodes(root, []);
+  let maxStreak = 0, currStreak = 0, currNum = 0, ans = [];
+
+  for (const num of nodes) {
+    if (num === currNum) currStreak += 1;
+    else currStreak = 1;
+
+    currNum = num;
+
+    if (currStreak > maxStreak) {
+      ans = [];
+      maxStreak = currStreak;
+    }
+
+    if (currStreak === maxStreak) ans.push(num);
+  }
+
+  return ans;
+}
