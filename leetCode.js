@@ -10755,3 +10755,13 @@ function findMode(root) {
 
   return ans;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {boolean}
+ */
+function isUnivalTree(root) {
+  const leftCorrect = (root.left === null || (root.val === root.left.val && isUnivalTree(root.left)));
+  const rightCorrect = (root.right === null || (root.val === root.right.val && isUnivalTree(root.right)));
+  return leftCorrect && rightCorrect;
+}
