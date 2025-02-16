@@ -10765,3 +10765,46 @@ function isUnivalTree(root) {
   const rightCorrect = (root.right === null || (root.val === root.right.val && isUnivalTree(root.right)));
   return leftCorrect && rightCorrect;
 }
+
+/**
+ * @param {number[][]} times 
+ * @param {number} targetFriend 
+ * @returns {number} 
+ */
+function smallestChair(times, targetFriend) {
+  const events = [];
+
+  for (let i = 0; i < times.length; i++) {
+    events.push([times[i][0], i]);
+    events.push([times[i][1], ~i]);
+  }
+
+  events.sort((a, b) => a[0] - b[0]);
+
+  const availableChairs = new MinHeap((a, b) => a - b);
+
+  for (let i = 0; i < times.length; i++) {
+    availableChairs.push(i);
+  }
+
+  const occupiedChairs = new MinHeap((a, b) => a[0] - b[0]);
+
+  for (const event of events) {
+    const [time, friend] = event;
+
+    while (occupiedChairs.size > 0 && occupiedChairs.peek()[0] <= time) {
+      const [, chair] = occupiedChairs.pop();
+      availableChairs.push(chair);
+    }
+
+    if (friend >= 0) {
+      const chair = availableChairs.pop();
+      if (friend === targetFriend) {
+        return chair;
+      }
+      occupiedChairs.push([times[friend][1], chair]);
+    }
+  }
+
+  return -1;
+}
