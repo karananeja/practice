@@ -10808,3 +10808,37 @@ function smallestChair(times, targetFriend) {
 
   return -1;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} x 
+ * @param {number} y 
+ * @returns {boolean}
+ */
+function isCousins(root, x, y) {
+  if (!root) return false;
+
+  const nodesQueue = [[root, null]];
+
+  while (nodesQueue.length) {
+    const size = nodesQueue.length;
+    let xParent = null;
+    let yParent = null;
+
+    for (let idx = 0; idx < size; idx++) {
+      const [node, parent] = nodesQueue.shift();
+
+      if (node.val === x) xParent = parent;
+      if (node.val === y) yParent = parent;
+
+      if (node.left) nodesQueue.push([node.left, node]);
+      if (node.right) nodesQueue.push([node.right, node]);
+    }
+
+    if (xParent && yParent) return xParent !== yParent;
+
+    if (xParent || yParent) return false;
+  }
+
+  return false;
+}
