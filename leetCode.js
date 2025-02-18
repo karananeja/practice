@@ -10842,3 +10842,27 @@ function isCousins(root, x, y) {
 
   return false;
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maxKelements(nums, k) {
+  const maxHeap = new MaxHeap((a, b) => a - b);
+
+  for (const num of nums) {
+    maxHeap.push(num);
+  }
+
+  let score = 0;
+
+  while (k > 0) {
+    k--;
+    const num = maxHeap.pop();
+    score += num;
+    maxHeap.push(Math.ceil(num / 3));
+  }
+
+  return score;
+}
