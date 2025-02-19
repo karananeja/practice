@@ -10866,3 +10866,20 @@ function maxKelements(nums, k) {
 
   return score;
 }
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minimumSteps(s) {
+  let steps = 0, left = 0, right = s.length - 1;
+
+  while (left <= right) {
+    if (s[right] === "1") right--;
+    else if (s[left] === "0") left++;
+    else steps += right-- - left++;
+  }
+
+  return steps;
+}
+console.log({ minimumSteps: minimumSteps("110") });
