@@ -10883,3 +10883,40 @@ function minimumSteps(s) {
   return steps;
 }
 console.log({ minimumSteps: minimumSteps("110") });
+
+/**
+ * @param {number} a 
+ * @param {number} b 
+ * @param {number} c 
+ * @returns {string}
+ */
+function longestDiverseString(a, b, c) {
+  const maxHeap = new MaxHeap((a, b) => a[0] - b[0]);
+
+  if (a > 0) maxHeap.push([a, "a"]);
+  if (b > 0) maxHeap.push([b, "b"]);
+  if (c > 0) maxHeap.push([c, "c"]);
+
+  let result = "";
+
+  while (maxHeap.size) {
+    let [count, char] = maxHeap.pop();
+
+    if (result.length >= 2 && result[result.length - 1] === char &&
+      result[result.length - 2] === char) {
+      if (maxHeap.size === 0) break;
+
+      const [tempCount, tempChar] = maxHeap.pop();
+      result += tempChar;
+
+      if (tempCount - 1 > 0) maxHeap.push([tempCount - 1, tempChar]);
+    } else {
+      count--;
+      result = result + char;
+    }
+
+    if (count > 0) maxHeap.push([count, char]);
+  }
+
+  return result;
+}
