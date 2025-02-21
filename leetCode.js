@@ -10920,3 +10920,26 @@ function longestDiverseString(a, b, c) {
 
   return result;
 }
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function maximumSwap(num) {
+  const digits = `${num}`.split('');
+  let maxDigitIdx = -1, swapIdx1 = -1, swapIdx2 = -1;
+
+  for (let idx = digits.length - 1; idx >= 0; --idx) {
+    if (maxDigitIdx == -1 || digits[idx] > digits[maxDigitIdx]) {
+      maxDigitIdx = idx;
+    } else if (digits[idx] < digits[maxDigitIdx]) {
+      swapIdx1 = idx;
+      swapIdx2 = maxDigitIdx;
+    }
+  }
+
+  [digits[swapIdx1], digits[swapIdx2]] = [digits[swapIdx2], digits[swapIdx1]];
+
+  return +digits.join("");
+}
+console.log({ maximumSwap: maximumSwap(2736) });
