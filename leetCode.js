@@ -10943,3 +10943,28 @@ function maximumSwap(num) {
   return +digits.join("");
 }
 console.log({ maximumSwap: maximumSwap(2736) });
+
+/**
+ * @param {number} num 
+ * @returns {string}
+ */
+function decimalToBinary(num) {
+  let binary = '';
+
+  while (num > 0) {
+    binary = (num % 2) + binary;
+    num = Math.floor(num / 2);
+  };
+
+  return binary;
+}
+
+/**
+ * @param {string} date 
+ * @returns {string}
+ */
+function convertDateToBinary(date) {
+  const [year, month, day] = date.split("-");
+  return `${decimalToBinary(+year)}-${decimalToBinary(+month)}-${decimalToBinary(+day)}`;
+}
+console.log({ convertDateToBinary: convertDateToBinary("2021-09-01") });
