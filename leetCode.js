@@ -10968,3 +10968,26 @@ function convertDateToBinary(date) {
   return `${decimalToBinary(+year)}-${decimalToBinary(+month)}-${decimalToBinary(+day)}`;
 }
 console.log({ convertDateToBinary: convertDateToBinary("2021-09-01") });
+
+/**
+ * @param {number} n 
+ * @param {number} k 
+ * @returns {string}
+ */
+function findKthBit(n, k) {
+  let length = 2 ** n - 1, inverted = false;
+
+  while (length > 1) {
+    const half = Math.floor(length / 2);
+
+    if (k <= half) length = half;
+    else if (k > half + 1) {
+      k = 1 + length - k;
+      length = half;
+      inverted = !inverted;
+    } else return !inverted ? "1" : "0";
+  }
+
+  return !inverted ? "0" : "1";
+}
+console.log({ findKthBit: findKthBit(4, 11) });
