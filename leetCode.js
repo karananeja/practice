@@ -10991,3 +10991,25 @@ function findKthBit(n, k) {
   return !inverted ? "0" : "1";
 }
 console.log({ findKthBit: findKthBit(4, 11) });
+
+/**
+ * @param {number[][]} boxTypes 
+ * @param {number} truckSize 
+ * @returns {number}
+ */
+function maximumUnits(boxTypes, truckSize) {
+  let maxUnits = 0;
+  boxTypes.sort((a, b) => b[1] - a[1]);
+
+  for (let idx = 0; idx < boxTypes.length; idx++) {
+    const boxType = boxTypes[idx];
+
+    if (truckSize > 0) {
+      maxUnits += Math.min(truckSize, boxType[0]) * boxType[1];
+      truckSize -= boxType[0];
+    } else break;
+  }
+
+  return maxUnits;
+}
+console.log({ maximumUnits: maximumUnits([[1, 3], [2, 2], [3, 1]], 4) });
