@@ -11013,3 +11013,13 @@ function maximumUnits(boxTypes, truckSize) {
   return maxUnits;
 }
 console.log({ maximumUnits: maximumUnits([[1, 3], [2, 2], [3, 1]], 4) });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {string}
+ */
+function truncateSentence(s, k) {
+  return s.split(" ").slice(0, k).join(" ");
+}
+console.log({ truncateSentence: truncateSentence("Hello how are you Contestant", 4) });
