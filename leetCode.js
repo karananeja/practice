@@ -11023,3 +11023,54 @@ function truncateSentence(s, k) {
   return s.split(" ").slice(0, k).join(" ");
 }
 console.log({ truncateSentence: truncateSentence("Hello how are you Contestant", 4) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {TreeNode | null}
+ */
+function replaceValueInTree(root) {
+  const nodesQueue = [root], rowSum = [];
+
+  while (nodesQueue.length) {
+    const size = nodesQueue.length;
+    let sum = 0;
+
+    for (let idx = 0; idx < size; idx++) {
+      const node = nodesQueue.shift();
+      sum += node.val;
+      if (node.left) nodesQueue.push(node.left);
+      if (node.right) nodesQueue.push(node.right);
+    }
+
+    rowSum.push(sum);
+  }
+
+  nodesQueue.push(root);
+  root.val = 0;
+  let row = 0;
+
+  while (nodesQueue.length) {
+    const size = nodesQueue.length;
+
+    for (let idx = 0; idx < size; idx++) {
+      const node = nodesQueue.shift();
+
+      let childSum = 0;
+
+      if (node.left) childSum += node.left.val;
+      if (node.right) childSum += node.right.val;
+      if (node.left) {
+        node.left.val = rowSum[row + 1] - childSum;
+        nodesQueue.push(node.left);
+      }
+      if (node.right) {
+        node.right.val = rowSum[row + 1] - childSum;
+        nodesQueue.push(node.right);
+      }
+    }
+
+    row++;
+  }
+
+  return root;
+}
