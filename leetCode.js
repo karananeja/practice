@@ -11074,3 +11074,33 @@ function replaceValueInTree(root) {
 
   return root;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @param {number} k 
+ * @returns {number}
+ */
+function kthLargestLevelSum(root, k) {
+  const nodesQueue = [root];
+  const maxHeap = new MaxHeap((a, b) => a - b);
+
+  while (nodesQueue.length) {
+    const size = nodesQueue.length;
+    let sum = 0;
+
+    for (let idx = 0; idx < size; idx++) {
+      const node = nodesQueue.shift();
+      sum += node.val;
+      if (node.left) nodesQueue.push(node.left);
+      if (node.right) nodesQueue.push(node.right);
+    }
+
+    maxHeap.push(sum);
+  }
+
+  if (maxHeap.size < k) return -1;
+
+  for (let idx = 0; idx < k - 1; idx++) maxHeap.pop();
+
+  return maxHeap.peek();
+}
