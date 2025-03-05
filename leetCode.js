@@ -11120,3 +11120,19 @@ function flipEquiv(root1, root2) {
     (flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left))
   );
 }
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function countKeyChanges(s) {
+  let count = 0;
+
+  for (let idx = 0; idx < s.length - 1; idx++) {
+    const currentChar = s[idx].toLowerCase(), nextChar = s[idx + 1].toLowerCase();
+    if (currentChar !== nextChar) count++;
+  }
+
+  return count;
+}
+console.log({ countKeyChanges: countKeyChanges("aAaAaA") });
