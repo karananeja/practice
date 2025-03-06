@@ -11136,3 +11136,15 @@ function countKeyChanges(s) {
   return count;
 }
 console.log({ countKeyChanges: countKeyChanges("aAaAaA") });
+
+/**
+ * @param {string[]} words 
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function isAcronym(words, s) {
+  const acronym = [];
+  words.forEach(word => acronym.push(word[0]));
+  return acronym.join("") === s;
+}
+console.log({ isAcronym: isAcronym(["a", "b", "c"], "abc") });
