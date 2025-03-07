@@ -11148,3 +11148,24 @@ function isAcronym(words, s) {
   return acronym.join("") === s;
 }
 console.log({ isAcronym: isAcronym(["a", "b", "c"], "abc") });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function minimumSum(num) {
+  const digits = [];
+
+  while (num) {
+    digits.push(num % 10);
+    num = Math.floor(num / 10);
+  }
+
+  digits.sort((a, b) => a - b);
+
+  const firstNum = digits[0] * 10 + digits[2];
+  const secondNum = digits[1] * 10 + digits[3];
+
+  return firstNum + secondNum;
+}
+console.log({ minimumSum: minimumSum(2932) });
