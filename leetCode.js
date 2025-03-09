@@ -11169,3 +11169,18 @@ function minimumSum(num) {
   return firstNum + secondNum;
 }
 console.log({ minimumSum: minimumSum(2932) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function sumOfMultiples(n) {
+  let sum = 0;
+
+  for (let idx = 1; idx <= n; idx++) {
+    if (idx % 3 === 0 || idx % 5 === 0 || idx % 7 === 0) sum += idx;
+  }
+
+  return sum;
+}
+console.log({ sumOfMultiples: sumOfMultiples(15) });
