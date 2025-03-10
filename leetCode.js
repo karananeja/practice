@@ -11184,3 +11184,24 @@ function sumOfMultiples(n) {
   return sum;
 }
 console.log({ sumOfMultiples: sumOfMultiples(15) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function numberGame(nums) {
+  const minHeap = new MinHeap((a, b) => a - b);
+  let idx = 0;
+
+  nums.forEach((num) => minHeap.push(num));
+
+  while (minHeap.size) {
+    const firstNum = minHeap.pop();
+    const secondNum = minHeap.pop();
+
+    [nums[idx + 1], nums[idx]] = [firstNum, secondNum];
+    idx += 2;
+  }
+
+  return nums;
+}
