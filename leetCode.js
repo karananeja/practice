@@ -11205,3 +11205,52 @@ function numberGame(nums) {
 
   return nums;
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number} 
+ */
+function getLastNegativeIndex(nums) {
+  let left = 0, right = nums.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] < 0) left = mid + 1;
+    else right = mid - 1;
+  }
+
+  return left - 1;
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number} 
+ */
+function getFirstPositiveIndex(nums) {
+  let left = 0, right = nums.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] > 0) right = mid - 1;
+    else left = mid + 1;
+  }
+
+  return right + 1;
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number} 
+ */
+function maximumCount(nums) {
+  const lastNegative = getLastNegativeIndex(nums);
+  const firstPositive = getFirstPositiveIndex(nums);
+
+  const negativeCount = lastNegative + 1;
+  const positiveCount = nums.length - firstPositive;
+
+  return Math.max(negativeCount, positiveCount);
+}
+console.log({ maximumCount: maximumCount([-2, -1, -1, 1, 2, 3]) });
