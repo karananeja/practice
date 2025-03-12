@@ -11254,3 +11254,30 @@ function maximumCount(nums) {
   return Math.max(negativeCount, positiveCount);
 }
 console.log({ maximumCount: maximumCount([-2, -1, -1, 1, 2, 3]) });
+
+/**
+ * @param {number} year 
+ * @returns {boolean}
+ */
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+}
+
+/**
+ * @param {string} date 
+ * @returns {number}
+ */
+function dayOfYear(date) {
+  const DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const [year, month, day] = date.split("-");
+  let totalDays = +day;
+
+  for (let m = 1; m < +month; m++) {
+    totalDays += DAYS[m];
+  }
+
+  if (isLeapYear(+year) && +month > 2) totalDays++;
+
+  return totalDays;
+}
+console.log({ dayOfYear: dayOfYear("2019-01-09") });
