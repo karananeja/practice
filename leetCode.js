@@ -11281,3 +11281,27 @@ function dayOfYear(date) {
   return totalDays;
 }
 console.log({ dayOfYear: dayOfYear("2019-01-09") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function makeFancyString(s) {
+  const chars = [];
+  let count = 0, currChar = '';
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const char = s[idx];
+
+    if (char === currChar) count++;
+    else {
+      currChar = char;
+      count = 1;
+    }
+
+    if (count < 3) chars.push(char);
+  }
+
+  return chars.join('');
+}
+console.log({ makeFancyString: makeFancyString("pppq") });
