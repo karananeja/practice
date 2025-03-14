@@ -11305,3 +11305,16 @@ function makeFancyString(s) {
   return chars.join('');
 }
 console.log({ makeFancyString: makeFancyString("pppq") });
+
+/**
+ * @param {string} sentence 
+ * @returns {boolean}
+ */
+function isCircularSentence(sentence) {
+  for (let idx = 0; idx < sentence.length; idx++) {
+    if (sentence[idx] === " " && sentence[idx - 1] !== sentence[idx + 1]) return false;
+  }
+
+  return sentence[0] === sentence[sentence.length - 1];
+}
+console.log({ isCircularSentence: isCircularSentence("leetcod ees true") });
