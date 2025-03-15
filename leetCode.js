@@ -11318,3 +11318,23 @@ function isCircularSentence(sentence) {
   return sentence[0] === sentence[sentence.length - 1];
 }
 console.log({ isCircularSentence: isCircularSentence("leetcod ees true") });
+
+/**
+ * @param {number} num 
+ * @param {number} k 
+ * @returns {number}
+ */
+function divisorSubstrings(num, k) {
+  const numStr = num.toString();
+  let count = 0;
+
+  for (let i = 0; i <= numStr.length - k; i++) {
+    const currentSubstring = numStr.substring(i, i + k);
+    const currentNum = Number(currentSubstring);
+
+    if (currentNum !== 0 && num % currentNum === 0) count++;
+  }
+
+  return count;
+}
+console.log({ divisorSubstrings: divisorSubstrings(100, 5) });
