@@ -11338,3 +11338,34 @@ function divisorSubstrings(num, k) {
   return count;
 }
 console.log({ divisorSubstrings: divisorSubstrings(100, 5) });
+
+/**
+ * @param {string} word 
+ * @returns {string}
+ */
+function compressedString(word) {
+  const newString = [];
+  let currChar = "", count = 0;
+
+  for (let idx = 0; idx < word.length; idx++) {
+    const char = word[idx];
+
+    if (char === currChar) {
+      count++;
+    } else {
+      if (count > 0) newString.push(`${Math.min(count, 9)}${currChar}`);
+      currChar = char;
+      count = 1;
+    }
+
+    if (count === 9) {
+      newString.push(`9${currChar}`);
+      count = 0;
+    }
+  }
+
+  if (count > 0) newString.push(`${Math.min(count, 9)}${currChar}`);
+
+  return newString.join("");
+}
+console.log({ compressedString: compressedString("aaaaaaaaaaaaaabb") });
