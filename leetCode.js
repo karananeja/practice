@@ -11369,3 +11369,18 @@ function compressedString(word) {
   return newString.join("");
 }
 console.log({ compressedString: compressedString("aaaaaaaaaaaaaabb") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minChanges(s) {
+  let changes = 0;
+
+  for (let idx = 0; idx < s.length; idx += 2) {
+    if (s[idx] !== s[idx + 1]) changes++;
+  }
+
+  return changes;
+}
+console.log({ minChanges: minChanges("1001") });
