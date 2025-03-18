@@ -11384,3 +11384,42 @@ function minChanges(s) {
   return changes;
 }
 console.log({ minChanges: minChanges("1001") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function canSortArray(nums) {
+  /**
+   * @param {number} n 
+   * @returns {number}
+   */
+  function countBits(n) {
+    let res = 0;
+
+    while (n) {
+      res += n & 1;
+      n >>= 1;
+    }
+
+    return res;
+  }
+
+  let curMin = nums[0], curMax = nums[0];
+  let prevMax = 0;
+
+  for (const num of nums) {
+    if (countBits(num) === countBits(curMin)) {
+      curMin = Math.min(curMin, num);
+      curMax = Math.max(curMax, num);
+    } else {
+      if (curMin < prevMax) return false;
+      prevMax = curMax;
+      curMin = num;
+      curMax = num;
+    }
+  }
+
+  return !(curMin < prevMax);
+}
+console.log({ canSortArray: canSortArray([1, 2, 3, 4, 5]) });
