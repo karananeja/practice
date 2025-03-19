@@ -11423,3 +11423,24 @@ function canSortArray(nums) {
   return !(curMin < prevMax);
 }
 console.log({ canSortArray: canSortArray([1, 2, 3, 4, 5]) });
+
+/**
+ * @param {number[]} candidates 
+ * @returns {number}
+ */
+function largestCombination(candidates) {
+  let size = 0;
+
+  for (let idx = 0; idx < 32; idx++) {
+    let count = 0;
+
+    for (const candidate of candidates) {
+      count += 1 << idx & candidate ? 1 : 0;
+    }
+
+    size = Math.max(size, count);
+  }
+
+  return size;
+}
+console.log({ largestCombination: largestCombination([16, 17, 71, 62, 12, 24, 14]) });
