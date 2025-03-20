@@ -11444,3 +11444,21 @@ function largestCombination(candidates) {
   return size;
 }
 console.log({ largestCombination: largestCombination([16, 17, 71, 62, 12, 24, 14]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} maximumBit 
+ * @returns {number[]}
+ */
+function getMaximumXor(nums, maximumBit) {
+  let xor = nums.reduce((acc, cur) => acc ^= cur, 0);
+  const answer = [], mask = (1 << maximumBit) - 1;
+
+  for (let idx = nums.length - 1; idx >= 0; idx--) {
+    answer.push(xor ^ mask);
+    xor ^= nums[idx];
+  }
+
+  return answer;
+}
+console.log({ getMaximumXor: getMaximumXor([0, 1, 1, 3], 2) });
