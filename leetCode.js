@@ -11462,3 +11462,24 @@ function getMaximumXor(nums, maximumBit) {
   return answer;
 }
 console.log({ getMaximumXor: getMaximumXor([0, 1, 1, 3], 2) });
+
+/**
+ * @param {number} n 
+ * @param {number} x 
+ * @returns {number}
+ */
+function minEnd(n, x) {
+  let result = BigInt(x), remaining = BigInt(n - 1), position = 1n;
+
+  while (remaining > 0n) {
+    if ((BigInt(x) & position) === 0n) {
+      result |= (remaining & 1n) * position;
+      remaining >>= 1n;
+    }
+
+    position <<= 1n;
+  }
+
+  return Number(result);
+}
+console.log({ minEnd: minEnd(3, 4) });
