@@ -11483,3 +11483,50 @@ function minEnd(n, x) {
   return Number(result);
 }
 console.log({ minEnd: minEnd(3, 4) });
+
+/**
+ * @param {(number | null)[][]} values 
+ * @returns {boolean}
+ */
+function isLevelSymmetric(values) {
+  for (let idx = 0; idx < values.length; idx++) {
+    const row = values[idx];
+    let left = 0, right = row.length - 1;
+
+    while (left < right) {
+      if (row[left++] !== row[right--]) return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {boolean}
+ */
+function isSymmetric(root) {
+  const nodeValues = [];
+  const nodesQueue = [root];
+
+  while (nodesQueue.length) {
+    const size = nodesQueue.length;
+    const values = [];
+
+    for (let idx = 0; idx < size; idx++) {
+      const node = nodesQueue.shift();
+
+      if (node) {
+        values.push(node.val);
+        nodesQueue.push(node.left);
+        nodesQueue.push(node.right);
+      } else {
+        values.push(null);
+      }
+    }
+
+    nodeValues.push(values);
+  }
+
+  return isLevelSymmetric(nodeValues);
+}
