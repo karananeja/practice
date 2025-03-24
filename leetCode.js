@@ -11571,3 +11571,28 @@ function primeSubOperation(nums) {
   return true;
 }
 console.log({ primeSubOperation: primeSubOperation([6, 8, 11, 12]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function lengthOfLongestSubstring(s) {
+  const charIndexMap = new Map();
+  let maxLength = 0;
+  let start = 0;
+
+  for (let end = 0; end < s.length; end++) {
+    const char = s[end];
+
+    if (charIndexMap.has(char)) {
+      start = Math.max(start, charIndexMap.get(char) + 1);
+    }
+
+    charIndexMap.set(char, end);
+
+    maxLength = Math.max(maxLength, end - start + 1);
+  }
+
+  return maxLength;
+}
+console.log({ lengthOfLongestSubstring: lengthOfLongestSubstring("abcabcbb") });
