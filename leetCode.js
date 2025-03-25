@@ -11596,3 +11596,23 @@ function lengthOfLongestSubstring(s) {
   return maxLength;
 }
 console.log({ lengthOfLongestSubstring: lengthOfLongestSubstring("abcabcbb") });
+
+/**
+ * @param {number[]} stones 
+ * @returns {number}
+ */
+function lastStoneWeight(stones) {
+  const maxHeap = new MaxHeap((a, b) => a - b);
+  stones.forEach((stone) => maxHeap.push(stone));
+
+  while (maxHeap.size > 1) {
+    const first = maxHeap.pop(), second = maxHeap.pop();
+
+    if (first !== second) {
+      const result = first - second;
+      maxHeap.push(result);
+    }
+  }
+
+  return maxHeap.peek() ?? 0;
+}
