@@ -11616,3 +11616,49 @@ function lastStoneWeight(stones) {
 
   return maxHeap.peek() ?? 0;
 }
+
+/**
+ * @param {number[][]} items 
+ * @param {number} targetPrice 
+ * @returns {number}
+ */
+function findBeauty(items, targetPrice) {
+  let start = 0, end = items.length - 1;
+  let maxBeauty = 0;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (items[mid][0] > targetPrice) {
+      end = mid - 1;
+    } else {
+      maxBeauty = Math.max(maxBeauty, items[mid][1]);
+      start = mid + 1;
+    }
+  }
+
+  return maxBeauty;
+}
+
+/**
+ * @param {number[][]} items 
+ * @param {number[]} queries 
+ * @returns {number[]}
+ */
+function maximumBeauty(items, queries) {
+  items.sort((a, b) => a[0] - b[0]);
+  let maxBeauty = 0;
+  const itemBeauty = [];
+
+  for (const item of items) {
+    maxBeauty = Math.max(maxBeauty, item[1]);
+    item[1] = maxBeauty;
+  }
+
+  for (const price of queries) {
+    itemBeauty.push(findBeauty(items, price));
+  }
+
+  return itemBeauty;
+}
+console.log({ maximumBeauty: maximumBeauty([[1, 2], [3, 2], [2, 4], [5, 6], [3, 5]], [1, 2, 3, 4, 5, 6]) });
