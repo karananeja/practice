@@ -11662,3 +11662,12 @@ function maximumBeauty(items, queries) {
   return itemBeauty;
 }
 console.log({ maximumBeauty: maximumBeauty([[1, 2], [3, 2], [2, 4], [5, 6], [3, 5]], [1, 2, 3, 4, 5, 6]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumOperations(nums) {
+  return new Set(nums.filter((x) => x > 0)).size;
+}
+console.log({ minimumOperations: minimumOperations([1, 5, 0, 3, 5]) });
