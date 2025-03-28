@@ -11671,3 +11671,39 @@ function minimumOperations(nums) {
   return new Set(nums.filter((x) => x > 0)).size;
 }
 console.log({ minimumOperations: minimumOperations([1, 5, 0, 3, 5]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} lower 
+ * @param {number} upper 
+ * @returns {number} 
+ */
+function countFairPairs(nums, lower, upper) {
+  /**
+   * @param {number} left 
+   * @param {number} right 
+   * @param {number} target 
+   * @returns {number} 
+   */
+  function findIndex(left, right, target) {
+    while (left <= right) {
+      const mid = left + Math.floor((right - left) / 2);
+
+      if (nums[mid] >= target) right = mid - 1;
+      else left = mid + 1;
+    }
+
+    return right;
+  }
+
+  nums.sort((a, b) => a - b);
+  let count = 0;
+
+  nums.forEach((num, idx) => {
+    const low = lower - num, up = upper - num;
+    count += findIndex(idx + 1, nums.length - 1, up + 1) - findIndex(idx + 1, nums.length - 1, low);
+  });
+
+  return count;
+}
+console.log({ countFairPairs: countFairPairs([0, 1, 7, 4, 4, 5], 3, 6) });
