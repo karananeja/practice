@@ -11707,3 +11707,36 @@ function countFairPairs(nums, lower, upper) {
   return count;
 }
 console.log({ countFairPairs: countFairPairs([0, 1, 7, 4, 4, 5], 3, 6) });
+
+/**
+ * @param {number} storeCount 
+ * @param {number} x 
+ * @param {number[]} quantities 
+ * @returns {boolean}
+ */
+function canDistribute(storeCount, x, quantities) {
+  let stores = 0;
+  quantities.forEach((quantity) => stores += Math.ceil(quantity / x));
+  return stores <= storeCount;
+}
+
+/**
+ * @param {number} n 
+ * @param {number[]} quantities 
+ * @returns {number}
+ */
+function minimizedMaximum(n, quantities) {
+  let start = 0, end = Math.max(...quantities), result = 0;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+
+    if (canDistribute(n, mid, quantities)) {
+      result = mid;
+      end = mid - 1;
+    } else start = mid + 1;
+  }
+
+  return result;
+}
+console.log({ minimizedMaximum: minimizedMaximum(6, [11, 6]) });
