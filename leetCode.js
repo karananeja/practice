@@ -11766,3 +11766,30 @@ function findLengthOfShortestSubarray(arr) {
   return ans;
 }
 console.log({ findLengthOfShortestSubarray: findLengthOfShortestSubarray([1, 2, 3, 10, 4, 2, 3, 5]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function resultsArray(nums, k) {
+  const length = nums.length;
+  const result = new Array(length - k + 1);
+
+  for (let start = 0; start <= length - k; start++) {
+    let isConsecutiveAndSorted = true;
+
+    for (let index = start; index < start + k - 1; index++) {
+      if (nums[index + 1] !== nums[index] + 1) {
+        isConsecutiveAndSorted = false;
+        break;
+      }
+    }
+
+    if (isConsecutiveAndSorted) result[start] = nums[start + k - 1];
+    else result[start] = -1;
+  }
+
+  return result;
+}
+console.log({ resultsArray: resultsArray([1, 2, 3, 4, 3, 2, 5], 3) });
