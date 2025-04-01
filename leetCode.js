@@ -11793,3 +11793,23 @@ function resultsArray(nums, k) {
   return result;
 }
 console.log({ resultsArray: resultsArray([1, 2, 3, 4, 3, 2, 5], 3) });
+
+/**
+ * @param {number[]} arr 
+ * @param {number} k 
+ * @returns {number}
+ */
+function findKthPositive(arr, k) {
+  let start = 0, end = arr.length - 1;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+    const missingCount = arr[mid] - mid - 1;
+
+    if (missingCount >= k) end = mid - 1;
+    else start = mid + 1;
+  }
+
+  return start + k;
+}
+console.log({ findKthPositive: findKthPositive([2, 3, 4, 7, 11], 5) });
