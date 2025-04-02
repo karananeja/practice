@@ -11813,3 +11813,31 @@ function findKthPositive(arr, k) {
   return start + k;
 }
 console.log({ findKthPositive: findKthPositive([2, 3, 4, 7, 11], 5) });
+
+/**
+ * @param {number[]} code 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function decrypt(code, k) {
+  const length = code.length, decrypted = code.map(() => 0);
+  const limit = Math.abs(k);
+  let left = 0, curSum = 0;
+
+  for (let right = 0; right < length + limit; right++) {
+    curSum += code[right % length];
+
+    if (right - left + 1 > limit) {
+      curSum -= code[left % length];
+      left = (left + 1) % length;
+    }
+
+    if (right - left + 1 === limit) {
+      if (k > 0) decrypted[(left - 1 + length) % length] = curSum;
+      else if (k < 0) decrypted[(right + 1) % length] = curSum;
+    }
+  }
+
+  return decrypted;
+}
+console.log({ decrypt: decrypt([5, 7, 1, 4], 3) });
