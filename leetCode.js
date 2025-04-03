@@ -11841,3 +11841,35 @@ function decrypt(code, k) {
   return decrypted;
 }
 console.log({ decrypt: decrypt([5, 7, 1, 4], 3) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maximumSubarraySum(nums, k) {
+  let ans = 0, currentSum = 0, begin = 0, end = 0;
+  const numToIndex = new Map();
+
+  while (end < nums.length) {
+    const currNum = nums[end];
+    const lastOccurrence = numToIndex.has(currNum) ? numToIndex.get(currNum) : -1;
+
+    while (begin <= lastOccurrence || end - begin + 1 > k) {
+      currentSum -= nums[begin];
+      begin++;
+    }
+
+    numToIndex.set(currNum, end);
+    currentSum += nums[end];
+
+    if (end - begin + 1 === k) {
+      ans = Math.max(ans, currentSum);
+    }
+
+    end++;
+  }
+
+  return ans;
+}
+console.log({ maximumSubarraySum: maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3) });
