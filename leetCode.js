@@ -11873,3 +11873,34 @@ function maximumSubarraySum(nums, k) {
   return ans;
 }
 console.log({ maximumSubarraySum: maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3) });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {number}
+ */
+function takeCharacters(s, k) {
+  const count = [0, 0, 0], n = s.length;
+
+  for (const c of s) {
+    count[c.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+  }
+
+  if (Math.min(...count) < k) return -1;
+
+  let left = 0, minWindow = n + 1;
+
+  for (let right = 0; right < n; right++) {
+    count[s.charCodeAt(right) - 'a'.charCodeAt(0)]--;
+
+    while (Math.min(...count) < k) {
+      count[s.charCodeAt(left) - 'a'.charCodeAt(0)]++;
+      left++;
+    }
+
+    minWindow = Math.min(minWindow, n - (right - left + 1));
+  }
+
+  return minWindow;
+}
+console.log({ takeCharacters: takeCharacters("aabaaaacaabc", 2) });
