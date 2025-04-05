@@ -11904,3 +11904,19 @@ function takeCharacters(s, k) {
   return minWindow;
 }
 console.log({ takeCharacters: takeCharacters("aabaaaacaabc", 2) });
+
+/**
+ * @param {number[]} height 
+ * @param {number} threshold 
+ * @returns {number[]}
+ */
+function stableMountains(height, threshold) {
+  const indices = [];
+
+  for (let idx = 1; idx < height.length; idx++) {
+    if (height[idx - 1] > threshold) indices.push(idx);
+  }
+
+  return indices;
+}
+console.log({ stableMountains: stableMountains([1, 2, 3, 4, 5], 2) });
