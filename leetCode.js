@@ -11920,3 +11920,23 @@ function stableMountains(height, threshold) {
   return indices;
 }
 console.log({ stableMountains: stableMountains([1, 2, 3, 4, 5], 2) });
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number}
+ */
+function maxEqualRowsAfterFlips(matrix) {
+  const rowCount = new Map();
+
+  for (const row of matrix) {
+    let rowKey = `${row}`;
+
+    if (+rowKey[0] === 1)
+      rowKey = `${row.map(num => num === 1 ? 0 : 1)}`;
+
+    rowCount.set(rowKey, (rowCount.get(rowKey) || 0) + 1);
+  }
+
+  return Math.max(...rowCount.values());
+}
+console.log({ maxEqualRowsAfterFlips: maxEqualRowsAfterFlips([[0, 1], [1, 1]]) });
