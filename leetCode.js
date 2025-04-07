@@ -11940,3 +11940,37 @@ function maxEqualRowsAfterFlips(matrix) {
   return Math.max(...rowCount.values());
 }
 console.log({ maxEqualRowsAfterFlips: maxEqualRowsAfterFlips([[0, 1], [1, 1]]) });
+
+/**
+ * @param {string[][]} box 
+ * @returns {string[][]}
+ */
+function rotateTheBox(box) {
+  const ROWS = box.length, COLS = box[0].length;
+
+  for (let right = 0; right < ROWS; right++) {
+    let left = COLS - 1;
+
+    for (let col = COLS - 1; col >= 0; col--) {
+      if (box[right][col] === "#") {
+        [box[right][col], box[right][left]] = [box[right][left], box[right][col]];
+        left--;
+      } else if (box[right][col] === "*") left = col - 1;
+    }
+  }
+
+  const result = [];
+
+  for (let col = 0; col < COLS; col++) {
+    const column = [];
+
+    for (let row = ROWS - 1; row >= 0; row--) {
+      column.push(box[row][col]);
+    }
+
+    result.push(column);
+  }
+
+  return result;
+}
+console.log({ rotateTheBox: rotateTheBox([["#", ".", "#"]]) });
