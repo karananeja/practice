@@ -11974,3 +11974,29 @@ function rotateTheBox(box) {
   return result;
 }
 console.log({ rotateTheBox: rotateTheBox([["#", ".", "#"]]) });
+
+/**
+ * @param {string} paragraph 
+ * @param {string[]} banned 
+ * @returns {string}
+ */
+function mostCommonWord(paragraph, banned) {
+  const bannedWords = new Set(banned);
+  const wordCount = new Map();
+  const updatedParagraph = paragraph.replace(/[!?',;.]/g, ' ').toLowerCase().split(' ');
+  let maxOccurence = 0;
+
+  for (const word of updatedParagraph) {
+    if (word.length) {
+      if (!bannedWords.has(word)) {
+        wordCount.set(word, (wordCount.get(word) || 0) + 1);
+        maxOccurence = Math.max((wordCount.get(word) || 0), maxOccurence);
+      }
+    }
+  }
+
+  for (const [word, count] of wordCount) {
+    if (count === maxOccurence) return word;
+  }
+}
+console.log({ mostCommonWord: mostCommonWord("a.", []) });
