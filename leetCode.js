@@ -12000,3 +12000,25 @@ function mostCommonWord(paragraph, banned) {
   }
 }
 console.log({ mostCommonWord: mostCommonWord("a.", []) });
+
+/**
+ * @param {string[]} words 
+ * @returns {string[]}
+ */
+function findWords(words) {
+  const firstRow = new Set("qwertyuiop");
+  const secondRow = new Set("asdfghjkl");
+  const thirdRow = new Set("zxcvbnm");
+  const possibleWords = [];
+
+  for (const word of words) {
+    const lowerCaseWord = word.toLowerCase().split("");
+    const isFirst = lowerCaseWord.every(char => firstRow.has(char));
+    const isSecond = lowerCaseWord.every(char => secondRow.has(char));
+    const isThird = lowerCaseWord.every(char => thirdRow.has(char));
+    if (isFirst || isSecond || isThird) possibleWords.push(word);
+  }
+
+  return possibleWords;
+}
+console.log({ findWords: findWords(["Hello", "Alaska", "Dad", "Peace"]) });
