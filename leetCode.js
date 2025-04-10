@@ -12022,3 +12022,32 @@ function findWords(words) {
   return possibleWords;
 }
 console.log({ findWords: findWords(["Hello", "Alaska", "Dad", "Peace"]) });
+
+/**
+ * @param {string[]} list1 
+ * @param {string[]} list2 
+ * @returns {string[]}
+ */
+function findRestaurant(list1, list2) {
+  const wordIndex = new Map();
+  const commonWords = [];
+  let minSum = Number.MAX_VALUE;
+
+  list1.forEach((word, idx) => wordIndex.set(word, idx));
+
+  list2.forEach((word, idx) => {
+    if (wordIndex.has(word)) {
+      const sum = idx + wordIndex.get(word);
+      if (sum < minSum) {
+        commonWords.length = 0;
+        commonWords.push(word);
+        minSum = sum;
+      } else if (sum === minSum) {
+        commonWords.push(word);
+      }
+    }
+  });
+
+  return commonWords;
+}
+console.log({ findRestaurant: findRestaurant(["happy", "sad", "good"], ["sad", "happy", "good"]) });
