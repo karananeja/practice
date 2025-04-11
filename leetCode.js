@@ -12051,3 +12051,28 @@ function findRestaurant(list1, list2) {
   return commonWords;
 }
 console.log({ findRestaurant: findRestaurant(["happy", "sad", "good"], ["sad", "happy", "good"]) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @param {number} k 
+ * @returns {number}
+ */
+function numberOfPairs(nums1, nums2, k) {
+  let count = 0;
+  const hashTable = new Map();
+
+  nums2.forEach((num2) => {
+    const multiple = num2 * k;
+    hashTable.set(multiple, (hashTable.get(multiple) || 0) + 1);
+  });
+
+  nums1.forEach((num1) => {
+    hashTable.forEach((freq, multiple) => {
+      if (num1 % multiple === 0) count += freq;
+    });
+  });
+
+  return count;
+}
+console.log({ numberOfPairs: numberOfPairs([1, 3, 4], [1, 3, 4], 1) });
