@@ -12076,3 +12076,29 @@ function numberOfPairs(nums1, nums2, k) {
   return count;
 }
 console.log({ numberOfPairs: numberOfPairs([1, 3, 4], [1, 3, 4], 1) });
+
+/**
+ * @param {string} key 
+ * @param {string} message 
+ * @returns {string}
+ */
+function decodeMessage(key, message) {
+  const charMap = new Map();
+  const decodedMessage = [];
+  let count = 0;
+
+  for (let idx = 0; idx < key.length; idx++) {
+    const char = key[idx];
+    if (char !== " ")
+      if (!charMap.has(char))
+        charMap.set(char, String.fromCharCode(97 + count++));
+  }
+
+  for (const char of message) {
+    if (char === " ") decodedMessage.push(" ");
+    else decodedMessage.push(charMap.get(char));
+  }
+
+  return decodedMessage.join("");
+}
+console.log({ decodeMessage: decodeMessage("the quick brown fox jumps over the lazy dog", "vkbs bs t suepuv") });
