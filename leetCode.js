@@ -12102,3 +12102,19 @@ function decodeMessage(key, message) {
   return decodedMessage.join("");
 }
 console.log({ decodeMessage: decodeMessage("the quick brown fox jumps over the lazy dog", "vkbs bs t suepuv") });
+
+/**
+ * @param {number[]} arr 
+ * @returns {boolean}
+ */
+function checkIfExist(arr) {
+  const nums = new Set();
+
+  for (const num of arr) {
+    if (nums.has(num * 2) || (num % 2 === 0 && nums.has(num / 2))) return true;
+    nums.add(num);
+  }
+
+  return false;
+}
+console.log({ checkIfExist: checkIfExist([10, 2, 5, 3]) });
