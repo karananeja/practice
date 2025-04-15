@@ -12118,3 +12118,19 @@ function checkIfExist(arr) {
   return false;
 }
 console.log({ checkIfExist: checkIfExist([10, 2, 5, 3]) });
+
+/**
+ * @param {string} sentence 
+ * @param {string} searchWord 
+ * @returns {number}
+ */
+function isPrefixOfWord(sentence, searchWord) {
+  const words = sentence.trim().split(" ");
+
+  for (let idx = 0; idx < words.length; idx++) {
+    if (words[idx].startsWith(searchWord)) return idx + 1;
+  }
+
+  return -1;
+}
+console.log({ isPrefixOfWord: isPrefixOfWord("i love eating burger", "burg") });
