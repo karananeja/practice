@@ -12134,3 +12134,24 @@ function isPrefixOfWord(sentence, searchWord) {
   return -1;
 }
 console.log({ isPrefixOfWord: isPrefixOfWord("i love eating burger", "burg") });
+
+/**
+ * @param {string[]} s 
+ * @param {number[]} spaces 
+ * @returns {string} 
+ */
+function addSpaces(s, spaces) {
+  const result = [];
+  let count = 0;
+
+  for (let idx = 0; idx < s.length; idx++) {
+    if (idx === spaces[count]) {
+      count++;
+      result.push(" ");
+    }
+    result.push(s[idx]);
+  }
+
+  return result.join("");
+}
+console.log({ addSpaces: addSpaces("LeetcodeHelpsMeLearn", [8, 13, 15]) });
