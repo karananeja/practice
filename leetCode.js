@@ -12155,3 +12155,26 @@ function addSpaces(s, spaces) {
   return result.join("");
 }
 console.log({ addSpaces: addSpaces("LeetcodeHelpsMeLearn", [8, 13, 15]) });
+
+/**
+ * @param {string} str1 
+ * @param {string} str2 
+ * @returns {boolean}
+ */
+function canMakeSubsequence(str1, str2) {
+  let first = 0, second = 0;
+
+  while (first < str1.length && second < str2.length) {
+    if (
+      str1[first] === str2[second] ||
+      str1.charCodeAt(first) + 1 === str2.charCodeAt(second) ||
+      str1.charCodeAt(first) - 25 === str2.charCodeAt(second)
+    ) {
+      second++;
+    }
+    first++;
+  }
+
+  return second === str2.length;
+}
+console.log({ canMakeSubsequence: canMakeSubsequence("abc", "ad") });
