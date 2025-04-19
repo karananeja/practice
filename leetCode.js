@@ -12213,3 +12213,29 @@ function canChange(start, target) {
   return waitL === 0 && waitR === 0;
 }
 console.log({ canChange: canChange("_L__R__R_", "L______RR") });
+
+/**
+ * @param {number[]} banned 
+ * @param {number} n 
+ * @param {number} maxSum 
+ * @returns {number}
+ */
+function maxCount(banned, n, maxSum) {
+  const bannedNums = new Set();
+  let count = 0;
+
+  banned.forEach((num) => {
+    if (num <= n) bannedNums.add(num);
+  });
+
+  for (let num = 1; num <= n; num++) {
+    if (!bannedNums.has(num)) {
+      if (maxSum - num < 0) return count;
+      maxSum -= num;
+      count++;
+    }
+  }
+
+  return count;
+}
+console.log({ maxCount: maxCount([1, 6, 5], 5, 6) });
