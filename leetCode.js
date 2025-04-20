@@ -12239,3 +12239,37 @@ function maxCount(banned, n, maxSum) {
   return count;
 }
 console.log({ maxCount: maxCount([1, 6, 5], 5, 6) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} maxOperations 
+ * @returns {number}
+ */
+function minimumSize(nums, maxOperations) {
+  /**
+   * @param {number} maxBallsInBag 
+   * @returns {boolean}
+   */
+  function canDivide(maxBallsInBag) {
+    let operations = 0;
+
+    for (const num of nums) {
+      operations += Math.ceil(num / maxBallsInBag) - 1;
+      if (operations > maxOperations) return false;
+    }
+
+    return true;
+  }
+
+  let left = 1, right = Math.max(...nums);
+
+  while (left < right) {
+    const mid = left + Math.floor((right - left) / 2);
+
+    if (canDivide(mid)) right = mid;
+    else left = mid + 1;
+  }
+
+  return left;
+}
+console.log({ minimumSize: minimumSize([9], 2) });
