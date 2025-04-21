@@ -12273,3 +12273,31 @@ function minimumSize(nums, maxOperations) {
   return left;
 }
 console.log({ minimumSize: minimumSize([9], 2) });
+
+/**
+ * @param {number[][]} logs 
+ * @returns {number}
+ */
+function maximumPopulation(logs) {
+  const shift = 1950, yearsCount = 2050 - 1950 + 1;
+  const population = Array(yearsCount).fill(0);
+
+  for (const [start, end] of logs) {
+    population[start - shift] += 1;
+    population[end - shift] -= 1;
+  }
+
+  let cur = 0, max = 0, earliestYear = shift;
+
+  for (let i = 0; i < population.length; i++) {
+    cur += population[i];
+
+    if (cur > max) {
+      max = cur;
+      earliestYear = i + shift;
+    }
+  }
+
+  return earliestYear;
+}
+console.log({ maximumPopulation: maximumPopulation([[1993, 1999], [2000, 2010]]) });
