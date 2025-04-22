@@ -12301,3 +12301,24 @@ function maximumPopulation(logs) {
   return earliestYear;
 }
 console.log({ maximumPopulation: maximumPopulation([[1993, 1999], [2000, 2010]]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number[][]}
+ */
+function minimumAbsDifference(arr) {
+  arr.sort((a, b) => a - b);
+  let minDiff = Infinity;
+  const result = [];
+
+  for (let idx = 0; idx < arr.length - 1; idx++) {
+    minDiff = Math.min(arr[idx + 1] - arr[idx], minDiff);
+  }
+
+  for (let idx = 0; idx < arr.length - 1; idx++) {
+    if (arr[idx + 1] - arr[idx] === minDiff) result.push([arr[idx], arr[idx + 1]]);
+  }
+
+  return result;
+}
+console.log({ minimumAbsDifference: minimumAbsDifference([4, 2, 1, 3]) });
