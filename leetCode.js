@@ -12322,3 +12322,35 @@ function minimumAbsDifference(arr) {
   return result;
 }
 console.log({ minimumAbsDifference: minimumAbsDifference([4, 2, 1, 3]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maximumLength(s) {
+  const count = new Map();
+  let substringLength = 0;
+
+  for (let start = 0; start < s.length; start++) {
+    const character = s[start];
+    substringLength = 0;
+
+    for (let end = start; end < s.length; end++) {
+      if (character === s[end]) {
+        substringLength++;
+        const key = `${character},${substringLength}`;
+        count.set(key, (count.get(key) || 0) + 1);
+      } else break;
+    }
+  }
+
+  let maxLength = 0;
+
+  for (const [key, frequency] of count) {
+    const [, len] = key.split(',').map(Number);
+    if (frequency >= 3 && len > maxLength) maxLength = len;
+  }
+
+  return maxLength === 0 ? -1 : maxLength;
+}
+console.log({ maximumLength: maximumLength("aaaa") });
