@@ -12354,3 +12354,25 @@ function maximumLength(s) {
   return maxLength === 0 ? -1 : maxLength;
 }
 console.log({ maximumLength: maximumLength("aaaa") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maximumBeauty(nums, k) {
+  nums.sort((a, b) => a - b);
+
+  let result = 0, left = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    while (nums[right] - nums[left] > 2 * k) {
+      left++;
+    }
+
+    result = Math.max(result, right - left + 1);
+  }
+
+  return result;
+}
+console.log({ maximumBeauty: maximumBeauty([4, 6, 1, 2], 2) });
