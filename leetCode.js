@@ -12376,3 +12376,32 @@ function maximumBeauty(nums, k) {
   return result;
 }
 console.log({ maximumBeauty: maximumBeauty([4, 6, 1, 2], 2) });
+
+/**
+ * @param {number[]} gifts 
+ * @param {number} k 
+ * @returns {number}
+ */
+function pickGifts(gifts, k) {
+  const maxHeap = new MaxHeap((a, b) => a - b);
+
+  for (const gift of gifts) {
+    maxHeap.push(gift);
+  }
+
+  while (k > 0) {
+    const pile = maxHeap.pop();
+    const result = Math.floor(Math.sqrt(pile));
+    maxHeap.push(result);
+    k--;
+  }
+
+  let numberOfGifts = 0;
+
+  while (maxHeap.size) {
+    const numberOfGift = maxHeap.pop();
+    numberOfGifts += numberOfGift;
+  }
+
+  return numberOfGifts;
+}
