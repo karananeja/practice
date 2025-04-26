@@ -12405,3 +12405,48 @@ function pickGifts(gifts, k) {
 
   return numberOfGifts;
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findScore(nums) {
+  let ans = 0;
+  const marked = new Array(nums.length).fill(false);
+
+  /**
+   * @param {[number, number]} a
+   * @param {[number, number]} b
+   * @returns {number}
+   */
+  function compare(a, b) {
+    if (a[0] !== b[0]) {
+      return a[0] - b[0];
+    }
+    return a[1] - b[1];
+  }
+
+  const heap = new MinHeap(compare);
+
+  for (let i = 0; i < nums.length; i++) {
+    heap.push([nums[i], i]);
+  }
+
+  while (heap.size > 0) {
+    const [value, index] = heap.pop();
+
+    if (!marked[index]) {
+      ans += value;
+      marked[index] = true;
+
+      if (index - 1 >= 0) {
+        marked[index - 1] = true;
+      }
+      if (index + 1 < nums.length) {
+        marked[index + 1] = true;
+      }
+    }
+  }
+
+  return ans;
+}
