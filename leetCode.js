@@ -12450,3 +12450,45 @@ function findScore(nums) {
 
   return ans;
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function continuousSubarrays(nums) {
+  let right = 0, left = 0;
+  let curMin, curMax;
+  let windowLen = 0, total = 0;
+
+  curMin = curMax = nums[right];
+
+  for (right = 0; right < nums.length; right++) {
+    curMin = Math.min(curMin, nums[right]);
+    curMax = Math.max(curMax, nums[right]);
+
+    if (curMax - curMin > 2) {
+      windowLen = right - left;
+      total += (windowLen * (windowLen + 1)) / 2;
+
+      left = right;
+      curMin = curMax = nums[right];
+
+      while (left > 0 && Math.abs(nums[right] - nums[left - 1]) <= 2) {
+        left--;
+        curMin = Math.min(curMin, nums[left]);
+        curMax = Math.max(curMax, nums[left]);
+      }
+
+      if (left < right) {
+        windowLen = right - left;
+        total -= (windowLen * (windowLen + 1)) / 2;
+      }
+    }
+  }
+
+  windowLen = right - left;
+  total += (windowLen * (windowLen + 1)) / 2;
+
+  return total;
+}
+console.log({ continuousSubarrays: continuousSubarrays([5, 4, 2, 4]) });
