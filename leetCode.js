@@ -12492,3 +12492,26 @@ function continuousSubarrays(nums) {
   return total;
 }
 console.log({ continuousSubarrays: continuousSubarrays([5, 4, 2, 4]) });
+
+/**
+ * @param {string[][]} items 
+ * @param {string} ruleKey 
+ * @param {string} ruleValue 
+ * @returns {number}
+ */
+function countMatches(items, ruleKey, ruleValue) {
+  let count = 0;
+
+  for (const [type, color, name] of items) {
+    if (ruleKey === "type") {
+      if (ruleValue === type) count++;
+    } else if (ruleKey === "color") {
+      if (ruleValue === color) count++;
+    } else if (ruleKey === "name") {
+      if (ruleValue === name) count++;
+    }
+  }
+
+  return count;
+}
+console.log({ countMatches: countMatches([["phone", "blue", "pixel"], ["computer", "silver", "lenovo"], ["phone", "gold", "iphone"]], "color", "silver") });
