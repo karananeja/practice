@@ -12515,3 +12515,26 @@ function countMatches(items, ruleKey, ruleValue) {
   return count;
 }
 console.log({ countMatches: countMatches([["phone", "blue", "pixel"], ["computer", "silver", "lenovo"], ["phone", "gold", "iphone"]], "color", "silver") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @param {number} multiplier 
+ * @returns {number[]}
+ */
+function getFinalState(nums, k, multiplier) {
+  const minHeap = new MinHeap((a, b) => {
+    if (a[0] === b[0]) return a[1] - b[1];
+    return a[0] - b[0];
+  });
+
+  nums.forEach((num, idx) => minHeap.push([num, idx]));
+
+  while (k--) {
+    const [, idx] = minHeap.pop();
+    nums[idx] *= multiplier;
+    minHeap.push([nums[idx], idx]);
+  }
+
+  return nums;
+}
