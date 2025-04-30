@@ -12538,3 +12538,49 @@ function getFinalState(nums, k, multiplier) {
 
   return nums;
 }
+
+/**
+ * @param {string} s 
+ * @param {number} repeatLimit 
+ * @returns {string}
+ */
+function repeatLimitedString(s, repeatLimit) {
+  const charCount = new Map();
+
+  for (const char of s) {
+    charCount.set(char, (charCount.get(char) || 0) + 1);
+  }
+
+  const maxHeap = new MaxHeap((a, b) => a.localeCompare(b));
+
+  for (const [char] of charCount) {
+    maxHeap.push(char);
+  }
+
+  const result = [];
+
+  while (maxHeap.size) {
+    const char = maxHeap.pop();
+    const count = charCount.get(char);
+    const use = Math.min(count, repeatLimit);
+
+    result.push(char.repeat(use));
+    charCount.set(char, count - use);
+
+    if (charCount.get(char) && maxHeap.size) {
+      const nextChar = maxHeap.pop();
+      result.push(nextChar);
+
+      const nextCount = charCount.get(nextChar);
+      charCount.set(nextChar, nextCount - 1);
+
+      if (charCount.get(nextChar)) {
+        maxHeap.push(nextChar);
+      }
+
+      maxHeap.push(char);
+    }
+  }
+
+  return result.join('');
+}
