@@ -12584,3 +12584,23 @@ function repeatLimitedString(s, repeatLimit) {
 
   return result.join('');
 }
+
+/**
+ * 
+ * @param {number[]} prices 
+ * @returns {number[]}
+ */
+function finalPrices(prices) {
+  const result = [...prices], stack = [];
+
+  for (let i = 0; i < prices.length; i++) {
+    while (stack.length && prices[stack[stack.length - 1]] >= prices[i]) {
+      result[stack.pop()] -= prices[i];
+    }
+
+    stack.push(i);
+  }
+
+  return result;
+}
+console.log({ finalPrices: finalPrices([8, 4, 6, 2, 3]) });
