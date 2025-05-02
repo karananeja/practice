@@ -12586,7 +12586,6 @@ function repeatLimitedString(s, repeatLimit) {
 }
 
 /**
- * 
  * @param {number[]} prices 
  * @returns {number[]}
  */
@@ -12604,3 +12603,19 @@ function finalPrices(prices) {
   return result;
 }
 console.log({ finalPrices: finalPrices([8, 4, 6, 2, 3]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function maxChunksToSorted(arr) {
+  let curMax = -1, chunksCount = 0;
+
+  for (let idx = 0; idx < arr.length; idx++) {
+    curMax = Math.max(curMax, arr[idx]);
+    if (curMax === idx) chunksCount += 1;
+  }
+
+  return chunksCount;
+}
+console.log({ maxChunksToSorted: maxChunksToSorted([4, 3, 2, 1, 0]) });
