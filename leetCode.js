@@ -12619,3 +12619,35 @@ function maxChunksToSorted(arr) {
   return chunksCount;
 }
 console.log({ maxChunksToSorted: maxChunksToSorted([4, 3, 2, 1, 0]) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {TreeNode | null}
+ */
+function reverseOddLevels(root) {
+  const nodesQueue = [root];
+  let idx = 0;
+
+  while (nodesQueue.length) {
+    if (idx & 1) {
+      let left = 0, right = nodesQueue.length - 1;
+
+      while (left < right) {
+        [nodesQueue[left++].val, nodesQueue[right--].val] = [nodesQueue[right].val, nodesQueue[left].val];
+      }
+    }
+
+    const size = nodesQueue.length;
+
+    for (let idx = 0; idx < size; idx++) {
+      const node = nodesQueue.shift();
+
+      if (node.left) nodesQueue.push(node.left);
+      if (node.right) nodesQueue.push(node.right);
+    }
+
+    idx++;
+  }
+
+  return root;
+}
