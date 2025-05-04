@@ -12651,3 +12651,28 @@ function reverseOddLevels(root) {
 
   return root;
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {TreeNode | null} 
+ */
+function sortedArrayToBST(nums) {
+  /**
+   * @param {number} left 
+   * @param {number} right 
+   * @returns {TreeNode | null} 
+   */
+  function constructBST(left, right) {
+    if (left > right) return null;
+
+    const mid = left + Math.floor((right - left) / 2);
+    const root = new TreeNode(nums[mid]);
+
+    root.left = constructBST(left, mid - 1);
+    root.right = constructBST(mid + 1, right);
+
+    return root;
+  }
+
+  return constructBST(0, nums.length - 1);
+}
