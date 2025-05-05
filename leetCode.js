@@ -12676,3 +12676,21 @@ function sortedArrayToBST(nums) {
 
   return constructBST(0, nums.length - 1);
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function containsNearbyDuplicate(nums, k) {
+  const seen = new Set();
+
+  for (let i = 0; i < nums.length; i++) {
+    if (seen.has(nums[i])) return true;
+    seen.add(nums[i]);
+    if (seen.size > k) seen.delete(nums[i - k]);
+  }
+
+  return false;
+}
+console.log({ containsNearbyDuplicate: containsNearbyDuplicate([1, 2, 3, 1], 3) });
