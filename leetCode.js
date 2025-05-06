@@ -12694,3 +12694,56 @@ function containsNearbyDuplicate(nums, k) {
   return false;
 }
 console.log({ containsNearbyDuplicate: containsNearbyDuplicate([1, 2, 3, 1], 3) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function minimumOperations(root) {
+  const queue = [root];
+  let totalSwaps = 0;
+
+  /**
+   * @param {number[]} original 
+   * @returns {number}
+   */
+  function getMinSwaps(original) {
+    let swaps = 0;
+    const target = [...original].sort((a, b) => a - b);
+
+    const pos = new Map();
+
+    for (let i = 0; i < original.length; i++) {
+      pos.set(original[i], i);
+    }
+
+    for (let i = 0; i < original.length; i++) {
+      if (original[i] !== target[i]) {
+        swaps++;
+
+        const curPos = pos.get(target[i]);
+        pos.set(original[i], curPos);
+        [original[curPos], original[i]] = [original[i], original[curPos]];
+      }
+    }
+
+    return swaps;
+  }
+
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const levelValues = new Array(levelSize);
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+      levelValues[i] = node.val;
+
+      if (node.left !== null) queue.push(node.left);
+      if (node.right !== null) queue.push(node.right);
+    }
+
+    totalSwaps += getMinSwaps(levelValues);
+  }
+
+  return totalSwaps;
+}
