@@ -12747,3 +12747,15 @@ function minimumOperations(root) {
 
   return totalSwaps;
 }
+
+/**
+ * @param {number[]} encoded 
+ * @param {number} first 
+ * @returns {number[]}
+ */
+function decode(encoded, first) {
+  const original = [first];
+  encoded.forEach((num, idx) => original.push(num ^ original[idx]));
+  return original;
+}
+console.log({ decode: decode([1, 2, 3], 1) });
