@@ -12759,3 +12759,29 @@ function decode(encoded, first) {
   return original;
 }
 console.log({ decode: decode([1, 2, 3], 1) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number[]}
+ */
+function largestValues(root) {
+  const nodesQueue = [root], maxValues = [];
+  if (!root) return maxValues;
+
+  while (nodesQueue.length) {
+    const size = nodesQueue.length;
+    let value = -Infinity;
+
+    for (let idx = 0; idx < size; idx++) {
+      const node = nodesQueue.shift();
+      value = Math.max(value, node.val);
+
+      if (node.left) nodesQueue.push(node.left);
+      if (node.right) nodesQueue.push(node.right);
+    }
+
+    maxValues.push(value);
+  }
+
+  return maxValues;
+}
