@@ -12785,3 +12785,29 @@ function largestValues(root) {
 
   return maxValues;
 }
+
+/**
+ * @param {TreeNode | null} original 
+ * @param {TreeNode | null} cloned 
+ * @param {TreeNode | null} target 
+ * @returns {TreeNode | null}
+ */
+function getTargetCopy(original, cloned, target) {
+  /**
+   * @param {TreeNode | null} node1 
+   * @param {TreeNode | null} node2 
+   * @returns {TreeNode | null}
+   */
+  function getNode(node1, node2) {
+    if (!node1 || !node2) return null;
+
+    if (node1.val === target.val) return node2;
+
+    const leftResult = getNode(node1.left, node2.left);
+    if (leftResult) return leftResult;
+
+    return getNode(node1.right, node2.right);
+  }
+
+  return getNode(original, cloned);
+}
