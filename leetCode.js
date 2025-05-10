@@ -12811,3 +12811,19 @@ function getTargetCopy(original, cloned, target) {
 
   return getNode(original, cloned);
 }
+
+/**
+ * @param {number[]} values 
+ * @returns {number}
+ */
+function maxScoreSightseeingPair(values) {
+  let maxScore = 0, curMax = values[0] - 1;
+
+  for (let idx = 1; idx < values.length; idx++) {
+    maxScore = Math.max(maxScore, values[idx] + curMax);
+    curMax = Math.max(curMax - 1, values[idx] - 1);
+  }
+
+  return maxScore;
+}
+console.log({ maxScoreSightseeingPair: maxScoreSightseeingPair([8, 1, 5, 2, 6]) });
