@@ -12827,3 +12827,23 @@ function maxScoreSightseeingPair(values) {
   return maxScore;
 }
 console.log({ maxScoreSightseeingPair: maxScoreSightseeingPair([8, 1, 5, 2, 6]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function sumIndicesWithKSetBits(nums, k) {
+  return nums.reduce((sum, num, idx) => {
+    let count = 0;
+
+    while (idx) {
+      count += idx & 1;
+      idx >>= 1;
+    }
+
+    if (count === k) sum += num;
+    return sum;
+  }, 0);
+}
+console.log({ sumIndicesWithKSetBits: sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1) });
