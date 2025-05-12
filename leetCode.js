@@ -12847,3 +12847,20 @@ function sumIndicesWithKSetBits(nums, k) {
   }, 0);
 }
 console.log({ sumIndicesWithKSetBits: sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function decompressRLElist(nums) {
+  const result = [];
+
+  for (let idx = 0; idx < nums.length - 1; idx += 2) {
+    while (nums[idx]--) {
+      result.push(nums[idx + 1]);
+    }
+ }
+
+  return result;
+}
+console.log({ decompressRLElist: decompressRLElist([1, 2, 3, 4]) });
