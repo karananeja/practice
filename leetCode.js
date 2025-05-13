@@ -12859,8 +12859,25 @@ function decompressRLElist(nums) {
     while (nums[idx]--) {
       result.push(nums[idx + 1]);
     }
- }
+  }
 
   return result;
 }
 console.log({ decompressRLElist: decompressRLElist([1, 2, 3, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumAverage(nums) {
+  nums.sort((a, b) => a - b);
+
+  let average = Infinity, left = 0, right = nums.length - 1;
+
+  while (left < right) {
+    average = Math.min(average, (nums[left++] + nums[right--]) / 2);
+  }
+
+  return average;
+}
+console.log({ minimumAverage: minimumAverage([7, 8, 3, 4, 15, 13, 4, 1]) });
