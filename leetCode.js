@@ -12881,3 +12881,16 @@ function minimumAverage(nums) {
   return average;
 }
 console.log({ minimumAverage: minimumAverage([7, 8, 3, 4, 15, 13, 4, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function minOperations(nums, k) {
+  return nums.reduce((res, num) => {
+    if (num < k) res++;
+    return res;
+  }, 0);
+}
+console.log({ minOperations: minOperations([2, 11, 10, 1, 3], 10) });
