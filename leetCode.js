@@ -12914,3 +12914,21 @@ function searchInsert(nums, target) {
   return start;
 }
 console.log({ searchInsert: searchInsert([1, 3, 5, 6], 5) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} diff 
+ * @returns {number}
+ */
+function arithmeticTriplets(nums, diff) {
+  const uniqueNums = new Set();
+  let count = 0;
+
+  for (const num of nums) {
+    if (uniqueNums.has(num - diff) && uniqueNums.has(num - 2 * diff)) count++;
+    uniqueNums.add(num);
+  }
+
+  return count;
+}
+console.log({ arithmeticTriplets: arithmeticTriplets([0, 1, 4, 6, 7, 10], 3) });
