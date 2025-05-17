@@ -12932,3 +12932,33 @@ function arithmeticTriplets(nums, diff) {
   return count;
 }
 console.log({ arithmeticTriplets: arithmeticTriplets([0, 1, 4, 6, 7, 10], 3) });
+
+/**
+ * @param {string[]} words 
+ * @param {number[][]} queries 
+ * @returns {number[]}
+ */
+function vowelStrings(words, queries) {
+  const ans = new Array(queries.length);
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+  const prefixSum = new Array(words.length);
+  let sum = 0;
+
+  for (let i = 0; i < words.length; i++) {
+    const currentWord = words[i];
+
+    if (vowels.has(currentWord.charAt(0)) && vowels.has(currentWord.charAt(currentWord.length - 1))) {
+      sum++;
+    }
+
+    prefixSum[i] = sum;
+  }
+
+  for (let i = 0; i < queries.length; i++) {
+    const currentQuery = queries[i];
+    ans[i] = prefixSum[currentQuery[1]] - (currentQuery[0] === 0 ? 0 : prefixSum[currentQuery[0] - 1]);
+  }
+
+  return ans;
+}
+console.log({ vowelStrings: vowelStrings(["aba", "bcb", "ece", "aa", "e"], [[0, 2], [1, 4], [1, 1]]) });
