@@ -12962,3 +12962,21 @@ function vowelStrings(words, queries) {
   return ans;
 }
 console.log({ vowelStrings: vowelStrings(["aba", "bcb", "ece", "aa", "e"], [[0, 2], [1, 4], [1, 1]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function waysToSplitArray(nums) {
+  const prefixSum = nums.reduce((sum, nums) => sum + nums, 0);
+  let leftSum = 0, count = 0;
+
+  for (let idx = 0; idx < nums.length - 1; idx++) {
+    leftSum += nums[idx];
+    const rightSum = prefixSum - leftSum;
+    if (leftSum >= rightSum) count++;
+  }
+
+  return count;
+}
+console.log({ waysToSplitArray: waysToSplitArray([10, 4, -8, 7]) });
