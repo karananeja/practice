@@ -12980,3 +12980,39 @@ function waysToSplitArray(nums) {
   return count;
 }
 console.log({ waysToSplitArray: waysToSplitArray([10, 4, -8, 7]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function countPalindromicSubsequence(s) {
+  const letters = new Set();
+
+  for (const c of s) {
+    letters.add(c);
+  }
+
+  let ans = 0;
+
+  for (const letter of letters) {
+    let i = -1, j = 0;
+
+    for (let k = 0; k < s.length; k++) {
+      if (s[k] === letter) {
+        if (i === -1) i = k;
+        j = k;
+      }
+    }
+
+    const between = new Set();
+
+    for (let k = i + 1; k < j; k++) {
+      between.add(s[k]);
+    }
+
+    ans += between.size;
+  }
+
+  return ans;
+}
+console.log({ countPalindromicSubsequence: countPalindromicSubsequence("aabca") });
