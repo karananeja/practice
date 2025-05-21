@@ -13016,3 +13016,29 @@ function countPalindromicSubsequence(s) {
   return ans;
 }
 console.log({ countPalindromicSubsequence: countPalindromicSubsequence("aabca") });
+
+/**
+ * @param {string} s 
+ * @param {number[][]} shifts 
+ * @returns {string}
+ */
+function shiftingLetters(s, shifts) {
+  const prefixDiff = Array.from({ length: s.length + 1 }, () => 0);
+
+  for (const [left, right, diff] of shifts) {
+    prefixDiff[right + 1] -= diff * 2 - 1;
+    prefixDiff[left] += diff * 2 - 1;
+  }
+
+  let diff = 0;
+  const result = [];
+
+  for (let idx = 0; idx < s.length; idx++) {
+    diff += prefixDiff[idx];
+    const charCode = s.charCodeAt(idx) - 97;
+    result.push(String.fromCharCode(97 + (charCode + (diff % 26) + 26) % 26));
+  }
+
+  return result.join("");
+}
+console.log({ shiftingLetters: shiftingLetters("abc", [[0, 1, 0], [1, 2, 1], [0, 2, 1]]) });
