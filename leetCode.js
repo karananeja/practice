@@ -13042,3 +13042,30 @@ function shiftingLetters(s, shifts) {
   return result.join("");
 }
 console.log({ shiftingLetters: shiftingLetters("abc", [[0, 1, 0], [1, 2, 1], [0, 2, 1]]) });
+
+/**
+ * @param {string} boxes 
+ * @returns {number[]}
+ */
+function minOperations(boxes) {
+  const operations = Array.from({ length: boxes.length }, () => 0);
+  let balls = 0, moves = 0;
+
+  for (let idx = 0; idx < boxes.length; idx++) {
+    operations[idx] = balls + moves;
+    moves += balls;
+    balls += +boxes[idx];
+  }
+
+  balls = 0;
+  moves = 0;
+
+  for (let idx = boxes.length - 1; idx >= 0; idx--) {
+    operations[idx] += balls + moves;
+    moves += balls;
+    balls += +boxes[idx];
+  }
+
+  return operations;
+}
+console.log({ minOperations: minOperations("001011") });
