@@ -13069,3 +13069,25 @@ function minOperations(boxes) {
   return operations;
 }
 console.log({ minOperations: minOperations("001011") });
+
+/**
+ * @param {string[]} words 
+ * @returns {string[]}
+ */
+function stringMatching(words) {
+  const matchedWords = [];
+
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 0; j < words.length; j++) {
+      if (i === j) continue;
+
+      if (words[j].includes(words[i])) {
+        matchedWords.push(words[i]);
+        break;
+      }
+    }
+  }
+
+  return matchedWords;
+}
+console.log({ stringMatching: stringMatching(["mass", "as", "hero", "superhero"]) });
