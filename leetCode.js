@@ -13091,3 +13091,29 @@ function stringMatching(words) {
   return matchedWords;
 }
 console.log({ stringMatching: stringMatching(["mass", "as", "hero", "superhero"]) });
+
+/**
+ * @param {string} str1 
+ * @param {string} str2 
+ * @returns {boolean}
+ */
+function isPrefixAndSuffix(str1, str2) {
+  return str2.startsWith(str1) && str2.endsWith(str1);
+}
+
+/**
+ * @param {string[]} words 
+ * @returns {number}
+ */
+function countPrefixSuffixPairs(words) {
+  let count = 0;
+
+  for (let i = 0; i < words.length; i++) {
+    for (let j = i + 1; j < words.length; j++) {
+      if (isPrefixAndSuffix(words[i], words[j])) count++;
+    }
+  }
+
+  return count;
+}
+console.log({ countPrefixSuffixPairs: countPrefixSuffixPairs(["a", "aba", "ababa", "aa"]) });
