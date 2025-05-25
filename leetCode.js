@@ -13117,3 +13117,40 @@ function countPrefixSuffixPairs(words) {
   return count;
 }
 console.log({ countPrefixSuffixPairs: countPrefixSuffixPairs(["a", "aba", "ababa", "aa"]) });
+
+/**
+ * @param {string[]} S 
+ * @returns {number[]}
+ */
+function count(S) {
+  const ans = new Array(26).fill(0);
+  for (const c of S) {
+    ans[c.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+  }
+  return ans;
+}
+
+/**
+ * @param {string[]} A 
+ * @param {string[]} B 
+ * @returns {string[]}
+ */
+function wordSubsets(A, B) {
+  const bmax = count('');
+
+  for (const b of B) {
+    const bCount = count(b);
+    for (let i = 0; i < 26; ++i) {
+      bmax[i] = Math.max(bmax[i], bCount[i]);
+    }
+  }
+
+  return A.filter(a => {
+    const aCount = count(a);
+    for (let i = 0; i < 26; ++i) {
+      if (aCount[i] < bmax[i]) return false;
+    }
+    return true;
+  });
+}
+console.log({ wordSubsets: wordSubsets(["amazon", "apple", "facebook", "google", "leetcode"], ["e", "o"]) });
