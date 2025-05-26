@@ -13154,3 +13154,27 @@ function wordSubsets(A, B) {
   });
 }
 console.log({ wordSubsets: wordSubsets(["amazon", "apple", "facebook", "google", "leetcode"], ["e", "o"]) });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function canConstruct(s, k) {
+  if (k > s.length) return false;
+
+  const charCount = {};
+
+  for (const char of s) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+
+  let oddCount = 0;
+
+  for (const key in charCount) {
+    oddCount += charCount[key] % 2;
+  }
+
+  return oddCount <= k;
+}
+console.log({ canConstruct: canConstruct("annabelle", 2) });
