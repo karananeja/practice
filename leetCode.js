@@ -13178,3 +13178,58 @@ function canConstruct(s, k) {
   return oddCount <= k;
 }
 console.log({ canConstruct: canConstruct("annabelle", 2) });
+
+/**
+ * @param {string} s 
+ * @param {string} locked 
+ * @returns {boolean}
+ */
+function canBeValid(s, locked) {
+  const length = s.length;
+  if (length % 2 === 1) return false;
+
+  let openBrackets = 0, unlocked = 0;
+
+  for (let i = 0; i < length; i++) {
+    if (locked[i] === '0') {
+      unlocked++;
+    } else if (s[i] === '(') {
+      openBrackets++;
+    } else if (s[i] === ')') {
+      if (openBrackets > 0) {
+        openBrackets--;
+      } else if (unlocked > 0) {
+        unlocked--;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  let balance = 0;
+
+  for (let i = length - 1; i >= 0; i--) {
+    if (locked[i] === '0') {
+      balance--;
+      unlocked--;
+    } else if (s[i] === '(') {
+      balance++;
+      openBrackets--;
+    } else if (s[i] === ')') {
+      balance--;
+    }
+
+    if (balance > 0) {
+      return false;
+    }
+
+    if (unlocked === 0 && openBrackets === 0) {
+      break;
+    }
+  }
+
+  if (openBrackets > 0) return false;
+
+  return true;
+}
+console.log({ canBeValid: canBeValid("))()))", "010100") });
