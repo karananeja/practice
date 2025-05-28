@@ -13233,3 +13233,26 @@ function canBeValid(s, locked) {
   return true;
 }
 console.log({ canBeValid: canBeValid("))()))", "010100") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minimumLength(s) {
+  const charCount = {};
+
+  for (const char of s) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+
+  let deleteCount = 0;
+
+  for (const char in charCount) {
+    const count = charCount[char];
+    if (count % 2 === 0) deleteCount += count - 2;
+    else deleteCount += count - 1;
+  }
+
+  return s.length - deleteCount;
+}
+console.log({ minimumLength: minimumLength("abaacbcbb") });
