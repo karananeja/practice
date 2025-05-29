@@ -13256,3 +13256,25 @@ function minimumLength(s) {
   return s.length - deleteCount;
 }
 console.log({ minimumLength: minimumLength("abaacbcbb") });
+
+/**
+ * @param {number[]} A 
+ * @param {number[]} B 
+ * @returns {number[]}
+ */
+function findThePrefixCommonArray(A, B) {
+  const prefixCommonArray = new Array(A.length);
+  const frequency = new Array(A.length + 1).fill(0);
+  let commonCount = 0;
+
+  for (let currentIndex = 0; currentIndex < A.length; ++currentIndex) {
+    if (++frequency[A[currentIndex]] === 2) ++commonCount;
+
+    if (++frequency[B[currentIndex]] === 2) ++commonCount;
+
+    prefixCommonArray[currentIndex] = commonCount;
+  }
+
+  return prefixCommonArray;
+}
+console.log({ findThePrefixCommonArray: findThePrefixCommonArray([1, 3, 2, 4], [3, 1, 2, 4]) });
