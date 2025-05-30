@@ -13278,3 +13278,45 @@ function findThePrefixCommonArray(A, B) {
   return prefixCommonArray;
 }
 console.log({ findThePrefixCommonArray: findThePrefixCommonArray([1, 3, 2, 4], [3, 1, 2, 4]) });
+
+/**
+ * @param {number} num1 
+ * @param {number} num2 
+ * @returns {number}
+ */
+function minimizeXor(num1, num2) {
+  /**
+   * @param {number} num 
+   * @returns {number}
+   */
+  function countBits(num) {
+    let count = 0;
+
+    while (num > 0) {
+      count += num & 1;
+      num >>= 1;
+    }
+
+    return count;
+  }
+
+  let count1 = countBits(num1), count2 = countBits(num2);
+  let result = num1, idx = 0;
+
+  while (count1 !== count2) {
+    if (count2 < count1 && result & (1 << idx)) {
+      count1--;
+      result ^= 1 << idx;
+    }
+
+    if (count1 < count2 && (result & (1 << idx)) === 0) {
+      count1++;
+      result |= 1 << idx;
+    }
+
+    idx++;
+  }
+
+  return result;
+}
+console.log({ minimizeXor: minimizeXor(3, 5) });
