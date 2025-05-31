@@ -13320,3 +13320,23 @@ function minimizeXor(num1, num2) {
   return result;
 }
 console.log({ minimizeXor: minimizeXor(3, 5) });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number}
+ */
+function xorAllNums(nums1, nums2) {
+  let result = 0;
+
+  if (nums1.length % 2 === 1) {
+    nums2.forEach((num) => result ^= num);
+  }
+
+  if (nums2.length % 2 === 1) {
+    nums1.forEach((num) => result ^= num);
+  }
+
+  return result;
+}
+console.log({ xorAllNums: xorAllNums([2, 1, 3], [10, 2, 5, 0]) });
