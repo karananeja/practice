@@ -13340,3 +13340,12 @@ function xorAllNums(nums1, nums2) {
   return result;
 }
 console.log({ xorAllNums: xorAllNums([2, 1, 3], [10, 2, 5, 0]) });
+
+/**
+ * @param {number[]} derived 
+ * @returns {boolean}
+ */
+function doesValidArrayExist(derived) {
+  return derived.reduce((num, sum) => sum ^= num, 0) === 0;
+}
+console.log({ doesValidArrayExist: doesValidArrayExist([1, 1, 0]) });
