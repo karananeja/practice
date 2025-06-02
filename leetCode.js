@@ -13349,3 +13349,21 @@ function doesValidArrayExist(derived) {
   return derived.reduce((num, sum) => sum ^= num, 0) === 0;
 }
 console.log({ doesValidArrayExist: doesValidArrayExist([1, 1, 0]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function countKDifference(nums, k) {
+  let count = 0;
+  const numCount = new Map();
+
+  for (const num of nums) {
+    count += (numCount.get(num - k) || 0) + (numCount.get(num + k) || 0);
+    numCount.set(num, (numCount.get(num) || 0) + 1);
+  }
+
+  return count;
+}
+console.log({ countKDifference: countKDifference([1, 2, 2, 1], 1) });
