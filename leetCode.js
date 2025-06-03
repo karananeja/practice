@@ -13367,3 +13367,19 @@ function countKDifference(nums, k) {
   return count;
 }
 console.log({ countKDifference: countKDifference([1, 2, 2, 1], 1) });
+
+/**
+ * @param {string} num 
+ * @returns {boolean}
+ */
+function isBalanced(num) {
+  let evenSum = 0, oddSum = 0;
+
+  for (let idx = 0; idx < num.length; idx++) {
+    if (idx % 2 === 0) evenSum += +num[idx];
+    else oddSum += +num[idx];
+  }
+
+  return evenSum === oddSum;
+}
+console.log({ isBalanced: isBalanced("1234") });
