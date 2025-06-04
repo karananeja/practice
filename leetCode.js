@@ -13383,3 +13383,32 @@ function isBalanced(num) {
   return evenSum === oddSum;
 }
 console.log({ isBalanced: isBalanced("1234") });
+
+/**
+ * @param {number[]} arr 
+ * @param {number[][]} mat 
+ * @returns {number}
+ */
+function firstCompleteIndex(arr, mat) {
+  const ROWS = mat.length, COLS = mat[0].length;
+  const numPosition = {};
+
+  for (let row = 0; row < ROWS; row++) {
+    for (let col = 0; col < COLS; col++) {
+      numPosition[mat[row][col]] = [row, col];
+    }
+  }
+
+  const rowCount = new Array(ROWS).fill(0);
+  const colCount = new Array(COLS).fill(0);
+
+  for (let idx = 0; idx < arr.length; idx++) {
+    const [row, col] = numPosition[arr[idx]];
+    rowCount[row]++;
+    colCount[col]++;
+
+    if (colCount[col] === ROWS || rowCount[row] === COLS)
+      return idx;
+  }
+}
+console.log({ firstCompleteIndex: firstCompleteIndex([1, 3, 4, 2], [[1, 4], [2, 3]]) });
