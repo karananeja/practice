@@ -13412,3 +13412,21 @@ function firstCompleteIndex(arr, mat) {
   }
 }
 console.log({ firstCompleteIndex: firstCompleteIndex([1, 3, 4, 2], [[1, 4], [2, 3]]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function gridGame(grid) {
+  let firstRowSum = grid[0].reduce((acc, val) => acc + val, 0), secondRowSum = 0;
+  let minimumSum = Number.MAX_SAFE_INTEGER;
+
+  for (let turnIndex = 0; turnIndex < grid[0].length; ++turnIndex) {
+    firstRowSum -= grid[0][turnIndex];
+    minimumSum = Math.min(minimumSum, Math.max(firstRowSum, secondRowSum));
+    secondRowSum += grid[1][turnIndex];
+  }
+
+  return minimumSum;
+}
+console.log({ gridGame: gridGame([[2, 5, 4], [1, 5, 1]]) });
