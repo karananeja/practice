@@ -13430,3 +13430,25 @@ function gridGame(grid) {
   return minimumSum;
 }
 console.log({ gridGame: gridGame([[2, 5, 4], [1, 5, 1]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minElement(nums) {
+  let result = 1e5;
+
+  for (let num of nums) {
+    let sum = 0;
+
+    while (num > 0) {
+      sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+
+    result = Math.min(result, sum);
+  }
+
+  return result;
+}
+console.log({ minElement: minElement([10, 12, 13, 14]) });
