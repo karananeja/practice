@@ -13452,3 +13452,36 @@ function minElement(nums) {
   return result;
 }
 console.log({ minElement: minElement([10, 12, 13, 14]) });
+
+/**
+ * @param {number[][]} grid
+ * @returns {number}
+ */
+function countServers(grid) {
+  const rowCounts = new Array(grid.length).fill(0);
+  const colCounts = new Array(grid[0].length).fill(0);
+
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[0].length; col++) {
+      if (grid[row][col] === 1) {
+        rowCounts[row]++;
+        colCounts[col]++;
+      }
+    }
+  }
+
+  let communicableServersCount = 0;
+
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[0].length; col++) {
+      if (grid[row][col] === 1) {
+        if (rowCounts[row] > 1 || colCounts[col] > 1) {
+          communicableServersCount++;
+        }
+      }
+    }
+  }
+
+  return communicableServersCount;
+}
+console.log({ countServers: countServers([[1, 0], [0, 1]]) });
