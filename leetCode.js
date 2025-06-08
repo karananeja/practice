@@ -13485,3 +13485,20 @@ function countServers(grid) {
   return communicableServersCount;
 }
 console.log({ countServers: countServers([[1, 0], [0, 1]]) });
+
+/**
+ * @param {string[]} words 
+ * @returns {number}
+ */
+function maximumNumberOfStringPairs(words) {
+  const wordCount = new Set();
+  let count = 0;
+
+  for (const word of words) {
+    if (wordCount.has(`${word[1]}${word[0]}`)) count++;
+    else wordCount.add(word);
+  }
+
+  return count;
+}
+console.log({ maximumNumberOfStringPairs: maximumNumberOfStringPairs(["cd", "ac", "dc", "ca", "zz"]) });
