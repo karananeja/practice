@@ -13502,3 +13502,26 @@ function maximumNumberOfStringPairs(words) {
   return count;
 }
 console.log({ maximumNumberOfStringPairs: maximumNumberOfStringPairs(["cd", "ac", "dc", "ca", "zz"]) });
+
+const urlMap = {};
+
+/**
+ * Encodes a URL to a shortened URL.
+ * @param {string} longUrl
+ * @returns {string}.
+ */
+function encode(longUrl) {
+  const shortUrl = `http://tinyurl.com/${Math.floor(Math.random() * 1000000)}`;
+  if (shortUrl in urlMap) return shortUrl;
+  urlMap[shortUrl] = longUrl;
+  return shortUrl;
+}
+
+/**
+ * Decodes a shortened URL to its original URL.
+ * @param {string} shortUrl
+ * @returns {string}.
+ */
+function decode(shortUrl) {
+  return urlMap[shortUrl];
+}
