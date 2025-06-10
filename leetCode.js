@@ -13525,3 +13525,26 @@ function encode(longUrl) {
 function decode(shortUrl) {
   return urlMap[shortUrl];
 }
+
+/**
+ * @param {string[]} words 
+ * @returns {number}
+ */
+function uniqueMorseRepresentations(words) {
+  const MORSE = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."];
+
+  const seen = new Set();
+
+  for (const word of words) {
+    const morseCode = [];
+
+    for (const char of word) {
+      morseCode.push(MORSE[char.charCodeAt(0) - 97]);
+    }
+
+    seen.add(morseCode.join(""));
+  }
+
+  return seen.size;
+}
+console.log({ uniqueMorseRepresentations: uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]) });
