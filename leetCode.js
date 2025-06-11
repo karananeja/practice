@@ -13548,3 +13548,31 @@ function uniqueMorseRepresentations(words) {
   return seen.size;
 }
 console.log({ uniqueMorseRepresentations: uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]) });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function replaceDigits(s) {
+  const result = [];
+  let idx = 0;
+
+  while (idx < s.length) {
+    const currChar = s[idx];
+    const nextCharPosition = idx + 1;
+
+    if (nextCharPosition >= s.length) {
+      result.push(currChar);
+      break;
+    }
+
+    const nextChar = String.fromCharCode(currChar.charCodeAt(0) + +s[nextCharPosition]);
+
+    result.push(currChar, nextChar);
+
+    idx += 2;
+  }
+
+  return result.join("");
+}
+console.log({ replaceDigits: replaceDigits("a1c1e1") });
