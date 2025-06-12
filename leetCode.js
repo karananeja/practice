@@ -13576,3 +13576,27 @@ function replaceDigits(s) {
   return result.join("");
 }
 console.log({ replaceDigits: replaceDigits("a1c1e1") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function freqAlphabets(s) {
+  const result = [];
+  let idx = s.length - 1;
+
+  while (idx >= 0) {
+    const currentChar = s[idx];
+
+    if (currentChar === "#") {
+      result.unshift(String.fromCharCode(96 + +`${s[idx - 2]}${s[idx - 1]}`));
+      idx -= 3;
+    } else {
+      result.unshift(String.fromCharCode(96 + +currentChar));
+      idx--;
+    }
+  }
+
+  return result.join("");
+}
+console.log({ freqAlphabets: freqAlphabets("10#11#12") });
