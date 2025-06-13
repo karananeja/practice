@@ -13600,3 +13600,25 @@ function freqAlphabets(s) {
   return result.join("");
 }
 console.log({ freqAlphabets: freqAlphabets("10#11#12") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function removeOuterParentheses(s) {
+  let depth = 0;
+  const updatedString = [];
+
+  for (const char of s) {
+    if (char === "(") {
+      depth++;
+      if (depth > 1) updatedString.push(char);
+    } else if (char === ")") {
+      if (depth > 1) updatedString.push(char);
+      depth--;
+    }
+  }
+
+  return updatedString.join("");
+}
+console.log({ removeOuterParentheses: removeOuterParentheses("()()") });
