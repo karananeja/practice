@@ -13622,3 +13622,26 @@ function removeOuterParentheses(s) {
   return updatedString.join("");
 }
 console.log({ removeOuterParentheses: removeOuterParentheses("()()") });
+
+/**
+ * @param {string} word 
+ * @returns {boolean}
+ */
+function detectCapitalUse(word) {
+  if (word[0].toLowerCase() === word[0]) {
+    for (let i = 1; i < word.length; i++) {
+      if (word[i].toUpperCase() === word[i]) return false;
+    }
+
+    return true;
+  }
+
+  let allUppercase = word[1] && word[1].toUpperCase() === word[1];
+
+  for (let i = 2; i < word.length; i++) {
+    if ((allUppercase && word[i].toLowerCase() === word[i]) || (!allUppercase && word[i].toUpperCase() === word[i])) return false;
+  }
+
+  return true;
+}
+console.log({ detectCapitalUse: detectCapitalUse("Leetcode") });
