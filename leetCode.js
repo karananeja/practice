@@ -13645,3 +13645,20 @@ function detectCapitalUse(word) {
   return true;
 }
 console.log({ detectCapitalUse: detectCapitalUse("Leetcode") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxAscendingSum(nums) {
+  let cur = nums[0], maxSum = cur;
+
+  for (let idx = 1; idx < nums.length; idx++) {
+    if (nums[idx - 1] < nums[idx]) cur += nums[idx];
+    else cur = nums[idx];
+    maxSum = Math.max(maxSum, cur);
+  }
+
+  return maxSum;
+}
+console.log({ maxAscendingSum: maxAscendingSum([10, 20, 30, 5, 10, 50]) });
