@@ -13662,3 +13662,25 @@ function maxAscendingSum(nums) {
   return maxSum;
 }
 console.log({ maxAscendingSum: maxAscendingSum([10, 20, 30, 5, 10, 50]) });
+
+/**
+ * @param {string} s1 
+ * @param {string} s2 
+ * @returns {boolean}
+ */
+function areAlmostEqual(s1, s2) {
+  const indexes = [];
+
+  for (let idx = 0; idx < s1.length; idx++) {
+    if (s1[idx] !== s2[idx]) indexes.push(idx);
+    if (indexes.length > 2) return false;
+  }
+
+  if (indexes.length === 2) {
+    const [i, j] = indexes;
+    return s1[i] === s2[j] && s1[j] === s2[i];
+  }
+
+  return indexes.length === 0;
+}
+console.log({ areAlmostEqual: areAlmostEqual("bank", "kanb") });
