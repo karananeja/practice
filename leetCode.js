@@ -13684,3 +13684,29 @@ function areAlmostEqual(s1, s2) {
   return indexes.length === 0;
 }
 console.log({ areAlmostEqual: areAlmostEqual("bank", "kanb") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function tupleSameProduct(nums) {
+  const productCount = new Map();
+  const pairCount = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      const product = nums[i] * nums[j];
+      pairCount.set(product, (pairCount.get(product) || 0) + (productCount.get(product) || 0));
+      productCount.set(product, (productCount.get(product) || 0) + 1);
+    }
+  }
+
+  let count = 0;
+
+  for (const countValue of pairCount.values()) {
+    count += 8 * countValue;
+  }
+
+  return count;
+}
+console.log({ tupleSameProduct: tupleSameProduct([2, 3, 4, 6]) });
