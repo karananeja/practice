@@ -13710,3 +13710,41 @@ function tupleSameProduct(nums) {
   return count;
 }
 console.log({ tupleSameProduct: tupleSameProduct([2, 3, 4, 6]) });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function assignBox(num) {
+  let sum = 0;
+
+  while (num) {
+    sum += num % 10;
+    num = Math.floor(num / 10);
+  }
+
+  return sum;
+}
+
+/**
+ * @param {number} lowLimit 
+ * @param {number} highLimit 
+ * @returns {number}
+ */
+function countBalls(lowLimit, highLimit) {
+  const ballCount = new Map();
+  let maxCount = 0;
+
+  while (lowLimit <= highLimit) {
+    const box = assignBox(lowLimit);
+
+    if (!ballCount.has(box)) ballCount.set(box, 0);
+    ballCount.set(box, ballCount.get(box) + 1);
+    maxCount = Math.max(maxCount, ballCount.get(box));
+
+    lowLimit++;
+  }
+
+  return maxCount;
+}
+console.log({ countBalls: countBalls(1, 10) });
