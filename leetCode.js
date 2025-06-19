@@ -13748,3 +13748,30 @@ function countBalls(lowLimit, highLimit) {
   return maxCount;
 }
 console.log({ countBalls: countBalls(1, 10) });
+
+/**
+ * @param {number} limit 
+ * @param {number} queries 
+ * @returns {number}
+ */
+function queryResults(limit, queries) {
+  const totalCount = [];
+  const coloredBalls = new Map();
+  const colorCount = new Map();
+
+  for (const [ball, color] of queries) {
+    if (coloredBalls.has(ball)) {
+      const prevColor = coloredBalls.get(ball);
+
+      colorCount.set(prevColor, colorCount.get(prevColor) - 1);
+      if (colorCount.get(prevColor) === 0) colorCount.delete(prevColor);
+    }
+
+    coloredBalls.set(ball, color);
+    colorCount.set(color, (colorCount.get(color) || 0) + 1);
+    totalCount.push(colorCount.size);
+  }
+
+  return totalCount;
+}
+console.log({ queryResults: queryResults(4, [[1, 4], [2, 5], [1, 3], [3, 4]]) });
