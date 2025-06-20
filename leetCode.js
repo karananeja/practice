@@ -13775,3 +13775,33 @@ function queryResults(limit, queries) {
   return totalCount;
 }
 console.log({ queryResults: queryResults(4, [[1, 4], [2, 5], [1, 3], [3, 4]]) });
+
+class NumberContainers {
+  constructor() {
+    this.indexToNumbers = new Map();
+    this.numberToIndices = new Map();
+  }
+
+  change(index, number) {
+    this.indexToNumbers.set(index, number);
+
+    if (!this.numberToIndices.has(number))
+      this.numberToIndices.set(number, new MinHeap((a, b) => a - b));
+
+    this.numberToIndices.get(number).push(index);
+  }
+
+  find(number) {
+    if (!this.numberToIndices.has(number)) return -1;
+
+    const minHeap = this.numberToIndices.get(number);
+
+    while (minHeap.size > 0) {
+      const index = minHeap.peek();
+      if (this.indexToNumbers.get(index) === number) return index;
+      minHeap.pop();
+    }
+
+    return -1;
+  }
+}
