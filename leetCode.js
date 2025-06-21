@@ -13805,3 +13805,21 @@ class NumberContainers {
     return -1;
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function countBadPairs(nums) {
+  let totalPairs = 0, goodPairs = 0;
+  const count = {};
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    totalPairs += idx;
+    goodPairs += count[nums[idx] - idx] || 0;
+    count[nums[idx] - idx] = (count[nums[idx] - idx] || 0) + 1;
+  }
+
+  return totalPairs - goodPairs;
+}
+console.log({ countBadPairs: countBadPairs([4, 1, 3, 3]) });
