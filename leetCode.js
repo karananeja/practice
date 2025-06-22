@@ -13823,3 +13823,19 @@ function countBadPairs(nums) {
   return totalPairs - goodPairs;
 }
 console.log({ countBadPairs: countBadPairs([4, 1, 3, 3]) });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function clearDigits(s) {
+  const result = [];
+
+  for (const char of s) {
+    if (+char >= 0 && +char <= 9) result.pop();
+    else result.push(char);
+  }
+
+  return result.join("");
+}
+console.log({ clearDigits: clearDigits("cb34") });
