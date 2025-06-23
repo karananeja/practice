@@ -13839,3 +13839,23 @@ function clearDigits(s) {
   return result.join("");
 }
 console.log({ clearDigits: clearDigits("cb34") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function minOperations(nums, k) {
+  const minHeap = new MinHeap((a, b) => a - b);
+  let numOperation = 0;
+
+  nums.forEach((num) => minHeap.push(num));
+
+  while (minHeap.peek() < k) {
+    const firstNum = minHeap.pop(), secondNum = minHeap.pop();
+    minHeap.push(firstNum * 2 + secondNum);
+    numOperation++;
+  }
+
+  return numOperation;
+}
