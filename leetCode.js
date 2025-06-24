@@ -13859,3 +13859,25 @@ function minOperations(nums, k) {
 
   return numOperation;
 }
+
+class ProductOfNumbers {
+  constructor() {
+    this.prefixSum = [1];
+    this.size = 0;
+  }
+
+  add(num) {
+    if (num === 0) {
+      this.prefixSum = [1];
+      this.size = 0;
+    } else {
+      this.prefixSum.push(this.prefixSum[this.size] * num);
+      this.size++;
+    }
+  }
+
+  getProduct(k) {
+    if (k > this.size) return 0;
+    return this.prefixSum[this.size] / this.prefixSum[this.size - k];
+  }
+}
