@@ -13881,3 +13881,29 @@ class ProductOfNumbers {
     return this.prefixSum[this.size] / this.prefixSum[this.size - k];
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function subarraySum(nums) {
+  const n = nums.length;
+  const pre = new Array(n);
+
+  pre[0] = nums[0];
+
+  for (let i = 1; i < n; i++) {
+    pre[i] = pre[i - 1] + nums[i];
+  }
+
+  let ans = 0;
+
+  for (let i = 0; i < n; i++) {
+    const s = Math.max(0, i - nums[i]);
+    ans += pre[i];
+    if (s - 1 >= 0) ans -= pre[s - 1];
+  }
+
+  return ans;
+}
+console.log({ subarraySum: subarraySum([2, 3, 1]) });
