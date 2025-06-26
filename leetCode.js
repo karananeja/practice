@@ -13907,3 +13907,19 @@ function subarraySum(nums) {
   return ans;
 }
 console.log({ subarraySum: subarraySum([2, 3, 1]) });
+
+/**
+ * @param {number[]} timeSeries 
+ * @param {number} duration 
+ * @returns {number}
+ */
+function findPoisonedDuration(timeSeries, duration) {
+  let poisonedDuration = 0;
+
+  for (let i = 0; i < timeSeries.length - 1; i++) {
+    poisonedDuration += Math.min(timeSeries[i + 1] - timeSeries[i], duration);
+  }
+
+  return poisonedDuration + duration;
+}
+console.log({ findPoisonedDuration: findPoisonedDuration([1, 4], 2) });
