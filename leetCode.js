@@ -13923,3 +13923,20 @@ function findPoisonedDuration(timeSeries, duration) {
   return poisonedDuration + duration;
 }
 console.log({ findPoisonedDuration: findPoisonedDuration([1, 4], 2) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function arrayPairSum(nums) {
+  nums.sort((a, b) => a - b);
+
+  let sum = 0;
+
+  for (let idx = 0; idx < nums.length; idx += 2) {
+    sum += nums[idx];
+  }
+
+  return sum;
+}
+console.log({ arrayPairSum: arrayPairSum([6, 2, 6, 5, 1, 2]) });
