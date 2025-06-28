@@ -13940,3 +13940,20 @@ function arrayPairSum(nums) {
   return sum;
 }
 console.log({ arrayPairSum: arrayPairSum([6, 2, 6, 5, 1, 2]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function sumOddLengthSubarrays(arr) {
+  let answer = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    const left = i, right = arr.length - i - 1;
+    answer += arr[i] * (Math.floor(left / 2) + 1) * (Math.floor(right / 2) + 1);
+    answer += arr[i] * (Math.floor((left + 1) / 2)) * (Math.floor((right + 1) / 2));
+  }
+
+  return answer;
+}
+console.log({ sumOddLengthSubarrays: sumOddLengthSubarrays([1, 4, 2, 5, 3]) });
