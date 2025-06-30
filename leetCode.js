@@ -13957,3 +13957,31 @@ function sumOddLengthSubarrays(arr) {
   return answer;
 }
 console.log({ sumOddLengthSubarrays: sumOddLengthSubarrays([1, 4, 2, 5, 3]) });
+
+function smallestRange(nums) {
+  let maxVal = -Infinity, rangeStart = 0, rangeEnd = Infinity;
+  const minHeap = new MinHeap((a, b) => a.data - b.data);
+
+  for (let row = 0; row < nums.length; row++) {
+    const data = nums[row][0];
+    maxVal = Math.max(maxVal, data);
+    minHeap.push({ data, row, col: 0 });
+  }
+
+  while (minHeap.size) {
+    const { data: minVal, row, col } = minHeap.pop();
+
+    if (maxVal - minVal < rangeEnd - rangeStart) {
+      rangeStart = minVal;
+      rangeEnd = maxVal;
+    }
+
+    if (col + 1 < nums[row].length) {
+      const data = nums[row][col + 1];
+      maxVal = Math.max(maxVal, data);
+      minHeap.push({ data, row, col: col + 1 });
+    } else break;
+  }
+
+  return [rangeStart, rangeEnd];
+}
