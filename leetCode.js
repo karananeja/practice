@@ -13985,3 +13985,18 @@ function smallestRange(nums) {
 
   return [rangeStart, rangeEnd];
 }
+
+/**
+ * @param {string[]} nums 
+ * @returns {string}
+ */
+function findDifferentBinaryString(nums) {
+  const binaryString = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    binaryString.push(nums[i][i] === "0" ? "1" : "0");
+  }
+
+  return binaryString.join("");
+}
+console.log({ findDifferentBinaryString: findDifferentBinaryString(["01", "10"]) });
