@@ -14000,3 +14000,22 @@ function findDifferentBinaryString(nums) {
   return binaryString.join("");
 }
 console.log({ findDifferentBinaryString: findDifferentBinaryString(["01", "10"]) });
+
+class FindElements {
+  constructor(root) {
+    this.treeVals = new Set();
+    this.recoverTree(root, 0);
+  }
+
+  find(target) {
+    return this.treeVals.has(target);
+  }
+
+  recoverTree(node, val) {
+    if (!node) return;
+
+    this.treeVals.add(val);
+    this.recoverTree(node.left, 2 * val + 1);
+    this.recoverTree(node.right, 2 * val + 2);
+  }
+}
