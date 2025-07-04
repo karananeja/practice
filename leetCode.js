@@ -14019,3 +14019,20 @@ class FindElements {
     this.recoverTree(node.right, 2 * val + 2);
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function duplicateNumbersXOR(nums) {
+  const numCount = {};
+  let result = 0;
+
+  for (const num of nums) {
+    if (numCount[num]) result ^= num;
+    else numCount[num] = 1;
+  }
+
+  return result;
+}
+console.log({ duplicateNumbersXOR: duplicateNumbersXOR([1, 2, 1, 3]) });
