@@ -14036,3 +14036,33 @@ function duplicateNumbersXOR(nums) {
   return result;
 }
 console.log({ duplicateNumbersXOR: duplicateNumbersXOR([1, 2, 1, 3]) });
+
+/**
+ * @param {number[]} preorder 
+ * @param {number[]} postorder 
+ * @returns {TreeNode | null}
+ */
+function constructFromPrePost(preorder, postorder) {
+  let preIndex = 0, postIndex = 0;
+
+  /**
+   * @param {number[]} preorder 
+   * @param {number[]} postorder 
+   * @returns {TreeNode | null}
+   */
+  function constructTree(preorder, postorder) {
+    const root = new TreeNode(preorder[preIndex++]);
+
+    if (root.val !== postorder[postIndex])
+      root.left = constructTree(preorder, postorder);
+
+    if (root.val !== postorder[postIndex])
+      root.right = constructTree(preorder, postorder);
+
+    postIndex++;
+
+    return root;
+  }
+
+  return constructTree(preorder, postorder);
+}
