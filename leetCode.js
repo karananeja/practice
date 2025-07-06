@@ -14066,3 +14066,14 @@ function constructFromPrePost(preorder, postorder) {
 
   return constructTree(preorder, postorder);
 }
+
+/**
+ * @param {number[]} candyType 
+ * @returns {number}
+ */
+function distributeCandies(candyType) {
+  const uniqueCandyType = new Set(candyType);
+  const half = candyType.length / 2;
+  return Math.min(uniqueCandyType.size, half);
+}
+console.log({ distributeCandies: distributeCandies([1, 1, 2, 2, 3, 3]) });
