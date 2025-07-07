@@ -14077,3 +14077,27 @@ function distributeCandies(candyType) {
   return Math.min(uniqueCandyType.size, half);
 }
 console.log({ distributeCandies: distributeCandies([1, 1, 2, 2, 3, 3]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function numOfSubarrays(arr) {
+  let curSum = 0, evenCount = 0, oddCount = 0, count = 0;
+  const MOD = 10 ** 9 + 7;
+
+  for (const num of arr) {
+    curSum += num;
+
+    if (curSum & 1) {
+      count = (count + 1 + evenCount) % MOD;
+      oddCount++;
+    } else {
+      count = (count + oddCount) % MOD;
+      evenCount++;
+    }
+  }
+
+  return count;
+}
+console.log({ numOfSubarrays: numOfSubarrays([1, 3, 5]) });
