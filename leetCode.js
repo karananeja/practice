@@ -14101,3 +14101,20 @@ function numOfSubarrays(arr) {
   return count;
 }
 console.log({ numOfSubarrays: numOfSubarrays([1, 3, 5]) });
+
+/**
+ * @param {number} num 
+ * @returns {string}
+ */
+function intToRoman(num) {
+  const thousands = ["", "M", "MM", "MMM"];
+  const hundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+  const tens = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+  const ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+  const thousand = thousands[Math.floor(num / 1000)];
+  const hundred = hundreds[Math.floor((num % 1000) / 100)];
+  const ten = tens[Math.floor((num % 100) / 10)];
+  const one = ones[num % 10];
+  return `${thousand}${hundred}${ten}${one}`;
+}
+console.log({ intToRoman: intToRoman(3749) });
