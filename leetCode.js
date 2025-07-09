@@ -14118,3 +14118,22 @@ function intToRoman(num) {
   return `${thousand}${hundred}${ten}${one}`;
 }
 console.log({ intToRoman: intToRoman(3749) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxAbsoluteSum(nums) {
+  let minPrefixSum = 0, maxPrefixSum = 0;
+  let prefixSum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    prefixSum += nums[i];
+
+    minPrefixSum = Math.min(minPrefixSum, prefixSum);
+    maxPrefixSum = Math.max(maxPrefixSum, prefixSum);
+  }
+
+  return maxPrefixSum - minPrefixSum;
+}
+console.log({ maxAbsoluteSum: maxAbsoluteSum([1, -3, 2, 3, -4]) });
