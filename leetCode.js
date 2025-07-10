@@ -14137,3 +14137,24 @@ function maxAbsoluteSum(nums) {
   return maxPrefixSum - minPrefixSum;
 }
 console.log({ maxAbsoluteSum: maxAbsoluteSum([1, -3, 2, 3, -4]) });
+
+/**
+ * @param {number} n 
+ * @returns {boolean}
+ */
+function checkPowersOfThree(n) {
+  let i = 0;
+
+  while (3 ** (i + 1) <= n) {
+    i++;
+  }
+
+  while (i >= 0) {
+    const power = 3 ** i;
+    if (power <= n) n -= power;
+    i--;
+  }
+
+  return n === 0;
+}
+console.log({ checkPowersOfThree: checkPowersOfThree(12) });
