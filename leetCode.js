@@ -14158,3 +14158,12 @@ function checkPowersOfThree(n) {
   return n === 0;
 }
 console.log({ checkPowersOfThree: checkPowersOfThree(12) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function coloredCells(n) {
+  return 1 + 2 * n * (n - 1);
+}
+console.log({ coloredCells: coloredCells(2) });
