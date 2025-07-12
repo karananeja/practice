@@ -14167,3 +14167,32 @@ function coloredCells(n) {
   return 1 + 2 * n * (n - 1);
 }
 console.log({ coloredCells: coloredCells(2) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number[]}
+ */
+function findMissingAndRepeatedValues(grid) {
+  const result = [0, 0];
+  const seenNums = new Set();
+
+  for (const nums of grid) {
+    for (const num of nums) {
+      if (seenNums.has(num)) result[0] = num;
+      else seenNums.add(num);
+    }
+  }
+
+  let count = 1;
+
+  while (count <= grid.length ** 2) {
+    if (!seenNums.has(count)) {
+      result[1] = count;
+      break;
+    }
+    count++;
+  }
+
+  return result;
+}
+console.log({ findMissingAndRepeatedValues: findMissingAndRepeatedValues([[1, 3], [2, 2]]) });
