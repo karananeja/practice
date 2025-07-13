@@ -14196,3 +14196,47 @@ function findMissingAndRepeatedValues(grid) {
   return result;
 }
 console.log({ findMissingAndRepeatedValues: findMissingAndRepeatedValues([[1, 3], [2, 2]]) });
+
+/**
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {number[]}
+ */
+function closestPrimes(left, right) {
+  /**
+   * @returns {number[]}
+   */
+  function getPrimes() {
+    const isPrime = new Array(right + 1).fill(true);
+    isPrime[0] = isPrime[1] = false;
+
+    for (let n = 2; n <= Math.floor(Math.sqrt(right)); n++) {
+      if (!isPrime[n]) continue;
+      for (let m = 2 * n; m <= right; m += n) {
+        isPrime[m] = false;
+      }
+    }
+
+    const primes = [];
+
+    for (let idx = 0; idx < isPrime.length; idx++) {
+      if (isPrime[idx] && idx >= left) primes.push(idx);
+    }
+
+    return primes;
+  }
+
+  const result = [-1, -1], primes = getPrimes();
+  let diff = right - left + 1;
+
+  for (let idx = 1; idx < primes.length; idx++) {
+    if (primes[idx] - primes[idx - 1] < diff) {
+      diff = primes[idx] - primes[idx - 1];
+      result[0] = primes[idx - 1];
+      result[1] = primes[idx];
+    }
+  }
+
+  return result;
+}
+console.log({ closestPrimes: closestPrimes(10, 19) });
