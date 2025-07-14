@@ -14240,3 +14240,39 @@ function closestPrimes(left, right) {
   return result;
 }
 console.log({ closestPrimes: closestPrimes(10, 19) });
+
+/**
+ * @param {string} word 
+ * @returns {number}
+ */
+function countVowelSubstrings(word) {
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+  let left = 0, vowelStart = 0, count = 0;
+  const freq = new Map();
+
+  for (let right = 0; right < word.length; right++) {
+    let char = word[right];
+
+    if (!vowels.has(char)) {
+      freq.clear();
+      left = vowelStart = right + 1;
+      continue;
+    }
+
+    freq.set(char, (freq.get(char) || 0) + 1);
+
+    while (freq.size === 5) {
+      const leftChar = word[vowelStart];
+      freq.set(leftChar, freq.get(leftChar) - 1);
+      if (freq.get(leftChar) === 0) {
+        freq.delete(leftChar);
+      }
+      vowelStart++;
+    }
+
+    count += vowelStart - left;
+  }
+
+  return count;
+}
+console.log({ countVowelSubstrings: countVowelSubstrings("aeiouu") });
