@@ -14276,3 +14276,25 @@ function countVowelSubstrings(word) {
   return count;
 }
 console.log({ countVowelSubstrings: countVowelSubstrings("aeiouu") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function numberOfSubstrings(s) {
+  let left = 0, result = 0;
+  const count = [0, 0, 0];
+
+  for (let right = 0; right < s.length; right++) {
+    count[s[right].charCodeAt(0) - "a".charCodeAt(0)]++;
+
+    while (count[0] && count[1] && count[2]) {
+      result += s.length - right;
+      count[s[left].charCodeAt(0) - "a".charCodeAt(0)]--;
+      left++;
+    }
+  }
+
+  return result;
+}
+console.log({ numberOfSubstrings: numberOfSubstrings("abcabc") });
