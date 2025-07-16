@@ -14298,3 +14298,16 @@ function numberOfSubstrings(s) {
   return result;
 }
 console.log({ numberOfSubstrings: numberOfSubstrings("abcabc") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function transformArray(nums) {
+  const numCount = [0, 0];
+
+  nums.forEach((num) => numCount[num % 2]++);
+
+  return [...Array(numCount[0]).fill(0), ...Array(numCount[1]).fill(1)];
+}
+console.log({ transformArray: transformArray([1, 2, 3, 4, 5]) });
