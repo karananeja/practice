@@ -14311,3 +14311,20 @@ function transformArray(nums) {
   return [...Array(numCount[0]).fill(0), ...Array(numCount[1]).fill(1)];
 }
 console.log({ transformArray: transformArray([1, 2, 3, 4, 5]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function pivotIndex(nums) {
+  const rightSum = nums.reduce((sum, num) => (sum += num), 0);
+  let leftSum = 0;
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    if (leftSum === rightSum - leftSum - nums[idx]) return idx;
+    leftSum += nums[idx];
+  }
+
+  return -1;
+}
+console.log({ pivotIndex: pivotIndex([1, 7, 3, 6, 5, 6]) });
