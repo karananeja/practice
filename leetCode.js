@@ -14328,3 +14328,39 @@ function pivotIndex(nums) {
   return -1;
 }
 console.log({ pivotIndex: pivotIndex([1, 7, 3, 6, 5, 6]) });
+
+/**
+ * @param {number[]} ranks 
+ * @param {number} cars 
+ * @returns {number}
+ */
+function repairCars(ranks, cars) {
+  /**
+   * @param {number} time 
+   * @returns {number}
+   */
+  function countRepaired(time) {
+    let count = 0;
+
+    for (const rank of ranks) {
+      count += Math.floor(Math.sqrt(time / rank));
+    }
+
+    return count;
+  }
+
+  let left = 1, right = ranks[0] * cars ** 2, result = -1;
+
+  while (left <= right) {
+    const mid = left + Math.floor((right - left) / 2);
+    const repaired = countRepaired(mid);
+
+    if (repaired >= cars) {
+      result = mid;
+      right = mid - 1;
+    } else left = mid + 1;
+  }
+
+  return result;
+}
+console.log({ repairCars: repairCars([4, 2, 3, 1], 10) });
