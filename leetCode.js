@@ -14364,3 +14364,19 @@ function repairCars(ranks, cars) {
   return result;
 }
 console.log({ repairCars: repairCars([4, 2, 3, 1], 10) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function divideArray(nums) {
+  const numSet = new Set();
+
+  for (const num of nums) {
+    if (numSet.has(num)) numSet.delete(num);
+    else numSet.add(num);
+  }
+
+  return numSet.size === 0;
+}
+console.log({ divideArray: divideArray([3, 2, 3, 2, 2, 2]) });
