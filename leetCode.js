@@ -14380,3 +14380,23 @@ function divideArray(nums) {
   return numSet.size === 0;
 }
 console.log({ divideArray: divideArray([3, 2, 3, 2, 2, 2]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function longestNiceSubarray(nums) {
+  let maxLength = 0, cur = 0, left = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    while (cur & nums[right]) {
+      cur ^= nums[left++];
+    }
+
+    maxLength = Math.max(maxLength, right - left + 1);
+    cur ^= nums[right];
+  }
+
+  return maxLength;
+}
+console.log({ longestNiceSubarray: longestNiceSubarray([1, 3, 8, 48, 10]) });
