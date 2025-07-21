@@ -14400,3 +14400,25 @@ function longestNiceSubarray(nums) {
   return maxLength;
 }
 console.log({ longestNiceSubarray: longestNiceSubarray([1, 3, 8, 48, 10]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minOperations(nums) {
+  let idx = 0, count = 0;
+
+  while (idx < nums.length - 2) {
+    if (nums[idx] === 0) {
+      nums[idx] ^= 1;
+      nums[idx + 1] ^= 1;
+      nums[idx + 2] ^= 1;
+      count++;
+    }
+
+    idx++;
+  }
+
+  return nums.every(num => num === 1) ? count : -1;
+}
+console.log({ minOperations: minOperations([0, 1, 1, 1, 0, 0]) });
