@@ -14447,3 +14447,25 @@ function countGoodTriplets(arr, a, b, c) {
   return count;
 }
 console.log({ countGoodTriplets: countGoodTriplets([3, 0, 1, 1, 9, 7], 7, 2, 3) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function unequalTriplets(nums) {
+  let count = 0;
+  const n = nums.length;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      if (nums[i] === nums[j]) continue;
+
+      for (let k = j + 1; k < n; k++) {
+        if (nums[i] !== nums[k] && nums[j] !== nums[k]) count++;
+      }
+    }
+  }
+
+  return count;
+}
+console.log({ unequalTriplets: unequalTriplets([4, 4, 2, 4, 3]) });
