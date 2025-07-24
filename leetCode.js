@@ -14469,3 +14469,20 @@ function unequalTriplets(nums) {
   return count;
 }
 console.log({ unequalTriplets: unequalTriplets([4, 4, 2, 4, 3]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean[]}
+ */
+function prefixesDivBy5(nums) {
+  const result = new Array(nums.length).fill(false);
+  let currentModulo = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    currentModulo = (currentModulo * 2 + nums[i]) % 5;
+    if (currentModulo === 0) result[i] = true;
+  }
+
+  return result;
+}
+console.log({ prefixesDivBy5: prefixesDivBy5([0, 1, 1]) });
