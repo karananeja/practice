@@ -14486,3 +14486,22 @@ function prefixesDivBy5(nums) {
   return result;
 }
 console.log({ prefixesDivBy5: prefixesDivBy5([0, 1, 1]) });
+
+/**
+ * @param {number} n 
+ * @param {string[]} commands 
+ * @returns {number}
+ */
+function finalPositionOfSnake(n, commands) {
+  let row = 0, col = 0;
+
+  for (const command of commands) {
+    if (command === "UP") row--;
+    else if (command === "DOWN") row++;
+    else if (command === "LEFT") col--;
+    else col++;
+  }
+
+  return row * n + col;
+}
+console.log({ finalPositionOfSnake: finalPositionOfSnake(2, ["RIGHT", "DOWN"]) });
