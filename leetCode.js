@@ -14505,3 +14505,24 @@ function finalPositionOfSnake(n, commands) {
   return row * n + col;
 }
 console.log({ finalPositionOfSnake: finalPositionOfSnake(2, ["RIGHT", "DOWN"]) });
+
+/**
+ * @param {number} days 
+ * @param {number[][]} meetings 
+ * @returns {number}
+ */
+function countDays(days, meetings) {
+  meetings.sort((a, b) => a[0] - b[0]);
+
+  let prevEnd = 0;
+
+  for (const [start, end] of meetings) {
+    const currentStart = Math.max(start, prevEnd + 1);
+    const length = end - currentStart + 1;
+    days -= Math.max(length, 0);
+    prevEnd = Math.max(prevEnd, end);
+  }
+
+  return days;
+}
+console.log({ countDays: countDays(10, [[5, 7], [1, 3], [9, 10]]) });
