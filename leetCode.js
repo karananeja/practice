@@ -14526,3 +14526,34 @@ function countDays(days, meetings) {
   return days;
 }
 console.log({ countDays: countDays(10, [[5, 7], [1, 3], [9, 10]]) });
+
+/**
+ * @param {number} n 
+ * @param {number[][]} rectangles 
+ * @returns {boolean}
+ */
+function checkValidCuts(n, rectangles) {
+  const x = rectangles.map((rectangle) => [rectangle[0], rectangle[2]]);
+  const y = rectangles.map((rectangle) => [rectangle[1], rectangle[3]]);
+
+  x.sort((a, b) => a[0] - b[0]);
+  y.sort((a, b) => a[0] - b[0]);
+
+  /**
+   * @param {number[][]} intervals 
+   * @returns {number}
+   */
+  function countNonOverlapping(intervals) {
+    let count = 0, prevEnd = -1;
+
+    for (const [start, end] of intervals) {
+      if (prevEnd <= start) count++;
+      prevEnd = Math.max(prevEnd, end);
+    }
+
+    return count;
+  }
+
+  return Math.max(countNonOverlapping(x), countNonOverlapping(y)) >= 3;
+}
+console.log({ checkValidCuts: checkValidCuts(5, [[1, 0, 5, 2], [0, 2, 2, 4], [3, 2, 5, 3], [0, 4, 4, 5]]) });
