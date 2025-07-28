@@ -14557,3 +14557,40 @@ function checkValidCuts(n, rectangles) {
   return Math.max(countNonOverlapping(x), countNonOverlapping(y)) >= 3;
 }
 console.log({ checkValidCuts: checkValidCuts(5, [[1, 0, 5, 2], [0, 2, 2, 4], [3, 2, 5, 3], [0, 4, 4, 5]]) });
+
+class NeighborSum {
+  constructor(grid) {
+    this.numLoc = {};
+    this.grid = grid;
+
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[row].length; col++) {
+        this.numLoc[grid[row][col]] = [row, col];
+      }
+    }
+  }
+
+  adjacentSum(value) {
+    const [row, col] = this.numLoc[value];
+    let sum = 0;
+
+    if (row - 1 >= 0) sum += this.grid[row - 1][col];
+    if (row + 1 < this.grid.length) sum += this.grid[row + 1][col];
+    if (col - 1 >= 0) sum += this.grid[row][col - 1];
+    if (col + 1 < this.grid[row].length) sum += this.grid[row][col + 1];
+
+    return sum;
+  }
+
+  diagonalSum(value) {
+    const [row, col] = this.numLoc[value];
+    let sum = 0;
+
+    if (row - 1 >= 0 && col - 1 >= 0) sum += this.grid[row - 1][col - 1];
+    if (row - 1 >= 0 && col + 1 < this.grid.length) sum += this.grid[row - 1][col + 1];
+    if (row + 1 < this.grid.length && col - 1 >= 0) sum += this.grid[row + 1][col - 1];
+    if (row + 1 < this.grid.length && col + 1 < this.grid[row].length) sum += this.grid[row + 1][col + 1];
+
+    return sum;
+  }
+}
