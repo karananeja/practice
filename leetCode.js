@@ -14594,3 +14594,32 @@ class NeighborSum {
     return sum;
   }
 }
+
+/**
+ * @param {number[][]} grid 
+ * @param {number} x 
+ * @returns {number}
+ */
+function minOperations(grid, x) {
+  for (const row of grid) {
+    for (const col of row) {
+      if (col % x !== grid[0][0] % x) return -1;
+    }
+  }
+
+  const nums = grid.flatMap((num) => num).sort((a, b) => a - b);
+
+  let prefix = 0, result = Infinity;
+  const totalSum = nums.reduce((sum, num) => (sum += num), 0);
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    const costLeft = nums[idx] * idx - prefix;
+    const costRight = totalSum - prefix - nums[idx] * (nums.length - idx);
+    const operations = Math.floor((costLeft + costRight) / x);
+    result = Math.min(result, operations);
+    prefix += nums[idx];
+  }
+
+  return result;
+}
+console.log({ minOperations: minOperations([[2, 4], [6, 8]], 2) });
