@@ -14623,3 +14623,30 @@ function minOperations(grid, x) {
   return result;
 }
 console.log({ minOperations: minOperations([[2, 4], [6, 8]], 2) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumIndex(nums) {
+  const firstMap = new Map();
+  const secondMap = new Map();
+
+  for (const num of nums) {
+    secondMap.set(num, (secondMap.get(num) || 0) + 1);
+  }
+
+  for (let index = 0; index < nums.length; index++) {
+    const num = nums[index];
+
+    secondMap.set(num, secondMap.get(num) - 1);
+    firstMap.set(num, (firstMap.get(num) || 0) + 1);
+
+    if (firstMap.get(num) * 2 > index + 1 && secondMap.get(num) * 2 > nums.length - index - 1) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+console.log({ minimumIndex: minimumIndex([1, 2, 2, 2]) });
