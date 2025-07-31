@@ -14650,3 +14650,19 @@ function minimumIndex(nums) {
   return -1;
 }
 console.log({ minimumIndex: minimumIndex([1, 2, 2, 2]) });
+
+/**
+ * @param {string} patterns 
+ * @param {string} word 
+ * @returns {number}
+ */
+function numOfStrings(patterns, word) {
+  let count = 0;
+
+  for (const pattern of patterns) {
+    if (word.includes(pattern)) count++;
+  }
+
+  return count;
+}
+console.log({ numOfStrings: numOfStrings(["a", "abc", "bc", "d"], "abc") });
