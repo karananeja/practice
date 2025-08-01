@@ -14666,3 +14666,25 @@ function numOfStrings(patterns, word) {
   return count;
 }
 console.log({ numOfStrings: numOfStrings(["a", "abc", "bc", "d"], "abc") });
+
+/**
+ * @param {number[][]} items1 
+ * @param {number[][]} items2 
+ * @returns {number[][]}
+ */
+function mergeSimilarItems(items1, items2) {
+  const keyToValue = new Map();
+  const result = [];
+
+  items1.forEach(([num, value]) => keyToValue.set(num, value));
+
+  items2.forEach(([num, value]) => {
+    if (keyToValue.has(num)) keyToValue.set(num, keyToValue.get(num) + value);
+    else keyToValue.set(num, value);
+  });
+
+  keyToValue.forEach((value, num) => result.push([num, value]));
+
+  return result.sort((a, b) => a[0] - b[0]);
+}
+console.log({ mergeSimilarItems: mergeSimilarItems([[1, 1], [4, 5], [3, 8]], [[3, 1], [1, 5]]) });
