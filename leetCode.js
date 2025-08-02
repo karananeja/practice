@@ -14688,3 +14688,43 @@ function mergeSimilarItems(items1, items2) {
   return result.sort((a, b) => a[0] - b[0]);
 }
 console.log({ mergeSimilarItems: mergeSimilarItems([[1, 1], [4, 5], [3, 8]], [[3, 1], [1, 5]]) });
+
+/**
+ * @param {number[][]} nums1 
+ * @param {number[][]} nums2 
+ * @returns {number[][]}
+ */
+function mergeArrays(nums1, nums2) {
+  const result = [];
+  let first = 0, second = 0;
+
+  while (first < nums1.length && second < nums2.length) {
+    const firstPair = nums1[first], secondPair = nums2[second];
+
+    if (firstPair[0] === secondPair[0]) {
+      result.push([firstPair[0], firstPair[1] + secondPair[1]]);
+      first++;
+      second++;
+    } else if (firstPair[0] < secondPair[0]) {
+      result.push(firstPair);
+      first++;
+    } else {
+      result.push(secondPair);
+      second++;
+    }
+
+  }
+
+  while (first < nums1.length) {
+    result.push(nums1[first]);
+    first++;
+  }
+
+  while (second < nums2.length) {
+    result.push(nums2[second]);
+    second++;
+  }
+
+  return result;
+}
+console.log({ mergeArrays: mergeArrays([[1, 2], [2, 3], [4, 5]], [[1, 4], [3, 2], [4, 1]]) });
