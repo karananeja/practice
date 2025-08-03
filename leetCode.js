@@ -14728,3 +14728,31 @@ function mergeArrays(nums1, nums2) {
   return result;
 }
 console.log({ mergeArrays: mergeArrays([[1, 2], [2, 3], [4, 5]], [[1, 4], [3, 2], [4, 1]]) });
+
+/**
+ * @param {string} s 
+ * @returns {number[]}
+ */
+function partitionLabels(s) {
+  const lastIndex = new Map();
+  const size = [];
+
+  for (let idx = 0; idx < s.length; idx++) {
+    lastIndex.set(s[idx], idx);
+  }
+
+  let start = 0, end = 0;
+
+  for (let idx = 0; idx < s.length; idx++) {
+    start++;
+    end = Math.max(end, lastIndex.get(s[idx]));
+
+    if (idx === end) {
+      size.push(start);
+      start = 0;
+    }
+  }
+
+  return size;
+}
+console.log({ partitionLabels: partitionLabels("eccbbbbdec") });
