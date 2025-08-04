@@ -14756,3 +14756,29 @@ function partitionLabels(s) {
   return size;
 }
 console.log({ partitionLabels: partitionLabels("eccbbbbdec") });
+
+/**
+ * @param {number[]} weights 
+ * @param {number} k 
+ * @returns {number}
+ */
+function putMarbles(weights, k) {
+  if (k === 0) return 0;
+
+  const splits = [];
+
+  for (let idx = 0; idx < weights.length - 1; idx++) {
+    splits.push(weights[idx] + weights[idx + 1]);
+  }
+
+  splits.sort((a, b) => a - b);
+
+  let score = 0;
+
+  for (let idx = 0; idx < k - 1; idx++) {
+    score += splits[weights.length - 2 - idx] - splits[idx];
+  }
+
+  return score;
+}
+console.log({ putMarbles: putMarbles([1, 3], 2) });
