@@ -14782,3 +14782,24 @@ function putMarbles(weights, k) {
   return score;
 }
 console.log({ putMarbles: putMarbles([1, 3], 2) });
+
+class OrderedStream {
+  constructor(n) {
+    this.limit = n;
+    this.lastInsertedKey = 0;
+    this.keyToValue = new Map();
+  }
+
+  insert(idKey, value) {
+    this.keyToValue.set(idKey, value);
+
+    const values = [];
+
+    while (this.keyToValue.has(this.lastInsertedKey + 1)) {
+      this.lastInsertedKey++;
+      values.push(this.keyToValue.get(this.lastInsertedKey));
+    }
+
+    return values;
+  }
+}
