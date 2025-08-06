@@ -14803,3 +14803,22 @@ class OrderedStream {
     return values;
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maximumTripletValue(nums) {
+  let result = 0, left = nums[0];
+
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[j] > left) left = nums[j];
+
+    for (let k = j + 1; k < nums.length; k++) {
+      result = Math.max(result, (left - nums[j]) * nums[k]);
+    }
+  }
+
+  return result;
+}
+console.log({ maximumTripletValue: maximumTripletValue([12, 6, 1, 2, 7]) });
