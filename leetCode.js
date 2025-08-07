@@ -14822,3 +14822,20 @@ function maximumTripletValue(nums) {
   return result;
 }
 console.log({ maximumTripletValue: maximumTripletValue([12, 6, 1, 2, 7]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maximumTripletValue(nums) {
+  let result = 0, maxDiff = 0, prefixMax = nums[0];
+
+  for (let k = 1; k < nums.length; k++) {
+    result = Math.max(result, maxDiff * nums[k]);
+    maxDiff = Math.max(maxDiff, prefixMax - nums[k]);
+    prefixMax = Math.max(prefixMax, nums[k]);
+  }
+
+  return result;
+}
+console.log({ maximumTripletValue: maximumTripletValue([12, 6, 1, 2, 7]) });
