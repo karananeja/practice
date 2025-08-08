@@ -14839,3 +14839,22 @@ function maximumTripletValue(nums) {
   return result;
 }
 console.log({ maximumTripletValue: maximumTripletValue([12, 6, 1, 2, 7]) });
+
+/**
+ * @param {string} s 
+ * @returns {number[]}
+ */
+function diStringMatch(s) {
+  const result = [];
+  let first = 0, second = s.length;
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "I") result.push(first++);
+    else result.push(second--);
+  }
+
+  result.push(first);
+
+  return result;
+}
+console.log({ diStringMatch: diStringMatch("III") });
