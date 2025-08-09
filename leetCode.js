@@ -14858,3 +14858,18 @@ function diStringMatch(s) {
   return result;
 }
 console.log({ diStringMatch: diStringMatch("III") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function reverseDegree(s) {
+  let score = 0;
+
+  for (let idx = 0; idx < s.length; idx++) {
+    score += (26 - (s[idx].charCodeAt(0) - 97)) * (idx + 1);
+  }
+
+  return score;
+}
+console.log({ reverseDegree: reverseDegree("abc") });
