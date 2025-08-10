@@ -14873,3 +14873,19 @@ function reverseDegree(s) {
   return score;
 }
 console.log({ reverseDegree: reverseDegree("abc") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumOperations(nums) {
+  const seen = new Array(101).fill(false);
+
+  for (let idx = nums.length - 1; idx >= 0; idx--) {
+    if (seen[nums[idx]]) return Math.floor(idx / 3) + 1;
+    else seen[nums[idx]] = true;
+  }
+
+  return 0;
+}
+console.log({ minimumOperations: minimumOperations([1, 2, 3, 4, 2, 3, 3, 5, 7]) });
