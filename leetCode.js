@@ -14889,3 +14889,20 @@ function minimumOperations(nums) {
   return 0;
 }
 console.log({ minimumOperations: minimumOperations([1, 2, 3, 4, 2, 3, 3, 5, 7]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function minOperations(nums, k) {
+  const seen = new Set();
+
+  for (const num of nums) {
+    if (num < k) return -1;
+    else if (num > k) seen.add(num);
+  }
+
+  return seen.size;
+}
+console.log({ minOperations: minOperations([2, 1, 2]) });
