@@ -14906,3 +14906,19 @@ function minOperations(nums, k) {
   return seen.size;
 }
 console.log({ minOperations: minOperations([2, 1, 2]) });
+
+/**
+ * @param {number[]} cost 
+ * @returns {number[]}
+ */
+function minCosts(cost) {
+  const result = [cost[0]];
+
+  for (let idx = 1; idx < cost.length; idx++) {
+    if (result[idx - 1] > cost[idx]) result.push(cost[idx]);
+    else result.push(result[idx - 1]);
+  }
+
+  return result;
+}
+console.log({ minCosts: minCosts([5, 3, 4, 1, 3, 2]) });
