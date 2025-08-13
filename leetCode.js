@@ -14922,3 +14922,24 @@ function minCosts(cost) {
   return result;
 }
 console.log({ minCosts: minCosts([5, 3, 4, 1, 3, 2]) });
+
+/**
+ * @param {number} low 
+ * @param {number} high 
+ * @returns {number}
+ */
+function countSymmetricIntegers(low, high) {
+  let count = 0;
+
+  for (let num = low; num <= high; num++) {
+    if (num < 100 && num % 11 === 0) count++;
+    else if (1000 <= num && num < 10000) {
+      const left = Math.floor(num / 1000) + Math.floor((num % 1000) / 100);
+      const right = Math.floor((num % 100) / 10) + (num % 10);
+      if (left === right) count++;
+    }
+  }
+
+  return count;
+}
+console.log({ countSymmetricIntegers: countSymmetricIntegers(1, 100) });
