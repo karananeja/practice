@@ -14943,3 +14943,22 @@ function countSymmetricIntegers(low, high) {
   return count;
 }
 console.log({ countSymmetricIntegers: countSymmetricIntegers(1, 100) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function countPartitions(nums) {
+  const total = nums.reduce((num, sum) => (sum += num), 0);
+  let count = 0, leftSum = 0;
+
+  for (let idx = 0; idx < nums.length - 1; idx++) {
+    leftSum += nums[idx];
+    const rightSum = total - leftSum;
+
+    if ((leftSum - rightSum) % 2 === 0) count++;
+  }
+
+  return count;
+}
+console.log({ countPartitions: countPartitions([1, 2, 2]) });
