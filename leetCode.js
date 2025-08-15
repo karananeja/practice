@@ -14962,3 +14962,31 @@ function countPartitions(nums) {
   return count;
 }
 console.log({ countPartitions: countPartitions([1, 2, 2]) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function countGoodNumbers(n) {
+  const MOD = 1000000007n;
+
+  /**
+   * @param {bigint} base 
+   * @param {bigint} exp 
+   * @returns {bigint}
+   */
+  function pow(base, exp) {
+    let result = 1n;
+
+    while (exp > 0n) {
+      if (exp % 2n === 1n) result = (result * base) % MOD;
+      base = (base * base) % MOD;
+      exp /= 2n;
+    }
+
+    return result;
+  }
+
+  return Number((pow(5n, BigInt(n + 1) / 2n) * pow(4n, BigInt(n) / 2n)) % MOD);
+}
+console.log({ countGoodNumbers: countGoodNumbers(50) });
