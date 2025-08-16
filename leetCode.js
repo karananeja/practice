@@ -14990,3 +14990,32 @@ function countGoodNumbers(n) {
   return Number((pow(5n, BigInt(n + 1) / 2n) * pow(4n, BigInt(n) / 2n)) % MOD);
 }
 console.log({ countGoodNumbers: countGoodNumbers(50) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function myAtoi(s) {
+  s = s.trim();
+
+  let sign = 1, idx = 0, result = 0;
+
+  if (s[idx] === "-") {
+    sign = -1;
+    idx++;
+  } else if (s[idx] === "+") {
+    idx++;
+  }
+
+  while (idx < s.length && s[idx] >= "0" && s[idx] <= "9") {
+    result = result * 10 + +s[idx];
+
+    if (sign * result > 2 ** 31 - 1) return 2 ** 31 - 1;
+    if (sign * result < -(2 ** 31)) return -(2 ** 31);
+
+    idx++;
+  }
+
+  return sign * result;
+}
+console.log({ myAtoi: myAtoi("42") });
