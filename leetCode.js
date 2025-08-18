@@ -15019,3 +15019,13 @@ function myAtoi(s) {
   return sign * result;
 }
 console.log({ myAtoi: myAtoi("42") });
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @returns {number}
+ */
+function minOperations(nums, k) {
+  return nums.reduce((num, sum) => sum += num, 0) % k;
+}
+console.log({ minOperations: minOperations([3, 9, 7], 5) });
