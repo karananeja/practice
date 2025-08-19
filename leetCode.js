@@ -15029,3 +15029,26 @@ function minOperations(nums, k) {
   return nums.reduce((num, sum) => sum += num, 0) % k;
 }
 console.log({ minOperations: minOperations([3, 9, 7], 5) });
+
+/**
+ * @param {number[]} answers 
+ * @returns {number}
+ */
+function numRabbits(answers) {
+  const map = new Map();
+
+  for (const answer of answers) {
+    map.set(answer, (map.get(answer) ?? 0) + 1);
+  }
+
+  let total = 0;
+
+  for (const [answer, count] of map.entries()) {
+    const groupSize = answer + 1;
+    const groups = Math.ceil(count / groupSize);
+    total += groups * groupSize;
+  }
+
+  return total;
+}
+console.log({ numRabbits: numRabbits([1, 1, 2]) });
