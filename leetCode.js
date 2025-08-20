@@ -15052,3 +15052,24 @@ function numRabbits(answers) {
   return total;
 }
 console.log({ numRabbits: numRabbits([1, 1, 2]) });
+
+/**
+ * @param {number[]} differences 
+ * @param {number} lower 
+ * @param {number} upper 
+ * @returns {number}
+ */
+function numberOfArrays(differences, lower, upper) {
+  let start = 0, min = 0, max = 0;
+
+  for (const difference of differences) {
+    start += difference;
+    min = Math.min(min, start);
+    max = Math.max(max, start);
+
+    if (max - min > upper - lower) return 0;
+  }
+
+  return upper - lower - (max - min) + 1;
+}
+console.log({ numberOfArrays: numberOfArrays([1, -3, 4], 1, 6) });
