@@ -15073,3 +15073,22 @@ function numberOfArrays(differences, lower, upper) {
   return upper - lower - (max - min) + 1;
 }
 console.log({ numberOfArrays: numberOfArrays([1, -3, 4], 1, 6) });
+
+Array.prototype.snail = function (rowsCount, colsCount) {
+  const total = this.length;
+  if (rowsCount * colsCount !== total) return [];
+
+  const result = new Array(rowsCount).fill(0).map(() => new Array(colsCount).fill(0));
+  let isReversed = false;
+
+  for (let idx = 0; idx < total; idx++) {
+    const row = !isReversed ? idx % rowsCount : rowsCount - 1 - (idx % rowsCount);
+    const col = Math.floor(idx / rowsCount);
+
+    result[row][col] = this[idx];
+
+    if (idx % rowsCount === rowsCount - 1) isReversed = !isReversed;
+  }
+
+  return result;
+};
