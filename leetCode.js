@@ -15092,3 +15092,31 @@ Array.prototype.snail = function (rowsCount, colsCount) {
 
   return result;
 };
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function countLargestGroup(n) {
+  const digitCount = new Map();
+  let groupCount = 0, largestGroup = 0;
+
+  for (let i = 1; i <= n; i++) {
+    let num = i, sum = 0;
+
+    while (num) {
+      sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+
+    digitCount.set(sum, (digitCount.get(sum) || 0) + 1);
+    largestGroup = Math.max(largestGroup, digitCount.get(sum));
+  }
+
+  for (const count of digitCount.values()) {
+    if (largestGroup === count) groupCount++;
+  }
+
+  return groupCount;
+}
+console.log({ countLargestGroup: countLargestGroup(13) });
