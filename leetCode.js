@@ -15120,3 +15120,30 @@ function countLargestGroup(n) {
   return groupCount;
 }
 console.log({ countLargestGroup: countLargestGroup(13) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function countCompleteSubarrays(nums) {
+  const totalUnique = new Set(nums).size;
+  let left = 0, result = 0;
+  const numCount = new Map();
+
+  for (let right = 0; right < nums.length; right++) {
+    numCount.set(nums[right], (numCount.get(nums[right]) || 0) + 1);
+
+    while (numCount.size === totalUnique) {
+      result += nums.length - right;
+
+      numCount.set(nums[left], numCount.get(nums[left]) - 1);
+
+      if (numCount.get(nums[left]) === 0) numCount.delete(nums[left]);
+
+      left++;
+    }
+  }
+
+  return result;
+}
+console.log({ countCompleteSubarrays: countCompleteSubarrays([1, 3, 1, 2, 2]) });
