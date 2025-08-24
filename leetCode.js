@@ -15147,3 +15147,24 @@ function countCompleteSubarrays(nums) {
   return result;
 }
 console.log({ countCompleteSubarrays: countCompleteSubarrays([1, 3, 1, 2, 2]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} modulo 
+ * @param {number} k 
+ * @returns {number}
+ */
+function countInterestingSubarrays(nums, modulo, k) {
+  let res = 0, prefix = 0;
+  const cnt = new Map();
+  cnt.set(0, 1);
+
+  for (let i = 0; i < nums.length; i++) {
+    prefix += nums[i] % modulo === k ? 1 : 0;
+    res += cnt.get((prefix - k + modulo) % modulo) || 0;
+    cnt.set(prefix % modulo, (cnt.get(prefix % modulo) || 0) + 1);
+  }
+
+  return res;
+}
+console.log({ countInterestingSubarrays: countInterestingSubarrays([3, 2, 4], 2, 1) });
