@@ -15168,3 +15168,18 @@ function countInterestingSubarrays(nums, modulo, k) {
   return res;
 }
 console.log({ countInterestingSubarrays: countInterestingSubarrays([3, 2, 4], 2, 1) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function countSubarrays(nums) {
+  let count = 0;
+
+  for (let idx = 0; idx < nums.length - 2; idx++) {
+    if (nums[idx + 1] === (nums[idx] + nums[idx + 2]) * 2) count++;
+  }
+
+  return count;
+}
+console.log({ countSubarrays: countSubarrays([1, 2, 1, 4, 1]) });
