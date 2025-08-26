@@ -15183,3 +15183,26 @@ function countSubarrays(nums) {
   return count;
 }
 console.log({ countSubarrays: countSubarrays([1, 2, 1, 4, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function countSubarrays(nums, k) {
+  let res = 0, total = 0;
+
+  for (let i = 0, j = 0; j < nums.length; j++) {
+    total += nums[j];
+
+    while (i <= j && total * (j - i + 1) >= k) {
+      total -= nums[i];
+      i++;
+    }
+
+    res += j - i + 1;
+  }
+
+  return res;
+}
+console.log({ countSubarrays: countSubarrays([1, 1, 1], 5) });
