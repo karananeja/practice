@@ -15206,3 +15206,18 @@ function countSubarrays(nums, k) {
   return res;
 }
 console.log({ countSubarrays: countSubarrays([1, 1, 1], 5) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findNumbers(nums) {
+  let count = 0;
+
+  for (const num of nums) {
+    if ((num >= 10 && num <= 99) || (num >= 1000 && num <= 9999) || num === 100000) count++;
+  }
+
+  return count;
+}
+console.log({ findNumbers: findNumbers([12, 345, 2, 6, 7896]) });
