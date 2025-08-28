@@ -15221,3 +15221,25 @@ function findNumbers(nums) {
   return count;
 }
 console.log({ findNumbers: findNumbers([12, 345, 2, 6, 7896]) });
+
+/**
+ * @param {number} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function findMaxAverage(nums, k) {
+  let sum = 0, left = 0, avg = -Infinity;
+
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right];
+
+    if (right - left + 1 === k) {
+      avg = Math.max(avg, sum / k);
+      sum -= nums[left];
+      left++;
+    }
+  }
+
+  return avg;
+}
+console.log({ findMaxAverage: findMaxAverage([1, 12, -5, -6, 50, 3], 4) });
