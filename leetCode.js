@@ -15243,3 +15243,19 @@ function findMaxAverage(nums, k) {
   return avg;
 }
 console.log({ findMaxAverage: findMaxAverage([1, 12, -5, -6, 50, 3], 4) });
+
+/**
+ * @param {string[]} words 
+ * @param {string} separator 
+ * @returns {string[]}
+ */
+function splitWordsBySeparator(words, separator) {
+  const result = [];
+
+  for (const word of words) {
+    result.push(...word.split(separator).filter(Boolean));
+  }
+
+  return result;
+}
+console.log({ splitWordsBySeparator: splitWordsBySeparator(["|||"], "|") });
