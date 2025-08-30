@@ -15259,3 +15259,14 @@ function splitWordsBySeparator(words, separator) {
   return result;
 }
 console.log({ splitWordsBySeparator: splitWordsBySeparator(["|||"], "|") });
+
+/**
+ * @param {number[][]} points 
+ * @returns {boolean}
+ */
+function isBoomerang(points) {
+  const first = points[0], second = points[1], third = points[2];
+  const area = (1 / 2) * Math.abs(first[0] * (second[1] - third[1]) + second[0] * (third[1] - first[1]) + third[0] * (first[1] - second[1]));
+  return area !== 0;
+}
+console.log({ isBoomerang: isBoomerang([[1, 1], [2, 3], [3, 2]]) });
