@@ -15270,3 +15270,31 @@ function isBoomerang(points) {
   return area !== 0;
 }
 console.log({ isBoomerang: isBoomerang([[1, 1], [2, 3], [3, 2]]) });
+
+/**
+ * @param {number[]} fruits 
+ * @returns {number}
+ */
+function totalFruit(fruits) {
+  const typeCount = new Map();
+  let maxCount = 0, left = 0;
+
+  for (let right = 0; right < fruits.length; right++) {
+    const type = fruits[right];
+    typeCount.set(type, (typeCount.get(type) || 0) + 1);
+
+    while (typeCount.size > 2) {
+      const type = fruits[left];
+      typeCount.set(type, typeCount.get(type) - 1);
+
+      if (typeCount.get(type) === 0) typeCount.delete(type);
+
+      left++;
+    }
+
+    maxCount = Math.max(maxCount, right - left + 1);
+  }
+
+  return maxCount;
+}
+console.log({ totalFruit: totalFruit([1, 2, 1]) });
