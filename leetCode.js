@@ -15298,3 +15298,21 @@ function totalFruit(fruits) {
   return maxCount;
 }
 console.log({ totalFruit: totalFruit([1, 2, 1]) });
+
+/**
+ * @param {number[][]} dominoes 
+ * @returns {number}
+ */
+function numEquivDominoPairs(dominoes) {
+  const num = new Array(100).fill(0);
+  let count = 0;
+
+  for (const domino of dominoes) {
+    const val = domino[0] < domino[1] ? domino[0] * 10 + domino[1] : domino[1] * 10 + domino[0];
+    count += num[val];
+    num[val]++;
+  }
+
+  return count;
+}
+console.log({ numEquivDominoPairs: numEquivDominoPairs([[1, 2], [2, 1], [3, 4], [5, 6]]) });
