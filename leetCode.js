@@ -15316,3 +15316,20 @@ function numEquivDominoPairs(dominoes) {
   return count;
 }
 console.log({ numEquivDominoPairs: numEquivDominoPairs([[1, 2], [2, 1], [3, 4], [5, 6]]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function countSegments(s) {
+  let segmentCount = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    if ((i == 0 || s.charAt(i - 1) == " ") && s.charAt(i) !== " ") {
+      segmentCount++;
+    }
+  }
+
+  return segmentCount;
+}
+console.log({ countSegments: countSegments("Hello, my name is John") });
