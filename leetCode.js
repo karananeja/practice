@@ -15340,7 +15340,8 @@ console.log({ countSegments: countSegments("Hello, my name is John") });
  * @returns {string}
  */
 function licenseKeyFormatting(s, k) {
-  let formattedString = [], count = 0;
+  const formattedString = [];
+  let count = 0;
 
   for (let idx = s.length - 1; idx >= 0; idx--) {
     const char = s[idx];
