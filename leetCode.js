@@ -15333,3 +15333,33 @@ function countSegments(s) {
   return segmentCount;
 }
 console.log({ countSegments: countSegments("Hello, my name is John") });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {string}
+ */
+function licenseKeyFormatting(s, k) {
+  let formattedString = [], count = 0;
+
+  for (let idx = s.length - 1; idx >= 0; idx--) {
+    const char = s[idx];
+
+    if (char !== "-") {
+      formattedString.push(char.toUpperCase());
+      count++;
+
+      if (count === k) {
+        formattedString.push("-");
+        count = 0;
+      }
+    }
+  }
+
+  if (formattedString.length && formattedString[formattedString.length - 1] === "-") {
+    formattedString.pop();
+  }
+
+  return formattedString.reverse().join("");
+}
+console.log({ licenseKeyFormatting: licenseKeyFormatting("5F3Z-2e-9-w", 4) });
