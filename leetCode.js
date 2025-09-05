@@ -15364,3 +15364,34 @@ function licenseKeyFormatting(s, k) {
   return formattedString.reverse().join("");
 }
 console.log({ licenseKeyFormatting: licenseKeyFormatting("5F3Z-2e-9-w", 4) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function findSecondMinimumValue(root) {
+  const uniqueValues = new Set();
+
+  /**
+   * @param {TreeNode | null} node 
+   * @returns {void}
+   */
+  function getValues(node) {
+    if (!node) return;
+
+    uniqueValues.add(node.val);
+    getValues(node.left);
+    getValues(node.right);
+  }
+
+  getValues(root);
+
+  const min = root.val;
+  let result = Infinity;
+
+  for (const value of uniqueValues) {
+    if (min < value && value < result) result = value;
+  }
+
+  return result < Infinity ? result : -1;
+}
