@@ -15395,3 +15395,21 @@ function findSecondMinimumValue(root) {
 
   return result < Infinity ? result : -1;
 }
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minimumChairs(s) {
+  let minChair = 0, totalChairs = 0;
+
+  for (const char of s) {
+    if (char === "E") {
+      totalChairs++;
+      minChair = Math.max(minChair, totalChairs);
+    } else totalChairs--;
+  }
+
+  return minChair;
+}
+console.log({ minimumChairs: minimumChairs("EEEEEEE") });
