@@ -15413,3 +15413,36 @@ function minimumChairs(s) {
   return minChair;
 }
 console.log({ minimumChairs: minimumChairs("EEEEEEE") });
+
+/**
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @returns {number}
+ */
+function minSum(nums1, nums2) {
+  let sum1 = 0, sum2 = 0;
+  let zero1 = 0, zero2 = 0;
+
+  for (const num of nums1) {
+    sum1 += num;
+    if (num === 0) {
+      sum1++;
+      zero1++;
+    }
+  }
+
+  for (const num of nums2) {
+    sum2 += num;
+    if (num === 0) {
+      sum2++;
+      zero2++;
+    }
+  }
+
+  if ((zero1 === 0 && sum2 > sum1) || (zero2 === 0 && sum1 > sum2)) {
+    return -1;
+  }
+
+  return Math.max(sum1, sum2);
+}
+console.log({ minSum: minSum([3, 2, 0, 1, 0], [6, 5, 0]) });
