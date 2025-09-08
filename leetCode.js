@@ -15446,3 +15446,27 @@ function minSum(nums1, nums2) {
   return Math.max(sum1, sum2);
 }
 console.log({ minSum: minSum([3, 2, 0, 1, 0], [6, 5, 0]) });
+
+/**
+ * @param {number[]} digits 
+ * @returns {number[]}
+ */
+function findEvenNumbers(digits) {
+  const nums = new Set();
+  const n = digits.length;
+
+  for (let i = 0; i < n; ++i) {
+    for (let j = 0; j < n; ++j) {
+      for (let k = 0; k < n; ++k) {
+        if (i === j || j === k || i === k) continue;
+
+        const num = digits[i] * 100 + digits[j] * 10 + digits[k];
+
+        if (num >= 100 && num % 2 === 0) nums.add(num);
+      }
+    }
+  }
+
+  return Array.from(nums).sort((a, b) => a - b);
+}
+console.log({ findEvenNumbers: findEvenNumbers([2, 1, 3, 0]) });
