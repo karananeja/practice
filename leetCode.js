@@ -15470,3 +15470,32 @@ function findEvenNumbers(digits) {
   return Array.from(nums).sort((a, b) => a - b);
 }
 console.log({ findEvenNumbers: findEvenNumbers([2, 1, 3, 0]) });
+
+/**
+ * @param {number} a 
+ * @param {number} b 
+ * @returns {number}
+ */
+function gcd(a, b) {
+  if (a === b) return a;
+  if (a === 0) return b;
+  if (b === 0) return a;
+  if (a > b) return gcd(a - b, b);
+  else return gcd(a, b - a);
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findGCD(nums) {
+  let min = Infinity, max = -Infinity;
+
+  nums.forEach((num) => {
+    min = Math.min(min, num);
+    max = Math.max(max, num);
+  });
+
+  return gcd(max, min);
+}
+console.log({ findGCD: findGCD([2, 5, 6, 9, 10]) });
