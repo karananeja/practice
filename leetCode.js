@@ -15499,3 +15499,29 @@ function findGCD(nums) {
   return gcd(max, min);
 }
 console.log({ findGCD: findGCD([2, 5, 6, 9, 10]) });
+
+/**
+ * @param {string} word 
+ * @returns {string}
+ */
+function getNum(word) {
+  let result = "";
+
+  for (const char of word) {
+    result += `${char.charCodeAt(0) - 97}`;
+  }
+
+  return result;
+}
+
+/**
+ * @param {string} firstWord 
+ * @param {string} secondWord 
+ * @param {string} targetWord 
+ * @returns {boolean}
+ */
+function isSumEqual(firstWord, secondWord, targetWord) {
+  const firstNum = getNum(firstWord), secondNum = getNum(secondWord), thirdNum = getNum(targetWord);
+  return +firstNum + +secondNum === +thirdNum;
+}
+console.log({ isSumEqual: isSumEqual("acb", "cba", "cdb") });
