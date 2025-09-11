@@ -15525,3 +15525,19 @@ function isSumEqual(firstWord, secondWord, targetWord) {
   return +firstNum + +secondNum === +thirdNum;
 }
 console.log({ isSumEqual: isSumEqual("acb", "cba", "cdb") });
+
+/**
+ * @param {string[]} words 
+ * @param {number[]} groups 
+ * @returns {string[]}
+ */
+function getLongestSubsequence(words, groups) {
+  const result = [];
+
+  for (let i = 0; i < words.length; i++) {
+    if (i === 0 || groups[i] !== groups[i - 1]) result.push(words[i]);
+  }
+
+  return result;
+}
+console.log({ getLongestSubsequence: getLongestSubsequence(["c"], 0) });
