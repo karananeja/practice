@@ -15541,3 +15541,16 @@ function getLongestSubsequence(words, groups) {
   return result;
 }
 console.log({ getLongestSubsequence: getLongestSubsequence(["c"], 0) });
+
+/**
+ * @param {string[]} words 
+ * @param {string} s 
+ * @returns {number}
+ */
+function countPrefixes(words, s) {
+  return words.reduce((num, word) => {
+    if (s.startsWith(word)) num++;
+    return num;
+  }, 0);
+}
+console.log({ countPrefixes: countPrefixes(["a", "a"], "aa") });
