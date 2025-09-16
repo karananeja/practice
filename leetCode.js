@@ -15597,3 +15597,19 @@ function isZeroArray(nums, queries) {
   return true;
 }
 console.log({ isZeroArray: isZeroArray([1, 0, 1], [[0, 2]]) });
+
+/**
+ * @param {string[]} strs 
+ * @returns {number}
+ */
+function maximumValue(strs) {
+  let maxValue = 0;
+
+  for (const word of strs) {
+    const length = isNaN(+word) ? word.length : +word;
+    maxValue = Math.max(maxValue, length);
+  }
+
+  return maxValue;
+}
+console.log({ maximumValue: maximumValue(["alic3", "bob", "3", "4", "00000"]) });
