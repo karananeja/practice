@@ -15613,3 +15613,19 @@ function maximumValue(strs) {
   return maxValue;
 }
 console.log({ maximumValue: maximumValue(["alic3", "bob", "3", "4", "00000"]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} original 
+ * @returns {number}
+ */
+function findFinalValue(nums, original) {
+  const uniqueNums = new Set(nums);
+
+  while (uniqueNums.has(original)) {
+    original *= 2;
+  }
+
+  return original;
+}
+console.log({ findFinalValue: findFinalValue([5, 3, 6, 1, 12], 3) });
