@@ -15629,3 +15629,31 @@ function findFinalValue(nums, original) {
   return original;
 }
 console.log({ findFinalValue: findFinalValue([5, 3, 6, 1, 12], 3) });
+
+/**
+ * @param {string[]} words 
+ * @returns {number}
+ */
+function longestPalindrome(words) {
+  const revCount = new Map();
+  let ans = 0;
+
+  for (const word of words) {
+    const reversed = word[1] + word[0];
+
+    if (revCount.get(reversed)) {
+      ans += 2;
+      revCount.set(reversed, (revCount.get(reversed) || 0) - 1);
+    } else revCount.set(word, (revCount.get(word) || 0) + 1);
+  }
+
+  for (const [key, count] of revCount.entries()) {
+    if (count > 0 && key[0] === key[1]) {
+      ans += 1;
+      break;
+    }
+  }
+
+  return ans << 1;
+}
+console.log({ longestPalindrome: longestPalindrome(["lc", "cl", "gg"]) });
