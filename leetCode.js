@@ -15657,3 +15657,20 @@ function longestPalindrome(words) {
   return ans << 1;
 }
 console.log({ longestPalindrome: longestPalindrome(["lc", "cl", "gg"]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function smallestRangeI(nums, k) {
+  let min = Infinity, max = -Infinity;
+
+  for (const num of nums) {
+    min = Math.min(min, num);
+    max = Math.max(max, num);
+  }
+
+  return Math.max(max - min - 2 * k, 0);
+}
+console.log({ smallestRangeI: smallestRangeI([1], 0) });
