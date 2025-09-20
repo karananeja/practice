@@ -15674,3 +15674,23 @@ function smallestRangeI(nums, k) {
   return Math.max(max - min - 2 * k, 0);
 }
 console.log({ smallestRangeI: smallestRangeI([1], 0) });
+
+/**
+ * @param {number} n 
+ * @returns {number[]}
+ */
+function sumZero(n) {
+  const result = [];
+  const limit = n % 2 === 1 ? n - 1 : n;
+  let currentNum = 1;
+
+  for (let idx = 0; idx < limit; idx += 2) {
+    result.push(currentNum, -currentNum);
+    currentNum++;
+  }
+
+  if (n % 2 === 1) result.push(0);
+
+  return result;
+}
+console.log({ sumZero: sumZero(5) });
