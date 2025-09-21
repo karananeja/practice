@@ -15694,3 +15694,24 @@ function sumZero(n) {
   return result;
 }
 console.log({ sumZero: sumZero(5) });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function areOccurrencesEqual(s) {
+  const charsCount = new Map();
+
+  for (let idx = 0; idx < s.length; idx++) {
+    charsCount.set(s[idx], (charsCount.get(s[idx]) || 0) + 1);
+  }
+
+  const charCount = charsCount.get(s[0]);
+
+  for (const count of charsCount.values()) {
+    if (charCount !== count) return false;
+  }
+
+  return true;
+}
+console.log({ areOccurrencesEqual: areOccurrencesEqual("abacbc") });
