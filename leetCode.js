@@ -15715,3 +15715,30 @@ function areOccurrencesEqual(s) {
   return true;
 }
 console.log({ areOccurrencesEqual: areOccurrencesEqual("abacbc") });
+
+/**
+ * @param {string} text 
+ * @param {string} brokenLetters 
+ * @returns {boolean}
+ */
+function canBeTypedWords(text, brokenLetters) {
+  const words = text.split(" ");
+  let count = 0;
+
+  for (const word of words) {
+    let isPossible = true;
+    const wordChars = new Set(word);
+
+    for (const letter of brokenLetters) {
+      if (wordChars.has(letter)) {
+        isPossible = false;
+        break;
+      }
+    }
+
+    if (isPossible) count++;
+  }
+
+  return count;
+}
+console.log({ canBeTypedWords: canBeTypedWords("hello world", "ad") });
