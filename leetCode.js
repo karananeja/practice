@@ -15742,3 +15742,30 @@ function canBeTypedWords(text, brokenLetters) {
   return count;
 }
 console.log({ canBeTypedWords: canBeTypedWords("hello world", "ad") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maxFreqSum(s) {
+  const charCount = new Array(26).fill(0);
+  let maxVowelCount = 0, maxConsonantCount = 0;
+
+  for (const char of s) {
+    const charIndex = char.charCodeAt(0) - 97;
+    charCount[charIndex]++;
+
+    if (
+      charIndex === 0 ||
+      charIndex === 4 ||
+      charIndex === 8 ||
+      charIndex === 14 ||
+      charIndex === 20
+    )
+      maxConsonantCount = Math.max(maxConsonantCount, charCount[charIndex]);
+    else maxVowelCount = Math.max(maxVowelCount, charCount[charIndex]);
+  }
+
+  return maxVowelCount + maxConsonantCount;
+}
+console.log({ maxFreqSum: maxFreqSum("successes") });
