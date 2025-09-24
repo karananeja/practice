@@ -15769,3 +15769,22 @@ function maxFreqSum(s) {
   return maxVowelCount + maxConsonantCount;
 }
 console.log({ maxFreqSum: maxFreqSum("successes") });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {boolean}
+ */
+function satisfiesConditions(grid) {
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[row].length; col++) {
+      if (
+        (row + 1 < grid.length && grid[row][col] !== grid[row + 1][col]) ||
+        (col + 1 < grid[row].length && grid[row][col] === grid[row][col + 1])
+      )
+        return false;
+    }
+  }
+
+  return true;
+}
+console.log({ satisfiesConditions: satisfiesConditions([[1], [2], [3]]) });
