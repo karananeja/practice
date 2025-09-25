@@ -15788,3 +15788,36 @@ function satisfiesConditions(grid) {
   return true;
 }
 console.log({ satisfiesConditions: satisfiesConditions([[1], [2], [3]]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number[]}
+ */
+function sortByBits(arr) {
+  const result = [];
+  const bitStore = new Map();
+
+  for (const num of arr) {
+    let currentNum = num, count = 0;
+
+    while (currentNum) {
+      count += currentNum & 1;
+      currentNum >>= 1;
+    }
+
+    if (bitStore.has(count)) {
+      const values = bitStore.get(count);
+      values.push(num);
+      bitStore.set(count, values);
+    } else bitStore.set(count, [num]);
+  }
+
+  const sortedBits = [...bitStore.keys()].sort((a, b) => a - b);
+
+  for (const sortedBit of sortedBits) {
+    result.push(...bitStore.get(sortedBit).sort((a, b) => a - b));
+  }
+
+  return result;
+}
+console.log({ sortByBits: sortByBits([0, 1, 2, 3, 4, 5, 6, 7, 8]) });
