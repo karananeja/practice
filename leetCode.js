@@ -15821,3 +15821,19 @@ function sortByBits(arr) {
   return result;
 }
 console.log({ sortByBits: sortByBits([0, 1, 2, 3, 4, 5, 6, 7, 8]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function returnToBoundaryCount(nums) {
+  let movement = 0, count = 0;
+
+  for (const num of nums) {
+    movement += num;
+    count += movement === 0 ? 1 : 0;
+  }
+
+  return count;
+}
+console.log({ returnToBoundaryCount: returnToBoundaryCount([2, 3, -5]) });
