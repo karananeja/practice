@@ -15837,3 +15837,25 @@ function returnToBoundaryCount(nums) {
   return count;
 }
 console.log({ returnToBoundaryCount: returnToBoundaryCount([2, 3, -5]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function sortArrayByParityII(nums) {
+  const result = new Array(nums.length);
+  let evenIdx = 0, oddIdx = 1;
+
+  for (const num of nums) {
+    if (num % 2 === 0) {
+      result[evenIdx] = num;
+      evenIdx += 2;
+    } else {
+      result[oddIdx] = num;
+      oddIdx += 2;
+    }
+  }
+
+  return result;
+}
+console.log({ sortArrayByParityII: sortArrayByParityII([4, 2, 5, 7]) });
