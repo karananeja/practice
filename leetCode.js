@@ -15859,3 +15859,43 @@ function sortArrayByParityII(nums) {
   return result;
 }
 console.log({ sortArrayByParityII: sortArrayByParityII([4, 2, 5, 7]) });
+
+/**
+ * @param {number} year 
+ * @returns {boolean}
+ */
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+/**
+ * @param {string} date 
+ * @returns {number}
+ */
+function getDays(date) {
+  const [year, month, day] = date.split("-");
+  const DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  let totalDays = +day;
+
+  for (let idx = 1900; idx < +year; idx++) {
+    totalDays += 365 + (isLeapYear(idx) ? 1 : 0);
+  }
+
+  for (let idx = 1; idx < +month; idx++) {
+    totalDays += DAYS[idx];
+  }
+
+  totalDays += isLeapYear(+year) && +month > 2 ? 1 : 0;
+
+  return totalDays;
+}
+
+/**
+ * @param {string} date1 
+ * @param {string} date2 
+ * @returns {number}
+ */
+function daysBetweenDates(date1, date2) {
+  return Math.abs(getDays(date1) - getDays(date2));
+}
+console.log({ daysBetweenDates: daysBetweenDates("2019-06-29", "2019-06-30") });
