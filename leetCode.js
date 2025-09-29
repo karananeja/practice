@@ -15899,3 +15899,26 @@ function daysBetweenDates(date1, date2) {
   return Math.abs(getDays(date1) - getDays(date2));
 }
 console.log({ daysBetweenDates: daysBetweenDates("2019-06-29", "2019-06-30") });
+
+/**
+ * @param {string} s 
+ * @param {number[]} distance 
+ * @returns {boolean}
+ */
+function checkDistances(s, distance) {
+  const charIndex = Array.from({ length: 26 }, () => [false, 0]);
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const charCode = s[idx].charCodeAt(0) - 97;
+    if (!charIndex[charCode][0]) charIndex[charCode] = [true, idx];
+  }
+
+  for (let idx = 0; idx < s.length; idx++) {
+    const charCode = s[idx].charCodeAt(0) - 97;
+    if (idx !== charIndex[charCode][1])
+      if (idx - charIndex[charCode][1] - 1 !== distance[charCode]) return false;
+  }
+
+  return true;
+}
+console.log({ checkDistances: checkDistances("abaccb", [1, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) });
