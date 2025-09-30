@@ -15922,3 +15922,29 @@ function checkDistances(s, distance) {
   return true;
 }
 console.log({ checkDistances: checkDistances("abaccb", [1, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) });
+
+/**
+ * @param {string} char 
+ * @returns {boolean}
+ */
+function isVowel(char) {
+  return char === "a" || char === "e" || char === "i" || char === "o" || char === "u";
+}
+
+/**
+ * @param {string[]} words 
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {number}
+ */
+function vowelStrings(words, left, right) {
+  let count = 0;
+
+  for (let idx = left; idx <= right; idx++) {
+    const word = words[idx];
+    if (isVowel(word[0]) && isVowel(word[word.length - 1])) count++;
+  }
+
+  return count;
+}
+console.log({ vowelStrings: vowelStrings(["are", "amy", "u"], 0, 2) });
