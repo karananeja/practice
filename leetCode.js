@@ -15948,3 +15948,24 @@ function vowelStrings(words, left, right) {
   return count;
 }
 console.log({ vowelStrings: vowelStrings(["are", "amy", "u"], 0, 2) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maxDifference(s) {
+  const charsCount = new Map();
+  let evenCount = Infinity, oddCount = 0;
+
+  for (const char of s) {
+    charsCount.set(char, (charsCount.get(char) || 0) + 1);
+  }
+
+  for (const charCount of charsCount.values()) {
+    if (charCount % 2 === 0) evenCount = Math.min(evenCount, charCount);
+    else oddCount = Math.max(oddCount, charCount);
+  }
+
+  return oddCount - evenCount;
+}
+console.log({ maxDifference: maxDifference("aaaaabbc") });
