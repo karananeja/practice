@@ -15992,3 +15992,18 @@ function canPlaceFlowers(flowerbed, n) {
   return n <= 0;
 }
 console.log({ canPlaceFlowers: canPlaceFlowers([1, 0, 0, 0, 1], 1) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxAdjacentDistance(nums) {
+  let difference = Math.abs(nums[0] - nums[nums.length - 1]);
+
+  for (let idx = 1; idx < nums.length; idx++) {
+    difference = Math.max(difference, Math.abs(nums[idx - 1] - nums[idx]));
+  }
+
+  return difference;
+}
+console.log({ maxAdjacentDistance: maxAdjacentDistance([1, 2, 4]) });
