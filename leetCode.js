@@ -16007,3 +16007,24 @@ function maxAdjacentDistance(nums) {
   return difference;
 }
 console.log({ maxAdjacentDistance: maxAdjacentDistance([1, 2, 4]) });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function minMaxDifference(num) {
+  let s = num.toString(), t = s, pos = 0;
+
+  while (pos < s.length && s[pos] === "9") {
+    pos++;
+  }
+
+  if (pos < s.length) {
+    s = s.replace(new RegExp(s[pos], "g"), "9");
+  }
+
+  t = t.replace(new RegExp(t[0], "g"), "0");
+
+  return parseInt(s) - parseInt(t);
+}
+console.log({ minMaxDifference: minMaxDifference(11891) });
