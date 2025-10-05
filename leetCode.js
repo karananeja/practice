@@ -16028,3 +16028,40 @@ function minMaxDifference(num) {
   return parseInt(s) - parseInt(t);
 }
 console.log({ minMaxDifference: minMaxDifference(11891) });
+
+/**
+ * @param {number} num 
+ * @returns {number[]}
+ */
+function getNums(num) {
+  const s = num.toString();
+  const maxDigitToReplace = s.split("").find((d) => d !== "9");
+  const maxStr = maxDigitToReplace
+    ? s.replace(new RegExp(maxDigitToReplace, "g"), "9")
+    : s;
+
+  let minStr = s;
+  if (s[0] !== "1") {
+    minStr = s.replace(new RegExp(s[0], "g"), "1");
+  } else {
+    const digitToReplace = s
+      .slice(1)
+      .split("")
+      .find((d) => d !== "0" && d !== "1");
+    if (digitToReplace) {
+      minStr = s.replace(new RegExp(digitToReplace, "g"), "0");
+    }
+  }
+
+  return [+maxStr, +minStr];
+}
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function maxDiff(num) {
+  const [maxNum, minNum] = getNums(num);
+  return maxNum - minNum;
+}
+console.log({ maxDiff: maxDiff(555) });
