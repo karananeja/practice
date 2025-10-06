@@ -16065,3 +16065,19 @@ function maxDiff(num) {
   return maxNum - minNum;
 }
 console.log({ maxDiff: maxDiff(555) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maximumDifference(nums) {
+  let maxDiff = -1, minNum = nums[0];
+
+  for (let idx = 1; idx < nums.length; idx++) {
+    if (nums[idx] > minNum) maxDiff = Math.max(maxDiff, nums[idx] - minNum);
+    else minNum = nums[idx];
+  }
+
+  return maxDiff;
+}
+console.log({ maximumDifference: maximumDifference([7, 1, 5, 4]) });
