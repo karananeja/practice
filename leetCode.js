@@ -16081,3 +16081,25 @@ function maximumDifference(nums) {
   return maxDiff;
 }
 console.log({ maximumDifference: maximumDifference([7, 1, 5, 4]) });
+
+/**
+ * @param {number[][]} mat 
+ * @param {number} r 
+ * @param {number} c 
+ * @returns {number[][]}
+ */
+function matrixReshape(mat, r, c) {
+  const m = mat.length;
+  const n = mat[0].length;
+
+  if (r * c !== m * n) return mat;
+
+  const reshaped = Array.from({ length: r }, () => Array(c));
+
+  for (let i = 0; i < r * c; i++) {
+    reshaped[Math.floor(i / c)][i % c] = mat[Math.floor(i / n)][i % n];
+  }
+
+  return reshaped;
+}
+console.log({ matrixReshape: matrixReshape([[1, 2], [3, 4]], 1, 4) });
