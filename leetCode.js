@@ -16103,3 +16103,23 @@ function matrixReshape(mat, r, c) {
   return reshaped;
 }
 console.log({ matrixReshape: matrixReshape([[1, 2], [3, 4]], 1, 4) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function partitionArray(nums, k) {
+  nums.sort((a, b) => a - b);
+  let ans = 1, rec = nums[0];
+
+  for (const num of nums) {
+    if (num - rec > k) {
+      ans++;
+      rec = num;
+    }
+  }
+
+  return ans;
+}
+console.log({ partitionArray: partitionArray([3, 6, 1, 2, 5], 2) });
