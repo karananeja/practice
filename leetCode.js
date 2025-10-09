@@ -16123,3 +16123,24 @@ function partitionArray(nums, k) {
   return ans;
 }
 console.log({ partitionArray: partitionArray([3, 6, 1, 2, 5], 2) });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function hasSameDigits(s) {
+  while (s.length > 2) {
+    let sum = "";
+
+    for (let idx = 0; idx < s.length - 1; idx++) {
+      const first = +s[idx],
+        second = +s[idx + 1];
+      sum += `${(first + second) % 10}`;
+    }
+
+    s = sum;
+  }
+
+  return s[0] === s[1];
+}
+console.log({ hasSameDigits: hasSameDigits("3902") });
