@@ -16144,3 +16144,35 @@ function hasSameDigits(s) {
   return s[0] === s[1];
 }
 console.log({ hasSameDigits: hasSameDigits("3902") });
+
+/**
+ * @param {string} word 
+ * @param {number} k 
+ * @returns {number}
+ */
+function minimumDeletions(word, k) {
+  const charsCount = new Map();
+
+  for (const char of word) {
+    charsCount.set(char, (charsCount.get(char) || 0) + 1);
+  }
+
+  let res = word.length;
+
+  for (const a of charsCount.values()) {
+    let deleted = 0;
+
+    for (const b of charsCount.values()) {
+      if (a > b) {
+        deleted += b;
+      } else if (b > a + k) {
+        deleted += b - (a + k);
+      }
+    }
+
+    res = Math.min(res, deleted);
+  }
+
+  return res;
+}
+console.log({ minimumDeletions: minimumDeletions("aabcaba", 0) });
