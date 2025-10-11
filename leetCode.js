@@ -16176,3 +16176,28 @@ function minimumDeletions(word, k) {
   return res;
 }
 console.log({ minimumDeletions: minimumDeletions("aabcaba", 0) });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @param {string} fill 
+ * @returns {string[]}
+ */
+function divideString(s, k, fill) {
+  const result = [];
+  const groups = Math.ceil(s.length / k);
+  let groupCount = 0;
+
+  while (groupCount < groups) {
+    result[groupCount] = "";
+
+    for (let idx = 0; idx < k; idx++) {
+      result[groupCount] += s[groupCount * k + idx] || fill;
+    }
+
+    groupCount++;
+  }
+
+  return result;
+}
+console.log({ divideString: divideString("abcdefghi", 3, "x") });
