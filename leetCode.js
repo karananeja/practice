@@ -16201,3 +16201,24 @@ function divideString(s, k, fill) {
   return result;
 }
 console.log({ divideString: divideString("abcdefghi", 3, "x") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function maxSubsequence(nums, k) {
+  const maxHeap = new MaxHeap((a, b) => a[0] - b[0]);
+  const indices = [];
+
+  nums.forEach((_, idx) => maxHeap.push([nums[idx], idx]));
+
+  while (k--) {
+    const idx = maxHeap.pop()[1];
+    indices.push(idx);
+  }
+
+  indices.sort((a, b) => a - b);
+
+  return indices.map((idx) => nums[idx]);
+}
