@@ -16222,3 +16222,25 @@ function maxSubsequence(nums, k) {
 
   return indices.map((idx) => nums[idx]);
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} key 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function findKDistantIndices(nums, key, k) {
+  const indices = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = 0; j < nums.length; j++) {
+      if (Math.abs(i - j) <= k && nums[j] === key) {
+        indices.push(i);
+        break;
+      }
+    }
+  }
+
+  return indices;
+}
+console.log({ findKDistantIndices: findKDistantIndices([2, 2, 2, 2, 2], 2, 2) });
