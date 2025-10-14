@@ -16244,3 +16244,18 @@ function findKDistantIndices(nums, key, k) {
   return indices;
 }
 console.log({ findKDistantIndices: findKDistantIndices([2, 2, 2, 2, 2], 2, 2) });
+
+/**
+ * @param {string} word 
+ * @returns {number}
+ */
+function possibleStringCount(word) {
+  let count = 1;
+
+  for (let idx = 1; idx < word.length; idx++) {
+    if (word[idx - 1] === word[idx]) count++;
+  }
+
+  return count;
+}
+console.log({ possibleStringCount: possibleStringCount("abbcccc") });
