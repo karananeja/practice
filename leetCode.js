@@ -16259,3 +16259,23 @@ function possibleStringCount(word) {
   return count;
 }
 console.log({ possibleStringCount: possibleStringCount("abbcccc") });
+
+/**
+ * @param {number} n 
+ * @returns {string}
+ */
+function thousandSeparator(n) {
+  if (n === 0) return "0";
+
+  const result = [];
+  let count = 1;
+
+  while (n) {
+    result.unshift(`${n % 10}`);
+    n = Math.floor(n / 10);
+    if (count++ % 3 === 0 && n) result.unshift(".");
+  }
+
+  return result.join("");
+}
+console.log({ thousandSeparator: thousandSeparator(987) });
