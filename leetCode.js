@@ -16279,3 +16279,29 @@ function thousandSeparator(n) {
   return result.join("");
 }
 console.log({ thousandSeparator: thousandSeparator(987) });
+
+/**
+ * @param {number[]} widths 
+ * @param {string} text 
+ * @returns {number[]}
+ */
+function numberOfLines(widths, text) {
+  const MAX_LINE_WIDTH = 100, CHAR_CODE_OFFSET = 97;
+  let currentLineWidth = 0, lineCount = 0;
+
+  for (const char of text) {
+    const charCode = char.charCodeAt(0);
+    const charWidth = widths[charCode - CHAR_CODE_OFFSET];
+    currentLineWidth += charWidth;
+
+    if (currentLineWidth > MAX_LINE_WIDTH) {
+      lineCount++;
+      currentLineWidth = charWidth;
+    }
+  }
+
+  const totalLines = lineCount + (currentLineWidth > 0 ? 1 : 0);
+
+  return [totalLines, currentLineWidth];
+}
+console.log({ numberOfLines: numberOfLines([3, 4, 10, 4, 8, 7, 3, 3, 4, 9, 8, 2, 9, 6, 2, 8, 4, 9, 9, 10, 2, 4, 9, 10, 8, 2], "mqb") });
