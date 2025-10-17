@@ -16305,3 +16305,24 @@ function numberOfLines(widths, text) {
   return [totalLines, currentLineWidth];
 }
 console.log({ numberOfLines: numberOfLines([3, 4, 10, 4, 8, 7, 3, 3, 4, 9, 8, 2, 9, 6, 2, 8, 4, 9, 9, 10, 2, 4, 9, 10, 8, 2], "mqb") });
+
+/**
+ * @param {string} word 
+ * @returns {boolean}
+ */
+function isValid(word) {
+  if (word.length < 3) return false;
+
+  let hasVowel = false, hasConsonant = false;
+
+  for (const char of word) {
+    if (/[a-zA-Z]/.test(char)) {
+      const ch = char.toLowerCase();
+      if (ch === "a" || ch === "e" || ch === "i" || ch === "o" || ch === "u") hasVowel = true;
+      else hasConsonant = true;
+    } else if (!/\d/.test(char)) return false;
+  }
+
+  return hasVowel && hasConsonant;
+}
+console.log({ isValid: isValid("234Adas") });
