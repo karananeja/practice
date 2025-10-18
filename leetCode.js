@@ -16326,3 +16326,27 @@ function isValid(word) {
   return hasVowel && hasConsonant;
 }
 console.log({ isValid: isValid("234Adas") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maximumLength(nums) {
+  let res = 0;
+  const patterns = [[0, 0], [0, 1], [1, 0], [1, 1]];
+
+  for (const pattern of patterns) {
+    let cnt = 0;
+
+    for (const num of nums) {
+      if (num % 2 === pattern[cnt % 2]) {
+        cnt++;
+      }
+    }
+
+    res = Math.max(res, cnt);
+  }
+
+  return res;
+}
+console.log({ maximumLength: maximumLength([1, 2, 3, 4]) });
