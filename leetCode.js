@@ -16350,3 +16350,20 @@ function maximumLength(nums) {
   return res;
 }
 console.log({ maximumLength: maximumLength([1, 2, 3, 4]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number[]}
+ */
+function replaceElements(arr) {
+  let prevMax = -1;
+
+  for (let idx = arr.length - 1; idx >= 0; idx--) {
+    const current = arr[idx];
+    arr[idx] = prevMax;
+    prevMax = Math.max(prevMax, current);
+  }
+
+  return arr;
+}
+console.log({ replaceElements: replaceElements([17, 18, 5, 4, 6, 1]) });
