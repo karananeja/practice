@@ -16367,3 +16367,21 @@ function replaceElements(arr) {
   return arr;
 }
 console.log({ replaceElements: replaceElements([17, 18, 5, 4, 6, 1]) });
+
+/**
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function trimMean(arr) {
+  arr.sort((a, b) => a - b);
+
+  const limit = 0.05 * arr.length;
+  let sum = 0;
+
+  for (let idx = limit; idx < arr.length - limit; idx++) {
+    sum += arr[idx];
+  }
+
+  return sum / (arr.length - 2 * limit);
+}
+console.log({ trimMean: trimMean([1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3]) });
