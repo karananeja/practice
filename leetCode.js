@@ -16385,3 +16385,20 @@ function trimMean(arr) {
   return sum / (arr.length - 2 * limit);
 }
 console.log({ trimMean: trimMean([1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3]) });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function greatestLetter(s) {
+  const chars = new Set(s);
+
+  for (let idx = 122; idx >= 97; idx--) {
+    const lowercase = String.fromCharCode(idx);
+    const uppercase = lowercase.toUpperCase();
+    if (chars.has(lowercase) && chars.has(uppercase)) return uppercase;
+  }
+
+  return "";
+}
+console.log({ greatestLetter: greatestLetter("lEeTcOdE") });
