@@ -16402,3 +16402,19 @@ function greatestLetter(s) {
   return "";
 }
 console.log({ greatestLetter: greatestLetter("lEeTcOdE") });
+
+/**
+ * @param {string} num 
+ * @returns {string}
+ */
+function removeTrailingZeros(num) {
+  let stopIdx = num.length - 1;
+
+  while (stopIdx >= 0) {
+    if (num[stopIdx] !== "0") break;
+    stopIdx--;
+  }
+
+  return num.slice(0, stopIdx + 1);
+}
+console.log({ removeTrailingZeros: removeTrailingZeros("123") });
