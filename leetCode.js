@@ -16418,3 +16418,22 @@ function removeTrailingZeros(num) {
   return num.slice(0, stopIdx + 1);
 }
 console.log({ removeTrailingZeros: removeTrailingZeros("123") });
+
+/**
+ * @param {string} caption 
+ * @returns {string}
+ */
+function generateTag(caption) {
+  const words = caption.trim().split(" ");
+  const firstWord = words[0].toLowerCase();
+  const result = ["#", firstWord];
+
+  for (let idx = 1; idx < words.length; idx++) {
+    const currentWord = words[idx];
+    if (!currentWord) continue;
+    result.push(`${currentWord[0].toUpperCase()}${currentWord.slice(1).toLowerCase()}`);
+  }
+
+  return result.join("").slice(0, 100);
+}
+console.log({ generateTag: generateTag("can I Go There") });
