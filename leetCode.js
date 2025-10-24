@@ -16437,3 +16437,25 @@ function generateTag(caption) {
   return result.join("").slice(0, 100);
 }
 console.log({ generateTag: generateTag("can I Go There") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxSum(nums) {
+  const unique = new Set(nums);
+  let maxNum = -Infinity, hasPositive = false;
+  let sum = 0;
+
+  unique.forEach((num) => {
+    if (num < 0) {
+      maxNum = Math.max(maxNum, num);
+    } else {
+      sum += num;
+      hasPositive = true;
+    }
+  });
+
+  return hasPositive ? sum : maxNum;
+}
+console.log({ maxSum: maxSum([1, 2, 3, 4, 5]) });
