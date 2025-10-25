@@ -16459,3 +16459,24 @@ function maxSum(nums) {
   return hasPositive ? sum : maxNum;
 }
 console.log({ maxSum: maxSum([1, 2, 3, 4, 5]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function minSubsequence(nums) {
+  nums.sort((a, b) => b - a);
+
+  let currentSum = 0;
+  const sum = nums.reduce((num, sum) => sum += num, 0);
+  const result = [];
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    result.push(nums[idx]);
+    currentSum += nums[idx];
+    if (2 * currentSum > sum) return result;
+  }
+
+  return result;
+}
+console.log({ minSubsequence: minSubsequence([4, 3, 10, 9, 8]) });
