@@ -16480,3 +16480,21 @@ function minSubsequence(nums) {
   return result;
 }
 console.log({ minSubsequence: minSubsequence([4, 3, 10, 9, 8]) });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function maximum69Number(num) {
+  const digits = `${num}`.split("");
+
+  for (let idx = 0; idx < digits.length; idx++) {
+    if (digits[idx] === "6") {
+      digits[idx] = "9";
+      break;
+    }
+  }
+
+  return +digits.join("");
+}
+console.log({ maximum69Number: maximum69Number(9669) });
