@@ -16498,3 +16498,28 @@ function maximum69Number(num) {
   return +digits.join("");
 }
 console.log({ maximum69Number: maximum69Number(9669) });
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {boolean}
+ */
+function checkValid(matrix) {
+  for (const col of matrix) {
+    const uniqueDigits = new Set(col);
+    if (matrix.length !== uniqueDigits.size) return false;
+  }
+
+  for (let col = 0; col < matrix[0].length; col++) {
+    const digits = [];
+
+    for (let row = 0; row < matrix.length; row++) {
+      digits.push(matrix[row][col]);
+    }
+
+    const uniqueDigits = new Set(digits);
+    if (matrix.length !== uniqueDigits.size) return false;
+  }
+
+  return true;
+}
+console.log({ checkValid: checkValid([[1, 2, 3], [3, 1, 2], [2, 3, 1]]) });
