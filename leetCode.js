@@ -16523,3 +16523,46 @@ function checkValid(matrix) {
   return true;
 }
 console.log({ checkValid: checkValid([[1, 2, 3], [3, 1, 2], [2, 3, 1]]) });
+
+/**
+ * @param {string[][]} board 
+ * @returns {boolean}
+ */
+function isValidSudoku(board) {
+  const seen = new Set();
+
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board[row].length; col++) {
+      const value = board[row][col];
+      if (value === ".") continue;
+
+      const rowKey = `row${row}_val${value}`;
+      const colKey = `col${col}_val${value}`;
+      const boxIndex = Math.floor(row / 3) * 3 + Math.floor(col / 3);
+      const boxKey = `box${boxIndex}_val${value}`;
+
+      if (seen.has(rowKey) || seen.has(colKey) || seen.has(boxKey)) {
+        return false;
+      }
+
+      seen.add(rowKey);
+      seen.add(colKey);
+      seen.add(boxKey);
+    }
+  }
+
+  return true;
+}
+console.log({
+  isValidSudoku: isValidSudoku([
+    ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+    ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+    [".", "9", "8", ".", ".", ".", ".", "6", "."],
+    ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+    ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+    ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+    [".", "6", ".", ".", ".", ".", "2", "8", "."],
+    [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+    [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+  ]),
+});
