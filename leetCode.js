@@ -16566,3 +16566,24 @@ console.log({
     [".", ".", ".", ".", "8", ".", ".", "7", "9"],
   ]),
 });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findTheArrayConcVal(nums) {
+  const updatedNums = [];
+  let left = 0, right = nums.length - 1;
+
+  while (left < right) {
+    const updatedNum = `${nums[left]}${nums[right]}`;
+    updatedNums.push(+updatedNum);
+    left++;
+    right--;
+  }
+
+  if (nums.length % 2 === 1) updatedNums.push(nums[left]);
+
+  return updatedNums.reduce((num, sum) => sum + num, 0);
+}
+console.log({ findTheArrayConcVal: findTheArrayConcVal([7, 52, 2, 4]) });
