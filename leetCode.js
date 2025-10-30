@@ -16587,3 +16587,25 @@ function findTheArrayConcVal(nums) {
   return updatedNums.reduce((num, sum) => sum + num, 0);
 }
 console.log({ findTheArrayConcVal: findTheArrayConcVal([7, 52, 2, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function longestSubarray(nums) {
+  let zeroCount = 0, longestWindow = 0, start = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) zeroCount++;
+
+    while (zeroCount > 1) {
+      if (nums[start] === 0) zeroCount--;
+      start++;
+    }
+
+    longestWindow = Math.max(longestWindow, i - start);
+  }
+
+  return longestWindow;
+}
+console.log({ longestSubarray: longestSubarray([1, 1, 0, 1]) });
