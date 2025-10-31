@@ -16609,3 +16609,37 @@ function longestSubarray(nums) {
   return longestWindow;
 }
 console.log({ longestSubarray: longestSubarray([1, 1, 0, 1]) });
+
+/**
+ * @param {number[][]} mat 
+ * @returns {number[]}
+ */
+function findDiagonalOrder(mat) {
+  let row = 0, column = 0, direction = 1, r = 0;
+  const result = [];
+
+  while (row < mat.length && column < mat[0].length) {
+    result[r++] = mat[row][column];
+
+    let newRow = row + (direction === 1 ? -1 : 1);
+    let newColumn = column + (direction === 1 ? 1 : -1);
+
+    if (newRow < 0 || newRow === mat.length || newColumn < 0 || newColumn === mat[0].length) {
+      if (direction === 1) {
+        row += (column === mat[0].length - 1 ? 1 : 0);
+        column += (column < mat[0].length - 1 ? 1 : 0);
+      } else {
+        column += (row === mat.length - 1 ? 1 : 0);
+        row += (row < mat.length - 1 ? 1 : 0);
+      }
+
+      direction = 1 - direction;
+    } else {
+      row = newRow;
+      column = newColumn;
+    }
+  }
+
+  return result;
+}
+console.log({ findDiagonalOrder: findDiagonalOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
