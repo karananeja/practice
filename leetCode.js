@@ -16643,3 +16643,26 @@ function findDiagonalOrder(mat) {
   return result;
 }
 console.log({ findDiagonalOrder: findDiagonalOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
+
+/**
+ * @param {number[][]} dimensions 
+ * @returns {number}
+ */
+function areaOfMaxDiagonal(dimensions) {
+  let maxDiaSq = 0, maxArea = 0;
+
+  for (const dimension of dimensions) {
+    const length = dimension[0], width = dimension[1];
+    const diaSq = length * length + width * width, area = length * width;
+
+    if (diaSq > maxDiaSq) {
+      maxDiaSq = diaSq;
+      maxArea = area;
+    } else if (diaSq === maxDiaSq) {
+      maxArea = Math.max(maxArea, area);
+    }
+  }
+
+  return maxArea;
+}
+console.log({ areaOfMaxDiagonal: areaOfMaxDiagonal([[9, 3], [8, 6]]) });
