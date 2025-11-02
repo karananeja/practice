@@ -16666,3 +16666,28 @@ function areaOfMaxDiagonal(dimensions) {
   return maxArea;
 }
 console.log({ areaOfMaxDiagonal: areaOfMaxDiagonal([[9, 3], [8, 6]]) });
+
+/**
+ * @param {number[][]} mat 
+ * @returns {number[]}
+ */
+function rowAndMaximumOnes(mat) {
+  let rowIdx = 0, maxCount = 0;
+
+  for (let idx = 0; idx < mat.length; idx++) {
+    const row = mat[idx];
+    let count = 0;
+
+    for (const val of row) {
+      if (val === 1) count++;
+    }
+
+    if (count > maxCount) {
+      maxCount = count;
+      rowIdx = idx;
+    }
+  }
+
+  return [rowIdx, maxCount];
+}
+console.log({ rowAndMaximumOnes: rowAndMaximumOnes([[0, 1], [1, 0]]) });
