@@ -16691,3 +16691,20 @@ function rowAndMaximumOnes(mat) {
   return [rowIdx, maxCount];
 }
 console.log({ rowAndMaximumOnes: rowAndMaximumOnes([[0, 1], [1, 0]]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maximizeSum(nums, k) {
+  let maxNum = Math.max(...nums), score = 0;
+
+  while (k) {
+    score += maxNum++;
+    k--;
+  }
+
+  return score;
+}
+console.log({ maximizeSum: maximizeSum([1, 2, 3, 4, 5], 3) });
