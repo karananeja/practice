@@ -16708,3 +16708,23 @@ function maximizeSum(nums, k) {
   return score;
 }
 console.log({ maximizeSum: maximizeSum([1, 2, 3, 4, 5], 3) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function smallestIndex(nums) {
+  for (let idx = 0; idx < nums.length; idx++) {
+    let num = nums[idx], sum = 0;
+
+    while (num > 0) {
+      sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+
+    if (sum === idx) return idx;
+  }
+
+  return -1;
+}
+console.log({ smallestIndex: smallestIndex([1, 3, 2]) });
