@@ -16728,3 +16728,17 @@ function smallestIndex(nums) {
   return -1;
 }
 console.log({ smallestIndex: smallestIndex([1, 3, 2]) });
+
+/**
+ * @param {number} x 
+ * @param {number} y 
+ * @param {number} z 
+ * @returns {number}
+ */
+function findClosest(x, y, z) {
+  const leftDistance = Math.abs(x - z);
+  const rightDistance = Math.abs(y - z);
+  const closestPerson = leftDistance < rightDistance ? 1 : 2;
+  return leftDistance === rightDistance ? 0 : closestPerson;
+}
+console.log({ findClosest: findClosest(2, 7, 4) });
