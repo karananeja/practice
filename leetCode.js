@@ -16742,3 +16742,16 @@ function findClosest(x, y, z) {
   return leftDistance === rightDistance ? 0 : closestPerson;
 }
 console.log({ findClosest: findClosest(2, 7, 4) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function smallestEqual(nums) {
+  for (let idx = 0; idx < nums.length; idx++) {
+    if (idx % 10 === nums[idx]) return idx;
+  }
+
+  return -1;
+}
+console.log({ smallestEqual: smallestEqual([0, 1, 2]) });
