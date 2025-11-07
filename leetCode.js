@@ -16755,3 +16755,41 @@ function smallestEqual(nums) {
   return -1;
 }
 console.log({ smallestEqual: smallestEqual([0, 1, 2]) });
+
+/**
+ * @param {number} n 
+ * @returns {number[]}
+ */
+function getNoZeroIntegers(n) {
+  let start = 0, end = n;
+  const result = [];
+
+  /**
+   * @param {number} num 
+   * @returns {boolean}
+   */
+  function hasZero(num) {
+    if (num === 0) return true;
+
+    while (num) {
+      const digit = num % 10;
+      if (digit === 0) return true;
+      num = Math.floor(num / 10);
+    }
+
+    return false;
+  }
+
+  while (start <= end) {
+    if (!hasZero(start) && !hasZero(end) && start + end === n) {
+      result.push(start, end);
+      break;
+    }
+
+    start++;
+    end--;
+  }
+
+  return result;
+}
+console.log({ getNoZeroIntegers: getNoZeroIntegers(11) });
