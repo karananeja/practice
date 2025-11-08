@@ -16793,3 +16793,12 @@ function getNoZeroIntegers(n) {
   return result;
 }
 console.log({ getNoZeroIntegers: getNoZeroIntegers(11) });
+
+/**
+ * @param {number} n 
+ * @returns {boolean}
+ */
+function canWinNim(n) {
+  return n % 4 !== 0;
+}
+console.log({ canWinNim: canWinNim(4) });
