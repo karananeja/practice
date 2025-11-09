@@ -16802,3 +16802,17 @@ function canWinNim(n) {
   return n % 4 !== 0;
 }
 console.log({ canWinNim: canWinNim(4) });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function repeatedCharacter(s) {
+  const seen = new Set();
+
+  for (const char of s) {
+    if (seen.has(char)) return char;
+    seen.add(char);
+  }
+}
+console.log({ repeatedCharacter: repeatedCharacter("abccbaacz") });
