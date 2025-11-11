@@ -16835,3 +16835,12 @@ function maxCount(m, n, ops) {
   return minRow * minCol;
 }
 console.log({ maxCount: maxCount(3, 3, [[2, 2], [3, 3]]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minimizedStringLength(s) {
+  return new Set(s).size;
+}
+console.log({ minimizedStringLength: minimizedStringLength("aaabc") });
