@@ -16844,3 +16844,19 @@ function minimizedStringLength(s) {
   return new Set(s).size;
 }
 console.log({ minimizedStringLength: minimizedStringLength("aaabc") });
+
+/**
+ * @param {string} title 
+ * @returns {string}
+ */
+function capitalizeTitle(title) {
+  const words = title.split(" ");
+
+  for (let idx = 0; idx < words.length; idx++) {
+    if (words[idx].length < 3) words[idx] = words[idx].toLowerCase();
+    else words[idx] = `${words[idx][0].toUpperCase()}${words[idx].slice(1).toLowerCase()}`;
+  }
+
+  return words.join(" ");
+}
+console.log({ capitalizeTitle: capitalizeTitle("i lOve leetcode") });
