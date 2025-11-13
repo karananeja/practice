@@ -16860,3 +16860,13 @@ function capitalizeTitle(title) {
   return words.join(" ");
 }
 console.log({ capitalizeTitle: capitalizeTitle("i lOve leetcode") });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {string}
+ */
+function getEncryptedString(s, k) {
+  return Array.from(s).map((_, i) => s[(i + k) % s.length]).join('');
+}
+console.log({ getEncryptedString: getEncryptedString("dart", 3) });
