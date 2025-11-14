@@ -16870,3 +16870,20 @@ function getEncryptedString(s, k) {
   return Array.from(s).map((_, i) => s[(i + k) % s.length]).join('');
 }
 console.log({ getEncryptedString: getEncryptedString("dart", 3) });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function countDigits(num) {
+  let count = 0, originalNum = num;
+
+  while (num) {
+    const digit = num % 10;
+    num = Math.floor(num / 10);
+    count += originalNum % digit === 0 ? 1 : 0;
+  }
+
+  return count;
+}
+console.log({ countDigits: countDigits(1248) });
