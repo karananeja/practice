@@ -16887,3 +16887,42 @@ function countDigits(num) {
   return count;
 }
 console.log({ countDigits: countDigits(1248) });
+
+/**
+ * @param {number} numerator 
+ * @param {number} denominator 
+ * @returns {string}
+ */
+function fractionToDecimal(numerator, denominator) {
+  if (numerator === 0) return "0";
+
+  let result = '';
+
+  if ((numerator < 0) !== (denominator < 0)) result += '-';
+
+  let num = Math.abs(numerator), den = Math.abs(denominator);
+  result += Math.floor(num / den);
+  let remainder = num % den;
+
+  if (remainder === 0) return result;
+
+  result += ".";
+
+  const map = new Map();
+
+  while (remainder !== 0) {
+    if (map.has(remainder)) {
+      let idx = map.get(remainder);
+      result = result.slice(0, idx) + '(' + result.slice(idx) + ')';
+      return result;
+    }
+
+    map.set(remainder, result.length);
+    remainder *= 10;
+    result += Math.floor(remainder / den);
+    remainder %= den;
+  }
+
+  return result;
+}
+console.log({ fractionToDecimal: fractionToDecimal(4, 333) });
