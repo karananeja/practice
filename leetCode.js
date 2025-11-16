@@ -16926,3 +16926,38 @@ function fractionToDecimal(numerator, denominator) {
   return result;
 }
 console.log({ fractionToDecimal: fractionToDecimal(4, 333) });
+
+/**
+ * @param {string} char 
+ * @returns {boolean}
+ */
+function isVowel(char) {
+  const vowels = new Set(["a", "e", "i", "o", "u"]);
+  return vowels.has(char.toLowerCase());
+}
+
+/**
+ * @param {string} sentence 
+ * @returns {string}
+ */
+function toGoatLatin(sentence) {
+  const words = sentence.split(" ");
+  const result = [];
+  let suffix = "";
+
+  for (const word of words) {
+    suffix += "a";
+
+    let transformed = "";
+    if (isVowel(word[0])) {
+      transformed = word;
+    } else {
+      transformed = word.slice(1) + word[0];
+    }
+
+    result.push(transformed + "ma" + suffix);
+  }
+
+  return result.join(" ");
+}
+console.log({ toGoatLatin: toGoatLatin("I speak Goat Latin") });
