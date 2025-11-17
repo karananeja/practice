@@ -16961,3 +16961,28 @@ function toGoatLatin(sentence) {
   return result.join(" ");
 }
 console.log({ toGoatLatin: toGoatLatin("I speak Goat Latin") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function triangleNumber(nums) {
+  let count = 0;
+  nums.sort((a, b) => a - b);
+
+  for (let third = nums.length - 1; third >= 2; third--) {
+    let left = 0, right = third - 1;
+
+    while (left < right) {
+      if (nums[left] + nums[right] > nums[third]) {
+        count += right - left;
+        right--;
+      } else {
+        left++;
+      }
+    }
+  }
+
+  return count;
+}
+console.log({ triangleNumber: triangleNumber([2, 2, 3, 4]) });
