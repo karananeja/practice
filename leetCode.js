@@ -16986,3 +16986,28 @@ function triangleNumber(nums) {
   return count;
 }
 console.log({ triangleNumber: triangleNumber([2, 2, 3, 4]) });
+
+/**
+ * @param {number[][]} points 
+ * @returns {number}
+ */
+function largestTriangleArea(points) {
+  let maxArea = 0;
+
+  for (let i = 0; i < points.length - 2; i++) {
+    for (let j = i + 1; j < points.length - 1; j++) {
+      for (let k = j + 1; k < points.length; k++) {
+        const point1 = points[i], point2 = points[j], point3 = points[k];
+        const area = 0.5 * Math.abs(
+          point1[0] * (point2[1] - point3[1]) +
+          point2[0] * (point3[1] - point1[1]) +
+          point3[0] * (point1[1] - point2[1])
+        );
+        maxArea = Math.max(maxArea, area);
+      }
+    }
+  }
+
+  return maxArea;
+}
+console.log({ largestTriangleArea: largestTriangleArea([[1, 0], [0, 0], [0, 1]]) });
