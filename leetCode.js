@@ -17011,3 +17011,37 @@ function largestTriangleArea(points) {
   return maxArea;
 }
 console.log({ largestTriangleArea: largestTriangleArea([[1, 0], [0, 0], [0, 1]]) });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function sortString(s) {
+  const charCount = Array(26).fill(0);
+
+  for (const char of s) {
+    charCount[char.charCodeAt(0) - 97]++;
+  }
+
+  const result = [];
+  const count = s.length;
+
+  while (result.length < count) {
+    for (let idx = 0; idx < 26; idx++) {
+      if (charCount[idx] > 0) {
+        result.push(String.fromCharCode(idx + 97));
+        charCount[idx]--;
+      }
+    }
+
+    for (let idx = 25; idx >= 0; idx--) {
+      if (charCount[idx] > 0) {
+        result.push(String.fromCharCode(idx + 97));
+        charCount[idx]--;
+      }
+    }
+  }
+
+  return result.join("");
+}
+console.log({ sortString: sortString("rat") });
