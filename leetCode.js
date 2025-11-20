@@ -17045,3 +17045,32 @@ function sortString(s) {
   return result.join("");
 }
 console.log({ sortString: sortString("rat") });
+
+/**
+ * @param {string} rings 
+ * @returns {number}
+ */
+function countPoints(rings) {
+  const masks = Array(10).fill(0);
+
+  for (let i = 0; i < rings.length; i += 2) {
+    const color = rings[i];
+    const rod = parseInt(rings[i + 1]);
+    let maskValue = 0;
+
+    if (color === 'R') maskValue = 1;
+    else if (color === 'G') maskValue = 2;
+    else if (color === 'B') maskValue = 4;
+
+    masks[rod] |= maskValue;
+  }
+
+  let count = 0;
+
+  for (let i = 0; i < 10; i++) {
+    if (masks[i] === 7) count++;
+  }
+
+  return count;
+}
+console.log({ countPoints: countPoints("B0B6G0R6R0R6G9") });
