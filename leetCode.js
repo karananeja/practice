@@ -17074,3 +17074,20 @@ function countPoints(rings) {
   return count;
 }
 console.log({ countPoints: countPoints("B0B6G0R6R0R6G9") });
+
+/**
+ * @param {number[]} order 
+ * @param {number[]} friends 
+ * @returns {number[]}
+ */
+function recoverOrder(order, friends) {
+  const position = new Set(friends);
+  const result = [];
+
+  for (const rank of order) {
+    if (position.has(rank)) result.push(rank);
+  }
+
+  return result;
+}
+console.log({ recoverOrder: recoverOrder([3, 1, 2, 5, 4], [1, 3, 4]) });
