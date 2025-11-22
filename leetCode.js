@@ -17091,3 +17091,42 @@ function recoverOrder(order, friends) {
   return result;
 }
 console.log({ recoverOrder: recoverOrder([3, 1, 2, 5, 4], [1, 3, 4]) });
+
+/**
+ * @param {number} spell 
+ * @param {number[]} potions 
+ * @param {number} success 
+ * @returns {number}
+ */
+function getIndex(spell, potions, success) {
+  let start = 0, end = potions.length - 1;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+    const strength = potions[mid] * spell;
+
+    if (strength >= success) end = mid - 1;
+    else start = mid + 1;
+  }
+
+  return potions.length - start;
+}
+
+/**
+ * @param {number[]} spells 
+ * @param {number[]} potions 
+ * @param {number} success 
+ * @returns {number[]}
+ */
+function successfulPairs(spells, potions, success) {
+  potions.sort((a, b) => a - b);
+  const result = new Array(spells.length);
+
+  for (let idx = 0; idx < spells.length; idx++) {
+    const spell = spells[idx];
+    result[idx] = getIndex(spell, potions, success);
+  }
+
+  return result;
+}
+console.log({ successfulPairs: successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7) });
