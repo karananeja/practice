@@ -17130,3 +17130,18 @@ function successfulPairs(spells, potions, success) {
   return result;
 }
 console.log({ successfulPairs: successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7) });
+
+/**
+ * @param {number[][]} tasks 
+ * @returns {number}
+ */
+function earliestTime(tasks) {
+  let minTime = 201;
+
+  for (const task of tasks) {
+    minTime = Math.min(minTime, task[1] + task[0]);
+  }
+
+  return minTime;
+}
+console.log({ earliestTime: earliestTime([[1, 6], [2, 3]]) });
