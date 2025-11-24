@@ -17145,3 +17145,44 @@ function earliestTime(tasks) {
   return minTime;
 }
 console.log({ earliestTime: earliestTime([[1, 6], [2, 3]]) });
+
+/**
+ * @param {number} num 
+ * @param {number[]} arr 
+ * @returns {number}
+ */
+function getIndex(num, arr) {
+  let start = 0, end = arr.length - 1;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+    if (arr[mid] >= num) end = mid - 1;
+    else start = mid + 1;
+  }
+
+  return start;
+}
+
+/**
+ * @param {number[]} arr1 
+ * @param {number[]} arr2 
+ * @param {number} d 
+ * @returns {number}
+ */
+function findTheDistanceValue(arr1, arr2, d) {
+  arr2.sort((a, b) => a - b);
+  let count = 0;
+
+  for (const num of arr1) {
+    const index = getIndex(num, arr2);
+    if (
+      (index < arr2.length && Math.abs(num - arr2[index]) <= d) ||
+      (index > 0 && Math.abs(num - arr2[index - 1]) <= d)
+    ) {
+      count++;
+    }
+  }
+
+  return arr1.length - count;
+}
+console.log({ findTheDistanceValue: findTheDistanceValue([4, 5, 8], [10, 9, 1, 8], 2) });
