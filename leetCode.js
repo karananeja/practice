@@ -17186,3 +17186,56 @@ function findTheDistanceValue(arr1, arr2, d) {
   return arr1.length - count;
 }
 console.log({ findTheDistanceValue: findTheDistanceValue([4, 5, 8], [10, 9, 1, 8], 2) });
+
+class MedianFinder {
+  constructor() {
+    this.median = 0;
+    this.maxHeap = new MaxHeap((a, b) => a - b);
+    this.minHeap = new MinHeap((a, b) => a - b);
+  }
+
+  addNum(num) {
+    switch (this.signum(this.maxHeap.size, this.minHeap.size)) {
+      case 0: {
+        if (num > this.median) {
+          this.minHeap.push(num);
+          this.median = this.minHeap.peek();
+        } else {
+          this.maxHeap.push(num);
+          this.median = this.maxHeap.peek();
+        }
+        break;
+      }
+      case 1: {
+        if (num > this.median) {
+          this.minHeap.push(num);
+        } else {
+          this.minHeap.push(this.maxHeap.pop());
+          this.maxHeap.push(num);
+        }
+        this.median = (this.minHeap.peek() + this.maxHeap.peek()) / 2;
+        break;
+      }
+      case -1: {
+        if (num > this.median) {
+          this.maxHeap.push(this.minHeap.pop());
+          this.minHeap.push(num);
+        } else {
+          this.maxHeap.push(num);
+        }
+        this.median = (this.minHeap.peek() + this.maxHeap.peek()) / 2;
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  findMedian() {
+    return this.median;
+  }
+
+  signum(a, b) {
+    return a === b ? 0 : a > b ? 1 : -1;
+  }
+}
