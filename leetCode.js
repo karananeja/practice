@@ -17239,3 +17239,42 @@ class MedianFinder {
     return a === b ? 0 : a > b ? 1 : -1;
   }
 }
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function reorganizeString(s) {
+  const maxHeap = new MaxHeap((a, b) => a[1] - b[1]);
+  const charCount = new Map();
+
+  for (const char of s) {
+    charCount.set(char, (charCount.get(char) || 0) + 1);
+  }
+
+  for (const [char, count] of charCount) {
+    maxHeap.push([char, count]);
+  }
+
+  if (maxHeap.peek()?.[1] > Math.ceil(s.length / 2)) {
+    return "";
+  }
+
+  const result = [];
+  let previousChar = null;
+
+  while (maxHeap.size) {
+    const [char, count] = maxHeap.pop();
+
+    result.push(char);
+
+    if (previousChar && previousChar[1] > 0) {
+      maxHeap.push(previousChar);
+    }
+
+    if (count - 1 > 0) previousChar = [char, count - 1];
+    else previousChar = null;
+  }
+
+  return result.join("");
+}
