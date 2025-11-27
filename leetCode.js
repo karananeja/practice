@@ -17278,3 +17278,35 @@ function reorganizeString(s) {
 
   return result.join("");
 }
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function largestInteger(num) {
+  const oddDigits = new MaxHeap((a, b) => a - b);
+  const evenDigits = new MaxHeap((a, b) => a - b);
+  let givenNum = num;
+
+  while (givenNum > 0) {
+    const digit = givenNum % 10;
+    if (digit % 2 === 0) evenDigits.push(digit);
+    else oddDigits.push(digit);
+    givenNum = Math.floor(givenNum / 10);
+  }
+
+  const numString = `${num}`;
+  let updatedNum = "";
+
+  for (const digit of numString) {
+    if (+digit % 2 === 0) {
+      const evenDigit = evenDigits.pop();
+      updatedNum += `${evenDigit}`;
+    } else {
+      const oddDigit = oddDigits.pop();
+      updatedNum += `${oddDigit}`;
+    }
+  }
+
+  return +updatedNum;
+}
