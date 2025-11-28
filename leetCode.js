@@ -17310,3 +17310,26 @@ function largestInteger(num) {
 
   return +updatedNum;
 }
+
+/**
+ * @param {CustomFunction} customfunction 
+ * @param {number} z 
+ * @returns {number[][]}
+ */
+function findSolution(customfunction, z) {
+  let left = 1, right = z;
+  const result = [];
+
+  while (left <= z && right >= 1) {
+    const value = customfunction.f(left, right);
+
+    if (value === z) {
+      result.push([left, right]);
+      left++;
+      right--;
+    } else if (value < z) left++;
+    else right--;
+  }
+
+  return result;
+}
