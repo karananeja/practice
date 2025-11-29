@@ -17333,3 +17333,24 @@ function findSolution(customfunction, z) {
 
   return result;
 }
+
+/**
+ * @param {string} word1 
+ * @param {string} word2 
+ * @returns {boolean}
+ */
+function checkAlmostEquivalent(word1, word2) {
+  const charCount = new Array(26).fill(0);
+
+  for (let idx = 0; idx < word1.length; idx++) {
+    charCount[word1[idx].charCodeAt(0) - 97]++;
+    charCount[word2[idx].charCodeAt(0) - 97]--;
+  }
+
+  for (const count of charCount) {
+    if (Math.abs(count) > 3) return false;
+  }
+
+  return true;
+}
+console.log({ checkAlmostEquivalent: checkAlmostEquivalent("aaaa", "bccb") });
