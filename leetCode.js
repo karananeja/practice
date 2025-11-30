@@ -17354,3 +17354,25 @@ function checkAlmostEquivalent(word1, word2) {
   return true;
 }
 console.log({ checkAlmostEquivalent: checkAlmostEquivalent("aaaa", "bccb") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function sumDivisibleByK(nums, k) {
+  const numCount = new Array(101).fill(0);
+  let sum = 0;
+
+  for (const num of nums) {
+    numCount[num]++;
+  }
+
+  for (let idx = 0; idx < numCount.length; idx++) {
+    const count = numCount[idx];
+    if (count > 0 && count % k === 0) sum += count * idx;
+  }
+
+  return sum;
+}
+console.log({ sumDivisibleByK: sumDivisibleByK([1, 2, 2, 3, 3, 3, 3, 4], 2) });
