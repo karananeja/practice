@@ -17376,3 +17376,24 @@ function sumDivisibleByK(nums, k) {
   return sum;
 }
 console.log({ sumDivisibleByK: sumDivisibleByK([1, 2, 2, 3, 3, 3, 3, 4], 2) });
+
+/**
+ * @param {number[]} batteryPercentages 
+ * @returns {number}
+ */
+function countTestedDevices(batteryPercentages) {
+  let deviceCount = 0, minBattery = 0;
+
+  for (let i = 0; i < batteryPercentages.length; i++) {
+    let currentBattery = batteryPercentages[i];
+    currentBattery -= minBattery;
+
+    if (currentBattery > 0) {
+      deviceCount++;
+      minBattery++;
+    }
+  }
+
+  return deviceCount;
+}
+console.log({ countTestedDevices: countTestedDevices([1, 1, 2, 1, 3]) });
