@@ -17397,3 +17397,39 @@ function countTestedDevices(batteryPercentages) {
   return deviceCount;
 }
 console.log({ countTestedDevices: countTestedDevices([1, 1, 2, 1, 3]) });
+
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @returns {boolean}
+ */
+function compare(word1, word2) {
+  const freq = new Array(26).fill(0);
+
+  for (const ch of word1) {
+    freq[ch.charCodeAt(0) - 97]++;
+  }
+
+  for (const ch of word2) {
+    freq[ch.charCodeAt(0) - 97]--;
+  }
+
+  return freq.every((x) => x === 0);
+}
+
+/**
+ * @param {string[]} words
+ * @returns {string[]}
+ */
+function removeAnagrams(words) {
+  const res = [words[0]];
+
+  for (let i = 1; i < words.length; i++) {
+    if (!compare(words[i], words[i - 1])) {
+      res.push(words[i]);
+    }
+  }
+
+  return res;
+}
+console.log({ removeAnagrams: removeAnagrams(["abba", "baba", "bbaa", "cd", "cd"]) });
