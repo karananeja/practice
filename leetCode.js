@@ -17433,3 +17433,36 @@ function removeAnagrams(words) {
   return res;
 }
 console.log({ removeAnagrams: removeAnagrams(["abba", "baba", "bbaa", "cd", "cd"]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function hasIncreasingSubarrays(nums, k) {
+  const n = nums.length;
+  if (n < 2 * k) return false;
+
+  const lengths = Array.from({ length: n }, () => [1, 1]);
+
+  for (let i = 1; i < n; i++) {
+    if (nums[i] > nums[i - 1]) {
+      lengths[i][0] = lengths[i - 1][0] + 1;
+    }
+  }
+
+  for (let i = n - 2; i >= 0; i--) {
+    if (nums[i] < nums[i + 1]) {
+      lengths[i][1] = lengths[i + 1][1] + 1;
+    }
+  }
+
+  for (let i = 0; i < n - 1; i++) {
+    if (lengths[i][0] >= k && lengths[i + 1][1] >= k) {
+      return true;
+    }
+  }
+
+  return false;
+}
+console.log({ hasIncreasingSubarrays: hasIncreasingSubarrays([2, 5, 7, 8, 9, 2, 3, 4, 3, 1], 3) });
