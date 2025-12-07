@@ -17490,3 +17490,27 @@ function maxIncreasingSubarrays(nums) {
   return ans;
 }
 console.log({ maxIncreasingSubarrays: maxIncreasingSubarrays([2, 5, 7, 8, 9, 2, 3, 4, 3, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} value 
+ * @returns {number}
+ */
+function findSmallestInteger(nums, value) {
+  const mp = new Array(value).fill(0);
+
+  for (const num of nums) {
+    const v = ((num % value) + value) % value;
+    mp[v]++;
+  }
+
+  let mex = 0;
+
+  while (mp[mex % value] > 0) {
+    mp[mex % value]--;
+    mex++;
+  }
+
+  return mex;
+}
+console.log({ findSmallestInteger: findSmallestInteger([1, -10, 7, 13, 6, 8], 5) });
