@@ -17514,3 +17514,32 @@ function findSmallestInteger(nums, value) {
   return mex;
 }
 console.log({ findSmallestInteger: findSmallestInteger([1, -10, 7, 13, 6, 8], 5) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function topKFrequent(nums, k) {
+  const numCount = new Map();
+
+  for (const num of nums) {
+    numCount.set(num, (numCount.get(num) || 0) + 1);
+  }
+
+  const maxHeap = new MaxHeap((a, b) => b[1] - a[1]);
+
+  for (const [num, count] of numCount) {
+    maxHeap.push([num, count]);
+    if (maxHeap.size > k) maxHeap.pop();
+  }
+
+  const result = [];
+
+  while (maxHeap.size > 0) {
+    const [num] = maxHeap.pop();
+    result.push(num);
+  }
+
+  return result;
+}
