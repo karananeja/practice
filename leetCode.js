@@ -17566,3 +17566,23 @@ function maxDistinctElements(nums, k) {
   return cnt;
 }
 console.log({ maxDistinctElements: maxDistinctElements([1, 2, 2, 3, 3, 4], 2) });
+
+/**
+ * @param {number[]} hours 
+ * @returns {number}
+ */
+function countCompleteDayPairs(hours) {
+  const remainderCount = new Map();
+  let count = 0;
+
+  for (const hour of hours) {
+    const remainder = hour % 24;
+    const complement = (24 - remainder) % 24;
+
+    count += remainderCount.get(complement) || 0;
+    remainderCount.set(remainder, (remainderCount.get(remainder) || 0) + 1);
+  }
+
+  return count;
+}
+console.log({ countCompleteDayPairs: countCompleteDayPairs([12, 12, 30, 24, 24]) });
