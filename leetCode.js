@@ -17586,3 +17586,12 @@ function countCompleteDayPairs(hours) {
   return count;
 }
 console.log({ countCompleteDayPairs: countCompleteDayPairs([12, 12, 30, 24, 24]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function alternatingSum(nums) {
+  return nums.reduce((sum, num, idx) => (sum += idx % 2 === 0 ? num : -num), 0);
+}
+console.log({ alternatingSum: alternatingSum([1, 3, 5, 7]) });
