@@ -17595,3 +17595,18 @@ function alternatingSum(nums) {
   return nums.reduce((sum, num, idx) => (sum += idx % 2 === 0 ? num : -num), 0);
 }
 console.log({ alternatingSum: alternatingSum([1, 3, 5, 7]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function evenNumberBitwiseORs(nums) {
+  let sum = 0;
+
+  for (const num of nums) {
+    if (num % 2 === 0) sum |= num;
+  }
+
+  return sum;
+}
+console.log({ evenNumberBitwiseORs: evenNumberBitwiseORs([1, 2, 3, 4, 5, 6]) });
