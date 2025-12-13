@@ -17610,3 +17610,25 @@ function evenNumberBitwiseORs(nums) {
   return sum;
 }
 console.log({ evenNumberBitwiseORs: evenNumberBitwiseORs([1, 2, 3, 4, 5, 6]) });
+
+/**
+ * @param {number} num1 
+ * @param {number} num2 
+ * @returns {number}
+ */
+function countOperations(num1, num2) {
+  let count = 0;
+
+  while (num1 > 0 && num2 > 0) {
+    if (num1 >= num2) {
+      count += Math.floor(num1 / num2);
+      num1 %= num2;
+    } else {
+      count += Math.floor(num2 / num1);
+      num2 %= num1;
+    }
+  }
+
+  return count;
+}
+console.log({ countOperations: countOperations(2, 3) });
