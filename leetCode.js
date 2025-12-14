@@ -17632,3 +17632,34 @@ function countOperations(num1, num2) {
   return count;
 }
 console.log({ countOperations: countOperations(2, 3) });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function encrypt(num) {
+  let maxDigit = 0, count = 0;
+
+  while (num > 0) {
+    maxDigit = Math.max(maxDigit, num % 10);
+    num = Math.floor(num / 10);
+    count++;
+  }
+
+  return Number(`${maxDigit}`.repeat(count));
+}
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function sumOfEncryptedInt(nums) {
+  let sum = 0;
+
+  for (const num of nums) {
+    sum += encrypt(num);
+  }
+
+  return sum;
+}
+console.log({ sumOfEncryptedInt: sumOfEncryptedInt([10, 21, 31]) });
