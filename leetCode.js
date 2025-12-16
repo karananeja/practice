@@ -17689,7 +17689,8 @@ class Bank {
   }
 
   withdraw(account, money) {
-    if (account > this.balance.length || this.balance[account - 1] < money) return false;
+    if (account > this.balance.length || this.balance[account - 1] < money)
+      return false;
     this.balance[account - 1] -= money;
     return true;
   }
