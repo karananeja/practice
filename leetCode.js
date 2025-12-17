@@ -17720,3 +17720,18 @@ function countValidSelections(nums) {
   return ans;
 }
 console.log({ countValidSelections: countValidSelections([1, 0, 2, 0, 3]) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function smallestNumber(n) {
+  let num = 1;
+
+  while (num < n) {
+    num = num * 2 + 1;
+  }
+
+  return num;
+}
+console.log({ smallestNumber: smallestNumber(5) });
