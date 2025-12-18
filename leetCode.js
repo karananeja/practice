@@ -17735,3 +17735,34 @@ function smallestNumber(n) {
   return num;
 }
 console.log({ smallestNumber: smallestNumber(5) });
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number[][]}
+ */
+function modifiedMatrix(matrix) {
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+
+  for (let col = 0; col < cols; col++) {
+    let hasNegativeOne = false, maxValue = -1;
+
+    for (let row = 0; row < rows; row++) {
+      const value = matrix[row][col];
+
+      if (value === -1) hasNegativeOne = true;
+      else if (value > maxValue) maxValue = value;
+    }
+
+    if (hasNegativeOne) {
+      for (let row = 0; row < rows; row++) {
+        if (matrix[row][col] === -1) {
+          matrix[row][col] = maxValue;
+        }
+      }
+    }
+  }
+
+  return matrix;
+}
+console.log({ modifiedMatrix: modifiedMatrix([[3, -1], [5, 2]]) });
