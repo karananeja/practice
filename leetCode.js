@@ -17766,3 +17766,19 @@ function modifiedMatrix(matrix) {
   return matrix;
 }
 console.log({ modifiedMatrix: modifiedMatrix([[3, -1], [5, 2]]) });
+
+/**
+ * @param {string} date 
+ * @returns {string}
+ */
+function reformatDate(date) {
+  const [day, mon, year] = date.split(" ");
+
+  const month = {
+    Jan: "01", Feb: "02", Mar: "03", Apr: "04", May: "05", Jun: "06",
+    Jul: "07", Aug: "08", Sep: "09", Oct: "10", Nov: "11", Dec: "12"
+  }[mon];
+
+  return `${year}-${month}-${day.replace(/\D/g, "").padStart(2, "0")}`;
+}
+console.log({ reformatDate: reformatDate("20th Oct 2052") });
