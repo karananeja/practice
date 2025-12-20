@@ -17782,3 +17782,22 @@ function reformatDate(date) {
   return `${year}-${month}-${day.replace(/\D/g, "").padStart(2, "0")}`;
 }
 console.log({ reformatDate: reformatDate("20th Oct 2052") });
+
+/**
+ * @param {string} colors 
+ * @param {number[]} neededTime 
+ * @returns {number}
+ */
+function minCost(colors, neededTime) {
+  let n = colors.length, sum = 0;
+
+  for (let i = 1; i < n; i++) {
+    if (colors[i] === colors[i - 1]) {
+      sum += Math.min(neededTime[i], neededTime[i - 1]);
+      neededTime[i] = Math.max(neededTime[i], neededTime[i - 1]);
+    }
+  }
+
+  return sum;
+}
+console.log({ minCost: minCost("abaac", [1, 2, 3, 4, 5]) });
