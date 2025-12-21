@@ -17801,3 +17801,39 @@ function minCost(colors, neededTime) {
   return sum;
 }
 console.log({ minCost: minCost("abaac", [1, 2, 3, 4, 5]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @param {number} x 
+ * @returns {number[]}
+ */
+function findXSum(nums, k, x) {
+  const n = nums.length;
+  const ans = [];
+
+  for (let i = 0; i <= n - k; i++) {
+    const cnt = new Map();
+
+    for (let j = i; j < i + k; j++) {
+      cnt.set(nums[j], (cnt.get(nums[j]) || 0) + 1);
+    }
+
+    const freq = Array.from(cnt.entries()).map(
+      ([num, count]) => [count, num]
+    );
+
+    freq.sort((a, b) => (b[0] !== a[0] ? b[0] - a[0] : b[1] - a[1]));
+
+    let xsum = 0;
+
+    for (let j = 0; j < x && j < freq.length; j++) {
+      xsum += freq[j][0] * freq[j][1];
+    }
+
+    ans.push(xsum);
+  }
+
+  return ans;
+}
+console.log({ findXSum: findXSum([1, 1, 2, 2, 3, 4, 2, 3], 6, 2) });
