@@ -17837,3 +17837,34 @@ function findXSum(nums, k, x) {
   return ans;
 }
 console.log({ findXSum: findXSum([1, 1, 2, 2, 3, 4, 2, 3], 6, 2) });
+
+/**
+ * @param {string[]} words1 
+ * @param {string[]} words2 
+ * @returns {number}
+ */
+function countWords(words1, words2) {
+  if (words2.length > words1.length) return countWords(words2, words1);
+
+  const count1 = new Map();
+  const count2 = new Map();
+
+  for (const word of words1) {
+    count1.set(word, (count1.get(word) || 0) + 1);
+  }
+
+  for (const word of words2) {
+    count2.set(word, (count2.get(word) || 0) + 1);
+  }
+
+  let totalCount = 0;
+
+  for (const [word, count] of count1) {
+    if (count === 1 && count2.get(word) === 1) {
+      totalCount++;
+    }
+  }
+
+  return totalCount;
+}
+console.log({ countWords: countWords(["a", "ab"], ["a", "a", "a", "ab"]) });
