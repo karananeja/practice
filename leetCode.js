@@ -17868,3 +17868,22 @@ function countWords(words1, words2) {
   return totalCount;
 }
 console.log({ countWords: countWords(["a", "ab"], ["a", "a", "a", "ab"]) });
+
+/**
+ * @param {string[]} emails 
+ * @returns {number}
+ */
+function numUniqueEmails(emails) {
+  const uniqueEmails = new Set();
+
+  for (const email of emails) {
+    const [localPart, domain] = email.split("@");
+    const [localName] = localPart.split("+");
+    const cleanedLocalName = localName.replace(/\./g, "");
+    const normalizedEmail = `${cleanedLocalName}@${domain}`;
+    uniqueEmails.add(normalizedEmail);
+  }
+
+  return uniqueEmails.size;
+}
+console.log({ numUniqueEmails: numUniqueEmails(["a@leetcode.com", "b@leetcode.com", "c@leetcode.com"]) });
