@@ -17887,3 +17887,26 @@ function numUniqueEmails(emails) {
   return uniqueEmails.size;
 }
 console.log({ numUniqueEmails: numUniqueEmails(["a@leetcode.com", "b@leetcode.com", "c@leetcode.com"]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function findMissingElements(nums) {
+  let minNum = 101, maxNum = 0;
+
+  for (const num of nums) {
+    minNum = Math.min(minNum, num);
+    maxNum = Math.max(maxNum, num);
+  }
+
+  const missingNumbers = [];
+  const existingNumbers = new Set(nums);
+
+  for (let num = minNum; num <= maxNum; num++) {
+    if (!existingNumbers.has(num)) missingNumbers.push(num);
+  }
+
+  return missingNumbers;
+}
+console.log({ findMissingElements: findMissingElements([5, 1]) });
