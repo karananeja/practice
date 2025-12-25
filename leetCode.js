@@ -17910,3 +17910,25 @@ function findMissingElements(nums) {
   return missingNumbers;
 }
 console.log({ findMissingElements: findMissingElements([5, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function maxKDistinct(nums, k) {
+  nums.sort((a, b) => b - a);
+  const uniqueNums = new Set(nums);
+
+  const result = [];
+
+  for (const num of uniqueNums) {
+    if (k > 0) {
+      result.push(num);
+      k--;
+    }
+  }
+
+  return result;
+}
+console.log({ maxKDistinct: maxKDistinct([84, 93, 100, 77, 90], 3) });
