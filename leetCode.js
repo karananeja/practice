@@ -17932,3 +17932,30 @@ function maxKDistinct(nums, k) {
   return result;
 }
 console.log({ maxKDistinct: maxKDistinct([84, 93, 100, 77, 90], 3) });
+
+/**
+ * @param {number[]} costs 
+ * @param {number} coins 
+ * @returns {number}
+ */
+function maxIceCream(costs, coins) {
+  const maxCost = Math.max(...costs);
+  const countArr = new Array(maxCost + 1).fill(0);
+
+  for (const cost of costs) {
+    countArr[cost]++;
+  }
+
+  let count = 0;
+
+  for (let cost = 1; cost <= maxCost && coins >= cost; cost++) {
+    if (countArr[cost] === 0) continue;
+
+    const buy = Math.min(countArr[cost], Math.floor(coins / cost));
+    count += buy;
+    coins -= buy * cost;
+  }
+
+  return count;
+}
+console.log({ maxIceCream: maxIceCream([1, 3, 2, 4, 1], 7) });
