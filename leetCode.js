@@ -17959,3 +17959,28 @@ function maxIceCream(costs, coins) {
   return count;
 }
 console.log({ maxIceCream: maxIceCream([1, 3, 2, 4, 1], 7) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function getLeastFrequentDigit(n) {
+  const digitsCount = new Array(10).fill(0);
+  let minDigit = -1, minDigitCount = Infinity;
+
+  while (n) {
+    const digit = n % 10;
+    digitsCount[digit]++;
+    n = Math.floor(n / 10);
+  }
+
+  for (let i = 0; i < 10; i++) {
+    if (digitsCount[i] > 0 && digitsCount[i] < minDigitCount) {
+      minDigitCount = digitsCount[i];
+      minDigit = i;
+    }
+  }
+
+  return minDigit;
+}
+console.log({ getLeastFrequentDigit: getLeastFrequentDigit(11) });
