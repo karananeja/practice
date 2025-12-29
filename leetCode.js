@@ -18012,3 +18012,34 @@ function minDepth(root) {
 
   return depth;
 }
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function getMinimumDifference(root) {
+  let minDiff = Infinity, prevValue = null;
+
+  /**
+   * @param {TreeNode | null} node 
+   * @returns {void}
+   */
+  function inOrder(node) {
+    if (!node) return;
+
+    inOrder(node.left);
+
+    if (prevValue !== null) {
+      const diff = node.val - prevValue;
+      minDiff = Math.min(minDiff, diff);
+    }
+
+    prevValue = node.val;
+
+    inOrder(node.right);
+  }
+
+  inOrder(root);
+
+  return minDiff;
+}
