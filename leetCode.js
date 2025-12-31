@@ -18074,3 +18074,28 @@ function minDiffInBST(root) {
 
   return minDiff;
 }
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maxOperations(s) {
+  let countOne = 0, ans = 0, i = 0;
+
+  while (i < s.length) {
+    if (s[i] === "0") {
+      while (i + 1 < s.length && s[i + 1] === "0") {
+        i++;
+      }
+
+      ans += countOne;
+    } else {
+      countOne++;
+    }
+
+    i++;
+  }
+
+  return ans;
+}
+console.log({ maxOperations: maxOperations("1001101") });
