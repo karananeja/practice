@@ -18099,3 +18099,14 @@ function maxOperations(s) {
   return ans;
 }
 console.log({ maxOperations: maxOperations("1001101") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minMoves(nums) {
+  const maxSum = Math.max(...nums) * nums.length;
+  const sum = nums.reduce((sum, num) => sum += num, 0);
+  return maxSum - sum;
+}
+console.log({ minMoves: minMoves([2, 1, 3]) });
