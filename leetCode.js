@@ -18110,3 +18110,21 @@ function minMoves(nums) {
   return maxSum - sum;
 }
 console.log({ minMoves: minMoves([2, 1, 3]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function findMiddleIndex(nums) {
+  let totalSum = nums.reduce((sum, num) => sum += num, 0);
+  let sum = 0;
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    totalSum -= nums[idx];
+    if (sum === totalSum) return idx;
+    sum += nums[idx];
+  }
+
+  return -1;
+}
+console.log({ findMiddleIndex: findMiddleIndex([2, 3, -1, 8, 4]) });
