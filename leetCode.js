@@ -18128,3 +18128,22 @@ function findMiddleIndex(nums) {
   return -1;
 }
 console.log({ findMiddleIndex: findMiddleIndex([2, 3, -1, 8, 4]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function numSub(s) {
+  let consecutive = 0, result = 0;
+  const MOD = 10 ** 9 + 7;
+
+  for (const char of s) {
+    if (char === "1") {
+      consecutive += 1;
+      result = (result + consecutive) % MOD;
+    } else consecutive = 0;
+  }
+
+  return result;
+}
+console.log({ numSub: numSub("0110111") });
