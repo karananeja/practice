@@ -18147,3 +18147,26 @@ function numSub(s) {
   return result;
 }
 console.log({ numSub: numSub("0110111") });
+
+/**
+ * @param {number[]} groupSizes 
+ * @returns {number[][]}
+ */
+function groupThePeople(groupSizes) {
+  const size = groupSizes.length;
+  const result = [];
+  const sizeBuckets = Array.from({ length: size + 1 }, () => []);
+
+  for (let i = 0; i < size; i++) {
+    const size = groupSizes[i];
+    sizeBuckets[size].push(i);
+
+    if (sizeBuckets[size].length === size) {
+      result.push([...sizeBuckets[size]]);
+      sizeBuckets[size] = [];
+    }
+  }
+
+  return result;
+}
+console.log({ groupThePeople: groupThePeople([2, 2, 1, 1, 1, 1, 1, 1]) });
