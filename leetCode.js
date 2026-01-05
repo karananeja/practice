@@ -18170,3 +18170,22 @@ function groupThePeople(groupSizes) {
   return result;
 }
 console.log({ groupThePeople: groupThePeople([2, 2, 1, 1, 1, 1, 1, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function kLengthApart(nums, k) {
+  let last = -1;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      if (last !== -1 && i - last - 1 < k) return false;
+      last = i;
+    }
+  }
+
+  return true;
+}
+console.log({ kLengthApart: kLengthApart([0, 1], 1) });
