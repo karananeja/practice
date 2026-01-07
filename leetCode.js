@@ -18189,3 +18189,18 @@ function kLengthApart(nums, k) {
   return true;
 }
 console.log({ kLengthApart: kLengthApart([0, 1], 1) });
+
+/**
+ * @param {number[]} bits 
+ * @returns {boolean}
+ */
+function isOneBitCharacter(bits) {
+  let idx = 0;
+
+  while (idx < bits.length - 1) {
+    idx += bits[idx] + 1;
+  }
+
+  return idx === bits.length - 1;
+}
+console.log({ isOneBitCharacter: isOneBitCharacter([1, 0, 0]) });
