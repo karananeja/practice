@@ -18204,3 +18204,29 @@ function isOneBitCharacter(bits) {
   return idx === bits.length - 1;
 }
 console.log({ isOneBitCharacter: isOneBitCharacter([1, 0, 0]) });
+
+/**
+ * @param {number[][]} intervals 
+ * @returns {number}
+ */
+function intersectionSizeTwo(intervals) {
+  let res = 0;
+  intervals.sort((a, b) => (a[1] !== b[1] ? a[1] - b[1] : b[0] - a[0]));
+
+  let p1 = -1, p2 = -1;
+
+  for (const [left, right] of intervals) {
+    if (p2 < left) {
+      res += 2;
+      p1 = right - 1;
+      p2 = right;
+    } else if (p1 < left) {
+      res += 1;
+      p1 = p2;
+      p2 = right;
+    }
+  }
+
+  return res;
+}
+console.log({ intersectionSizeTwo: intersectionSizeTwo([[1, 3], [3, 7], [8, 9]]) });
