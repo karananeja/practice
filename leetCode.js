@@ -18230,3 +18230,26 @@ function intersectionSizeTwo(intervals) {
   return res;
 }
 console.log({ intersectionSizeTwo: intersectionSizeTwo([[1, 3], [3, 7], [8, 9]]) });
+
+/**
+ * @param {number[]} plants 
+ * @param {number} capacity 
+ * @returns {number}
+ */
+function wateringPlants(plants, capacity) {
+  let steps = 0, usage = 0;
+
+  plants.forEach((plant, position) => {
+    if (usage >= plant) {
+      steps++;
+    } else {
+      usage = capacity;
+      steps += 2 * position + 1;
+    }
+
+    usage -= plant;
+  });
+
+  return steps;
+}
+console.log({ wateringPlants: wateringPlants([2, 2, 3, 3], 5) });
