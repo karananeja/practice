@@ -18253,3 +18253,30 @@ function wateringPlants(plants, capacity) {
   return steps;
 }
 console.log({ wateringPlants: wateringPlants([2, 2, 3, 3], 5) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number} 
+ */
+function maxSumDivThree(nums) {
+  let total = 0, smallestOne = Infinity, smallestTwo = Infinity;
+
+  for (const num of nums) {
+    total += num;
+
+    if (num % 3 === 1) {
+      smallestTwo = Math.min(smallestTwo, num + smallestOne);
+      smallestOne = Math.min(smallestOne, num);
+    }
+
+    if (num % 3 === 2) {
+      smallestOne = Math.min(smallestOne, num + smallestTwo);
+      smallestTwo = Math.min(smallestTwo, num);
+    }
+  }
+
+  if (total % 3 === 0) return total;
+  if (total % 3 === 1) return total - smallestOne;
+  if (total % 3 === 2) return total - smallestTwo;
+}
+console.log({ maxSumDivThree: maxSumDivThree([3, 6, 5, 1, 8]) });
