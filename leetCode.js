@@ -18298,3 +18298,12 @@ function smallestRepunitDivByK(k) {
   return count;
 }
 console.log({ smallestRepunitDivByK: smallestRepunitDivByK(5) });
+
+/**
+ * @param {number} n 
+ * @returns {string}
+ */
+function generateTheString(n) {
+  return n % 2 === 1 ? "a".repeat(n) : `${"a".repeat(n - 1)}b`;
+}
+console.log({ generateTheString: generateTheString(7) });
