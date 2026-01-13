@@ -18307,3 +18307,35 @@ function generateTheString(n) {
   return n % 2 === 1 ? "a".repeat(n) : `${"a".repeat(n - 1)}b`;
 }
 console.log({ generateTheString: generateTheString(7) });
+
+/**
+ * @param {string[]} paths 
+ * @returns {string[][]}
+ */
+function findDuplicate(paths) {
+  const contentToFilePaths = new Map();
+  const duplicates = [];
+
+  for (const entry of paths) {
+    const [directoryPath, ...fileEntries] = entry.split(" ");
+
+    for (const fileEntry of fileEntries) {
+      const fileName = fileEntry.split("(")[0];
+      const fileContent = fileEntry.split("(")[1].split(")")[0];
+      const fullFilePath = `${directoryPath}/${fileName}`;
+
+      if (!contentToFilePaths.has(fileContent)) {
+        contentToFilePaths.set(fileContent, []);
+      }
+
+      contentToFilePaths.get(fileContent).push(fullFilePath);
+    }
+  }
+
+  for (const filePaths of contentToFilePaths.values()) {
+    if (filePaths.length > 1) duplicates.push(filePaths);
+  }
+
+  return duplicates;
+}
+console.log({ findDuplicate: findDuplicate(["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)"]) });
