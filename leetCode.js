@@ -18339,3 +18339,29 @@ function findDuplicate(paths) {
   return duplicates;
 }
 console.log({ findDuplicate: findDuplicate(["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)"]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function deleteGreatestValue(grid) {
+  for (const row of grid) {
+    row.sort((a, b) => a - b);
+  }
+
+  let totalSum = 0, columnIndex = grid[0].length - 1;
+
+  for (let round = 0; round < grid[0].length; round++) {
+    let roundMax = 0;
+
+    for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
+      roundMax = Math.max(roundMax, grid[rowIndex][columnIndex]);
+    }
+
+    totalSum += roundMax;
+    columnIndex--;
+  }
+
+  return totalSum;
+}
+console.log({ deleteGreatestValue: deleteGreatestValue([[10]]) });
