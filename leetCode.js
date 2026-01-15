@@ -18365,3 +18365,12 @@ function deleteGreatestValue(grid) {
   return totalSum;
 }
 console.log({ deleteGreatestValue: deleteGreatestValue([[10]]) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function gcdOfOddEvenSums(n) {
+  return n;
+}
+console.log({ gcdOfOddEvenSums: gcdOfOddEvenSums(45) });
