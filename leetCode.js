@@ -18374,3 +18374,12 @@ function gcdOfOddEvenSums(n) {
   return n;
 }
 console.log({ gcdOfOddEvenSums: gcdOfOddEvenSums(45) });
+
+/**
+ * @param {number} n 
+ * @returns {boolean}
+ */
+function isSameAfterReversals(num) {
+  return num === 0 || num % 10 !== 0;
+}
+console.log({ isSameAfterReversals: isSameAfterReversals(100) });
