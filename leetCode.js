@@ -18383,3 +18383,32 @@ function isSameAfterReversals(num) {
   return num === 0 || num % 10 !== 0;
 }
 console.log({ isSameAfterReversals: isSameAfterReversals(100) });
+
+/**
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {number[]}
+ */
+function selfDividingNumbers(left, right) {
+  const result = [];
+
+  for (let num = left; num <= right; num++) {
+    let currentNum = num, isDivisible = true;
+
+    while (currentNum > 0) {
+      const digit = currentNum % 10;
+
+      if (digit === 0 || num % digit !== 0) {
+        isDivisible = false;
+        break;
+      }
+
+      currentNum = Math.floor(currentNum / 10);
+    }
+
+    if (isDivisible) result.push(num);
+  }
+
+  return result;
+}
+console.log({ selfDividingNumbers: selfDividingNumbers(1, 10) });
