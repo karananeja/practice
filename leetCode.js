@@ -18412,3 +18412,22 @@ function selfDividingNumbers(left, right) {
   return result;
 }
 console.log({ selfDividingNumbers: selfDividingNumbers(1, 10) });
+
+/**
+ * @param {number[]} piles 
+ * @returns {number}
+ */
+function maxCoins(piles) {
+  piles.sort((a, b) => a - b);
+
+  let count = 0, start = 0, end = piles.length - 1;
+
+  while (start < end - 1) {
+    count += piles[end - 1];
+    start++;
+    end -= 2;
+  }
+
+  return count;
+}
+console.log({ maxCoins: maxCoins([2, 4, 1, 2, 7, 8]) });
