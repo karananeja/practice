@@ -18457,3 +18457,21 @@ function countCollisions(directions) {
   return res;
 }
 console.log({ countCollisions: countCollisions("RLRSLL") });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function countTriples(n) {
+  let res = 0;
+
+  for (let a = 1; a <= n; a++) {
+    for (let b = 1; b <= n; b++) {
+      let c = Math.sqrt(a * a + b * b);
+      if (c <= n && Number.isInteger(c)) res++;
+    }
+  }
+
+  return res;
+}
+console.log({ countTriples: countTriples(5) });
