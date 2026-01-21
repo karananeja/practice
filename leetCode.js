@@ -18475,3 +18475,34 @@ function countTriples(n) {
   return res;
 }
 console.log({ countTriples: countTriples(5) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function specialTriplets(nums) {
+  const numCnt = new Map();
+  const numPartialCnt = new Map();
+  const MOD = 1e9 + 7;
+
+  for (const num of nums) {
+    numCnt.set(num, (numCnt.get(num) ?? 0) + 1);
+  }
+
+  let ans = 0;
+
+  for (const num of nums) {
+    const target = num * 2;
+    const lCnt = numPartialCnt.get(target) ?? 0;
+
+    numPartialCnt.set(num, (numPartialCnt.get(num) ?? 0) + 1);
+    const rCnt =
+      (numCnt.get(target) ?? 0) - (numPartialCnt.get(target) ?? 0);
+
+    ans += (lCnt * rCnt) % MOD;
+    ans %= MOD;
+  }
+
+  return ans;
+}
+console.log({ specialTriplets: specialTriplets([6, 3, 6]) });
