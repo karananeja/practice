@@ -18506,3 +18506,27 @@ function specialTriplets(nums) {
   return ans;
 }
 console.log({ specialTriplets: specialTriplets([6, 3, 6]) });
+
+/**
+ * @param {number[]} complexity 
+ * @returns {number}
+ */
+function countPermutations(complexity) {
+  const n = complexity.length;
+
+  for (let i = 1; i < n; i++) {
+    if (complexity[i] <= complexity[0]) {
+      return 0;
+    }
+  }
+
+  let ans = 1;
+  const mod = 1000000007;
+
+  for (let i = 2; i < n; i++) {
+    ans = (ans * i) % mod;
+  }
+
+  return ans;
+}
+console.log({ countPermutations: countPermutations([1, 2, 3]) });
