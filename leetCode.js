@@ -18530,3 +18530,33 @@ function countPermutations(complexity) {
   return ans;
 }
 console.log({ countPermutations: countPermutations([1, 2, 3]) });
+
+/**
+ * @param {number} n 
+ * @param {number[][]} buildings 
+ * @returns {number}
+ */
+function countCoveredBuildings(n, buildings) {
+  const rowMinMax = new Map();
+  const colMinMax = new Map();
+
+  for (const [x, y] of buildings) {
+    if (!rowMinMax.has(x)) rowMinMax.set(x, [y, y]);
+    else rowMinMax.set(x, [Math.min(rowMinMax.get(x)[0], y), Math.max(rowMinMax.get(x)[1], y)]);
+
+    if (!colMinMax.has(y)) colMinMax.set(y, [x, x]);
+    else colMinMax.set(y, [Math.min(colMinMax.get(y)[0], x), Math.max(colMinMax.get(y)[1], x)]);
+  }
+
+  let count = 0;
+
+  for (const [x, y] of buildings) {
+    const [minY, maxY] = rowMinMax.get(x);
+    const [minX, maxX] = colMinMax.get(y);
+
+    if (minY < y && y < maxY && minX < x && x < maxX) count++;
+  }
+
+  return count;
+}
+console.log({ countCoveredBuildings: countCoveredBuildings(3, [[1, 1], [1, 2], [2, 1], [2, 2]]) });
