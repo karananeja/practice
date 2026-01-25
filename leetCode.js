@@ -18609,3 +18609,40 @@ function countMentions(numberOfUsers, events) {
   return count;
 }
 console.log({ countMentions: countMentions(2, [["MESSAGE", "10", "id1 id0"], ["OFFLINE", "11", "0"], ["MESSAGE", "71", "HERE"]]) });
+
+/**
+ * @param {string[]} code 
+ * @param {string[]} businessLine 
+ * @param {boolean[]} isActive 
+ * @returns {string[]}
+ */
+function validateCoupons(code, businessLine, isActive) {
+  const VALID_CODE_REGEX = /^[A-Za-z0-9_]+$/;
+  const validBusinessOrder = ["electronics", "grocery", "pharmacy", "restaurant"];
+
+  const buckets = {
+    electronics: [],
+    grocery: [],
+    pharmacy: [],
+    restaurant: [],
+  };
+
+  code.forEach((currentCode, i) => {
+    if (
+      isActive[i] &&
+      buckets[businessLine[i]] &&
+      VALID_CODE_REGEX.test(currentCode)
+    ) {
+      buckets[businessLine[i]].push(currentCode);
+    }
+  });
+
+  const result = [];
+
+  for (const line of validBusinessOrder) {
+    result.push(...buckets[line].sort());
+  }
+
+  return result;
+}
+console.log({ validateCoupons: validateCoupons(["SAVE20", "", "PHARMA5", "SAVE@20"], ["restaurant", "grocery", "pharmacy", "restaurant"], [true, true, true, true]) });
