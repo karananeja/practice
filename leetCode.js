@@ -18646,3 +18646,20 @@ function validateCoupons(code, businessLine, isActive) {
   return result;
 }
 console.log({ validateCoupons: validateCoupons(["SAVE20", "", "PHARMA5", "SAVE@20"], ["restaurant", "grocery", "pharmacy", "restaurant"], [true, true, true, true]) });
+
+/**
+ * @param {number[]} prices 
+ * @returns {number}
+ */
+function getDescentPeriods(prices) {
+  let count = 1, streak = 1;
+
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i - 1] - prices[i] === 1) streak++;
+    else streak = 1;
+    count += streak;
+  }
+
+  return count;
+}
+console.log({ getDescentPeriods: getDescentPeriods([3, 2, 1, 4]) });
