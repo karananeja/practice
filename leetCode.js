@@ -18663,3 +18663,26 @@ function getDescentPeriods(prices) {
   return count;
 }
 console.log({ getDescentPeriods: getDescentPeriods([3, 2, 1, 4]) });
+
+/**
+ * @param {number[]} deck 
+ * @returns {number[]}
+ */
+function deckRevealedIncreasing(deck) {
+  deck.sort((a, b) => a - b);
+
+  const deque = [];
+
+  for (let i = deck.length - 1; i >= 0; i--) {
+    if (deque.length > 0) {
+
+      const bottom = deque.pop();
+      deque.unshift(bottom);
+    }
+
+    deque.unshift(deck[i]);
+  }
+
+  return deque;
+}
+console.log({ deckRevealedIncreasing: deckRevealedIncreasing([1, 1000]) });
