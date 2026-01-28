@@ -18686,3 +18686,28 @@ function deckRevealedIncreasing(deck) {
   return deque;
 }
 console.log({ deckRevealedIncreasing: deckRevealedIncreasing([1, 1000]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maximumStrongPairXor(nums) {
+  const freq = new Array(101).fill(0);
+
+  for (const num of nums) freq[num]++;
+
+  let ans = 0;
+
+  for (letx = 0; x <= 100; x++) {
+    if (freq[x] === 0) continue;
+
+    for (let y = x; y <= Math.min(100, 2 * x); y++) {
+      if (freq[y] === 0) continue;
+
+      ans = Math.max(ans, x ^ y);
+    }
+  }
+
+  return ans;
+}
+console.log({ maximumStrongPairXor: maximumStrongPairXor([10, 100]) });
