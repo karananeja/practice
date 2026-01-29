@@ -18711,3 +18711,28 @@ function maximumStrongPairXor(nums) {
   return ans;
 }
 console.log({ maximumStrongPairXor: maximumStrongPairXor([10, 100]) });
+
+/**
+ * @param {number[][]} ranges 
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {boolean}
+ */
+function isCovered(ranges, left, right) {
+  const diff = new Array(52).fill(0);
+
+  for (const [start, end] of ranges) {
+    diff[start] += 1;
+    diff[end + 1] -= 1;
+  }
+
+  let coverage = 0;
+
+  for (let i = 1; i <= 50; i++) {
+    coverage += diff[i];
+    if (i >= left && i <= right && coverage === 0) return false;
+  }
+
+  return true;
+}
+console.log({ isCovered: isCovered([[1, 2], [3, 4], [5, 6]], 2, 5) });
