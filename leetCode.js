@@ -18736,3 +18736,23 @@ function isCovered(ranges, left, right) {
   return true;
 }
 console.log({ isCovered: isCovered([[1, 2], [3, 4], [5, 6]], 2, 5) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function sumCounts(nums) {
+  let result = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    const uniqueNums = new Set();
+
+    for (let j = i; j < nums.length; j++) {
+      uniqueNums.add(nums[j]);
+      result += uniqueNums.size ** 2;
+    }
+  }
+
+  return result;
+}
+console.log({ sumCounts: sumCounts([1, 2, 1]) });
