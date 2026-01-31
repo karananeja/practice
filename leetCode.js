@@ -18756,3 +18756,26 @@ function sumCounts(nums) {
   return result;
 }
 console.log({ sumCounts: sumCounts([1, 2, 1]) });
+
+/**
+ * @param {string[]} strs 
+ * @returns {number} 
+ */
+function minDeletionSize(strs) {
+  let count = 0;
+
+  if (strs.length === 1) return count;
+
+  for (let col = 0; col < strs[0].length; col++) {
+    for (let row = 1; row < strs.length; row++) {
+      const currentChar = strs[row][col], previousChar = strs[row - 1][col];
+      if (currentChar < previousChar) {
+        count++;
+        break;
+      }
+    }
+  }
+
+  return count;
+}
+console.log({ minDeletionSize: minDeletionSize(["a", "b"]) });
