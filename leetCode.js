@@ -18779,3 +18779,39 @@ function minDeletionSize(strs) {
   return count;
 }
 console.log({ minDeletionSize: minDeletionSize(["a", "b"]) });
+
+/**
+ * @param {string[]} strs 
+ * @returns {number} 
+ */
+function minDeletionSize(strs) {
+  const n = strs.length, m = strs[0].length;
+  let count = 0;
+
+  const isSorted = new Array(n - 1).fill(false);
+
+  for (let col = 0; col < m; col++) {
+    let mustDelete = false;
+
+    for (let row = 0; row < n - 1; row++) {
+      if (!isSorted[row] && strs[row][col] > strs[row + 1][col]) {
+        mustDelete = true;
+        break;
+      }
+    }
+
+    if (mustDelete) {
+      count++;
+      continue;
+    }
+
+    for (let row = 0; row < n - 1; row++) {
+      if (!isSorted[row] && strs[row][col] < strs[row + 1][col]) {
+        isSorted[row] = true;
+      }
+    }
+  }
+
+  return count;
+}
+console.log({ minDeletionSize: minDeletionSize(["ca", "bb", "ac"]) });
