@@ -18815,3 +18815,25 @@ function minDeletionSize(strs) {
   return count;
 }
 console.log({ minDeletionSize: minDeletionSize(["ca", "bb", "ac"]) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function maxProduct(n) {
+  let firstNum = 0, secondNum = 0;
+
+  while (n) {
+    const digit = n % 10;
+
+    if (digit >= firstNum) {
+      secondNum = firstNum;
+      firstNum = digit;
+    } else if (digit > secondNum) secondNum = digit;
+
+    n = Math.floor(n / 10);
+  }
+
+  return firstNum * secondNum;
+}
+console.log({ maxProduct: maxProduct(22) });
