@@ -18837,3 +18837,31 @@ function maxProduct(n) {
   return firstNum * secondNum;
 }
 console.log({ maxProduct: maxProduct(22) });
+
+/**
+ * @param {string} s 
+ * @param {numstringer} k 
+ * @returns {number}
+ */
+function minDeletion(s, k) {
+  const charFreq = new Array(26).fill(0);
+  let deleteCount = 0, count = 0;
+
+  for (const char of s) {
+    const charCode = char.charCodeAt(0) - 97;
+    charFreq[charCode]++;
+    if (charFreq[charCode] === 1) count++;
+  }
+
+  charFreq.sort((a, b) => a - b);
+
+  for (const freq of charFreq) {
+    if (freq && count > k) {
+      count--;
+      deleteCount += freq;
+    }
+  }
+
+  return deleteCount;
+}
+console.log({ minDeletion: minDeletion("abc", 2) });
