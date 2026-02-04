@@ -18865,3 +18865,22 @@ function minDeletion(s, k) {
   return deleteCount;
 }
 console.log({ minDeletion: minDeletion("abc", 2) });
+
+/**
+ * @param {number[]} apple 
+ * @param {number[]} capacity 
+ * @returns {number}
+ */
+function minimumBoxes(apple, capacity) {
+  let boxCount = 0;
+  let totalApples = apple.reduce((sum, count) => sum + count, 0);
+  capacity.sort((a, b) => b - a);
+
+  while (totalApples > 0) {
+    totalApples -= capacity[boxCount];
+    boxCount++;
+  }
+
+  return boxCount;
+}
+console.log({ minimumBoxes: minimumBoxes([1, 3, 2], [4, 3, 1, 5, 2]) });
