@@ -18884,3 +18884,27 @@ function minimumBoxes(apple, capacity) {
   return boxCount;
 }
 console.log({ minimumBoxes: minimumBoxes([1, 3, 2], [4, 3, 1, 5, 2]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function distinctDifferenceArray(nums) {
+  const n = nums.length;
+  const diff = new Array(n);
+  const prefixSet = new Set();
+  const suffixSet = new Set();
+
+  for (let i = n - 1; i >= 0; i--) {
+    diff[i] = suffixSet.size;
+    suffixSet.add(nums[i]);
+  }
+
+  for (let i = 0; i < n; i++) {
+    prefixSet.add(nums[i]);
+    diff[i] = prefixSet.size - diff[i];
+  }
+
+  return diff;
+}
+console.log({ distinctDifferenceArray: distinctDifferenceArray([1, 2, 3, 4, 5]) });
