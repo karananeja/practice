@@ -18908,3 +18908,25 @@ function distinctDifferenceArray(nums) {
   return diff;
 }
 console.log({ distinctDifferenceArray: distinctDifferenceArray([1, 2, 3, 4, 5]) });
+
+/**
+ * @param {string} customers 
+ * @returns {number}
+ */
+function bestClosingTime(customers) {
+  let minPenaltyFound = 0, currentPenalty = 0;
+  let bestClosingHour = 0;
+
+  for (let hourIdx = 0; hourIdx < customers.length; hourIdx++) {
+    if (customers[hourIdx] === "Y") currentPenalty--;
+    else currentPenalty++;
+
+    if (currentPenalty < minPenaltyFound) {
+      minPenaltyFound = currentPenalty;
+      bestClosingHour = hourIdx + 1;
+    }
+  }
+
+  return bestClosingHour;
+}
+console.log({ bestClosingTime: bestClosingTime("YYNY") });
