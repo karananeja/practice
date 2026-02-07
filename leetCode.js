@@ -18930,3 +18930,55 @@ function bestClosingTime(customers) {
   return bestClosingHour;
 }
 console.log({ bestClosingTime: bestClosingTime("YYNY") });
+
+/**
+ * @param {number} n 
+ * @param {number[][]} meetings 
+ * @returns {number}
+ */
+function mostBooked(n, meetings) {
+  const freeRoom = new CustomMinHeap((a, b) => a - b);
+  const busyRoom = new CustomMinHeap((a, b) => a[0] !== b[0] ? a[0] - b[0] : a[1] - b[1]);
+  const meetingCount = new Array(n).fill(0);
+
+  for (let i = 0; i < n; i++) {
+    freeRoom.push(i);
+  }
+
+  meetings.sort((a, b) => a[0] - b[0]);
+
+  for (const [start, end] of meetings) {
+    while (busyRoom.size && busyRoom.peek()[0] <= start) {
+      const popped = busyRoom.pop();
+      const roomIndex = popped[1];
+      freeRoom.push(roomIndex);
+    }
+
+    let roomIndex;
+    let actualStart;
+
+    if (freeRoom.size) {
+      roomIndex = freeRoom.pop();
+      actualStart = start;
+    } else {
+      const popped = busyRoom.pop();
+      roomIndex = popped[1];
+      actualStart = popped[0];
+    }
+
+    const newEnd = actualStart + (end - start);
+    busyRoom.push([newEnd, roomIndex]);
+    meetingCount[roomIndex]++;
+  }
+
+  let maxCount = -1, resultRoom = -1;
+
+  for (let i = 0; i < n; i++) {
+    if (meetingCount[i] > maxCount) {
+      maxCount = meetingCount[i];
+      resultRoom = i;
+    }
+  }
+
+  return resultRoom;
+}
