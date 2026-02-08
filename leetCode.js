@@ -18982,3 +18982,15 @@ function mostBooked(n, meetings) {
 
   return resultRoom;
 }
+
+/**
+ * @param {number[]} nums 
+ * @returns {number} 
+ */
+function repeatedNTimes(nums) {
+  for (let k = 1; k <= 3; ++k)
+    for (let i = 0; i < nums.length - k; ++i)
+      if (nums[i] === nums[i + k])
+        return nums[i];
+}
+console.log({ repeatedNTimes: repeatedNTimes([1, 2, 3, 3]) });
