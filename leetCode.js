@@ -18994,3 +18994,24 @@ function repeatedNTimes(nums) {
         return nums[i];
 }
 console.log({ repeatedNTimes: repeatedNTimes([1, 2, 3, 3]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function absDifference(nums, k) {
+  nums.sort((a, b) => a - b);
+  let firstSum = 0, secondSum = 0;
+  let count = 0;
+
+  while (k) {
+    firstSum += nums[count];
+    secondSum += nums[nums.length - count - 1];
+    count++;
+    k--;
+  }
+
+  return Math.abs(firstSum - secondSum);
+}
+console.log({ absDifference: absDifference([5, 2, 2, 4], 2) });
