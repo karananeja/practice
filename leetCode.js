@@ -19015,3 +19015,34 @@ function absDifference(nums, k) {
   return Math.abs(firstSum - secondSum);
 }
 console.log({ absDifference: absDifference([5, 2, 2, 4], 2) });
+
+/**
+ * @param {number} m 
+ * @param {number} n 
+ * @param {number[][]} indices 
+ * @returns {number}
+ */
+function oddCells(m, n, indices) {
+  const rowCount = new Array(m).fill(0);
+  const colCount = new Array(n).fill(0);
+
+  for (const [row, col] of indices) {
+    rowCount[row]++;
+    colCount[col]++;
+  }
+
+  let oddRows = 0, oddCols = 0;
+
+  for (const row of rowCount) {
+    if (row & 1) oddRows++;
+  }
+
+  for (const col of colCount) {
+    if (col & 1) oddCols++;
+  }
+
+  const evenRows = m - oddRows, evenCols = n - oddCols;
+
+  return oddRows * evenCols + evenRows * oddCols;
+}
+console.log({ oddCells: oddCells(2, 3, [[0, 1], [1, 1]]) });
