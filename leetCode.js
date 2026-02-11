@@ -19046,3 +19046,36 @@ function oddCells(m, n, indices) {
   return oddRows * evenCols + evenRows * oddCols;
 }
 console.log({ oddCells: oddCells(2, 3, [[0, 1], [1, 1]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function sumFourDivisors(nums) {
+  let totalSum = 0;
+
+  for (const num of nums) {
+    let divisorCount = 2, divisorSum = 1 + num;
+
+    for (let i = 2; i * i <= num; i++) {
+      if (num % i !== 0) continue;
+
+      const paired = num / i;
+
+      if (i === paired) {
+        divisorCount += 1;
+        divisorSum += i;
+      } else {
+        divisorCount += 2;
+        divisorSum += i + paired;
+      }
+
+      if (divisorCount > 4) break;
+    }
+
+    if (divisorCount === 4) totalSum += divisorSum;
+  }
+
+  return totalSum;
+}
+console.log({ sumFourDivisors: sumFourDivisors([21, 4, 7]) });
