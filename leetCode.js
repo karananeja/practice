@@ -19079,3 +19079,28 @@ function sumFourDivisors(nums) {
   return totalSum;
 }
 console.log({ sumFourDivisors: sumFourDivisors([21, 4, 7]) });
+
+/**
+ * @param {number[][]} matrix 
+ * @returns {number}
+ */
+function maxMatrixSum(matrix) {
+  let totalAbsSum = 0;
+  let smallestAbsValue = Infinity;
+  let negativeElements = 0;
+
+  for (const row of matrix) {
+    for (const element of row) {
+      if (element < 0) negativeElements++;
+
+      const absValue = Math.abs(element);
+      totalAbsSum += absValue;
+      smallestAbsValue = Math.min(smallestAbsValue, absValue);
+    }
+  }
+
+  if (negativeElements % 2 === 0) return totalAbsSum;
+
+  return totalAbsSum - 2 * smallestAbsValue;
+}
+console.log({ maxMatrixSum: maxMatrixSum([[1, -1], [-1, 1]]) });
