@@ -19104,3 +19104,34 @@ function maxMatrixSum(matrix) {
   return totalAbsSum - 2 * smallestAbsValue;
 }
 console.log({ maxMatrixSum: maxMatrixSum([[1, -1], [-1, 1]]) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function maxLevelSum(root) {
+  const queue = [root];
+  let maxSum = -100001, nodeLevel = 0, level = 1;
+
+  while (queue.length) {
+    const levelSize = queue.length;
+    let sum = 0;
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+      sum += node.val;
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    if (maxSum < sum) {
+      maxSum = sum;
+      nodeLevel = level;
+    }
+
+    level++;
+  }
+
+  return nodeLevel;
+}
