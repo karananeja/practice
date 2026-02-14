@@ -19135,3 +19135,29 @@ function maxLevelSum(root) {
 
   return nodeLevel;
 }
+
+/**
+ * @param {number[]} coins 
+ * @param {number} amount 
+ * @returns {number}
+ */
+function coinChange(coins, amount) {
+  if (amount === 0) return 0;
+
+  const minCoins = new Array(amount + 1).fill(10001);
+  minCoins[0] = 0;
+
+  for (let currentAmount = 1; currentAmount <= amount; currentAmount++) {
+    for (const coin of coins) {
+      if (currentAmount - coin >= 0) {
+        minCoins[currentAmount] = Math.min(
+          minCoins[currentAmount],
+          minCoins[currentAmount - coin] + 1
+        );
+      }
+    }
+  }
+
+  return minCoins[amount] === 10001 ? -1 : minCoins[amount];
+}
+console.log({ coinChange: coinChange([1, 2, 5], 11) });
