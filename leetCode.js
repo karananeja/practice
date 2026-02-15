@@ -19161,3 +19161,27 @@ function coinChange(coins, amount) {
   return minCoins[amount] === 10001 ? -1 : minCoins[amount];
 }
 console.log({ coinChange: coinChange([1, 2, 5], 11) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {TreeNode | null}
+ */
+function subtreeWithAllDeepest(root) {
+  /**
+   * @param {TreeNode | null} node 
+   * @returns {[number, TreeNode | null]}
+   */
+  function dfs(node) {
+    if (!node) return [0, null];
+
+    const left = dfs(node.left);
+    const right = dfs(node.right);
+
+    if (left[0] > right[0]) return [left[0] + 1, left[1]];
+    if (left[0] < right[0]) return [right[0] + 1, right[1]];
+
+    return [left[0] + 1, node];
+  }
+
+  return dfs(root)[1];
+}
