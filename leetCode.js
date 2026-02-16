@@ -19185,3 +19185,25 @@ function subtreeWithAllDeepest(root) {
 
   return dfs(root)[1];
 }
+
+/**
+ * @param {number[][]} rectangles 
+ * @returns {number}
+ */
+function countGoodRectangles(rectangles) {
+  let maxSquareSide = 0, countMaxSquares = 0;
+
+  for (const [width, height] of rectangles) {
+    const squareSide = Math.min(width, height);
+
+    if (squareSide > maxSquareSide) {
+      maxSquareSide = squareSide;
+      countMaxSquares = 1;
+    } else if (squareSide === maxSquareSide) {
+      countMaxSquares++;
+    }
+  }
+
+  return countMaxSquares;
+}
+console.log({ countGoodRectangles: countGoodRectangles([[5, 8], [3, 9], [5, 12], [16, 5]]) });
