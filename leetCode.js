@@ -19207,3 +19207,39 @@ function countGoodRectangles(rectangles) {
   return countMaxSquares;
 }
 console.log({ countGoodRectangles: countGoodRectangles([[5, 8], [3, 9], [5, 12], [16, 5]]) });
+
+/**
+ * @param {number} squares 
+ * @returns {number}
+ */
+function separateSquares(squares) {
+  const squareInfo = [];
+  let totalArea = 0;
+  let minY = Infinity;
+  let maxY = -Infinity;
+
+  for (const [, y, side] of squares) {
+    const bottom = y;
+    const top = y + side;
+    squareInfo.push([bottom, top, side]);
+    totalArea += side ** 2;
+    minY = Math.min(minY, bottom);
+    maxY = Math.max(maxY, top);
+  }
+
+  while (maxY - minY > 1e-5) {
+    const midY = (minY + maxY) / 2;
+    let areaBelow = 0;
+
+    for (const [bottom, top, side] of squareInfo) {
+      if (midY >= top) areaBelow += side ** 2;
+      else if (midY > bottom && midY < top) areaBelow += side * (midY - bottom);
+    }
+
+    if (areaBelow < totalArea / 2) minY = midY;
+    else maxY = midY;
+  }
+
+  return (minY + maxY) / 2;
+}
+console.log({ separateSquares: separateSquares([[0, 0, 1], [2, 2, 1]]) });
