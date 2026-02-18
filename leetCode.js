@@ -19243,3 +19243,21 @@ function separateSquares(squares) {
   return (minY + maxY) / 2;
 }
 console.log({ separateSquares: separateSquares([[0, 0, 1], [2, 2, 1]]) });
+
+/**
+ * @param {number[]} startTime 
+ * @param {number[]} endTime 
+ * @param {number} queryTime 
+ * @returns {number}
+ */
+function busyStudent(startTime, endTime, queryTime) {
+  let activeStudentsCount = 0;
+
+  startTime.forEach((time, index) => {
+    const end = endTime[index];
+    if (time <= queryTime && queryTime <= end) activeStudentsCount++;
+  });
+
+  return activeStudentsCount;
+}
+console.log({ busyStudent: busyStudent([4], [4], 4) });
