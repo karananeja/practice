@@ -19261,3 +19261,36 @@ function busyStudent(startTime, endTime, queryTime) {
   return activeStudentsCount;
 }
 console.log({ busyStudent: busyStudent([4], [4], 4) });
+
+/**
+ * @param {number[]} bars 
+ * @returns {number}
+ */
+function getLongestConsecutiveRun(bars) {
+  bars.sort((a, b) => a - b);
+  let currentRun = 1, maxRun = 1;
+
+  for (let i = 1; i < bars.length; i++) {
+    if (bars[i] === bars[i - 1] + 1) currentRun++;
+    else currentRun = 1;
+    maxRun = Math.max(maxRun, currentRun);
+  }
+
+  return maxRun;
+}
+
+/**
+ * @param {number} n 
+ * @param {number} m 
+ * @param {number[]} hBars 
+ * @param {number[]} vBars 
+ * @returns {number}
+ */
+function maximizeSquareHoleArea(n, m, hBars, vBars) {
+  const maxVerticalRun = getLongestConsecutiveRun(hBars);
+  const maxHorizontalRun = getLongestConsecutiveRun(vBars);
+  const squareSide = Math.min(maxVerticalRun, maxHorizontalRun) + 1;
+
+  return squareSide ** 2;
+}
+console.log({ maximizeSquareHoleArea: maximizeSquareHoleArea(1, 1, [2], [2]) });
