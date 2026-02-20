@@ -19294,3 +19294,49 @@ function maximizeSquareHoleArea(n, m, hBars, vBars) {
   return squareSide ** 2;
 }
 console.log({ maximizeSquareHoleArea: maximizeSquareHoleArea(1, 1, [2], [2]) });
+
+/**
+ * @param {number[]} fences 
+ * @param {number} border 
+ * @returns {Set<number>}
+ */
+function getEdges(fences, border) {
+  const set = new Set();
+  const list = [...fences];
+
+  list.push(1);
+  list.push(border);
+  list.sort((a, b) => a - b);
+
+  for (let i = 0; i < list.length; i++) {
+    for (let j = i + 1; j < list.length; j++) {
+      set.add(list[j] - list[i]);
+    }
+  }
+
+  return set;
+}
+
+/**
+ * @param {number} m 
+ * @param {number} n 
+ * @param {number[]} hFences 
+ * @param {number[]} vFences 
+ * @returns {number}
+ */
+function maximizeSquareArea(m, n, hFences, vFences) {
+  const MOD = 1000000007;
+
+  const hEdges = getEdges(hFences, m);
+  const vEdges = getEdges(vFences, n);
+
+  let res = 0;
+
+  for (const edge of hEdges) {
+    if (vEdges.has(edge)) res = Math.max(res, edge);
+  }
+
+  if (res === 0) return -1;
+  return Number((BigInt(res) * BigInt(res)) % BigInt(MOD));
+}
+console.log({ maximizeSquareArea: maximizeSquareArea(4, 3, [2, 3], [2]) });
