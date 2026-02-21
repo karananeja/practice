@@ -19340,3 +19340,29 @@ function maximizeSquareArea(m, n, hFences, vFences) {
   return Number((BigInt(res) * BigInt(res)) % BigInt(MOD));
 }
 console.log({ maximizeSquareArea: maximizeSquareArea(4, 3, [2, 3], [2]) });
+
+/**
+ * @param {number[][]} bottomLeft 
+ * @param {number[][]} topRight 
+ * @returns {number}
+ */
+function largestSquareArea(bottomLeft, topRight) {
+  const n = bottomLeft.length;
+  let maxSide = 0;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const w =
+        Math.min(topRight[i][0], topRight[j][0]) -
+        Math.max(bottomLeft[i][0], bottomLeft[j][0]);
+      const h =
+        Math.min(topRight[i][1], topRight[j][1]) -
+        Math.max(bottomLeft[i][1], bottomLeft[j][1]);
+
+      maxSide = Math.max(maxSide, Math.min(w, h));
+    }
+  }
+
+  return maxSide * maxSide;
+}
+console.log({ largestSquareArea: largestSquareArea([[1, 1], [2, 2], [3, 1]], [[3, 3], [4, 4], [6, 6]]) });
