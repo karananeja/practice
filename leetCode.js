@@ -19437,3 +19437,29 @@ function largestMagicSquare(grid) {
   return 1;
 }
 console.log({ largestMagicSquare: largestMagicSquare([[5, 1, 3, 1], [9, 3, 3, 1], [1, 3, 3, 8]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]} 
+ */
+function applyOperations(nums) {
+  let write = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i < nums.length - 1 && nums[i] === nums[i + 1]) {
+      nums[i] *= 2;
+      nums[i + 1] = 0;
+    }
+
+    if (nums[i] !== 0) {
+      nums[write++] = nums[i];
+    }
+  }
+
+  while (write < nums.length) {
+    nums[write++] = 0;
+  }
+
+  return nums;
+}
+console.log({ applyOperations: applyOperations([0, 1]) });
