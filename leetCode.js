@@ -19463,3 +19463,32 @@ function applyOperations(nums) {
   return nums;
 }
 console.log({ applyOperations: applyOperations([0, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function minBitwiseArray(nums) {
+  const result = [];
+
+  for (const num of nums) {
+    if (num === 2) {
+      result.push(-1);
+    } else {
+      let trailingOnes = 0;
+      let temp = num;
+
+      while (temp) {
+        if (temp & 1) trailingOnes++;
+        else break;
+        temp >>= 1;
+      }
+
+      const minValue = num - 2 ** (trailingOnes - 1);
+      result.push(minValue);
+    }
+  }
+
+  return result;
+}
+console.log({ minBitwiseArray: minBitwiseArray([2, 3, 5, 7]) });
