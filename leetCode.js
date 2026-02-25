@@ -19492,3 +19492,23 @@ function minBitwiseArray(nums) {
   return result;
 }
 console.log({ minBitwiseArray: minBitwiseArray([2, 3, 5, 7]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function minBitwiseArray(nums) {
+  for (let i = 0; i < nums.length; i++) {
+    let x = nums[i], res = -1, d = 1;
+
+    while ((x & d) !== 0) {
+      res = x - d;
+      d <<= 1;
+    }
+
+    nums[i] = res;
+  }
+
+  return nums;
+}
+console.log({ minBitwiseArray: minBitwiseArray([2, 3, 5, 7]) });
