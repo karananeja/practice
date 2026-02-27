@@ -19546,3 +19546,21 @@ function minimumPairRemoval(nums) {
   return count;
 }
 console.log({ minimumPairRemoval: minimumPairRemoval([5, 2, 3, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function resultArray(nums) {
+  const arr1 = [nums[0]], arr2 = [nums[1]];
+  let count = 2;
+
+  while (count < nums.length) {
+    if (arr1[arr1.length - 1] > arr2[arr2.length - 1]) arr1.push(nums[count]);
+    else arr2.push(nums[count]);
+    count++;
+  }
+
+  return [...arr1, ...arr2];
+}
+console.log({ resultArray: resultArray([2, 1, 3]) });
