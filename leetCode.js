@@ -19564,3 +19564,18 @@ function resultArray(nums) {
   return [...arr1, ...arr2];
 }
 console.log({ resultArray: resultArray([2, 1, 3]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function hasTrailingZeros(nums) {
+  let count = 0;
+
+  for (const num of nums) {
+    count += num % 2 === 0 ? 1 : 0;
+  }
+
+  return count >= 2;
+}
+console.log({ hasTrailingZeros: hasTrailingZeros([1, 2, 3, 4, 5]) });
