@@ -19579,3 +19579,21 @@ function hasTrailingZeros(nums) {
   return count >= 2;
 }
 console.log({ hasTrailingZeros: hasTrailingZeros([1, 2, 3, 4, 5]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function minimumDifference(nums, k) {
+  nums.sort((a, b) => a - b);
+
+  let min = Infinity;
+
+  for (let i = 0; i < nums.length - k + 1; i++) {
+    min = Math.min(min, nums[i + k - 1] - nums[i]);
+  }
+
+  return min;
+}
+console.log({ minimumDifference: minimumDifference([90], 1) });
