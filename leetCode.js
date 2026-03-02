@@ -19597,3 +19597,20 @@ function minimumDifference(nums, k) {
   return min;
 }
 console.log({ minimumDifference: minimumDifference([90], 1) });
+
+/**
+ * @param {string} s 
+ * @param {number} k 
+ * @returns {string}
+ */
+function reversePrefix(s, k) {
+  const chars = s.split("");
+  let start = 0, end = k - 1;
+
+  while (start < end) {
+    [chars[start++], chars[end--]] = [chars[end], chars[start]];
+  }
+
+  return chars.join("");
+}
+console.log({ reversePrefix: reversePrefix("abcd", 2) });
