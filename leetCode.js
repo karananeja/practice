@@ -19614,3 +19614,20 @@ function reversePrefix(s, k) {
   return chars.join("");
 }
 console.log({ reversePrefix: reversePrefix("abcd", 2) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function mirrorDistance(n) {
+  let reversedNumber = 0, originalNum = n;
+
+  while (n) {
+    const digit = n % 10;
+    reversedNumber = reversedNumber * 10 + digit;
+    n = Math.floor(n / 10);
+  }
+
+  return Math.abs(reversedNumber - originalNum);
+}
+console.log({ mirrorDistance: mirrorDistance(25) });
