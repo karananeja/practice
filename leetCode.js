@@ -19631,3 +19631,25 @@ function mirrorDistance(n) {
   return Math.abs(reversedNumber - originalNum);
 }
 console.log({ mirrorDistance: mirrorDistance(25) });
+
+/**
+ * @param {number} num1 
+ * @param {number} num2 
+ * @param {number} num3 
+ * @returns {number}
+ */
+function generateKey(num1, num2, num3) {
+  let result = 0;
+  const places = [1000, 100, 10, 1];
+
+  for (let i = 0; i < 4; i++) {
+    const digit1 = Math.floor(num1 / places[i]) % 10;
+    const digit2 = Math.floor(num2 / places[i]) % 10;
+    const digit3 = Math.floor(num3 / places[i]) % 10;
+
+    result = result * 10 + Math.min(digit1, digit2, digit3);
+  }
+
+  return result;
+}
+console.log({ generateKey: generateKey(1, 2, 3) });
