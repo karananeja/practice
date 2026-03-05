@@ -19653,3 +19653,21 @@ function generateKey(num1, num2, num3) {
   return result;
 }
 console.log({ generateKey: generateKey(1, 2, 3) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function removeZeros(n) {
+  let result = 0, multiplier = 1;
+
+  while (n > 0) {
+    const digit = n % 10;
+    if (digit > 0) result += digit * multiplier;
+    n = Math.floor(n / 10);
+    if (digit > 0) multiplier *= 10;
+  }
+
+  return result;
+}
+console.log({ removeZeros: removeZeros(1020030) });
