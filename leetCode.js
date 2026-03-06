@@ -19671,3 +19671,42 @@ function removeZeros(n) {
   return result;
 }
 console.log({ removeZeros: removeZeros(1020030) });
+
+/**
+ * @param {number} weights 
+ * @param {number} days 
+ * @returns {number}
+ */
+function shipWithinDays(weights, days) {
+  /**
+   * @param {number} capacity 
+   * @returns {number}
+   */
+  function requiredDays(capacity) {
+    let daysNeeded = 1, currentLoad = 0;
+
+    for (const w of weights) {
+      if (currentLoad + w > capacity) {
+        daysNeeded++;
+        currentLoad = 0;
+      }
+
+      currentLoad += w;
+    }
+
+    return daysNeeded;
+  }
+
+  const maxWeight = Math.max(...weights);
+  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+  let lo = maxWeight, hi = totalWeight;
+
+  while (lo < hi) {
+    const mid = lo + Math.floor((hi - lo) / 2);
+    if (requiredDays(mid) > days) lo = mid + 1;
+    else hi = mid;
+  }
+
+  return lo;
+}
+console.log({ shipWithinDays: shipWithinDays([1, 2, 3, 1, 1], 4) });
