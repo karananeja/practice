@@ -19710,3 +19710,26 @@ function shipWithinDays(weights, days) {
   return lo;
 }
 console.log({ shipWithinDays: shipWithinDays([1, 2, 3, 1, 1], 4) });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function makeSmallestPalindrome(s) {
+  const letters = s.split("");
+  let start = 0, end = letters.length - 1;
+
+  while (start < end) {
+    const leftChar = letters[start];
+    const rightChar = letters[end];
+
+    if (leftChar > rightChar) letters[start] = rightChar;
+    else if (rightChar > leftChar) letters[end] = leftChar;
+
+    start++;
+    end--;
+  }
+
+  return letters.join("");
+}
+console.log({ makeSmallestPalindrome: makeSmallestPalindrome("egcfe") });
