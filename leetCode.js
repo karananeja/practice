@@ -19733,3 +19733,19 @@ function makeSmallestPalindrome(s) {
   return letters.join("");
 }
 console.log({ makeSmallestPalindrome: makeSmallestPalindrome("egcfe") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minStartValue(nums) {
+  let sum = 0, minValue = 0;
+
+  for (const num of nums) {
+    sum += num;
+    minValue = Math.min(minValue, sum);
+  }
+
+  return 1 - minValue;
+}
+console.log({ minStartValue: minStartValue([-3, 2, -3, 4, 2]) });
