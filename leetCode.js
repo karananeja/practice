@@ -19749,3 +19749,30 @@ function minStartValue(nums) {
   return 1 - minValue;
 }
 console.log({ minStartValue: minStartValue([-3, 2, -3, 4, 2]) });
+
+/**
+ * @param {string} answerKey 
+ * @param {number} k 
+ * @returns {number}
+ */
+function maxConsecutiveAnswers(answerKey, k) {
+  const charCount = new Map();
+  let maxCount = 0, left = 0, res = 0;
+
+  for (let right = 0; right < answerKey.length; right++) {
+    const char = answerKey[right];
+    charCount.set(char, (charCount.get(char) || 0) + 1);
+    maxCount = Math.max(maxCount, charCount.get(char));
+
+    while ((right - left + 1) - maxCount > k) {
+      const char = answerKey[left];
+      charCount.set(char, charCount.get(char) - 1);
+      left++;
+    }
+
+    res = Math.max(res, right - left + 1);
+  }
+
+  return res;
+}
+console.log({ maxConsecutiveAnswers: maxConsecutiveAnswers("TTFF", 2) });
