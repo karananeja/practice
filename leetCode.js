@@ -19776,3 +19776,27 @@ function maxConsecutiveAnswers(answerKey, k) {
   return res;
 }
 console.log({ maxConsecutiveAnswers: maxConsecutiveAnswers("TTFF", 2) });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function scoreBalance(s) {
+  let prefixSum = 0;
+
+  for (const char of s) {
+    prefixSum += char.charCodeAt(0) - 96;
+  }
+
+  let suffixSum = 0;
+
+  for (let idx = s.length - 1; idx > 0; idx--) {
+    const score = s[idx].charCodeAt(0) - 96;
+    suffixSum += score;
+    prefixSum -= score;
+    if (suffixSum === prefixSum) return true;
+  }
+
+  return false;
+}
+console.log({ scoreBalance: scoreBalance("adcb") });
