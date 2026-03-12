@@ -19820,3 +19820,23 @@ function nextGreatestLetter(letters, target) {
   return letters[left % letters.length];
 }
 console.log({ nextGreatestLetter: nextGreatestLetter(["c", "f", "j"], "a") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumCost(nums) {
+  let smallest = 50, secondSmallest = 50;
+
+  for (let i = 1; i < nums.length; i++) {
+    const value = nums[i];
+
+    if (value < smallest) {
+      secondSmallest = smallest;
+      smallest = value;
+    } else if (value < secondSmallest) secondSmallest = value;
+  }
+
+  return nums[0] + smallest + secondSmallest;
+}
+console.log({ minimumCost: minimumCost([1, 2, 3, 12]) });
