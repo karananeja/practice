@@ -19840,3 +19840,30 @@ function minimumCost(nums) {
   return nums[0] + smallest + secondSmallest;
 }
 console.log({ minimumCost: minimumCost([1, 2, 3, 12]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function sortEvenOdd(nums) {
+  const evens = [];
+  const odds = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    (i % 2 === 0 ? evens : odds).push(nums[i]);
+  }
+
+  evens.sort((a, b) => a - b);
+  odds.sort((a, b) => b - a);
+
+  const result = [];
+  const maxLen = Math.max(evens.length, odds.length);
+
+  for (let i = 0; i < maxLen; i++) {
+    if (i < evens.length) result.push(evens[i]);
+    if (i < odds.length) result.push(odds[i]);
+  }
+
+  return result;
+}
+console.log({ sortEvenOdd: sortEvenOdd([4, 1, 2, 3]) });
