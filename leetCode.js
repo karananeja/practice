@@ -19867,3 +19867,33 @@ function sortEvenOdd(nums) {
   return result;
 }
 console.log({ sortEvenOdd: sortEvenOdd([4, 1, 2, 3]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function isTrionic(nums) {
+  const n = nums.length;
+  let i = 1;
+
+  while (i < n && nums[i - 1] < nums[i]) {
+    i++;
+  }
+
+  const p = i - 1;
+
+  while (i < n && nums[i - 1] > nums[i]) {
+    i++;
+  }
+
+  const q = i - 1;
+
+  while (i < n && nums[i - 1] < nums[i]) {
+    i++;
+  }
+
+  const flag = i - 1;
+
+  return p !== 0 && q !== p && flag === n - 1 && flag !== q;
+}
+console.log({ isTrionic: isTrionic([1, 3, 5, 4, 2, 6]) });
