@@ -19897,3 +19897,23 @@ function isTrionic(nums) {
   return p !== 0 && q !== p && flag === n - 1 && flag !== q;
 }
 console.log({ isTrionic: isTrionic([1, 3, 5, 4, 2, 6]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function findChampion(grid) {
+  let candidate = 0;
+  const n = grid.length;
+
+  for (let i = 1; i < n; i++) {
+    if (grid[candidate][i] === 0) candidate = i;
+  }
+
+  for (let i = 0; i < n; i++) {
+    if (i !== candidate && grid[candidate][i] === 0) return -1;
+  }
+
+  return candidate;
+}
+console.log({ findChampion: findChampion([[0, 1], [0, 0]]) });
