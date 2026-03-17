@@ -19917,3 +19917,29 @@ function findChampion(grid) {
   return candidate;
 }
 console.log({ findChampion: findChampion([[0, 1], [0, 0]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function constructTransformedArray(nums) {
+  const n = nums.length;
+  const result = new Array(n);
+
+  for (let idx = 0; idx < n; idx++) {
+    const num = nums[idx];
+
+    if (num === 0) {
+      result[idx] = 0;
+      continue;
+    }
+
+    let newIndex = (idx + num) % n;
+    if (newIndex < 0) newIndex += n;
+
+    result[idx] = nums[newIndex];
+  }
+
+  return result;
+}
+console.log({ constructTransformedArray: constructTransformedArray([3, -2, 1, 1]) });
