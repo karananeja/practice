@@ -19943,3 +19943,25 @@ function constructTransformedArray(nums) {
   return result;
 }
 console.log({ constructTransformedArray: constructTransformedArray([3, -2, 1, 1]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function minRemoval(nums, k) {
+  const n = nums.length;
+  nums.sort((a, b) => a - b);
+
+  let ans = n, right = 0;
+
+  for (let left = 0; left < n; left++) {
+    while (right < n && nums[right] <= nums[left] * k) {
+      right++;
+    }
+    ans = Math.min(ans, n - (right - left));
+  }
+
+  return ans;
+}
+console.log({ minRemoval: minRemoval([2, 1, 5], 2) });
