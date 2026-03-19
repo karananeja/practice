@@ -19965,3 +19965,20 @@ function minRemoval(nums, k) {
   return ans;
 }
 console.log({ minRemoval: minRemoval([2, 1, 5], 2) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function minimumDeletions(s) {
+  const n = s.length;
+  let minDeletions = 0, bCount = 0;
+
+  for (let i = 0; i < n; i++) {
+    if (s[i] === 'b') bCount++;
+    else minDeletions = Math.min(minDeletions + 1, bCount);
+  }
+
+  return minDeletions;
+}
+console.log({ minimumDeletions: minimumDeletions("aababbab") });
