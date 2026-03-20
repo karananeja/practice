@@ -19982,3 +19982,27 @@ function minimumDeletions(s) {
   return minDeletions;
 }
 console.log({ minimumDeletions: minimumDeletions("aababbab") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function longestBalanced(nums) {
+  let maxLength = 0;
+
+  for (let start = 0; start < nums.length; start++) {
+    const seenOdd = new Set();
+    const seenEven = new Set();
+
+    for (let end = start; end < nums.length; end++) {
+      const set = nums[end] & 1 ? seenOdd : seenEven;
+      set.add(nums[end]);
+
+      if (seenOdd.size === seenEven.size)
+        maxLength = Math.max(maxLength, end - start + 1);
+    }
+  }
+
+  return maxLength;
+}
+console.log({ longestBalanced: longestBalanced([2, 5, 4, 3]) });
