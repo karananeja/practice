@@ -20006,3 +20006,27 @@ function longestBalanced(nums) {
   return maxLength;
 }
 console.log({ longestBalanced: longestBalanced([2, 5, 4, 3]) });
+
+/**
+ * @param {number[][]} grid 
+ * @param {number} x 
+ * @param {number} y 
+ * @param {number} k 
+ * @returns {number[][]}
+ */
+function reverseSubmatrix(grid, x, y, k) {
+  for (let col = y; col < y + k; col++) {
+    let start = x, end = x + k - 1;
+
+    while (start <= end) {
+      const temp = grid[start][col];
+      grid[start][col] = grid[end][col];
+      grid[end][col] = temp;
+      start++;
+      end--;
+    }
+  }
+
+  return grid;
+}
+console.log({ reverseSubmatrix: reverseSubmatrix([[3, 4, 2, 3], [2, 3, 4, 2],], 0, 2, 2) });
