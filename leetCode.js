@@ -20030,3 +20030,41 @@ function reverseSubmatrix(grid, x, y, k) {
   return grid;
 }
 console.log({ reverseSubmatrix: reverseSubmatrix([[3, 4, 2, 3], [2, 3, 4, 2],], 0, 2, 2) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function longestBalanced(s) {
+  let maxLength = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    const charCount = new Array(26).fill(0);
+    let distinctCount = 0;
+
+    for (let j = i; j < s.length; j++) {
+      const idx = s[j].charCodeAt(0) - 97;
+      charCount[idx]++;
+      if (charCount[idx] === 1) distinctCount++;
+
+      const length = j - i + 1;
+
+      if (length % distinctCount !== 0) continue;
+
+      const target = length / distinctCount;
+      let balanced = true;
+
+      for (const count of charCount) {
+        if (count !== 0 && count !== target) {
+          balanced = false;
+          break;
+        }
+      }
+
+      if (balanced) maxLength = Math.max(maxLength, length);
+    }
+  }
+
+  return maxLength;
+}
+console.log({ longestBalanced: longestBalanced("abbac") });
