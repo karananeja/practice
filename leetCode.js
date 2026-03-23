@@ -20068,3 +20068,28 @@ function longestBalanced(s) {
   return maxLength;
 }
 console.log({ longestBalanced: longestBalanced("abbac") });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function alternateDigitSum(n) {
+  let sum = 0, sign = 1, temp = n, digits = 0;
+
+  while (temp > 0) {
+    temp = Math.floor(temp / 10);
+    digits++;
+  }
+
+  if (digits % 2 === 0) sign = -1;
+
+  while (n > 0) {
+    const digit = n % 10;
+    sum += sign * digit;
+    sign *= -1;
+    n = Math.floor(n / 10);
+  }
+
+  return sum;
+}
+console.log({ alternateDigitSum: alternateDigitSum(521) });
