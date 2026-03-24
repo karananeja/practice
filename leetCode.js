@@ -20093,3 +20093,20 @@ function alternateDigitSum(n) {
   return sum;
 }
 console.log({ alternateDigitSum: alternateDigitSum(521) });
+
+/**
+ * @param {number} n 
+ * @param {number} k 
+ * @returns {number}
+ */
+function sumBase(n, k) {
+  let result = 0;
+
+  while (n) {
+    result += n % k;
+    n = Math.floor(n / k);
+  }
+
+  return result;
+}
+console.log({ sumBase: sumBase(34, 6) });
