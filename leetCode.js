@@ -20110,3 +20110,20 @@ function sumBase(n, k) {
   return result;
 }
 console.log({ sumBase: sumBase(34, 6) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function reverseBits(n) {
+  let result = 0;
+
+  for (let idx = 0; idx < 32; idx++) {
+    const digit = n & 1;
+    result = (result << 1) + digit;
+    n >>= 1;
+  }
+
+  return result;
+}
+console.log({ reverseBits: reverseBits(43261596) });
