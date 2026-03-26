@@ -20127,3 +20127,25 @@ function reverseBits(n) {
   return result;
 }
 console.log({ reverseBits: reverseBits(43261596) });
+
+/**
+ * @param {number} turnedOn 
+ * @returns {string[]}
+ */
+function readBinaryWatch(turnedOn) {
+  const ans = [];
+
+  for (let h = 0; h < 12; h++) {
+    for (let m = 0; m < 60; m++) {
+      const hourBits = h.toString(2).split("0").join("").length;
+      const minuteBits = m.toString(2).split("0").join("").length;
+
+      if (hourBits + minuteBits === turnedOn) {
+        ans.push(h + ":" + (m < 10 ? "0" : "") + m);
+      }
+    }
+  }
+
+  return ans;
+}
+console.log({ readBinaryWatch: readBinaryWatch(1) });
