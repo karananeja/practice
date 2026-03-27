@@ -20149,3 +20149,21 @@ function readBinaryWatch(turnedOn) {
   return ans;
 }
 console.log({ readBinaryWatch: readBinaryWatch(1) });
+
+/**
+ * @param {number} n 
+ * @returns {boolean}
+ */
+function hasAlternatingBits(n) {
+  let prev = -1;
+
+  while (n > 0) {
+    const curr = n & 1;
+    if (prev === curr) return false;
+    prev = curr;
+    n >>= 1;
+  }
+
+  return true;
+}
+console.log({ hasAlternatingBits: hasAlternatingBits(5) });
