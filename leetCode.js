@@ -20188,3 +20188,32 @@ function countBinarySubstrings(s) {
   return ans + Math.min(prev, cur);
 }
 console.log({ countBinarySubstrings: countBinarySubstrings("00110011") });
+
+/**
+ * @param {number[]} nums 
+ * @param {number[]} queries 
+ * @returns {number[]}
+ */
+function answerQueries(nums, queries) {
+  nums.sort((a, b) => a - b);
+
+  const prefixSums = [];
+
+  for (const num of nums) {
+    prefixSums.push((prefixSums[prefixSums.length - 1] || 0) + num);
+  }
+
+  return queries.map((query) => {
+    let left = 0, right = prefixSums.length - 1;
+
+    while (left <= right) {
+      const mid = left + Math.floor((right - left) / 2);
+
+      if (prefixSums[mid] > query) right = mid - 1;
+      else left = mid + 1;
+    }
+
+    return left;
+  });
+}
+console.log({ answerQueries: answerQueries([4, 5, 2, 1], [3, 10, 21]) });
