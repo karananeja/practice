@@ -20217,3 +20217,35 @@ function answerQueries(nums, queries) {
   });
 }
 console.log({ answerQueries: answerQueries([4, 5, 2, 1], [3, 10, 21]) });
+
+/**
+ * @param {number} num 
+ * @returns {boolean}
+ */
+function hasPrimeSetBits(num) {
+  const primeBitCounts = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
+  let setBitCount = 0;
+
+  while (num) {
+    if (num & 1) setBitCount++;
+    num >>= 1;
+  }
+
+  return primeBitCounts.has(setBitCount);
+}
+
+/**
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {number}
+ */
+function countPrimeSetBits(left, right) {
+  let totalWithPrimeBits = 0;
+
+  for (let current = left; current <= right; current++) {
+    if (hasPrimeSetBits(current)) totalWithPrimeBits++;
+  }
+
+  return totalWithPrimeBits;
+}
+console.log({ countPrimeSetBits: countPrimeSetBits(6, 10) });
