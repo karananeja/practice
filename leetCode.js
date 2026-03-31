@@ -20249,3 +20249,28 @@ function countPrimeSetBits(left, right) {
   return totalWithPrimeBits;
 }
 console.log({ countPrimeSetBits: countPrimeSetBits(6, 10) });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function binaryGap(n) {
+  let currentIdx = 0, lastOneIdx = -1, maxGap = 0;
+
+  while (n) {
+    if (n & 1) {
+      if (lastOneIdx !== -1) {
+        const gap = currentIdx - lastOneIdx;
+        maxGap = Math.max(maxGap, gap);
+      }
+
+      lastOneIdx = currentIdx;
+    }
+
+    n >>= 1;
+    currentIdx++;
+  }
+
+  return maxGap;
+}
+console.log({ binaryGap: binaryGap(22) });
