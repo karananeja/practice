@@ -20274,3 +20274,21 @@ function binaryGap(n) {
   return maxGap;
 }
 console.log({ binaryGap: binaryGap(22) });
+
+/**
+ * @param {number[]} aliceSizes 
+ * @param {number[]} bobSizes 
+ * @returns {number[]}
+ */
+function fairCandySwap(aliceSizes, bobSizes) {
+  const totalAlice = aliceSizes.reduce((sum, candy) => sum + candy, 0);
+  const totalBob = bobSizes.reduce((sum, candy) => sum + candy, 0);
+  const delta = (totalAlice - totalBob) / 2;
+  const bobSet = new Set(bobSizes);
+
+  for (const aliceCandy of aliceSizes) {
+    const bobTarget = aliceCandy - delta;
+    if (bobSet.has(bobTarget)) return [aliceCandy, bobTarget];
+  }
+}
+console.log({ fairCandySwap: fairCandySwap([2], [1, 3]) });
