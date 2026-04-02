@@ -20292,3 +20292,28 @@ function fairCandySwap(aliceSizes, bobSizes) {
   }
 }
 console.log({ fairCandySwap: fairCandySwap([2], [1, 3]) });
+
+/**
+ * @param {TreeNode | null} root 
+ * @returns {number}
+ */
+function sumRootToLeaf(root) {
+  /**
+   * @param {TreeNode | null} node 
+   * @param {number} currentValue 
+   * @returns {number}
+   */
+  function dfs(node, currentValue) {
+    if (!node) return 0;
+
+    const newValue = currentValue * 2 + node.val;
+
+    if (!node.left && !node.right) return newValue;
+
+    const leftSum = dfs(node.left, newValue);
+    const rightSum = dfs(node.right, newValue);
+    return leftSum + rightSum;
+  }
+
+  return dfs(root, 0);
+}
