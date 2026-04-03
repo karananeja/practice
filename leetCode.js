@@ -20317,3 +20317,20 @@ function sumRootToLeaf(root) {
 
   return dfs(root, 0);
 }
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function concatenatedBinary(n) {
+  const MOD = 1_000_000_007;
+  let result = 0, bitCount = 0;
+
+  for (let num = 1; num <= n; num++) {
+    if (isPowerOfTwo(num)) bitCount++;
+    result = (result * (2 ** bitCount) + num) % MOD;
+  }
+
+  return result;
+}
+console.log({ concatenatedBinary: concatenatedBinary(12) });
