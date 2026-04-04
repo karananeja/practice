@@ -20334,3 +20334,18 @@ function concatenatedBinary(n) {
   return result;
 }
 console.log({ concatenatedBinary: concatenatedBinary(12) });
+
+/**
+ * @param {string} n 
+ * @returns {number}
+ */
+function minPartitions(n) {
+  let maxNum = 0;
+
+  for (const char of n) {
+    maxNum = Math.max(maxNum, +char);
+  }
+
+  return maxNum;
+}
+console.log({ minPartitions: minPartitions("32") });
