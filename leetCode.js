@@ -20349,3 +20349,27 @@ function minPartitions(n) {
   return maxNum;
 }
 console.log({ minPartitions: minPartitions("32") });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function minimumFlips(n) {
+  if (n === 0) return 0;
+
+  const k = 32 - Math.clz32(n);
+  let flips = 0, leftMask = 1 << (k - 1), rightMask = 1;
+
+  while (leftMask > rightMask) {
+    const leftBit = (n & leftMask) ? 1 : 0;
+    const rightBit = (n & rightMask) ? 1 : 0;
+
+    if (leftBit !== rightBit) flips += 2;
+
+    leftMask >>= 1;
+    rightMask <<= 1;
+  }
+
+  return flips;
+}
+console.log({ minimumFlips: minimumFlips(7) });
