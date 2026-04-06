@@ -20373,3 +20373,20 @@ function minimumFlips(n) {
   return flips;
 }
 console.log({ minimumFlips: minimumFlips(7) });
+
+/**
+ * @param {number} x 
+ * @param {number} y 
+ * @returns {number}
+ */
+function hammingDistance(x, y) {
+  let updatedNum = x ^ y, result = 0;
+
+  while (updatedNum) {
+    result += updatedNum & 1;
+    updatedNum >>= 1;
+  }
+
+  return result;
+}
+console.log({ hammingDistance: hammingDistance(1, 4) });
