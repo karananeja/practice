@@ -20390,3 +20390,16 @@ function hammingDistance(x, y) {
   return result;
 }
 console.log({ hammingDistance: hammingDistance(1, 4) });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function checkOnesSegment(s) {
+  for (let idx = 1; idx < s.length; idx++) {
+    if (s[idx - 1] === "0" && s[idx] === "1") return false;
+  }
+
+  return true;
+}
+console.log({ checkOnesSegment: checkOnesSegment("1001") });
