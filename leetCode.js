@@ -20403,3 +20403,24 @@ function checkOnesSegment(s) {
   return true;
 }
 console.log({ checkOnesSegment: checkOnesSegment("1001") });
+
+/**
+ * @param {number[]} bulbs 
+ * @returns {number[]}
+ */
+function toggleLightBulbs(bulbs) {
+  const state = new Uint8Array(101);
+
+  for (const bulb of bulbs) {
+    state[bulb] ^= 1;
+  }
+
+  const res = [];
+
+  for (let i = 1; i <= 100; i++) {
+    if (state[i]) res.push(i);
+  }
+
+  return res;
+}
+console.log({ toggleLightBulbs: toggleLightBulbs([10, 30, 20, 10]) });
