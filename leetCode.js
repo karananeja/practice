@@ -20424,3 +20424,20 @@ function toggleLightBulbs(bulbs) {
   return res;
 }
 console.log({ toggleLightBulbs: toggleLightBulbs([10, 30, 20, 10]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function residuePrefixes(s) {
+  let count = 0;
+  const seen = new Set();
+
+  for (let i = 0; i < s.length; i++) {
+    seen.add(s[i]);
+    if (seen.size === ((i + 1) % 3)) count++;
+  }
+
+  return count;
+}
+console.log({ residuePrefixes: residuePrefixes("abc") });
