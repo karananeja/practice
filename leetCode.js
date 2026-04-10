@@ -20441,3 +20441,35 @@ function residuePrefixes(s) {
   return count;
 }
 console.log({ residuePrefixes: residuePrefixes("abc") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function majorityFrequencyGroup(s) {
+  const charFrequency = new Map();
+
+  for (const ch of s) {
+    charFrequency.set(ch, (charFrequency.get(ch) ?? 0) + 1);
+  }
+
+  const frequencyGroups = new Map();
+  let largestGroupSize = 0, selectedFrequency = 0;
+
+  for (const [char, frequency] of charFrequency) {
+    const group = frequencyGroups.get(frequency) ?? [];
+    group.push(char);
+    frequencyGroups.set(frequency, group);
+
+    if (
+      group.length > largestGroupSize ||
+      (group.length === largestGroupSize && frequency > selectedFrequency)
+    ) {
+      largestGroupSize = group.length;
+      selectedFrequency = frequency;
+    }
+  }
+
+  return frequencyGroups.get(selectedFrequency).join("");
+}
+console.log({ majorityFrequencyGroup: majorityFrequencyGroup("aaabbbccdddde") });
