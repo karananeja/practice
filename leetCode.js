@@ -20473,3 +20473,23 @@ function majorityFrequencyGroup(s) {
   return frequencyGroups.get(selectedFrequency).join("");
 }
 console.log({ majorityFrequencyGroup: majorityFrequencyGroup("aaabbbccdddde") });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function isSubstringPresent(s) {
+  const seenPairs = new Set();
+
+  for (let i = 0; i < s.length - 1; i++) {
+    const pair = `${s[i]}${s[i + 1]}`;
+    const reversedPair = `${s[i + 1]}${s[i]}`;
+
+    if (pair === reversedPair || seenPairs.has(reversedPair)) return true;
+
+    seenPairs.add(pair);
+  }
+
+  return false;
+}
+console.log({ isSubstringPresent: isSubstringPresent("leetcode") });
