@@ -20493,3 +20493,26 @@ function isSubstringPresent(s) {
   return false;
 }
 console.log({ isSubstringPresent: isSubstringPresent("leetcode") });
+
+/**
+ * @param {string} word 
+ * @returns {number}
+ */
+function numberOfSpecialChars(word) {
+  const seen = new Set();
+  const counted = new Set();
+
+  for (const char of word) {
+    const lower = char.toLowerCase();
+    const upper = char.toUpperCase();
+
+    if ((char === lower && seen.has(upper)) || (char === upper && seen.has(lower))) {
+      counted.add(lower);
+    }
+
+    seen.add(char);
+  }
+
+  return counted.size;
+}
+console.log({ numberOfSpecialChars: numberOfSpecialChars("aaAbcBC") });
