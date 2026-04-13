@@ -20516,3 +20516,36 @@ function numberOfSpecialChars(word) {
   return counted.size;
 }
 console.log({ numberOfSpecialChars: numberOfSpecialChars("aaAbcBC") });
+
+/**
+ * @param {string} word 
+ * @returns {boolean}
+ */
+function equalFrequency(word) {
+  const letterCounts = new Uint8Array(26).fill(0);
+
+  for (const char of word) {
+    const index = char.charCodeAt(0) - 97;
+    letterCounts[index]++;
+  }
+
+  for (let i = 0; i < letterCounts.length; i++) {
+    if (letterCounts[i] === 0) continue;
+    letterCounts[i]--;
+
+    let minFreq = 101, maxFreq = 0;
+
+    for (const freq of letterCounts) {
+      if (freq === 0) continue;
+      minFreq = Math.min(minFreq, freq);
+      maxFreq = Math.max(maxFreq, freq);
+    }
+
+    if (minFreq === maxFreq) return true;
+
+    letterCounts[i]++;
+  }
+
+  return false;
+}
+console.log({ equalFrequency: equalFrequency("abcc") });
