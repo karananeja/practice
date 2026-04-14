@@ -20549,3 +20549,12 @@ function equalFrequency(word) {
   return false;
 }
 console.log({ equalFrequency: equalFrequency("abcc") });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function maxDistinct(s) {
+  return new Set(s).size;
+}
+console.log({ maxDistinct: maxDistinct("abab") });
