@@ -20558,3 +20558,29 @@ function maxDistinct(s) {
   return new Set(s).size;
 }
 console.log({ maxDistinct: maxDistinct("abab") });
+
+/**
+ * @param {string[]} words 
+ * @param {number[]} weights 
+ * @returns {string}
+ */
+function mapWordWeights(words, weights) {
+  const encodedChars = [];
+
+  for (const word of words) {
+    let totalWeight = 0;
+
+    for (const letter of word) {
+      const letterIndex = letter.charCodeAt(0) - "a".charCodeAt(0);
+      totalWeight += weights[letterIndex];
+    }
+
+    const normalizedWeight = totalWeight % 26;
+    const encodedChar = String.fromCharCode("z".charCodeAt(0) - normalizedWeight);
+
+    encodedChars.push(encodedChar);
+  }
+
+  return encodedChars.join("");
+}
+console.log({ mapWordWeights: mapWordWeights(["abcd"], [7, 5, 3, 4, 3, 5, 4, 9, 4, 2, 2, 7, 10, 2, 5, 10, 6, 1, 2, 2, 4, 1, 3, 4, 4, 5]) });
