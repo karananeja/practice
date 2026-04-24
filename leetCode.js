@@ -20584,3 +20584,26 @@ function mapWordWeights(words, weights) {
   return encodedChars.join("");
 }
 console.log({ mapWordWeights: mapWordWeights(["abcd"], [7, 5, 3, 4, 3, 5, 4, 9, 4, 2, 2, 7, 10, 2, 5, 10, 6, 1, 2, 2, 4, 1, 3, 4, 4, 5]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function projectionArea(grid) {
+  let totalArea = 0;
+
+  for (let i = 0; i < grid.length; i++) {
+    let rowMax = 0, colMax = 0;
+
+    for (let j = 0; j < grid.length; j++) {
+      if (grid[i][j] > 0) totalArea++;
+      rowMax = Math.max(rowMax, grid[i][j]);
+      colMax = Math.max(colMax, grid[j][i]);
+    }
+
+    totalArea += rowMax + colMax;
+  }
+
+  return totalArea;
+}
+console.log({ projectionArea: projectionArea([[2]]) });
