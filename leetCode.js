@@ -20633,3 +20633,40 @@ function countSubmatrices(grid, k) {
   return res;
 }
 console.log({ countSubmatrices: countSubmatrices([[7, 6, 3], [6, 6, 1]], 18) });
+
+/**
+ * @param {string[][]} grid 
+ * @returns {number}
+ */
+function numberOfSubmatrices(grid) {
+  const m = grid.length, n = grid[0].length;
+  const prefixX = Array.from({ length: m }, () => Array(n).fill(0));
+  const prefixY = Array.from({ length: m }, () => Array(n).fill(0));
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      prefixX[i][j] =
+        (i > 0 ? prefixX[i - 1][j] : 0) +
+        (j > 0 ? prefixX[i][j - 1] : 0) -
+        (i > 0 && j > 0 ? prefixX[i - 1][j - 1] : 0) +
+        (grid[i][j] === "X" ? 1 : 0);
+
+      prefixY[i][j] =
+        (i > 0 ? prefixY[i - 1][j] : 0) +
+        (j > 0 ? prefixY[i][j - 1] : 0) -
+        (i > 0 && j > 0 ? prefixY[i - 1][j - 1] : 0) +
+        (grid[i][j] === "Y" ? 1 : 0);
+    }
+  }
+
+  let count = 0;
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (prefixX[i][j] === prefixY[i][j] && prefixX[i][j] > 0) count++;
+    }
+  }
+
+  return count;
+}
+console.log({ numberOfSubmatrices: numberOfSubmatrices([["X", "Y", "."], ["Y", ".", "."]]) });
