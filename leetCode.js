@@ -20670,3 +20670,22 @@ function numberOfSubmatrices(grid) {
   return count;
 }
 console.log({ numberOfSubmatrices: numberOfSubmatrices([["X", "Y", "."], ["Y", ".", "."]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function firstUniqueEven(nums) {
+  const numCount = new Array(101).fill(0);
+
+  for (const num of nums) {
+    if (num % 2 === 0) numCount[num]++;
+  }
+
+  for (const num of nums) {
+    if (numCount[num] === 1) return num;
+  }
+
+  return -1;
+}
+console.log({ firstUniqueEven: firstUniqueEven([3, 4, 2, 5, 4, 6]) });
