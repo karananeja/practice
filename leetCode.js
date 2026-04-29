@@ -20689,3 +20689,50 @@ function firstUniqueEven(nums) {
   return -1;
 }
 console.log({ firstUniqueEven: firstUniqueEven([3, 4, 2, 5, 4, 6]) });
+
+/**
+ * @param {number[][]} mat 
+ */
+function rotateMatrix(mat) {
+  const n = mat.length;
+
+  for (let i = 0; i < Math.floor(n / 2); i++) {
+    for (let j = i; j < n - 1 - i; j++) {
+      const temp = mat[i][j];
+      mat[i][j] = mat[n - 1 - j][i];
+      mat[n - 1 - j][i] = mat[n - 1 - i][n - 1 - j];
+      mat[n - 1 - i][n - 1 - j] = mat[j][n - 1 - i];
+      mat[j][n - 1 - i] = temp;
+    }
+  }
+}
+
+/**
+ * @param {number[][]} mat 
+ * @param {number[][]} target 
+ * @returns {boolean} 
+ */
+function matricesAreEqual(mat, target) {
+  for (let row = 0; row < mat.length; row++) {
+    for (let col = 0; col < mat[row].length; col++) {
+      if (mat[row][col] !== target[row][col]) return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * @param {number[][]} mat 
+ * @param {number[][]} target 
+ * @returns {boolean} 
+ */
+function findRotation(mat, target) {
+  for (let i = 0; i < 4; i++) {
+    if (matricesAreEqual(mat, target)) return true;
+    rotateMatrix(mat);
+  }
+
+  return false;
+}
+console.log({ findRotation: findRotation([[0, 1], [1, 0]], [[1, 0], [0, 1]]) });
