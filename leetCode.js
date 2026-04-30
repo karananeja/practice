@@ -20736,3 +20736,23 @@ function findRotation(mat, target) {
   return false;
 }
 console.log({ findRotation: findRotation([[0, 1], [1, 0]], [[1, 0], [0, 1]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maximizeExpressionOfThree(nums) {
+  let minNum = 100, firstNum = -100, secondNum = -100;
+
+  for (const num of nums) {
+    minNum = Math.min(num, minNum);
+
+    if (num > firstNum) {
+      secondNum = firstNum;
+      firstNum = num;
+    } else if (num > secondNum) secondNum = num;
+  }
+
+  return firstNum + secondNum - minNum;
+}
+console.log({ maximizeExpressionOfThree: maximizeExpressionOfThree([1, 4, 2, 5]) });
