@@ -20787,3 +20787,45 @@ function constructProductMatrix(grid) {
   return p;
 }
 console.log({ constructProductMatrix: constructProductMatrix([[1, 2], [3, 4]]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {boolean}
+ */
+function canPartitionGrid(grid) {
+  const m = grid.length;
+  const n = grid[0].length;
+  let total = 0;
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      total += grid[i][j];
+    }
+  }
+
+  if (total % 2 !== 0) return false;
+
+  const target = total / 2;
+  let curr = 0;
+
+  for (let i = 0; i < m - 1; i++) {
+    for (let j = 0; j < n; j++) {
+      curr += grid[i][j];
+    }
+
+    if (curr === target) return true;
+  }
+
+  curr = 0;
+
+  for (let j = 0; j < n - 1; j++) {
+    for (let i = 0; i < m; i++) {
+      curr += grid[i][j];
+    }
+
+    if (curr === target) return true;
+  }
+
+  return false;
+}
+console.log({ canPartitionGrid: canPartitionGrid([[1, 4], [2, 3]]) });
