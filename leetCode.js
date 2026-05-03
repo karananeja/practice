@@ -20829,3 +20829,12 @@ function canPartitionGrid(grid) {
   return false;
 }
 console.log({ canPartitionGrid: canPartitionGrid([[1, 4], [2, 3]]) });
+
+/**
+ * @param {number[]} nums1 
+ * @returns {boolean}
+ */
+function uniformArray(nums1) {
+  return true;
+}
+console.log({ uniformArray: uniformArray([2, 3]) });
