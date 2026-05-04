@@ -20838,3 +20838,25 @@ function uniformArray(nums1) {
   return true;
 }
 console.log({ uniformArray: uniformArray([2, 3]) });
+
+/**
+ * @param {number[][]} mat 
+ * @param {number} k 
+ * @returns {boolean}
+ */
+function areSimilar(mat, k) {
+  const m = mat.length;
+  const n = mat[0].length;
+  k %= n;
+
+  for (let row = 0; row < m; row++) {
+    for (let col = 0; col < n; col++) {
+      if (mat[row][col] !== mat[row][(col + k) % n]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+console.log({ areSimilar: areSimilar([[2, 2], [2, 2]], 3) });
