@@ -20860,3 +20860,26 @@ function areSimilar(mat, k) {
   return true;
 }
 console.log({ areSimilar: areSimilar([[2, 2], [2, 2]], 3) });
+
+/**
+ * @param {number[]} capacity 
+ * @param {number} itemSize 
+ * @returns {number}
+ */
+function minimumIndex(capacity, itemSize) {
+  let bestIndex = -1, smallestValidCapacity = 101;
+
+  for (let idx = 0; idx < capacity.length; idx++) {
+    const boxCapacity = capacity[idx];
+
+    if (boxCapacity >= itemSize) {
+      if (smallestValidCapacity > boxCapacity) {
+        smallestValidCapacity = boxCapacity;
+        bestIndex = idx;
+      }
+    }
+  }
+
+  return bestIndex;
+}
+console.log({ minimumIndex: minimumIndex([4], 5) });
