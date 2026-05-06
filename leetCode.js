@@ -20883,3 +20883,25 @@ function minimumIndex(capacity, itemSize) {
   return bestIndex;
 }
 console.log({ minimumIndex: minimumIndex([4], 5) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number}
+ */
+function minimumOperations(grid) {
+  let count = 0;
+
+  for (let col = 0; col < grid[0].length; col++) {
+    let prev = grid[0][col];
+
+    for (let row = 1; row < grid.length; row++) {
+      const curr = grid[row][col];
+
+      if (prev >= curr) count += prev - curr + 1;
+      prev = Math.max(prev + 1, curr);
+    }
+  }
+
+  return count;
+}
+console.log({ minimumOperations: minimumOperations([[3, 2], [1, 3], [3, 4], [0, 1]]) });
