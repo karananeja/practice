@@ -20905,3 +20905,21 @@ function minimumOperations(grid) {
   return count;
 }
 console.log({ minimumOperations: minimumOperations([[3, 2], [1, 3], [3, 4], [0, 1]]) });
+
+/**
+ * @param {string} s1 
+ * @param {string} s2 
+ * @returns {boolean}
+ */
+function canBeEqual(s1, s2) {
+  const freq = Array.from({ length: 2 }, () => Array<number>(26).fill(0));
+
+  for (let i = 0; i < s1.length; i++) {
+    const row = i % 2;
+    freq[row][s1[i].charCodeAt(0) - 97]++;
+    freq[row][s2[i].charCodeAt(0) - 97]--;
+  }
+
+  return freq.every((group) => group.every((count) => count === 0));
+}
+console.log({ canBeEqual: canBeEqual("abcd", "cdab") });
