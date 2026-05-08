@@ -20923,3 +20923,20 @@ function canBeEqual(s1, s2) {
   return freq.every((group) => group.every((count) => count === 0));
 }
 console.log({ canBeEqual: canBeEqual("abcd", "cdab") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function isPossibleToSplit(nums) {
+  const frequency = new Map();
+
+  for (const value of nums) {
+    const count = (frequency.get(value) ?? 0) + 1;
+    if (count > 2) return false;
+    frequency.set(value, count);
+  }
+
+  return true;
+}
+console.log({ isPossibleToSplit: isPossibleToSplit([1, 1, 2, 2, 3, 4]) });
