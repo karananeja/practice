@@ -20912,7 +20912,7 @@ console.log({ minimumOperations: minimumOperations([[3, 2], [1, 3], [3, 4], [0, 
  * @returns {boolean}
  */
 function canBeEqual(s1, s2) {
-  const freq = Array.from({ length: 2 }, () => Array<number>(26).fill(0));
+  const freq = Array.from({ length: 2 }, () => Array(26).fill(0));
 
   for (let i = 0; i < s1.length; i++) {
     const row = i % 2;
