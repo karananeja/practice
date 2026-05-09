@@ -20940,3 +20940,26 @@ function isPossibleToSplit(nums) {
   return true;
 }
 console.log({ isPossibleToSplit: isPossibleToSplit([1, 1, 2, 2, 3, 4]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function minDistinctFreqPair(nums) {
+  if (nums.length < 3) return [-1, -1];
+
+  const frequency = new Array(101).fill(0);
+  let minNum = 101;
+
+  for (const num of nums) {
+    minNum = Math.min(minNum, num);
+    frequency[num]++;
+  }
+
+  for (let i = 1; i < 101; i++) {
+    if (frequency[i] !== 0 && (frequency[minNum] !== frequency[i])) return [minNum, i];
+  }
+
+  return [-1, -1];
+}
+console.log({ minDistinctFreqPair: minDistinctFreqPair([7]) });
