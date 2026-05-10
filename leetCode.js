@@ -20963,3 +20963,26 @@ function minDistinctFreqPair(nums) {
   return [-1, -1];
 }
 console.log({ minDistinctFreqPair: minDistinctFreqPair([7]) });
+
+/**
+ * @param {number[][]} nums 
+ * @returns {number[]}
+ */
+function intersection(nums) {
+  const numCount = new Array(1001).fill(0);
+
+  for (const group of nums) {
+    for (const num of group) {
+      numCount[num]++;
+    }
+  }
+
+  const result = [];
+
+  for (let idx = 0; idx < numCount.length; idx++) {
+    if (nums.length === numCount[idx]) result.push(idx);
+  }
+
+  return result;
+}
+console.log({ intersection: intersection([[1, 2, 3], [4, 5, 6]]) });
