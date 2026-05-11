@@ -20986,3 +20986,40 @@ function intersection(nums) {
   return result;
 }
 console.log({ intersection: intersection([[1, 2, 3], [4, 5, 6]]) });
+
+/**
+ * @param {string} char 
+ * @returns {boolean}
+ */
+function isLowerCaseChar(char) {
+  return char >= "a" && char <= "z";
+}
+
+/**
+ * @param {string[]} chars 
+ * @param {(c: string) => boolean} condition 
+ */
+function reverseGroup(chars, condition) {
+  let left = 0, right = chars.length - 1;
+
+  while (left < right) {
+    if (condition(chars[left]) && condition(chars[right]))
+      [chars[left++], chars[right--]] = [chars[right], chars[left]];
+    else if (!condition(chars[left])) left++;
+    else right--;
+  }
+}
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function reverseByType(s) {
+  const chars = s.split("");
+
+  reverseGroup(chars, isLowerCaseChar);
+  reverseGroup(chars, (c) => !isLowerCaseChar(c));
+
+  return chars.join("");
+}
+console.log({ reverseByType: reverseByType("z") });
