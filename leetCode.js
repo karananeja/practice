@@ -21023,3 +21023,26 @@ function reverseByType(s) {
   return chars.join("");
 }
 console.log({ reverseByType: reverseByType("z") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function largestEven(s) {
+  let lastIndex = -1;
+
+  for (let idx = 0; idx < s.length; idx++) {
+    if (s[idx] === "2") lastIndex = idx;
+  }
+
+  if (lastIndex === -1) return "";
+
+  const result = [];
+
+  for (let idx = 0; idx <= lastIndex; idx++) {
+    result.push(s[idx]);
+  }
+
+  return result.join("");
+}
+console.log({ largestEven: largestEven("1") });
