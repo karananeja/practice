@@ -21046,3 +21046,22 @@ function largestEven(s) {
   return result.join("");
 }
 console.log({ largestEven: largestEven("1") });
+
+/**
+ * @param {string} s 
+ * @returns {string}
+ */
+function trimTrailingVowels(s) {
+  let lastIndex = -1;
+  const vowels = new Set("aeiou");
+
+  for (let idx = s.length - 1; idx >= 0; idx--) {
+    if (vowels.has(s[idx])) lastIndex = idx;
+    else break;
+  }
+
+  if (lastIndex === -1) return s;
+
+  return s.slice(0, lastIndex);
+}
+console.log({ trimTrailingVowels: trimTrailingVowels("idea") });
