@@ -21074,3 +21074,32 @@ function trimTrailingVowels(s) {
   return s.slice(0, lastIndex);
 }
 console.log({ trimTrailingVowels: trimTrailingVowels("idea") });
+
+/**
+ * @param {string} time 
+ * @returns {number}
+ */
+function getTime(time) {
+  const [h, m] = time.split(":").map(Number);
+  return h * 60 + m;
+}
+
+/**
+ * @param {string} current 
+ * @param {string} correct 
+ * @returns {number}
+ */
+function convertTime(current, correct) {
+  let diff = getTime(correct) - getTime(current);
+  let count = 0;
+  const steps = [60, 15, 5, 1];
+
+  for (const step of steps) {
+    const used = Math.floor(diff / step);
+    count += used;
+    diff -= used * step;
+  }
+
+  return count;
+}
+console.log({ convertTime: convertTime("11:00", "11:01") });
