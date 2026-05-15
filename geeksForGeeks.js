@@ -1224,3 +1224,30 @@ class MinCost {
     return cost;
   }
 }
+
+/**
+ * @problem_thirtyFour Given a list of contacts contact[] of length n where each contact is a string which exist in a phone directory and a query string s. The task is to implement a search query for the phone directory. Run a search query for each prefix p of the query string s (i.e. from  index 1 to |s|) that prints all the distinct contacts which have the same prefix as p in lexicographical increasing order. Please refer the explanation part for better understanding.
+Note: If there is no match between query and contacts, print "0".
+ */
+/**
+ * @solution_thirtyFour
+ */
+class DisplayContacts {
+  // Function to display contacts starting with given prefix.
+  displayContacts(n, contact, s) {
+    // your code here
+    // Creation of trie
+    const trie = new Trie();
+
+    // Insert all contacts in trie
+    const uniqueContacts = [...new Set(contact)];
+
+    for (const contact of uniqueContacts) {
+      trie.insert(contact);
+    }
+
+    // Return result
+    return trie.getSuggestions(s);
+
+  }
+}
