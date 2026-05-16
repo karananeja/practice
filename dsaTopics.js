@@ -235,3 +235,131 @@ export class MaxHeap {
     }
   }
 }
+
+class TrieNode {
+  constructor(ch) {
+    this.children = Array(26).fill(null);
+    this.data = ch;
+    this.isTerminal = false;
+  }
+}
+
+class Trie {
+  constructor() {
+    this.root = new TrieNode('\0');
+  }
+
+  // Supports ONLY a-z
+  getIndex(ch) {
+    const index = ch.charCodeAt(0) - 97;
+
+    if (index < 0 || index >= 26) {
+      throw new Error("Only a-z supported");
+    }
+
+    return index;
+  }
+
+  insertUtil(node, word) {
+    if (word.length === 0) {
+      node.isTerminal = true;
+      return;
+    }
+
+    const index = this.getIndex(word[0]);
+    let child = node.children[index];
+
+    if (child === null) {
+      child = new TrieNode(word[0]);
+      node.children[index] = child;
+    }
+
+    this.insertUtil(child, word.slice(1));
+  }
+
+  insert(word) {
+    this.insertUtil(this.root, word);
+  }
+
+  searchUtil(node, word) {
+    if (word.length === 0) return node.isTerminal;
+
+    const index = this.getIndex(word[0]);
+    const child = node.children[index];
+
+    if (child === null) return false;
+
+    return this.searchUtil(child, word.slice(1));
+  }
+
+  search(word) {
+    return this.searchUtil(this.root, word);
+  }
+
+  prefixUtil(node, prefix) {
+    if (prefix.length === 0) return true;
+
+    const index = this.getIndex(prefix[0]);
+    const child = node.children[index];
+
+    if (child === null) return false;
+
+    return this.prefixUtil(child, prefix.slice(1));
+  }
+
+  startsWith(prefix) {
+    return this.prefixUtil(this.root, prefix);
+  }
+
+  printSuggestions(curr, temp, prefix) {
+    if (curr.isTerminal) {
+      temp.push(prefix);
+    }
+
+    for (let i = 0; i < curr.children.length; i++) {
+      const child = curr.children[i];
+
+      if (child !== null) {
+        const ch = String.fromCharCode(i + 97);
+
+        this.printSuggestions(child, temp, prefix + ch);
+      }
+    }
+  }
+
+  getSuggestions(queryStr) {
+    let prev = this.root;
+
+    const output = [];
+    let prefix = '';
+
+    for (let i = 0; i < queryStr.length; i++) {
+      const lastChar = queryStr[i];
+
+      prefix += lastChar;
+
+      const curr =
+        prev.children[lastChar.charCodeAt(0) - 'a'.charCodeAt(0)];
+
+      // No match found
+      if (curr === null) {
+        while (i < queryStr.length) {
+          output.push(["0"]);
+          i++;
+        }
+
+        break;
+      }
+
+      const temp = [];
+
+      this.printSuggestions(curr, temp, prefix);
+
+      output.push(temp);
+
+      prev = curr;
+    }
+
+    return output;
+  }
+}
