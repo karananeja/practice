@@ -1251,3 +1251,62 @@ class DisplayContacts {
 
   }
 }
+
+/**
+ * @problem_thirtyFive Consider a rat placed at position (0, 0) in an n x n square matrix maze[][]. The rat's goal is to reach the destination at position (n-1, n-1). The rat can move in four possible directions: 'U'(up), 'D'(down), 'L' (left), 'R' (right).
+
+The matrix contains only two possible values:
+
+0: A blocked cell through which the rat cannot travel.
+1: A free cell that the rat can pass through.
+Your task is to find all possible paths the rat can take to reach the destination, starting from (0, 0) and ending at (n-1, n-1), under the condition that the rat cannot revisit any cell along the same path. Furthermore, the rat can only move to adjacent cells that are within the bounds of the matrix and not blocked.
+If no path exists, return an empty list.
+
+Note: Return the final result vector in lexicographically smallest order.
+ */
+/**
+ * @solution_thirtyFive
+ */
+class RatInMaze {
+  ratInMaze(maze) {
+    const size = maze.length;
+    const visited = Array.from({ length: size }, () => Array(size).fill(false));
+
+    const paths = [];
+
+    if (maze[0][0] == 0) {
+      return paths;
+    }
+
+    const directions = [[1, 0, 'D'], [0, -1, 'L'], [0, 1, 'R'], [-1, 0, 'U']];
+
+    function isValidCell(row, col) {
+      const isInsideGrid = row >= 0 && row < size && col >= 0 && col < size;
+      return isInsideGrid && maze[row][col] == 1 && !visited[row][col];
+    }
+
+    function findPaths(row, col, currentPath) {
+      if (row == size - 1 && col == size - 1) {
+        paths.push(currentPath);
+        return;
+      }
+
+      visited[row][col] = true;
+
+      for (const [rowMove, colMove, direction] of directions) {
+        const nextRow = row + rowMove;
+        const nextCol = col + colMove;
+
+        if (isValidCell(nextRow, nextCol)) {
+          findPaths(nextRow, nextCol, currentPath + direction);
+        }
+      }
+
+      visited[row][col] = false;
+    }
+
+    findPaths(0, 0, '');
+
+    return paths;
+  }
+}
