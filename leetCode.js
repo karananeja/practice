@@ -21104,3 +21104,33 @@ function convertTime(current, correct) {
   return count;
 }
 console.log({ convertTime: convertTime("11:00", "11:01") });
+
+/**
+ * @param {string} date 
+ * @returns {number}
+ */
+function getDays(date) {
+  const daysBeforeMonth = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+  const [month, day] = date.split("-").map(Number);
+  return daysBeforeMonth[month - 1] + day;
+}
+
+/**
+ * @param {string} arriveAlice 
+ * @param {string} leaveAlice 
+ * @param {string} arriveBob 
+ * @param {string} leaveBob 
+ * @returns {number}
+ */
+function countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) {
+  const aliceStart = getDays(arriveAlice);
+  const aliceEnd = getDays(leaveAlice);
+  const bobStart = getDays(arriveBob);
+  const bobEnd = getDays(leaveBob);
+
+  const overlapStart = Math.max(aliceStart, bobStart);
+  const overlapEnd = Math.min(aliceEnd, bobEnd);
+
+  return overlapStart <= overlapEnd ? overlapEnd - overlapStart + 1 : 0;
+}
+console.log({ countDaysTogether: countDaysTogether("10-01", "10-31", "11-01", "12-31") });
