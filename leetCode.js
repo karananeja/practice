@@ -21134,3 +21134,43 @@ function countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) {
   return overlapStart <= overlapEnd ? overlapEnd - overlapStart + 1 : 0;
 }
 console.log({ countDaysTogether: countDaysTogether("10-01", "10-31", "11-01", "12-31") });
+
+/**
+ * @param {string} number 
+ * @returns {string}
+ */
+function reformatNumber(number) {
+  const digits = [];
+
+  for (const char of number) {
+    if (char >= "0" && char <= "9") digits.push(char);
+  }
+
+  if (digits.length <= 3) return digits.join("");
+
+  const result = [];
+  let i = 0;
+
+  while (i < digits.length) {
+    const remaining = digits.length - i;
+
+    if (remaining > 4) {
+      result.push(digits[i], digits[i + 1], digits[i + 2], "-");
+      i += 3;
+    } else if (remaining === 4) {
+      result.push(digits[i], digits[i + 1], "-", digits[i + 2], digits[i + 3]);
+      i += 4;
+    } else {
+      if (remaining === 2) {
+        result.push(digits[i], digits[i + 1]);
+        i += 2;
+      } else {
+        result.push(digits[i], digits[i + 1], digits[i + 2]);
+        i += 3;
+      }
+    }
+  }
+
+  return result.join("");
+}
+console.log({ reformatNumber: reformatNumber("1-2") });
