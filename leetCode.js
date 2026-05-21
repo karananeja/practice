@@ -21174,3 +21174,39 @@ function reformatNumber(number) {
   return result.join("");
 }
 console.log({ reformatNumber: reformatNumber("1-2") });
+
+class ATM {
+  constructor() {
+    this.notesAvailable = [20, 50, 100, 200, 500];
+    this.notesCount = [0, 0, 0, 0, 0];
+  }
+
+  deposit(banknotesCount) {
+    for (let i = 0; i < banknotesCount.length; i++) {
+      this.notesCount[i] += banknotesCount[i];
+    }
+  }
+
+  withdraw(amount) {
+    const result = [0, 0, 0, 0, 0];
+
+    for (let i = this.notesAvailable.length - 1; i >= 0; i--) {
+      const denom = this.notesAvailable[i];
+      const take = Math.min(Math.floor(amount / denom), this.notesCount[i]);
+      result[i] = take;
+      amount -= take * denom;
+    }
+
+    if (amount !== 0) return [-1];
+
+    this.removeNotes(result);
+
+    return result;
+  }
+
+  removeNotes(notesUsed) {
+    for (let i = 0; i < this.notesCount.length; i++) {
+      this.notesCount[i] -= notesUsed[i];
+    }
+  }
+}
