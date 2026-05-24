@@ -21210,3 +21210,33 @@ class ATM {
     }
   }
 }
+
+/**
+ * @param {number} n
+ * @returns {string[]}
+ */
+function validStrings(n) {
+  const result = [];
+
+  /**
+   * @param {string} current
+   * @returns {void}
+   */
+  function buildString(current) {
+    if (current.length === n) {
+      result.push(current);
+      return;
+    }
+
+    const lastChar = current[current.length - 1];
+
+    if (lastChar !== "0") buildString(current + "0");
+
+    buildString(current + "1");
+  }
+
+  buildString("");
+
+  return result;
+}
+console.log({ validStrings: validStrings(15) });
