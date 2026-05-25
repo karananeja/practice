@@ -21240,3 +21240,57 @@ function validStrings(n) {
   return result;
 }
 console.log({ validStrings: validStrings(15) });
+
+/**
+ * @param {string} str 
+ * @returns {number[][]}
+ */
+function generateNodes(str) {
+  const nodes = [];
+  let depth = 0, i = 0, currNum = 0;
+
+  while (i < str.length) {
+    depth = 0;
+
+    while (i < str.length && str[i] === "-") {
+      depth++;
+      i++;
+    }
+
+    currNum = 0;
+
+    while (i < str.length && str[i] >= "0" && str[i] <= "9") {
+      currNum = currNum * 10 + +str[i];
+      i++;
+    }
+
+    nodes.push([depth, currNum]);
+  }
+
+  return nodes;
+}
+
+/**
+ * @param {number[][]} nodes 
+ * @param {number} depth 
+ * @param {{ i: number;}} indexRef 
+ * @returns {TreeNode | null}
+ */
+function generateTree(nodes, depth, indexRef) {
+  if (indexRef.i >= nodes.length || nodes[indexRef.i][0] !== depth) return null;
+
+  const node = new TreeNode(nodes[indexRef.i][1]);
+  indexRef.i++;
+  node.left = generateTree(nodes, depth + 1, indexRef);
+  node.right = generateTree(nodes, depth + 1, indexRef);
+
+  return node;
+}
+
+/**
+ * @param {string} traversal 
+ * @returns {TreeNode | null} 
+ */
+function recoverFromPreorder(traversal) {
+  return generateTree(generateNodes(traversal), 0, { i: 0 });
+}
