@@ -21294,3 +21294,82 @@ function generateTree(nodes, depth, indexRef) {
 function recoverFromPreorder(traversal) {
   return generateTree(generateNodes(traversal), 0, { i: 0 });
 }
+
+/**
+ * @param {string} word
+ * @param {Map<string, number>} availableLetters
+ * @returns {boolean}
+ */
+function canFormWord(word, availableLetters) {
+  const letterCount = new Map(availableLetters);
+
+  for (const char of word) {
+    if (!letterCount.has(char) || letterCount.get(char) <= 0) return false;
+    letterCount.set(char, letterCount.get(char) - 1);
+  }
+
+  return true;
+}
+
+/**
+ * @param {string[]} words
+ * @param {string[]} letters
+ * @param {number[]} score
+ * @returns {number}
+ */
+function maxScoreWords(words, letters, score) {
+  const letterCount = new Map();
+
+  for (const letter of letters) {
+    letterCount.set(letter, (letterCount.get(letter) || 0) + 1);
+  }
+
+  let maxScore = 0;
+
+  /**
+   * @param {number} index
+   * @param {number} currentScore
+   * @param {Map<string, number>} availableLetters
+   * @returns {void}
+   */
+  function dfs(index, currentScore, availableLetters) {
+    if (index === words.length) {
+      maxScore = Math.max(maxScore, currentScore);
+      return;
+    }
+
+    const word = words[index];
+
+    dfs(index + 1, currentScore, availableLetters);
+
+    if (canFormWord(word, availableLetters)) {
+      const letterCount = new Map(availableLetters);
+
+      for (const char of word) {
+        letterCount.set(char, letterCount.get(char) - 1);
+      }
+
+      dfs(index + 1, currentScore + getWordScore(word, score), letterCount);
+    }
+  }
+
+  dfs(0, 0, letterCount);
+
+  return maxScore;
+}
+
+/**
+ * @param {string} word
+ * @param {number[]} score
+ * @returns {number}
+ */
+function getWordScore(word, score) {
+  let totalScore = 0;
+
+  for (const char of word) {
+    totalScore += score[char.charCodeAt(0) - "a".charCodeAt(0)];
+  }
+
+  return totalScore;
+}
+console.log({ maxScoreWords: maxScoreWords(["leetcode"], ["l", "e", "t", "c", "o", "d"], [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]) });
