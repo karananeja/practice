@@ -21373,3 +21373,32 @@ function getWordScore(word, score) {
   return totalScore;
 }
 console.log({ maxScoreWords: maxScoreWords(["leetcode"], ["l", "e", "t", "c", "o", "d"], [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]) });
+
+/**
+ * @param {number[]} heights
+ * @returns {number[]}
+ */
+function canSeePersonsCount(heights) {
+  const size = heights.length;
+  const result = new Array(size).fill(0);
+  const blockers = [heights[size - 1]];
+
+  for (let i = size - 2; i >= 0; i--) {
+    const height = heights[i];
+    let count = 0;
+
+    while (blockers.length && height > blockers[blockers.length - 1]) {
+      blockers.pop();
+      count++;
+    }
+
+    if (blockers.length !== 0) count++;
+
+    result[i] = count;
+
+    blockers.push(height);
+  }
+
+  return result;
+}
+console.log({ canSeePersonsCount: canSeePersonsCount([5, 1, 2, 3, 10]) });
