@@ -21402,3 +21402,50 @@ function canSeePersonsCount(heights) {
   return result;
 }
 console.log({ canSeePersonsCount: canSeePersonsCount([5, 1, 2, 3, 10]) });
+
+class Robot {
+  constructor(width, height) {
+    this.moved = false;
+    this.idx = 0;
+    this.pos = [];
+    this.dir = [];
+    this.toDir = new Map();
+    this.toDir.set(0, "East");
+    this.toDir.set(1, "North");
+    this.toDir.set(2, "West");
+    this.toDir.set(3, "South");
+
+    for (let i = 0; i < width; ++i) {
+      this.pos.push([i, 0]);
+      this.dir.push(0);
+    }
+    for (let i = 1; i < height; ++i) {
+      this.pos.push([width - 1, i]);
+      this.dir.push(1);
+    }
+    for (let i = width - 2; i >= 0; --i) {
+      this.pos.push([i, height - 1]);
+      this.dir.push(2);
+    }
+    for (let i = height - 2; i > 0; --i) {
+      this.pos.push([0, i]);
+      this.dir.push(3);
+    }
+
+    this.dir[0] = 3;
+  }
+
+  step(num) {
+    this.moved = true;
+    this.idx = (this.idx + num) % this.pos.length;
+  }
+
+  getPos() {
+    return this.pos[this.idx];
+  }
+
+  getDir() {
+    if (!this.moved) return "East";
+    return this.toDir.get(this.dir[this.idx]);
+  }
+}
