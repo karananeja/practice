@@ -21449,3 +21449,29 @@ class Robot {
     return this.toDir.get(this.dir[this.idx]);
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number[][]} queries 
+ * @returns {number}
+ */
+function xorAfterQueries(nums, queries) {
+  const MOD = 1e9 + 7;
+
+  for (const query of queries) {
+    const [l, r, k, v] = query;
+
+    for (let i = l; i <= r; i += k) {
+      nums[i] = Number((BigInt(nums[i]) * BigInt(v)) % BigInt(MOD));
+    }
+  }
+
+  let res = 0;
+
+  for (const num of nums) {
+    res ^= num;
+  }
+
+  return res;
+}
+console.log({ xorAfterQueries: xorAfterQueries([1, 1, 1], [[0, 2, 1, 4]]) });
