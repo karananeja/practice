@@ -21475,3 +21475,20 @@ function xorAfterQueries(nums, queries) {
   return res;
 }
 console.log({ xorAfterQueries: xorAfterQueries([1, 1, 1], [[0, 2, 1, 4]]) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function firstMatchingIndex(s) {
+  let start = 0, end = s.length - 1;
+
+  while (start <= end) {
+    if (s[start] === s[end]) return start;
+    start++;
+    end--;
+  }
+
+  return -1;
+}
+console.log({ firstMatchingIndex: firstMatchingIndex("abc") });
