@@ -21492,3 +21492,40 @@ function firstMatchingIndex(s) {
   return -1;
 }
 console.log({ firstMatchingIndex: firstMatchingIndex("abc") });
+
+/**
+ * @param {number} rows 
+ * @param {number} cols 
+ * @param {number} rCenter 
+ * @param {number} cCenter 
+ * @returns {number[][]}
+ */
+function allCellsDistOrder(rows, cols, rCenter, cCenter) {
+  const result = [];
+  const visited = Array.from({ length: rows }, () =>
+    Array(cols).fill(false)
+  );
+  const queue = [];
+  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+
+  queue.push([rCenter, cCenter]);
+  visited[rCenter][cCenter] = true;
+
+  while (queue.length > 0) {
+    const [r, c] = queue.shift();
+    result.push([r, c]);
+
+    for (const [dr, dc] of directions) {
+      const nr = r + dr;
+      const nc = c + dc;
+
+      if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && !visited[nr][nc]) {
+        queue.push([nr, nc]);
+        visited[nr][nc] = true;
+      }
+    }
+  }
+
+  return result;
+}
+console.log({ allCellsDistOrder: allCellsDistOrder(1, 2, 0, 0) });
