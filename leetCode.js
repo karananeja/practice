@@ -21529,3 +21529,29 @@ function allCellsDistOrder(rows, cols, rCenter, cCenter) {
   return result;
 }
 console.log({ allCellsDistOrder: allCellsDistOrder(1, 2, 0, 0) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumDistance(nums) {
+  if (nums.length < 3) return -1;
+  const indexMap = Array.from({ length: 101 }, () => []);
+
+  for (let i = 0; i < nums.length; i++) {
+    indexMap[nums[i]].push(i);
+  }
+
+  let minDistance = Infinity;
+
+  for (const indices of indexMap) {
+    if (indices.length < 3) continue;
+
+    for (let i = 0; i < indices.length - 2; i++) {
+      minDistance = Math.min(minDistance, 2 * (indices[i + 2] - indices[i]));
+    }
+  }
+
+  return minDistance !== Infinity ? minDistance : -1;
+}
+console.log({ minimumDistance: minimumDistance([1, 1, 2]) });
