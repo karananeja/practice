@@ -21555,3 +21555,39 @@ function minimumDistance(nums) {
   return minDistance !== Infinity ? minDistance : -1;
 }
 console.log({ minimumDistance: minimumDistance([1, 1, 2]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number[]}
+ */
+function findColumnWidth(grid) {
+  const result = [];
+
+  for (let col = 0; col < grid[0].length; col++) {
+    let maxLength = 0;
+
+    for (let row = 0; row < grid.length; row++) {
+      let value = grid[row][col], digitCount = 0;
+
+      if (value < 0) {
+        digitCount++;
+        value = -value;
+      }
+
+      if (value === 0) digitCount++;
+      else {
+        while (value) {
+          digitCount++;
+          value = Math.floor(value / 10);
+        }
+      }
+
+      maxLength = Math.max(maxLength, digitCount);
+    }
+
+    result[col] = maxLength;
+  }
+
+  return result;
+}
+console.log({ findColumnWidth: findColumnWidth([[1], [22], [333]]) });
