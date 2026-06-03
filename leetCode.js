@@ -21591,3 +21591,27 @@ function findColumnWidth(grid) {
   return result;
 }
 console.log({ findColumnWidth: findColumnWidth([[1], [22], [333]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minimumDistance(nums) {
+  const map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    if (!map.has(nums[i])) map.set(nums[i], []);
+    map.get(nums[i]).push(i);
+  }
+
+  let minDistance = Infinity;
+
+  for (const indices of map.values()) {
+    for (let i = 0; i + 2 < indices.length; i++) {
+      minDistance = Math.min(minDistance, 2 * (indices[i + 2] - indices[i]));
+    }
+  }
+
+  return minDistance === Infinity ? -1 : minDistance;
+}
+console.log({ minimumDistance: minimumDistance([3, 2, 2, 7, 4, 5, 2, 7]) });
