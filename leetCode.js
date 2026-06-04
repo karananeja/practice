@@ -21615,3 +21615,40 @@ function minimumDistance(nums) {
   return minDistance === Infinity ? -1 : minDistance;
 }
 console.log({ minimumDistance: minimumDistance([3, 2, 2, 7, 4, 5, 2, 7]) });
+
+/**
+ * @param {number[][]} matrix 
+ * @param {number} k 
+ * @returns {number}
+ */
+function kthSmallest(matrix, k) {
+  const n = matrix.length;
+  let low = matrix[0][0], high = matrix[n - 1][n - 1];
+
+  /**
+   * @param {number} target 
+   * @returns {number}
+   */
+  function countLessEqual(target) {
+    let count = 0, row = n - 1, col = 0;
+
+    while (row >= 0 && col < n) {
+      if (matrix[row][col] <= target) {
+        count += row + 1;
+        col++;
+      } else row--;
+    }
+
+    return count;
+  }
+
+  while (low <= high) {
+    const mid = low + Math.floor((high - low) / 2);
+
+    if (countLessEqual(mid) < k) low = mid + 1;
+    else high = mid - 1;
+  }
+
+  return low;
+}
+console.log({ kthSmallest: kthSmallest([[-5]], 1) });
