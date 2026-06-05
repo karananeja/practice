@@ -1372,3 +1372,77 @@ class DFS {
     return result;
   }
 }
+
+/**
+ * @problem_thirtyEight Given an undirected graph with V vertices and E edges, represented as a 2D vector edges[][], where each entry edges[i] = [u, v] denotes an edge between vertices u and v, determine whether the graph contains a cycle or not.
+
+Note: The graph can have multiple component.
+ */
+/**
+ * @solution_thirtyEight
+ */
+class IsCycle {
+  isCycle(V, edges) {
+    // Code here
+    const adj = new Map();
+
+    for (let i = 0; i < V; i++) {
+      adj.set(i, []);
+    }
+
+    for (const [u, v] of edges) {
+      adj.get(u).push(v);
+      adj.get(v).push(u);
+    }
+
+    const visited = new Map();
+
+    function isCyclicBFS(src) {
+      const parent = new Map();
+      const queue = [src];
+
+      visited.set(src, true);
+      parent.set(src, -1);
+
+      while (queue.length) {
+        const front = queue.shift();
+
+        for (const neighbor of adj.get(front)) {
+          if (visited.has(neighbor)) {
+            if (neighbor != parent.get(front)) return true;
+          } else {
+            visited.set(neighbor, true);
+            parent.set(neighbor, front);
+            queue.push(neighbor);
+          }
+        }
+      }
+
+      return false;
+    }
+
+    function isCyclicDFS(node, parent) {
+      visited.set(node, true);
+
+      for (const neighbor of adj.get(node)) {
+        if (visited.has(neighbor)) {
+          if (neighbor != parent) return true;
+        } else {
+          const cycleDetected = isCyclicDFS(neighbor, node);
+          if (cycleDetected) return true;
+        }
+      }
+    }
+
+    for (let i = 0; i < V; i++) {
+      if (!visited.has(i)) {
+        // BFS
+        // if (isCyclicBFS(i)) return true;
+        // DFS 
+        if (isCyclicDFS(i, -1)) return true;
+      }
+    }
+
+    return false;
+  }
+}
