@@ -21652,3 +21652,22 @@ function kthSmallest(matrix, k) {
   return low;
 }
 console.log({ kthSmallest: kthSmallest([[-5]], 1) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} target 
+ * @param {number} start 
+ * @returns {number}
+ */
+function getMinDistance(nums, target, start) {
+  let distance = Infinity;
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    if (nums[idx] === target) {
+      distance = Math.min(distance, Math.abs(idx - start));
+    }
+  }
+
+  return distance;
+}
+console.log({ getMinDistance: getMinDistance([1], 1, 0) });
