@@ -21671,3 +21671,27 @@ function getMinDistance(nums, target, start) {
   return distance;
 }
 console.log({ getMinDistance: getMinDistance([1], 1, 0) });
+
+/**
+ * @param {number[][]} brackets 
+ * @param {number} income 
+ * @returns {number}
+ */
+function calculateTax(brackets, income) {
+  let totalTax = 0, previousLimit = 0;
+
+  if (income === 0) return totalTax;
+
+  for (const [upperLimit, taxRate] of brackets) {
+    const taxableIncome = Math.min(income, upperLimit) - previousLimit;
+
+    totalTax += (taxableIncome * taxRate) / 100;
+
+    if (income <= upperLimit) break;
+
+    previousLimit = upperLimit;
+  }
+
+  return totalTax;
+}
+console.log({ calculateTax: calculateTax([[2, 50]], 0) });
