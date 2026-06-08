@@ -21695,3 +21695,24 @@ function calculateTax(brackets, income) {
   return totalTax;
 }
 console.log({ calculateTax: calculateTax([[2, 50]], 0) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function sumOfGoodNumbers(nums, k) {
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    let isGood = true;
+
+    if (i - k >= 0 && nums[i] <= nums[i - k]) isGood = false;
+    if (i + k < nums.length && nums[i] <= nums[i + k]) isGood = false;
+
+    if (isGood) sum += nums[i];
+  }
+
+  return sum;
+}
+console.log({ sumOfGoodNumbers: sumOfGoodNumbers([2, 1], 1) });
