@@ -21716,3 +21716,20 @@ function sumOfGoodNumbers(nums, k) {
   return sum;
 }
 console.log({ sumOfGoodNumbers: sumOfGoodNumbers([2, 1], 1) });
+
+/**
+ * @param {number[]} colors 
+ * @returns {number}
+ */
+function numberOfAlternatingGroups(colors) {
+  let count = 0;
+  const n = colors.length;
+
+  for (let i = 0; i < n; i++) {
+    const prev = colors[(i - 1 + n) % n], curr = colors[i], next = colors[(i + 1) % n];
+    if (prev !== curr && curr !== next) count++;
+  }
+
+  return count;
+}
+console.log({ numberOfAlternatingGroups: numberOfAlternatingGroups([1, 1, 1]) });
