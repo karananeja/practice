@@ -21733,3 +21733,26 @@ function numberOfAlternatingGroups(colors) {
   return count;
 }
 console.log({ numberOfAlternatingGroups: numberOfAlternatingGroups([1, 1, 1]) });
+
+/**
+ * @param {string[]} words 
+ * @param {string} target 
+ * @param {number} startIndex 
+ * @returns {number}
+ */
+function closestTarget(words, target, startIndex) {
+  const n = words.length;
+  let minDistance = Infinity;
+
+  for (let i = 0; i < n; i++) {
+    if (words[i] !== target) continue;
+
+    const direct = Math.abs(i - startIndex);
+    const cyclic = n - direct;
+
+    minDistance = Math.min(minDistance, direct, cyclic);
+  }
+
+  return minDistance !== Infinity ? minDistance : -1;
+}
+console.log({ closestTarget: closestTarget(["i", "eat", "leetcode"], "ate", 0) });
