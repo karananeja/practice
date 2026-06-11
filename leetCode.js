@@ -21756,3 +21756,16 @@ function closestTarget(words, target, startIndex) {
   return minDistance !== Infinity ? minDistance : -1;
 }
 console.log({ closestTarget: closestTarget(["i", "eat", "leetcode"], "ate", 0) });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function checkString(s) {
+  for (let i = 0; i < s.length - 1; i++) {
+    if (s[i] === "b" && s[i + 1] === "a") return false;
+  }
+
+  return true;
+}
+console.log({ checkString: checkString("aaabbb") });
