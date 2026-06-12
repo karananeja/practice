@@ -1395,13 +1395,13 @@ class IsCycle {
       adj.get(v).push(u);
     }
 
-    const visited = new Map();
+    const visited = new Set();
 
     function isCyclicBFS(src) {
       const parent = new Map();
       const queue = [src];
 
-      visited.set(src, true);
+      visited.add(src);
       parent.set(src, -1);
 
       while (queue.length) {
@@ -1411,7 +1411,7 @@ class IsCycle {
           if (visited.has(neighbor)) {
             if (neighbor != parent.get(front)) return true;
           } else {
-            visited.set(neighbor, true);
+            visited.add(neighbor);
             parent.set(neighbor, front);
             queue.push(neighbor);
           }
@@ -1422,7 +1422,7 @@ class IsCycle {
     }
 
     function isCyclicDFS(node, parent) {
-      visited.set(node, true);
+      visited.add(node);
 
       for (const neighbor of adj.get(node)) {
         if (visited.has(neighbor)) {
@@ -1432,6 +1432,8 @@ class IsCycle {
           if (cycleDetected) return true;
         }
       }
+
+      return false;
     }
 
     for (let i = 0; i < V; i++) {
