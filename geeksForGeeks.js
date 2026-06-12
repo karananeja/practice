@@ -1448,3 +1448,49 @@ class IsCycle {
     return false;
   }
 }
+
+/**
+ * @problem_thirtyNine Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
+The graph is represented as a 2D vector edges[][], where each entry edges[i] = [u, v] denotes an edge from vertex u to v.
+ */
+/**
+ * @solution_thirtyNine
+ */
+class Solution {
+  isCyclic(V, edges) {
+    const adj = new Map();
+
+    for (let i = 0; i < V; i++) {
+      adj.set(i, []);
+    }
+
+    for (const [u, v] of edges) {
+      adj.get(u).push(v);
+    }
+
+    const visited = new Set();
+    const dfsVisited = new Set();
+
+    function checkCycleDFS(node) {
+      visited.add(node);
+      dfsVisited.add(node);
+
+      for (const neighbor of adj.get(node)) {
+        if (!visited.has(neighbor)) {
+          if (checkCycleDFS(neighbor)) return true;
+        } else if (dfsVisited.has(neighbor)) return true;
+      }
+
+      dfsVisited.delete(node);
+      return false;
+    }
+
+    for (let i = 0; i < V; i++) {
+      if (!visited.has(i)) {
+        if (checkCycleDFS(i)) return true;
+      }
+    }
+
+    return false;
+  }
+}
