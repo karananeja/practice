@@ -21769,3 +21769,20 @@ function checkString(s) {
   return true;
 }
 console.log({ checkString: checkString("aaabbb") });
+
+/**
+ * @param {string[]} moves 
+ * @returns {number}
+ */
+function furthestDistanceFromOrigin(moves) {
+  let netDisplacement = 0, flexibleMoves = 0;
+
+  for (const move of moves) {
+    if (move === "L") netDisplacement--;
+    else if (move === "R") netDisplacement++;
+    else flexibleMoves++;
+  }
+
+  return Math.abs(netDisplacement) + flexibleMoves;
+}
+console.log({ furthestDistanceFromOrigin: furthestDistanceFromOrigin("_") });
