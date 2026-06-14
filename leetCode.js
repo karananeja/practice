@@ -21786,3 +21786,20 @@ function furthestDistanceFromOrigin(moves) {
   return Math.abs(netDisplacement) + flexibleMoves;
 }
 console.log({ furthestDistanceFromOrigin: furthestDistanceFromOrigin("_") });
+
+/**
+ * @param {string} word 
+ * @returns {number}
+ */
+function minTimeToType(word) {
+  let totalTime = 0, prevChar = "a";
+
+  for (const char of word) {
+    const directDistance = Math.abs(char.charCodeAt(0) - prevChar.charCodeAt(0));
+    totalTime += Math.min(directDistance, 26 - directDistance) + 1;
+    prevChar = char;
+  }
+
+  return totalTime;
+}
+console.log({ minTimeToType: minTimeToType("zaybxc") });
