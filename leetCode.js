@@ -21803,3 +21803,17 @@ function minTimeToType(word) {
   return totalTime;
 }
 console.log({ minTimeToType: minTimeToType("zaybxc") });
+
+/**
+ * @param {string} coordinate1
+ * @param {string} coordinate2
+ * @returns {boolean}
+ */
+function checkTwoChessboards(coordinate1, coordinate2) {
+  const a = coordinate1.charCodeAt(0) - 97;
+  const b = +coordinate1[1];
+  const c = coordinate2.charCodeAt(0) - 97;
+  const d = +coordinate2[1];
+  return (a + b) % 2 === (c + d) % 2;
+}
+console.log({ checkTwoChessboards: checkTwoChessboards('d1', 'h4') });
