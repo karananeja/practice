@@ -21817,3 +21817,19 @@ function checkTwoChessboards(coordinate1, coordinate2) {
   return (a + b) % 2 === (c + d) % 2;
 }
 console.log({ checkTwoChessboards: checkTwoChessboards('d1', 'h4') });
+
+/**
+ * @param {number[]} position 
+ * @returns {number}
+ */
+function minCostToMoveChips(position) {
+  let evenPositions = 0, oddPositions = 0;
+
+  for (const pos of position) {
+    if (pos % 2 === 0) evenPositions++;
+    else oddPositions++;
+  }
+
+  return Math.min(evenPositions, oddPositions);
+}
+console.log({ minCostToMoveChips: minCostToMoveChips([1, 2, 3, 4]) });
