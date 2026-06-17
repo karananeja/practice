@@ -21716,3 +21716,120 @@ function sumOfGoodNumbers(nums, k) {
   return sum;
 }
 console.log({ sumOfGoodNumbers: sumOfGoodNumbers([2, 1], 1) });
+
+/**
+ * @param {number[]} colors 
+ * @returns {number}
+ */
+function numberOfAlternatingGroups(colors) {
+  let count = 0;
+  const n = colors.length;
+
+  for (let i = 0; i < n; i++) {
+    const prev = colors[(i - 1 + n) % n], curr = colors[i], next = colors[(i + 1) % n];
+    if (prev !== curr && curr !== next) count++;
+  }
+
+  return count;
+}
+console.log({ numberOfAlternatingGroups: numberOfAlternatingGroups([1, 1, 1]) });
+
+/**
+ * @param {string[]} words 
+ * @param {string} target 
+ * @param {number} startIndex 
+ * @returns {number}
+ */
+function closestTarget(words, target, startIndex) {
+  const n = words.length;
+  let minDistance = Infinity;
+
+  for (let i = 0; i < n; i++) {
+    if (words[i] !== target) continue;
+
+    const direct = Math.abs(i - startIndex);
+    const cyclic = n - direct;
+
+    minDistance = Math.min(minDistance, direct, cyclic);
+  }
+
+  return minDistance !== Infinity ? minDistance : -1;
+}
+console.log({ closestTarget: closestTarget(["i", "eat", "leetcode"], "ate", 0) });
+
+/**
+ * @param {string} s 
+ * @returns {boolean}
+ */
+function checkString(s) {
+  for (let i = 0; i < s.length - 1; i++) {
+    if (s[i] === "b" && s[i + 1] === "a") return false;
+  }
+
+  return true;
+}
+console.log({ checkString: checkString("aaabbb") });
+
+/**
+ * @param {string[]} moves 
+ * @returns {number}
+ */
+function furthestDistanceFromOrigin(moves) {
+  let netDisplacement = 0, flexibleMoves = 0;
+
+  for (const move of moves) {
+    if (move === "L") netDisplacement--;
+    else if (move === "R") netDisplacement++;
+    else flexibleMoves++;
+  }
+
+  return Math.abs(netDisplacement) + flexibleMoves;
+}
+console.log({ furthestDistanceFromOrigin: furthestDistanceFromOrigin("_") });
+
+/**
+ * @param {string} word 
+ * @returns {number}
+ */
+function minTimeToType(word) {
+  let totalTime = 0, prevChar = "a";
+
+  for (const char of word) {
+    const directDistance = Math.abs(char.charCodeAt(0) - prevChar.charCodeAt(0));
+    totalTime += Math.min(directDistance, 26 - directDistance) + 1;
+    prevChar = char;
+  }
+
+  return totalTime;
+}
+console.log({ minTimeToType: minTimeToType("zaybxc") });
+
+/**
+ * @param {string} coordinate1
+ * @param {string} coordinate2
+ * @returns {boolean}
+ */
+function checkTwoChessboards(coordinate1, coordinate2) {
+  const a = coordinate1.charCodeAt(0) - 97;
+  const b = +coordinate1[1];
+  const c = coordinate2.charCodeAt(0) - 97;
+  const d = +coordinate2[1];
+  return (a + b) % 2 === (c + d) % 2;
+}
+console.log({ checkTwoChessboards: checkTwoChessboards('d1', 'h4') });
+
+/**
+ * @param {number[]} position 
+ * @returns {number}
+ */
+function minCostToMoveChips(position) {
+  let evenPositions = 0, oddPositions = 0;
+
+  for (const pos of position) {
+    if (pos % 2 === 0) evenPositions++;
+    else oddPositions++;
+  }
+
+  return Math.min(evenPositions, oddPositions);
+}
+console.log({ minCostToMoveChips: minCostToMoveChips([1, 2, 3, 4]) });

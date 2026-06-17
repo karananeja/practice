@@ -1395,13 +1395,13 @@ class IsCycle {
       adj.get(v).push(u);
     }
 
-    const visited = new Map();
+    const visited = new Set();
 
     function isCyclicBFS(src) {
       const parent = new Map();
       const queue = [src];
 
-      visited.set(src, true);
+      visited.add(src);
       parent.set(src, -1);
 
       while (queue.length) {
@@ -1411,7 +1411,7 @@ class IsCycle {
           if (visited.has(neighbor)) {
             if (neighbor != parent.get(front)) return true;
           } else {
-            visited.set(neighbor, true);
+            visited.add(neighbor);
             parent.set(neighbor, front);
             queue.push(neighbor);
           }
@@ -1422,7 +1422,7 @@ class IsCycle {
     }
 
     function isCyclicDFS(node, parent) {
-      visited.set(node, true);
+      visited.add(node);
 
       for (const neighbor of adj.get(node)) {
         if (visited.has(neighbor)) {
@@ -1432,6 +1432,8 @@ class IsCycle {
           if (cycleDetected) return true;
         }
       }
+
+      return false;
     }
 
     for (let i = 0; i < V; i++) {
@@ -1440,6 +1442,52 @@ class IsCycle {
         // if (isCyclicBFS(i)) return true;
         // DFS 
         if (isCyclicDFS(i, -1)) return true;
+      }
+    }
+
+    return false;
+  }
+}
+
+/**
+ * @problem_thirtyNine Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
+The graph is represented as a 2D vector edges[][], where each entry edges[i] = [u, v] denotes an edge from vertex u to v.
+ */
+/**
+ * @solution_thirtyNine
+ */
+class Solution {
+  isCyclic(V, edges) {
+    const adj = new Map();
+
+    for (let i = 0; i < V; i++) {
+      adj.set(i, []);
+    }
+
+    for (const [u, v] of edges) {
+      adj.get(u).push(v);
+    }
+
+    const visited = new Set();
+    const dfsVisited = new Set();
+
+    function checkCycleDFS(node) {
+      visited.add(node);
+      dfsVisited.add(node);
+
+      for (const neighbor of adj.get(node)) {
+        if (!visited.has(neighbor)) {
+          if (checkCycleDFS(neighbor)) return true;
+        } else if (dfsVisited.has(neighbor)) return true;
+      }
+
+      dfsVisited.delete(node);
+      return false;
+    }
+
+    for (let i = 0; i < V; i++) {
+      if (!visited.has(i)) {
+        if (checkCycleDFS(i)) return true;
       }
     }
 
