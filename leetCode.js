@@ -21833,3 +21833,63 @@ function minCostToMoveChips(position) {
   return Math.min(evenPositions, oddPositions);
 }
 console.log({ minCostToMoveChips: minCostToMoveChips([1, 2, 3, 4]) });
+
+/**
+ * @param {number[][]} grid
+ * @returns {boolean}
+ */
+function hasValidPath(grid) {
+  const m = grid.length;
+  const n = grid[0].length;
+
+  // 0: up, 1: right, 2: down, 3: left
+  const dirs = [
+    [-1, 0],
+    [0, 1],
+    [1, 0],
+    [0, -1],
+  ];
+  const opposite = [2, 3, 0, 1];
+
+  const typeMap = {
+    1: [1, 3], // left, right
+    2: [0, 2], // up, down
+    3: [3, 2], // left, down
+    4: [1, 2], // right, down
+    5: [0, 3], // up, left
+    6: [0, 1], // up, right
+  };
+
+  const visited = Array.from({ length: m }, () => Array(n).fill(false));
+
+  /**
+   * @param {number} x
+   * @param {number} y
+   * @returns {boolean}
+   */
+  function dfs(x, y) {
+    if (x === m - 1 && y === n - 1) return true;
+
+    visited[x][y] = true;
+
+    const type = grid[x][y];
+
+    for (const d of typeMap[type]) {
+      const nx = x + dirs[d][0];
+      const ny = y + dirs[d][1];
+
+      if (nx < 0 || ny < 0 || nx >= m || ny >= n || visited[nx][ny]) continue;
+
+      const nextType = grid[nx][ny];
+
+      if (typeMap[nextType].includes(opposite[d])) {
+        if (dfs(nx, ny)) return true;
+      }
+    }
+
+    return false;
+  }
+
+  return dfs(0, 0);
+}
+console.log({ hasValidPath: hasValidPath([[2, 4, 3], [6, 5, 2]]) });
