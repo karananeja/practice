@@ -1456,7 +1456,7 @@ The graph is represented as a 2D vector edges[][], where each entry edges[i] = [
 /**
  * @solution_thirtyNine
  */
-class Solution {
+class IsCyclic {
   isCyclic(V, edges) {
     const adj = new Map();
 
