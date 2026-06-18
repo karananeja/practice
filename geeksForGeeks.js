@@ -1494,3 +1494,42 @@ class IsCyclic {
     return false;
   }
 }
+
+/**
+ * @problem_forty Given a Directed Acyclic Graph (DAG) of V (0 to V-1) vertices and E edges represented as a 2D list of edges[][], where each entry edges[i] = [u, v] denotes a directed edge u -> v. Return the topological sort for the given graph.
+
+Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge u -> v, vertex u comes before v in the ordering.
+Note: As there are multiple Topological orders possible, you may return any of them. If your returned Topological sort is correct then the output will be true else false.
+ */
+/**
+ * @solution_forty
+ */
+class TopoSort {
+  topoSort(V, edges) {
+    // code here
+    const adj = Array.from({ length: V }, () => []);
+
+    for (const [u, v] of edges) {
+      adj[u].push(v);
+    }
+
+    const visited = new Array(V).fill(false);
+    const stack = [];
+
+    function dfsSort(node) {
+      visited[node] = true;
+
+      for (const neighbor of adj[node]) {
+        if (!visited[neighbor]) dfsSort(neighbor);
+      }
+
+      stack.push(node);
+    }
+
+    for (let i = 0; i < V; i++) {
+      if (!visited[i]) dfsSort(i);
+    }
+
+    return stack.reverse();
+  }
+}
