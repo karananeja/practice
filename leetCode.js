@@ -21893,3 +21893,35 @@ function hasValidPath(grid) {
   return dfs(0, 0);
 }
 console.log({ hasValidPath: hasValidPath([[2, 4, 3], [6, 5, 2]]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number[][]}
+ */
+function onesMinusZeros(grid) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  const rowOnes = new Array(rows).fill(0);
+  const colOnes = new Array(cols).fill(0);
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (grid[r][c] === 1) {
+        rowOnes[r]++;
+        colOnes[c]++;
+      }
+    }
+  }
+
+  const result = Array.from({ length: rows }, () => new Array(cols).fill(0));
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      result[r][c] = 2 * rowOnes[r] + 2 * colOnes[c] - rows - cols;
+    }
+  }
+
+  return result;
+}
+console.log({ onesMinusZeros: onesMinusZeros([[1, 1, 1], [1, 1, 1]]) });
