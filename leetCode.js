@@ -21925,3 +21925,24 @@ function onesMinusZeros(grid) {
   return result;
 }
 console.log({ onesMinusZeros: onesMinusZeros([[1, 1, 1], [1, 1, 1]]) });
+
+/**
+ * @param {number} n 
+ * @param {number} limit 
+ * @returns {number}
+ */
+function distributeCandies(n, limit) {
+  if (n > 3 * limit) return 0;
+
+  /**
+   * @param {number} x 
+   * @returns {number}
+   */
+  function comb2(x) {
+    if (x < 2) return 0;
+    return (x * (x - 1)) / 2;
+  }
+
+  return comb2(n + 2) - 3 * comb2(n - limit + 1) + 3 * comb2(n - 2 * limit);
+}
+console.log({ distributeCandies: distributeCandies(5, 2) });
