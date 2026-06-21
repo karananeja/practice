@@ -21946,3 +21946,18 @@ function distributeCandies(n, limit) {
   return comb2(n + 2) - 3 * comb2(n - limit + 1) + 3 * comb2(n - 2 * limit);
 }
 console.log({ distributeCandies: distributeCandies(5, 2) });
+
+/**
+ * @param {string} s 
+ * @returns {number}
+ */
+function removePalindromeSub(s) {
+  let left = 0, right = s.length - 1;
+
+  while (left < right) {
+    if (s[left++] !== s[right--]) return 2;
+  }
+
+  return 1;
+}
+console.log({ removePalindromeSub: removePalindromeSub("baabb") });
