@@ -21961,3 +21961,28 @@ function removePalindromeSub(s) {
   return 1;
 }
 console.log({ removePalindromeSub: removePalindromeSub("baabb") });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function maxRotateFunction(nums) {
+  const n = nums.length;
+  const totalSum = nums.reduce((acc, val) => acc + val, 0);
+
+  let currentValue = 0;
+
+  for (let i = 0; i < n; i++) {
+    currentValue += i * nums[i];
+  }
+
+  let maxValue = currentValue;
+
+  for (let i = n - 1; i > 0; i--) {
+    currentValue = currentValue + totalSum - n * nums[i];
+    maxValue = Math.max(maxValue, currentValue);
+  }
+
+  return maxValue;
+}
+console.log({ maxRotateFunction: maxRotateFunction([4, 3, 2, 6]) });
