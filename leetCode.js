@@ -21986,3 +21986,43 @@ function maxRotateFunction(nums) {
   return maxValue;
 }
 console.log({ maxRotateFunction: maxRotateFunction([4, 3, 2, 6]) });
+
+/**
+ * @param {number[][]} grid 
+ * @returns {number[][]}
+ */
+function sortMatrix(grid) {
+  const n = grid.length;
+
+  for (let i = 0; i < n; i++) {
+    const tmp = [];
+
+
+    for (let j = 0; i + j < n; j++) {
+      tmp.push(grid[i + j][j]);
+    }
+
+    tmp.sort((a, b) => b - a);
+
+    for (let j = 0; i + j < n; j++) {
+      grid[i + j][j] = tmp[j];
+    }
+  }
+
+  for (let j = 1; j < n; j++) {
+    const tmp = [];
+
+    for (let i = 0; j + i < n; i++) {
+      tmp.push(grid[i][j + i]);
+    }
+
+    tmp.sort((a, b) => a - b);
+
+    for (let i = 0; j + i < n; i++) {
+      grid[i][j + i] = tmp[i];
+    }
+  }
+
+  return grid;
+}
+console.log({ sortMatrix: sortMatrix([[0, 1], [1, 2]]) });
