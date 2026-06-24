@@ -22026,3 +22026,32 @@ function sortMatrix(grid) {
   return grid;
 }
 console.log({ sortMatrix: sortMatrix([[0, 1], [1, 2]]) });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function rotatedDigits(n) {
+  let cnt = 0
+
+  for (let num = 1; num <= n; num++) {
+    let check = num
+    let valid = true
+    let changed = false
+
+    while (check > 0 && valid) {
+      const digit = check % 10
+
+      if (digit === 3 || digit === 4 || digit === 7) valid = false
+      else if (digit === 2 || digit === 5 || digit === 6 || digit === 9)
+        changed = true
+
+      check = Math.floor(check / 10)
+    }
+
+    if (valid && changed) cnt++
+  }
+
+  return cnt
+}
+console.log({ rotatedDigits: rotatedDigits(10) })
