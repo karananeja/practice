@@ -22055,3 +22055,12 @@ function rotatedDigits(n) {
   return cnt
 }
 console.log({ rotatedDigits: rotatedDigits(10) })
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function minCost(n) {
+  return n * (n - 1) / 2;
+}
+console.log({ minCost: minCost(5) });
