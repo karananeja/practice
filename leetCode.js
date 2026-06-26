@@ -22032,29 +22032,29 @@ console.log({ sortMatrix: sortMatrix([[0, 1], [1, 2]]) });
  * @returns {number}
  */
 function rotatedDigits(n) {
-  let cnt = 0
+  let cnt = 0;
 
   for (let num = 1; num <= n; num++) {
-    let check = num
-    let valid = true
-    let changed = false
+    let check = num;
+    let valid = true;
+    let changed = false;
 
     while (check > 0 && valid) {
-      const digit = check % 10
+      const digit = check % 10;
 
-      if (digit === 3 || digit === 4 || digit === 7) valid = false
+      if (digit === 3 || digit === 4 || digit === 7) valid = false;
       else if (digit === 2 || digit === 5 || digit === 6 || digit === 9)
-        changed = true
+        changed = true;
 
-      check = Math.floor(check / 10)
+      check = Math.floor(check / 10);
     }
 
-    if (valid && changed) cnt++
+    if (valid && changed) cnt++;
   }
 
-  return cnt
+  return cnt;
 }
-console.log({ rotatedDigits: rotatedDigits(10) })
+console.log({ rotatedDigits: rotatedDigits(10) });
 
 /**
  * @param {number} n 
@@ -22064,3 +22064,35 @@ function minCost(n) {
   return n * (n - 1) / 2;
 }
 console.log({ minCost: minCost(5) });
+
+/**
+ * @param {ListNode | null} head 
+ * @param {number} k 
+ * @returns {ListNode | null}
+ */
+function rotateRight(head, k) {
+  if (!head || !head.next || k === 0) return head;
+
+  let tail = head, length = 1;
+
+  while (tail.next) {
+    tail = tail.next;
+    length++;
+  }
+
+  k %= length;
+  if (k === 0) return head;
+
+  let stepsToNewTail = length - k - 1;
+  let newTail = head;
+
+  while (stepsToNewTail--) {
+    newTail = newTail.next;
+  }
+
+  const newHead = newTail.next;
+  tail.next = head;
+  newTail.next = null;
+
+  return newHead;
+}
