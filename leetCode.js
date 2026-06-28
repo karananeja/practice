@@ -22131,3 +22131,32 @@ function pairSum(head) {
 
   return maxSum;
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number}
+ */
+function firstStableIndex(nums, k) {
+  const n = nums.length;
+  const prefixMax = new Array(n);
+  const suffixMin = new Array(n);
+
+  prefixMax[0] = nums[0];
+  suffixMin[n - 1] = nums[n - 1];
+
+  for (let i = 1; i < n; i++) {
+    prefixMax[i] = Math.max(prefixMax[i - 1], nums[i]);
+
+    const rightIndex = n - i - 1;
+    suffixMin[rightIndex] = Math.min(suffixMin[rightIndex + 1], nums[rightIndex]);
+  }
+
+  for (let i = 0; i < n; i++) {
+    const score = prefixMax[i] - suffixMin[i];
+    if (score <= k) return i;
+  }
+
+  return -1;
+}
+console.log({ firstStableIndex: firstStableIndex([3, 2, 1], 1) });
