@@ -22160,3 +22160,19 @@ function firstStableIndex(nums, k) {
   return -1;
 }
 console.log({ firstStableIndex: firstStableIndex([3, 2, 1], 1) });
+
+/**
+ * @param {ListNode | null} headA 
+ * @param {ListNode | null} headB 
+ * @returns {ListNode | null}
+ */
+function getIntersectionNode(headA, headB) {
+  let listA = headA, listB = headB;
+
+  while (listA !== listB) {
+    listA = listA ? listA.next : headB;
+    listB = listB ? listB.next : headA;
+  }
+
+  return listA;
+}
