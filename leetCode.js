@@ -22176,3 +22176,19 @@ function getIntersectionNode(headA, headB) {
 
   return listA;
 }
+
+/**
+ * @param {number[]} colors 
+ * @returns {number}
+ */
+function maxDistance(colors) {
+  let distance = 0;
+  const n = colors.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    if (colors[i] !== colors[n - 1]) distance = Math.max(distance, i, n - 1 - i);
+  }
+
+  return distance;
+}
+console.log({ maxDistance: maxDistance([1, 2, 1, 1, 1]) });
