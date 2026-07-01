@@ -22192,3 +22192,46 @@ function maxDistance(colors) {
   return distance;
 }
 console.log({ maxDistance: maxDistance([1, 2, 1, 1, 1]) });
+
+/**
+ * @param {number[]} digits 
+ * @returns {number}
+ */
+function totalNumbers(digits) {
+  const available = new Array(10).fill(0);
+  let hasEvenDigit = false;
+
+  for (const digit of digits) {
+    available[digit]++;
+    if (digit % 2 === 0) hasEvenDigit = true;
+  }
+
+  if (!hasEvenDigit) return 0;
+
+  let validCount = 0;
+
+  for (let num = 100; num <= 998; num += 2) {
+    const freq = new Array(10).fill(0);
+    const hundreds = Math.floor(num / 100);
+    const tens = Math.floor(num / 10) % 10;
+    const ones = num % 10;
+
+    freq[hundreds]++;
+    freq[tens]++;
+    freq[ones]++;
+
+    let isValid = true;
+
+    for (let digit = 0; digit < 10; digit++) {
+      if (freq[digit] > available[digit]) {
+        isValid = false;
+        break;
+      }
+    }
+
+    if (isValid) validCount++;
+  }
+
+  return validCount;
+}
+console.log({ totalNumbers: totalNumbers([0, 2, 2]) });
