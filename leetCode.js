@@ -22235,3 +22235,31 @@ function totalNumbers(digits) {
   return validCount;
 }
 console.log({ totalNumbers: totalNumbers([0, 2, 2]) });
+
+/**
+ * @param {number} num 
+ * @returns {number}
+ */
+function splitNum(num) {
+  const freq = new Array(10).fill(0);
+
+  while (num > 0) {
+    freq[num % 10]++;
+    num = Math.floor(num / 10);
+  }
+
+  let num1 = 0, num2 = 0, turn = 0;
+
+  for (let digit = 0; digit <= 9; digit++) {
+    while (freq[digit] > 0) {
+      if (turn % 2 === 0) num1 = num1 * 10 + digit;
+      else num2 = num2 * 10 + digit;
+
+      freq[digit]--;
+      turn++;
+    }
+  }
+
+  return num1 + num2;
+}
+console.log({ splitNum: splitNum(687) });
