@@ -22263,3 +22263,41 @@ function splitNum(num) {
   return num1 + num2;
 }
 console.log({ splitNum: splitNum(687) });
+
+/**
+ * @param {string[][]} board 
+ * @returns {number}
+ */
+function numRookCaptures(board) {
+  let rookRow = 0, rookCol = 0;
+
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      if (board[r][c] === "R") {
+        rookRow = r;
+        rookCol = c;
+      }
+    }
+  }
+
+  const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+  let count = 0;
+
+  for (const [dr, dc] of directions) {
+    let r = rookRow + dr;
+    let c = rookCol + dc;
+
+    while (r >= 0 && r < 8 && c >= 0 && c < 8) {
+      if (board[r][c] === "B") break;
+      if (board[r][c] === "p") {
+        count++;
+        break;
+      }
+
+      r += dr;
+      c += dc;
+    }
+  }
+
+  return count;
+}
