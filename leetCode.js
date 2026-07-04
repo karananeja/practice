@@ -22301,3 +22301,19 @@ function numRookCaptures(board) {
 
   return count;
 }
+
+/**
+ * @param {number[][]} tasks 
+ * @returns {number}
+ */
+function minimumEffort(tasks) {
+  tasks.sort((a, b) => a[1] - a[0] - (b[1] - b[0]));
+  let ans = 0;
+
+  for (const task of tasks) {
+    ans = Math.max(ans + task[0], task[1]);
+  }
+
+  return ans;
+}
+console.log({ minimumEffort: minimumEffort([[1, 2], [2, 4], [4, 8]]) });
