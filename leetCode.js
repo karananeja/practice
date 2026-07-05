@@ -22317,3 +22317,79 @@ function minimumEffort(tasks) {
   return ans;
 }
 console.log({ minimumEffort: minimumEffort([[1, 2], [2, 4], [4, 8]]) });
+
+class TrieNode {
+  constructor(char) {
+    this.children = Array(26).fill(null);
+    this.data = char;
+    this.isTerminal = false;
+  }
+}
+
+class Trie {
+  constructor() {
+    this.root = new TrieNode('\0');
+  }
+
+  // Supports ONLY a-z
+  getIndex(ch) {
+    const index = ch.charCodeAt(0) - 97;
+
+    if (index < 0 || index >= 26) {
+      throw new Error("Only a-z supported");
+    }
+
+    return index;
+  }
+
+  insertUtil(node, word) {
+    if (word.length === 0) {
+      node.isTerminal = true;
+      return;
+    }
+
+    const index = this.getIndex(word[0]);
+    let child = node.children[index];
+
+    if (child === null) {
+      child = new TrieNode(word[0]);
+      node.children[index] = child;
+    }
+
+    this.insertUtil(child, word.slice(1));
+  }
+
+  insert(word) {
+    this.insertUtil(this.root, word);
+  }
+
+  searchUtil(node, word) {
+    if (word.length === 0) return node.isTerminal;
+
+    const index = this.getIndex(word[0]);
+    const child = node.children[index];
+
+    if (child === null) return false;
+
+    return this.searchUtil(child, word.slice(1));
+  }
+
+  search(word) {
+    return this.searchUtil(this.root, word);
+  }
+
+  prefixUtil(node, prefix) {
+    if (prefix.length === 0) return true;
+
+    const index = this.getIndex(prefix[0]);
+    const child = node.children[index];
+
+    if (child === null) return false;
+
+    return this.prefixUtil(child, prefix.slice(1));
+  }
+
+  startsWith(prefix) {
+    return this.prefixUtil(this.root, prefix);
+  }
+}
