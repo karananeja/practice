@@ -22393,3 +22393,39 @@ class Trie {
     return this.prefixUtil(this.root, prefix);
   }
 }
+
+/**
+ * @param {number[]} nums 
+ * @param {number} limit 
+ * @returns {number}
+ */
+function minMoves(nums, limit) {
+  const n = nums.length;
+  const delta = new Array(2 * limit + 2).fill(0);
+
+  for (let i = 0; i < n / 2; i++) {
+    const a = nums[i];
+    const b = nums[n - 1 - i];
+
+    const low = Math.min(a, b) + 1;
+    const high = Math.max(a, b) + limit;
+    const total = a + b;
+
+    delta[2] += 2;
+    delta[low] -= 1;
+    delta[total] -= 1;
+    delta[total + 1] += 1;
+    delta[high + 1] += 1;
+  }
+
+  let minMoves = Infinity;
+  let current = 0;
+
+  for (let i = 2; i <= 2 * limit; i++) {
+    current += delta[i];
+    minMoves = Math.min(minMoves, current);
+  }
+
+  return minMoves;
+}
+console.log({ minMoves: minMoves([1, 2, 4, 3], 4) });
