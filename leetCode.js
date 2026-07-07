@@ -22429,3 +22429,24 @@ function minMoves(nums, limit) {
   return minMoves;
 }
 console.log({ minMoves: minMoves([1, 2, 4, 3], 4) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function isGood(nums) {
+  const count = new Array(101).fill(0);
+  let maxNum = 0;
+
+  for (const num of nums) {
+    count[num]++;
+    maxNum = Math.max(maxNum, num);
+  }
+
+  for (let i = 1; i < maxNum; i++) {
+    if (count[i] !== 1) return false;
+  }
+
+  return count[maxNum] === 2;
+}
+console.log({ isGood: isGood([2, 1, 3]) });
