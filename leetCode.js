@@ -22450,3 +22450,20 @@ function isGood(nums) {
   return count[maxNum] === 2;
 }
 console.log({ isGood: isGood([2, 1, 3]) });
+
+/**
+ * @param {number[]} sides 
+ * @returns {number[]}
+ */
+function internalAngles(sides) {
+  const [a, b, c] = [...sides].sort((x, y) => x - y);
+  if (a + b <= c) return [];
+
+  const toDeg = 180 / Math.PI;
+  const A = Math.acos((b * b + c * c - a * a) / (2 * b * c)) * toDeg;
+  const B = Math.acos((a * a + c * c - b * b) / (2 * a * c)) * toDeg;
+  const C = 180 - A - B;
+
+  return [A, B, C];
+}
+console.log({ internalAngles: internalAngles([3, 4, 5]) });
