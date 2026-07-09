@@ -8053,6 +8053,16 @@ console.log({ findMin: findMin([2, 2, 2, 0, 1]) });
 
 /**
  * @param {number[]} nums 
+ * @returns {number}
+ */
+function findMin(nums) {
+  const pivot = getPivot(nums);
+  return nums[pivot] > nums[0] ? nums[0] : nums[pivot];
+}
+console.log({ findMin: findMin([2, 2, 2, 0, 1]) });
+
+/**
+ * @param {number[]} nums 
  * @param {number} target 
  * @returns {boolean}
  */
