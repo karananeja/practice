@@ -8035,8 +8035,7 @@ function getPivot(nums) {
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
     if (nums[mid] > nums[end]) start = mid + 1;
-    else if (nums[mid] < nums[end]) end = mid;
-    else end--;
+    else end = mid;
   }
 
   return start;
