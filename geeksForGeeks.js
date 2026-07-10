@@ -1457,7 +1457,7 @@ The graph is represented as a 2D vector edges[][], where each entry edges[i] = [
  * @solution_thirtyNine
  */
 class IsCyclic {
-  isCyclic(V, edges) {
+  dfsIsCyclic(V, edges) {
     const adj = new Map();
 
     for (let i = 0; i < V; i++) {
@@ -1492,6 +1492,47 @@ class IsCyclic {
     }
 
     return false;
+  }
+
+  bfsIsCyclic(V, edges) {
+    // Create adjacency list
+    const adj = Array.from({ length: V }, () => []);
+
+    for (const [u, v] of edges) {
+      adj[u].push(v);
+    }
+
+    // Compute in-degree of each vertex
+    const inDegree = new Array(V).fill(0);
+
+    for (const neighbors of adj) {
+      for (const neighbor of neighbors) {
+        inDegree[neighbor]++;
+      }
+    }
+
+    // Push all vertices with in-degree 0 into the queue
+    const queue = [];
+
+    for (let i = 0; i < V; i++) {
+      if (inDegree[i] == 0) queue.push(i);
+    }
+
+    // Perform BFS
+    let count = 0;
+
+    while (queue.length) {
+      const front = queue.shift();
+      count++;
+
+      for (const neighbor of adj[front]) {
+        inDegree[neighbor]--;
+
+        if (inDegree[neighbor] == 0) queue.push(neighbor);
+      }
+    }
+
+    return count != V;
   }
 }
 
