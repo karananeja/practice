@@ -1615,3 +1615,52 @@ class TopoSort {
     return ans;
   }
 }
+
+/**
+ * @problem_fortyOne Given an undirected graph with V vertices numbered from 0 to V-1 and E edges, where edges[i] = [u, v] denotes an undirected edge between vertex u and vertex v, given two vertices src and dest, find the length of the shortest path from src to dest. If there is no path between src and dest, return -1.
+
+Note: All edges have a unit weight of 1.
+ */
+/**
+ * @solution_fortyOne
+ */
+class ShortestPath {
+  shortestPath(V, edges, src, dest) {
+    const graph = Array.from({ length: V }, () => []);
+
+    for (const [u, v] of edges) {
+      graph[u].push(v);
+      graph[v].push(u);
+    }
+
+    const parent = Array(V).fill(-1);
+    const visited = new Set([src]);
+    const queue = [src];
+    let front = 0;
+
+    while (front < queue.length) {
+      const node = queue[front++];
+
+      if (node == dest) break;
+
+      for (const next of graph[node]) {
+        if (visited.has(next)) continue;
+
+        visited.add(next);
+        parent[next] = node;
+        queue.push(next);
+      }
+    }
+
+    if (!visited.has(dest)) return -1;
+
+    let count = 0, node = dest;
+
+    while (node != src) {
+      node = parent[node];
+      count++;
+    }
+
+    return count;
+  }
+}
