@@ -4657,11 +4657,14 @@ console.log({ divideArray: divideArray([1, 3, 4, 8, 7, 9, 3, 5, 1], 2) });
  */
 function sequentialDigits(low, high) {
   const possibleNos = [], digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let index = 0;
 
-  while (digits.length) {
-    const digit = digits.shift();
+  while (index < digits.length) {
+    const digit = digits[index++];
+
     if (digit > high) continue;
     if (low <= digit && digit <= high) possibleNos.push(digit);
+
     const ones = digit % 10;
     if (ones < 9) digits.push(digit * 10 + (ones + 1));
   }
