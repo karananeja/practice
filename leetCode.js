@@ -22479,3 +22479,34 @@ function internalAngles(sides) {
   return [A, B, C];
 }
 console.log({ internalAngles: internalAngles([3, 4, 5]) });
+
+/**
+ * @param {number[]} arr
+ * @param {number} start
+ * @returns {boolean}
+ */
+function canReach(arr, start) {
+  const visited = new Array(arr.length).fill(false);
+
+  /**
+   * @param {number} i
+   * @returns {boolean}
+   */
+  function dfs(i) {
+    // out of bounds
+    if (i < 0 || i >= arr.length) return false;
+
+    // already visited
+    if (visited[i]) return false;
+
+    // found 0
+    if (arr[i] === 0) return true;
+
+    visited[i] = true;
+
+    return dfs(i + arr[i]) || dfs(i - arr[i]);
+  }
+
+  return dfs(start);
+}
+console.log({ canReach: canReach([4, 2, 3, 0, 3, 1, 2], 5) });
