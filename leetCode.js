@@ -22510,3 +22510,87 @@ function canReach(arr, start) {
   return dfs(start);
 }
 console.log({ canReach: canReach([4, 2, 3, 0, 3, 1, 2], 5) });
+
+/**
+ * @param {number} n
+ * @returns {string[][]}
+ */
+function solveNQueens(n) {
+  const chessBoard = Array.from({ length: n }, () => Array(n).fill('.'));
+  const validBoards = [];
+
+  // Tracks occupied rows
+  const usedRows = new Set();
+  // Tracks occupied top-left -> bottom-right diagonals
+  const usedDiagonals = new Set();
+  // Tracks occupied top-right -> bottom-left diagonals
+  const usedAntiDiagonals = new Set();
+
+  /**
+   * @returns {void}
+   */
+  function saveBoard() {
+    validBoards.push(chessBoard.map((row) => row.join('')));
+  }
+
+  /**
+   * @param {number} row
+   * @param {number} col
+   * @returns {boolean}
+   */
+  function canPlaceQueen(row, col) {
+    return (
+      !usedRows.has(row) &&
+      !usedDiagonals.has(row - col) &&
+      !usedAntiDiagonals.has(row + col)
+    );
+  }
+
+  /**
+   * @param {number} row
+   * @param {number} col
+   * @returns {void}
+   */
+  function placeQueen(row, col) {
+    chessBoard[row][col] = 'Q';
+    usedRows.add(row);
+    usedDiagonals.add(row - col);
+    usedAntiDiagonals.add(row + col);
+  }
+
+  /**
+   * @param {number} row
+   * @param {number} col
+   * @returns {void}
+   */
+  function removeQueen(row, col) {
+    chessBoard[row][col] = '.';
+    usedRows.delete(row);
+    usedDiagonals.delete(row - col);
+    usedAntiDiagonals.delete(row + col);
+  }
+
+  /**
+   * @param {number} col
+   * @returns {void}
+   */
+  function backtrack(col) {
+    if (col === n) {
+      saveBoard();
+      return;
+    }
+
+    for (let row = 0; row < n; row++) {
+      if (!canPlaceQueen(row, col)) continue;
+
+      placeQueen(row, col);
+      backtrack(col + 1);
+      removeQueen(row, col);
+    }
+  }
+
+  backtrack(0);
+
+  return validBoards;
+}
+console.log({ solveNQueens: solveNQueens(4) });
