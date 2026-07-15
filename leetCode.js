@@ -22594,3 +22594,73 @@ function solveNQueens(n) {
   return validBoards;
 }
 console.log({ solveNQueens: solveNQueens(4) });
+
+/**
+ * @param {string[][]} board 
+ */
+function solveSudoku(board) {
+  const gridSize = board.length;
+  const subGridSize = 3;
+
+  /**
+   * @param {number} row 
+   * @param {number} col 
+   * @param {string} digit 
+   * @returns {boolean}
+   */
+  function canPlaceDigit(row, col, digit) {
+    for (let index = 0; index < gridSize; index++) {
+      // Check current row
+      if (board[row][index] === digit) return false;
+
+      // Check current column
+      if (board[index][col] === digit) return false;
+
+      // Check 3x3 subgrid
+      const subGridRow =
+        subGridSize * Math.floor(row / subGridSize) +
+        Math.floor(index / subGridSize);
+
+      const subGridCol =
+        subGridSize * Math.floor(col / subGridSize) + (index % subGridSize);
+
+      if (board[subGridRow][subGridCol] === digit) return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  function fillBoard() {
+    for (let rowIndex = 0; rowIndex < gridSize; rowIndex++) {
+      for (let colIndex = 0; colIndex < gridSize; colIndex++) {
+        // Skip already filled cells
+        if (board[rowIndex][colIndex] !== '.') continue;
+
+        for (let candidate = 1; candidate <= gridSize; candidate++) {
+          const digit = candidate.toString();
+
+          if (!canPlaceDigit(rowIndex, colIndex, digit)) continue;
+
+          board[rowIndex][colIndex] = digit;
+
+          // Continue solving recursively
+          if (fillBoard()) return true;
+
+          // Backtrack
+          board[rowIndex][colIndex] = '.';
+        }
+
+        // No valid digit found for this cell
+        return false;
+      }
+    }
+
+    // Entire board filled successfully
+    return true;
+  }
+
+  fillBoard();
+}
