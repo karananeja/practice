@@ -22664,3 +22664,15 @@ function solveSudoku(board) {
 
   fillBoard();
 }
+
+/**
+ * @param {number} timer
+ * @returns {string}
+ */
+function trafficSignal(timer) {
+  if (timer === 0) return "Green";
+  else if (timer === 30) return "Orange";
+  else if (timer > 30 && timer <= 90) return "Red";
+  return "Invalid";
+}
+console.log({ trafficSignal: trafficSignal(5) });
