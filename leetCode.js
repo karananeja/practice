@@ -22676,3 +22676,18 @@ function trafficSignal(timer) {
   return "Invalid";
 }
 console.log({ trafficSignal: trafficSignal(5) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number[]}
+ */
+function concatWithReverse(nums) {
+  const n = nums.length;
+
+  for (let idx = n - 1; idx >= 0; idx--) {
+    nums.push(nums[idx]);
+  }
+
+  return nums;
+}
+console.log({ concatWithReverse: concatWithReverse([1]) });
