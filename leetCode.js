@@ -22691,3 +22691,27 @@ function concatWithReverse(nums) {
   return nums;
 }
 console.log({ concatWithReverse: concatWithReverse([1]) });
+
+/**
+ * @param {number[]} arr1
+ * @param {number[]} arr2
+ * @returns {number}
+ */
+function longestCommonPrefix(arr1, arr2) {
+  const trie = new Trie();
+
+  // Insert all numbers from arr1 into the Trie
+  for (const num of arr1) {
+    trie.insert(num);
+  }
+
+  let longestPrefix = 0;
+
+  // Find the longest prefix match for each number in arr2
+  for (const num of arr2) {
+    const len = trie.findLongestPrefix(num);
+    longestPrefix = Math.max(longestPrefix, len);
+  }
+
+  return longestPrefix;
+}
