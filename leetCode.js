@@ -22715,3 +22715,17 @@ function longestCommonPrefix(arr1, arr2) {
 
   return longestPrefix;
 }
+
+/**
+ * @param {string} s
+ * @returns {boolean}
+ */
+function isAdjacentDiffAtMostTwo(s) {
+  for (let i = 0; i < s.length - 1; i++) {
+    const diff = Math.abs(+s[i] - +s[i + 1]);
+    if (diff > 2) return false;
+  }
+
+  return true;
+}
+console.log({ isAdjacentDiffAtMostTwo: isAdjacentDiffAtMostTwo("129") });
