@@ -22729,3 +22729,24 @@ function isAdjacentDiffAtMostTwo(s) {
   return true;
 }
 console.log({ isAdjacentDiffAtMostTwo: isAdjacentDiffAtMostTwo("129") });
+
+/**
+ * @param {number[][]} matrix
+ * @returns {number[]}
+ */
+function findDegrees(matrix) {
+  const result = [];
+
+  for (const row of matrix) {
+    let sum = 0;
+
+    for (const col of row) {
+      sum += col;
+    }
+
+    result.push(sum);
+  }
+
+  return result;
+}
+console.log({ findDegrees: findDegrees([[0]]) });
