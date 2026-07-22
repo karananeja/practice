@@ -22750,3 +22750,22 @@ function findDegrees(matrix) {
   return result;
 }
 console.log({ findDegrees: findDegrees([[0]]) });
+
+/**
+ * @param {string[]} events 
+ * @returns {number[]}
+ */
+function scoreValidator(events) {
+  let score = 0, counter = 0;
+
+  for (const event of events) {
+    if (counter === 10) break;
+
+    if (event === "W") counter++;
+    else if (event === "WD" || event === "NB") score++;
+    else score += Number(event);
+  }
+
+  return [score, counter];
+}
+console.log({ scoreValidator: scoreValidator(["WD", "NB", "0", "4", "4"]) });
