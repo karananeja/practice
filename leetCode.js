@@ -22769,3 +22769,36 @@ function scoreValidator(events) {
   return [score, counter];
 }
 console.log({ scoreValidator: scoreValidator(["WD", "NB", "0", "4", "4"]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {boolean}
+ */
+function checkPrimeFrequency(nums) {
+  const numCount = new Array(101).fill(0);
+
+  for (const num of nums) {
+    numCount[num]++;
+  }
+
+  /**
+   * @param {number} n
+   * @returns {boolean}
+   */
+  function isPrime(n) {
+    if (n < 2) return false;
+
+    for (let i = 2; i * i <= n; i++) {
+      if (n % i === 0) return false;
+    }
+
+    return true;
+  }
+
+  for (const count of numCount) {
+    if (isPrime(count)) return true;
+  }
+
+  return false;
+}
+console.log({ checkPrimeFrequency: checkPrimeFrequency([1, 2, 3, 4, 5, 4]) });
