@@ -22802,3 +22802,25 @@ function checkPrimeFrequency(nums) {
   return false;
 }
 console.log({ checkPrimeFrequency: checkPrimeFrequency([1, 2, 3, 4, 5, 4]) });
+
+/**
+ * @param {number} n
+ * @param {number[][]} pick
+ * @returns {number}
+ */
+function winningPlayerCount(n, pick) {
+  const counts = Array.from({ length: n }, () => new Map());
+  const winners = new Set();
+
+  for (const [player, color] of pick) {
+    if (winners.has(player)) continue;
+
+    const newCount = (counts[player].get(color) || 0) + 1;
+    counts[player].set(color, newCount);
+
+    if (newCount > player) winners.add(player);
+  }
+
+  return winners.size;
+}
+console.log({ winningPlayerCount: winningPlayerCount(1, [[0, 1]]) });
