@@ -22824,3 +22824,22 @@ function winningPlayerCount(n, pick) {
   return winners.size;
 }
 console.log({ winningPlayerCount: winningPlayerCount(1, [[0, 1]]) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} digit 
+ * @returns {number}
+ */
+function countDigitOccurrences(nums, digit) {
+  let count = 0;
+
+  for (let num of nums) {
+    while (num) {
+      count += num % 10 === digit ? 1 : 0;
+      num = Math.floor(num / 10);
+    }
+  }
+
+  return count;
+}
+console.log({ countDigitOccurrences: countDigitOccurrences([12, 54, 32, 22], 2) });
