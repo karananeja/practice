@@ -22843,3 +22843,24 @@ function countDigitOccurrences(nums, digit) {
   return count;
 }
 console.log({ countDigitOccurrences: countDigitOccurrences([12, 54, 32, 22], 2) });
+
+/**
+ * @param {string[][]} board
+ * @returns {number}
+ */
+function countBattleships(board) {
+  let count = 0;
+
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      const isShip = board[i][j] === 'X';
+      const noTopNeighbour = i === 0 || board[i - 1][j] !== 'X';
+      const noLeftNeighbour = j === 0 || board[i][j - 1] !== 'X';
+
+      if (isShip && noTopNeighbour && noLeftNeighbour) count++;
+    }
+  }
+
+  return count;
+}
+console.log({ countBattleships: countBattleships([["."]]) });
