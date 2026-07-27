@@ -22864,3 +22864,28 @@ function countBattleships(board) {
   return count;
 }
 console.log({ countBattleships: countBattleships([["."]]) });
+
+/**
+ * @param {number[][]} grid
+ * @returns {number}
+ */
+function minimumArea(grid) {
+  let minRow = Infinity, maxRow = -Infinity;
+  let minCol = Infinity, maxCol = -Infinity;
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j] === 1) {
+        minRow = Math.min(minRow, i);
+        maxRow = Math.max(maxRow, i);
+        minCol = Math.min(minCol, j);
+        maxCol = Math.max(maxCol, j);
+      }
+    }
+  }
+
+  if (minRow === Infinity) return 0;
+
+  return (maxRow - minRow + 1) * (maxCol - minCol + 1);
+}
+console.log({ minimumArea: minimumArea([[0, 1, 0], [1, 0, 1]]) });
