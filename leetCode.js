@@ -22889,3 +22889,23 @@ function minimumArea(grid) {
   return (maxRow - minRow + 1) * (maxCol - minCol + 1);
 }
 console.log({ minimumArea: minimumArea([[0, 1, 0], [1, 0, 1]]) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number[]}
+ */
+function countOppositeParity(nums) {
+  const result = new Array(nums.length);
+  let evenRight = 0, oddRight = 0;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    const isOdd = nums[i] & 1;
+    result[i] = isOdd ? evenRight : oddRight;
+
+    if (isOdd) oddRight++;
+    else evenRight++;
+  }
+
+  return result;
+}
+console.log({ countOppositeParity: countOppositeParity([1, 2, 3, 4]) });
