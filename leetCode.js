@@ -22909,3 +22909,29 @@ function countOppositeParity(nums) {
   return result;
 }
 console.log({ countOppositeParity: countOppositeParity([1, 2, 3, 4]) });
+
+/**
+ * @param {number} x
+ * @param {number} y
+ * @param {number[][]} points
+ * @returns {number}
+ */
+function nearestValidPoint(x, y, points) {
+  let nearestIndex = -1, manhattanDistance = Infinity;
+
+  for (let index = 0; index < points.length; index++) {
+    const [pointX, pointY] = points[index];
+
+    if (pointX === x || pointY === y) {
+      const distance = Math.abs(pointX - x) + Math.abs(pointY - y);
+
+      if (manhattanDistance > distance) {
+        manhattanDistance = distance;
+        nearestIndex = index;
+      }
+    }
+  }
+
+  return nearestIndex;
+}
+console.log({ nearestValidPoint: nearestValidPoint(3, 4, [[2, 3]]) });
