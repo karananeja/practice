@@ -22935,3 +22935,66 @@ function nearestValidPoint(x, y, points) {
   return nearestIndex;
 }
 console.log({ nearestValidPoint: nearestValidPoint(3, 4, [[2, 3]]) });
+
+/**
+ * @param {string} char
+ * @returns {boolean}
+ */
+function isLowercaseLetter(char) {
+  return char >= "a" && char <= "z";
+}
+
+/**
+ * @param {string} word
+ * @returns {number}
+ */
+function numberOfSpecialChars(word) {
+  const ALPHABET_SIZE = 26;
+  const LOWERCASE_A = "a".charCodeAt(0);
+  const UPPERCASE_A = "A".charCodeAt(0);
+
+  // Stores the last occurrence of each lowercase letter
+  const lastLowercaseIndex = Array.from(
+    { length: ALPHABET_SIZE },
+    () => -1
+  );
+
+  // Stores the first occurrence of each uppercase letter
+  const firstUppercaseIndex = Array.from(
+    { length: ALPHABET_SIZE },
+    () => -1
+  );
+
+  for (let index = 0; index < word.length; index++) {
+    const char = word[index];
+
+    if (isLowercaseLetter(char)) {
+      const alphabetIndex = char.charCodeAt(0) - LOWERCASE_A;
+      lastLowercaseIndex[alphabetIndex] = index;
+    } else {
+      const alphabetIndex = char.charCodeAt(0) - UPPERCASE_A;
+
+      if (firstUppercaseIndex[alphabetIndex] === -1) {
+        firstUppercaseIndex[alphabetIndex] = index;
+      }
+    }
+  }
+
+  let specialCharCount = 0;
+
+  for (let alphabetIndex = 0; alphabetIndex < ALPHABET_SIZE; alphabetIndex++) {
+    const lowercasePosition = lastLowercaseIndex[alphabetIndex];
+    const uppercasePosition = firstUppercaseIndex[alphabetIndex];
+
+    if (
+      lowercasePosition !== -1 &&
+      uppercasePosition !== -1 &&
+      lowercasePosition < uppercasePosition
+    ) {
+      specialCharCount++;
+    }
+  }
+
+  return specialCharCount;
+}
+console.log({ numberOfSpecialChars: numberOfSpecialChars("aaAbcBC") });
