@@ -22998,3 +22998,38 @@ function numberOfSpecialChars(word) {
   return specialCharCount;
 }
 console.log({ numberOfSpecialChars: numberOfSpecialChars("aaAbcBC") });
+
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} color
+ * @returns {number[][]}
+ */
+function floodFill(image, sr, sc, color) {
+  if (image[sr][sc] === color) return image;
+
+  const rows = image.length;
+  const cols = image[0].length;
+  const originalColor = image[sr][sc];
+
+  /**
+   * @param {number} row
+   * @param {number} col
+   */
+  function dfs(row, col) {
+    if (row < 0 || col < 0 || row >= rows || col >= cols) return;
+    if (image[row][col] !== originalColor) return;
+
+    image[row][col] = color;
+
+    dfs(row - 1, col);
+    dfs(row + 1, col);
+    dfs(row, col - 1);
+    dfs(row, col + 1);
+  }
+  dfs(sr, sc);
+
+  return image;
+}
+console.log({ floodFill: floodFill([[0, 0, 0], [0, 0, 0]], 0, 0, 0) });
