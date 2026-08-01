@@ -23033,3 +23033,18 @@ function floodFill(image, sr, sc, color) {
   return image;
 }
 console.log({ floodFill: floodFill([[0, 0, 0], [0, 0, 0]], 0, 0, 0) });
+
+/**
+ * @param {number[][]} matrix
+ * @returns {boolean}
+ */
+function isToeplitzMatrix(matrix) {
+  for (let r = 1; r < matrix.length; r++) {
+    for (let c = 1; c < matrix[0].length; c++) {
+      if (matrix[r][c] !== matrix[r - 1][c - 1]) return false;
+    }
+  }
+
+  return true;
+}
+console.log({ isToeplitzMatrix: isToeplitzMatrix([[1, 2], [2, 2]]) });
