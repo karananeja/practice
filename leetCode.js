@@ -23048,3 +23048,29 @@ function isToeplitzMatrix(matrix) {
   return true;
 }
 console.log({ isToeplitzMatrix: isToeplitzMatrix([[1, 2], [2, 2]]) });
+
+/**
+ * @param {number} mass
+ * @param {number[]} asteroids
+ * @returns {boolean}
+ */
+function asteroidsDestroyed(mass, asteroids) {
+  const asteroidCount = new Array(100001).fill(0);
+
+  for (const asteroid of asteroids) {
+    asteroidCount[asteroid]++;
+  }
+
+  for (let i = 1; i < asteroidCount.length; i++) {
+    const count = asteroidCount[i];
+
+    if (count === 0) continue;
+
+    if (mass < i) return false;
+
+    mass += count * i;
+  }
+
+  return true;
+}
+console.log({ asteroidsDestroyed: asteroidsDestroyed(5, [4, 9, 23, 4]) });
