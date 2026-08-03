@@ -23074,3 +23074,19 @@ function asteroidsDestroyed(mass, asteroids) {
   return true;
 }
 console.log({ asteroidsDestroyed: asteroidsDestroyed(5, [4, 9, 23, 4]) });
+
+/**
+ * @param {number[]} cost
+ * @returns {number}
+ */
+function minimumCost(cost) {
+  cost.sort((a, b) => b - a);
+  let totalCost = 0;
+
+  for (let i = 0; i < cost.length; i++) {
+    if (i % 3 !== 2) totalCost += cost[i];
+  }
+
+  return totalCost;
+}
+console.log({ minimumCost: minimumCost([5, 5]) });
