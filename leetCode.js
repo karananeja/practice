@@ -23127,3 +23127,25 @@ function earliestFinishTime(landStartTime, landDuration, waterStartTime, waterDu
   return Math.min(landWater, waterLand);
 }
 console.log({ earliestFinishTime: earliestFinishTime([2, 8], [4, 1], [6], [3]) });
+
+/**
+ * @param {number} num1
+ * @param {number} num2
+ * @returns {number}
+ */
+function totalWaviness(num1, num2) {
+  let count = 0;
+
+  for (let i = num1; i <= num2; i++) {
+    const num = i.toString();
+
+    for (let j = 1; j < num.length - 1; j++) {
+      const isPeak = num[j] > num[j - 1] && num[j] > num[j + 1];
+      const isValley = num[j] < num[j - 1] && num[j] < num[j + 1];
+      if (isPeak || isValley) count++;
+    }
+  }
+
+  return count;
+}
+console.log({ totalWaviness: totalWaviness(120, 130) });
