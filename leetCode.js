@@ -23149,3 +23149,26 @@ function totalWaviness(num1, num2) {
   return count;
 }
 console.log({ totalWaviness: totalWaviness(120, 130) });
+
+/**
+ * @param {number[]} nums 
+ * @returns {number}
+ */
+function minAbsoluteDifference(nums) {
+  let lastOne = -1, lastTwo = -1, minDiff = Infinity;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      lastOne = i;
+      if (lastTwo !== -1) minDiff = Math.min(minDiff, i - lastTwo);
+    }
+
+    if (nums[i] === 2) {
+      lastTwo = i;
+      if (lastOne !== -1) minDiff = Math.min(minDiff, i - lastOne);
+    }
+  }
+
+  return minDiff !== Infinity ? minDiff : -1;
+}
+console.log({ minAbsoluteDifference: minAbsoluteDifference([1, 0, 1, 0]) });
