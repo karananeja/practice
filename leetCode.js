@@ -23172,3 +23172,29 @@ function minAbsoluteDifference(nums) {
   return minDiff !== Infinity ? minDiff : -1;
 }
 console.log({ minAbsoluteDifference: minAbsoluteDifference([1, 0, 1, 0]) });
+
+/**
+ * @param {ListNode | null} head
+ * @param {number} k
+ * @returns {ListNode | null}
+ */
+function swapNodes(head, k) {
+  let first = head, second = head, kthFromStart = head;
+
+  for (let i = 1; i < k; i++) {
+    first = first.next;
+  }
+
+  kthFromStart = first;
+
+  while (first.next) {
+    first = first.next;
+    second = second.next;
+  }
+
+  const temp = kthFromStart.val;
+  kthFromStart.val = second.val;
+  second.val = temp;
+
+  return head;
+}
