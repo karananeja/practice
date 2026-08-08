@@ -23198,3 +23198,22 @@ function swapNodes(head, k) {
 
   return head;
 }
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function bulbSwitch(n) {
+  let start = 1, end = n, ans = 0;
+
+  while (start <= end) {
+    const mid = start + Math.floor((end - start) / 2);
+    if (mid * mid <= n) {
+      ans = mid;
+      start = mid + 1;
+    } else end = mid - 1;
+  }
+
+  return ans;
+}
+console.log({ bulbSwitch: bulbSwitch(10) });
