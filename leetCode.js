@@ -23217,3 +23217,20 @@ function bulbSwitch(n) {
   return ans;
 }
 console.log({ bulbSwitch: bulbSwitch(10) });
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @returns {number}
+ */
+function maxTotalValue(nums, k) {
+  let max = 0, min = Infinity;
+
+  for (const num of nums) {
+    max = Math.max(max, num);
+    min = Math.min(min, num);
+  }
+
+  return (max - min) * k;
+}
+console.log({ maxTotalValue: maxTotalValue([1, 9, 6], 4) });
