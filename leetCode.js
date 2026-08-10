@@ -23234,3 +23234,21 @@ function maxTotalValue(nums, k) {
   return (max - min) * k;
 }
 console.log({ maxTotalValue: maxTotalValue([1, 9, 6], 4) });
+
+/**
+ * @param {number[]} nums 
+ * @param {number} k 
+ * @returns {number[]}
+ */
+function limitOccurrences(nums, k) {
+  const result = [];
+
+  for (const num of nums) {
+    const len = result.length;
+
+    if (len < k || result[len - k] !== num) result.push(num);
+  }
+
+  return result;
+}
+console.log({ limitOccurrences: limitOccurrences([1, 2, 3], 2) });
