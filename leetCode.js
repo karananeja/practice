@@ -23252,3 +23252,20 @@ function limitOccurrences(nums, k) {
   return result;
 }
 console.log({ limitOccurrences: limitOccurrences([1, 2, 3], 2) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function findLengthOfLCIS(nums) {
+  let maxLen = 1, len = 1;
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i - 1] < nums[i]) len++;
+    else len = 1;
+    maxLen = Math.max(maxLen, len);
+  }
+
+  return maxLen;
+}
+console.log({ findLengthOfLCIS: findLengthOfLCIS([0, -1, 2]) });
