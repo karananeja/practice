@@ -23269,3 +23269,31 @@ function findLengthOfLCIS(nums) {
   return maxLen;
 }
 console.log({ findLengthOfLCIS: findLengthOfLCIS([0, -1, 2]) });
+
+/**
+ * @param {number} n
+ * @returns {string[]}
+ */
+function generateParenthesis(n) {
+  const result = [];
+
+  /**
+   * @param {string} current
+   * @param {number} open
+   * @param {number} close
+   */
+  function build(current, open, close) {
+    if (open === n && close === n) {
+      result.push(current);
+      return;
+    }
+
+    if (open < n) build(current + "(", open + 1, close);
+    if (close < open) build(current + ")", open, close + 1);
+  }
+
+  build("", 0, 0);
+
+  return result;
+}
+console.log({ generateParenthesis: generateParenthesis(8) });
