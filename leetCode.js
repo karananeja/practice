@@ -23317,3 +23317,22 @@ function deleteMiddle(head) {
 
   return head;
 }
+
+/**
+ * @param {string} s
+ * @returns {string}
+ */
+function processStr(s) {
+  const result = [];
+
+  for (const char of s) {
+    if (char === "*") {
+      if (result.length) result.pop();
+    } else if (char === "#") result.push(...result.slice());
+    else if (char === "%") result.reverse();
+    else result.push(char);
+  }
+
+  return result.join("");
+}
+console.log({ processStr: processStr("jw%m*h*njc") });
