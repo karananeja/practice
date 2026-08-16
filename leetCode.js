@@ -23384,3 +23384,19 @@ function processStr(s, k) {
   return '.';
 }
 console.log({ processStr: processStr('jw%m*h*njc') });
+
+/**
+ * @param {number} n 
+ * @returns {number}
+ */
+function digitFrequencyScore(n) {
+  let sum = 0;
+
+  while (n) {
+    sum += n % 10;
+    n = Math.floor(n / 10);
+  }
+
+  return sum;
+}
+console.log({ digitFrequencyScore: digitFrequencyScore(15644) });
