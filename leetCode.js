@@ -23400,3 +23400,15 @@ function digitFrequencyScore(n) {
   return sum;
 }
 console.log({ digitFrequencyScore: digitFrequencyScore(15644) });
+
+/**
+ * @param {number} hour
+ * @param {number} minutes
+ * @returns {number}
+ */
+function angleClock(hour, minutes) {
+  const hourPos = hour + minutes / 60;
+  const hourDiff = (11 * hourPos) % 12;
+  return Math.min(hourDiff, 12 - hourDiff) * 30;
+}
+console.log({ angleClock: angleClock(3, 15) });
