@@ -23412,3 +23412,44 @@ function angleClock(hour, minutes) {
   return Math.min(hourDiff, 12 - hourDiff) * 30;
 }
 console.log({ angleClock: angleClock(3, 15) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function minimumSum(nums) {
+  let ans = Infinity;
+  const n = nums.length;
+
+  const leftMin = [];
+  const rightMin = [];
+
+  let lMin = Infinity;
+  let rMin = Infinity;
+
+  // Minimum value on the left of each index
+  for (let i = 1; i < n; i++) {
+    lMin = Math.min(lMin, nums[i - 1]);
+    leftMin[i] = lMin;
+  }
+
+  // Minimum value on the right of each index
+  for (let i = n - 2; i >= 0; i--) {
+    rMin = Math.min(rMin, nums[i + 1]);
+    rightMin[i] = rMin;
+  }
+
+  // Check each index as the middle element
+  for (let i = 1; i < n - 1; i++) {
+    const left = leftMin[i];
+    const mid = nums[i];
+    const right = rightMin[i];
+
+    if (left >= mid || right >= mid) continue;
+
+    ans = Math.min(ans, left + mid + right);
+  }
+
+  return ans === Infinity ? -1 : ans;
+}
+console.log({ minimumSum: minimumSum([8, 6, 1, 5, 3]) });
