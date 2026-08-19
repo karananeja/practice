@@ -23453,3 +23453,33 @@ function minimumSum(nums) {
   return ans === Infinity ? -1 : ans;
 }
 console.log({ minimumSum: minimumSum([8, 6, 1, 5, 3]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function minimumSum(nums) {
+  let sum = Infinity;
+  const n = nums.length;
+
+  for (let i = 0; i < n; i++) {
+    const first = nums[i];
+
+    for (let j = i + 1; j < n; j++) {
+      const second = nums[j];
+
+      if (first >= second) continue;
+
+      for (let k = j + 1; k < n; k++) {
+        const third = nums[k];
+
+        if (third >= second) continue;
+
+        sum = Math.min(sum, first + second + third);
+      }
+    }
+  }
+
+  return sum !== Infinity ? sum : -1;
+}
+console.log({ minimumSum: minimumSum([8, 6, 1, 5, 3]) });
