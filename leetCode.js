@@ -23483,3 +23483,24 @@ function minimumSum(nums) {
   return sum !== Infinity ? sum : -1;
 }
 console.log({ minimumSum: minimumSum([8, 6, 1, 5, 3]) });
+
+/**
+ * @param {string} moves
+ * @returns {number}
+ */
+function maxDistance(moves) {
+  let x = 0;
+  let y = 0;
+  let empty = 0;
+
+  for (const move of moves) {
+    if (move === "L") x--;
+    else if (move === "R") x++;
+    else if (move === "U") y++;
+    else if (move === "D") y--;
+    else empty++;
+  }
+
+  return Math.abs(x) + Math.abs(y) + empty;
+}
+console.log({ maxDistance: maxDistance("L_D_") });
