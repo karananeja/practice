@@ -23504,3 +23504,44 @@ function maxDistance(moves) {
   return Math.abs(x) + Math.abs(y) + empty;
 }
 console.log({ maxDistance: maxDistance("L_D_") });
+
+/**
+ * @param {number[]} nums
+ * @param {number} x
+ * @returns {number}
+ */
+function countValidSubarrays(nums, x) {
+  const n = nums.length;
+  const pref = new Array(n + 1).fill(0);
+
+  for (let i = 0; i < n; i++) {
+    pref[i + 1] = pref[i] + nums[i];
+  }
+
+  let ans = 0;
+
+  /**
+   * @param {number} num
+   * @returns {number}
+   */
+  function getFirstDigit(num) {
+    while (num >= 10) {
+      num = Math.floor(num / 10);
+    }
+
+    return num;
+  }
+
+  for (let l = 0; l < n; l++) {
+    for (let r = l; r < n; r++) {
+      const sum = pref[r + 1] - pref[l];
+
+      if (sum % 10 !== x) continue;
+
+      if (getFirstDigit(sum) === x) ans++;
+    }
+  }
+
+  return ans;
+}
+console.log({ countValidSubarrays: countValidSubarrays([1], 2) });
