@@ -23545,3 +23545,32 @@ function countValidSubarrays(nums, x) {
   return ans;
 }
 console.log({ countValidSubarrays: countValidSubarrays([1], 2) });
+
+/**
+ * @param {string} s
+ * @param {string} target
+ * @returns {number}
+ */
+function rearrangeCharacters(s, target) {
+  const targetCharCount = new Map();
+
+  for (const char of target) {
+    targetCharCount.set(char, (targetCharCount.get(char) || 0) + 1);
+  }
+
+  const charCount = new Map();
+
+  for (const char of s) {
+    charCount.set(char, (charCount.get(char) || 0) + 1);
+  }
+
+  let count = 101;
+
+  for (const [char, value] of targetCharCount) {
+    if (!charCount.has(char)) return 0;
+    count = Math.min(count, Math.floor(charCount.get(char) / value));
+  }
+
+  return count;
+}
+console.log({ rearrangeCharacters: rearrangeCharacters("abcd", "abcde") });
