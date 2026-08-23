@@ -23574,3 +23574,19 @@ function rearrangeCharacters(s, target) {
   return count;
 }
 console.log({ rearrangeCharacters: rearrangeCharacters("abcd", "abcde") });
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @returns {number}
+ */
+function missingMultiple(nums, k) {
+  const multiples = new Set(nums);
+
+  for (let i = 1; i <= nums.length + 1; i++) {
+    if (!multiples.has(i * k)) return i * k;
+  }
+
+  return (nums.length + 1) * k;
+}
+console.log({ missingMultiple: missingMultiple([8, 2, 3, 4, 6], 2) });
