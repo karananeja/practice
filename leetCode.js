@@ -23590,3 +23590,30 @@ function missingMultiple(nums, k) {
   return (nums.length + 1) * k;
 }
 console.log({ missingMultiple: missingMultiple([8, 2, 3, 4, 6], 2) });
+
+/**
+ * @param {string[]} words
+ * @returns {string}
+ */
+function oddString(words) {
+  const diffCount = new Map();
+  const countWord = new Map();
+
+  for (const word of words) {
+    let str = "";
+
+    for (let i = 0; i < word.length - 1; i++) {
+      str += word[i + 1].charCodeAt(0) - word[i].charCodeAt(0) + ",";
+    }
+
+    diffCount.set(str, (diffCount.get(str) || 0) + 1);
+    countWord.set(str, word);
+  }
+
+  for (const [str, cnt] of diffCount) {
+    if (cnt === 1) return countWord.get(str);
+  }
+
+  return "";
+}
+console.log({ oddString: oddString(["adc", "wzy", "abc"]) });
