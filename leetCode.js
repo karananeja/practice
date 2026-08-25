@@ -23617,3 +23617,26 @@ function oddString(words) {
   return "";
 }
 console.log({ oddString: oddString(["adc", "wzy", "abc"]) });
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @returns {number}
+ */
+function countMajoritySubarrays(nums, target) {
+  const n = nums.length;
+  let ans = 0;
+
+  for (let i = 0; i < n; ++i) {
+    let cnt = 0;
+
+    for (let j = i; j < n; ++j) {
+      cnt += nums[j] === target ? 1 : -1;
+
+      if (cnt > 0) ++ans;
+    }
+  }
+
+  return ans;
+}
+console.log({ countMajoritySubarrays: countMajoritySubarrays([1, 2, 2, 3], 2) });
