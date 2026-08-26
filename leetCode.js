@@ -23640,3 +23640,17 @@ function countMajoritySubarrays(nums, target) {
   return ans;
 }
 console.log({ countMajoritySubarrays: countMajoritySubarrays([1, 2, 2, 3], 2) });
+
+/**
+ * @param {number[][]} edges
+ * @returns {number}
+ */
+function findCenter(edges) {
+  const firstEdge = edges[0];
+  const secondEdge = edges[1];
+
+  return firstEdge[0] === secondEdge[0] || firstEdge[0] === secondEdge[1]
+    ? firstEdge[0]
+    : firstEdge[1];
+}
+console.log({ findCenter: findCenter([[1, 2], [2, 3], [4, 2]]) });
