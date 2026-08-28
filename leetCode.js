@@ -23686,3 +23686,23 @@ function maximumLength(nums) {
   return ans;
 }
 console.log({ maximumLength: maximumLength([5, 4, 1, 2, 2]) });
+
+/**
+ * @param {number} candies
+ * @param {number} num_people
+ * @returns {number[]}
+ */
+function distributeCandies(candies, num_people) {
+  const distribution = new Array(num_people).fill(0);
+  let gift = 0;
+
+  while (candies > 0) {
+    const amount = Math.min(gift + 1, candies);
+    distribution[gift % num_people] += amount;
+    candies -= amount;
+    gift++;
+  }
+
+  return distribution;
+}
+console.log({ distributeCandies: distributeCandies(7, 4) });
