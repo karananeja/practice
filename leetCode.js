@@ -23706,3 +23706,14 @@ function distributeCandies(candies, num_people) {
   return distribution;
 }
 console.log({ distributeCandies: distributeCandies(7, 4) });
+
+/**
+ * @param {number} n 
+ * @param {number} w 
+ * @param {number} maxWeight 
+ * @returns {number}
+ */
+function maxContainers(n, w, maxWeight) {
+  return Math.floor(Math.min(n * n, maxWeight / w));
+}
+console.log({ maxContainers: maxContainers(2, 3, 15) });
