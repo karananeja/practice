@@ -1664,3 +1664,64 @@ class ShortestPath {
     return count;
   }
 }
+
+/**
+ * @problem_fortyTwo Given a Directed Acyclic Graph (DAG) with V vertices numbered from 0 to V - 1 and E weighted directed edges represented by a 2D array edges[][], where edges[i] = [u, v, wt] denotes a directed edge from vertex u to vertex v with weight wt, find the shortest distance from the source vertex 0 to every other vertex.
+
+Return an array of size V, where the i-th element represents the shortest distance from the source vertex 0 to vertex i. If a vertex is not reachable from the source, return -1 for that vertex.
+ */
+/**
+ * @solution_fortyTwo
+ */
+class DAGShortestPath {
+  shortestPath(V, edges) {
+    const adj = new Map();
+
+    for (let i = 0; i < V; i++) {
+      adj.set(i, []);
+    }
+
+    for (const [u, v, w] of edges) {
+      adj.get(u).push([v, w]);
+    }
+
+    const visited = new Array(V).fill(false);
+    const stack = [];
+
+    function dfsSort(node) {
+      visited[node] = true;
+
+      for (const neighbor of adj.get(node)) {
+        if (!visited[neighbor[0]]) dfsSort(neighbor[0]);
+      }
+
+      stack.push(node);
+    }
+
+    for (let i = 0; i < V; i++) {
+      if (!visited[i]) dfsSort(i);
+    }
+
+    const src = 0;
+    const dis = new Array(V).fill(Infinity);
+    dis[src] = 0;
+
+    while (stack.length) {
+      const top = stack.pop();
+
+      if (dis[top] != Infinity) {
+        for (const node of adj.get(top)) {
+          if (dis[top] + node[1] < dis[node[0]]) {
+            dis[node[0]] = dis[top] + node[1];
+          }
+        }
+      }
+    }
+
+    for (let i = 0; i < dis.length; i++) {
+      if (dis[i] == Infinity) dis[i] = -1;
+    }
+
+    return dis;
+  }
+}
