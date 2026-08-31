@@ -23717,3 +23717,29 @@ function maxContainers(n, w, maxWeight) {
   return Math.floor(Math.min(n * n, maxWeight / w));
 }
 console.log({ maxContainers: maxContainers(2, 3, 15) });
+
+/**
+ * @param {number} n 
+ * @param {number} x 
+ * @returns {boolean}
+ */
+function validDigit(n, x) {
+  if (n === x) return false;
+
+  let hasDigit = false, firstDigit = true;
+
+  while (n) {
+    const digit = n % 10;
+
+    if (digit === x) hasDigit = true;
+
+    if (n < 10) {
+      if (n === x) firstDigit = false;
+    }
+
+    n = Math.floor(n / 10);
+  }
+
+  return hasDigit && firstDigit;
+}
+console.log({ validDigit: validDigit(9999, 9) });
