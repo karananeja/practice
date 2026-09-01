@@ -23743,3 +23743,12 @@ function validDigit(n, x) {
   return hasDigit && firstDigit;
 }
 console.log({ validDigit: validDigit(9999, 9) });
+
+/**
+ * @param {number} n 
+ * @returns {boolean}
+ */
+function divisorGame(n) {
+  return n % 2 === 0;
+}
+console.log({ divisorGame: divisorGame(2) });
