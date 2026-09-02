@@ -23752,3 +23752,12 @@ function divisorGame(n) {
   return n % 2 === 0;
 }
 console.log({ divisorGame: divisorGame(2) });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function countCommas(n) {
+  return n >= 1000 ? n - 1000 + 1 : 0;
+}
+console.log({ countCommas: countCommas(1002) });
