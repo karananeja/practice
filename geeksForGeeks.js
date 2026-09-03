@@ -1760,3 +1760,49 @@ class DAGShortestPath {
     return dis;
   }
 }
+
+/**
+ * @problem_fortyThree Given an undirected, weighted graph with V vertices numbered from 0 to V-1 and E edges, represented by 2d array edges[][], where edges[i]=[u, v, w] represents the edge between the nodes u and v having w weight.
+Find the shortest distance of all the vertices from the source vertex src, and return an array of integers where the ith element denotes the shortest distance between ith node and source vertex src.
+
+Note: The Graph is connected and doesn't contain any negative weight edge.
+It is guaranteed that all the shortest distance will fit in a 32-bit integer.
+ */
+/**
+ * @solution_fortyThree
+ */
+class Dijkstra {
+  dijkstra(V, edges, src) {
+    // code here
+    const adj = new Map();
+
+    for (let i = 0; i < V; i++) {
+      adj.set(i, []);
+    }
+
+    for (const [u, v, w] of edges) {
+      adj.get(u).push([v, w]);
+      adj.get(v).push([u, w]);
+    }
+
+    const minHeap = new MinHeap((a, b) => a[0] - b[0]);
+    const dis = new Array(V).fill(Infinity);
+    dis[src] = 0;
+    minHeap.push([0, src]);
+
+    while (minHeap.size) {
+      const [nodeDis, top] = minHeap.pop();
+
+      if (nodeDis != dis[top]) continue;
+
+      for (const node of adj.get(top)) {
+        if (nodeDis + node[1] < dis[node[0]]) {
+          dis[node[0]] = nodeDis + node[1];
+          minHeap.push([dis[node[0]], node[0]]);
+        }
+      }
+    }
+
+    return dis;
+  }
+}
