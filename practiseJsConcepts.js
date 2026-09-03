@@ -9,7 +9,7 @@ buttonClick.addEventListener(
   function (e) {
     console.log('hello', e);
   },
-  false
+  false,
 );
 
 /**
@@ -33,22 +33,22 @@ let countNotes = (amount) => {
   while (amount !== 0) {
     if (amount >= 1000) {
       amount -= 1000;
-      notes[1000] ? ++notes[1000] : notes[1000] = 1;
+      notes[1000] ? ++notes[1000] : (notes[1000] = 1);
     } else if (amount >= 500) {
       amount -= 500;
-      notes[500] ? ++notes[500] : notes[500] = 1;
+      notes[500] ? ++notes[500] : (notes[500] = 1);
     } else if (amount >= 100) {
       amount -= 100;
-      notes[100] ? ++notes[100] : notes[100] = 1;
+      notes[100] ? ++notes[100] : (notes[100] = 1);
     } else if (amount >= 50) {
       amount -= 50;
-      notes[50] ? ++notes[50] : notes[50] = 1;
+      notes[50] ? ++notes[50] : (notes[50] = 1);
     } else if (amount >= 20) {
       amount -= 20;
-      notes[20] ? ++notes[20] : notes[20] = 1;
+      notes[20] ? ++notes[20] : (notes[20] = 1);
     } else if (amount >= 10) {
       amount -= 10;
-      notes[10] ? ++notes[10] : notes[10] = 1;
+      notes[10] ? ++notes[10] : (notes[10] = 1);
     }
   }
 

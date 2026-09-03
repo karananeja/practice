@@ -138,7 +138,10 @@ export class MinHeap {
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
       if (this.compare(this.heap[index], this.heap[parentIndex]) >= 0) break;
-      [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
+      [this.heap[index], this.heap[parentIndex]] = [
+        this.heap[parentIndex],
+        this.heap[index],
+      ];
       index = parentIndex;
     }
   }
@@ -152,17 +155,26 @@ export class MinHeap {
       const rightChildIndex = 2 * index + 2;
       let smallest = index;
 
-      if (leftChildIndex < length && this.compare(this.heap[leftChildIndex], this.heap[smallest]) < 0) {
+      if (
+        leftChildIndex < length &&
+        this.compare(this.heap[leftChildIndex], this.heap[smallest]) < 0
+      ) {
         smallest = leftChildIndex;
       }
 
-      if (rightChildIndex < length && this.compare(this.heap[rightChildIndex], this.heap[smallest]) < 0) {
+      if (
+        rightChildIndex < length &&
+        this.compare(this.heap[rightChildIndex], this.heap[smallest]) < 0
+      ) {
         smallest = rightChildIndex;
       }
 
       if (smallest === index) break;
 
-      [this.heap[index], this.heap[smallest]] = [this.heap[smallest], this.heap[index]];
+      [this.heap[index], this.heap[smallest]] = [
+        this.heap[smallest],
+        this.heap[index],
+      ];
       index = smallest;
     }
   }
@@ -206,7 +218,10 @@ export class MaxHeap {
     while (index > 0) {
       const parentIndex = Math.floor((index - 1) / 2);
       if (this.compare(this.heap[index], this.heap[parentIndex]) <= 0) break;
-      [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
+      [this.heap[index], this.heap[parentIndex]] = [
+        this.heap[parentIndex],
+        this.heap[index],
+      ];
       index = parentIndex;
     }
   }
@@ -220,17 +235,26 @@ export class MaxHeap {
       const rightChildIndex = 2 * index + 2;
       let largest = index;
 
-      if (leftChildIndex < length && this.compare(this.heap[leftChildIndex], this.heap[largest]) > 0) {
+      if (
+        leftChildIndex < length &&
+        this.compare(this.heap[leftChildIndex], this.heap[largest]) > 0
+      ) {
         largest = leftChildIndex;
       }
 
-      if (rightChildIndex < length && this.compare(this.heap[rightChildIndex], this.heap[largest]) > 0) {
+      if (
+        rightChildIndex < length &&
+        this.compare(this.heap[rightChildIndex], this.heap[largest]) > 0
+      ) {
         largest = rightChildIndex;
       }
 
       if (largest === index) break;
 
-      [this.heap[index], this.heap[largest]] = [this.heap[largest], this.heap[index]];
+      [this.heap[index], this.heap[largest]] = [
+        this.heap[largest],
+        this.heap[index],
+      ];
       index = largest;
     }
   }
@@ -254,7 +278,7 @@ class Trie {
     const index = ch.charCodeAt(0) - 97;
 
     if (index < 0 || index >= 26) {
-      throw new Error("Only a-z supported");
+      throw new Error('Only a-z supported');
     }
 
     return index;
@@ -338,13 +362,12 @@ class Trie {
 
       prefix += lastChar;
 
-      const curr =
-        prev.children[lastChar.charCodeAt(0) - 'a'.charCodeAt(0)];
+      const curr = prev.children[lastChar.charCodeAt(0) - 'a'.charCodeAt(0)];
 
       // No match found
       if (curr === null) {
         while (i < queryStr.length) {
-          output.push(["0"]);
+          output.push(['0']);
           i++;
         }
 

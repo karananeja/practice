@@ -38,12 +38,12 @@ function lengthOfLastWord(s) {
   let count = 0;
 
   for (let i = trimmedString.length - 1; i >= 0; i--) {
-    if (trimmedString[i] !== " ") count++;
+    if (trimmedString[i] !== ' ') count++;
     else return count;
   }
 
   return count;
-};
+}
 console.log({ lengthOfLastWord: lengthOfLastWord('Hello World') });
 
 /**
@@ -62,7 +62,8 @@ var findMedianSortedArrays = function (nums1, nums2) {
 
   const length = merged.length;
 
-  if (length % 2 === 0) return (merged[length / 2] + merged[(length / 2) - 1]) / 2;
+  if (length % 2 === 0)
+    return (merged[length / 2] + merged[length / 2 - 1]) / 2;
   else return merged[(length - 1) / 2];
 };
 console.log({ findMedianSortedArrays: findMedianSortedArrays([1, 2], [3, 4]) });
@@ -78,7 +79,8 @@ console.log({ findMedianSortedArrays: findMedianSortedArrays([1, 2], [3, 4]) });
  * @return {number}
  */
 var reverse = function (x) {
-  let temp = 0, reverseNumber = 0;
+  let temp = 0,
+    reverseNumber = 0;
 
   if (x > 0) {
     while (x > 0) {
@@ -96,7 +98,11 @@ var reverse = function (x) {
     reverseNumber = -reverseNumber;
   }
 
-  if (reverseNumber > BigInt(Math.pow(2, 31) - 1) || reverseNumber < BigInt(Math.pow(-2, 31))) return 0;
+  if (
+    reverseNumber > BigInt(Math.pow(2, 31) - 1) ||
+    reverseNumber < BigInt(Math.pow(-2, 31))
+  )
+    return 0;
   return reverseNumber;
 };
 console.log({ reverse: reverse(-2147483648) });
@@ -117,7 +123,8 @@ console.log({ reverse: reverse(-2147483648) });
 var addTwoNumbers = function (l1, l2, carry = 0) {
   if (l1 === null && l2 === null && carry === 0) return null;
 
-  let a = 0, b = 0;
+  let a = 0,
+    b = 0;
 
   if (l1 !== null) {
     a = l1.val;
@@ -147,7 +154,7 @@ var addTwoNumbers = function (l1, l2, carry = 0) {
  * @solution_six
  * @param {number} n
  * @return {boolean}
-*/
+ */
 var isPowerOfFour = function (n) {
   return n > 0 && (n & (n - 1)) === 0 && (n & 0x55555555) !== 0;
 };
@@ -161,7 +168,7 @@ console.log({ isPowerOfFour: isPowerOfFour(-2147483647) });
  * @solution_seven
  * @param {number} n
  * @return {boolean}
-*/
+ */
 var isPowerOfTwo = function (n) {
   if (n <= 0) return false;
   return (n & (n - 1)) === 0;
@@ -217,7 +224,7 @@ console.log({ withLoop: fib(4) });
 // with recursion
 function fibRecursion(n) {
   return n < 2 ? n : fib(n - 2) + fib(n - 1);
-};
+}
 console.log({ withRecursion: fibRecursion(4) });
 
 /**
@@ -275,14 +282,25 @@ console.log({ divide: divide(-2147483648, 1) });
  * @return {boolean}
  */
 var reorderedPowerOf2 = function (n) {
-  n = n.toString().split('').sort((a, b) => a - b).join('');
+  n = n
+    .toString()
+    .split('')
+    .sort((a, b) => a - b)
+    .join('');
   let lengthOfNumber = n.length;
-  let N, pow = 0;
+  let N,
+    pow = 0;
 
   while (n) {
     N = (2 ** pow).toString();
 
-    if (N.length === lengthOfNumber) if (N.split('').sort((a, b) => a - b).join('') === n) return true;
+    if (N.length === lengthOfNumber)
+      if (
+        N.split('')
+          .sort((a, b) => a - b)
+          .join('') === n
+      )
+        return true;
 
     if (N.length > lengthOfNumber) break;
 
@@ -325,7 +343,7 @@ var longestCommonPrefix = function (strs) {
    * @return {string}
    */
   function lcp(word) {
-    let prefix = "";
+    let prefix = '';
     let node = trie.getRoot;
 
     for (const char of word) {
@@ -376,11 +394,17 @@ console.log({ removeElement: removeElement([3, 2, 3, 2], 3) });
 var romanToInt = function (romanNumber) {
   const symbolValue = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
 
-  let charIndex = 0, number = 0;
+  let charIndex = 0,
+    number = 0;
 
   while (charIndex < romanNumber.length) {
-    if (symbolValue[romanNumber[charIndex]] < symbolValue[romanNumber[charIndex + 1]]) {
-      number += symbolValue[romanNumber[charIndex + 1]] - symbolValue[romanNumber[charIndex]];
+    if (
+      symbolValue[romanNumber[charIndex]] <
+      symbolValue[romanNumber[charIndex + 1]]
+    ) {
+      number +=
+        symbolValue[romanNumber[charIndex + 1]] -
+        symbolValue[romanNumber[charIndex]];
       charIndex++;
     } else {
       number += symbolValue[romanNumber[charIndex]];
@@ -447,7 +471,7 @@ console.log({ checkIfInstanceOf: checkIfInstanceOf(5, Number) });
  * @solution_seventeen
  */
 var createHelloWorld = function () {
-  return () => "Hello World";
+  return () => 'Hello World';
 };
 
 /**
@@ -463,12 +487,15 @@ var createHelloWorld = function () {
 var ParkingSystem = function (big, medium, small) {
   this.parkingSpace = {
     current: [0, 0, 0],
-    allowed: [big, medium, small]
+    allowed: [big, medium, small],
   };
 };
 
 ParkingSystem.prototype.addCar = function (carType) {
-  if (this.parkingSpace.current[carType - 1] < this.parkingSpace.allowed[carType - 1]) {
+  if (
+    this.parkingSpace.current[carType - 1] <
+    this.parkingSpace.allowed[carType - 1]
+  ) {
     this.parkingSpace.current[carType - 1] += 1;
     return true;
   } else {
@@ -491,16 +518,15 @@ var MyHashSet = function () {
   this.hashset = [];
 };
 
-/** 
+/**
  * @param {number} key
  * @return {void}
  */
 MyHashSet.prototype.add = function (key) {
-  if (!this.hashset.includes(key))
-    this.hashset.push(key);
+  if (!this.hashset.includes(key)) this.hashset.push(key);
 };
 
-/** 
+/**
  * @param {number} key
  * @return {void}
  */
@@ -511,7 +537,7 @@ MyHashSet.prototype.remove = function (key) {
   }
 };
 
-/** 
+/**
  * @param {number} key
  * @return {boolean}
  */
@@ -524,7 +550,9 @@ MyHashSet.prototype.contains = function (key) {
  * @return {number}
  */
 var largestAltitude = function (gain) {
-  let altitudes = [], totalAltitude = 0, maxAltitude = 0;
+  let altitudes = [],
+    totalAltitude = 0,
+    maxAltitude = 0;
 
   for (let i = 0; i < gain.length + 1; i++) {
     if (i === 0) {
@@ -551,7 +579,8 @@ console.log({ largestAltitude: largestAltitude([-5, 1, 5, 0, -7]) });
  * @return {boolean}
  */
 var uniqueOccurrences = function (arr) {
-  const count = {}, occurrenceCount = new Set();
+  const count = {},
+    occurrenceCount = new Set();
 
   for (const num of arr) {
     count[num] = (count[num] || 0) + 1;
@@ -560,8 +589,7 @@ var uniqueOccurrences = function (arr) {
   for (const key in count) {
     if (!occurrenceCount.has(count[key])) {
       occurrenceCount.add(count[key]);
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -586,7 +614,8 @@ function findDuplicate(nums) {
 console.log({ findDuplicate: findDuplicate([5, 1, 2, 3, 4, 2]) });
 
 function findInPeakIndexInMountainArray(arr) {
-  let start = 0, end = arr.length - 1;
+  let start = 0,
+    end = arr.length - 1;
 
   let mid = start + parseInt((end - start) / 2);
 
@@ -602,7 +631,9 @@ function findInPeakIndexInMountainArray(arr) {
 
   return start;
 }
-console.log({ findInPeakIndexInMountainArray: findInPeakIndexInMountainArray([0, 10, 5, 2]) });
+console.log({
+  findInPeakIndexInMountainArray: findInPeakIndexInMountainArray([0, 10, 5, 2]),
+});
 
 var sortPeople = function (names, heights) {
   for (let i = 0; i < heights.length; i++) {
@@ -612,7 +643,8 @@ var sortPeople = function (names, heights) {
       if (heights[maxIndex] < heights[j]) maxIndex = j;
     }
 
-    const temp = heights[i], tempName = names[i];
+    const temp = heights[i],
+      tempName = names[i];
     heights[i] = heights[maxIndex];
     names[i] = names[maxIndex];
     heights[maxIndex] = temp;
@@ -621,15 +653,30 @@ var sortPeople = function (names, heights) {
 
   return names;
 };
-console.log({ answer: sortPeople(["IEO", "Sgizfdfrims", "QTASHKQ", "Vk", "RPJOFYZUBFSIYp", "EPCFFt", "VOYGWWNCf", "WSpmqvb"], [17233, 32521, 14087, 42738, 46669, 65662, 43204, 8224]) });
+console.log({
+  answer: sortPeople(
+    [
+      'IEO',
+      'Sgizfdfrims',
+      'QTASHKQ',
+      'Vk',
+      'RPJOFYZUBFSIYp',
+      'EPCFFt',
+      'VOYGWWNCf',
+      'WSpmqvb',
+    ],
+    [17233, 32521, 14087, 42738, 46669, 65662, 43204, 8224],
+  ),
+});
 
 var getPivot = function (arr) {
-  let start = 0, end = arr.length - 1;
+  let start = 0,
+    end = arr.length - 1;
 
   while (start < end) {
     let mid = start + parseInt((end - start) / 2);
 
-    (arr[mid] >= arr[0]) ? start = mid + 1 : end = mid;
+    arr[mid] >= arr[0] ? (start = mid + 1) : (end = mid);
   }
 
   return start;
@@ -643,7 +690,7 @@ var findTargetInNums = function (arr, target, start, end) {
       return mid;
     }
 
-    arr[mid] > target ? end = mid - 1 : start = mid + 1;
+    arr[mid] > target ? (end = mid - 1) : (start = mid + 1);
   }
 
   return -1;
@@ -665,7 +712,9 @@ var search = function (nums, target) {
 };
 
 var firstOccurrence = function (nums, target) {
-  let start = 0, end = nums.length - 1, ans = -1;
+  let start = 0,
+    end = nums.length - 1,
+    ans = -1;
 
   while (start <= end) {
     let mid = start + parseInt((end - start) / 2);
@@ -684,7 +733,9 @@ var firstOccurrence = function (nums, target) {
 };
 
 var lastOccurrence = function (nums, target) {
-  let start = 0, end = nums.length - 1, ans = -1;
+  let start = 0,
+    end = nums.length - 1,
+    ans = -1;
 
   while (start <= end) {
     let mid = start + parseInt((end - start) / 2);
@@ -720,7 +771,9 @@ console.log({ searchRange: searchRange([5, 7, 7, 8, 8, 10], 8) });
  * @returns {number}
  */
 var integerValue = function (num) {
-  let start = 0, end = num, integer = -1;
+  let start = 0,
+    end = num,
+    integer = -1;
 
   while (start <= end) {
     let mid = start + parseInt((end - start) / 2);
@@ -751,13 +804,14 @@ var mySqrt = function (x) {
 };
 
 /**
- * @param {number[]} nums 
- * @param {number} idx 
- * @param {number} heapSize 
+ * @param {number[]} nums
+ * @param {number} idx
+ * @param {number} heapSize
  */
 var heapify = function (nums, idx, heapSize) {
   let largest = idx;
-  const left = 2 * idx + 1, right = 2 * idx + 2;
+  const left = 2 * idx + 1,
+    right = 2 * idx + 2;
 
   if (left < heapSize && nums[largest] < nums[left]) largest = left;
   if (right < heapSize && nums[largest] < nums[right]) largest = right;
@@ -769,7 +823,7 @@ var heapify = function (nums, idx, heapSize) {
 };
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  */
 var buildMaxHeap = function (nums) {
   for (let i = Math.floor(nums.length / 2); i >= 0; i--) {
@@ -797,7 +851,7 @@ var findKthLargest = function (nums, k) {
 console.log({ kthLargest: findKthLargest([3, 2, 1, 5, 6, 4], 2) });
 
 /**
- * @param {array} operations 
+ * @param {array} operations
  * @returns {number}
  */
 function calPoints(operations) {
@@ -805,14 +859,14 @@ function calPoints(operations) {
 
   for (let i = 0; i < operations.length; i++) {
     switch (operations[i]) {
-      case "+":
+      case '+':
         const total = score[score.length - 1] + score[score.length - 2];
         score.push(total);
         break;
-      case "D":
+      case 'D':
         score.push(score[score.length - 1] * 2);
         break;
-      case "C":
+      case 'C':
         score.pop();
         break;
       default:
@@ -821,17 +875,17 @@ function calPoints(operations) {
   }
 
   return score.length > 0 ? score.reduce((curr, next) => curr + next, 0) : 0;
-};
-console.log({ points: calPoints(["5", "2", "C", "D", "+"]) });
+}
+console.log({ points: calPoints(['5', '2', 'C', 'D', '+']) });
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {string}
  */
 function lowerCase(char) {
-  if (char >= "a" && char <= "z") {
+  if (char >= 'a' && char <= 'z') {
     return char;
-  } else if (char >= "A" && char <= "Z") {
+  } else if (char >= 'A' && char <= 'Z') {
     return String.fromCharCode(char.charCodeAt(0) + 32);
   }
 
@@ -839,7 +893,7 @@ function lowerCase(char) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function toLowerCase(s) {
@@ -849,16 +903,17 @@ function toLowerCase(s) {
     result.push(lowerCase(s[i]));
   }
 
-  return result.join("");
-};
-console.log({ lowerCase: toLowerCase("Hello@WORLD") });
+  return result.join('');
+}
+console.log({ lowerCase: toLowerCase('Hello@WORLD') });
 
 /**
- * @param {array} nums 
+ * @param {array} nums
  * @returns {boolean}
  */
 function isMonotonic(nums) {
-  let start = 0, next = 1;
+  let start = 0,
+    next = 1;
 
   while (next < nums.length) {
     if (nums[0] <= nums[nums.length - 1]) {
@@ -871,12 +926,12 @@ function isMonotonic(nums) {
   }
 
   return true;
-};
+}
 console.log({ isMonotonic: isMonotonic([1, 1, 0]) });
 
 /**
- * 
- * @param {string} s 
+ *
+ * @param {string} s
  * @returns {boolean}
  */
 function repeatedSubstringPattern(s) {
@@ -884,7 +939,7 @@ function repeatedSubstringPattern(s) {
 
   for (let i = 0; i <= length / 2; i++) {
     if (length % i === 0) {
-      let pattern = "";
+      let pattern = '';
 
       for (let j = 0; j < length / i; j++) {
         pattern += s.substr(0, i);
@@ -895,25 +950,28 @@ function repeatedSubstringPattern(s) {
   }
 
   return false;
-};
-console.log({ canBeFormed: repeatedSubstringPattern("ababab") });
+}
+console.log({ canBeFormed: repeatedSubstringPattern('ababab') });
 
 /**
- * @param {number} low 
- * @param {number} high 
+ * @param {number} low
+ * @param {number} high
  * @returns {number}
  */
 function countOdds(low, high) {
-  return low % 2 === 0 ? Math.round((high - low) / 2) : Math.floor((high - low) / 2) + 1;
-};
+  return low % 2 === 0
+    ? Math.round((high - low) / 2)
+    : Math.floor((high - low) / 2) + 1;
+}
 console.log({ count: countOdds(0, 100) });
 
 /**
- * @param {number[][]} mat 
+ * @param {number[][]} mat
  * @returns {num}
  */
 function diagonalSum(mat) {
-  let ans = 0, size = mat.length;
+  let ans = 0,
+    size = mat.length;
 
   for (let i = 0; i < size; i++) {
     // primary diagonal elements
@@ -928,15 +986,24 @@ function diagonalSum(mat) {
   }
 
   return ans;
-};
-console.log({ diagonalSum: diagonalSum([[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]) });
+}
+console.log({
+  diagonalSum: diagonalSum([
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+  ]),
+});
 
 /**
- * @param {number[]} salary 
+ * @param {number[]} salary
  * @returns {number}
  */
 function average(salary) {
-  let averageSalary = 0, maxSalary = -Infinity, minSalary = Infinity;
+  let averageSalary = 0,
+    maxSalary = -Infinity,
+    minSalary = Infinity;
 
   for (let i = 0; i < salary.length; i++) {
     if (maxSalary <= salary[i]) {
@@ -950,9 +1017,16 @@ function average(salary) {
     averageSalary += salary[i];
   }
 
-  return Number(((averageSalary - minSalary - maxSalary) / (salary.length - 2)).toFixed(5));
-};
-console.log({ averageSalary: average([48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000, 77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000]) });
+  return Number(
+    ((averageSalary - minSalary - maxSalary) / (salary.length - 2)).toFixed(5),
+  );
+}
+console.log({
+  averageSalary: average([
+    48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000,
+    77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000,
+  ]),
+});
 
 /**
  * @param {Function} fn
@@ -979,11 +1053,13 @@ console.log(memoizedSum(2, 3)); // Output: Computing sum, 5
 console.log(memoizedSum(2, 3)); // Output: 5
 
 /**
- * @param {number[]} numbers 
+ * @param {number[]} numbers
  * @returns {number}
  */
 function countNegativeNumbers(numbers) {
-  let count = 0, start = 0, end = numbers.length - 1;
+  let count = 0,
+    start = 0,
+    end = numbers.length - 1;
 
   while (start <= end) {
     let mid = start + Math.floor((end - start) / 2);
@@ -1000,7 +1076,7 @@ function countNegativeNumbers(numbers) {
 }
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function countNegatives(grid) {
@@ -1011,17 +1087,25 @@ function countNegatives(grid) {
   }
 
   return count;
-};
-console.log({ negativeNumbers: countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]) });
+}
+console.log({
+  negativeNumbers: countNegatives([
+    [4, 3, 2, -1],
+    [3, 2, 1, -1],
+    [1, 1, -1, -2],
+    [-1, -1, -2, -3],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function reverseWords(s) {
-  const string = s.split(" ");
+  const string = s.split(' ');
 
-  let reversedString = "", index = string.length - 1;
+  let reversedString = '',
+    index = string.length - 1;
 
   while (index >= 0) {
     if (string[index]) reversedString += `${string[index]} `;
@@ -1029,12 +1113,12 @@ function reverseWords(s) {
   }
 
   return reversedString.trim();
-};
-console.log({ reverseWords: reverseWords("the sky is blue") });
+}
+console.log({ reverseWords: reverseWords('the sky is blue') });
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string[]}
  */
 function createGroups(s, k) {
@@ -1042,11 +1126,12 @@ function createGroups(s, k) {
   let i = 0;
 
   while (i < s.length) {
-    let j = 0, charString = '';
+    let j = 0,
+      charString = '';
 
     while (j < 2 * k) {
-      if (s[j + (i * 2 * k)] !== undefined) {
-        charString += s[j + (i * 2 * k)];
+      if (s[j + i * 2 * k] !== undefined) {
+        charString += s[j + i * 2 * k];
       }
 
       j++;
@@ -1060,8 +1145,8 @@ function createGroups(s, k) {
 }
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function partiallyReverseLetters(charGroup, k) {
@@ -1069,7 +1154,8 @@ function partiallyReverseLetters(charGroup, k) {
 
   for (let i = 0; i < charGroup.length; i++) {
     const chars = charGroup[i].split('');
-    let start = 0, end = k - 1;
+    let start = 0,
+      end = k - 1;
 
     while (start <= end) {
       [chars[start], chars[end]] = [chars[end], chars[start]];
@@ -1084,26 +1170,28 @@ function partiallyReverseLetters(charGroup, k) {
 }
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function reverseWordsVariantTwo(s, k) {
   const charGroups = createGroups(s, k);
   return partiallyReverseLetters(charGroups, k);
-};
-console.log({ reverseWordsVariantTwo: reverseWordsVariantTwo("abcdefg", 2) });
+}
+console.log({ reverseWordsVariantTwo: reverseWordsVariantTwo('abcdefg', 2) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function reverseWordsVariantThree(s) {
-  let reversedString = s.split(' '), result = "";
+  let reversedString = s.split(' '),
+    result = '';
 
   for (let i = 0; i < reversedString.length; i++) {
     const chars = reversedString[i].split('');
-    let start = 0, end = chars.length;
+    let start = 0,
+      end = chars.length;
 
     while (start <= end) {
       [chars[start], chars[end]] = [chars[end], chars[start]];
@@ -1111,30 +1199,34 @@ function reverseWordsVariantThree(s) {
       end--;
     }
 
-    result += `${chars.join("")} `;
+    result += `${chars.join('')} `;
   }
 
   return result.trim();
-};
-console.log({ reverseWordsVariantThree: reverseWordsVariantThree("Let's take LeetCode contest") });
+}
+console.log({
+  reverseWordsVariantThree: reverseWordsVariantThree(
+    "Let's take LeetCode contest",
+  ),
+});
 
 /**
- * @param {string} s 
- * @param {string} part 
+ * @param {string} s
+ * @param {string} part
  * @returns {string}
  */
 function removeOccurrences(s, part) {
   while (s.length !== 0 && s.includes(part)) {
-    s = s.replace(part, "");
+    s = s.replace(part, '');
   }
 
   return s;
-};
-console.log({ removed: removeOccurrences("daabcbaabcbc", "abc") });
+}
+console.log({ removed: removeOccurrences('daabcbaabcbc', 'abc') });
 
 /**
- * @param {number[]} a 
- * @param {number[]} b 
+ * @param {number[]} a
+ * @param {number[]} b
  * @returns {boolean}
  */
 function checkEqual(a, b) {
@@ -1146,9 +1238,9 @@ function checkEqual(a, b) {
 }
 
 /**
- * 
- * @param {string} s1 
- * @param {string} s2 
+ *
+ * @param {string} s1
+ * @param {string} s2
  * @returns {boolean}
  */
 function checkInclusion(s1, s2) {
@@ -1188,16 +1280,19 @@ function checkInclusion(s1, s2) {
   }
 
   return false;
-};
-console.log({ checkInclusion: checkInclusion("ab", "eidbaooo") });
+}
+console.log({ checkInclusion: checkInclusion('ab', 'eidbaooo') });
 
 /**
- * @param {number[][]} matrix 
- * @param {number} target 
+ * @param {number[][]} matrix
+ * @param {number} target
  * @returns {boolean}
  */
 function searchMatrix(matrix, target) {
-  let row = matrix.length, col = matrix[0].length, start = 0, end = row * col - 1;
+  let row = matrix.length,
+    col = matrix[0].length,
+    start = 0,
+    end = row * col - 1;
 
   while (start <= end) {
     let mid = start + Math.floor((end - start) / 2);
@@ -1206,20 +1301,34 @@ function searchMatrix(matrix, target) {
       return true;
     }
 
-    matrix[Math.floor(mid / col)][mid % col] > target ? end = mid - 1 : start = mid + 1;
+    matrix[Math.floor(mid / col)][mid % col] > target
+      ? (end = mid - 1)
+      : (start = mid + 1);
   }
 
   return false;
-};
-console.log({ isPresent: searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3) });
+}
+console.log({
+  isPresent: searchMatrix(
+    [
+      [1, 3, 5, 7],
+      [10, 11, 16, 20],
+      [23, 30, 34, 60],
+    ],
+    3,
+  ),
+});
 
 /**
- * @param {number[][]} matrix 
- * @param {number} target 
+ * @param {number[][]} matrix
+ * @param {number} target
  * @returns {boolean}
  */
 function searchMatrixLevelTwo(matrix, target) {
-  let rows = matrix.length, cols = matrix[0].length, rowIndex = 0, colIndex = cols - 1;
+  let rows = matrix.length,
+    cols = matrix[0].length,
+    rowIndex = 0,
+    colIndex = cols - 1;
 
   while (rowIndex < rows && colIndex >= 0) {
     let element = matrix[rowIndex][colIndex];
@@ -1232,15 +1341,27 @@ function searchMatrixLevelTwo(matrix, target) {
   }
 
   return false;
-};
-console.log({ isPresentInLevelTwo: searchMatrixLevelTwo([[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], 5) });
+}
+console.log({
+  isPresentInLevelTwo: searchMatrixLevelTwo(
+    [
+      [1, 4, 7, 11, 15],
+      [2, 5, 8, 12, 19],
+      [3, 6, 9, 16, 22],
+      [10, 13, 14, 17, 24],
+      [18, 21, 23, 26, 30],
+    ],
+    5,
+  ),
+});
 
 /**
- * @param {string[]} chars 
+ * @param {string[]} chars
  * @returns {number}
  */
 function compress(chars) {
-  let i = 0, ansIndex = 0;
+  let i = 0,
+    ansIndex = 0;
   const length = chars.length;
 
   while (i < length) {
@@ -1266,12 +1387,14 @@ function compress(chars) {
   }
 
   return ansIndex;
-};
-console.log({ compressedString: compress(["a", "a", "b", "b", "c", "c", "c"]) });
+}
+console.log({
+  compressedString: compress(['a', 'a', 'b', 'b', 'c', 'c', 'c']),
+});
 
 /**
- * @param {string} s 
- * @param {string} goal 
+ * @param {string} s
+ * @param {string} goal
  * @returns {boolean}
  */
 function rotateString(s, goal) {
@@ -1286,11 +1409,11 @@ function rotateString(s, goal) {
   }
 
   return false;
-};
-console.log({ isRotated: rotateString("abcde", "cdeab") });
+}
+console.log({ isRotated: rotateString('abcde', 'cdeab') });
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number[][]}
  */
 function rotate(matrix) {
@@ -1311,42 +1434,69 @@ function rotate(matrix) {
   }
 
   return matrix;
-};
-console.log({ matrixRotated: rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
+}
+console.log({
+  matrixRotated: rotate([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]),
+});
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number[]}
  */
 function spiralOrder(matrix) {
-  let rows = matrix.length, cols = matrix[0].length;
+  let rows = matrix.length,
+    cols = matrix[0].length;
 
-  let count = 0, total = rows * cols;
+  let count = 0,
+    total = rows * cols;
 
-  let startingRow = 0, startingCol = 0, endingRow = rows - 1, endingCol = cols - 1;
+  let startingRow = 0,
+    startingCol = 0,
+    endingRow = rows - 1,
+    endingCol = cols - 1;
 
   const spiralMatrix = [];
 
   while (count < total) {
-    for (let index = startingCol; count < total && index <= endingCol; index++) {
+    for (
+      let index = startingCol;
+      count < total && index <= endingCol;
+      index++
+    ) {
       spiralMatrix.push(matrix[startingRow][index]);
       count++;
     }
     startingRow++;
 
-    for (let index = startingRow; count < total && index <= endingRow; index++) {
+    for (
+      let index = startingRow;
+      count < total && index <= endingRow;
+      index++
+    ) {
       spiralMatrix.push(matrix[index][endingCol]);
       count++;
     }
     endingCol--;
 
-    for (let index = endingCol; count < total && index >= startingCol; index--) {
+    for (
+      let index = endingCol;
+      count < total && index >= startingCol;
+      index--
+    ) {
       spiralMatrix.push(matrix[endingRow][index]);
       count++;
     }
     endingRow--;
 
-    for (let index = endingRow; count < total && index >= startingRow; index--) {
+    for (
+      let index = endingRow;
+      count < total && index >= startingRow;
+      index--
+    ) {
       spiralMatrix.push(matrix[index][startingCol]);
       count++;
     }
@@ -1355,7 +1505,13 @@ function spiralOrder(matrix) {
 
   return spiralMatrix;
 }
-console.log({ spiralPattern: spiralOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
+console.log({
+  spiralPattern: spiralOrder([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]),
+});
 
 class NumArray {
   constructor(nums) {
@@ -1372,12 +1528,14 @@ class NumArray {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function largestPerimeter(nums) {
   for (let i = nums.sort((a, b) => a - b).length - 1; i >= 2; i--) {
-    const firstSide = nums[i], secondSide = nums[i - 1], thirdSide = nums[i - 2];
+    const firstSide = nums[i],
+      secondSide = nums[i - 1],
+      thirdSide = nums[i - 2];
 
     if (firstSide < secondSide + thirdSide) {
       return firstSide + secondSide + thirdSide;
@@ -1385,20 +1543,20 @@ function largestPerimeter(nums) {
   }
 
   return 0;
-};
+}
 console.log({ largestPerimeter: largestPerimeter([2, 1, 2]) });
 
 /**
- * @param {Function} fn 
- * @param {number} t 
- * @returns 
+ * @param {Function} fn
+ * @param {number} t
+ * @returns
  */
 function timeLimit(fn, t) {
   return async function (...args) {
     return new Promise((delayResolve, reject) => {
       const timeoutId = setTimeout(() => {
         clearTimeout(timeoutId);
-        reject("Time Limit Exceeded");
+        reject('Time Limit Exceeded');
       }, t);
 
       fn(...args)
@@ -1415,7 +1573,7 @@ function timeLimit(fn, t) {
 }
 
 /**
- * @param {number} numRows 
+ * @param {number} numRows
  * @returns {number[][]}
  */
 function generate(numRows) {
@@ -1440,7 +1598,7 @@ function generate(numRows) {
   }
 
   return result;
-};
+}
 console.log({ pascalPattern: generate(5) });
 
 class TimeLimitedCache {
@@ -1480,7 +1638,7 @@ class TimeLimitedCache {
 }
 
 /**
- * @param {number} rowIndex 
+ * @param {number} rowIndex
  * @returns {number[]}
  */
 function getRow(rowIndex) {
@@ -1497,11 +1655,11 @@ function getRow(rowIndex) {
   }
 
   return result[rowIndex];
-};
+}
 
 /**
- * @param {number} a 
- * @param {number} b 
+ * @param {number} a
+ * @param {number} b
  * @returns {number}
  */
 function commonFactors(a, b) {
@@ -1513,23 +1671,23 @@ function commonFactors(a, b) {
   }
 
   return numberOfFactors;
-};
+}
 console.log({ numberOfFactors: commonFactors(12, 6) });
 
 /**
- * @param {number} arrivalTime 
- * @param {number} delayedTime 
+ * @param {number} arrivalTime
+ * @param {number} delayedTime
  * @returns {number}
  */
 function findDelayedArrivalTime(arrivalTime, delayedTime) {
   return (arrivalTime + delayedTime) % 24;
-};
+}
 console.log({ updatedTime: findDelayedArrivalTime(5, 24) });
 
 /**
- * @param {number[]} nums1 
- * @param {number} m 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
  * @param {number} n
  */
 function combine(nums1, m, nums2, n) {
@@ -1546,11 +1704,11 @@ function combine(nums1, m, nums2, n) {
   }
 
   console.log({ nums1 });
-};
+}
 combine([3], 1, [9], 1);
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minDeletions(s) {
@@ -1578,13 +1736,13 @@ function minDeletions(s) {
 
   return deletions;
 }
-console.log({ deletions: minDeletions("aaabbcdddeef") });
+console.log({ deletions: minDeletions('aaabbcdddeef') });
 
 /**
- * @param {number[]} nums 
- * @param {number[]} set 
- * @param {number} index 
- * @param {number[][]} subSet 
+ * @param {number[]} nums
+ * @param {number[]} set
+ * @param {number} index
+ * @param {number[][]} subSet
  * @returns {void}
  */
 function getSubsets(nums, set, index, subSet) {
@@ -1601,27 +1759,27 @@ function getSubsets(nums, set, index, subSet) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[][]}
  */
 function subsets(nums) {
   const subSet = [];
   getSubsets(nums, [], 0, subSet);
   return subSet;
-};
+}
 console.log({ subSets: subsets([1, 2, 3]) });
 
 /**
- * @param {string} digits 
- * @param {string[]} combination 
- * @param {number} index 
- * @param {string[]} combinations 
- * @param {string[]} mapping 
+ * @param {string} digits
+ * @param {string[]} combination
+ * @param {number} index
+ * @param {string[]} combinations
+ * @param {string[]} mapping
  * @returns {void}
  */
 function createCombination(digits, combination, index, combinations, mapping) {
   if (index >= digits.length) {
-    combinations.push(combination.join(""));
+    combinations.push(combination.join(''));
     return;
   }
 
@@ -1636,26 +1794,38 @@ function createCombination(digits, combination, index, combinations, mapping) {
 }
 
 /**
- * @param {string} digits 
+ * @param {string} digits
  * @returns {string[]}
  */
 function letterCombinations(digits) {
   const combinations = [];
   if (digits.length == 0) return combinations;
 
-  const mapping = [null, null, "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"];
-  let index = 0, combination = [];
+  const mapping = [
+    null,
+    null,
+    'abc',
+    'def',
+    'ghi',
+    'jkl',
+    'mno',
+    'pqrs',
+    'tuv',
+    'wxyz',
+  ];
+  let index = 0,
+    combination = [];
 
   createCombination(digits, combination, index, combinations, mapping);
 
   return combinations;
-};
+}
 console.log({ letterComb: letterCombinations('23') });
 
 /**
- * @param {Array<number>} nums 
- * @param {Array<Array<number>>} permutations 
- * @param {number} index 
+ * @param {Array<number>} nums
+ * @param {Array<Array<number>>} permutations
+ * @param {number} index
  * @returns {void}
  */
 function createPermutation(nums, permutations, index) {
@@ -1674,7 +1844,7 @@ function createPermutation(nums, permutations, index) {
 }
 
 /**
- * @param {Array<number>} nums 
+ * @param {Array<number>} nums
  * @returns {Array<Array<number>>}
  */
 function permute(nums) {
@@ -1684,64 +1854,65 @@ function permute(nums) {
   createPermutation(nums, permutations, index);
 
   return permutations;
-};
+}
 console.log({ permutations: permute([1, 2, 3]) });
 
 /**
- * @param {string} command 
+ * @param {string} command
  * @returns {string}
  */
 function interpret(command) {
   const map = { '()': 'o', '(al)': 'al' };
 
-  return command.replace(/\(\)|\(al\)/g, a => map[a]);
-};
-console.log({ parsed: interpret("G()(al)") });
+  return command.replace(/\(\)|\(al\)/g, (a) => map[a]);
+}
+console.log({ parsed: interpret('G()(al)') });
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
+ * @param {number[]} nums
+ * @param {number} target
  * @returns {number}
  */
 function countPairs(nums, target) {
-  let count = 0, left = 0, right = nums.length - 1;
+  let count = 0,
+    left = 0,
+    right = nums.length - 1;
 
   while (left < right) {
     if (nums[left] + nums[right] < target) {
       count += right - left;
       left++;
-    }
-    else {
+    } else {
       right--;
     }
   }
 
   return count;
-};
+}
 console.log({ pairs: countPairs([-1, 1, 2, 3, 1], 2) });
 
 /**
- * @param {number[]} hours 
- * @param {number} target 
+ * @param {number[]} hours
+ * @param {number} target
  * @returns {number}
  */
 function numberOfEmployeesWhoMetTarget(hours, target) {
-  return hours.filter(hour => hour >= target).length;
-};
+  return hours.filter((hour) => hour >= target).length;
+}
 console.log({ count: numberOfEmployeesWhoMetTarget([0, 1, 2, 3, 4], 2) });
 
 /**
- * @param {number} num 
- * @param {number} t 
+ * @param {number} num
+ * @param {number} t
  * @returns {number}
  */
 function theMaximumAchievableX(num, t) {
   return num + 2 * t;
-};
+}
 console.log({ maxNum: theMaximumAchievableX(4, 1) });
 
 /**
- * @param {number} celsius 
+ * @param {number} celsius
  * @returns {number}
  */
 function convertToKelvin(celsius) {
@@ -1749,24 +1920,24 @@ function convertToKelvin(celsius) {
 }
 
 /**
- * @param {number} celsius 
+ * @param {number} celsius
  * @returns {number}
  */
 function convertToFahrenheit(celsius) {
-  return 1.8 * (celsius) + 32.00;
+  return 1.8 * celsius + 32.0;
 }
 
 /**
- * @param {number} celsius 
+ * @param {number} celsius
  * @returns {number[]}
  */
 function convertTemperature(celsius) {
   return [convertToKelvin(celsius), convertToFahrenheit(celsius)];
-};
-console.log({ convertTemperature: convertTemperature(36.50) });
+}
+console.log({ convertTemperature: convertTemperature(36.5) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findDuplicateOnceAgain(nums) {
@@ -1785,7 +1956,7 @@ function findDuplicateOnceAgain(nums) {
 console.log({ duplicate: findDuplicateOnceAgain([1, 2, 3, 4, 5, 2]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function missingNumber(nums) {
@@ -1796,12 +1967,12 @@ function missingNumber(nums) {
   }
 
   return numSum;
-};
+}
 console.log({ missingNumber: missingNumber([3, 0, 2, 5, 1]) });
 
 /**
- * @param {number[][]} mat 
- * @param {number} k 
+ * @param {number[][]} mat
+ * @param {number} k
  * @returns {number[]}
  */
 function kWeakestRows(mat, k) {
@@ -1817,12 +1988,26 @@ function kWeakestRows(mat, k) {
     rows.push([row, numberOfSoldiers]);
   }
 
-  return rows.sort((a, b) => a[1] - b[1]).splice(0, k).map(count => count[0]);
-};
-console.log({ weakestRow: kWeakestRows([[1, 1, 0, 0, 0], [1, 1, 1, 1, 0], [1, , 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 1, 1, 1]], 3) });
+  return rows
+    .sort((a, b) => a[1] - b[1])
+    .splice(0, k)
+    .map((count) => count[0]);
+}
+console.log({
+  weakestRow: kWeakestRows(
+    [
+      [1, 1, 0, 0, 0],
+      [1, 1, 1, 1, 0],
+      [1, , 0, 0, 0],
+      [1, 1, 0, 0, 0],
+      [1, 1, 1, 1, 1],
+    ],
+    3,
+  ),
+});
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function addDigits(num) {
@@ -1837,11 +2022,11 @@ function addDigits(num) {
   }
 
   return num;
-};
+}
 console.log({ digitSum: addDigits(38) });
 
 /**
- * @param {number[][]} coordinates 
+ * @param {number[][]} coordinates
  * @returns {boolean}
  */
 function checkStraightLine(coordinates) {
@@ -1860,11 +2045,20 @@ function checkStraightLine(coordinates) {
   }
 
   return true;
-};
-console.log({ isStraightLine: checkStraightLine([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]) });
+}
+console.log({
+  isStraightLine: checkStraightLine([
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [4, 5],
+    [5, 6],
+    [6, 7],
+  ]),
+});
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {boolean}
  */
 function isUgly(n) {
@@ -1875,12 +2069,12 @@ function isUgly(n) {
   while (n % 5 === 0) n /= 5;
 
   return n === 1;
-};
+}
 console.log({ isUgly: isUgly(6) });
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {boolean}
  */
 function isSubsequence(s, t) {
@@ -1891,8 +2085,8 @@ function isSubsequence(s, t) {
   }
 
   return counter === s.length;
-};
-console.log({ isSubsequence: isSubsequence("abc", "ahbgdc") });
+}
+console.log({ isSubsequence: isSubsequence('abc', 'ahbgdc') });
 
 class MyLinkedList {
   constructor() {
@@ -1901,7 +2095,7 @@ class MyLinkedList {
   }
 
   /**
-   * @param {number} index 
+   * @param {number} index
    * @returns {LinkedListNode | null}
    */
   getNodeAtIndex(index) {
@@ -1918,7 +2112,7 @@ class MyLinkedList {
   }
 
   /**
-   * @param {number} index 
+   * @param {number} index
    * @returns {number}
    */
   get(index) {
@@ -1927,7 +2121,7 @@ class MyLinkedList {
   }
 
   /**
-   * @param {number} val 
+   * @param {number} val
    * @returns {void}
    */
   addAtHead(val) {
@@ -1937,7 +2131,7 @@ class MyLinkedList {
   }
 
   /**
-   * @param {number} val 
+   * @param {number} val
    * @returns {void}
    */
   addAtTail(val) {
@@ -1951,8 +2145,8 @@ class MyLinkedList {
   }
 
   /**
-   * @param {number} index 
-   * @param {number} val 
+   * @param {number} index
+   * @param {number} val
    * @returns {void}
    */
   addAtIndex(index, val) {
@@ -1967,7 +2161,7 @@ class MyLinkedList {
   }
 
   /**
-   * @param {number} val 
+   * @param {number} val
    * @returns {void}
    */
   deleteAtIndex(index) {
@@ -1985,14 +2179,14 @@ class MyLinkedList {
 
 class ListNode {
   constructor(val, next) {
-    this.val = (val === undefined ? 0 : val);
-    this.next = (next === undefined ? null : next);
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
   }
 }
 
 /**
- * @param {ListNode | null} list1 
- * @param {ListNode | null} list2 
+ * @param {ListNode | null} list1
+ * @param {ListNode | null} list2
  * @returns {ListNode | null}
  */
 function mergeTwoLists(list1, list2) {
@@ -2016,14 +2210,15 @@ function mergeTwoLists(list1, list2) {
   current.next = list1 ?? list2;
 
   return mergedList.next;
-};
+}
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function reverseList(head) {
-  let previous = null, current = head;
+  let previous = null,
+    current = head;
 
   while (current !== null) {
     previous = new ListNode(current.val, previous);
@@ -2031,16 +2226,18 @@ function reverseList(head) {
   }
 
   return previous;
-};
+}
 
 /**
- * @param {ListNode | null} head 
- * @param {number} left 
- * @param {number} right 
+ * @param {ListNode | null} head
+ * @param {number} left
+ * @param {number} right
  * @returns {ListNode | null}
  */
 function reverseBetween(head, left, right) {
-  let currNode = head, start = head, counter = 1;
+  let currNode = head,
+    start = head,
+    counter = 1;
 
   while (counter < left) {
     start = currNode;
@@ -2048,7 +2245,8 @@ function reverseBetween(head, left, right) {
     counter++;
   }
 
-  let tail = currNode, prev = null;
+  let tail = currNode,
+    prev = null;
 
   while (counter >= left && counter <= right) {
     const next = currNode.next;
@@ -2062,10 +2260,10 @@ function reverseBetween(head, left, right) {
   tail.next = currNode;
 
   return left > 1 ? head : prev;
-};
+}
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {number}
  */
 function getLength(head) {
@@ -2080,7 +2278,7 @@ function getLength(head) {
 }
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function middleNode(head) {
@@ -2093,10 +2291,10 @@ function middleNode(head) {
   }
 
   return head;
-};
+}
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function deleteDuplicates(head) {
@@ -2111,10 +2309,10 @@ function deleteDuplicates(head) {
   }
 
   return head;
-};
+}
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {boolean}
  */
 function isPalindrome(head) {
@@ -2130,14 +2328,15 @@ function isPalindrome(head) {
   }
 
   return true;
-};
+}
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {boolean}
  */
 function hasCycle(head) {
-  let slow = head, fast = head;
+  let slow = head,
+    fast = head;
 
   while (fast) {
     slow = slow.next;
@@ -2147,11 +2346,11 @@ function hasCycle(head) {
   }
 
   return false;
-};
+}
 
 /**
- * @param {ListNode | null} head 
- * @param {number} val 
+ * @param {ListNode | null} head
+ * @param {number} val
  * @returns {ListNode | null}
  */
 function removeElements(head, val) {
@@ -2164,7 +2363,7 @@ function removeElements(head, val) {
   }
 
   return head;
-};
+}
 
 /**
  * @param {ListNode | null} head
@@ -2180,18 +2379,18 @@ function getDecimalValue(head) {
   }
 
   return num;
-};
+}
 
 /**
- * @param {ListNode | null} node 
+ * @param {ListNode | null} node
  */
 function deleteNode(node) {
   node.val = node.next.val;
   node.next = node.next.next;
-};
+}
 
 /**
- * @param {Node | null} head 
+ * @param {Node | null} head
  * @returns {Node | null}
  */
 function copyRandomList(head) {
@@ -2208,33 +2407,36 @@ function copyRandomList(head) {
 
   while (current) {
     if (current.next) {
-      current.next.random = current.random ? current.random.next : current.random;
+      current.next.random = current.random
+        ? current.random.next
+        : current.random;
     }
     current = current.next.next;
   }
 
-  let originalHead = head, clonedHead = head?.next;
+  let originalHead = head,
+    clonedHead = head?.next;
   let temp = clonedHead;
 
   while (originalHead && clonedHead) {
     originalHead.next = originalHead.next.next;
 
-    if (clonedHead.next)
-      clonedHead.next = clonedHead.next.next;
+    if (clonedHead.next) clonedHead.next = clonedHead.next.next;
 
     originalHead = originalHead.next;
     clonedHead = clonedHead.next;
   }
 
   return temp;
-};
+}
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function findMid(head) {
-  let fast = head, slow = head;
+  let fast = head,
+    slow = head;
 
   while (fast.next && fast.next.next) {
     fast = fast.next?.next;
@@ -2242,11 +2444,11 @@ function findMid(head) {
   }
 
   return slow;
-};
+}
 
 /**
- * @param {ListNode | null} list1 
- * @param {ListNode | null} list2 
+ * @param {ListNode | null} list1
+ * @param {ListNode | null} list2
  * @returns {ListNode | null}
  */
 function merge(list1, list2) {
@@ -2270,10 +2472,10 @@ function merge(list1, list2) {
   current.next = list1 ?? list2;
 
   return mergedList.next;
-};
+}
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function sortList(head) {
@@ -2286,7 +2488,7 @@ function sortList(head) {
   const left = sortList(head);
 
   return merge(left, right);
-};
+}
 
 class MyHashMap {
   constructor() {
@@ -2356,12 +2558,12 @@ class MyHashMap {
 
   getBucketIndex(key) {
     return key % this.bucketsNumber;
-  };
+  }
 }
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {string}
  */
 function findTheDifference(s, t) {
@@ -2375,12 +2577,12 @@ function findTheDifference(s, t) {
     if (tChars[char]) tChars[char]--;
   }
 
-  return Object.keys(tChars).find(val => tChars[val] > 0);
-};
-console.log({ difference: findTheDifference("abcd", "abcde") });
+  return Object.keys(tChars).find((val) => tChars[val] > 0);
+}
+console.log({ difference: findTheDifference('abcd', 'abcde') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function sortArrayByParity(nums) {
@@ -2394,11 +2596,11 @@ function sortArrayByParity(nums) {
   }
 
   return nums;
-};
+}
 console.log({ sort: sortArrayByParity([3, 1, 2, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function numIdenticalPairs(nums) {
@@ -2415,16 +2617,17 @@ function numIdenticalPairs(nums) {
   }
 
   return goodPair;
-};
+}
 console.log({ numIdenticalPairs: numIdenticalPairs([1, 2, 3, 1, 1, 3]) });
 
 /**
- * @param {string} order 
- * @param {string} s 
+ * @param {string} order
+ * @param {string} s
  * @returns {string}
  */
 function customSortString(order, s) {
-  const charCount = {}, chars = [];
+  const charCount = {},
+    chars = [];
 
   for (const char of s) {
     charCount[char] = (charCount[char] || 0) + 1;
@@ -2438,20 +2641,20 @@ function customSortString(order, s) {
     while (charCount[char]-- > 0) chars.push(char);
   }
 
-  return chars.join("");
+  return chars.join('');
 }
-console.log({ customSortString: customSortString("cba", "abcd") });
+console.log({ customSortString: customSortString('cba', 'abcd') });
 
 class TreeNode {
   constructor(val, left, right) {
-    this.val = (val === undefined ? 0 : val);
-    this.left = (left === undefined ? null : left);
-    this.right = (right === undefined ? null : right);
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
   }
 }
 
 /**
- * @param {TreeNode | null} node 
+ * @param {TreeNode | null} node
  * @returns {TreeNode | null}
  */
 function minVal(node) {
@@ -2462,8 +2665,8 @@ function minVal(node) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} key 
+ * @param {TreeNode | null} root
+ * @param {number} key
  * @returns {TreeNode | null}
  */
 function deleteNodeInBST(root, key) {
@@ -2487,7 +2690,7 @@ function deleteNodeInBST(root, key) {
 }
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function removeZeroSumSublists(head) {
@@ -2495,7 +2698,8 @@ function removeZeroSumSublists(head) {
   let start = front;
 
   while (start) {
-    let prefixSum = 0, end = start.next;
+    let prefixSum = 0,
+      end = start.next;
 
     while (end) {
       prefixSum += end.val;
@@ -2507,10 +2711,10 @@ function removeZeroSumSublists(head) {
   }
 
   return front.next;
-};
+}
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function majorityElement(nums) {
@@ -2521,7 +2725,7 @@ function majorityElement(nums) {
 
     if (elementCount[nums[i]] >= nums.length / 2) return nums[i];
   }
-};
+}
 console.log({ majorityElement: majorityElement([3, 2, 3]) });
 
 /**
@@ -2529,27 +2733,31 @@ console.log({ majorityElement: majorityElement([3, 2, 3]) });
  * @returns {number[]}
  */
 function majorityElementVariantTwo(nums) {
-  const elementCount = {}, elementFrequency = [], length = nums.length;
-
+  const elementCount = {},
+    elementFrequency = [],
+    length = nums.length;
 
   for (let i = 0; i < length; i++) {
     elementCount[nums[i]] = (elementCount[nums[i]] || 0) + 1;
 
-
-    if (elementCount[nums[i]] > length / 3 && !elementFrequency.includes(nums[i])) {
+    if (
+      elementCount[nums[i]] > length / 3 &&
+      !elementFrequency.includes(nums[i])
+    ) {
       elementFrequency.push(nums[i]);
     }
   }
 
-
   return elementFrequency;
-};
-console.log({ majorityElementVariantTwo: majorityElementVariantTwo([3, 2, 3]) });
+}
+console.log({
+  majorityElementVariantTwo: majorityElementVariantTwo([3, 2, 3]),
+});
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} min 
- * @param {number} max 
+ * @param {TreeNode | null} root
+ * @param {number} min
+ * @param {number} max
  * @returns {boolean}
  */
 function isValidBST(root, min = -Infinity, max = Infinity) {
@@ -2561,14 +2769,17 @@ function isValidBST(root, min = -Infinity, max = Infinity) {
   const right = isValidBST(root.right, root.val, max);
 
   return left && right;
-};
+}
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function pivotInteger(n) {
-  let leftSum = 0, rightSum = 0, left = 1, right = n;
+  let leftSum = 0,
+    rightSum = 0,
+    left = 1,
+    right = n;
 
   while (left < right) {
     if (leftSum <= rightSum) leftSum += left++;
@@ -2576,12 +2787,12 @@ function pivotInteger(n) {
   }
 
   return leftSum === rightSum ? left : -1;
-};
+}
 console.log({ pivotInteger: pivotInteger(8) });
 
 /**
- * @param {number[][]} intervals 
- * @param {number[]} newInterval 
+ * @param {number[][]} intervals
+ * @param {number[]} newInterval
  * @returns {number[][]}
  */
 function insert(intervals, newInterval) {
@@ -2606,32 +2817,42 @@ function insert(intervals, newInterval) {
   }
 
   return updatedIntervals;
-};
-console.log({ insert: insert([[1, 3], [6, 9]], [2, 5]) });
+}
+console.log({
+  insert: insert(
+    [
+      [1, 3],
+      [6, 9],
+    ],
+    [2, 5],
+  ),
+});
 
 /**
- * @param {number} n 
- * @returns {number} 
+ * @param {number} n
+ * @returns {number}
  */
 function integerBreak(n) {
   if (n < 4) return n - 1;
 
-  const threes = Math.floor(n / 3), remainder = n % 3;
+  const threes = Math.floor(n / 3),
+    remainder = n % 3;
 
   if (remainder === 1) return 3 ** (threes - 1) * 4;
   if (remainder === 2) return 3 ** threes * 2;
 
   return 3 ** threes;
-};
+}
 console.log({ maxProduct: integerBreak(3) });
 
 /**
- * @param {number[]} startedBlooming 
- * @param {number} time 
+ * @param {number[]} startedBlooming
+ * @param {number} time
  * @returns {number}
  */
 function startCount(startedBlooming, time) {
-  let start = 0, end = startedBlooming.length;
+  let start = 0,
+    end = startedBlooming.length;
 
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -2647,12 +2868,13 @@ function startCount(startedBlooming, time) {
 }
 
 /**
- * @param {number[]} finishedBlooming 
- * @param {number} time 
+ * @param {number[]} finishedBlooming
+ * @param {number} time
  * @returns {number}
  */
 function endCount(finishedBlooming, time) {
-  let start = 0, end = finishedBlooming.length;
+  let start = 0,
+    end = finishedBlooming.length;
 
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -2668,12 +2890,13 @@ function endCount(finishedBlooming, time) {
 }
 
 /**
- * @param {number[][]} flowers 
- * @param {number[]} people 
+ * @param {number[][]} flowers
+ * @param {number[]} people
  * @returns {number[]}
  */
 function fullBloomFlowers(flowers, people) {
-  const startedBlooming = [], finishedBlooming = [];
+  const startedBlooming = [],
+    finishedBlooming = [];
 
   for (const flower of flowers) {
     startedBlooming.push(flower[0]);
@@ -2683,21 +2906,35 @@ function fullBloomFlowers(flowers, people) {
   startedBlooming.sort((a, b) => a - b);
   finishedBlooming.sort((a, b) => a - b);
 
-  return people.map(time => startCount(startedBlooming, time) - endCount(finishedBlooming, time));
-};
-console.log({ fullBloomFlowers: fullBloomFlowers([[1, 6], [3, 7], [9, 12], [4, 13]], [2, 3, 7, 11]) });
+  return people.map(
+    (time) =>
+      startCount(startedBlooming, time) - endCount(finishedBlooming, time),
+  );
+}
+console.log({
+  fullBloomFlowers: fullBloomFlowers(
+    [
+      [1, 6],
+      [3, 7],
+      [9, 12],
+      [4, 13],
+    ],
+    [2, 3, 7, 11],
+  ),
+});
 
 class MountainArray {
-  get(index) { }
-  length() { }
-};
+  get(index) {}
+  length() {}
+}
 
 /**
- * @param {MountainArray} arr 
+ * @param {MountainArray} arr
  * @returns {number}
  */
 function getPeakIndex(arr) {
-  let start = 1, end = arr.length() - 2;
+  let start = 1,
+    end = arr.length() - 2;
 
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -2713,13 +2950,14 @@ function getPeakIndex(arr) {
 }
 
 /**
- * @param {MountainArray} arr 
- * @param {number} endIndex 
- * @param {number} target 
+ * @param {MountainArray} arr
+ * @param {number} endIndex
+ * @param {number} target
  * @returns {number}
  */
 function getMinIndex(arr, endIndex, target) {
-  let start = 0, end = endIndex;
+  let start = 0,
+    end = endIndex;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -2733,13 +2971,14 @@ function getMinIndex(arr, endIndex, target) {
 }
 
 /**
- * @param {MountainArray} arr 
- * @param {number} startIndex 
- * @param {number} target 
+ * @param {MountainArray} arr
+ * @param {number} startIndex
+ * @param {number} target
  * @returns {number}
  */
 function getMaxIndex(arr, startIndex, target) {
-  let start = startIndex, end = arr.length() - 1;
+  let start = startIndex,
+    end = arr.length() - 1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -2753,8 +2992,8 @@ function getMaxIndex(arr, startIndex, target) {
 }
 
 /**
- * @param {number} target 
- * @param {MountainArray} mountainArr 
+ * @param {number} target
+ * @param {MountainArray} mountainArr
  * @returns {number}
  */
 function findInMountainArray(target, mountainArr) {
@@ -2764,10 +3003,10 @@ function findInMountainArray(target, mountainArr) {
 
   if (minIndex === -1) return getMaxIndex(mountainArr, peakIndex, target);
   return minIndex;
-};
+}
 
 /**
- * @param {number[]} cost 
+ * @param {number[]} cost
  * @returns {number}
  */
 function minCostClimbingStairs(cost) {
@@ -2776,15 +3015,16 @@ function minCostClimbingStairs(cost) {
   }
 
   return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
-};
+}
 console.log({ minCostClimbingStairs: minCostClimbingStairs([10, 15, 20]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function findDuplicates(nums) {
-  const count = {}, duplicates = [];
+  const count = {},
+    duplicates = [];
 
   for (const num of nums) {
     count[num] = (count[num] || 0) + 1;
@@ -2792,31 +3032,32 @@ function findDuplicates(nums) {
   }
 
   return duplicates;
-};
+}
 console.log({ findDuplicates: findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]) });
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {boolean}
  */
 function backspaceCompare(s, t) {
-  let firstString = [], secondString = [];
+  let firstString = [],
+    secondString = [];
 
   for (let index = 0; index < s.length; index++) {
-    s[index] !== "#" ? firstString.push(s[index]) : firstString.pop();
+    s[index] !== '#' ? firstString.push(s[index]) : firstString.pop();
   }
 
   for (let index = 0; index < t.length; index++) {
-    t[index] !== "#" ? secondString.push(t[index]) : secondString.pop();
+    t[index] !== '#' ? secondString.push(t[index]) : secondString.pop();
   }
 
-  return firstString.join("") === secondString.join("");
-};
-console.log({ backspaceCompare: backspaceCompare("ab#c", "ad#c") });
+  return firstString.join('') === secondString.join('');
+}
+console.log({ backspaceCompare: backspaceCompare('ab#c', 'ad#c') });
 
 /**
- * @param {() => Promise<T>[]} functions 
+ * @param {() => Promise<T>[]} functions
  * @returns {Promise<T[]>}
  */
 async function promiseAll(functions) {
@@ -2837,11 +3078,15 @@ async function promiseAll(functions) {
       }
     });
   });
-};
-promiseAll([() => new Promise(resolve => setTimeout(() => resolve(4), 50)), () => new Promise(resolve => setTimeout(() => resolve(10), 150)), () => new Promise(resolve => setTimeout(() => resolve(16), 100))]).then(res => console.log({ res }));
+}
+promiseAll([
+  () => new Promise((resolve) => setTimeout(() => resolve(4), 50)),
+  () => new Promise((resolve) => setTimeout(() => resolve(10), 150)),
+  () => new Promise((resolve) => setTimeout(() => resolve(16), 100)),
+]).then((res) => console.log({ res }));
 
 /**
- * @param {number[]} pref 
+ * @param {number[]} pref
  * @returns {number[]}
  */
 function findArray(pref) {
@@ -2852,7 +3097,7 @@ function findArray(pref) {
   }
 
   return pref;
-};
+}
 console.log({ prefixXOR: findArray([5, 2, 0, 3, 1]) });
 
 class ArrayWrapper {
@@ -2865,14 +3110,14 @@ class ArrayWrapper {
   }
 
   toString() {
-    return `[${this.nums.join(",")}]`;
+    return `[${this.nums.join(',')}]`;
   }
-};
+}
 
 /**
- * @param {number[]} target 
- * @param {number} n 
- * @returns {string[]} 
+ * @param {number[]} target
+ * @param {number} n
+ * @returns {string[]}
  */
 function buildArray(target, n) {
   const operations = [];
@@ -2880,34 +3125,43 @@ function buildArray(target, n) {
 
   for (let index = 1; index <= n; index++) {
     if (target[targetIndex] === index) {
-      operations.push("Push");
+      operations.push('Push');
       targetIndex++;
     } else {
-      operations.push("Push", "Pop");
+      operations.push('Push', 'Pop');
     }
 
     if (targetIndex === target.length) break;
   }
 
   return operations;
-};
+}
 console.log({ arrayOperations: buildArray([1, 2], 4) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function isValid(s) {
   const parenthesesStack = [];
 
   for (let index = 0; index < s.length; index++) {
-    if (s[index] === "(" || s[index] === "{" || s[index] === "[") {
+    if (s[index] === '(' || s[index] === '{' || s[index] === '[') {
       parenthesesStack.push(s[index]);
-    } else if (s[index] === ")" && (parenthesesStack[parenthesesStack.length - 1] === "(")) {
+    } else if (
+      s[index] === ')' &&
+      parenthesesStack[parenthesesStack.length - 1] === '('
+    ) {
       parenthesesStack.pop();
-    } else if (s[index] === "}" && (parenthesesStack[parenthesesStack.length - 1] === "{")) {
+    } else if (
+      s[index] === '}' &&
+      parenthesesStack[parenthesesStack.length - 1] === '{'
+    ) {
       parenthesesStack.pop();
-    } else if (s[index] === "]" && (parenthesesStack[parenthesesStack.length - 1] === "[")) {
+    } else if (
+      s[index] === ']' &&
+      parenthesesStack[parenthesesStack.length - 1] === '['
+    ) {
       parenthesesStack.pop();
     } else {
       return false;
@@ -2915,13 +3169,13 @@ function isValid(s) {
   }
 
   return parenthesesStack.length === 0;
-};
+}
 console.log({ validParentheses: isValid('()') });
 
 /**
- * @param {number} n 
- * @param {number[]} left 
- * @param {number[]} right 
+ * @param {number} n
+ * @param {number[]} left
+ * @param {number[]} right
  * @returns {number}
  */
 function getLastMoment(n, left, right) {
@@ -2936,12 +3190,12 @@ function getLastMoment(n, left, right) {
   }
 
   return ans;
-};
+}
 console.log({ lastMoment: getLastMoment(5, [3, 4], [2]) });
 
 /**
- * @param {number[]} arr 
- * @param {number} k 
+ * @param {number[]} arr
+ * @param {number} k
  * @returns {number}
  */
 function getWinner(arr, k) {
@@ -2951,7 +3205,8 @@ function getWinner(arr, k) {
     maxElement = Math.max(maxElement, arr[i]);
   }
 
-  let curr = arr[0], winStreak = 0;
+  let curr = arr[0],
+    winStreak = 0;
 
   for (let i = 1; i < arr.length; i++) {
     const opponent = arr[i];
@@ -2967,7 +3222,7 @@ function getWinner(arr, k) {
   }
 
   return -1;
-};
+}
 console.log({ winner: getWinner([3, 2, 1], 10) });
 
 class SeatManager {
@@ -2990,8 +3245,8 @@ class SeatManager {
 }
 
 /**
- * @param {number[]} dist 
- * @param {number[]} speed 
+ * @param {number[]} dist
+ * @param {number[]} speed
  * @returns {number}
  */
 function eliminateMaximum(dist, speed) {
@@ -3013,20 +3268,22 @@ function eliminateMaximum(dist, speed) {
   }
 
   return eliminatedCount;
-};
+}
 console.log({ eliminated: eliminateMaximum([1, 3, 4], [1, 1, 1]) });
 
 /**
- * @param {number} sx 
- * @param {number} sy 
- * @param {number} fx 
- * @param {number} fy 
- * @param {number} t 
+ * @param {number} sx
+ * @param {number} sy
+ * @param {number} fx
+ * @param {number} fy
+ * @param {number} t
  * @returns {number}
  */
 function isReachableAtTime(sx, sy, fx, fy, t) {
-  return (sx === fx && sy === fy) ? false : t >= Math.max(Math.abs(fx - sx), Math.abs(fy - sy));
-};
+  return sx === fx && sy === fy
+    ? false
+    : t >= Math.max(Math.abs(fx - sx), Math.abs(fy - sy));
+}
 console.log({ reachable: isReachableAtTime(2, 5, 7, 8, 6) });
 
 class CustomStack {
@@ -3053,11 +3310,12 @@ class CustomStack {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function countHomogenous(s) {
-  let ans = 0, currStreak = 0;
+  let ans = 0,
+    currStreak = 0;
   const MOD = 1e9 + 7;
 
   for (let i = 0; i < s.length; i++) {
@@ -3067,7 +3325,7 @@ function countHomogenous(s) {
   }
 
   return ans;
-};
+}
 console.log({ homogenous: countHomogenous('aabbb') });
 
 class MinStack {
@@ -3110,7 +3368,7 @@ class MinStack {
 }
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function maximumElementAfterDecrementingAndRearranging(arr) {
@@ -3125,21 +3383,23 @@ function maximumElementAfterDecrementingAndRearranging(arr) {
   }
 
   return maxElement;
-};
-console.log({ max: maximumElementAfterDecrementingAndRearranging([2, 3, 4, 6, 6, 7]) });
+}
+console.log({
+  max: maximumElementAfterDecrementingAndRearranging([2, 3, 4, 6, 6, 7]),
+});
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number[]}
  */
 function nextGreaterElement(nums1, nums2) {
   const [numIdx, stack] = [{}, []];
   const result = new Array(nums1.length).fill(-1);
 
-  nums1.forEach((num, index) => numIdx[num] = index);
+  nums1.forEach((num, index) => (numIdx[num] = index));
 
-  nums2.forEach(num => {
+  nums2.forEach((num) => {
     while (stack.length > 0 && stack[stack.length - 1] < num) {
       const poppedNum = stack.pop();
       const indexInNums1 = numIdx[poppedNum];
@@ -3149,15 +3409,16 @@ function nextGreaterElement(nums1, nums2) {
   });
 
   return result;
-};
+}
 console.log({ nextGt: nextGreaterElement([4, 5], [1, 2, 3, 4, 5]) });
 
 /**
- * @param {number[]} numbers 
+ * @param {number[]} numbers
  * @returns {number[]}
  */
 function nextSmallerElements(numbers) {
-  const s = [], ans = new Array(numbers.length).fill(-1);
+  const s = [],
+    ans = new Array(numbers.length).fill(-1);
   s.push(-1);
 
   for (let index = numbers.length - 1; index >= 0; index--) {
@@ -3175,11 +3436,12 @@ function nextSmallerElements(numbers) {
 }
 
 /**
- * @param {number[]} numbers 
+ * @param {number[]} numbers
  * @returns {number[]}
  */
 function prevSmallerElements(numbers) {
-  const s = [], ans = new Array(numbers.length).fill(-1);
+  const s = [],
+    ans = new Array(numbers.length).fill(-1);
   s.push(-1);
 
   for (let index = 0; index < numbers.length; index++) {
@@ -3197,7 +3459,7 @@ function prevSmallerElements(numbers) {
 }
 
 /**
- * @param {number[]} heights 
+ * @param {number[]} heights
  * @returns {number}
  */
 function largestRectangleArea(heights) {
@@ -3220,11 +3482,11 @@ function largestRectangleArea(heights) {
   }
 
   return area;
-};
+}
 console.log({ area: largestRectangleArea([2, 1, 5, 6, 2, 3]) });
 
 /**
- * @param {string[][]} matrix 
+ * @param {string[][]} matrix
  * @returns {number[][]}
  */
 function matrixInNumber(matrix) {
@@ -3240,7 +3502,7 @@ function matrixInNumber(matrix) {
 }
 
 /**
- * @param {string[][]} matrix 
+ * @param {string[][]} matrix
  * @returns {number}
  */
 function maximalRectangle(matrix) {
@@ -3249,19 +3511,29 @@ function maximalRectangle(matrix) {
 
   for (let i = 1; i < convertedMatrix.length; i++) {
     for (let j = 0; j < convertedMatrix[0].length; j++) {
-      if (convertedMatrix[i][j] !== 0) convertedMatrix[i][j] = convertedMatrix[i][j] + convertedMatrix[i - 1][j];
+      if (convertedMatrix[i][j] !== 0)
+        convertedMatrix[i][j] =
+          convertedMatrix[i][j] + convertedMatrix[i - 1][j];
       else convertedMatrix[i][j] = 0;
     }
 
-    largestArea = Math.max(largestArea, largestRectangleArea(convertedMatrix[i]));
+    largestArea = Math.max(
+      largestArea,
+      largestRectangleArea(convertedMatrix[i]),
+    );
   }
 
   return largestArea;
-};
-console.log({ maxArea: maximalRectangle([["1", "0", "1", "0", "0"], ["1", "0", "1", "1", "1"]]) });
+}
+console.log({
+  maxArea: maximalRectangle([
+    ['1', '0', '1', '0', '0'],
+    ['1', '0', '1', '1', '1'],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minPairSum(nums) {
@@ -3273,53 +3545,55 @@ function minPairSum(nums) {
   }
 
   return maxSum;
-};
+}
 console.log({ maxSum: minPairSum([3, 5, 2, 3]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function arrangeCoins(n) {
-  let start = 0, end = n;
+  let start = 0,
+    end = n;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
-    const completedRows = mid / 2 * (mid + 1);
+    const completedRows = (mid / 2) * (mid + 1);
 
-    completedRows <= n ? start = mid + 1 : end = mid - 1;
+    completedRows <= n ? (start = mid + 1) : (end = mid - 1);
   }
 
   return end;
-};
+}
 console.log({ arrangedCoins: arrangeCoins(8) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function countNodes(root) {
   if (!root) return 0;
   return countNodes(root.left) + countNodes(root.right) + 1;
-};
+}
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function singleNonDuplicate(nums) {
-  let start = 0, end = nums.length - 1;
+  let start = 0,
+    end = nums.length - 1;
 
   while (start <= end) {
     let mid = start + Math.floor((end - start) / 2);
 
     if (nums[mid - 1] === nums[mid]) mid = mid - 1;
 
-    mid % 2 === 0 ? start = mid + 2 : end = mid - 1;
+    mid % 2 === 0 ? (start = mid + 2) : (end = mid - 1);
   }
 
   return nums[end];
-};
+}
 console.log({ singleDigit: singleNonDuplicate([1, 1, 2, 3, 3, 4, 4, 8, 8]) });
 
 class MyQueue {
@@ -3345,11 +3619,13 @@ class MyQueue {
 }
 
 /**
- * @param {number[]} height 
+ * @param {number[]} height
  * @returns {number}
  */
 function maxArea(height) {
-  let left = 0, right = height.length - 1, area = 0;
+  let left = 0,
+    right = height.length - 1,
+    area = 0;
 
   while (left < right) {
     const width = right - left;
@@ -3360,11 +3636,11 @@ function maxArea(height) {
   }
 
   return area;
-};
+}
 console.log({ maxArea: maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function hammingWeight(n) {
@@ -3376,22 +3652,24 @@ function hammingWeight(n) {
   }
 
   return numberOfOneBit;
-};
+}
 console.log({ hammingWeight: hammingWeight(9) });
 
 /**
- * @param {string[]} word1 
- * @param {string[]} word2 
+ * @param {string[]} word1
+ * @param {string[]} word2
  * @returns {boolean}
  */
 function arrayStringsAreEqual(word1, word2) {
-  return word1.join("") === word2.join("");
-};
-console.log({ arrayStringsAreEqual: arrayStringsAreEqual(['ab', 'c'], ['a', 'bc']) });
+  return word1.join('') === word2.join('');
+}
+console.log({
+  arrayStringsAreEqual: arrayStringsAreEqual(['ab', 'c'], ['a', 'bc']),
+});
 
 /**
- * @param {(...args: number[]) => void} fn 
- * @param {number} t 
+ * @param {(...args: number[]) => void} fn
+ * @param {number} t
  * @returns {(...args: number[]) => void}
  */
 function debounce(fn, t) {
@@ -3401,12 +3679,12 @@ function debounce(fn, t) {
     clearTimeout(timeOutId);
     timeOutId = setTimeout(() => fn(...args), t);
   };
-};
+}
 const sayHello = () => console.log('hello');
 debounce(sayHello, 10000)();
 
 /**
- * @param {string} chars 
+ * @param {string} chars
  * @returns {{ [key: string]: number }}
  */
 function getCharCount(chars) {
@@ -3420,23 +3698,24 @@ function getCharCount(chars) {
 }
 
 /**
- * @param {{ [key: string]: number }} charCountInWord 
- * @param {{ [key: string]: number }} charsCount 
+ * @param {{ [key: string]: number }} charCountInWord
+ * @param {{ [key: string]: number }} charsCount
  * @returns {number}
  */
 function getLetterCount(charCountInWord, charsCount) {
   let letterCount = 0;
 
   for (const char in charCountInWord) {
-    if (charCountInWord[char] <= charsCount[char]) letterCount += charCountInWord[char];
+    if (charCountInWord[char] <= charsCount[char])
+      letterCount += charCountInWord[char];
   }
 
   return letterCount;
 }
 
 /**
- * @param {string[]} words 
- * @param {string} chars 
+ * @param {string[]} words
+ * @param {string} chars
  * @returns {number}
  */
 function countCharacters(words, chars) {
@@ -3450,11 +3729,13 @@ function countCharacters(words, chars) {
   }
 
   return possibleLength;
-};
-console.log({ countCharacters: countCharacters(["cat", "bt", "hat", "tree"], "atach") });
+}
+console.log({
+  countCharacters: countCharacters(['cat', 'bt', 'hat', 'tree'], 'atach'),
+});
 
 /**
- * @param {number[][]} points 
+ * @param {number[][]} points
  * @returns {number}
  */
 function minTimeToVisitAllPoints(points) {
@@ -3469,28 +3750,36 @@ function minTimeToVisitAllPoints(points) {
   }
 
   return ans;
-};
-console.log({ minTimeToVisitAllPoints: minTimeToVisitAllPoints([[1, 1], [3, 4], [-1, 0]]) });
+}
+console.log({
+  minTimeToVisitAllPoints: minTimeToVisitAllPoints([
+    [1, 1],
+    [3, 4],
+    [-1, 0],
+  ]),
+});
 
 /**
- * @param {string} num 
+ * @param {string} num
  * @returns {string}
  */
 function largestGoodInteger(num) {
-  let result = "";
+  let result = '';
 
   for (let index = 0; index < num.length - 2; index++) {
-    const firstDigit = num[index], secondDigit = num[index + 1], thirdDigit = num[index + 2];
+    const firstDigit = num[index],
+      secondDigit = num[index + 1],
+      thirdDigit = num[index + 2];
 
     if (firstDigit === secondDigit && firstDigit === thirdDigit) {
       const possibleResult = `${firstDigit}${secondDigit}${thirdDigit}`;
-      if (result === "" || result < possibleResult) result = possibleResult;
+      if (result === '' || result < possibleResult) result = possibleResult;
     }
   }
 
   return result;
-};
-console.log({ largestGoodInteger: largestGoodInteger("6777133339") });
+}
+console.log({ largestGoodInteger: largestGoodInteger('6777133339') });
 
 Array.prototype.groupBy = function (fn) {
   const groupedArray = {};
@@ -3505,7 +3794,7 @@ Array.prototype.groupBy = function (fn) {
 };
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function numberOfMatches(n) {
@@ -3513,11 +3802,11 @@ function numberOfMatches(n) {
 
   let matchCount = Math.floor(n / 2);
 
-  n % 2 === 0 ? n /= 2 : n = Math.floor(n / 2) + 1;
+  n % 2 === 0 ? (n /= 2) : (n = Math.floor(n / 2) + 1);
 
   matchCount += numberOfMatches(n);
   return matchCount;
-};
+}
 console.log({ numberOfMatches: numberOfMatches(7) });
 
 class MyCircularQueue {
@@ -3562,17 +3851,21 @@ class MyCircularQueue {
   }
 
   isFull() {
-    return (this.front === 0 && this.rear === this.size - 1) || this.front - this.rear === 1;
+    return (
+      (this.front === 0 && this.rear === this.size - 1) ||
+      this.front - this.rear === 1
+    );
   }
 }
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function totalMoney(n) {
   const NUMBER_OF_DAYS = 7;
-  let weekCount = 0, moneySaved = 0;
+  let weekCount = 0,
+    moneySaved = 0;
 
   for (let num = 1; num <= n; num++) {
     if (num > NUMBER_OF_DAYS && num % NUMBER_OF_DAYS === 1) weekCount++;
@@ -3580,11 +3873,11 @@ function totalMoney(n) {
   }
 
   return moneySaved;
-};
+}
 console.log({ totalMoney: totalMoney(4) });
 
 /**
- * @param {string} num 
+ * @param {string} num
  * @returns {string}
  */
 function largestOddNumber(num) {
@@ -3594,13 +3887,13 @@ function largestOddNumber(num) {
     }
   }
 
-  return "";
-};
-console.log({ largestOddNumber: largestOddNumber("1234567890") });
+  return '';
+}
+console.log({ largestOddNumber: largestOddNumber('1234567890') });
 
 /**
- * @param {TreeNode | null} node 
- * @param {number[]} values 
+ * @param {TreeNode | null} node
+ * @param {number[]} values
  * @returns {number[]}
  */
 function getInOrderValues(node, values) {
@@ -3614,16 +3907,16 @@ function getInOrderValues(node, values) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[]}
  */
 function inorderTraversal(root) {
   return getInOrderValues(root, []);
-};
+}
 
 /**
- * @param {TreeNode | null} node 
- * @param {number[]} values 
+ * @param {TreeNode | null} node
+ * @param {number[]} values
  * @returns {number[]}
  */
 function getPreOrderValues(node, values) {
@@ -3637,16 +3930,16 @@ function getPreOrderValues(node, values) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[]}
  */
 function preorderTraversal(root) {
   return getPreOrderValues(root, []);
-};
+}
 
 /**
- * @param {TreeNode | null} node 
- * @param {number[]} values 
+ * @param {TreeNode | null} node
+ * @param {number[]} values
  * @returns {number[]}
  */
 function getPostOrderValues(node, values) {
@@ -3660,15 +3953,15 @@ function getPostOrderValues(node, values) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[]}
  */
 function postorderTraversal(root) {
   return getPostOrderValues(root, []);
-};
+}
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number[][]}
  */
 function transpose(matrix) {
@@ -3683,11 +3976,17 @@ function transpose(matrix) {
   }
 
   return rotatedMatrix;
-};
-console.log({ transpose: transpose([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
+}
+console.log({
+  transpose: transpose([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]),
+});
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function findSpecialInteger(arr) {
@@ -3696,15 +3995,19 @@ function findSpecialInteger(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === arr[i + oneFourth]) return arr[i];
   }
-};
-console.log({ findSpecialInteger: findSpecialInteger([1, 2, 2, 6, 6, 6, 6, 7, 0]) });
+}
+console.log({
+  findSpecialInteger: findSpecialInteger([1, 2, 2, 6, 6, 6, 6, 7, 0]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxProduct(nums) {
-  let left = 0, right = nums.length - 1, result = 0;
+  let left = 0,
+    right = nums.length - 1,
+    result = 0;
 
   while (left < right) {
     result = Math.max(result, (nums[left] - 1) * (nums[right] - 1));
@@ -3712,11 +4015,11 @@ function maxProduct(nums) {
   }
 
   return result;
-};
+}
 console.log({ maxProduct: maxProduct([3, 4, 5, 2]) });
 
 /**
- * @param {number[][]} mat 
+ * @param {number[][]} mat
  * @returns {number}
  */
 function numSpecial(mat) {
@@ -3743,12 +4046,18 @@ function numSpecial(mat) {
   }
 
   return result;
-};
-console.log({ numSpecial: numSpecial([[1, 0, 0], [0, 0, 1], [1, 0, 0]]) });
+}
+console.log({
+  numSpecial: numSpecial([
+    [1, 0, 0],
+    [0, 0, 1],
+    [1, 0, 0],
+  ]),
+});
 
 /**
- * 
- * @param {string[][]} paths 
+ *
+ * @param {string[][]} paths
  * @returns {string}
  */
 function destCity(paths) {
@@ -3761,12 +4070,18 @@ function destCity(paths) {
   for (const path of paths) {
     if (!values[path[1]]) return path[1];
   }
-};
-console.log({ destCity: destCity([["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]) });
+}
+console.log({
+  destCity: destCity([
+    ['London', 'New York'],
+    ['New York', 'Lima'],
+    ['Lima', 'Sao Paulo'],
+  ]),
+});
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {boolean}
  */
 function isAnagram(s, t) {
@@ -3784,25 +4099,29 @@ function isAnagram(s, t) {
   }
 
   return true;
-};
-console.log({ isAnagram: isAnagram("anagram", "nagaram") });
+}
+console.log({ isAnagram: isAnagram('anagram', 'nagaram') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxProductDifference(nums) {
   nums.sort((a, b) => a - b);
 
-  const firstSmallestNum = nums[0], secondSmallestNum = nums[1];
-  const firstLargestNum = nums[nums.length - 1], secondLargestNum = nums[nums.length - 2];
+  const firstSmallestNum = nums[0],
+    secondSmallestNum = nums[1];
+  const firstLargestNum = nums[nums.length - 1],
+    secondLargestNum = nums[nums.length - 2];
 
-  return (firstLargestNum * secondLargestNum) - (firstSmallestNum * secondSmallestNum);
-};
+  return (
+    firstLargestNum * secondLargestNum - firstSmallestNum * secondSmallestNum
+  );
+}
 console.log({ maxProductDifference: maxProductDifference([5, 6, 2, 7, 4]) });
 
 /**
- * @param {number[][]} img 
+ * @param {number[][]} img
  * @returns {number[][]}
  */
 function imageSmoother(img) {
@@ -3816,7 +4135,7 @@ function imageSmoother(img) {
   // Iterate over the cells of the image.
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
-      // Initialize the sum and count 
+      // Initialize the sum and count
       let sum = 0;
       let count = 0;
 
@@ -3838,12 +4157,18 @@ function imageSmoother(img) {
 
   // Return the smooth image.
   return smoothImg;
-};
-console.log({ imageSmoother: imageSmoother([[1, 1, 1], [1, 0, 1], [1, 1, 1]]) });
+}
+console.log({
+  imageSmoother: imageSmoother([
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+  ]),
+});
 
 /**
- * @param {number[]} prices 
- * @param {number} money 
+ * @param {number[]} prices
+ * @param {number} money
  * @returns {number}
  */
 function buyChoco(prices, money) {
@@ -3853,11 +4178,11 @@ function buyChoco(prices, money) {
 
   if (amountRemaining >= 0) return amountRemaining;
   return money;
-};
+}
 console.log({ buyChoco: buyChoco([1, 2, 2], 3) });
 
 /**
- * @param {number[][]} points 
+ * @param {number[][]} points
  * @returns {number}
  */
 function maxWidthOfVerticalArea(points) {
@@ -3877,11 +4202,18 @@ function maxWidthOfVerticalArea(points) {
   }
 
   return maxWidth;
-};
-console.log({ maxWidthOfVerticalArea: maxWidthOfVerticalArea([[8, 7], [9, 9], [7, 4], [9, 7]]) });
+}
+console.log({
+  maxWidthOfVerticalArea: maxWidthOfVerticalArea([
+    [8, 7],
+    [9, 9],
+    [7, 4],
+    [9, 7],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maxScore(s) {
@@ -3899,27 +4231,28 @@ function maxScore(s) {
   }
 
   return maxScore;
-};
-console.log({ maxScore: maxScore("011101") });
+}
+console.log({ maxScore: maxScore('011101') });
 
 /**
- * @param {string} path 
+ * @param {string} path
  * @returns {boolean}
  */
 function isPathCrossing(path) {
-  const currentLocation = [0, 0], origin = new Set(['0,0']);
+  const currentLocation = [0, 0],
+    origin = new Set(['0,0']);
 
   for (let idx = 0; idx < path.length; idx++) {
     const point = path[idx];
 
     switch (point) {
-      case "N":
+      case 'N':
         currentLocation[1] += 1;
         break;
-      case "S":
+      case 'S':
         currentLocation[1] -= 1;
         break;
-      case "E":
+      case 'E':
         currentLocation[0] += 1;
         break;
       default:
@@ -3932,15 +4265,16 @@ function isPathCrossing(path) {
   }
 
   return false;
-};
-console.log({ isPathCrossing: isPathCrossing("NES") });
+}
+console.log({ isPathCrossing: isPathCrossing('NES') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minOperations(s) {
-  let forOne = 0, forZero = 0;
+  let forOne = 0,
+    forZero = 0;
 
   for (let idx = 0; idx < s.length; idx++) {
     const char = s[idx];
@@ -3950,11 +4284,11 @@ function minOperations(s) {
   }
 
   return Math.min(forOne, forZero);
-};
-console.log({ minOperations: minOperations("0100") });
+}
+console.log({ minOperations: minOperations('0100') });
 
 /**
- * @param {string} password 
+ * @param {string} password
  * @returns {boolean}
  */
 function strongPasswordCheckerII(password) {
@@ -3969,7 +4303,9 @@ function strongPasswordCheckerII(password) {
   };
 
   for (let idx = 0; idx < password.length; idx++) {
-    const char = password[idx], charCode = char.charCodeAt(0), charToNum = Number(char);
+    const char = password[idx],
+      charCode = char.charCodeAt(0),
+      charToNum = Number(char);
 
     if (!passwordChecks.lowerCase && charCode >= 97 && charCode <= 122)
       passwordChecks.lowerCase = true;
@@ -3991,13 +4327,20 @@ function strongPasswordCheckerII(password) {
       passwordChecks.specialCharacter = true;
   }
 
-  return (passwordChecks.lowerCase && passwordChecks.upperCase && passwordChecks.oneDigit && passwordChecks.specialCharacter && !passwordChecks.adjacentCharacters
+  return (
+    passwordChecks.lowerCase &&
+    passwordChecks.upperCase &&
+    passwordChecks.oneDigit &&
+    passwordChecks.specialCharacter &&
+    !passwordChecks.adjacentCharacters
   );
 }
-console.log({ strongPasswordCheckerII: strongPasswordCheckerII("IloveLe3tcode!") });
+console.log({
+  strongPasswordCheckerII: strongPasswordCheckerII('IloveLe3tcode!'),
+});
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {boolean}
  */
 function makeEqual(words) {
@@ -4014,11 +4357,11 @@ function makeEqual(words) {
   }
 
   return true;
-};
-console.log({ makeEqual: makeEqual(["abc", "aabc", "bc"]) });
+}
+console.log({ makeEqual: makeEqual(['abc', 'aabc', 'bc']) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maxLengthBetweenEqualCharacters(s) {
@@ -4036,18 +4379,24 @@ function maxLengthBetweenEqualCharacters(s) {
     const length = charIndex[char].length;
 
     if (length > 1) {
-      const firstIndex = charIndex[char][0], lastIndex = charIndex[char][length - 1];
+      const firstIndex = charIndex[char][0],
+        lastIndex = charIndex[char][length - 1];
       const currentSubStringLength = Math.abs(firstIndex - lastIndex + 1);
-      largestSubStringLength = Math.max(largestSubStringLength, currentSubStringLength);
+      largestSubStringLength = Math.max(
+        largestSubStringLength,
+        currentSubStringLength,
+      );
     }
   }
 
   return largestSubStringLength;
-};
-console.log({ maxLengthBetweenEqualCharacters: maxLengthBetweenEqualCharacters("cbzxy") });
+}
+console.log({
+  maxLengthBetweenEqualCharacters: maxLengthBetweenEqualCharacters('cbzxy'),
+});
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number[]}
  */
 function mergeSort(arr) {
@@ -4061,21 +4410,20 @@ function mergeSort(arr) {
 }
 
 /**
- * @param {number[]} a 
- * @param {number[]} b 
+ * @param {number[]} a
+ * @param {number[]} b
  * @returns {number[]}
  */
 function mergeArr(a, b) {
   const result = [];
 
-  while (a.length && b.length)
-    result.push(a[0] < b[0] ? a.shift() : b.shift());
+  while (a.length && b.length) result.push(a[0] < b[0] ? a.shift() : b.shift());
 
   return result.concat(a.length ? a : b);
 }
 
 /**
- * @param {number[]} heights 
+ * @param {number[]} heights
  * @returns {number}
  */
 function heightChecker(heights) {
@@ -4087,16 +4435,17 @@ function heightChecker(heights) {
   }
 
   return indicesDiff;
-};
+}
 console.log({ heightChecker: heightChecker([1, 1, 4, 2, 1, 3]) });
 
 /**
- * @param {number[]} g 
- * @param {number[]} s 
+ * @param {number[]} g
+ * @param {number[]} s
  * @returns {number}
  */
 function findContentChildren(g, s) {
-  let contentChildren = 0, cookieIndex = 0;
+  let contentChildren = 0,
+    cookieIndex = 0;
   g.sort((a, b) => a - b);
   s.sort((a, b) => a - b);
 
@@ -4106,15 +4455,16 @@ function findContentChildren(g, s) {
   }
 
   return contentChildren;
-};
+}
 console.log({ findContentChildren: findContentChildren([1, 2, 3], [1, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[][]}
  */
 function findMatrix(nums) {
-  const numCount = {}, resultMatrix = [];
+  const numCount = {},
+    resultMatrix = [];
 
   for (const num of nums) {
     numCount[num] = (numCount[num] || 0) + 1;
@@ -4132,22 +4482,23 @@ function findMatrix(nums) {
   }
 
   return resultMatrix;
-};
+}
 console.log({ findMatrix: findMatrix([1, 3, 4, 1, 2, 3, 1]) });
 
 /**
- * @param {string[]} bank 
+ * @param {string[]} bank
  * @returns {number}
  */
 function numberOfBeams(bank) {
-  let totalBeams = 0, prevRow = 0;
+  let totalBeams = 0,
+    prevRow = 0;
 
   for (let idx = 0; idx < bank.length; idx++) {
     const row = bank[idx];
     let numberOfBeams = 0;
 
     for (const position of row) {
-      if (position === "1") numberOfBeams++;
+      if (position === '1') numberOfBeams++;
     }
 
     if (numberOfBeams !== 0) {
@@ -4157,11 +4508,13 @@ function numberOfBeams(bank) {
   }
 
   return totalBeams;
-};
-console.log({ totalBeams: numberOfBeams(["011001", "000000", "010100", "001000"]) });
+}
+console.log({
+  totalBeams: numberOfBeams(['011001', '000000', '010100', '001000']),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minOperationsToMakeArrayEmpty(nums) {
@@ -4182,12 +4535,14 @@ function minOperationsToMakeArrayEmpty(nums) {
 
   return operationCount;
 }
-console.log({ minOperations: minOperationsToMakeArrayEmpty([2, 3, 3, 2, 2, 4, 2, 3, 4]) });
+console.log({
+  minOperations: minOperationsToMakeArrayEmpty([2, 3, 3, 2, 2, 4, 2, 3, 4]),
+});
 
 /**
- * @param {number[]} values 
- * @param {number} low 
- * @param {number} high 
+ * @param {number[]} values
+ * @param {number} low
+ * @param {number} high
  * @returns {number}
  */
 function getRangeSum(values, low, high) {
@@ -4201,9 +4556,9 @@ function getRangeSum(values, low, high) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} low 
- * @param {number} high 
+ * @param {TreeNode | null} root
+ * @param {number} low
+ * @param {number} high
  * @returns {number}
  * @borrows Used `getInOrderValues` method to generate the nodeValues
  */
@@ -4211,11 +4566,11 @@ function rangeSumBST(root, low, high) {
   const nodeValues = getInOrderValues(root, []);
 
   return getRangeSum(nodeValues, low, high);
-};
+}
 
 /**
- * @param {TreeNode | null} node 
- * @param {number[]} values 
+ * @param {TreeNode | null} node
+ * @param {number[]} values
  * @returns {void}
  */
 function getInOrderValues2(node, values) {
@@ -4227,8 +4582,8 @@ function getInOrderValues2(node, values) {
 }
 
 /**
- * @param {TreeNode | null} root1 
- * @param {TreeNode | null} root2 
+ * @param {TreeNode | null} root1
+ * @param {TreeNode | null} root2
  * @returns {boolean}
  */
 function leafSimilar(root1, root2) {
@@ -4245,10 +4600,10 @@ function leafSimilar(root1, root2) {
   }
 
   return true;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function maxDepth(root) {
@@ -4259,17 +4614,17 @@ function maxDepth(root) {
   const treeHeight = Math.max(left, right) + 1;
 
   return treeHeight;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function diameterOfBinaryTree(root) {
   let maxDiameter = 0;
 
   /**
-   * @param {TreeNode | null} root 
+   * @param {TreeNode | null} root
    * @returns {number}
    */
   function maxDepth(root) {
@@ -4282,14 +4637,14 @@ function diameterOfBinaryTree(root) {
     maxDiameter = Math.max(currentDiameter, maxDiameter);
 
     return Math.max(left + 1, right + 1);
-  };
+  }
 
   maxDepth(root);
   return maxDiameter;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function maxAncestorDiff(root) {
@@ -4298,16 +4653,18 @@ function maxAncestorDiff(root) {
   let result = 0;
 
   /**
-   * @param {TreeNode | null} node 
-   * @param {number} min 
-   * @param {number} max 
+   * @param {TreeNode | null} node
+   * @param {number} min
+   * @param {number} max
    * @returns {void}
    */
   function findDifference(node, min, max) {
     if (!node) return;
 
-    result = Math.max(result,
-      Math.max(Math.abs(min - node.val), Math.abs(max - node.val)));
+    result = Math.max(
+      result,
+      Math.max(Math.abs(min - node.val), Math.abs(max - node.val)),
+    );
 
     min = Math.min(min, node.val);
     max = Math.max(max, node.val);
@@ -4318,23 +4675,32 @@ function maxAncestorDiff(root) {
 
   findDifference(root, root.val, root.val);
   return result;
-};
+}
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {boolean}
  */
 function isVowel(char) {
-  if (char === "a" || char === "e" || char === "i" || char === "o" || char === "u") return true;
+  if (
+    char === 'a' ||
+    char === 'e' ||
+    char === 'i' ||
+    char === 'o' ||
+    char === 'u'
+  )
+    return true;
   return false;
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function halvesAreAlike(s) {
-  let vowelCount = 0, start = 0, end = s.length - 1;
+  let vowelCount = 0,
+    start = 0,
+    end = s.length - 1;
 
   while (start < end) {
     if (isVowel(s[start++].toLowerCase())) vowelCount++;
@@ -4342,17 +4708,19 @@ function halvesAreAlike(s) {
   }
 
   return vowelCount === 0;
-};
-console.log({ halvesAreAlike: halvesAreAlike("book") });
+}
+console.log({ halvesAreAlike: halvesAreAlike('book') });
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {number}
  */
 function minSteps(s, t) {
   let stepsCount = 0;
-  const initCount = new Array(26).fill(0), charCountInS = {}, charCountInT = {};
+  const initCount = new Array(26).fill(0),
+    charCountInS = {},
+    charCountInT = {};
 
   for (const char of s) {
     charCountInS[char] = (charCountInS[char] || 0) + 1;
@@ -4374,18 +4742,19 @@ function minSteps(s, t) {
   }
 
   return stepsCount;
-};
-console.log({ minSteps: minSteps("leetcode", "practice") });
+}
+console.log({ minSteps: minSteps('leetcode', 'practice') });
 
 /**
- * @param {string} word1 
- * @param {string} word2 
+ * @param {string} word1
+ * @param {string} word2
  * @returns {boolean}
  */
 function closeStrings(word1, word2) {
   if (word1.length !== word2.length) return false;
 
-  const charsFreqInWord1 = new Array(26).fill(0), charsFreqInWord2 = new Array(26).fill(0);
+  const charsFreqInWord1 = new Array(26).fill(0),
+    charsFreqInWord2 = new Array(26).fill(0);
 
   for (let i = 0; i < word1.length; i++) {
     charsFreqInWord1[word1.charCodeAt(i) - 97]++;
@@ -4395,9 +4764,14 @@ function closeStrings(word1, word2) {
   const charCount = {};
 
   for (let i = 0; i < 26; i++) {
-    const charFreqInWord1 = charsFreqInWord1[i], charFreqInWord2 = charsFreqInWord2[i];
+    const charFreqInWord1 = charsFreqInWord1[i],
+      charFreqInWord2 = charsFreqInWord2[i];
 
-    if ((!charFreqInWord1 || !charFreqInWord2) && (charFreqInWord1 !== charFreqInWord2)) return false;
+    if (
+      (!charFreqInWord1 || !charFreqInWord2) &&
+      charFreqInWord1 !== charFreqInWord2
+    )
+      return false;
 
     charCount[charFreqInWord1] = (charCount[charFreqInWord1] || 0) + 1;
     charCount[charFreqInWord2] = (charCount[charFreqInWord2] || 0) - 1;
@@ -4408,16 +4782,16 @@ function closeStrings(word1, word2) {
   }
 
   return true;
-};
-console.log({ closeStrings: closeStrings("abc", "bca") });
+}
+console.log({ closeStrings: closeStrings('abc', 'bca') });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {boolean}
  */
 function isBalanced(root) {
   /**
-   * @param {TreeNode | null} root 
+   * @param {TreeNode | null} root
    * @returns {[boolean, number]}
    */
   function maxDepth(root) {
@@ -4425,17 +4799,20 @@ function isBalanced(root) {
 
     const [isLeftTreeBalanced, leftTreeHeight] = maxDepth(root.left);
     const [isRightTreeBalanced, rightTreeHeight] = maxDepth(root.right);
-    const isTreeBalanced = isLeftTreeBalanced && isRightTreeBalanced && Math.abs(leftTreeHeight - rightTreeHeight) <= 1;
+    const isTreeBalanced =
+      isLeftTreeBalanced &&
+      isRightTreeBalanced &&
+      Math.abs(leftTreeHeight - rightTreeHeight) <= 1;
 
     return [isTreeBalanced, 1 + Math.max(leftTreeHeight, rightTreeHeight)];
-  };
+  }
 
   return maxDepth(root)[0];
-};
+}
 
 /**
- * @param {TreeNode | null} p 
- * @param {TreeNode | null} q 
+ * @param {TreeNode | null} p
+ * @param {TreeNode | null} q
  * @returns {boolean}
  */
 function isSameTree(p, q) {
@@ -4447,14 +4824,15 @@ function isSameTree(p, q) {
   const right = isSameTree(p.right, q.right);
 
   return left && right && valueSame;
-};
+}
 
 /**
- * @param {number[][]} matches 
+ * @param {number[][]} matches
  * @returns {number[][]}
  */
 function findWinners(matches) {
-  const playerLostCount = {}, result = [[], []];
+  const playerLostCount = {},
+    result = [[], []];
 
   for (const match of matches) {
     playerLostCount[match[1]] = (playerLostCount[match[1]] || 0) + 1;
@@ -4473,8 +4851,21 @@ function findWinners(matches) {
   result[0].sort((a, b) => a - b);
   result[1].sort((a, b) => a - b);
   return result;
-};
-console.log({ findWinners: findWinners([[1, 3], [2, 3], [3, 6], [5, 6], [5, 7], [4, 5], [4, 8], [4, 9], [10, 4], [10, 9]]) });
+}
+console.log({
+  findWinners: findWinners([
+    [1, 3],
+    [2, 3],
+    [3, 6],
+    [5, 6],
+    [5, 7],
+    [4, 5],
+    [4, 8],
+    [4, 9],
+    [10, 4],
+    [10, 9],
+  ]),
+});
 
 class RandomizedSet {
   constructor() {
@@ -4507,7 +4898,7 @@ class RandomizedSet {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[][]}
  */
 function zigzagLevelOrder(root) {
@@ -4527,11 +4918,9 @@ function zigzagLevelOrder(root) {
       const index = leftToRight ? idx : size - idx - 1;
       currentRow[index] = frontNode.val;
 
-      if (frontNode.left)
-        currentQueue.push(frontNode.left);
+      if (frontNode.left) currentQueue.push(frontNode.left);
 
-      if (frontNode.right)
-        currentQueue.push(frontNode.right);
+      if (frontNode.right) currentQueue.push(frontNode.right);
     }
 
     leftToRight = !leftToRight;
@@ -4539,19 +4928,19 @@ function zigzagLevelOrder(root) {
   }
 
   return result;
-};
+}
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function climbStairs(n) {
   return n <= 3 ? n : 2 * climbStairs(n - 2) + climbStairs(n - 3);
-};
+}
 console.log({ climbStairs: climbStairs(10) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {TreeNode | null}
  */
 function invertTree(root) {
@@ -4564,14 +4953,15 @@ function invertTree(root) {
   invertTree(root.left);
   invertTree(root.right);
   return root;
-};
+}
 
 /**
- * @param {number[]} prices 
+ * @param {number[]} prices
  * @returns {number}
  */
 function maxProfit(prices) {
-  let buyingPrice = Infinity, maxProfit = 0;
+  let buyingPrice = Infinity,
+    maxProfit = 0;
 
   for (let idx = 0; idx < prices.length; idx++) {
     const currentPrice = prices[idx];
@@ -4586,15 +4976,16 @@ function maxProfit(prices) {
   }
 
   return maxProfit;
-};
+}
 console.log({ maxProfit: maxProfit([2, 4, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function findErrorNums(nums) {
-  const result = [], numCount = {};
+  const result = [],
+    numCount = {};
 
   for (const num of nums) {
     numCount[num] = (numCount[num] || 0) + 1;
@@ -4606,15 +4997,16 @@ function findErrorNums(nums) {
   }
 
   return result;
-};
+}
 console.log({ findErrorNums: findErrorNums([1, 2, 2, 4]) });
 
 /**
- * @param {number[]} temperatures 
+ * @param {number[]} temperatures
  * @returns {number[]}
  */
 function dailyTemperatures(temperatures) {
-  const minDays = new Array(temperatures.length).fill(0), stack = [];
+  const minDays = new Array(temperatures.length).fill(0),
+    stack = [];
 
   if (temperatures.length <= 1) return minDays;
 
@@ -4628,12 +5020,14 @@ function dailyTemperatures(temperatures) {
   }
 
   return minDays;
-};
-console.log({ dailyTemperatures: dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]) });
+}
+console.log({
+  dailyTemperatures: dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number[][]}
  */
 function divideArray(nums, k) {
@@ -4647,16 +5041,17 @@ function divideArray(nums, k) {
   }
 
   return ans;
-};
+}
 console.log({ divideArray: divideArray([1, 3, 4, 8, 7, 9, 3, 5, 1], 2) });
 
 /**
- * @param {number} low 
- * @param {number} high 
+ * @param {number} low
+ * @param {number} high
  * @returns {number[]}
  */
 function sequentialDigits(low, high) {
-  const possibleNos = [], digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const possibleNos = [],
+    digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   let index = 0;
 
   while (index < digits.length) {
@@ -4670,12 +5065,12 @@ function sequentialDigits(low, high) {
   }
 
   return possibleNos;
-};
+}
 console.log({ sequentialDigits: sequentialDigits(100, 300) });
 
 /**
- * @param {number[]} arr 
- * @param {number} k 
+ * @param {number[]} arr
+ * @param {number} k
  * @returns {number}
  */
 function maxSumAfterPartitioning(arr, k) {
@@ -4685,7 +5080,8 @@ function maxSumAfterPartitioning(arr, k) {
     if (i >= arr.length) return 0;
     if (i in cache) return cache[i];
 
-    let currentMax = 0, result = 0;
+    let currentMax = 0,
+      result = 0;
 
     for (let j = i; j < Math.min(arr.length, i + k); j++) {
       currentMax = Math.max(currentMax, arr[j]);
@@ -4698,11 +5094,16 @@ function maxSumAfterPartitioning(arr, k) {
   }
 
   return dfs(0);
-};
-console.log({ maxSumAfterPartitioning: maxSumAfterPartitioning([[1, 15, 7, 9, 2, 5, 10], 3]) });
+}
+console.log({
+  maxSumAfterPartitioning: maxSumAfterPartitioning([
+    [1, 15, 7, 9, 2, 5, 10],
+    3,
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function firstUniqChar(s) {
@@ -4718,11 +5119,11 @@ function firstUniqChar(s) {
   }
 
   return -1;
-};
-console.log({ firstUniqChar: firstUniqChar("leetcode") });
+}
+console.log({ firstUniqChar: firstUniqChar('leetcode') });
 
 /**
- * @param {string[]} strs 
+ * @param {string[]} strs
  * @returns {string[][]}
  */
 function groupAnagrams(strs) {
@@ -4732,7 +5133,7 @@ function groupAnagrams(strs) {
     const charCount = new Array(26).fill(0);
 
     for (const char of str) {
-      charCount[char.charCodeAt(0) - "a".charCodeAt(0)]++;
+      charCount[char.charCodeAt(0) - 'a'.charCodeAt(0)]++;
     }
 
     const countStr = charCount.toString();
@@ -4742,22 +5143,28 @@ function groupAnagrams(strs) {
 
   return Object.values(result);
 }
-console.log({ groupAnagrams: groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]) });
+console.log({
+  groupAnagrams: groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']),
+});
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {boolean}
  */
 function validChar(char) {
-  return (char >= "a" && char <= "z") || (char >= "A" && char <= "Z") || (char >= "0" && char <= "9");
+  return (
+    (char >= 'a' && char <= 'z') ||
+    (char >= 'A' && char <= 'Z') ||
+    (char >= '0' && char <= '9')
+  );
 }
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {string}
  */
 function toLowerCase(char) {
-  if ((char >= "a" && char <= "z") || (char >= "0" && char <= "9")) {
+  if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')) {
     return char;
   } else {
     return String.fromCharCode(char.charCodeAt(0) + 32);
@@ -4765,11 +5172,12 @@ function toLowerCase(char) {
 }
 
 /**
- * @param {string} str 
+ * @param {string} str
  * @returns {boolean}
  */
 function checkPalindrome(str) {
-  let start = 0, end = str.length - 1;
+  let start = 0,
+    end = str.length - 1;
 
   while (start <= end) {
     if (str[start] !== str[end]) {
@@ -4784,7 +5192,7 @@ function checkPalindrome(str) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function isStrPalindrome(s) {
@@ -4794,12 +5202,14 @@ function isStrPalindrome(s) {
     if (validChar(s[i])) tempString.push(toLowerCase(s[i]));
   }
 
-  return checkPalindrome(tempString.join(""));
-};
-console.log({ isStrPalindrome: isStrPalindrome("A man, a plan, a canal: Panama") });
+  return checkPalindrome(tempString.join(''));
+}
+console.log({
+  isStrPalindrome: isStrPalindrome('A man, a plan, a canal: Panama'),
+});
 
 /**
- * @param {string} words 
+ * @param {string} words
  * @returns {string}
  */
 function firstPalindrome(words) {
@@ -4807,20 +5217,26 @@ function firstPalindrome(words) {
     if (checkPalindrome(word)) return word;
   }
 
-  return "";
-};
-console.log({ firstPalindrome: firstPalindrome(["abc", "car", "ada", "racecar", "cool"]) });
+  return '';
+}
+console.log({
+  firstPalindrome: firstPalindrome(['abc', 'car', 'ada', 'racecar', 'cool']),
+});
 
 /**
- * @param {string} num1 
- * @param {string} num2 
+ * @param {string} num1
+ * @param {string} num2
  * @returns {string}
  */
 function addStrings(num1, num2) {
-  let num1Length = num1.length - 1, num2Length = num2.length - 1, result = [], carry = 0;
+  let num1Length = num1.length - 1,
+    num2Length = num2.length - 1,
+    result = [],
+    carry = 0;
 
   while (num1Length >= 0 || num2Length >= 0 || carry > 0) {
-    const firstDigit = +num1[num1Length--] || 0, secondDigit = +num2[num2Length--] || 0;
+    const firstDigit = +num1[num1Length--] || 0,
+      secondDigit = +num2[num2Length--] || 0;
     let sum = firstDigit + secondDigit + carry;
     carry = Math.floor(sum / 10);
 
@@ -4829,17 +5245,18 @@ function addStrings(num1, num2) {
     result.unshift(sum);
   }
 
-  return result.join("");
-};
-console.log({ addStrings: addStrings("1", "9") });
+  return result.join('');
+}
+console.log({ addStrings: addStrings('1', '9') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function rearrangeArray(nums) {
   const rearrangedNums = [];
-  let posIndex = 0, negIndex = 1;
+  let posIndex = 0,
+    negIndex = 1;
 
   for (const num of nums) {
     if (num > 0) {
@@ -4852,37 +5269,41 @@ function rearrangeArray(nums) {
   }
 
   return rearrangedNums;
-};
+}
 console.log({ rearrangeArray: rearrangeArray([3, 1, -2, -5, 2, -4]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {string[]}
  */
 function fizzBuzz(n) {
   const answer = [];
 
   for (let idx = 1; idx <= n; idx++) {
-    if (idx % 3 === 0 && idx % 5 === 0) answer.push("FizzBuzz");
-    else if (idx % 3 === 0) answer.push("Fizz");
-    else if (idx % 5 === 0) answer.push("Buzz");
+    if (idx % 3 === 0 && idx % 5 === 0) answer.push('FizzBuzz');
+    else if (idx % 3 === 0) answer.push('Fizz');
+    else if (idx % 5 === 0) answer.push('Buzz');
     else answer.push(`${idx}`);
   }
 
   return answer;
-};
+}
 console.log({ fizzBuzz: fizzBuzz(3) });
 
 /**
- * @param {string} num1 
- * @param {string} num2 
+ * @param {string} num1
+ * @param {string} num2
  * @returns {string}
  */
 function addBinary(num1, num2) {
-  let num1Length = num1.length - 1, num2Length = num2.length - 1, result = [], carry = 0;
+  let num1Length = num1.length - 1,
+    num2Length = num2.length - 1,
+    result = [],
+    carry = 0;
 
   while (num1Length >= 0 || num2Length >= 0 || carry > 0) {
-    const firstDigit = +num1[num1Length--] || 0, secondDigit = +num2[num2Length--] || 0;
+    const firstDigit = +num1[num1Length--] || 0,
+      secondDigit = +num2[num2Length--] || 0;
     let sum = firstDigit + secondDigit + carry;
     carry = Math.floor(sum / 2);
 
@@ -4891,13 +5312,13 @@ function addBinary(num1, num2) {
     result.unshift(sum);
   }
 
-  return result.join("");
-};
-console.log({ addBinary: addBinary("11", "1") });
+  return result.join('');
+}
+console.log({ addBinary: addBinary('11', '1') });
 
 /**
- * @param {number[]} arr 
- * @param {number} k 
+ * @param {number[]} arr
+ * @param {number} k
  * @returns {number}
  */
 function findLeastNumOfUniqueInts(arr, k) {
@@ -4935,13 +5356,15 @@ function findLeastNumOfUniqueInts(arr, k) {
 
   // If we removed all elements from the array and still didn't reach k, return 0.
   return 0;
-};
-console.log({ findLeastNumOfUniqueInts: findLeastNumOfUniqueInts([5, 5, 4], 1) });
+}
+console.log({
+  findLeastNumOfUniqueInts: findLeastNumOfUniqueInts([5, 5, 4], 1),
+});
 
 /**
- * @param {TreeNode | null} root 
- * @param {number[]} nodes 
- * @param {number} level 
+ * @param {TreeNode | null} root
+ * @param {number[]} nodes
+ * @param {number} level
  * @returns {number[]}
  */
 function solve(root, nodes, level) {
@@ -4953,28 +5376,30 @@ function solve(root, nodes, level) {
   solve(root.left, nodes, level + 1);
 
   return nodes;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[]}
  */
 function rightSideView(root) {
   return solve(root, [], 0);
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[][]}
  */
 function levelOrder(root) {
-  const nodeVals = [], nodesQueue = [];
+  const nodeVals = [],
+    nodesQueue = [];
 
   if (!root) return nodeVals;
   nodesQueue.push(root);
 
   while (nodesQueue.length) {
-    const size = nodesQueue.length, currentRow = [];
+    const size = nodesQueue.length,
+      currentRow = [];
 
     for (let idx = 0; idx < size; idx++) {
       const node = nodesQueue.shift();
@@ -4988,18 +5413,18 @@ function levelOrder(root) {
   }
 
   return nodeVals;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function sumOfLeftLeaves(root) {
   let sum = 0;
 
   /**
-   * @param {TreeNode | null} root 
-   * @param {boolean} isLeft 
+   * @param {TreeNode | null} root
+   * @param {boolean} isLeft
    * @returns {void}
    */
   function solve(root, isLeft) {
@@ -5012,37 +5437,41 @@ function sumOfLeftLeaves(root) {
 
   solve(root, false);
   return sum;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} targetSum 
+ * @param {TreeNode | null} root
+ * @param {number} targetSum
  * @returns {boolean}
  */
 function hasPathSum(root, targetSum) {
   if (!root) return false;
 
   /**
-   * @param {TreeNode | null} node 
-   * @param {number} currentSum 
+   * @param {TreeNode | null} node
+   * @param {number} currentSum
    * @returns {boolean}
    */
   function checkPathSum(node, currentSum) {
     if (!node) return false;
 
     // Check if it's a leaf node and if the path sum equals the target sum
-    if (!node.left && !node.right && currentSum + node.val === targetSum) return true;
+    if (!node.left && !node.right && currentSum + node.val === targetSum)
+      return true;
 
     // Recursively check the left and right subtrees
-    return (checkPathSum(node.left, currentSum + node.val) || checkPathSum(node.right, currentSum + node.val));
+    return (
+      checkPathSum(node.left, currentSum + node.val) ||
+      checkPathSum(node.right, currentSum + node.val)
+    );
   }
 
   return checkPathSum(root, 0);
 }
 
 /**
- * @param {number} left 
- * @param {number} right 
+ * @param {number} left
+ * @param {number} right
  * @returns {number}
  */
 function rangeBitwiseAnd(left, right) {
@@ -5050,16 +5479,17 @@ function rangeBitwiseAnd(left, right) {
     right &= right - 1;
   }
   return right;
-};
+}
 console.log({ rangeBitwiseAnd: rangeBitwiseAnd(5, 7) });
 
 /**
- * @param {number} n 
- * @param {number[][]} trust 
+ * @param {number} n
+ * @param {number[][]} trust
  * @returns {number}
  */
 function findJudge(n, trust) {
-  const inDegree = new Array(n + 1).fill(0), outDegree = new Array(n + 1).fill(0);
+  const inDegree = new Array(n + 1).fill(0),
+    outDegree = new Array(n + 1).fill(0);
 
   for (const [a, b] of trust) {
     inDegree[b]++;
@@ -5071,13 +5501,13 @@ function findJudge(n, trust) {
   }
 
   return -1;
-};
+}
 console.log({ findJudge: findJudge(2, [[1, 2]]) });
 
 /**
- * @param {TreeNode | null} root 
- * @param {TreeNode | null} p 
- * @param {TreeNode | null} q 
+ * @param {TreeNode | null} root
+ * @param {TreeNode | null} p
+ * @param {TreeNode | null} q
  * @returns {TreeNode | null}
  */
 function lowestCommonAncestor(root, p, q) {
@@ -5091,56 +5521,59 @@ function lowestCommonAncestor(root, p, q) {
   else if (leftAns && !rightAns) return leftAns;
   else if (!leftAns && rightAns) return rightAns;
   else return null;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
- * @param {TreeNode | null} p 
- * @param {TreeNode | null} q 
+ * @param {TreeNode | null} root
+ * @param {TreeNode | null} p
+ * @param {TreeNode | null} q
  * @returns {TreeNode | null}
  */
 function lowestCommonAncestorInBST(root, p, q) {
   if (!root) return null;
-  if (root.val < p.val && root.val < q.val) return lowestCommonAncestorInBST(root.right, p, q);
-  if (root.val > p.val && root.val > q.val) return lowestCommonAncestorInBST(root.left, p, q);
+  if (root.val < p.val && root.val < q.val)
+    return lowestCommonAncestorInBST(root.right, p, q);
+  if (root.val > p.val && root.val > q.val)
+    return lowestCommonAncestorInBST(root.left, p, q);
   return root;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {string[]}
  */
 function binaryTreePaths(root) {
   const nodePaths = [];
 
   /**
-   * @param {TreeNode | null} node 
-   * @param {string[]} currentPath 
+   * @param {TreeNode | null} node
+   * @param {string[]} currentPath
    * @returns {void}
    */
   function getNodes(node, currentPath) {
     if (!node) return;
     const path = [...currentPath];
     path.push(`${node.val}`);
-    if (!node.left && !node.right) nodePaths.push(path.join("->"));
+    if (!node.left && !node.right) nodePaths.push(path.join('->'));
     getNodes(node.left, path);
     getNodes(node.right, path);
   }
 
   getNodes(root, []);
   return nodePaths;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function findBottomLeftValue(root) {
-  let maxDepth = -1, bottomLeftValue = 0;
+  let maxDepth = -1,
+    bottomLeftValue = 0;
 
   /**
-   * @param {TreeNode | null} node 
-   * @param {number} depth 
+   * @param {TreeNode | null} node
+   * @param {number} depth
    * @returns {void}
    */
   function getBottomLeftValue(node, depth) {
@@ -5157,14 +5590,15 @@ function findBottomLeftValue(root) {
 
   getBottomLeftValue(root, 0);
   return bottomLeftValue;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {boolean}
  */
 function isEvenOddTree(root) {
-  let current = root, even = true;
+  let current = root,
+    even = true;
   const nodesQueue = [current];
 
   while (nodesQueue.length) {
@@ -5194,42 +5628,46 @@ function isEvenOddTree(root) {
   }
 
   return true;
-};
+}
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function maximumOddBinaryNumber(s) {
   let onesCount = 0;
-  const result = [], strLength = s.length;
+  const result = [],
+    strLength = s.length;
 
   for (let idx = 0; idx < strLength; idx++) {
-    if (s[idx] === "1") onesCount++;
+    if (s[idx] === '1') onesCount++;
   }
 
   for (let idx = 0; idx < onesCount - 1; idx++) {
     result.push(1);
   }
 
-  for (let idx = 0; idx < (strLength - onesCount); idx++) {
+  for (let idx = 0; idx < strLength - onesCount; idx++) {
     result.push(0);
   }
 
   result.push(1);
-  return result.join("");
-};
-console.log({ maximumOddBinaryNumber: maximumOddBinaryNumber("010") });
+  return result.join('');
+}
+console.log({ maximumOddBinaryNumber: maximumOddBinaryNumber('010') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function sortedSquares(nums) {
-  let start = 0, end = nums.length - 1, squaredNums = [];
+  let start = 0,
+    end = nums.length - 1,
+    squaredNums = [];
 
   while (start <= end) {
-    const startSquared = nums[start] ** 2, endSquared = nums[end] ** 2;
+    const startSquared = nums[start] ** 2,
+      endSquared = nums[end] ** 2;
 
     if (startSquared > endSquared) {
       squaredNums.unshift(startSquared);
@@ -5241,17 +5679,19 @@ function sortedSquares(nums) {
   }
 
   return squaredNums;
-};
+}
 console.log({ sortedSquares: sortedSquares([-4, -1, 0, 3, 10]) });
 
 /**
- * @param {ListNode | null} head 
- * @param {number} n 
+ * @param {ListNode | null} head
+ * @param {number} n
  * @returns {number}
  */
 function removeNthFromEnd(head, n) {
   const listLength = getLength(head);
-  let idx = 0, traverseTill = listLength - n - 1, curr = head;
+  let idx = 0,
+    traverseTill = listLength - n - 1,
+    curr = head;
   if (traverseTill === -1) return head.next;
 
   while (idx < traverseTill) {
@@ -5261,16 +5701,18 @@ function removeNthFromEnd(head, n) {
 
   curr.next = curr.next.next;
   return head;
-};
+}
 
 /**
- * @param {number[]} tokens 
- * @param {number} power 
+ * @param {number[]} tokens
+ * @param {number} power
  * @returns {number}
  */
 function bagOfTokensScore(tokens, power) {
   tokens.sort((a, b) => a - b);
-  let low = 0, high = tokens.length - 1, score = 0;
+  let low = 0,
+    high = tokens.length - 1,
+    score = 0;
 
   while (low <= high) {
     if (power >= tokens[low]) {
@@ -5286,11 +5728,11 @@ function bagOfTokensScore(tokens, power) {
     }
   }
   return score;
-};
+}
 console.log({ bagOfTokensScore: bagOfTokensScore([100], 50) });
 
 /**
- * @param {number} inorder 
+ * @param {number} inorder
  * @returns {Map<number, number>}
  */
 function createMapping(inorder) {
@@ -5304,8 +5746,8 @@ function createMapping(inorder) {
 }
 
 /**
- * @param {number[]} preorder 
- * @param {number[]} inorder 
+ * @param {number[]} preorder
+ * @param {number[]} inorder
  * @returns {TreeNode | null}
  */
 function buildTreeWithPreOrder(preorder, inorder) {
@@ -5313,17 +5755,18 @@ function buildTreeWithPreOrder(preorder, inorder) {
   let index = 0;
 
   /**
-   * @param {number[]} preorder 
-   * @param {number} inorderStart 
-   * @param {number} inorderEnd 
-   * @param {Map<number, number>} nodeToIndex 
+   * @param {number[]} preorder
+   * @param {number} inorderStart
+   * @param {number} inorderEnd
+   * @param {Map<number, number>} nodeToIndex
    * @returns {TreeNode | null}
    */
   function solve(preorder, inorderStart, inorderEnd, nodeToIndex) {
     if (index >= preorder.length || inorderStart > inorderEnd) return null;
 
     const element = preorder[index++];
-    const root = new TreeNode(element), position = nodeToIndex.get(element);
+    const root = new TreeNode(element),
+      position = nodeToIndex.get(element);
     root.left = solve(preorder, inorderStart, position - 1, nodeToIndex);
     root.right = solve(preorder, position + 1, inorderEnd, nodeToIndex);
 
@@ -5331,7 +5774,7 @@ function buildTreeWithPreOrder(preorder, inorder) {
   }
 
   return solve(preorder, 0, inorder.length - 1, nodeToIndex);
-};
+}
 
 /**
  * @param {number[]} inorder
@@ -5353,7 +5796,8 @@ function buildTreeWithPostOrder(inorder, postorder) {
     if (index < 0 || inorderStart > inorderEnd) return null;
 
     const element = postorder[index--];
-    const root = new TreeNode(element), position = nodeToIndex.get(element);
+    const root = new TreeNode(element),
+      position = nodeToIndex.get(element);
     root.right = solve(postorder, position + 1, inorderEnd, nodeToIndex);
     root.left = solve(postorder, inorderStart, position - 1, nodeToIndex);
 
@@ -5361,14 +5805,15 @@ function buildTreeWithPostOrder(inorder, postorder) {
   }
 
   return solve(postorder, 0, postorder.length - 1, nodeToIndex);
-};
+}
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minimumLength(s) {
-  let begin = 0, end = s.length - 1;
+  let begin = 0,
+    end = s.length - 1;
 
   while (begin < end && s[begin] === s[end]) {
     const char = s[begin];
@@ -5382,17 +5827,18 @@ function minimumLength(s) {
 
   // Return the number of remaining characters
   return end - begin + 1;
-};
-console.log({ minimumLength: minimumLength("ca") });
+}
+console.log({ minimumLength: minimumLength('ca') });
 
 /**
- * @param {TreeNode | null} node 
- * @param {number} start 
+ * @param {TreeNode | null} node
+ * @param {number} start
  * @returns {{nodeToParentMap: Map<TreeNode, TreeNode>, targetNode: TreeNode | null}}
  */
 function getParentMapping(node, start) {
   let targetNode = null;
-  const nodeToParentMap = new Map(), queue = [node];
+  const nodeToParentMap = new Map(),
+    queue = [node];
 
   while (queue.length) {
     const frontNode = queue.shift();
@@ -5414,13 +5860,14 @@ function getParentMapping(node, start) {
 }
 
 /**
- * @param {TreeNode | null} node 
- * @param {Map<TreeNode, TreeNode>} nodeToParent 
+ * @param {TreeNode | null} node
+ * @param {Map<TreeNode, TreeNode>} nodeToParent
  * @returns {number}
  */
 function infectTree(node, nodeToParent) {
   let timeTaken = 0;
-  const visitedNodes = new Map(), queue = [node];
+  const visitedNodes = new Map(),
+    queue = [node];
   visitedNodes.set(node, true);
 
   while (queue.length) {
@@ -5442,7 +5889,10 @@ function infectTree(node, nodeToParent) {
         visitedNodes.set(frontNode.right, true);
       }
 
-      if (nodeToParent.get(frontNode) && !visitedNodes.get(nodeToParent.get(frontNode))) {
+      if (
+        nodeToParent.get(frontNode) &&
+        !visitedNodes.get(nodeToParent.get(frontNode))
+      ) {
         flag = true;
         queue.push(nodeToParent.get(frontNode));
         visitedNodes.set(nodeToParent.get(frontNode), true);
@@ -5456,8 +5906,8 @@ function infectTree(node, nodeToParent) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} start 
+ * @param {TreeNode | null} root
+ * @param {number} start
  * @returns {number}
  */
 function amountOfTime(root, start) {
@@ -5466,7 +5916,7 @@ function amountOfTime(root, start) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {void}
  */
 function flatten(root) {
@@ -5485,15 +5935,16 @@ function flatten(root) {
 
     current = current.right;
   }
-};
+}
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxFrequencyElements(nums) {
   const numsCount = {};
-  let totalCount = 0, maxCount = -Infinity;
+  let totalCount = 0,
+    maxCount = -Infinity;
 
   for (const num of nums) {
     numsCount[num] = (numsCount[num] || 0) + 1;
@@ -5513,12 +5964,13 @@ function maxFrequencyElements(nums) {
 console.log({ maxFrequencyElements: maxFrequencyElements([1, 2, 2, 3, 1, 4]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
+ * @param {number[]} nums
+ * @param {number} target
  * @returns {boolean}
  */
 function findNum(nums, target) {
-  let start = 0, end = nums.length - 1;
+  let start = 0,
+    end = nums.length - 1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -5532,8 +5984,8 @@ function findNum(nums, target) {
 }
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number}
  */
 function getCommon(nums1, nums2) {
@@ -5548,8 +6000,8 @@ function getCommon(nums1, nums2) {
 console.log({ getCommon: getCommon([1, 2, 3], [2, 4]) });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number[]}
  */
 function intersection(nums1, nums2) {
@@ -5557,10 +6009,12 @@ function intersection(nums1, nums2) {
   nums2.sort((a, b) => a - b);
 
   const commonNumSet = new Set();
-  let first = 0, second = 0;
+  let first = 0,
+    second = 0;
 
   while (first < nums1.length && second < nums2.length) {
-    const num1 = nums1[first], num2 = nums2[second];
+    const num1 = nums1[first],
+      num2 = nums2[second];
 
     if (num1 === num2) {
       commonNumSet.add(num1);
@@ -5571,27 +6025,30 @@ function intersection(nums1, nums2) {
   }
 
   return Array.from(commonNumSet);
-};
+}
 console.log({ intersection: intersection([1, 2, 2, 1], [2, 2]) });
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} val 
+ * @param {TreeNode | null} root
+ * @param {number} val
  * @returns {TreeNode | null}
  */
 function searchBST(root, val) {
   if (!root) return null;
   if (root.val === val) return root;
-  return root.val > val ? searchBST(root.left, val) : searchBST(root.right, val);
-};
+  return root.val > val
+    ? searchBST(root.left, val)
+    : searchBST(root.right, val);
+}
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function productExceptSelf(nums) {
   const result = [];
-  let prefix = 1, postfix = 1;
+  let prefix = 1,
+    postfix = 1;
 
   for (let idx = 0; idx < nums.length; idx++) {
     result[idx] = prefix;
@@ -5604,12 +6061,12 @@ function productExceptSelf(nums) {
   }
 
   return result;
-};
+}
 console.log({ productExceptSelf: productExceptSelf([1, 2, 3, 4]) });
 
 /**
- * @param {TreeNode | null} node 
- * @param {number[]} values 
+ * @param {TreeNode | null} node
+ * @param {number[]} values
  * @returns {number[]}
  */
 function inOrder(node, values) {
@@ -5623,13 +6080,14 @@ function inOrder(node, values) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} k 
+ * @param {TreeNode | null} root
+ * @param {number} k
  * @returns {boolean}
  */
 function findTarget(root, k) {
   const values = inOrder(root, []);
-  let start = 0, end = values.length - 1;
+  let start = 0,
+    end = values.length - 1;
 
   while (start < end) {
     const sum = values[start] + values[end];
@@ -5642,12 +6100,13 @@ function findTarget(root, k) {
 }
 
 /**
- * @param {number[]} points 
+ * @param {number[]} points
  * @returns {number}
  */
 function findMinArrowShots(points) {
   points.sort((a, b) => a[0] - b[0]);
-  let count = points.length, prev = points[0];
+  let count = points.length,
+    prev = points[0];
 
   for (let idx = 1; idx < points.length; idx++) {
     const curr = points[idx];
@@ -5659,18 +6118,26 @@ function findMinArrowShots(points) {
   }
 
   return count;
-};
-console.log({ findMinArrowShots: findMinArrowShots([[10, 16], [2, 8], [1, 6], [7, 12]]) });
+}
+console.log({
+  findMinArrowShots: findMinArrowShots([
+    [10, 16],
+    [2, 8],
+    [1, 6],
+    [7, 12],
+  ]),
+});
 
 /**
- * @param {ListNode | null} list1 
- * @param {number} a 
- * @param {number} b 
- * @param {ListNode | null} list2 
+ * @param {ListNode | null} list1
+ * @param {number} a
+ * @param {number} b
+ * @param {ListNode | null} list2
  * @returns {ListNode | null}
  */
 function mergeInBetween(list1, a, b, list2) {
-  let current = list1, idx = 0;
+  let current = list1,
+    idx = 0;
 
   while (idx < a - 1) {
     current = current.next;
@@ -5695,12 +6162,13 @@ function mergeInBetween(list1, a, b, list2) {
 }
 
 /**
- * @param {ListNode | null} head 
- * @param {ListNode | null} tail 
+ * @param {ListNode | null} head
+ * @param {ListNode | null} tail
  * @returns {TreeNode | null}
  */
 function toBST(head, tail) {
-  let slow = head, fast = head;
+  let slow = head,
+    fast = head;
 
   if (head === tail) return null;
 
@@ -5717,26 +6185,28 @@ function toBST(head, tail) {
 }
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {TreeNode | null}
  */
 function sortedListToBST(head) {
   return head === null ? null : toBST(head, null);
-};
+}
 
 /**
  * @param {ListNode | null} head
  * @returns {void}
  */
 function reorderList(head) {
-  let slow = head, fast = head.next;
+  let slow = head,
+    fast = head.next;
 
   while (fast && fast.next) {
     slow = slow.next;
     fast = fast.next.next;
   }
 
-  let second = slow.next, prev = null;
+  let second = slow.next,
+    prev = null;
   slow.next = null;
 
   while (second) {
@@ -5750,16 +6220,17 @@ function reorderList(head) {
   second = prev;
 
   while (second) {
-    let temp1 = first.next, temp2 = second.next;
+    let temp1 = first.next,
+      temp2 = second.next;
     first.next = second;
     second.next = temp1;
     first = temp1;
     second = temp2;
   }
-};
+}
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function firstMissingPositive(nums) {
@@ -5781,16 +6252,18 @@ function firstMissingPositive(nums) {
   }
 
   return nums.length + 1;
-};
+}
 console.log({ firstMissingPositive: firstMissingPositive([1, 2, 0]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} size 
- * @param {number} idx 
+ * @param {number[]} nums
+ * @param {number} size
+ * @param {number} idx
  */
 function heapify(nums, size, idx) {
-  let largest = idx, left = 2 * idx + 1, right = 2 * idx + 2;
+  let largest = idx,
+    left = 2 * idx + 1,
+    right = 2 * idx + 2;
 
   if (left < size && nums[largest] < nums[left]) largest = left;
 
@@ -5803,7 +6276,7 @@ function heapify(nums, size, idx) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function heapSort(nums) {
@@ -5825,21 +6298,23 @@ function heapSort(nums) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function sortArray(nums) {
   return heapSort(nums);
-};
+}
 console.log({ sortArray: sortArray([3, 4, 5, 1, 2]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function numSubarrayProductLessThanK(nums, k) {
-  let result = 0, left = 0, product = 1;
+  let result = 0,
+    left = 0,
+    product = 1;
 
   for (let idx = 0; idx < nums.length; idx++) {
     product *= nums[idx];
@@ -5853,15 +6328,18 @@ function numSubarrayProductLessThanK(nums, k) {
 
   return result;
 }
-console.log({ numSubarrayProductLessThanK: numSubarrayProductLessThanK([10, 5, 2, 6], 100) });
+console.log({
+  numSubarrayProductLessThanK: numSubarrayProductLessThanK([10, 5, 2, 6], 100),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function maxSubarrayLength(nums, k) {
-  let result = 0, left = 0;
+  let result = 0,
+    left = 0;
   const numCount = {};
 
   for (let right = 0; right < nums.length; right++) {
@@ -5875,17 +6353,21 @@ function maxSubarrayLength(nums, k) {
   }
 
   return result;
-};
-console.log({ maxSubarrayLength: maxSubarrayLength([9, 6, 7, 4, 1, 3, 4, 5], 3) });
+}
+console.log({
+  maxSubarrayLength: maxSubarrayLength([9, 6, 7, 4, 1, 3, 4, 5], 3),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function countSubarrays(nums, k) {
   const maxNum = Math.max(...nums);
-  let maxCount = 0, left = 0, result = 0;
+  let maxCount = 0,
+    left = 0,
+    result = 0;
 
   for (let right = 0; right < nums.length; right++) {
     if (nums[right] === maxNum) maxCount++;
@@ -5898,17 +6380,19 @@ function countSubarrays(nums, k) {
   }
 
   return result;
-};
+}
 console.log({ countSubarrays: countSubarrays([1, 2, 1, 1, 3, 3], 2) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function subarraysWithKDistinct(nums, k) {
   const numCount = new Map();
-  let leftNear = 0, leftFar = 0, result = 0;
+  let leftNear = 0,
+    leftFar = 0,
+    result = 0;
 
   for (let right = 0; right < nums.length; right++) {
     numCount.set(nums[right], (numCount.get(nums[right]) || 0) + 1);
@@ -5928,84 +6412,100 @@ function subarraysWithKDistinct(nums, k) {
 
   return result;
 }
-console.log({ subarraysWithKDistinct: subarraysWithKDistinct([10, 5, 2, 6], 2) });
+console.log({
+  subarraysWithKDistinct: subarraysWithKDistinct([10, 5, 2, 6], 2),
+});
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {boolean}
  */
 function isIsomorphic(s, t) {
-  const mapST = {}, mapTS = {};
+  const mapST = {},
+    mapTS = {};
 
   for (let idx = 0; idx < s.length; idx++) {
-    const char1 = s[idx], char2 = t[idx];
+    const char1 = s[idx],
+      char2 = t[idx];
 
-    if ((char1 in mapST && mapST[char1] !== char2) || (char2 in mapTS && mapTS[char2] !== char1)) return false;
+    if (
+      (char1 in mapST && mapST[char1] !== char2) ||
+      (char2 in mapTS && mapTS[char2] !== char1)
+    )
+      return false;
 
     mapST[char1] = char2;
     mapTS[char2] = char1;
   }
 
   return true;
-};
-console.log({ isIsomorphic: isIsomorphic("egg", "add") });
+}
+console.log({ isIsomorphic: isIsomorphic('egg', 'add') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maxDepthOfParentheses(s) {
-  let depth = 0, maxDepth = 0;
+  let depth = 0,
+    maxDepth = 0;
 
   for (const char of s) {
-    if (char === "(") depth++;
-    else if (char === ")") depth--;
+    if (char === '(') depth++;
+    else if (char === ')') depth--;
     maxDepth = Math.max(maxDepth, depth);
   }
 
   return maxDepth;
-};
-console.log({ maxDepthOfParentheses: maxDepthOfParentheses("(1+(2*3)+((8)/4))+1") });
+}
+console.log({
+  maxDepthOfParentheses: maxDepthOfParentheses('(1+(2*3)+((8)/4))+1'),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function minRemoveToMakeValid(s) {
-  const result = [], updatedString = [];
+  const result = [],
+    updatedString = [];
   let count = 0;
 
   for (const char of s) {
-    if (char === "(") {
+    if (char === '(') {
       result.push(char);
       count++;
-    } else if (char === ")" && count > 0) {
+    } else if (char === ')' && count > 0) {
       result.push(char);
       count--;
-    } else if (char !== ")") {
+    } else if (char !== ')') {
       result.push(char);
     }
   }
 
   for (let idx = result.length - 1; idx >= 0; idx--) {
-    if (result[idx] === "(" && count > 0) count--;
+    if (result[idx] === '(' && count > 0) count--;
     else updatedString.push(result[idx]);
   }
 
-  let start = 0, end = updatedString.length - 1;
+  let start = 0,
+    end = updatedString.length - 1;
 
   while (start <= end) {
-    [updatedString[start++], updatedString[end--]] = [updatedString[end], updatedString[start]];
+    [updatedString[start++], updatedString[end--]] = [
+      updatedString[end],
+      updatedString[start],
+    ];
   }
 
-  return updatedString.join("");
-};
-console.log({ minRemoveToMakeValid: minRemoveToMakeValid("lee(t(c)o)de)") });
+  return updatedString.join('');
+}
+console.log({ minRemoveToMakeValid: minRemoveToMakeValid('lee(t(c)o)de)') });
 
 /**
- * @param {string} num 
- * @param {number} k 
+ * @param {string} num
+ * @param {number} k
  * @returns {string}
  */
 function removeKdigits(num, k) {
@@ -6030,16 +6530,17 @@ function removeKdigits(num, k) {
 
   return stack.length ? stack.join('') : '0';
 }
-console.log({ removeKdigits: removeKdigits("1432219", 3) });
+console.log({ removeKdigits: removeKdigits('1432219', 3) });
 
 /**
- * @param {string} word 
- * @param {number} idx 
+ * @param {string} word
+ * @param {number} idx
  * @returns {string}
  */
 function reverse(word, idx) {
   const chars = word.split('');
-  let start = 0, end = idx;
+  let start = 0,
+    end = idx;
 
   while (start < end) {
     [chars[start++], chars[end--]] = [chars[end], chars[start]];
@@ -6049,8 +6550,8 @@ function reverse(word, idx) {
 }
 
 /**
- * @param {string} word 
- * @param {string} ch 
+ * @param {string} word
+ * @param {string} ch
  * @returns {string}
  */
 function reversePrefix(word, ch) {
@@ -6065,12 +6566,12 @@ function reversePrefix(word, ch) {
 
   return charIdx === -1 ? word : reverse(word, charIdx);
 }
-console.log({ reversePrefix: reversePrefix("abcdefd", "d") });
+console.log({ reversePrefix: reversePrefix('abcdefd', 'd') });
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} val 
- * @param {number} depth 
+ * @param {TreeNode | null} root
+ * @param {number} val
+ * @param {number} depth
  * @returns {TreeNode | null}
  */
 function addOneRow(root, val, depth) {
@@ -6086,18 +6587,18 @@ function addOneRow(root, val, depth) {
   }
 
   return root;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {string}
  */
 function smallestFromLeaf(root) {
-  let smallestString = "";
+  let smallestString = '';
 
   /**
-   * @param {TreeNode | null} node 
-   * @param {string} currentString 
+   * @param {TreeNode | null} node
+   * @param {string} currentString
    * @returns {void}
    */
   function createString(node, currentString) {
@@ -6106,7 +6607,8 @@ function smallestFromLeaf(root) {
     currentString = String.fromCharCode(node.val + 97) + currentString;
 
     if (!node.left && !node.right) {
-      if (smallestString === "" || smallestString > currentString) smallestString = currentString;
+      if (smallestString === '' || smallestString > currentString)
+        smallestString = currentString;
     }
 
     if (node.right) createString(node.right, currentString);
@@ -6114,24 +6616,31 @@ function smallestFromLeaf(root) {
     if (node.left) createString(node.left, currentString);
   }
 
-  createString(root, "");
+  createString(root, '');
   return smallestString;
-};
+}
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function islandPerimeter(grid) {
   const visited = new Set();
 
   /**
-   * @param {number} i 
-   * @param {number} j 
+   * @param {number} i
+   * @param {number} j
    * @returns {number}
    */
   function dfs(i, j) {
-    if (i >= grid.length || j >= grid[0].length || i < 0 || j < 0 || grid[i][j] === 0) return 1;
+    if (
+      i >= grid.length ||
+      j >= grid[0].length ||
+      i < 0 ||
+      j < 0 ||
+      grid[i][j] === 0
+    )
+      return 1;
     if (visited.has(`${i}:${j}`)) return 0;
 
     visited.add(`${i}:${j}`);
@@ -6149,20 +6658,34 @@ function islandPerimeter(grid) {
     }
   }
 }
-console.log({ islandPerimeter: islandPerimeter([[0, 1, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0], [1, 1, 0, 0]]) });
+console.log({
+  islandPerimeter: islandPerimeter([
+    [0, 1, 0, 0],
+    [1, 1, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 0, 0],
+  ]),
+});
 
 /**
- * @param {string[][]} grid 
+ * @param {string[][]} grid
  * @returns {number}
  */
 function numIslands(grid) {
-  const rows = grid.length, cols = grid[0].length, visited = new Set();
-  const directions = [[1, 0], [0, 1], [0, -1], [-1, 0]];
+  const rows = grid.length,
+    cols = grid[0].length,
+    visited = new Set();
+  const directions = [
+    [1, 0],
+    [0, 1],
+    [0, -1],
+    [-1, 0],
+  ];
   let islands = 0;
 
   /**
-   * @param {number} row 
-   * @param {number} col 
+   * @param {number} row
+   * @param {number} col
    * @returns {void}
    */
   function bfs(row, col) {
@@ -6174,7 +6697,8 @@ function numIslands(grid) {
       const value = queue.shift();
 
       for (let idx = 0; idx < 4; idx++) {
-        const dr = value[0] + directions[idx][0], dc = value[1] + directions[idx][1];
+        const dr = value[0] + directions[idx][0],
+          dc = value[1] + directions[idx][1];
 
         if (dr < 0 || dc < 0 || dr >= rows || dc >= cols) continue;
         if (dr === row && dc === col) continue;
@@ -6198,41 +6722,54 @@ function numIslands(grid) {
 
   return islands;
 }
-console.log({ numIslands: numIslands([["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]) });
+console.log({
+  numIslands: numIslands([
+    ['1', '1', '1', '1', '0'],
+    ['1', '1', '0', '1', '0'],
+    ['1', '1', '0', '0', '0'],
+    ['0', '0', '0', '0', '0'],
+  ]),
+});
 
 /**
- * @param {number[][]} land 
+ * @param {number[][]} land
  * @returns {number[][]}
  */
 function findFarmland(land) {
-  const ans = [], n = land.length, m = land[0].length;
+  const ans = [],
+    n = land.length,
+    m = land[0].length;
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < m; j++) {
       if (land[i][j]) {
-        let x = i, y = j;
-        while (y < m && land[i][y])
-          y++;
+        let x = i,
+          y = j;
+        while (y < m && land[i][y]) y++;
         y--;
-        while (x < n && land[x][j])
-          x++;
+        while (x < n && land[x][j]) x++;
         x--;
         ans.push([i, j, x, y]);
 
         for (let k = i; k <= x; k++) {
-          for (let l = j; l <= y; l++)
-            land[k][l] = 0;
+          for (let l = j; l <= y; l++) land[k][l] = 0;
         }
       }
     }
   }
 
   return ans;
-};
-console.log({ findFarmland: findFarmland([[1, 0, 0], [0, 1, 1], [0, 1, 1]]) });
+}
+console.log({
+  findFarmland: findFarmland([
+    [1, 0, 0],
+    [0, 1, 1],
+    [0, 1, 1],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function sumOfUnique(nums) {
@@ -6248,27 +6785,28 @@ function sumOfUnique(nums) {
   }
 
   return sum;
-};
+}
 console.log({ sumOfUnique: sumOfUnique([1, 2, 3, 2]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function countAsterisks(s) {
-  let count = 0, shouldCount = true;
+  let count = 0,
+    shouldCount = true;
 
   for (const char of s) {
-    if (char === "*" && shouldCount) count++;
-    else if (char === "|") shouldCount = !shouldCount;
+    if (char === '*' && shouldCount) count++;
+    else if (char === '|') shouldCount = !shouldCount;
   }
 
   return count;
-};
-console.log({ countAsterisks: countAsterisks("l|*e*et|c**o|*de|") });
+}
+console.log({ countAsterisks: countAsterisks('l|*e*et|c**o|*de|') });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function tribonacci(n) {
@@ -6281,11 +6819,11 @@ function tribonacci(n) {
   }
 
   return values[n];
-};
+}
 console.log({ tribonacci: tribonacci(4) });
 
 /**
- * @param {string} sentence 
+ * @param {string} sentence
  * @returns {boolean}
  */
 function checkIfPangram(sentence) {
@@ -6296,13 +6834,15 @@ function checkIfPangram(sentence) {
     charCount[charIdx]++;
   }
 
-  return charCount.every(count => count >= 1);
-};
-console.log({ checkIfPangram: checkIfPangram("thequickbrownfoxjumpsoverthelazydog") });
+  return charCount.every((count) => count >= 1);
+}
+console.log({
+  checkIfPangram: checkIfPangram('thequickbrownfoxjumpsoverthelazydog'),
+});
 
 /**
- * @param {(number | MultiDimensionalArray)[]} arr 
- * @param {number} n 
+ * @param {(number | MultiDimensionalArray)[]} arr
+ * @param {number} n
  * @returns {(number | MultiDimensionalArray)[]}
  */
 function flat(arr, n) {
@@ -6314,11 +6854,11 @@ function flat(arr, n) {
   }
 
   /**
-   * @param {(number | MultiDimensionalArray)[] | number} num 
+   * @param {(number | MultiDimensionalArray)[] | number} num
    * @returns {void}
    */
   function buildNums(num) {
-    if (typeof num === "number") {
+    if (typeof num === 'number') {
       result.push(num);
     } else {
       depth++;
@@ -6335,10 +6875,12 @@ function flat(arr, n) {
 
   return result;
 }
-console.log({ flat: flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 0) });
+console.log({
+  flat: flat([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 0),
+});
 
 /**
- * @param {string} num 
+ * @param {string} num
  * @returns {boolean}
  */
 function digitCount(num) {
@@ -6353,15 +6895,16 @@ function digitCount(num) {
   }
 
   return true;
-};
-console.log({ digitCount: digitCount("1210") });
+}
+console.log({ digitCount: digitCount('1210') });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function guessNumber(n) {
-  let start = 1, end = n;
+  let start = 1,
+    end = n;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -6369,16 +6912,16 @@ function guessNumber(n) {
 
     if (result === 0) return mid;
 
-    result === 1 ? start = mid + 1 : end = mid - 1;
+    result === 1 ? (start = mid + 1) : (end = mid - 1);
   }
 
   return -1;
-};
+}
 console.log({ guessNumber: guessNumber(10) });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number[]}
  */
 function intersect(nums1, nums2) {
@@ -6386,10 +6929,12 @@ function intersect(nums1, nums2) {
   nums2.sort((a, b) => a - b);
 
   const commonNum = [];
-  let first = 0, second = 0;
+  let first = 0,
+    second = 0;
 
   while (first < nums1.length && second < nums2.length) {
-    const num1 = nums1[first], num2 = nums2[second];
+    const num1 = nums1[first],
+      num2 = nums2[second];
 
     if (num1 === num2) {
       commonNum.push(num1);
@@ -6404,36 +6949,44 @@ function intersect(nums1, nums2) {
 console.log({ intersect: intersect([1, 2, 2, 1], [2, 2]) });
 
 /**
- * @param {string[]} timeValues 
+ * @param {string[]} timeValues
  * @returns {number[]}
  */
 function getTime(timeValues) {
   return timeValues.map((time) => {
-    const timeDetails = time.split(":");
+    const timeDetails = time.split(':');
     return Number(timeDetails[0]) * 60 + Number(timeDetails[1]);
   });
 }
 
 /**
- * @param {string[]} event1 
- * @param {string[]} event2 
- * @returns {boolean} 
+ * @param {string[]} event1
+ * @param {string[]} event2
+ * @returns {boolean}
  */
 function haveConflict(event1, event2) {
-  const time1 = getTime(event1), time2 = getTime(event2);
-  if ((time2[0] >= time1[0] && time2[0] <= time1[1]) || (time1[0] >= time2[0] && time1[0] <= time2[1])) return true;
+  const time1 = getTime(event1),
+    time2 = getTime(event2);
+  if (
+    (time2[0] >= time1[0] && time2[0] <= time1[1]) ||
+    (time1[0] >= time2[0] && time1[0] <= time2[1])
+  )
+    return true;
   return false;
 }
-console.log({ haveConflict: haveConflict(["01:15", "02:00"], ["02:00", "03:00"]) });
+console.log({
+  haveConflict: haveConflict(['01:15', '02:00'], ['02:00', '03:00']),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findMaxK(nums) {
   nums.sort((a, b) => a - b);
 
-  let start = 0, end = nums.length - 1;
+  let start = 0,
+    end = nums.length - 1;
 
   while (start <= end) {
     const sum = nums[start] + nums[end];
@@ -6444,31 +6997,34 @@ function findMaxK(nums) {
   }
 
   return -1;
-};
+}
 console.log({ findMaxK: findMaxK([-10, 8, 6, 7, -2, -3]) });
 
 /**
- * @param {string} version1 
- * @param {string} version2 
+ * @param {string} version1
+ * @param {string} version2
  * @returns {number}
  */
 function compareVersion(version1, version2) {
-  const ver1Values = version1.split("."), ver2Values = version2.split(".");
-  let first = 0, second = 0;
+  const ver1Values = version1.split('.'),
+    ver2Values = version2.split('.');
+  let first = 0,
+    second = 0;
 
   while (first < ver1Values.length || second < ver2Values.length) {
-    const firstNum = +ver1Values[first++] || 0, secondNum = +ver2Values[second++] || 0;
+    const firstNum = +ver1Values[first++] || 0,
+      secondNum = +ver2Values[second++] || 0;
 
     if (firstNum > secondNum) return 1;
     else if (firstNum < secondNum) return -1;
   }
 
   return 0;
-};
-console.log({ compareVersion: compareVersion("1.2", "1.10") });
+}
+console.log({ compareVersion: compareVersion('1.2', '1.10') });
 
 /**
- * @param {ListNode | null} node 
+ * @param {ListNode | null} node
  * @returns {number[]}
  */
 function getMaxValues(node) {
@@ -6486,12 +7042,13 @@ function getMaxValues(node) {
 }
 
 /**
- * @param {ListNode | null} node 
- * @param {number[]} maxValues 
+ * @param {ListNode | null} node
+ * @param {number[]} maxValues
  * @returns {ListNode | null}
  */
 function shrinkList(node, maxValues) {
-  let updatedList = new ListNode(-1), previous = null;
+  let updatedList = new ListNode(-1),
+    previous = null;
 
   while (node) {
     const topValue = maxValues[maxValues.length - 1];
@@ -6509,21 +7066,24 @@ function shrinkList(node, maxValues) {
 }
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function removeNodes(head) {
-  const reversed = reverseList(head), maxValues = getMaxValues(reversed);
+  const reversed = reverseList(head),
+    maxValues = getMaxValues(reversed);
   const updatedList = shrinkList(head, maxValues);
   return reverseList(updatedList);
 }
 
 /**
- * @param {ListNode | null} node 
+ * @param {ListNode | null} node
  * @returns {ListNode | null}
  */
 function doubleDigits(node) {
-  let carry = 0, current = node, lastNode = null;
+  let carry = 0,
+    current = node,
+    lastNode = null;
 
   while (current) {
     const value = carry + 2 * current.val;
@@ -6541,7 +7101,7 @@ function doubleDigits(node) {
 }
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function doubleIt(head) {
@@ -6551,35 +7111,36 @@ function doubleIt(head) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} n 
- * @returns {number[]} 
+ * @param {number[]} nums
+ * @param {number} n
+ * @returns {number[]}
  */
 function shuffle(nums, n) {
   const shuffled = [];
-  let first = 0, second = n;
+  let first = 0,
+    second = n;
 
   while (first < n) {
     shuffled.push(nums[first++], nums[second++]);
-
   }
 
   return shuffled;
-};
+}
 console.log({ shuffle: shuffle([2, 5, 1, 3, 4, 7], 3) });
 
-
 /**
- * @param {number[]} score 
+ * @param {number[]} score
  * @returns {string[]}
  */
 function findRelativeRanks(score) {
-  const scoreToRank = {}, localScores = [...score].sort((a, b) => b - a), ranks = [];
+  const scoreToRank = {},
+    localScores = [...score].sort((a, b) => b - a),
+    ranks = [];
 
   for (let idx = 0; idx < localScores.length; idx++) {
-    if (idx === 0) scoreToRank[localScores[idx]] = "Gold Medal";
-    else if (idx === 1) scoreToRank[localScores[idx]] = "Silver Medal";
-    else if (idx === 2) scoreToRank[localScores[idx]] = "Bronze Medal";
+    if (idx === 0) scoreToRank[localScores[idx]] = 'Gold Medal';
+    else if (idx === 1) scoreToRank[localScores[idx]] = 'Silver Medal';
+    else if (idx === 2) scoreToRank[localScores[idx]] = 'Bronze Medal';
     else scoreToRank[localScores[idx]] = `${idx + 1}`;
   }
 
@@ -6588,37 +7149,45 @@ function findRelativeRanks(score) {
   }
 
   return ranks;
-};
+}
 console.log({ findRelativeRanks: findRelativeRanks([5, 4, 3, 2, 1]) });
 
 /**
- * @param {number[]} happiness 
- * @param {number} k 
+ * @param {number[]} happiness
+ * @param {number} k
  * @returns {number}
  */
 function maximumHappinessSum(happiness, k) {
   happiness.sort((a, b) => b - a);
-  let totalHappinessSum = 0, turns = 0;
+  let totalHappinessSum = 0,
+    turns = 0;
 
   for (let idx = 0; idx < k; idx++) {
     totalHappinessSum += Math.max(happiness[idx] - turns++, 0);
   }
 
   return totalHappinessSum;
-};
+}
 console.log({ maximumHappinessSum: maximumHappinessSum([1, 2, 3], 2) });
 
 /**
- * @param {number[]} arr 
- * @param {number} k 
+ * @param {number[]} arr
+ * @param {number} k
  * @returns {number[]}
  */
 function kthSmallestPrimeFraction(arr, k) {
-  let left = 0, right = 1, res = [];
+  let left = 0,
+    right = 1,
+    res = [];
 
   while (left <= right) {
-    const mid = left + (right - left) / 2, n = arr.length;
-    let j = 1, total = 0, num = 0, den = 0, maxFrac = 0;
+    const mid = left + (right - left) / 2,
+      n = arr.length;
+    let j = 1,
+      total = 0,
+      num = 0,
+      den = 0,
+      maxFrac = 0;
 
     for (let i = 0; i < n; i++) {
       while (j < n && arr[i] > arr[j] * mid) {
@@ -6627,8 +7196,8 @@ function kthSmallestPrimeFraction(arr, k) {
 
       total += n - j;
 
-      if (j < n && maxFrac < arr[i] * 1.0 / arr[j]) {
-        maxFrac = arr[i] * 1.0 / arr[j];
+      if (j < n && maxFrac < (arr[i] * 1.0) / arr[j]) {
+        maxFrac = (arr[i] * 1.0) / arr[j];
         num = i;
         den = j;
       }
@@ -6644,11 +7213,13 @@ function kthSmallestPrimeFraction(arr, k) {
   }
 
   return res;
-};
-console.log({ kthSmallestPrimeFraction: kthSmallestPrimeFraction([1, 2, 3, 5], 3) });
+}
+console.log({
+  kthSmallestPrimeFraction: kthSmallestPrimeFraction([1, 2, 3, 5], 3),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function findDisappearedNumbers(nums) {
@@ -6665,12 +7236,14 @@ function findDisappearedNumbers(nums) {
 
   return result;
 }
-console.log({ findDisappearedNumbers: findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1]) });
+console.log({
+  findDisappearedNumbers: findDisappearedNumbers([4, 3, 2, 7, 8, 2, 3, 1]),
+});
 
 /**
- * @param {number[][]} grid 
- * @param {number} x 
- * @param {number} y 
+ * @param {number[][]} grid
+ * @param {number} x
+ * @param {number} y
  * @returns {number}
  */
 function findMax(grid, x, y) {
@@ -6686,11 +7259,12 @@ function findMax(grid, x, y) {
 }
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number[][]}
  */
 function largestLocal(grid) {
-  const N = grid.length, maxLocal = [];
+  const N = grid.length,
+    maxLocal = [];
 
   for (let i = 0; i < N - 2; i++) {
     maxLocal[i] = [];
@@ -6702,14 +7276,22 @@ function largestLocal(grid) {
 
   return maxLocal;
 }
-console.log({ largestLocal: largestLocal([[9, 9, 8, 1], [5, 6, 2, 6], [8, 2, 6, 4], [6, 2, 2, 2]]) });
+console.log({
+  largestLocal: largestLocal([
+    [9, 9, 8, 1],
+    [5, 6, 2, 6],
+    [8, 2, 6, 4],
+    [6, 2, 2, 2],
+  ]),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function matrixScore(grid) {
-  let m = grid.length, n = grid[0].length;
+  let m = grid.length,
+    n = grid[0].length;
 
   for (let i = 0; i < m; i++) {
     if (grid[i][0] === 0) {
@@ -6744,20 +7326,27 @@ function matrixScore(grid) {
 
   return score;
 }
-console.log({ matrixScore: matrixScore([[0, 0, 1, 1], [1, 0, 1, 0], [1, 1, 0, 0]]) });
+console.log({
+  matrixScore: matrixScore([
+    [0, 0, 1, 1],
+    [1, 0, 1, 0],
+    [1, 1, 0, 0],
+  ]),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function getMaximumGold(grid) {
-  const row = grid.length, col = grid[0].length;
+  const row = grid.length,
+    col = grid[0].length;
   let maxGold = 0;
 
   /**
-   * @param {number} i 
-   * @param {number} j 
-   * @param {number} currentGold 
+   * @param {number} i
+   * @param {number} j
+   * @param {number} currentGold
    * @returns {number}
    */
   function dfsBacktrack(i, j, currentGold) {
@@ -6786,28 +7375,35 @@ function getMaximumGold(grid) {
 
   return maxGold;
 }
-console.log({ getMaximumGold: getMaximumGold([[0, 6, 0], [5, 8, 7], [0, 9, 0]]) });
+console.log({
+  getMaximumGold: getMaximumGold([
+    [0, 6, 0],
+    [5, 8, 7],
+    [0, 9, 0],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function balancedStringSplit(s) {
-  let count = 0, result = 0;
+  let count = 0,
+    result = 0;
 
   for (const char of s) {
-    if (char === "L") count++;
+    if (char === 'L') count++;
     else count--;
     if (count === 0) result++;
   }
 
   return result;
-};
-console.log({ balancedStringSplit: balancedStringSplit("RLRRLLRLRL") });
+}
+console.log({ balancedStringSplit: balancedStringSplit('RLRRLLRLRL') });
 
 /**
- * @param {TreeNode | null} root 
- * @returns {boolean} 
+ * @param {TreeNode | null} root
+ * @returns {boolean}
  */
 function evaluateTree(root) {
   if (!root.left && !root.right) return root.val === 1;
@@ -6823,9 +7419,9 @@ function evaluateTree(root) {
 }
 
 /**
- * 
- * @param {TreeNode | null} root 
- * @param {number} target 
+ *
+ * @param {TreeNode | null} root
+ * @param {number} target
  * @returns {TreeNode | null}
  */
 function removeLeafNodes(root, target) {
@@ -6836,17 +7432,17 @@ function removeLeafNodes(root, target) {
 
   if (!root.left && !root.right && root.val === target) return null;
   return root;
-};
+}
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function distributeCoins(root) {
   let noOfMoves = 0;
 
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    * @returns {number}
    */
   function getMoves(node) {
@@ -6860,15 +7456,16 @@ function distributeCoins(root) {
 
   getMoves(root);
   return noOfMoves;
-};
+}
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number[][]}
  */
 function flipRows(matrix) {
   for (let row = 0; row < matrix.length; row++) {
-    let start = 0, end = matrix[row].length - 1;
+    let start = 0,
+      end = matrix[row].length - 1;
 
     while (start <= end) {
       const temp = matrix[row][start];
@@ -6883,7 +7480,7 @@ function flipRows(matrix) {
 }
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number[][]}
  */
 function invertRows(matrix) {
@@ -6897,16 +7494,22 @@ function invertRows(matrix) {
 }
 
 /**
- * @param {number[][]} image 
+ * @param {number[][]} image
  * @returns {number[][]}
  */
 function flipAndInvertImage(image) {
   return invertRows(flipRows(image));
 }
-console.log({ flipAndInvertImage: flipAndInvertImage([[1, 1, 0], [1, 0, 1], [0, 0, 0]]) });
+console.log({
+  flipAndInvertImage: flipAndInvertImage([
+    [1, 1, 0],
+    [1, 0, 1],
+    [0, 0, 0],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function countGoodSubstrings(s) {
@@ -6914,18 +7517,20 @@ function countGoodSubstrings(s) {
   const limit = 3;
 
   for (let idx = 0; idx < s.length - 2; idx++) {
-    const first = s[idx], second = s[idx + 1], third = s[idx + 2];
+    const first = s[idx],
+      second = s[idx + 1],
+      third = s[idx + 2];
     const charSet = new Set([first, second, third]);
     if (charSet.size === limit) count++;
   }
 
   return count;
-};
-console.log({ countGoodSubstrings: countGoodSubstrings("xyzzaz") });
+}
+console.log({ countGoodSubstrings: countGoodSubstrings('xyzzaz') });
 
 /**
- * @param {string[]} words 
- * @param {string} pref 
+ * @param {string[]} words
+ * @param {string} pref
  * @returns {number}
  */
 function prefixCount(words, pref) {
@@ -6943,11 +7548,13 @@ function prefixCount(words, pref) {
   }
 
   return wordCount;
-};
-console.log({ prefixCount: prefixCount(["pay", "attention", "practice", "attend"], "at") });
+}
+console.log({
+  prefixCount: prefixCount(['pay', 'attention', 'practice', 'attend'], 'at'),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function subsetXORSum(nums) {
@@ -6958,16 +7565,17 @@ function subsetXORSum(nums) {
   }
 
   return result << (nums.length - 1);
-};
+}
 console.log({ subsetXORSum: subsetXORSum([1, 3]) });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number[][]}
  */
 function findDifference(nums1, nums2) {
-  const first = new Set(nums1), second = new Set(nums2);
+  const first = new Set(nums1),
+    second = new Set(nums2);
   const result = [[], []];
 
   for (const num of first) {
@@ -6979,20 +7587,20 @@ function findDifference(nums1, nums2) {
   }
 
   return result;
-};
+}
 console.log({ findDifference: findDifference([1, 2, 3], [2, 4, 6]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minMaxGame(nums) {
   while (nums.length > 1) {
-    let newNums = [], n = 1;
+    let newNums = [],
+      n = 1;
 
     for (let idx = 0; idx < nums.length; idx += 2) {
-      if (n % 2 !== 0)
-        newNums.push(Math.min(nums[idx], nums[idx + 1]));
+      if (n % 2 !== 0) newNums.push(Math.min(nums[idx], nums[idx + 1]));
       else newNums.push(Math.max(nums[idx], nums[idx + 1]));
       n++;
     }
@@ -7006,14 +7614,17 @@ function minMaxGame(nums) {
 console.log({ minMaxGame: minMaxGame([1, 3, 5, 2, 4, 8, 2, 2]) });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
- * @param {number[]} nums3 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @param {number[]} nums3
  * @returns {number[]}
  */
 function twoOutOfThree(nums1, nums2, nums3) {
-  const numCount = {}, result = [];
-  const set1 = new Set(nums1), set2 = new Set(nums2), set3 = new Set(nums3);
+  const numCount = {},
+    result = [];
+  const set1 = new Set(nums1),
+    set2 = new Set(nums2),
+    set3 = new Set(nums3);
 
   for (const num of set1) {
     numCount[num] = (numCount[num] || 0) + 1;
@@ -7032,30 +7643,32 @@ function twoOutOfThree(nums1, nums2, nums3) {
   }
 
   return result;
-};
+}
 console.log({ twoOutOfThree: twoOutOfThree([1, 1, 3, 2], [2, 3], [3]) });
 
 /**
- * @param {string[]} logs 
+ * @param {string[]} logs
  * @returns {number}
  */
 function minOperations(logs) {
   let distance = 0;
 
   for (const path of logs) {
-    if (path === "./" || (path === "../" && distance === 0)) continue;
-    else if (path === "../") distance--;
+    if (path === './' || (path === '../' && distance === 0)) continue;
+    else if (path === '../') distance--;
     else distance++;
   }
 
   return distance;
 }
-console.log({ minOperations: minOperations(["d1/", "d2/", "../", "d21/", "./"]) });
+console.log({
+  minOperations: minOperations(['d1/', 'd2/', '../', 'd21/', './']),
+});
 
 /**
- * @param {string} str 
- * @param {number} left 
- * @param {number} right 
+ * @param {string} str
+ * @param {number} left
+ * @param {number} right
  * @returns {boolean}
  */
 function isSubStrPalindrome(str, left, right) {
@@ -7067,16 +7680,16 @@ function isSubStrPalindrome(str, left, right) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string[][]}
  */
 function partition(s) {
   const result = [];
 
   /**
-   * @param {number} idx 
-   * @param {string[]} part 
-   * @returns 
+   * @param {number} idx
+   * @param {string[]} part
+   * @returns
    */
   function getSubStrings(idx, part) {
     if (idx >= s.length) {
@@ -7096,10 +7709,10 @@ function partition(s) {
   getSubStrings(0, []);
   return result;
 }
-console.log({ partition: partition("aab") });
+console.log({ partition: partition('aab') });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function findLucky(arr) {
@@ -7111,15 +7724,16 @@ function findLucky(arr) {
   }
 
   for (const num in numCount) {
-    if (+num === numCount[num]) largestLuckyNumber = Math.max(largestLuckyNumber, +num);
+    if (+num === numCount[num])
+      largestLuckyNumber = Math.max(largestLuckyNumber, +num);
   }
 
   return largestLuckyNumber;
-};
+}
 console.log({ findLucky: findLucky([2, 2, 3, 4]) });
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {boolean}
  */
 function isLetter(char) {
@@ -7130,46 +7744,54 @@ function isLetter(char) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function reverseOnlyLetters(s) {
-  let start = 0, end = s.length - 1;
-  const result = s.split("");
+  let start = 0,
+    end = s.length - 1;
+  const result = s.split('');
 
   while (start < end) {
-    if (isLetter(s[start]) && isLetter(s[end])) [result[start++], result[end--]] = [result[end], result[start]];
+    if (isLetter(s[start]) && isLetter(s[end]))
+      [result[start++], result[end--]] = [result[end], result[start]];
     else if (!isLetter(s[start])) start++;
     else if (!isLetter(s[end])) end--;
   }
 
-  return result.join("");
-};
-console.log({ reverseOnlyLetters: reverseOnlyLetters("ab-cd") });
+  return result.join('');
+}
+console.log({ reverseOnlyLetters: reverseOnlyLetters('ab-cd') });
 
 /**
- * @param {string} text 
+ * @param {string} text
  * @returns {number}
  */
 function maxNumberOfBalloons(text) {
   const charCount = { a: 0, b: 0, l: 0, n: 0, o: 0 };
 
   for (const char of text) {
-    if (char === "a") charCount[char]++;
-    else if (char === "b") charCount[char]++;
-    else if (char === "l") charCount[char]++;
-    else if (char === "n") charCount[char]++;
-    else if (char === "o") charCount[char]++;
+    if (char === 'a') charCount[char]++;
+    else if (char === 'b') charCount[char]++;
+    else if (char === 'l') charCount[char]++;
+    else if (char === 'n') charCount[char]++;
+    else if (char === 'o') charCount[char]++;
   }
 
-  return Math.min(charCount.a, charCount.b, Math.floor(charCount.l / 2), Math.floor(charCount.o / 2), charCount.n);
+  return Math.min(
+    charCount.a,
+    charCount.b,
+    Math.floor(charCount.l / 2),
+    Math.floor(charCount.o / 2),
+    charCount.n,
+  );
 }
-console.log({ maxNumberOfBalloons: maxNumberOfBalloons("nlaebolko") });
+console.log({ maxNumberOfBalloons: maxNumberOfBalloons('nlaebolko') });
 
 /**
- * 
- * @param {number[]} nums 
- * @param {number} k 
+ *
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function beautifulSubsets(nums, k) {
@@ -7180,7 +7802,7 @@ function beautifulSubsets(nums, k) {
   }
 
   /**
-   * @param {number} idx 
+   * @param {number} idx
    * @returns {number}
    */
   function countBeautifulSubsets(idx) {
@@ -7198,11 +7820,11 @@ function beautifulSubsets(nums, k) {
   }
 
   return countBeautifulSubsets(0) - 1;
-};
+}
 console.log({ beautifulSubsets: beautifulSubsets([2, 4, 6], 2) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findClosestNumber(nums) {
@@ -7215,25 +7837,29 @@ function findClosestNumber(nums) {
   }
 
   return closestNumber;
-};
+}
 console.log({ findClosestNumber: findClosestNumber([-4, -2, 1, 4, 8]) });
 
 /**
- * @param {string} coordinates 
+ * @param {string} coordinates
  * @returns {boolean}
  */
 function squareIsWhite(coordinates) {
-  const char = coordinates[0].charCodeAt(0) - 97, number = +coordinates[1];
-  return ((char % 2 !== 0 && number % 2 !== 0) || (char % 2 === 0 && number % 2 === 0));
+  const char = coordinates[0].charCodeAt(0) - 97,
+    number = +coordinates[1];
+  return (
+    (char % 2 !== 0 && number % 2 !== 0) || (char % 2 === 0 && number % 2 === 0)
+  );
 }
-console.log({ squareIsWhite: squareIsWhite("a1") });
+console.log({ squareIsWhite: squareIsWhite('a1') });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[]}
  */
 function averageOfLevels(root) {
-  const average = [], nodes = [root];
+  const average = [],
+    nodes = [root];
 
   while (nodes.length) {
     const length = nodes.length;
@@ -7250,10 +7876,10 @@ function averageOfLevels(root) {
   }
 
   return average;
-};
+}
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function sortSentence(s) {
@@ -7263,34 +7889,44 @@ function sortSentence(s) {
     .map((word) => word.slice(0, word.length - 1))
     .join(' ');
 }
-console.log({ sortSentence: sortSentence("is2 sentence4 This1 a3") });
+console.log({ sortSentence: sortSentence('is2 sentence4 This1 a3') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function areNumbersAscending(s) {
   const digits = s.split(' ').filter((word) => +word >= 0);
 
   for (let idx = 0; idx < digits.length - 1; idx++) {
-    const current = +digits[idx], next = +digits[idx + 1];
+    const current = +digits[idx],
+      next = +digits[idx + 1];
     if (current >= next) return false;
   }
 
   return true;
 }
-console.log({ areNumbersAscending: areNumbersAscending("1 box has 3 blue 4 red 6 green and 12 yellow marbles") });
+console.log({
+  areNumbersAscending: areNumbersAscending(
+    '1 box has 3 blue 4 red 6 green and 12 yellow marbles',
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function specialArray(nums) {
   nums.sort((a, b) => a - b);
-  let prevNum = -1, totalRight = nums.length, idx = 0;
+  let prevNum = -1,
+    totalRight = nums.length,
+    idx = 0;
 
   while (idx < nums.length) {
-    if (nums[idx] === totalRight || (prevNum < totalRight && totalRight < nums[idx]))
+    if (
+      nums[idx] === totalRight ||
+      (prevNum < totalRight && totalRight < nums[idx])
+    )
       return totalRight;
 
     while (idx + 1 < nums.length && nums[idx] === nums[idx + 1]) idx++;
@@ -7305,13 +7941,15 @@ function specialArray(nums) {
 console.log({ specialArray: specialArray([3, 5]) });
 
 /**
- * @param {string} s 
- * @param {string} t 
- * @param {number} maxCost 
+ * @param {string} s
+ * @param {string} t
+ * @param {number} maxCost
  * @returns {number}
  */
 function equalSubstring(s, t, maxCost) {
-  let currentCost = 0, left = 0, result = 0;
+  let currentCost = 0,
+    left = 0,
+    result = 0;
 
   for (let right = 0; right < s.length; right++) {
     currentCost += Math.abs(s[right].charCodeAt(0) - t[right].charCodeAt(0));
@@ -7325,15 +7963,16 @@ function equalSubstring(s, t, maxCost) {
   }
 
   return result;
-};
-console.log({ equalSubstring: equalSubstring("abcd", "bcdf", 3) });
+}
+console.log({ equalSubstring: equalSubstring('abcd', 'bcdf', 3) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function numSteps(s) {
-  let stepCount = 0, carry = 0;
+  let stepCount = 0,
+    carry = 0;
 
   for (let idx = s.length - 1; idx >= 1; idx--) {
     const digit = (parseInt(s[idx]) + carry) % 2;
@@ -7347,10 +7986,10 @@ function numSteps(s) {
 
   return stepCount + carry;
 }
-console.log({ numSteps: numSteps("1101") });
+console.log({ numSteps: numSteps('1101') });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function countTriplets(arr) {
@@ -7371,44 +8010,51 @@ function countTriplets(arr) {
 console.log({ countTriplets: countTriplets([2, 3, 1, 6, 7]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function scoreOfString(s) {
   let score = 0;
 
   for (let idx = 0; idx < s.length - 1; idx++) {
-    const current = s[idx].charCodeAt(0), next = s[idx + 1].charCodeAt(0);
+    const current = s[idx].charCodeAt(0),
+      next = s[idx + 1].charCodeAt(0);
     score += Math.abs(current - next);
   }
 
   return score;
 }
-console.log({ scoreOfString: scoreOfString("hello") });
+console.log({ scoreOfString: scoreOfString('hello') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function reverseVowels(s) {
-  const chars = s.split("");
-  let left = 0, right = s.length - 1;
+  const chars = s.split('');
+  let left = 0,
+    right = s.length - 1;
 
   while (left <= right) {
     if (!isVowel(chars[left].toLowerCase())) left++;
     else if (!isVowel(chars[right].toLowerCase())) right--;
-    else if (isVowel(chars[left].toLowerCase()) && isVowel(chars[right].toLowerCase())) [chars[left++], chars[right--]] = [chars[right], chars[left]];
+    else if (
+      isVowel(chars[left].toLowerCase()) &&
+      isVowel(chars[right].toLowerCase())
+    )
+      [chars[left++], chars[right--]] = [chars[right], chars[left]];
   }
 
-  return chars.join("");
+  return chars.join('');
 }
-console.log({ reverseVowels: reverseVowels("IceCreAm") });
+console.log({ reverseVowels: reverseVowels('IceCreAm') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  */
 function reverseString(s) {
-  let left = 0, right = s.length - 1;
+  let left = 0,
+    right = s.length - 1;
 
   while (left <= right) {
     [s[left++], s[right--]] = [s[right], s[left]];
@@ -7416,28 +8062,29 @@ function reverseString(s) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function finalString(s) {
   const result = [];
 
   for (const char of s) {
-    if (char === "i") reverseString(result);
+    if (char === 'i') reverseString(result);
     else result.push(char);
   }
 
-  return result.join("");
-};
-console.log({ finalString: finalString("leetcode is the best platform") });
+  return result.join('');
+}
+console.log({ finalString: finalString('leetcode is the best platform') });
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {number}
  */
 function appendCharacters(s, t) {
-  let first = 0, second = 0;
+  let first = 0,
+    second = 0;
 
   while (first < s.length && second < t.length) {
     if (s[first] === t[second]) {
@@ -7447,11 +8094,11 @@ function appendCharacters(s, t) {
   }
 
   return t.length - second;
-};
-console.log({ appendCharacters: appendCharacters("coaching", "coding") });
+}
+console.log({ appendCharacters: appendCharacters('coaching', 'coding') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function longestPalindrome(s) {
@@ -7466,15 +8113,16 @@ function longestPalindrome(s) {
   }
 
   return charSeen.size > 0 ? length + 1 : length;
-};
-console.log({ longestPalindrome: longestPalindrome("abccccdd") });
+}
+console.log({ longestPalindrome: longestPalindrome('abccccdd') });
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {string[]}
  */
 function commonChars(words) {
-  const commonCharCounts = new Array(26).fill(0), currentCharCounts = new Array(26);
+  const commonCharCounts = new Array(26).fill(0),
+    currentCharCounts = new Array(26);
   const result = [];
 
   for (const char of words[0]) {
@@ -7489,7 +8137,10 @@ function commonChars(words) {
     }
 
     for (let letter = 0; letter < 26; letter++) {
-      commonCharCounts[letter] = Math.min(commonCharCounts[letter], currentCharCounts[letter]);
+      commonCharCounts[letter] = Math.min(
+        commonCharCounts[letter],
+        currentCharCounts[letter],
+      );
     }
   }
 
@@ -7501,11 +8152,11 @@ function commonChars(words) {
 
   return result;
 }
-console.log({ commonChars: commonChars(["bella", "label", "roller"]) });
+console.log({ commonChars: commonChars(['bella', 'label', 'roller']) });
 
 /**
- * @param {number[]} hand 
- * @param {number} groupSize 
+ * @param {number[]} hand
+ * @param {number} groupSize
  * @returns {boolean}
  */
 function isNStraightHand(hand, groupSize) {
@@ -7532,11 +8183,13 @@ function isNStraightHand(hand, groupSize) {
 
   return true;
 }
-console.log({ isNStraightHand: isNStraightHand([1, 2, 3, 6, 2, 3, 4, 7, 8], 3) });
+console.log({
+  isNStraightHand: isNStraightHand([1, 2, 3, 6, 2, 3, 4, 7, 8], 3),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {boolean}
  */
 function checkSubarraySum(nums, k) {
@@ -7547,7 +8200,7 @@ function checkSubarraySum(nums, k) {
     prefixMod = (prefixMod + nums[i]) % k;
 
     if (prefixMod in modSeen) {
-      if ((i - modSeen[prefixMod]) > 1) return true;
+      if (i - modSeen[prefixMod] > 1) return true;
     } else modSeen[prefixMod] = i;
   }
 
@@ -7556,12 +8209,13 @@ function checkSubarraySum(nums, k) {
 console.log({ checkSubarraySum: checkSubarraySum([23, 2, 4, 6, 7], 6) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function subarraySum(nums, k) {
-  let count = 0, currentSum = 0;
+  let count = 0,
+    currentSum = 0;
   const prefixSum = { 0: 1 };
 
   for (const num of nums) {
@@ -7576,17 +8230,18 @@ function subarraySum(nums, k) {
 console.log({ subarraySum: subarraySum([1, 1, 1], 2) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function subarraysDivByK(nums, k) {
-  let prefixSum = 0, count = 0;
+  let prefixSum = 0,
+    count = 0;
   const remainderCount = { 0: 1 };
 
   for (const num of nums) {
     prefixSum += num;
-    const remainder = (prefixSum % k + k) % k;
+    const remainder = ((prefixSum % k) + k) % k;
 
     if (remainder in remainderCount) {
       count += remainderCount[remainder];
@@ -7599,8 +8254,8 @@ function subarraysDivByK(nums, k) {
 console.log({ subarraysDivByK: subarraysDivByK([4, 5, 0, -2, -3, 1], 5) });
 
 /**
- * @param {number[]} arr1 
- * @param {number[]} arr2 
+ * @param {number[]} arr1
+ * @param {number[]} arr2
  * @returns {number[]}
  */
 function relativeSortArray(arr1, arr2) {
@@ -7628,19 +8283,26 @@ function relativeSortArray(arr1, arr2) {
 
   return result;
 }
-console.log({ relativeSortArray: relativeSortArray([2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19], [2, 1, 4, 3, 9, 6]) });
+console.log({
+  relativeSortArray: relativeSortArray(
+    [2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19],
+    [2, 1, 4, 3, 9, 6],
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function sortColors(nums) {
-  let low = 0, high = nums.length - 1, mid = 0;
+  let low = 0,
+    high = nums.length - 1,
+    mid = 0;
 
   while (mid <= high) {
     if (nums[mid] === 0) [nums[low++], nums[mid++]] = [nums[mid], nums[low]];
     else if (nums[mid] === 1) mid++;
-    else[nums[high--], nums[mid]] = [nums[mid], nums[high]];
+    else [nums[high--], nums[mid]] = [nums[mid], nums[high]];
   }
 
   return nums;
@@ -7648,8 +8310,8 @@ function sortColors(nums) {
 console.log({ sortColors: sortColors([2, 0, 2, 1, 1, 0]) });
 
 /**
- * @param {number[]} seats 
- * @param {number[]} students 
+ * @param {number[]} seats
+ * @param {number[]} students
  * @returns {number}
  */
 function minMovesToSeat(seats, students) {
@@ -7666,14 +8328,15 @@ function minMovesToSeat(seats, students) {
 console.log({ minMovesToSeat: minMovesToSeat([3, 1, 5], [2, 7, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minOperations(nums) {
   let moves = 0;
 
   for (let idx = 1; idx < nums.length; idx++) {
-    const previous = nums[idx - 1], current = nums[idx];
+    const previous = nums[idx - 1],
+      current = nums[idx];
 
     if (current <= previous) {
       const value = Math.max(current, previous + 1);
@@ -7686,17 +8349,19 @@ function minOperations(nums) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minIncrementForUnique(nums) {
   nums.sort((a, b) => a - b);
   return minOperations(nums);
 }
-console.log({ minIncrementForUnique: minIncrementForUnique([3, 2, 1, 2, 1, 7]) });
+console.log({
+  minIncrementForUnique: minIncrementForUnique([3, 2, 1, 2, 1, 7]),
+});
 
 /**
- * @param {string} columnTitle 
+ * @param {string} columnTitle
  * @returns {number}
  */
 function titleToNumber(columnTitle) {
@@ -7704,16 +8369,17 @@ function titleToNumber(columnTitle) {
   const length = columnTitle.length;
 
   for (let idx = 0; idx < length; idx++) {
-    columnNumber += 26 ** (length - idx - 1) * (columnTitle[idx].charCodeAt(0) - 64);
+    columnNumber +=
+      26 ** (length - idx - 1) * (columnTitle[idx].charCodeAt(0) - 64);
   }
 
   return columnNumber;
 }
-console.log({ titleToNumber: titleToNumber("AB") });
+console.log({ titleToNumber: titleToNumber('AB') });
 
 /**
- * @param {string} pattern 
- * @param {string} s 
+ * @param {string} pattern
+ * @param {string} s
  * @returns {boolean}
  */
 function wordPattern(pattern, s) {
@@ -7725,7 +8391,8 @@ function wordPattern(pattern, s) {
   const isWordSeen = new Set();
 
   for (let idx = 0; idx < pattern.length; idx++) {
-    const char = pattern[idx], word = words[idx];
+    const char = pattern[idx],
+      word = words[idx];
     if (!charMap[char] && !isWordSeen.has(word)) {
       charMap[char] = word;
       isWordSeen.add(word);
@@ -7738,14 +8405,15 @@ function wordPattern(pattern, s) {
 
   return true;
 }
-console.log({ wordPattern: wordPattern("abba", "dog cat cat dog") });
+console.log({ wordPattern: wordPattern('abba', 'dog cat cat dog') });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {boolean}
  */
 function isPerfectSquare(num) {
-  let start = 0, end = num;
+  let start = 0,
+    end = num;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -7760,7 +8428,7 @@ function isPerfectSquare(num) {
 console.log({ isPerfectSquare: isPerfectSquare(16) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function sumOfSquares(nums) {
@@ -7775,11 +8443,12 @@ function sumOfSquares(nums) {
 console.log({ sumOfSquares: sumOfSquares([1, 2, 3, 4]) });
 
 /**
- * @param {number} c 
+ * @param {number} c
  * @returns {boolean}
  */
 function judgeSquareSum(c) {
-  let start = 0, end = Math.floor(Math.sqrt(c));
+  let start = 0,
+    end = Math.floor(Math.sqrt(c));
 
   while (start <= end) {
     const sumSquared = start ** 2 + end ** 2;
@@ -7794,13 +8463,14 @@ function judgeSquareSum(c) {
 console.log({ judgeSquareSum: judgeSquareSum(5) });
 
 /**
- * @param {number[]} difficulty 
- * @param {number[]} profit 
- * @param {number[]} worker 
+ * @param {number[]} difficulty
+ * @param {number[]} profit
+ * @param {number[]} worker
  * @returns {number}
  */
 function maxProfitAssignment(difficulty, profit, worker) {
-  let maxProfit = 0, currentIdx = 0;
+  let maxProfit = 0,
+    currentIdx = 0;
   let currentDifficulty = 0;
   worker.sort((a, b) => a - b);
 
@@ -7815,7 +8485,10 @@ function maxProfitAssignment(difficulty, profit, worker) {
     for (let idx = currentIdx; idx < difficultyWithProfit.length; idx++) {
       if (worker[workerIdx] >= difficultyWithProfit[idx][0]) {
         currentIdx = idx;
-        currentDifficulty = Math.max(currentDifficulty, difficultyWithProfit[idx][1]);
+        currentDifficulty = Math.max(
+          currentDifficulty,
+          difficultyWithProfit[idx][1],
+        );
       }
     }
     maxProfit += currentDifficulty;
@@ -7823,16 +8496,23 @@ function maxProfitAssignment(difficulty, profit, worker) {
 
   return maxProfit;
 }
-console.log({ maxProfitAssignment: maxProfitAssignment([2, 4, 6, 8, 10], [10, 20, 30, 40, 50], [4, 5, 6, 7]) });
+console.log({
+  maxProfitAssignment: maxProfitAssignment(
+    [2, 4, 6, 8, 10],
+    [10, 20, 30, 40, 50],
+    [4, 5, 6, 7],
+  ),
+});
 
 /**
- * @param {number[]} bloomDay 
- * @param {number} mid 
- * @param {number} k 
+ * @param {number[]} bloomDay
+ * @param {number} mid
+ * @param {number} k
  * @returns {number}
  */
 function getNumOfBouquets(bloomDay, mid, k) {
-  let numOfBouquets = 0, count = 0;
+  let numOfBouquets = 0,
+    count = 0;
 
   for (let i = 0; i < bloomDay.length; i++) {
     if (bloomDay[i] <= mid) count++;
@@ -7848,13 +8528,14 @@ function getNumOfBouquets(bloomDay, mid, k) {
 }
 
 /**
- * @param {number[]} bloomDay 
- * @param {number} m 
- * @param {number} k 
+ * @param {number[]} bloomDay
+ * @param {number} m
+ * @param {number} k
  * @returns {number}
  */
 function minDays(bloomDay, m, k) {
-  let start = 0, end = 0;
+  let start = 0,
+    end = 0;
 
   for (const day of bloomDay) {
     end = Math.max(end, day);
@@ -7878,8 +8559,8 @@ function minDays(bloomDay, m, k) {
 console.log({ minDays: minDays([1, 10, 3, 10, 2], 3, 1) });
 
 /**
- * @param {number[]} nums 
- * @param {number} mid 
+ * @param {number[]} nums
+ * @param {number} mid
  * @returns {number}
  */
 function getDivisor(nums, mid) {
@@ -7893,12 +8574,13 @@ function getDivisor(nums, mid) {
 }
 
 /**
- * @param {number[]} piles 
- * @param {number} h 
+ * @param {number[]} piles
+ * @param {number} h
  * @returns {number}
  */
 function minEatingSpeed(piles, h) {
-  let start = 0, end = Math.max(...piles);
+  let start = 0,
+    end = Math.max(...piles);
 
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -7912,12 +8594,13 @@ function minEatingSpeed(piles, h) {
 console.log({ minEatingSpeed: minEatingSpeed([3, 6, 7, 11], 8) });
 
 /**
- * @param {number[]} nums 
- * @param {number} threshold 
+ * @param {number[]} nums
+ * @param {number} threshold
  * @returns {number}
  */
 function smallestDivisor(nums, threshold) {
-  let start = 0, end = Math.max(...nums);
+  let start = 0,
+    end = Math.max(...nums);
 
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -7931,13 +8614,14 @@ function smallestDivisor(nums, threshold) {
 console.log({ smallestDivisor: smallestDivisor([1, 2, 5, 9], 6) });
 
 /**
- * @param {number[]} arr 
- * @param {number} dist 
- * @param {number} balls 
+ * @param {number[]} arr
+ * @param {number} dist
+ * @param {number} balls
  * @returns {boolean}
  */
 function canPlace(arr, dist, balls) {
-  let count = 1, lastPlaced = arr[0];
+  let count = 1,
+    lastPlaced = arr[0];
 
   for (let idx = 1; idx < arr.length; idx++) {
     if (arr[idx] - lastPlaced >= dist) {
@@ -7952,15 +8636,18 @@ function canPlace(arr, dist, balls) {
 }
 
 /**
- * @param {number[]} position 
- * @param {number} m 
+ * @param {number[]} position
+ * @param {number} m
  * @returns {number}
  */
 function maxDistance(position, m) {
   position.sort((a, b) => a - b);
 
-  let low = 1, result = 1;
-  let high = Math.floor((position[position.length - 1] - position[0]) / (m - 1));
+  let low = 1,
+    result = 1;
+  let high = Math.floor(
+    (position[position.length - 1] - position[0]) / (m - 1),
+  );
 
   while (low <= high) {
     const mid = low + Math.floor((high - low) / 2);
@@ -7976,14 +8663,16 @@ function maxDistance(position, m) {
 console.log({ maxDistance: maxDistance([1, 2, 8, 4, 9], 3) });
 
 /**
- * @param {number[]} customers 
- * @param {number[]} grumpy 
- * @param {number} minutes 
+ * @param {number[]} customers
+ * @param {number[]} grumpy
+ * @param {number} minutes
  * @returns {number}
  */
 function maxSatisfied(customers, grumpy, minutes) {
-  let left = 0, satisfied = 0;
-  let currentWindow = 0, maxWindow = 0;
+  let left = 0,
+    satisfied = 0;
+  let currentWindow = 0,
+    maxWindow = 0;
 
   for (let right = 0; right < customers.length; right++) {
     if (grumpy[right]) currentWindow += customers[right];
@@ -7999,16 +8688,24 @@ function maxSatisfied(customers, grumpy, minutes) {
 
   return satisfied + maxWindow;
 }
-console.log({ maxSatisfied: maxSatisfied([1, 0, 1, 2, 1, 1, 7, 5], [0, 1, 0, 1, 0, 1, 0, 1], 3) });
+console.log({
+  maxSatisfied: maxSatisfied(
+    [1, 0, 1, 2, 1, 1, 7, 5],
+    [0, 1, 0, 1, 0, 1, 0, 1],
+    3,
+  ),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function numberOfSubarrays(nums, k) {
-  let count = 0, oddNums = 0;
-  let left = 0, middle = 0;
+  let count = 0,
+    oddNums = 0;
+  let left = 0,
+    middle = 0;
 
   for (let right = 0; right < nums.length; right++) {
     if (nums[right] % 2 === 1) oddNums++;
@@ -8029,11 +8726,12 @@ function numberOfSubarrays(nums, k) {
 console.log({ numberOfSubarrays: numberOfSubarrays([1, 1, 2, 1, 1], 3) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function getPivot(nums) {
-  let start = 0, end = nums.length - 1;
+  let start = 0,
+    end = nums.length - 1;
 
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -8045,7 +8743,7 @@ function getPivot(nums) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findMin(nums) {
@@ -8055,7 +8753,7 @@ function findMin(nums) {
 console.log({ findMin: findMin([2, 2, 2, 0, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findMin(nums) {
@@ -8065,12 +8763,13 @@ function findMin(nums) {
 console.log({ findMin: findMin([2, 2, 2, 0, 1]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
+ * @param {number[]} nums
+ * @param {number} target
  * @returns {boolean}
  */
 function search(nums, target) {
-  let start = 0, end = nums.length - 1;
+  let start = 0,
+    end = nums.length - 1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -8096,14 +8795,14 @@ function search(nums, target) {
 console.log({ search: search([4, 5, 6, 7, 0, 1, 2], 0) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {TreeNode | null}
  */
 function bstToGst(root) {
   let nodeSum = 0;
 
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    */
   function bstToGstHelper(node) {
     if (!node) return;
@@ -8119,14 +8818,14 @@ function bstToGst(root) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {TreeNode | null}
  */
 function convertBST(root) {
   let nodeSum = 0;
 
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    */
   function bstToGstHelper(node) {
     if (!node) return;
@@ -8142,7 +8841,7 @@ function convertBST(root) {
 }
 
 /**
- * @param {number[][]} nums 
+ * @param {number[][]} nums
  * @returns {number}
  */
 function numberOfPoints(nums) {
@@ -8154,17 +8853,24 @@ function numberOfPoints(nums) {
 
   return points.size;
 }
-console.log({ numberOfPoints: numberOfPoints([[1, 3], [2, 5]]) });
+console.log({
+  numberOfPoints: numberOfPoints([
+    [1, 3],
+    [2, 5],
+  ]),
+});
 
 /**
- * @param {number[]} mountain 
+ * @param {number[]} mountain
  * @returns {number[]}
  */
 function findPeaks(mountain) {
   const peakIndices = [];
 
   for (let idx = 1; idx < mountain.length - 1; idx++) {
-    const prev = mountain[idx - 1], curr = mountain[idx], next = mountain[idx + 1];
+    const prev = mountain[idx - 1],
+      curr = mountain[idx],
+      next = mountain[idx + 1];
     if (curr > prev && curr > next) peakIndices.push(idx);
   }
 
@@ -8173,11 +8879,12 @@ function findPeaks(mountain) {
 console.log({ findPeaks: findPeaks([2, 4, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findPeakElement(nums) {
-  let start = 0, end = nums.length - 1;
+  let start = 0,
+    end = nums.length - 1;
 
   while (start < end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -8190,7 +8897,7 @@ function findPeakElement(nums) {
 console.log({ findPeakElement: findPeakElement([1, 2, 3, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function countHillValley(nums) {
@@ -8204,7 +8911,9 @@ function countHillValley(nums) {
   let count = 0;
 
   for (let idx = 1; idx < uniqueNums.length - 1; idx++) {
-    const prev = uniqueNums[idx - 1], curr = uniqueNums[idx], next = uniqueNums[idx + 1];
+    const prev = uniqueNums[idx - 1],
+      curr = uniqueNums[idx],
+      next = uniqueNums[idx + 1];
     if ((curr > prev && curr > next) || (curr < prev && curr < next)) count++;
   }
 
@@ -8213,7 +8922,7 @@ function countHillValley(nums) {
 console.log({ countHillValley: countHillValley([2, 4, 1, 1, 6, 5]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function separateDigits(nums) {
@@ -8236,14 +8945,15 @@ function separateDigits(nums) {
 console.log({ separateDigits: separateDigits([13, 25, 83, 77]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {boolean}
  */
 function threeConsecutiveOdds(arr) {
   if (arr.length < 3) return false;
 
   for (let idx = 0; idx < arr.length - 2; idx++) {
-    if (arr[idx] % 2 === 1 && arr[idx + 1] % 2 === 1 && arr[idx + 2] % 2 === 1) return true;
+    if (arr[idx] % 2 === 1 && arr[idx + 1] % 2 === 1 && arr[idx + 2] % 2 === 1)
+      return true;
   }
 
   return false;
@@ -8251,7 +8961,7 @@ function threeConsecutiveOdds(arr) {
 console.log({ threeConsecutiveOdds: threeConsecutiveOdds([2, 6, 4, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minDifference(nums) {
@@ -8270,7 +8980,7 @@ function minDifference(nums) {
 console.log({ minDifference: minDifference([5, 3, 2, 4]) });
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function mergeNodes(head) {
@@ -8302,13 +9012,16 @@ function mergeNodes(head) {
 }
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {number[]}
  */
 function nodesBetweenCriticalPoints(head) {
   const distance = [-1, -1];
-  let current = head.next, previous = head;
-  let currentIndex = 1, previousCriticalIndex = 0, firstCriticalIndex = 0;
+  let current = head.next,
+    previous = head;
+  let currentIndex = 1,
+    previousCriticalIndex = 0,
+    firstCriticalIndex = 0;
   let minDistance = Number.MAX_SAFE_INTEGER;
 
   while (current.next) {
@@ -8316,12 +9029,18 @@ function nodesBetweenCriticalPoints(head) {
     const center = current.val;
     const right = current.next.val;
 
-    if ((center > left && center > right) || (center < left && center < right)) {
+    if (
+      (center > left && center > right) ||
+      (center < left && center < right)
+    ) {
       if (previousCriticalIndex === 0) {
         previousCriticalIndex = currentIndex;
         firstCriticalIndex = currentIndex;
       } else {
-        minDistance = Math.min(minDistance, currentIndex - previousCriticalIndex);
+        minDistance = Math.min(
+          minDistance,
+          currentIndex - previousCriticalIndex,
+        );
         previousCriticalIndex = currentIndex;
       }
     }
@@ -8340,9 +9059,9 @@ function nodesBetweenCriticalPoints(head) {
 }
 
 /**
- * @param {number} n 
- * @param {number} time 
- * @returns {number} 
+ * @param {number} n
+ * @param {number} time
+ * @returns {number}
  */
 function passThePillow(n, time) {
   const rounds = Math.floor(time / (n - 1));
@@ -8352,14 +9071,15 @@ function passThePillow(n, time) {
 console.log({ passThePillow: passThePillow(10, 2) });
 
 /**
- * @param {number} numBottles 
- * @param {number} numExchange 
+ * @param {number} numBottles
+ * @param {number} numExchange
  * @returns {number}
  */
 function numWaterBottles(numBottles, numExchange) {
   if (numExchange > numBottles) return numBottles;
 
-  let emptyBottles = numBottles, extraBottles = 0;
+  let emptyBottles = numBottles,
+    extraBottles = 0;
 
   while (emptyBottles > 0) {
     emptyBottles = emptyBottles - numExchange + 1;
@@ -8371,8 +9091,8 @@ function numWaterBottles(numBottles, numExchange) {
 console.log({ numWaterBottles: numWaterBottles(9, 3) });
 
 /**
- * @param {number} n 
- * @param {number} k 
+ * @param {number} n
+ * @param {number} k
  * @returns {number}
  */
 function findTheWinner(n, k) {
@@ -8387,11 +9107,12 @@ function findTheWinner(n, k) {
 console.log({ findTheWinner: findTheWinner(5, 2) });
 
 /**
- * @param {number[][]} customers 
+ * @param {number[][]} customers
  * @returns {number}
  */
 function averageWaitingTime(customers) {
-  let waitingTime = 0, currentTime = 0;
+  let waitingTime = 0,
+    currentTime = 0;
 
   for (const [arrival, wait] of customers) {
     currentTime = Math.max(currentTime, arrival) + wait;
@@ -8400,16 +9121,26 @@ function averageWaitingTime(customers) {
 
   return waitingTime / customers.length;
 }
-console.log({ averageWaitingTime: averageWaitingTime([[1, 2], [2, 5], [4, 3]]) });
+console.log({
+  averageWaitingTime: averageWaitingTime([
+    [1, 2],
+    [2, 5],
+    [4, 3],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string[]}
  */
 function cellsInRange(s) {
   const cells = [];
 
-  for (let charIdx = s[0].charCodeAt(0); charIdx <= s[3].charCodeAt(0); charIdx++) {
+  for (
+    let charIdx = s[0].charCodeAt(0);
+    charIdx <= s[3].charCodeAt(0);
+    charIdx++
+  ) {
     for (let numIdx = +s[1]; numIdx <= +s[4]; numIdx++) {
       cells.push(`${String.fromCharCode(charIdx)}${numIdx}`);
     }
@@ -8417,12 +9148,12 @@ function cellsInRange(s) {
 
   return cells;
 }
-console.log({ cellsInRange: cellsInRange("K1:L2") });
+console.log({ cellsInRange: cellsInRange('K1:L2') });
 
 /**
- * @param {string[]} arr 
- * @param {number} left 
- * @param {number} right 
+ * @param {string[]} arr
+ * @param {number} left
+ * @param {number} right
  */
 function reverseInterval(arr, left, right) {
   while (left < right) {
@@ -8431,7 +9162,7 @@ function reverseInterval(arr, left, right) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function reverseParentheses(s) {
@@ -8439,9 +9170,9 @@ function reverseParentheses(s) {
   const closingStack = [];
 
   for (let idx = result.length - 1; idx >= 0; idx--) {
-    if (s.at(idx) === ")") closingStack.push(idx);
+    if (s.at(idx) === ')') closingStack.push(idx);
 
-    if (s.at(idx) === "(") {
+    if (s.at(idx) === '(') {
       const last = closingStack.pop();
       result[idx] = null;
       result[last] = null;
@@ -8451,10 +9182,10 @@ function reverseParentheses(s) {
 
   return result.join('');
 }
-console.log({ reverseParentheses: reverseParentheses("(abcd)") });
+console.log({ reverseParentheses: reverseParentheses('(abcd)') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumOperations(nums) {
@@ -8469,7 +9200,7 @@ function minimumOperations(nums) {
 console.log({ minimumOperations: minimumOperations([1, 2, 3, 4, 5, 6]) });
 
 /**
- * @param {number[][]} descriptions 
+ * @param {number[][]} descriptions
  * @returns {TreeNode | null}
  */
 function createBinaryTree(descriptions) {
@@ -8490,23 +9221,31 @@ function createBinaryTree(descriptions) {
     if (!childrens.has(parent)) return nodes[parent];
   }
 }
-console.log({ createBinaryTree: createBinaryTree([[20, 15, 1], [20, 17, 0], [50, 20, 1], [50, 80, 0], [80, 19, 1]]) });
+console.log({
+  createBinaryTree: createBinaryTree([
+    [20, 15, 1],
+    [20, 17, 0],
+    [50, 20, 1],
+    [50, 80, 0],
+    [80, 19, 1],
+  ]),
+});
 
 /**
- * @param {TreeNode | null} node 
- * @param {number} target 
- * @param {string[]} path 
+ * @param {TreeNode | null} node
+ * @param {number} target
+ * @param {string[]} path
  * @returns {boolean}
  */
 function findPath(node, target, path) {
   if (!node) return false;
   if (node.val === target) return true;
 
-  path.push("L");
+  path.push('L');
   if (findPath(node.left, target, path)) return true;
   path.pop();
 
-  path.push("R");
+  path.push('R');
   if (findPath(node.right, target, path)) return true;
   path.pop();
 
@@ -8514,18 +9253,20 @@ function findPath(node, target, path) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} startValue 
- * @param {number} destValue 
+ * @param {TreeNode | null} root
+ * @param {number} startValue
+ * @param {number} destValue
  * @returns {string}
  */
 function getDirections(root, startValue, destValue) {
-  const startPath = [], destPath = [];
+  const startPath = [],
+    destPath = [];
 
   findPath(root, startValue, startPath);
   findPath(root, destValue, destPath);
 
-  let directions = "", commonPathLength = 0;
+  let directions = '',
+    commonPathLength = 0;
   const maxLength = Math.min(startPath.length, destPath.length);
 
   while (
@@ -8536,7 +9277,7 @@ function getDirections(root, startValue, destValue) {
   }
 
   for (let i = 0; i < startPath.length - commonPathLength; i++) {
-    directions += "U";
+    directions += 'U';
   }
 
   for (let i = commonPathLength; i < destPath.length; i++) {
@@ -8547,16 +9288,17 @@ function getDirections(root, startValue, destValue) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number[]} to_delete 
+ * @param {TreeNode | null} root
+ * @param {number[]} to_delete
  * @returns {Array<TreeNode | null>}
  */
 function delNodes(root, to_delete) {
-  const toDelete = new Set(to_delete), res = [];
+  const toDelete = new Set(to_delete),
+    res = [];
 
   /**
-   * @param {TreeNode | null} node 
-   * @param {boolean} isRoot 
+   * @param {TreeNode | null} node
+   * @param {boolean} isRoot
    * @returns {TreeNode | null}
    */
   function dfs(node, isRoot) {
@@ -8578,15 +9320,15 @@ function delNodes(root, to_delete) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} distance 
+ * @param {TreeNode | null} root
+ * @param {number} distance
  * @returns {number}
  */
 function countPairs(root, distance) {
   let ans = 0;
 
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    * @returns {number[]}
    */
   function dfs(node) {
@@ -8608,18 +9350,20 @@ function countPairs(root, distance) {
     for (const r of rightDistances) distances.push(r + 1);
 
     return distances;
-  };
+  }
 
   dfs(root);
   return ans;
 }
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number[]}
  */
 function luckyNumbers(matrix) {
-  const minValues = [], maxValues = [], luckyNumber = [];
+  const minValues = [],
+    maxValues = [],
+    luckyNumber = [];
 
   for (const row of matrix) {
     minValues.push(Math.min(...row));
@@ -8646,15 +9390,22 @@ function luckyNumbers(matrix) {
 
   return luckyNumber;
 }
-console.log({ luckyNumbers: luckyNumbers([[3, 7, 8], [9, 11, 13], [15, 16, 17]]) });
+console.log({
+  luckyNumbers: luckyNumbers([
+    [3, 7, 8],
+    [9, 11, 13],
+    [15, 16, 17],
+  ]),
+});
 
 /**
- * @param {number[]} rowSum 
- * @param {number[]} colSum 
+ * @param {number[]} rowSum
+ * @param {number[]} colSum
  * @returns {number[][]}
  */
 function restoreMatrix(rowSum, colSum) {
-  const ROWS = rowSum.length, COLS = colSum.length;
+  const ROWS = rowSum.length,
+    COLS = colSum.length;
   const res = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
 
   for (let row = 0; row < ROWS; row++) {
@@ -8685,8 +9436,8 @@ function restoreMatrix(rowSum, colSum) {
 console.log({ restoreMatrix: restoreMatrix([3, 8], [4, 7]) });
 
 /**
- * @param {string[]} words 
- * @param {string} x 
+ * @param {string[]} words
+ * @param {string} x
  * @returns {number[]}
  */
 function findWordsContaining(words, x) {
@@ -8694,7 +9445,8 @@ function findWordsContaining(words, x) {
 
   for (let idx = 0; idx < words.length; idx++) {
     const word = words[idx];
-    let start = 0, end = word.length - 1;
+    let start = 0,
+      end = word.length - 1;
 
     while (start <= end) {
       if (word[start++] === x || word[end--] === x) {
@@ -8706,10 +9458,12 @@ function findWordsContaining(words, x) {
 
   return indices;
 }
-console.log({ findWordsContaining: findWordsContaining(["leet", "code"], "e") });
+console.log({
+  findWordsContaining: findWordsContaining(['leet', 'code'], 'e'),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function differenceOfSum(nums) {
@@ -8728,12 +9482,12 @@ function differenceOfSum(nums) {
   }, 0);
 
   return Math.abs(digitSum - elementSum);
-};
+}
 console.log({ differenceOfSum: differenceOfSum([1, 15, 6, 3]) });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number}
  */
 function addedInteger(nums1, nums2) {
@@ -8742,12 +9496,14 @@ function addedInteger(nums1, nums2) {
 console.log({ addedInteger: addedInteger([5, 7, 3], [2, 6, 8]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
+ * @param {number[]} nums
+ * @param {number} target
  * @returns {number}
  */
 function getFirstOccurrence(nums, target) {
-  let start = 0, end = nums.length - 1, firstOccurrence = -1;
+  let start = 0,
+    end = nums.length - 1,
+    firstOccurrence = -1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -8762,12 +9518,14 @@ function getFirstOccurrence(nums, target) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
+ * @param {number[]} nums
+ * @param {number} target
  * @returns {number}
  */
 function getLastOccurrence(nums, target) {
-  let start = 0, end = nums.length - 1, lastOccurrence = -1;
+  let start = 0,
+    end = nums.length - 1,
+    lastOccurrence = -1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -8782,8 +9540,8 @@ function getLastOccurrence(nums, target) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
+ * @param {number[]} nums
+ * @param {number} target
  * @returns {number[]}
  */
 function targetIndices(nums, target) {
@@ -8804,8 +9562,8 @@ function targetIndices(nums, target) {
 console.log({ targetIndices: targetIndices([1, 2, 5, 2, 3], 2) });
 
 /**
- * @param {number[]} mapping 
- * @param {number[]} nums 
+ * @param {number[]} mapping
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function sortJumbled(mapping, nums) {
@@ -8824,10 +9582,12 @@ function sortJumbled(mapping, nums) {
 
   return nums.sort((a, b) => mappedNums.get(a) - mappedNums.get(b));
 }
-console.log({ sortJumbled: sortJumbled([8, 9, 4, 0, 2, 1, 3, 5, 7, 6], [991, 338, 38]) });
+console.log({
+  sortJumbled: sortJumbled([8, 9, 4, 0, 2, 1, 3, 5, 7, 6], [991, 338, 38]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function triangularSum(nums) {
@@ -8846,14 +9606,15 @@ function triangularSum(nums) {
 console.log({ triangularSum: triangularSum([1, 2, 3, 4, 5]) });
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function digitSum(s, k) {
   while (s.length > k) {
     const nums = [];
-    let num = 0, count = 0;
+    let num = 0,
+      count = 0;
 
     for (let idx = 0; idx < s.length; idx++) {
       num += +s[idx];
@@ -8868,23 +9629,23 @@ function digitSum(s, k) {
 
     if (count > 0) nums.push(num);
 
-    s = nums.join("");
+    s = nums.join('');
   }
 
   return s;
 }
-console.log({ digitSum: digitSum("11111222223", 3) });
+console.log({ digitSum: digitSum('11111222223', 3) });
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function insertGreatestCommonDivisors(head) {
   if (!head || !head.next) return head;
 
   /**
-   * @param {number} a 
-   * @param {number} b 
+   * @param {number} a
+   * @param {number} b
    * @returns {number}
    */
   function gcd(a, b) {
@@ -8928,18 +9689,18 @@ function insertGreatestCommonDivisors(head) {
 }
 
 /**
- * @param {number} n 
- * @param {number} m 
+ * @param {number} n
+ * @param {number} m
  * @returns {number}
  */
 function differenceOfSums(n, m) {
   const x = Math.floor(n / m);
-  return (n * (n + 1) / 2) - (2 * m * x * (x + 1) / 2);
+  return (n * (n + 1)) / 2 - (2 * m * x * (x + 1)) / 2;
 }
 console.log({ differenceOfSums: differenceOfSums(10, 2) });
 
 /**
- * @param {string[]} details 
+ * @param {string[]} details
  * @returns {number}
  */
 function countSeniors(details) {
@@ -8952,11 +9713,17 @@ function countSeniors(details) {
 
   return seniorCount;
 }
-console.log({ countSeniors: countSeniors(["7868190130M7522", "5303914400F9211", "9273338290F4010"]) });
+console.log({
+  countSeniors: countSeniors([
+    '7868190130M7522',
+    '5303914400F9211',
+    '9273338290F4010',
+  ]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} pivot 
+ * @param {number[]} nums
+ * @param {number} pivot
  * @returns {number[]}
  */
 function pivotArray(nums, pivot) {
@@ -8979,8 +9746,8 @@ function pivotArray(nums, pivot) {
 console.log({ pivotArray: pivotArray([2, 3, 1, 4, 5], 3) });
 
 /**
- * @param {number} n 
- * @returns {number} 
+ * @param {number} n
+ * @returns {number}
  */
 function minOperations(n) {
   return n ** 2 / 4;
@@ -8988,12 +9755,15 @@ function minOperations(n) {
 console.log({ minOperations: minOperations(10) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minSwaps(nums) {
-  const length = nums.length, totalOnes = nums.filter(num => num === 1).length;
-  let left = 0, windowOnes = 0, maxWindowOnes = 0;
+  const length = nums.length,
+    totalOnes = nums.filter((num) => num === 1).length;
+  let left = 0,
+    windowOnes = 0,
+    maxWindowOnes = 0;
 
   for (let right = 0; right < 2 * length; right++) {
     if (nums[right % length]) windowOnes++;
@@ -9006,8 +9776,8 @@ function minSwaps(nums) {
 console.log({ minSwaps: minSwaps([0, 1, 0, 1, 1, 0, 0]) });
 
 /**
- * @param {number[]} target 
- * @param {number[]} arr 
+ * @param {number[]} target
+ * @param {number[]} arr
  * @returns {boolean}
  */
 function canBeEqual(target, arr) {
@@ -9029,14 +9799,15 @@ function canBeEqual(target, arr) {
 console.log({ canBeEqual: canBeEqual([1, 2, 3, 4], [2, 4, 1, 3]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} n 
- * @param {number} left 
- * @param {number} right 
+ * @param {number[]} nums
+ * @param {number} n
+ * @param {number} left
+ * @param {number} right
  * @returns {number}
  */
 function rangeSum(nums, n, left, right) {
-  const subArraySum = [], MOD = 10 ** 9 + 7;
+  const subArraySum = [],
+    MOD = 10 ** 9 + 7;
 
   for (let i = 0; i < n; i++) {
     let currentSum = 0;
@@ -9060,8 +9831,8 @@ function rangeSum(nums, n, left, right) {
 console.log({ rangeSum: rangeSum([1, 2, 3, 4], 4, 1, 5) });
 
 /**
- * @param {string[]} arr 
- * @param {number} k 
+ * @param {string[]} arr
+ * @param {number} k
  * @returns {string}
  */
 function kthDistinct(arr, k) {
@@ -9077,19 +9848,19 @@ function kthDistinct(arr, k) {
     if (count === 1) if (++distinctCount === k) return str;
   }
 
-  return "";
+  return '';
 }
-console.log({ kthDistinct: kthDistinct(["d", "b", "c", "b", "c", "a"], 2) });
+console.log({ kthDistinct: kthDistinct(['d', 'b', 'c', 'b', 'c', 'a'], 2) });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {number}
  */
 function minimumPushes(word) {
   const charCount = new Array(26).fill(0);
 
   for (const char of word) {
-    charCount[char.charCodeAt(0) - "a".charCodeAt(0)]++;
+    charCount[char.charCodeAt(0) - 'a'.charCodeAt(0)]++;
   }
 
   charCount.sort((a, b) => b - a);
@@ -9102,11 +9873,11 @@ function minimumPushes(word) {
 
   return result;
 }
-console.log({ minimumPushes: minimumPushes("abcde") });
+console.log({ minimumPushes: minimumPushes('abcde') });
 
 /**
- * @param {string} s 
- * @param {string} t 
+ * @param {string} s
+ * @param {string} t
  * @returns {number}
  */
 function findPermutationDifference(s, t) {
@@ -9123,10 +9894,12 @@ function findPermutationDifference(s, t) {
 
   return difference;
 }
-console.log({ findPermutationDifference: findPermutationDifference("abc", "bac") });
+console.log({
+  findPermutationDifference: findPermutationDifference('abc', 'bac'),
+});
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {string}
  */
 function numberToWords(num) {
@@ -9201,20 +9974,26 @@ function numberToWords(num) {
 console.log({ numberToWords: numberToWords(123) });
 
 /**
- * @param {number} rows 
- * @param {number} cols 
- * @param {number} rStart 
- * @param {number} cStart 
+ * @param {number} rows
+ * @param {number} cols
+ * @param {number} rStart
+ * @param {number} cStart
  * @returns {number[][]}
  */
 function spiralMatrixIII(rows, cols, rStart, cStart) {
-  const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
   const res = [];
 
-  for (let step = 1, direction = 0; res.length < rows * cols;) {
+  for (let step = 1, direction = 0; res.length < rows * cols; ) {
     for (let i = 0; i < 2; ++i) {
       for (let j = 0; j < step; ++j) {
-        if (rStart >= 0 && rStart < rows && cStart >= 0 && cStart < cols) res.push([rStart, cStart]);
+        if (rStart >= 0 && rStart < rows && cStart >= 0 && cStart < cols)
+          res.push([rStart, cStart]);
         rStart += directions[direction][0];
         cStart += directions[direction][1];
       }
@@ -9230,15 +10009,16 @@ function spiralMatrixIII(rows, cols, rStart, cStart) {
 console.log({ spiralMatrixIII: spiralMatrixIII(1, 4, 0, 0) });
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function numMagicSquaresInside(grid) {
-  const rows = grid.length, cols = grid[0].length;
+  const rows = grid.length,
+    cols = grid[0].length;
 
   /**
-   * @param {number} row 
-   * @param {number} col 
+   * @param {number} row
+   * @param {number} col
    * @returns {0 | 1}
    */
   function magic(row, col) {
@@ -9279,26 +10059,34 @@ function numMagicSquaresInside(grid) {
 
   return result;
 }
-console.log({ numMagicSquaresInside: numMagicSquaresInside([[4, 3, 8, 4], [9, 5, 1, 9], [2, 7, 6, 2]]) });
+console.log({
+  numMagicSquaresInside: numMagicSquaresInside([
+    [4, 3, 8, 4],
+    [9, 5, 1, 9],
+    [2, 7, 6, 2],
+  ]),
+});
 
 /**
- * @param {string[]} grid 
+ * @param {string[]} grid
  * @returns {number}
  */
 function regionsBySlashes(grid) {
-  const matrix = Array.from({ length: grid.length * 3 }, () => Array(grid[0].length * 3));
+  const matrix = Array.from({ length: grid.length * 3 }, () =>
+    Array(grid[0].length * 3),
+  );
   const mapChar = {
-    " ": [
+    ' ': [
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0],
     ],
-    "/": [
+    '/': [
       [0, 0, 1],
       [0, 1, 0],
       [1, 0, 0],
     ],
-    "\\": [
+    '\\': [
       [1, 0, 0],
       [0, 1, 0],
       [0, 0, 1],
@@ -9318,11 +10106,16 @@ function regionsBySlashes(grid) {
   }
 
   let count = 0;
-  const DIRECTIONS = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const DIRECTIONS = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
 
   /**
-   * @param {number} i 
-   * @param {number} j 
+   * @param {number} i
+   * @param {number} j
    * @returns {boolean}
    */
   function dfs(i, j) {
@@ -9347,7 +10140,7 @@ function regionsBySlashes(grid) {
     }
 
     return true;
-  };
+  }
 
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[0].length; j++) {
@@ -9357,7 +10150,7 @@ function regionsBySlashes(grid) {
 
   return count;
 }
-console.log({ regionsBySlashes: regionsBySlashes([" /", "/ "]) });
+console.log({ regionsBySlashes: regionsBySlashes([' /', '/ ']) });
 
 class KthLargest {
   constructor(k, nums) {
@@ -9381,8 +10174,8 @@ class KthLargest {
 }
 
 /**
- * @param {number[]} arr 
- * @param {number} value 
+ * @param {number[]} arr
+ * @param {number} value
  */
 function pushHeap(arr, value) {
   arr.push(value);
@@ -9397,7 +10190,7 @@ function pushHeap(arr, value) {
 }
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number | void}
  */
 function popHeap(arr) {
@@ -9406,11 +10199,11 @@ function popHeap(arr) {
   arr[0] = arr.pop();
   heapify(arr, 0);
   return root;
-};
+}
 
 /**
- * @param {number[]} arr 
- * @param {number} index 
+ * @param {number[]} arr
+ * @param {number} index
  */
 function heapify(arr, index) {
   let smallest = index;
@@ -9432,21 +10225,23 @@ function heapify(arr, index) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function smallestDistancePair(nums, k) {
   nums.sort((a, b) => a - b);
 
-  let start = 0, end = Math.max(...nums);
+  let start = 0,
+    end = Math.max(...nums);
 
   /**
-   * @param {number} dist 
-   * @returns {number} 
+   * @param {number} dist
+   * @returns {number}
    */
   function getPairs(dist) {
-    let left = 0, pairs = 0;
+    let left = 0,
+      pairs = 0;
 
     for (let right = 0; right < nums.length; right++) {
       while (nums[right] - nums[left] > dist) {
@@ -9470,27 +10265,38 @@ function smallestDistancePair(nums, k) {
 console.log({ smallestDistancePair: smallestDistancePair([1, 3, 1], 1) });
 
 /**
- * @param {number[][]} arrays 
- * @returns {number} 
+ * @param {number[][]} arrays
+ * @returns {number}
  */
 function maxDistance(arrays) {
-  let currentMin = arrays[0][0], currentMax = arrays[0][arrays[0].length - 1];
+  let currentMin = arrays[0][0],
+    currentMax = arrays[0][arrays[0].length - 1];
   let result = 0;
 
   for (let idx = 1; idx < arrays.length; idx++) {
     const num = arrays[idx];
-    result = Math.max(result, num[num.length - 1] - currentMin, currentMax - num[0]);
+    result = Math.max(
+      result,
+      num[num.length - 1] - currentMin,
+      currentMax - num[0],
+    );
     currentMax = Math.max(currentMax, num[num.length - 1]);
     currentMin = Math.min(currentMin, num[0]);
   }
 
   return result;
 }
-console.log({ maxDistance: maxDistance([[1, 2, 3], [4, 5], [1, 2, 3]]) });
+console.log({
+  maxDistance: maxDistance([
+    [1, 2, 3],
+    [4, 5],
+    [1, 2, 3],
+  ]),
+});
 
 /**
- * @param {string} allowed 
- * @param {string[]} words 
+ * @param {string} allowed
+ * @param {string[]} words
  * @returns {number}
  */
 function countConsistentStrings(allowed, words) {
@@ -9510,11 +10316,19 @@ function countConsistentStrings(allowed, words) {
 
   return count;
 }
-console.log({ countConsistentStrings: countConsistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"]) });
+console.log({
+  countConsistentStrings: countConsistentStrings('ab', [
+    'ad',
+    'bd',
+    'aaab',
+    'baa',
+    'badab',
+  ]),
+});
 
 /**
- * @param {number} n 
- * @param {number} start 
+ * @param {number} n
+ * @param {number} start
  * @returns {number}
  */
 function xorOperation(n, start) {
@@ -9528,8 +10342,8 @@ function xorOperation(n, start) {
 console.log({ xorOperation: xorOperation(5, 0) });
 
 /**
- * @param {string} s 
- * @param {string} letter 
+ * @param {string} s
+ * @param {string} letter
  * @returns {number}
  */
 function percentageLetter(s, letter) {
@@ -9539,16 +10353,17 @@ function percentageLetter(s, letter) {
     if (char === letter) letterCount++;
   }
 
-  return Math.floor(letterCount / s.length * 100);
+  return Math.floor((letterCount / s.length) * 100);
 }
-console.log({ percentageLetter: percentageLetter("hello", "o") });
+console.log({ percentageLetter: percentageLetter('hello', 'o') });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function findComplement(num) {
-  let m = num, mask = 0;
+  let m = num,
+    mask = 0;
 
   if (num === 0) return 1;
 
@@ -9557,20 +10372,22 @@ function findComplement(num) {
     m = m >> 1;
   }
 
-  let ans = (~num) & mask;
+  let ans = ~num & mask;
 
   return ans;
 }
 console.log({ findComplement: findComplement(5) });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number[]}
  */
 function findIntersectionValues(nums1, nums2) {
-  let answer1 = 0, answer2 = 0;
-  const uniqueNums1 = new Set(nums1), uniqueNums2 = new Set(nums2);
+  let answer1 = 0,
+    answer2 = 0;
+  const uniqueNums1 = new Set(nums1),
+    uniqueNums2 = new Set(nums2);
 
   for (const num of nums1) {
     if (uniqueNums2.has(num)) answer1++;
@@ -9582,11 +10399,16 @@ function findIntersectionValues(nums1, nums2) {
 
   return [answer1, answer2];
 }
-console.log({ findIntersectionValues: findIntersectionValues([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]) });
+console.log({
+  findIntersectionValues: findIntersectionValues(
+    [1, 2, 3, 4, 5],
+    [2, 4, 6, 8, 10],
+  ),
+});
 
 /**
- * @param {number} a 
- * @param {number} b 
+ * @param {number} a
+ * @param {number} b
  * @returns {number}
  */
 function getCommonDivisor(a, b) {
@@ -9597,7 +10419,7 @@ function getCommonDivisor(a, b) {
 }
 
 /**
- * @param {string} expression 
+ * @param {string} expression
  * @returns {string}
  */
 function fractionAddition(expression) {
@@ -9605,29 +10427,31 @@ function fractionAddition(expression) {
   let idx = 0;
 
   while (idx < expression.length) {
-    const char = expression[idx], nextChar = expression[idx + 1];
+    const char = expression[idx],
+      nextChar = expression[idx + 1];
 
     if (+char > 1 && +char < 10) {
       digits.push(+char);
       idx++;
-    } else if (char === "1" && nextChar === "0") {
+    } else if (char === '1' && nextChar === '0') {
       digits.push(+`${char}${nextChar}`);
       idx++;
-    } else if (char === "1") {
+    } else if (char === '1') {
       digits.push(+char);
       idx++;
     } else {
-      const digit = expression[idx + 1], nextDigit = expression[idx + 2];
+      const digit = expression[idx + 1],
+        nextDigit = expression[idx + 2];
 
-      if (char === "-" || char === "+") {
-        if (digit === "1" && nextDigit === "0") {
+      if (char === '-' || char === '+') {
+        if (digit === '1' && nextDigit === '0') {
           digits.push(+`${char}${digit}${nextDigit}`);
           idx++;
         } else digits.push(+`${char}${digit}`);
       }
 
-      if (char === "/") {
-        if (digit === "1" && nextDigit === "0") {
+      if (char === '/') {
+        if (digit === '1' && nextDigit === '0') {
           digits.push(+`${digit}${nextDigit}`);
           idx++;
         } else digits.push(+digit);
@@ -9637,7 +10461,10 @@ function fractionAddition(expression) {
     }
   }
 
-  const L_C_M = [...new Set(digits.filter((_, idx) => idx % 2 === 1))].reduce((acc, curr) => (acc *= curr), 1);
+  const L_C_M = [...new Set(digits.filter((_, idx) => idx % 2 === 1))].reduce(
+    (acc, curr) => (acc *= curr),
+    1,
+  );
 
   const numeratorSum = digits.reduce((acc, curr, idx) => {
     if (idx % 2 === 0) acc += curr * (L_C_M / digits[idx + 1]);
@@ -9648,12 +10475,12 @@ function fractionAddition(expression) {
   const numerator = numeratorSum / commonDivisor;
   const denominator = L_C_M / commonDivisor;
 
-  return numeratorSum === 0 ? "0/1" : `${numerator}/${denominator}`;
+  return numeratorSum === 0 ? '0/1' : `${numerator}/${denominator}`;
 }
-console.log({ fractionAddition: fractionAddition("-1/2+1/2") });
+console.log({ fractionAddition: fractionAddition('-1/2+1/2') });
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {number}
  */
 function similarPairs(words) {
@@ -9665,22 +10492,26 @@ function similarPairs(words) {
     for (let j = i + 1; j < words.length; j++) {
       const wordTwo = new Set(words[j]);
 
-      if (wordOne.size === wordTwo.size && new Set([...wordOne, ...wordTwo]).size === wordOne.size) pairsCount++;
+      if (
+        wordOne.size === wordTwo.size &&
+        new Set([...wordOne, ...wordTwo]).size === wordOne.size
+      )
+        pairsCount++;
     }
   }
 
   return pairsCount;
 }
-console.log({ similarPairs: similarPairs("eat", "beat", "ate") });
+console.log({ similarPairs: similarPairs('eat', 'beat', 'ate') });
 
 /**
- * @param {_Node | null} root 
+ * @param {_Node | null} root
  * @returns {number[]}
  */
 function postorder(root) {
   /**
-   * @param {_Node | null} node 
-   * @param {number[]} values 
+   * @param {_Node | null} node
+   * @param {number[]} values
    * @returns {number[]}
    */
   function getValues(node, values) {
@@ -9699,8 +10530,8 @@ function postorder(root) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {boolean}
  */
 function isPossibleDivide(nums, k) {
@@ -9727,10 +10558,12 @@ function isPossibleDivide(nums, k) {
 
   return true;
 }
-console.log({ isPossibleDivide: isPossibleDivide([1, 2, 3, 3, 4, 4, 5, 6], 4) });
+console.log({
+  isPossibleDivide: isPossibleDivide([1, 2, 3, 3, 4, 4, 5, 6], 4),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function mostFrequentEven(nums) {
@@ -9740,8 +10573,11 @@ function mostFrequentEven(nums) {
     if (num % 2 === 0) numCount[num] = (numCount[num] || 0) + 1;
   }
 
-  const maxCount = Object.values(numCount).reduce(((acc, curr) => Math.max(acc, curr)), 0);
-  const minElement = Object.keys(numCount).filter(num => {
+  const maxCount = Object.values(numCount).reduce(
+    (acc, curr) => Math.max(acc, curr),
+    0,
+  );
+  const minElement = Object.keys(numCount).filter((num) => {
     if (numCount[num] === maxCount) return numCount[num];
   });
 
@@ -9751,11 +10587,12 @@ function mostFrequentEven(nums) {
 console.log({ mostFrequentEven: mostFrequentEven([0, 1, 2, 2, 4, 4, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function frequencySort(nums) {
-  const sortedNums = [], numCount = {};
+  const sortedNums = [],
+    numCount = {};
 
   for (const num of nums) {
     numCount[num] = (numCount[num] || 0) + 1;
@@ -9777,7 +10614,7 @@ function frequencySort(nums) {
 console.log({ frequencySort: frequencySort([2, 1, 2, 3, 4, 5, 6, 4, 2, 3]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {boolean}
  */
 function validMountainArray(arr) {
@@ -9814,10 +10651,12 @@ function* inorderTraversal(arr) {
     else yield element;
   }
 }
-console.log({ inorderTraversal: inorderTraversal([1, [2, 3], [[4, 5], 6], 7]) });
+console.log({
+  inorderTraversal: inorderTraversal([1, [2, 3], [[4, 5], 6], 7]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function countQuadruplets(nums) {
@@ -9836,12 +10675,14 @@ function countQuadruplets(nums) {
 
   return count;
 }
-console.log({ countQuadruplets: countQuadruplets([9, 6, 7, 7, 6, 5, 4, 3, 2, 1]) });
+console.log({
+  countQuadruplets: countQuadruplets([9, 6, 7, 7, 6, 5, 4, 3, 2, 1]),
+});
 
 /**
- * @param {number[]} original 
- * @param {number} m 
- * @param {number} n 
+ * @param {number[]} original
+ * @param {number} m
+ * @param {number} n
  * @returns {number[][]}
  */
 function construct2DArray(original, m, n) {
@@ -9861,12 +10702,13 @@ function construct2DArray(original, m, n) {
 console.log({ construct2DArray: construct2DArray([1, 2, 3, 4], 2, 2) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function numberOfPairs(nums) {
   const numCount = {};
-  let pairs = 0, leftOvers = 0;
+  let pairs = 0,
+    leftOvers = 0;
 
   for (const num of nums) {
     numCount[num] = (numCount[num] || 0) + 1;
@@ -9882,8 +10724,8 @@ function numberOfPairs(nums) {
 console.log({ numberOfPairs: numberOfPairs([1, 3, 2, 1, 3, 2, 2]) });
 
 /**
- * @param {number[]} chalk 
- * @param {number} k 
+ * @param {number[]} chalk
+ * @param {number} k
  * @returns {number}
  */
 function chalkReplacer(chalk, k) {
@@ -9906,8 +10748,8 @@ function chalkReplacer(chalk, k) {
 console.log({ chalkReplacer: chalkReplacer([5, 1, 5], 22) });
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {number}
  */
 function getLucky(s, k) {
@@ -9935,17 +10777,23 @@ function getLucky(s, k) {
 
   return digitSum;
 }
-console.log({ getLucky: getLucky("abc", 1) });
+console.log({ getLucky: getLucky('abc', 1) });
 
 /**
- * @param {number[]} commands 
- * @param {number[][]} obstacles 
+ * @param {number[]} commands
+ * @param {number[][]} obstacles
  * @returns {number}
  */
 function robotSim(commands, obstacles) {
-  const modes = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const modes = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
   let direction = 0;
-  let x = 0, y = 0;
+  let x = 0,
+    y = 0;
   const obstacleSet = new Set(obstacles.map(([ox, oy]) => `${ox},${oy}`));
   let maxDistSq = 0;
 
@@ -9969,16 +10817,25 @@ function robotSim(commands, obstacles) {
 
   return maxDistSq;
 }
-console.log({ robotSim: robotSim([4, -1, 3, 1], [[2, 4], [3, 6]]) });
+console.log({
+  robotSim: robotSim(
+    [4, -1, 3, 1],
+    [
+      [2, 4],
+      [3, 6],
+    ],
+  ),
+});
 
 /**
- * @param {number[]} rolls 
- * @param {number} mean 
- * @param {number} n 
+ * @param {number[]} rolls
+ * @param {number} mean
+ * @param {number} n
  * @returns {number[]}
  */
 function missingRolls(rolls, mean, n) {
-  const noOfRolls = rolls.length, totalSum = mean * (noOfRolls + n);
+  const noOfRolls = rolls.length,
+    totalSum = mean * (noOfRolls + n);
   let missingSum = totalSum - rolls.reduce((acc, cur) => (acc += cur), 0);
 
   if (missingSum > 6 * n || missingSum < n) return [];
@@ -9997,8 +10854,8 @@ function missingRolls(rolls, mean, n) {
 console.log({ missingRolls: missingRolls([3, 2, 4, 3], 4, 2) });
 
 /**
- * @param {number[]} nums 
- * @param {ListNode | null} head 
+ * @param {number[]} nums
+ * @param {ListNode | null} head
  * @returns {ListNode | null}
  */
 function modifiedList(nums, head) {
@@ -10015,8 +10872,8 @@ function modifiedList(nums, head) {
 }
 
 /**
- * @param {TreeNode | null} node 
- * @param {ListNode | null} head 
+ * @param {TreeNode | null} node
+ * @param {ListNode | null} head
  * @returns {boolean}
  */
 function checkPath(node, head) {
@@ -10026,8 +10883,8 @@ function checkPath(node, head) {
 }
 
 /**
- * @param {TreeNode | null} node 
- * @param {ListNode | null} head 
+ * @param {TreeNode | null} node
+ * @param {ListNode | null} head
  * @returns {boolean}
  */
 
@@ -10039,8 +10896,8 @@ function dfs(node, head) {
 }
 
 /**
- * @param {ListNode | null} head 
- * @param {TreeNode | null} root 
+ * @param {ListNode | null} head
+ * @param {TreeNode | null} root
  * @returns {boolean}
  */
 function isSubPath(head, root) {
@@ -10048,13 +10905,14 @@ function isSubPath(head, root) {
 }
 
 /**
- * @param {ListNode | null} head 
- * @param {number} k 
+ * @param {ListNode | null} head
+ * @param {number} k
  * @returns {Array<ListNode | null>}
  */
 function splitListToParts(head, k) {
   const ans = new Array(k);
-  let size = 0, current = head;
+  let size = 0,
+    current = head;
 
   while (current) {
     size++;
@@ -10089,28 +10947,29 @@ function splitListToParts(head, k) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function removeStars(s) {
   const chars = [];
 
   for (const char of s) {
-    if (char === "*") chars.pop();
+    if (char === '*') chars.pop();
     else chars.push(char);
   }
 
-  return chars.join("");
+  return chars.join('');
 }
-console.log({ removeStars: removeStars("leet**cod*e") });
+console.log({ removeStars: removeStars('leet**cod*e') });
 
 /**
- * @param {number} start 
- * @param {number} goal 
+ * @param {number} start
+ * @param {number} goal
  * @returns {number}
  */
 function minBitFlips(start, goal) {
-  let updatedNum = start ^ goal, result = 0;
+  let updatedNum = start ^ goal,
+    result = 0;
 
   while (updatedNum) {
     result += updatedNum & 1;
@@ -10122,8 +10981,8 @@ function minBitFlips(start, goal) {
 console.log({ minBitFlips: minBitFlips(10, 7) });
 
 /**
- * @param {number[]} arr 
- * @param {number[][]} queries 
+ * @param {number[]} arr
+ * @param {number[][]} queries
  * @returns {number[]}
  */
 function xorQueries(arr, queries) {
@@ -10141,14 +11000,26 @@ function xorQueries(arr, queries) {
 
   return result;
 }
-console.log({ xorQueries: xorQueries([1, 3, 4, 8], [[0, 1], [1, 2], [0, 3], [3, 3]]) });
+console.log({
+  xorQueries: xorQueries(
+    [1, 3, 4, 8],
+    [
+      [0, 1],
+      [1, 2],
+      [0, 3],
+      [3, 3],
+    ],
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function longestSubarray(nums) {
-  let size = 0, res = 0, curMax = 0;
+  let size = 0,
+    res = 0,
+    curMax = 0;
 
   for (const num of nums) {
     if (num > curMax) {
@@ -10163,10 +11034,12 @@ function longestSubarray(nums) {
 
   return res;
 }
-console.log({ longestSubarray: longestSubarray([1, 4, 5, 6, 23, 54, 45, 44, 46, 56, 3]) });
+console.log({
+  longestSubarray: longestSubarray([1, 4, 5, 6, 23, 54, 45, 44, 46, 56, 3]),
+});
 
 /**
- * @param {string[]} timePoints 
+ * @param {string[]} timePoints
  * @returns {number}
  */
 function findMinDifference(timePoints) {
@@ -10174,8 +11047,8 @@ function findMinDifference(timePoints) {
   let min = Infinity;
 
   for (const timePoint of timePoints) {
-    const [hour, min] = timePoint.split(":");
-    if (hour === "00" && min === "00") minutes.push(24 * 60);
+    const [hour, min] = timePoint.split(':');
+    if (hour === '00' && min === '00') minutes.push(24 * 60);
     else minutes.push(+hour * 60 + +min);
   }
 
@@ -10187,7 +11060,7 @@ function findMinDifference(timePoints) {
 
   return Math.min(min, 24 * 60 - minutes[minutes.length - 1] + minutes[0]);
 }
-console.log({ findMinDifference: findMinDifference(["23:59", "00:00"]) });
+console.log({ findMinDifference: findMinDifference(['23:59', '00:00']) });
 
 class RecentCounter {
   constructor() {
@@ -10206,13 +11079,14 @@ class RecentCounter {
 }
 
 /**
- * @param {string} s1 
- * @param {string} s2 
+ * @param {string} s1
+ * @param {string} s2
  * @returns {string[]}
  */
 function uncommonFromSentences(s1, s2) {
   const wordCount = {};
-  const wordsFromS1 = s1.split(" "), wordsFromS2 = s2.split(" ");
+  const wordsFromS1 = s1.split(' '),
+    wordsFromS2 = s2.split(' ');
   const unCommonWords = [];
 
   for (const word of wordsFromS1) {
@@ -10229,14 +11103,22 @@ function uncommonFromSentences(s1, s2) {
 
   return unCommonWords;
 }
-console.log({ uncommonFromSentences: uncommonFromSentences("this apple is sweet", "this apple is sour") });
+console.log({
+  uncommonFromSentences: uncommonFromSentences(
+    'this apple is sweet',
+    'this apple is sour',
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {string}
  */
 function largestNumber(nums) {
-  const strNums = Array.from({ length: nums.length }, (_, idx) => `${nums[idx]}`);
+  const strNums = Array.from(
+    { length: nums.length },
+    (_, idx) => `${nums[idx]}`,
+  );
 
   strNums.sort((a, b) => {
     if (a + b > b + a) return -1;
@@ -10244,19 +11126,19 @@ function largestNumber(nums) {
   });
 
   if (strNums[0] === '0') return '0';
-  return strNums.join("");
+  return strNums.join('');
 }
 console.log({ largestNumber: largestNumber([3, 30, 34, 5, 9]) });
 
 /**
- * @param {string} expression 
+ * @param {string} expression
  * @returns {number[]}
  */
 function diffWaysToCompute(expression) {
   const operations = {
-    "+": (x, y) => x + y,
-    "-": (x, y) => x - y,
-    "*": (x, y) => x * y,
+    '+': (x, y) => x + y,
+    '-': (x, y) => x - y,
+    '*': (x, y) => x * y,
   };
 
   function evaluateExpressions(left, right) {
@@ -10287,18 +11169,22 @@ function diffWaysToCompute(expression) {
 
   return evaluateExpressions(0, expression.length - 1);
 }
-console.log({ diffWaysToCompute: diffWaysToCompute("2*3-4*5") });
+console.log({ diffWaysToCompute: diffWaysToCompute('2*3-4*5') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function shortestPalindrome(s) {
-  let prefix = 0, suffix = 0, lastIndex = 0, power = 1;
-  const base = 29, mod = 10 ** 9 + 7;
+  let prefix = 0,
+    suffix = 0,
+    lastIndex = 0,
+    power = 1;
+  const base = 29,
+    mod = 10 ** 9 + 7;
 
   for (let idx = 0; idx < s.length; idx++) {
-    const char = s[idx].charCodeAt(0) - "a".charCodeAt(0) + 1;
+    const char = s[idx].charCodeAt(0) - 'a'.charCodeAt(0) + 1;
 
     prefix = (prefix * base) % mod;
     prefix = (prefix + char) % mod;
@@ -10309,19 +11195,26 @@ function shortestPalindrome(s) {
     if (prefix === suffix) lastIndex = idx;
   }
 
-  return s.slice(lastIndex + 1).split("").reverse().join("") + s;
+  return (
+    s
+      .slice(lastIndex + 1)
+      .split('')
+      .reverse()
+      .join('') + s
+  );
 }
-console.log({ shortestPalindrome: shortestPalindrome("aacecaaa") });
+console.log({ shortestPalindrome: shortestPalindrome('aacecaaa') });
 
 /**
- * @param {number} limit 
- * @returns {number} 
+ * @param {number} limit
+ * @returns {number}
  */
 function countEven(limit) {
   let count = 0;
 
   for (let idx = 1; idx <= limit; idx++) {
-    let digitSum = 0, num = idx;
+    let digitSum = 0,
+      num = idx;
 
     while (num > 0) {
       digitSum += num % 10;
@@ -10336,26 +11229,27 @@ function countEven(limit) {
 console.log({ countEven: countEven(10) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findNonMinOrMax(nums) {
-  const maxNum = Math.max(...nums), minNum = Math.min(...nums);
-  return nums.find(num => num !== minNum && num !== maxNum) ?? -1;
+  const maxNum = Math.max(...nums),
+    minNum = Math.min(...nums);
+  return nums.find((num) => num !== minNum && num !== maxNum) ?? -1;
 }
 console.log({ findNonMinOrMax: findNonMinOrMax([1, 2, 3, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function thirdMax(nums) {
   nums.sort((a, b) => b - a);
 
-  let count = 0, maxNum = -Infinity;
+  let count = 0,
+    maxNum = -Infinity;
 
   for (const num of nums) {
-
     if (maxNum !== num) {
       maxNum = num;
       count++;
@@ -10369,7 +11263,7 @@ function thirdMax(nums) {
 console.log({ thirdMax: thirdMax([3, 2, 1]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {boolean}
  */
 function isHappy(n) {
@@ -10393,7 +11287,7 @@ function isHappy(n) {
 console.log({ isHappy: isHappy(19) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function isArraySpecial(nums) {
@@ -10406,8 +11300,8 @@ function isArraySpecial(nums) {
 console.log({ isArraySpecial: isArraySpecial([1, 2, 3, 4, 5, 6]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function countPairs(nums, k) {
@@ -10424,12 +11318,13 @@ function countPairs(nums, k) {
 console.log({ countPairs: countPairs([1, 2, 3, 4, 5, 6], 3) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function leftRightDifference(nums) {
   const differences = [];
-  let leftSum = 0, rightSum = nums.reduce((p, c) => p + c, 0);
+  let leftSum = 0,
+    rightSum = nums.reduce((p, c) => p + c, 0);
 
   for (const num of nums) {
     rightSum -= num;
@@ -10442,7 +11337,7 @@ function leftRightDifference(nums) {
 console.log({ leftRightDifference: leftRightDifference([2, 3, 1, 5, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function getSneakyNumbers(nums) {
@@ -10463,11 +11358,12 @@ function getSneakyNumbers(nums) {
 console.log({ getSneakyNumbers: getSneakyNumbers([4, 3, 2, 7, 8, 2, 3, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function canAliceWin(nums) {
-  let singleDigitSum = 0, doubleDigitSum = 0;
+  let singleDigitSum = 0,
+    doubleDigitSum = 0;
 
   for (const num of nums) {
     if (num < 10) singleDigitSum += num;
@@ -10479,8 +11375,8 @@ function canAliceWin(nums) {
 console.log({ canAliceWin: canAliceWin([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) });
 
 /**
- * @param {number[]} arr 
- * @param {number} k 
+ * @param {number[]} arr
+ * @param {number} k
  * @returns {boolean}
  */
 function canArrange(arr, k) {
@@ -10506,7 +11402,7 @@ function canArrange(arr, k) {
 console.log({ canArrange: canArrange([1, 2, 3, 4, 5, 10, 6, 7, 8, 9], 5) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number[]}
  */
 function arrayRankTransform(arr) {
@@ -10516,15 +11412,15 @@ function arrayRankTransform(arr) {
 
   temp.forEach((num) => rankMap.set(num, rank++));
 
-  arr.forEach((_, idx) => arr[idx] = rankMap.get(arr[idx]));
+  arr.forEach((_, idx) => (arr[idx] = rankMap.get(arr[idx])));
 
   return arr;
 }
 console.log({ arrayRankTransform: arrayRankTransform([40, 10, 20, 30]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} p 
+ * @param {number[]} nums
+ * @param {number} p
  * @returns {number}
  */
 function minSubarray(nums, p) {
@@ -10533,7 +11429,8 @@ function minSubarray(nums, p) {
 
   if (remainder === 0) return remainder;
 
-  let result = nums.length, curSum = 0;
+  let result = nums.length,
+    curSum = 0;
   const remainderIndex = { 0: -1 };
 
   nums.forEach((num, idx) => {
@@ -10553,7 +11450,7 @@ function minSubarray(nums, p) {
 console.log({ minSubarray: minSubarray([3, 1, 4, 2], 6) });
 
 /**
- * @param {number[]} skill 
+ * @param {number[]} skill
  * @returns {number}
  */
 function dividePlayers(skill) {
@@ -10575,7 +11472,8 @@ function dividePlayers(skill) {
     const currFreq = skillMap[currSkill];
     const partnerSkill = targetSkill - Number(currSkill);
 
-    if (!(partnerSkill in skillMap) || currFreq !== skillMap[partnerSkill]) return -1;
+    if (!(partnerSkill in skillMap) || currFreq !== skillMap[partnerSkill])
+      return -1;
 
     totalChemistry += Number(currSkill) * partnerSkill * currFreq;
   }
@@ -10585,11 +11483,15 @@ function dividePlayers(skill) {
 console.log({ dividePlayers: dividePlayers([1, 2, 3, 4, 5, 6]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maximumProduct(nums) {
-  let a = -Infinity, b = a, c = a, x = Infinity, y = x;
+  let a = -Infinity,
+    b = a,
+    c = a,
+    x = Infinity,
+    y = x;
 
   for (const num of nums) {
     if (num > a) {
@@ -10611,15 +11513,19 @@ function maximumProduct(nums) {
 console.log({ maximumProduct: maximumProduct([1, 2, 3, 4]) });
 
 /**
- * @param {string} sentence1 
- * @param {string} sentence2 
+ * @param {string} sentence1
+ * @param {string} sentence2
  * @returns {boolean}
  */
 function areSentencesSimilar(sentence1, sentence2) {
-  const s1Words = sentence1.split(' '), s2Words = sentence2.split(' ');
-  let start = 0, ends1 = s1Words.length - 1, ends2 = s2Words.length - 1;
+  const s1Words = sentence1.split(' '),
+    s2Words = sentence2.split(' ');
+  let start = 0,
+    ends1 = s1Words.length - 1,
+    ends2 = s2Words.length - 1;
 
-  if (s1Words.length > s2Words.length) return areSentencesSimilar(sentence2, sentence1);
+  if (s1Words.length > s2Words.length)
+    return areSentencesSimilar(sentence2, sentence1);
 
   while (start < s1Words.length && s1Words[start] === s2Words[start]) {
     start++;
@@ -10632,10 +11538,12 @@ function areSentencesSimilar(sentence1, sentence2) {
 
   return ends1 < start;
 }
-console.log({ areSentencesSimilar: areSentencesSimilar("My name is Haley", "My Haley") });
+console.log({
+  areSentencesSimilar: areSentencesSimilar('My name is Haley', 'My Haley'),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minLength(s) {
@@ -10650,16 +11558,17 @@ function minLength(s) {
       continue;
     }
 
-    if ((top === "A" && curr === "B") || (top === "C" && curr === "D")) updatedString.pop();
+    if ((top === 'A' && curr === 'B') || (top === 'C' && curr === 'D'))
+      updatedString.pop();
     else updatedString.push(curr);
   }
 
   return updatedString.length;
 }
-console.log({ minLength: minLength("ABCD") });
+console.log({ minLength: minLength('ABCD') });
 
 /**
- * @param {TreeNode | null} node 
+ * @param {TreeNode | null} node
  * @returns {number}
  */
 function countNodes(node) {
@@ -10668,9 +11577,9 @@ function countNodes(node) {
 }
 
 /**
- * @param {TreeNode | null} node 
- * @param {number} index 
- * @param {number} count 
+ * @param {TreeNode | null} node
+ * @param {number} index
+ * @param {number} count
  * @returns {boolean}
  */
 function isCBT(node, index, count) {
@@ -10685,7 +11594,7 @@ function isCBT(node, index, count) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {boolean}
  */
 function isCompleteTree(root) {
@@ -10695,11 +11604,12 @@ function isCompleteTree(root) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minAddToMakeValid(s) {
-  let openBrackets = 0, minAddsRequired = 0;
+  let openBrackets = 0,
+    minAddsRequired = 0;
 
   for (const char of s) {
     if (char == '(') openBrackets++;
@@ -10708,14 +11618,15 @@ function minAddToMakeValid(s) {
 
   return minAddsRequired + openBrackets;
 }
-console.log({ minAddToMakeValid: minAddToMakeValid("())") });
+console.log({ minAddToMakeValid: minAddToMakeValid('())') });
 
 /**
- * @param {number[][]} intervals 
+ * @param {number[][]} intervals
  * @returns {number}
  */
 function minGroups(intervals) {
-  const start = [], end = [];
+  const start = [],
+    end = [];
 
   intervals.forEach(([left, right]) => {
     start.push(left);
@@ -10725,7 +11636,8 @@ function minGroups(intervals) {
   start.sort((a, b) => a - b);
   end.sort((a, b) => a - b);
 
-  let first = 0, second = 0;
+  let first = 0,
+    second = 0;
   let result = 0;
 
   while (first < intervals.length) {
@@ -10736,11 +11648,19 @@ function minGroups(intervals) {
 
   return result;
 }
-console.log({ minGroups: minGroups([[1, 2], [2, 3], [2, 3], [3, 4], [1, 3]]) });
+console.log({
+  minGroups: minGroups([
+    [1, 2],
+    [2, 3],
+    [2, 3],
+    [3, 4],
+    [1, 3],
+  ]),
+});
 
 /**
- * @param {TreeNode | null} node 
- * @param {number[]} nodes 
+ * @param {TreeNode | null} node
+ * @param {number[]} nodes
  * @returns {number[]}
  */
 function getNodes(node, nodes) {
@@ -10754,12 +11674,15 @@ function getNodes(node, nodes) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[]}
  */
 function findMode(root) {
   const nodes = getNodes(root, []);
-  let maxStreak = 0, currStreak = 0, currNum = 0, ans = [];
+  let maxStreak = 0,
+    currStreak = 0,
+    currNum = 0,
+    ans = [];
 
   for (const num of nodes) {
     if (num === currNum) currStreak += 1;
@@ -10779,19 +11702,23 @@ function findMode(root) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {boolean}
  */
 function isUnivalTree(root) {
-  const leftCorrect = (root.left === null || (root.val === root.left.val && isUnivalTree(root.left)));
-  const rightCorrect = (root.right === null || (root.val === root.right.val && isUnivalTree(root.right)));
+  const leftCorrect =
+    root.left === null ||
+    (root.val === root.left.val && isUnivalTree(root.left));
+  const rightCorrect =
+    root.right === null ||
+    (root.val === root.right.val && isUnivalTree(root.right));
   return leftCorrect && rightCorrect;
 }
 
 /**
- * @param {number[][]} times 
- * @param {number} targetFriend 
- * @returns {number} 
+ * @param {number[][]} times
+ * @param {number} targetFriend
+ * @returns {number}
  */
 function smallestChair(times, targetFriend) {
   const events = [];
@@ -10832,9 +11759,9 @@ function smallestChair(times, targetFriend) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} x 
- * @param {number} y 
+ * @param {TreeNode | null} root
+ * @param {number} x
+ * @param {number} y
  * @returns {boolean}
  */
 function isCousins(root, x, y) {
@@ -10866,8 +11793,8 @@ function isCousins(root, x, y) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function maxKelements(nums, k) {
@@ -10890,42 +11817,47 @@ function maxKelements(nums, k) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minimumSteps(s) {
-  let steps = 0, left = 0, right = s.length - 1;
+  let steps = 0,
+    left = 0,
+    right = s.length - 1;
 
   while (left <= right) {
-    if (s[right] === "1") right--;
-    else if (s[left] === "0") left++;
+    if (s[right] === '1') right--;
+    else if (s[left] === '0') left++;
     else steps += right-- - left++;
   }
 
   return steps;
 }
-console.log({ minimumSteps: minimumSteps("110") });
+console.log({ minimumSteps: minimumSteps('110') });
 
 /**
- * @param {number} a 
- * @param {number} b 
- * @param {number} c 
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
  * @returns {string}
  */
 function longestDiverseString(a, b, c) {
   const maxHeap = new MaxHeap((a, b) => a[0] - b[0]);
 
-  if (a > 0) maxHeap.push([a, "a"]);
-  if (b > 0) maxHeap.push([b, "b"]);
-  if (c > 0) maxHeap.push([c, "c"]);
+  if (a > 0) maxHeap.push([a, 'a']);
+  if (b > 0) maxHeap.push([b, 'b']);
+  if (c > 0) maxHeap.push([c, 'c']);
 
-  let result = "";
+  let result = '';
 
   while (maxHeap.size) {
     let [count, char] = maxHeap.pop();
 
-    if (result.length >= 2 && result[result.length - 1] === char &&
-      result[result.length - 2] === char) {
+    if (
+      result.length >= 2 &&
+      result[result.length - 1] === char &&
+      result[result.length - 2] === char
+    ) {
       if (maxHeap.size === 0) break;
 
       const [tempCount, tempChar] = maxHeap.pop();
@@ -10944,12 +11876,14 @@ function longestDiverseString(a, b, c) {
 }
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function maximumSwap(num) {
   const digits = `${num}`.split('');
-  let maxDigitIdx = -1, swapIdx1 = -1, swapIdx2 = -1;
+  let maxDigitIdx = -1,
+    swapIdx1 = -1,
+    swapIdx2 = -1;
 
   for (let idx = digits.length - 1; idx >= 0; --idx) {
     if (maxDigitIdx == -1 || digits[idx] > digits[maxDigitIdx]) {
@@ -10962,12 +11896,12 @@ function maximumSwap(num) {
 
   [digits[swapIdx1], digits[swapIdx2]] = [digits[swapIdx2], digits[swapIdx1]];
 
-  return +digits.join("");
+  return +digits.join('');
 }
 console.log({ maximumSwap: maximumSwap(2736) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {string}
  */
 function decimalToBinary(num) {
@@ -10976,28 +11910,29 @@ function decimalToBinary(num) {
   while (num > 0) {
     binary = (num % 2) + binary;
     num = Math.floor(num / 2);
-  };
+  }
 
   return binary;
 }
 
 /**
- * @param {string} date 
+ * @param {string} date
  * @returns {string}
  */
 function convertDateToBinary(date) {
-  const [year, month, day] = date.split("-");
+  const [year, month, day] = date.split('-');
   return `${decimalToBinary(+year)}-${decimalToBinary(+month)}-${decimalToBinary(+day)}`;
 }
-console.log({ convertDateToBinary: convertDateToBinary("2021-09-01") });
+console.log({ convertDateToBinary: convertDateToBinary('2021-09-01') });
 
 /**
- * @param {number} n 
- * @param {number} k 
+ * @param {number} n
+ * @param {number} k
  * @returns {string}
  */
 function findKthBit(n, k) {
-  let length = 2 ** n - 1, inverted = false;
+  let length = 2 ** n - 1,
+    inverted = false;
 
   while (length > 1) {
     const half = Math.floor(length / 2);
@@ -11007,16 +11942,16 @@ function findKthBit(n, k) {
       k = 1 + length - k;
       length = half;
       inverted = !inverted;
-    } else return !inverted ? "1" : "0";
+    } else return !inverted ? '1' : '0';
   }
 
-  return !inverted ? "0" : "1";
+  return !inverted ? '0' : '1';
 }
 console.log({ findKthBit: findKthBit(4, 11) });
 
 /**
- * @param {number[][]} boxTypes 
- * @param {number} truckSize 
+ * @param {number[][]} boxTypes
+ * @param {number} truckSize
  * @returns {number}
  */
 function maximumUnits(boxTypes, truckSize) {
@@ -11034,24 +11969,36 @@ function maximumUnits(boxTypes, truckSize) {
 
   return maxUnits;
 }
-console.log({ maximumUnits: maximumUnits([[1, 3], [2, 2], [3, 1]], 4) });
+console.log({
+  maximumUnits: maximumUnits(
+    [
+      [1, 3],
+      [2, 2],
+      [3, 1],
+    ],
+    4,
+  ),
+});
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function truncateSentence(s, k) {
-  return s.split(" ").slice(0, k).join(" ");
+  return s.split(' ').slice(0, k).join(' ');
 }
-console.log({ truncateSentence: truncateSentence("Hello how are you Contestant", 4) });
+console.log({
+  truncateSentence: truncateSentence('Hello how are you Contestant', 4),
+});
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {TreeNode | null}
  */
 function replaceValueInTree(root) {
-  const nodesQueue = [root], rowSum = [];
+  const nodesQueue = [root],
+    rowSum = [];
 
   while (nodesQueue.length) {
     const size = nodesQueue.length;
@@ -11098,8 +12045,8 @@ function replaceValueInTree(root) {
 }
 
 /**
- * @param {TreeNode | null} root 
- * @param {number} k 
+ * @param {TreeNode | null} root
+ * @param {number} k
  * @returns {number}
  */
 function kthLargestLevelSum(root, k) {
@@ -11128,8 +12075,8 @@ function kthLargestLevelSum(root, k) {
 }
 
 /**
- * @param {TreeNode | null} root1 
- * @param {TreeNode | null} root2 
+ * @param {TreeNode | null} root1
+ * @param {TreeNode | null} root2
  * @returns {boolean}
  */
 function flipEquiv(root1, root2) {
@@ -11138,41 +12085,43 @@ function flipEquiv(root1, root2) {
   if (root1.val !== root2.val) return false;
 
   return (
-    (flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right)) ||
+    (flipEquiv(root1.left, root2.left) &&
+      flipEquiv(root1.right, root2.right)) ||
     (flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left))
   );
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function countKeyChanges(s) {
   let count = 0;
 
   for (let idx = 0; idx < s.length - 1; idx++) {
-    const currentChar = s[idx].toLowerCase(), nextChar = s[idx + 1].toLowerCase();
+    const currentChar = s[idx].toLowerCase(),
+      nextChar = s[idx + 1].toLowerCase();
     if (currentChar !== nextChar) count++;
   }
 
   return count;
 }
-console.log({ countKeyChanges: countKeyChanges("aAaAaA") });
+console.log({ countKeyChanges: countKeyChanges('aAaAaA') });
 
 /**
- * @param {string[]} words 
- * @param {string} s 
+ * @param {string[]} words
+ * @param {string} s
  * @returns {boolean}
  */
 function isAcronym(words, s) {
   const acronym = [];
-  words.forEach(word => acronym.push(word[0]));
-  return acronym.join("") === s;
+  words.forEach((word) => acronym.push(word[0]));
+  return acronym.join('') === s;
 }
-console.log({ isAcronym: isAcronym(["a", "b", "c"], "abc") });
+console.log({ isAcronym: isAcronym(['a', 'b', 'c'], 'abc') });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function minimumSum(num) {
@@ -11193,7 +12142,7 @@ function minimumSum(num) {
 console.log({ minimumSum: minimumSum(2932) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function sumOfMultiples(n) {
@@ -11208,7 +12157,7 @@ function sumOfMultiples(n) {
 console.log({ sumOfMultiples: sumOfMultiples(15) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function numberGame(nums) {
@@ -11229,11 +12178,12 @@ function numberGame(nums) {
 }
 
 /**
- * @param {number[]} nums 
- * @returns {number} 
+ * @param {number[]} nums
+ * @returns {number}
  */
 function getLastNegativeIndex(nums) {
-  let left = 0, right = nums.length - 1;
+  let left = 0,
+    right = nums.length - 1;
 
   while (left <= right) {
     const mid = Math.floor((left + right) / 2);
@@ -11246,11 +12196,12 @@ function getLastNegativeIndex(nums) {
 }
 
 /**
- * @param {number[]} nums 
- * @returns {number} 
+ * @param {number[]} nums
+ * @returns {number}
  */
 function getFirstPositiveIndex(nums) {
-  let left = 0, right = nums.length - 1;
+  let left = 0,
+    right = nums.length - 1;
 
   while (left <= right) {
     const mid = Math.floor((left + right) / 2);
@@ -11263,8 +12214,8 @@ function getFirstPositiveIndex(nums) {
 }
 
 /**
- * @param {number[]} nums 
- * @returns {number} 
+ * @param {number[]} nums
+ * @returns {number}
  */
 function maximumCount(nums) {
   const lastNegative = getLastNegativeIndex(nums);
@@ -11278,20 +12229,20 @@ function maximumCount(nums) {
 console.log({ maximumCount: maximumCount([-2, -1, -1, 1, 2, 3]) });
 
 /**
- * @param {number} year 
+ * @param {number} year
  * @returns {boolean}
  */
 function isLeapYear(year) {
-  return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 
 /**
- * @param {string} date 
+ * @param {string} date
  * @returns {number}
  */
 function dayOfYear(date) {
   const DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const [year, month, day] = date.split("-");
+  const [year, month, day] = date.split('-');
   let totalDays = +day;
 
   for (let m = 1; m < +month; m++) {
@@ -11302,15 +12253,16 @@ function dayOfYear(date) {
 
   return totalDays;
 }
-console.log({ dayOfYear: dayOfYear("2019-01-09") });
+console.log({ dayOfYear: dayOfYear('2019-01-09') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function makeFancyString(s) {
   const chars = [];
-  let count = 0, currChar = '';
+  let count = 0,
+    currChar = '';
 
   for (let idx = 0; idx < s.length; idx++) {
     const char = s[idx];
@@ -11326,24 +12278,25 @@ function makeFancyString(s) {
 
   return chars.join('');
 }
-console.log({ makeFancyString: makeFancyString("pppq") });
+console.log({ makeFancyString: makeFancyString('pppq') });
 
 /**
- * @param {string} sentence 
+ * @param {string} sentence
  * @returns {boolean}
  */
 function isCircularSentence(sentence) {
   for (let idx = 0; idx < sentence.length; idx++) {
-    if (sentence[idx] === " " && sentence[idx - 1] !== sentence[idx + 1]) return false;
+    if (sentence[idx] === ' ' && sentence[idx - 1] !== sentence[idx + 1])
+      return false;
   }
 
   return sentence[0] === sentence[sentence.length - 1];
 }
-console.log({ isCircularSentence: isCircularSentence("leetcod ees true") });
+console.log({ isCircularSentence: isCircularSentence('leetcod ees true') });
 
 /**
- * @param {number} num 
- * @param {number} k 
+ * @param {number} num
+ * @param {number} k
  * @returns {number}
  */
 function divisorSubstrings(num, k) {
@@ -11362,12 +12315,13 @@ function divisorSubstrings(num, k) {
 console.log({ divisorSubstrings: divisorSubstrings(100, 5) });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {string}
  */
 function compressedString(word) {
   const newString = [];
-  let currChar = "", count = 0;
+  let currChar = '',
+    count = 0;
 
   for (let idx = 0; idx < word.length; idx++) {
     const char = word[idx];
@@ -11388,12 +12342,12 @@ function compressedString(word) {
 
   if (count > 0) newString.push(`${Math.min(count, 9)}${currChar}`);
 
-  return newString.join("");
+  return newString.join('');
 }
-console.log({ compressedString: compressedString("aaaaaaaaaaaaaabb") });
+console.log({ compressedString: compressedString('aaaaaaaaaaaaaabb') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minChanges(s) {
@@ -11405,15 +12359,15 @@ function minChanges(s) {
 
   return changes;
 }
-console.log({ minChanges: minChanges("1001") });
+console.log({ minChanges: minChanges('1001') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function canSortArray(nums) {
   /**
-   * @param {number} n 
+   * @param {number} n
    * @returns {number}
    */
   function countBits(n) {
@@ -11427,7 +12381,8 @@ function canSortArray(nums) {
     return res;
   }
 
-  let curMin = nums[0], curMax = nums[0];
+  let curMin = nums[0],
+    curMax = nums[0];
   let prevMax = 0;
 
   for (const num of nums) {
@@ -11447,7 +12402,7 @@ function canSortArray(nums) {
 console.log({ canSortArray: canSortArray([1, 2, 3, 4, 5]) });
 
 /**
- * @param {number[]} candidates 
+ * @param {number[]} candidates
  * @returns {number}
  */
 function largestCombination(candidates) {
@@ -11457,7 +12412,7 @@ function largestCombination(candidates) {
     let count = 0;
 
     for (const candidate of candidates) {
-      count += 1 << idx & candidate ? 1 : 0;
+      count += (1 << idx) & candidate ? 1 : 0;
     }
 
     size = Math.max(size, count);
@@ -11465,16 +12420,19 @@ function largestCombination(candidates) {
 
   return size;
 }
-console.log({ largestCombination: largestCombination([16, 17, 71, 62, 12, 24, 14]) });
+console.log({
+  largestCombination: largestCombination([16, 17, 71, 62, 12, 24, 14]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} maximumBit 
+ * @param {number[]} nums
+ * @param {number} maximumBit
  * @returns {number[]}
  */
 function getMaximumXor(nums, maximumBit) {
-  let xor = nums.reduce((acc, cur) => acc ^= cur, 0);
-  const answer = [], mask = (1 << maximumBit) - 1;
+  let xor = nums.reduce((acc, cur) => (acc ^= cur), 0);
+  const answer = [],
+    mask = (1 << maximumBit) - 1;
 
   for (let idx = nums.length - 1; idx >= 0; idx--) {
     answer.push(xor ^ mask);
@@ -11486,12 +12444,14 @@ function getMaximumXor(nums, maximumBit) {
 console.log({ getMaximumXor: getMaximumXor([0, 1, 1, 3], 2) });
 
 /**
- * @param {number} n 
- * @param {number} x 
+ * @param {number} n
+ * @param {number} x
  * @returns {number}
  */
 function minEnd(n, x) {
-  let result = BigInt(x), remaining = BigInt(n - 1), position = 1n;
+  let result = BigInt(x),
+    remaining = BigInt(n - 1),
+    position = 1n;
 
   while (remaining > 0n) {
     if ((BigInt(x) & position) === 0n) {
@@ -11507,13 +12467,14 @@ function minEnd(n, x) {
 console.log({ minEnd: minEnd(3, 4) });
 
 /**
- * @param {(number | null)[][]} values 
+ * @param {(number | null)[][]} values
  * @returns {boolean}
  */
 function isLevelSymmetric(values) {
   for (let idx = 0; idx < values.length; idx++) {
     const row = values[idx];
-    let left = 0, right = row.length - 1;
+    let left = 0,
+      right = row.length - 1;
 
     while (left < right) {
       if (row[left++] !== row[right--]) return false;
@@ -11524,7 +12485,7 @@ function isLevelSymmetric(values) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {boolean}
  */
 function isSymmetric(root) {
@@ -11554,7 +12515,7 @@ function isSymmetric(root) {
 }
 
 /**
- * @param {number} x 
+ * @param {number} x
  * @returns {boolean}
  */
 function checkPrime(x) {
@@ -11566,7 +12527,7 @@ function checkPrime(x) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function primeSubOperation(nums) {
@@ -11595,7 +12556,7 @@ function primeSubOperation(nums) {
 console.log({ primeSubOperation: primeSubOperation([6, 8, 11, 12]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function lengthOfLongestSubstring(s) {
@@ -11617,10 +12578,10 @@ function lengthOfLongestSubstring(s) {
 
   return maxLength;
 }
-console.log({ lengthOfLongestSubstring: lengthOfLongestSubstring("abcabcbb") });
+console.log({ lengthOfLongestSubstring: lengthOfLongestSubstring('abcabcbb') });
 
 /**
- * @param {number[]} stones 
+ * @param {number[]} stones
  * @returns {number}
  */
 function lastStoneWeight(stones) {
@@ -11628,7 +12589,8 @@ function lastStoneWeight(stones) {
   stones.forEach((stone) => maxHeap.push(stone));
 
   while (maxHeap.size > 1) {
-    const first = maxHeap.pop(), second = maxHeap.pop();
+    const first = maxHeap.pop(),
+      second = maxHeap.pop();
 
     if (first !== second) {
       const result = first - second;
@@ -11640,12 +12602,13 @@ function lastStoneWeight(stones) {
 }
 
 /**
- * @param {number[][]} items 
- * @param {number} targetPrice 
+ * @param {number[][]} items
+ * @param {number} targetPrice
  * @returns {number}
  */
 function findBeauty(items, targetPrice) {
-  let start = 0, end = items.length - 1;
+  let start = 0,
+    end = items.length - 1;
   let maxBeauty = 0;
 
   while (start <= end) {
@@ -11663,8 +12626,8 @@ function findBeauty(items, targetPrice) {
 }
 
 /**
- * @param {number[][]} items 
- * @param {number[]} queries 
+ * @param {number[][]} items
+ * @param {number[]} queries
  * @returns {number[]}
  */
 function maximumBeauty(items, queries) {
@@ -11683,10 +12646,21 @@ function maximumBeauty(items, queries) {
 
   return itemBeauty;
 }
-console.log({ maximumBeauty: maximumBeauty([[1, 2], [3, 2], [2, 4], [5, 6], [3, 5]], [1, 2, 3, 4, 5, 6]) });
+console.log({
+  maximumBeauty: maximumBeauty(
+    [
+      [1, 2],
+      [3, 2],
+      [2, 4],
+      [5, 6],
+      [3, 5],
+    ],
+    [1, 2, 3, 4, 5, 6],
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumOperations(nums) {
@@ -11695,17 +12669,17 @@ function minimumOperations(nums) {
 console.log({ minimumOperations: minimumOperations([1, 5, 0, 3, 5]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} lower 
- * @param {number} upper 
- * @returns {number} 
+ * @param {number[]} nums
+ * @param {number} lower
+ * @param {number} upper
+ * @returns {number}
  */
 function countFairPairs(nums, lower, upper) {
   /**
-   * @param {number} left 
-   * @param {number} right 
-   * @param {number} target 
-   * @returns {number} 
+   * @param {number} left
+   * @param {number} right
+   * @param {number} target
+   * @returns {number}
    */
   function findIndex(left, right, target) {
     while (left <= right) {
@@ -11722,8 +12696,11 @@ function countFairPairs(nums, lower, upper) {
   let count = 0;
 
   nums.forEach((num, idx) => {
-    const low = lower - num, up = upper - num;
-    count += findIndex(idx + 1, nums.length - 1, up + 1) - findIndex(idx + 1, nums.length - 1, low);
+    const low = lower - num,
+      up = upper - num;
+    count +=
+      findIndex(idx + 1, nums.length - 1, up + 1) -
+      findIndex(idx + 1, nums.length - 1, low);
   });
 
   return count;
@@ -11731,24 +12708,26 @@ function countFairPairs(nums, lower, upper) {
 console.log({ countFairPairs: countFairPairs([0, 1, 7, 4, 4, 5], 3, 6) });
 
 /**
- * @param {number} storeCount 
- * @param {number} x 
- * @param {number[]} quantities 
+ * @param {number} storeCount
+ * @param {number} x
+ * @param {number[]} quantities
  * @returns {boolean}
  */
 function canDistribute(storeCount, x, quantities) {
   let stores = 0;
-  quantities.forEach((quantity) => stores += Math.ceil(quantity / x));
+  quantities.forEach((quantity) => (stores += Math.ceil(quantity / x)));
   return stores <= storeCount;
 }
 
 /**
- * @param {number} n 
- * @param {number[]} quantities 
+ * @param {number} n
+ * @param {number[]} quantities
  * @returns {number}
  */
 function minimizedMaximum(n, quantities) {
-  let start = 0, end = Math.max(...quantities), result = 0;
+  let start = 0,
+    end = Math.max(...quantities),
+    result = 0;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -11764,7 +12743,7 @@ function minimizedMaximum(n, quantities) {
 console.log({ minimizedMaximum: minimizedMaximum(6, [11, 6]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function findLengthOfShortestSubarray(arr) {
@@ -11774,7 +12753,8 @@ function findLengthOfShortestSubarray(arr) {
     right--;
   }
 
-  let ans = right, left = 0;
+  let ans = right,
+    left = 0;
 
   while (left < right && (left === 0 || arr[left - 1] <= arr[left])) {
     while (right < arr.length && arr[left] > arr[right]) {
@@ -11787,11 +12767,15 @@ function findLengthOfShortestSubarray(arr) {
 
   return ans;
 }
-console.log({ findLengthOfShortestSubarray: findLengthOfShortestSubarray([1, 2, 3, 10, 4, 2, 3, 5]) });
+console.log({
+  findLengthOfShortestSubarray: findLengthOfShortestSubarray([
+    1, 2, 3, 10, 4, 2, 3, 5,
+  ]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number[]}
  */
 function resultsArray(nums, k) {
@@ -11817,12 +12801,13 @@ function resultsArray(nums, k) {
 console.log({ resultsArray: resultsArray([1, 2, 3, 4, 3, 2, 5], 3) });
 
 /**
- * @param {number[]} arr 
- * @param {number} k 
+ * @param {number[]} arr
+ * @param {number} k
  * @returns {number}
  */
 function findKthPositive(arr, k) {
-  let start = 0, end = arr.length - 1;
+  let start = 0,
+    end = arr.length - 1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -11837,14 +12822,16 @@ function findKthPositive(arr, k) {
 console.log({ findKthPositive: findKthPositive([2, 3, 4, 7, 11], 5) });
 
 /**
- * @param {number[]} code 
- * @param {number} k 
+ * @param {number[]} code
+ * @param {number} k
  * @returns {number[]}
  */
 function decrypt(code, k) {
-  const length = code.length, decrypted = code.map(() => 0);
+  const length = code.length,
+    decrypted = code.map(() => 0);
   const limit = Math.abs(k);
-  let left = 0, curSum = 0;
+  let left = 0,
+    curSum = 0;
 
   for (let right = 0; right < length + limit; right++) {
     curSum += code[right % length];
@@ -11865,17 +12852,22 @@ function decrypt(code, k) {
 console.log({ decrypt: decrypt([5, 7, 1, 4], 3) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function maximumSubarraySum(nums, k) {
-  let ans = 0, currentSum = 0, begin = 0, end = 0;
+  let ans = 0,
+    currentSum = 0,
+    begin = 0,
+    end = 0;
   const numToIndex = new Map();
 
   while (end < nums.length) {
     const currNum = nums[end];
-    const lastOccurrence = numToIndex.has(currNum) ? numToIndex.get(currNum) : -1;
+    const lastOccurrence = numToIndex.has(currNum)
+      ? numToIndex.get(currNum)
+      : -1;
 
     while (begin <= lastOccurrence || end - begin + 1 > k) {
       currentSum -= nums[begin];
@@ -11894,15 +12886,18 @@ function maximumSubarraySum(nums, k) {
 
   return ans;
 }
-console.log({ maximumSubarraySum: maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3) });
+console.log({
+  maximumSubarraySum: maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3),
+});
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {number}
  */
 function takeCharacters(s, k) {
-  const count = [0, 0, 0], n = s.length;
+  const count = [0, 0, 0],
+    n = s.length;
 
   for (const c of s) {
     count[c.charCodeAt(0) - 'a'.charCodeAt(0)]++;
@@ -11910,7 +12905,8 @@ function takeCharacters(s, k) {
 
   if (Math.min(...count) < k) return -1;
 
-  let left = 0, minWindow = n + 1;
+  let left = 0,
+    minWindow = n + 1;
 
   for (let right = 0; right < n; right++) {
     count[s.charCodeAt(right) - 'a'.charCodeAt(0)]--;
@@ -11925,11 +12921,11 @@ function takeCharacters(s, k) {
 
   return minWindow;
 }
-console.log({ takeCharacters: takeCharacters("aabaaaacaabc", 2) });
+console.log({ takeCharacters: takeCharacters('aabaaaacaabc', 2) });
 
 /**
- * @param {number[]} height 
- * @param {number} threshold 
+ * @param {number[]} height
+ * @param {number} threshold
  * @returns {number[]}
  */
 function stableMountains(height, threshold) {
@@ -11944,7 +12940,7 @@ function stableMountains(height, threshold) {
 console.log({ stableMountains: stableMountains([1, 2, 3, 4, 5], 2) });
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number}
  */
 function maxEqualRowsAfterFlips(matrix) {
@@ -11953,31 +12949,39 @@ function maxEqualRowsAfterFlips(matrix) {
   for (const row of matrix) {
     let rowKey = `${row}`;
 
-    if (+rowKey[0] === 1)
-      rowKey = `${row.map(num => num === 1 ? 0 : 1)}`;
+    if (+rowKey[0] === 1) rowKey = `${row.map((num) => (num === 1 ? 0 : 1))}`;
 
     rowCount.set(rowKey, (rowCount.get(rowKey) || 0) + 1);
   }
 
   return Math.max(...rowCount.values());
 }
-console.log({ maxEqualRowsAfterFlips: maxEqualRowsAfterFlips([[0, 1], [1, 1]]) });
+console.log({
+  maxEqualRowsAfterFlips: maxEqualRowsAfterFlips([
+    [0, 1],
+    [1, 1],
+  ]),
+});
 
 /**
- * @param {string[][]} box 
+ * @param {string[][]} box
  * @returns {string[][]}
  */
 function rotateTheBox(box) {
-  const ROWS = box.length, COLS = box[0].length;
+  const ROWS = box.length,
+    COLS = box[0].length;
 
   for (let right = 0; right < ROWS; right++) {
     let left = COLS - 1;
 
     for (let col = COLS - 1; col >= 0; col--) {
-      if (box[right][col] === "#") {
-        [box[right][col], box[right][left]] = [box[right][left], box[right][col]];
+      if (box[right][col] === '#') {
+        [box[right][col], box[right][left]] = [
+          box[right][left],
+          box[right][col],
+        ];
         left--;
-      } else if (box[right][col] === "*") left = col - 1;
+      } else if (box[right][col] === '*') left = col - 1;
     }
   }
 
@@ -11995,24 +12999,27 @@ function rotateTheBox(box) {
 
   return result;
 }
-console.log({ rotateTheBox: rotateTheBox([["#", ".", "#"]]) });
+console.log({ rotateTheBox: rotateTheBox([['#', '.', '#']]) });
 
 /**
- * @param {string} paragraph 
- * @param {string[]} banned 
+ * @param {string} paragraph
+ * @param {string[]} banned
  * @returns {string}
  */
 function mostCommonWord(paragraph, banned) {
   const bannedWords = new Set(banned);
   const wordCount = new Map();
-  const updatedParagraph = paragraph.replace(/[!?',;.]/g, ' ').toLowerCase().split(' ');
+  const updatedParagraph = paragraph
+    .replace(/[!?',;.]/g, ' ')
+    .toLowerCase()
+    .split(' ');
   let maxOccurence = 0;
 
   for (const word of updatedParagraph) {
     if (word.length) {
       if (!bannedWords.has(word)) {
         wordCount.set(word, (wordCount.get(word) || 0) + 1);
-        maxOccurence = Math.max((wordCount.get(word) || 0), maxOccurence);
+        maxOccurence = Math.max(wordCount.get(word) || 0, maxOccurence);
       }
     }
   }
@@ -12021,33 +13028,33 @@ function mostCommonWord(paragraph, banned) {
     if (count === maxOccurence) return word;
   }
 }
-console.log({ mostCommonWord: mostCommonWord("a.", []) });
+console.log({ mostCommonWord: mostCommonWord('a.', []) });
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {string[]}
  */
 function findWords(words) {
-  const firstRow = new Set("qwertyuiop");
-  const secondRow = new Set("asdfghjkl");
-  const thirdRow = new Set("zxcvbnm");
+  const firstRow = new Set('qwertyuiop');
+  const secondRow = new Set('asdfghjkl');
+  const thirdRow = new Set('zxcvbnm');
   const possibleWords = [];
 
   for (const word of words) {
-    const lowerCaseWord = word.toLowerCase().split("");
-    const isFirst = lowerCaseWord.every(char => firstRow.has(char));
-    const isSecond = lowerCaseWord.every(char => secondRow.has(char));
-    const isThird = lowerCaseWord.every(char => thirdRow.has(char));
+    const lowerCaseWord = word.toLowerCase().split('');
+    const isFirst = lowerCaseWord.every((char) => firstRow.has(char));
+    const isSecond = lowerCaseWord.every((char) => secondRow.has(char));
+    const isThird = lowerCaseWord.every((char) => thirdRow.has(char));
     if (isFirst || isSecond || isThird) possibleWords.push(word);
   }
 
   return possibleWords;
 }
-console.log({ findWords: findWords(["Hello", "Alaska", "Dad", "Peace"]) });
+console.log({ findWords: findWords(['Hello', 'Alaska', 'Dad', 'Peace']) });
 
 /**
- * @param {string[]} list1 
- * @param {string[]} list2 
+ * @param {string[]} list1
+ * @param {string[]} list2
  * @returns {string[]}
  */
 function findRestaurant(list1, list2) {
@@ -12072,12 +13079,17 @@ function findRestaurant(list1, list2) {
 
   return commonWords;
 }
-console.log({ findRestaurant: findRestaurant(["happy", "sad", "good"], ["sad", "happy", "good"]) });
+console.log({
+  findRestaurant: findRestaurant(
+    ['happy', 'sad', 'good'],
+    ['sad', 'happy', 'good'],
+  ),
+});
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
- * @param {number} k 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @param {number} k
  * @returns {number}
  */
 function numberOfPairs(nums1, nums2, k) {
@@ -12100,8 +13112,8 @@ function numberOfPairs(nums1, nums2, k) {
 console.log({ numberOfPairs: numberOfPairs([1, 3, 4], [1, 3, 4], 1) });
 
 /**
- * @param {string} key 
- * @param {string} message 
+ * @param {string} key
+ * @param {string} message
  * @returns {string}
  */
 function decodeMessage(key, message) {
@@ -12111,22 +13123,27 @@ function decodeMessage(key, message) {
 
   for (let idx = 0; idx < key.length; idx++) {
     const char = key[idx];
-    if (char !== " ")
+    if (char !== ' ')
       if (!charMap.has(char))
         charMap.set(char, String.fromCharCode(97 + count++));
   }
 
   for (const char of message) {
-    if (char === " ") decodedMessage.push(" ");
+    if (char === ' ') decodedMessage.push(' ');
     else decodedMessage.push(charMap.get(char));
   }
 
-  return decodedMessage.join("");
+  return decodedMessage.join('');
 }
-console.log({ decodeMessage: decodeMessage("the quick brown fox jumps over the lazy dog", "vkbs bs t suepuv") });
+console.log({
+  decodeMessage: decodeMessage(
+    'the quick brown fox jumps over the lazy dog',
+    'vkbs bs t suepuv',
+  ),
+});
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {boolean}
  */
 function checkIfExist(arr) {
@@ -12142,12 +13159,12 @@ function checkIfExist(arr) {
 console.log({ checkIfExist: checkIfExist([10, 2, 5, 3]) });
 
 /**
- * @param {string} sentence 
- * @param {string} searchWord 
+ * @param {string} sentence
+ * @param {string} searchWord
  * @returns {number}
  */
 function isPrefixOfWord(sentence, searchWord) {
-  const words = sentence.trim().split(" ");
+  const words = sentence.trim().split(' ');
 
   for (let idx = 0; idx < words.length; idx++) {
     if (words[idx].startsWith(searchWord)) return idx + 1;
@@ -12155,12 +13172,12 @@ function isPrefixOfWord(sentence, searchWord) {
 
   return -1;
 }
-console.log({ isPrefixOfWord: isPrefixOfWord("i love eating burger", "burg") });
+console.log({ isPrefixOfWord: isPrefixOfWord('i love eating burger', 'burg') });
 
 /**
- * @param {string[]} s 
- * @param {number[]} spaces 
- * @returns {string} 
+ * @param {string[]} s
+ * @param {number[]} spaces
+ * @returns {string}
  */
 function addSpaces(s, spaces) {
   const result = [];
@@ -12169,22 +13186,23 @@ function addSpaces(s, spaces) {
   for (let idx = 0; idx < s.length; idx++) {
     if (idx === spaces[count]) {
       count++;
-      result.push(" ");
+      result.push(' ');
     }
     result.push(s[idx]);
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ addSpaces: addSpaces("LeetcodeHelpsMeLearn", [8, 13, 15]) });
+console.log({ addSpaces: addSpaces('LeetcodeHelpsMeLearn', [8, 13, 15]) });
 
 /**
- * @param {string} str1 
- * @param {string} str2 
+ * @param {string} str1
+ * @param {string} str2
  * @returns {boolean}
  */
 function canMakeSubsequence(str1, str2) {
-  let first = 0, second = 0;
+  let first = 0,
+    second = 0;
 
   while (first < str1.length && second < str2.length) {
     if (
@@ -12199,16 +13217,17 @@ function canMakeSubsequence(str1, str2) {
 
   return second === str2.length;
 }
-console.log({ canMakeSubsequence: canMakeSubsequence("abc", "ad") });
+console.log({ canMakeSubsequence: canMakeSubsequence('abc', 'ad') });
 
 /**
- * @param {string} start 
- * @param {string} target 
+ * @param {string} start
+ * @param {string} target
  * @returns {boolean}
  */
 function canChange(start, target) {
   if (start === target) return true;
-  let waitL = 0, waitR = 0;
+  let waitL = 0,
+    waitR = 0;
 
   for (let i = 0; i < start.length; i++) {
     const curr = start[i];
@@ -12234,12 +13253,12 @@ function canChange(start, target) {
 
   return waitL === 0 && waitR === 0;
 }
-console.log({ canChange: canChange("_L__R__R_", "L______RR") });
+console.log({ canChange: canChange('_L__R__R_', 'L______RR') });
 
 /**
- * @param {number[]} banned 
- * @param {number} n 
- * @param {number} maxSum 
+ * @param {number[]} banned
+ * @param {number} n
+ * @param {number} maxSum
  * @returns {number}
  */
 function maxCount(banned, n, maxSum) {
@@ -12263,13 +13282,13 @@ function maxCount(banned, n, maxSum) {
 console.log({ maxCount: maxCount([1, 6, 5], 5, 6) });
 
 /**
- * @param {number[]} nums 
- * @param {number} maxOperations 
+ * @param {number[]} nums
+ * @param {number} maxOperations
  * @returns {number}
  */
 function minimumSize(nums, maxOperations) {
   /**
-   * @param {number} maxBallsInBag 
+   * @param {number} maxBallsInBag
    * @returns {boolean}
    */
   function canDivide(maxBallsInBag) {
@@ -12283,7 +13302,8 @@ function minimumSize(nums, maxOperations) {
     return true;
   }
 
-  let left = 1, right = Math.max(...nums);
+  let left = 1,
+    right = Math.max(...nums);
 
   while (left < right) {
     const mid = left + Math.floor((right - left) / 2);
@@ -12297,11 +13317,12 @@ function minimumSize(nums, maxOperations) {
 console.log({ minimumSize: minimumSize([9], 2) });
 
 /**
- * @param {number[][]} logs 
+ * @param {number[][]} logs
  * @returns {number}
  */
 function maximumPopulation(logs) {
-  const shift = 1950, yearsCount = 2050 - 1950 + 1;
+  const shift = 1950,
+    yearsCount = 2050 - 1950 + 1;
   const population = Array(yearsCount).fill(0);
 
   for (const [start, end] of logs) {
@@ -12309,7 +13330,9 @@ function maximumPopulation(logs) {
     population[end - shift] -= 1;
   }
 
-  let cur = 0, max = 0, earliestYear = shift;
+  let cur = 0,
+    max = 0,
+    earliestYear = shift;
 
   for (let i = 0; i < population.length; i++) {
     cur += population[i];
@@ -12322,10 +13345,15 @@ function maximumPopulation(logs) {
 
   return earliestYear;
 }
-console.log({ maximumPopulation: maximumPopulation([[1993, 1999], [2000, 2010]]) });
+console.log({
+  maximumPopulation: maximumPopulation([
+    [1993, 1999],
+    [2000, 2010],
+  ]),
+});
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number[][]}
  */
 function minimumAbsDifference(arr) {
@@ -12338,7 +13366,8 @@ function minimumAbsDifference(arr) {
   }
 
   for (let idx = 0; idx < arr.length - 1; idx++) {
-    if (arr[idx + 1] - arr[idx] === minDiff) result.push([arr[idx], arr[idx + 1]]);
+    if (arr[idx + 1] - arr[idx] === minDiff)
+      result.push([arr[idx], arr[idx + 1]]);
   }
 
   return result;
@@ -12346,7 +13375,7 @@ function minimumAbsDifference(arr) {
 console.log({ minimumAbsDifference: minimumAbsDifference([4, 2, 1, 3]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maximumLength(s) {
@@ -12375,17 +13404,18 @@ function maximumLength(s) {
 
   return maxLength === 0 ? -1 : maxLength;
 }
-console.log({ maximumLength: maximumLength("aaaa") });
+console.log({ maximumLength: maximumLength('aaaa') });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function maximumBeauty(nums, k) {
   nums.sort((a, b) => a - b);
 
-  let result = 0, left = 0;
+  let result = 0,
+    left = 0;
 
   for (let right = 0; right < nums.length; right++) {
     while (nums[right] - nums[left] > 2 * k) {
@@ -12400,8 +13430,8 @@ function maximumBeauty(nums, k) {
 console.log({ maximumBeauty: maximumBeauty([4, 6, 1, 2], 2) });
 
 /**
- * @param {number[]} gifts 
- * @param {number} k 
+ * @param {number[]} gifts
+ * @param {number} k
  * @returns {number}
  */
 function pickGifts(gifts, k) {
@@ -12429,7 +13459,7 @@ function pickGifts(gifts, k) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findScore(nums) {
@@ -12474,13 +13504,15 @@ function findScore(nums) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function continuousSubarrays(nums) {
-  let right = 0, left = 0;
+  let right = 0,
+    left = 0;
   let curMin, curMax;
-  let windowLen = 0, total = 0;
+  let windowLen = 0,
+    total = 0;
 
   curMin = curMax = nums[right];
 
@@ -12516,32 +13548,42 @@ function continuousSubarrays(nums) {
 console.log({ continuousSubarrays: continuousSubarrays([5, 4, 2, 4]) });
 
 /**
- * @param {string[][]} items 
- * @param {string} ruleKey 
- * @param {string} ruleValue 
+ * @param {string[][]} items
+ * @param {string} ruleKey
+ * @param {string} ruleValue
  * @returns {number}
  */
 function countMatches(items, ruleKey, ruleValue) {
   let count = 0;
 
   for (const [type, color, name] of items) {
-    if (ruleKey === "type") {
+    if (ruleKey === 'type') {
       if (ruleValue === type) count++;
-    } else if (ruleKey === "color") {
+    } else if (ruleKey === 'color') {
       if (ruleValue === color) count++;
-    } else if (ruleKey === "name") {
+    } else if (ruleKey === 'name') {
       if (ruleValue === name) count++;
     }
   }
 
   return count;
 }
-console.log({ countMatches: countMatches([["phone", "blue", "pixel"], ["computer", "silver", "lenovo"], ["phone", "gold", "iphone"]], "color", "silver") });
+console.log({
+  countMatches: countMatches(
+    [
+      ['phone', 'blue', 'pixel'],
+      ['computer', 'silver', 'lenovo'],
+      ['phone', 'gold', 'iphone'],
+    ],
+    'color',
+    'silver',
+  ),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
- * @param {number} multiplier 
+ * @param {number[]} nums
+ * @param {number} k
+ * @param {number} multiplier
  * @returns {number[]}
  */
 function getFinalState(nums, k, multiplier) {
@@ -12562,8 +13604,8 @@ function getFinalState(nums, k, multiplier) {
 }
 
 /**
- * @param {string} s 
- * @param {number} repeatLimit 
+ * @param {string} s
+ * @param {number} repeatLimit
  * @returns {string}
  */
 function repeatLimitedString(s, repeatLimit) {
@@ -12608,11 +13650,12 @@ function repeatLimitedString(s, repeatLimit) {
 }
 
 /**
- * @param {number[]} prices 
+ * @param {number[]} prices
  * @returns {number[]}
  */
 function finalPrices(prices) {
-  const result = [...prices], stack = [];
+  const result = [...prices],
+    stack = [];
 
   for (let i = 0; i < prices.length; i++) {
     while (stack.length && prices[stack[stack.length - 1]] >= prices[i]) {
@@ -12627,11 +13670,12 @@ function finalPrices(prices) {
 console.log({ finalPrices: finalPrices([8, 4, 6, 2, 3]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function maxChunksToSorted(arr) {
-  let curMax = -1, chunksCount = 0;
+  let curMax = -1,
+    chunksCount = 0;
 
   for (let idx = 0; idx < arr.length; idx++) {
     curMax = Math.max(curMax, arr[idx]);
@@ -12643,7 +13687,7 @@ function maxChunksToSorted(arr) {
 console.log({ maxChunksToSorted: maxChunksToSorted([4, 3, 2, 1, 0]) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {TreeNode | null}
  */
 function reverseOddLevels(root) {
@@ -12652,10 +13696,14 @@ function reverseOddLevels(root) {
 
   while (nodesQueue.length) {
     if (idx & 1) {
-      let left = 0, right = nodesQueue.length - 1;
+      let left = 0,
+        right = nodesQueue.length - 1;
 
       while (left < right) {
-        [nodesQueue[left++].val, nodesQueue[right--].val] = [nodesQueue[right].val, nodesQueue[left].val];
+        [nodesQueue[left++].val, nodesQueue[right--].val] = [
+          nodesQueue[right].val,
+          nodesQueue[left].val,
+        ];
       }
     }
 
@@ -12675,14 +13723,14 @@ function reverseOddLevels(root) {
 }
 
 /**
- * @param {number[]} nums 
- * @returns {TreeNode | null} 
+ * @param {number[]} nums
+ * @returns {TreeNode | null}
  */
 function sortedArrayToBST(nums) {
   /**
-   * @param {number} left 
-   * @param {number} right 
-   * @returns {TreeNode | null} 
+   * @param {number} left
+   * @param {number} right
+   * @returns {TreeNode | null}
    */
   function constructBST(left, right) {
     if (left > right) return null;
@@ -12700,8 +13748,8 @@ function sortedArrayToBST(nums) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {boolean}
  */
 function containsNearbyDuplicate(nums, k) {
@@ -12715,10 +13763,12 @@ function containsNearbyDuplicate(nums, k) {
 
   return false;
 }
-console.log({ containsNearbyDuplicate: containsNearbyDuplicate([1, 2, 3, 1], 3) });
+console.log({
+  containsNearbyDuplicate: containsNearbyDuplicate([1, 2, 3, 1], 3),
+});
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function minimumOperations(root) {
@@ -12726,7 +13776,7 @@ function minimumOperations(root) {
   let totalSwaps = 0;
 
   /**
-   * @param {number[]} original 
+   * @param {number[]} original
    * @returns {number}
    */
   function getMinSwaps(original) {
@@ -12771,8 +13821,8 @@ function minimumOperations(root) {
 }
 
 /**
- * @param {number[]} encoded 
- * @param {number} first 
+ * @param {number[]} encoded
+ * @param {number} first
  * @returns {number[]}
  */
 function decode(encoded, first) {
@@ -12783,11 +13833,12 @@ function decode(encoded, first) {
 console.log({ decode: decode([1, 2, 3], 1) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number[]}
  */
 function largestValues(root) {
-  const nodesQueue = [root], maxValues = [];
+  const nodesQueue = [root],
+    maxValues = [];
   if (!root) return maxValues;
 
   while (nodesQueue.length) {
@@ -12809,15 +13860,15 @@ function largestValues(root) {
 }
 
 /**
- * @param {TreeNode | null} original 
- * @param {TreeNode | null} cloned 
- * @param {TreeNode | null} target 
+ * @param {TreeNode | null} original
+ * @param {TreeNode | null} cloned
+ * @param {TreeNode | null} target
  * @returns {TreeNode | null}
  */
 function getTargetCopy(original, cloned, target) {
   /**
-   * @param {TreeNode | null} node1 
-   * @param {TreeNode | null} node2 
+   * @param {TreeNode | null} node1
+   * @param {TreeNode | null} node2
    * @returns {TreeNode | null}
    */
   function getNode(node1, node2) {
@@ -12835,11 +13886,12 @@ function getTargetCopy(original, cloned, target) {
 }
 
 /**
- * @param {number[]} values 
+ * @param {number[]} values
  * @returns {number}
  */
 function maxScoreSightseeingPair(values) {
-  let maxScore = 0, curMax = values[0] - 1;
+  let maxScore = 0,
+    curMax = values[0] - 1;
 
   for (let idx = 1; idx < values.length; idx++) {
     maxScore = Math.max(maxScore, values[idx] + curMax);
@@ -12848,11 +13900,13 @@ function maxScoreSightseeingPair(values) {
 
   return maxScore;
 }
-console.log({ maxScoreSightseeingPair: maxScoreSightseeingPair([8, 1, 5, 2, 6]) });
+console.log({
+  maxScoreSightseeingPair: maxScoreSightseeingPair([8, 1, 5, 2, 6]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function sumIndicesWithKSetBits(nums, k) {
@@ -12868,10 +13922,12 @@ function sumIndicesWithKSetBits(nums, k) {
     return sum;
   }, 0);
 }
-console.log({ sumIndicesWithKSetBits: sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1) });
+console.log({
+  sumIndicesWithKSetBits: sumIndicesWithKSetBits([5, 10, 1, 5, 2], 1),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function decompressRLElist(nums) {
@@ -12888,13 +13944,15 @@ function decompressRLElist(nums) {
 console.log({ decompressRLElist: decompressRLElist([1, 2, 3, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumAverage(nums) {
   nums.sort((a, b) => a - b);
 
-  let average = Infinity, left = 0, right = nums.length - 1;
+  let average = Infinity,
+    left = 0,
+    right = nums.length - 1;
 
   while (left < right) {
     average = Math.min(average, (nums[left++] + nums[right--]) / 2);
@@ -12905,8 +13963,8 @@ function minimumAverage(nums) {
 console.log({ minimumAverage: minimumAverage([7, 8, 3, 4, 15, 13, 4, 1]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function minOperations(nums, k) {
@@ -12918,12 +13976,13 @@ function minOperations(nums, k) {
 console.log({ minOperations: minOperations([2, 11, 10, 1, 3], 10) });
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
+ * @param {number[]} nums
+ * @param {number} target
  * @returns {number}
  */
 function searchInsert(nums, target) {
-  let start = 0, end = nums.length - 1;
+  let start = 0,
+    end = nums.length - 1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -12938,8 +13997,8 @@ function searchInsert(nums, target) {
 console.log({ searchInsert: searchInsert([1, 3, 5, 6], 5) });
 
 /**
- * @param {number[]} nums 
- * @param {number} diff 
+ * @param {number[]} nums
+ * @param {number} diff
  * @returns {number}
  */
 function arithmeticTriplets(nums, diff) {
@@ -12956,8 +14015,8 @@ function arithmeticTriplets(nums, diff) {
 console.log({ arithmeticTriplets: arithmeticTriplets([0, 1, 4, 6, 7, 10], 3) });
 
 /**
- * @param {string[]} words 
- * @param {number[][]} queries 
+ * @param {string[]} words
+ * @param {number[][]} queries
  * @returns {number[]}
  */
 function vowelStrings(words, queries) {
@@ -12969,7 +14028,10 @@ function vowelStrings(words, queries) {
   for (let i = 0; i < words.length; i++) {
     const currentWord = words[i];
 
-    if (vowels.has(currentWord.charAt(0)) && vowels.has(currentWord.charAt(currentWord.length - 1))) {
+    if (
+      vowels.has(currentWord.charAt(0)) &&
+      vowels.has(currentWord.charAt(currentWord.length - 1))
+    ) {
       sum++;
     }
 
@@ -12978,20 +14040,32 @@ function vowelStrings(words, queries) {
 
   for (let i = 0; i < queries.length; i++) {
     const currentQuery = queries[i];
-    ans[i] = prefixSum[currentQuery[1]] - (currentQuery[0] === 0 ? 0 : prefixSum[currentQuery[0] - 1]);
+    ans[i] =
+      prefixSum[currentQuery[1]] -
+      (currentQuery[0] === 0 ? 0 : prefixSum[currentQuery[0] - 1]);
   }
 
   return ans;
 }
-console.log({ vowelStrings: vowelStrings(["aba", "bcb", "ece", "aa", "e"], [[0, 2], [1, 4], [1, 1]]) });
+console.log({
+  vowelStrings: vowelStrings(
+    ['aba', 'bcb', 'ece', 'aa', 'e'],
+    [
+      [0, 2],
+      [1, 4],
+      [1, 1],
+    ],
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function waysToSplitArray(nums) {
   const prefixSum = nums.reduce((sum, nums) => sum + nums, 0);
-  let leftSum = 0, count = 0;
+  let leftSum = 0,
+    count = 0;
 
   for (let idx = 0; idx < nums.length - 1; idx++) {
     leftSum += nums[idx];
@@ -13004,7 +14078,7 @@ function waysToSplitArray(nums) {
 console.log({ waysToSplitArray: waysToSplitArray([10, 4, -8, 7]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function countPalindromicSubsequence(s) {
@@ -13017,7 +14091,8 @@ function countPalindromicSubsequence(s) {
   let ans = 0;
 
   for (const letter of letters) {
-    let i = -1, j = 0;
+    let i = -1,
+      j = 0;
 
     for (let k = 0; k < s.length; k++) {
       if (s[k] === letter) {
@@ -13037,11 +14112,13 @@ function countPalindromicSubsequence(s) {
 
   return ans;
 }
-console.log({ countPalindromicSubsequence: countPalindromicSubsequence("aabca") });
+console.log({
+  countPalindromicSubsequence: countPalindromicSubsequence('aabca'),
+});
 
 /**
- * @param {string} s 
- * @param {number[][]} shifts 
+ * @param {string} s
+ * @param {number[][]} shifts
  * @returns {string}
  */
 function shiftingLetters(s, shifts) {
@@ -13058,20 +14135,27 @@ function shiftingLetters(s, shifts) {
   for (let idx = 0; idx < s.length; idx++) {
     diff += prefixDiff[idx];
     const charCode = s.charCodeAt(idx) - 97;
-    result.push(String.fromCharCode(97 + (charCode + (diff % 26) + 26) % 26));
+    result.push(String.fromCharCode(97 + ((charCode + (diff % 26) + 26) % 26)));
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ shiftingLetters: shiftingLetters("abc", [[0, 1, 0], [1, 2, 1], [0, 2, 1]]) });
+console.log({
+  shiftingLetters: shiftingLetters('abc', [
+    [0, 1, 0],
+    [1, 2, 1],
+    [0, 2, 1],
+  ]),
+});
 
 /**
- * @param {string} boxes 
+ * @param {string} boxes
  * @returns {number[]}
  */
 function minOperations(boxes) {
   const operations = Array.from({ length: boxes.length }, () => 0);
-  let balls = 0, moves = 0;
+  let balls = 0,
+    moves = 0;
 
   for (let idx = 0; idx < boxes.length; idx++) {
     operations[idx] = balls + moves;
@@ -13090,10 +14174,10 @@ function minOperations(boxes) {
 
   return operations;
 }
-console.log({ minOperations: minOperations("001011") });
+console.log({ minOperations: minOperations('001011') });
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {string[]}
  */
 function stringMatching(words) {
@@ -13112,11 +14196,13 @@ function stringMatching(words) {
 
   return matchedWords;
 }
-console.log({ stringMatching: stringMatching(["mass", "as", "hero", "superhero"]) });
+console.log({
+  stringMatching: stringMatching(['mass', 'as', 'hero', 'superhero']),
+});
 
 /**
- * @param {string} str1 
- * @param {string} str2 
+ * @param {string} str1
+ * @param {string} str2
  * @returns {boolean}
  */
 function isPrefixAndSuffix(str1, str2) {
@@ -13124,7 +14210,7 @@ function isPrefixAndSuffix(str1, str2) {
 }
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {number}
  */
 function countPrefixSuffixPairs(words) {
@@ -13138,10 +14224,12 @@ function countPrefixSuffixPairs(words) {
 
   return count;
 }
-console.log({ countPrefixSuffixPairs: countPrefixSuffixPairs(["a", "aba", "ababa", "aa"]) });
+console.log({
+  countPrefixSuffixPairs: countPrefixSuffixPairs(['a', 'aba', 'ababa', 'aa']),
+});
 
 /**
- * @param {string[]} S 
+ * @param {string[]} S
  * @returns {number[]}
  */
 function count(S) {
@@ -13153,8 +14241,8 @@ function count(S) {
 }
 
 /**
- * @param {string[]} A 
- * @param {string[]} B 
+ * @param {string[]} A
+ * @param {string[]} B
  * @returns {string[]}
  */
 function wordSubsets(A, B) {
@@ -13167,7 +14255,7 @@ function wordSubsets(A, B) {
     }
   }
 
-  return A.filter(a => {
+  return A.filter((a) => {
     const aCount = count(a);
     for (let i = 0; i < 26; ++i) {
       if (aCount[i] < bmax[i]) return false;
@@ -13175,11 +14263,16 @@ function wordSubsets(A, B) {
     return true;
   });
 }
-console.log({ wordSubsets: wordSubsets(["amazon", "apple", "facebook", "google", "leetcode"], ["e", "o"]) });
+console.log({
+  wordSubsets: wordSubsets(
+    ['amazon', 'apple', 'facebook', 'google', 'leetcode'],
+    ['e', 'o'],
+  ),
+});
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {boolean}
  */
 function canConstruct(s, k) {
@@ -13199,18 +14292,19 @@ function canConstruct(s, k) {
 
   return oddCount <= k;
 }
-console.log({ canConstruct: canConstruct("annabelle", 2) });
+console.log({ canConstruct: canConstruct('annabelle', 2) });
 
 /**
- * @param {string} s 
- * @param {string} locked 
+ * @param {string} s
+ * @param {string} locked
  * @returns {boolean}
  */
 function canBeValid(s, locked) {
   const length = s.length;
   if (length % 2 === 1) return false;
 
-  let openBrackets = 0, unlocked = 0;
+  let openBrackets = 0,
+    unlocked = 0;
 
   for (let i = 0; i < length; i++) {
     if (locked[i] === '0') {
@@ -13254,10 +14348,10 @@ function canBeValid(s, locked) {
 
   return true;
 }
-console.log({ canBeValid: canBeValid("))()))", "010100") });
+console.log({ canBeValid: canBeValid('))()))', '010100') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minimumLength(s) {
@@ -13277,11 +14371,11 @@ function minimumLength(s) {
 
   return s.length - deleteCount;
 }
-console.log({ minimumLength: minimumLength("abaacbcbb") });
+console.log({ minimumLength: minimumLength('abaacbcbb') });
 
 /**
- * @param {number[]} A 
- * @param {number[]} B 
+ * @param {number[]} A
+ * @param {number[]} B
  * @returns {number[]}
  */
 function findThePrefixCommonArray(A, B) {
@@ -13299,16 +14393,21 @@ function findThePrefixCommonArray(A, B) {
 
   return prefixCommonArray;
 }
-console.log({ findThePrefixCommonArray: findThePrefixCommonArray([1, 3, 2, 4], [3, 1, 2, 4]) });
+console.log({
+  findThePrefixCommonArray: findThePrefixCommonArray(
+    [1, 3, 2, 4],
+    [3, 1, 2, 4],
+  ),
+});
 
 /**
- * @param {number} num1 
- * @param {number} num2 
+ * @param {number} num1
+ * @param {number} num2
  * @returns {number}
  */
 function minimizeXor(num1, num2) {
   /**
-   * @param {number} num 
+   * @param {number} num
    * @returns {number}
    */
   function countBits(num) {
@@ -13322,8 +14421,10 @@ function minimizeXor(num1, num2) {
     return count;
   }
 
-  let count1 = countBits(num1), count2 = countBits(num2);
-  let result = num1, idx = 0;
+  let count1 = countBits(num1),
+    count2 = countBits(num2);
+  let result = num1,
+    idx = 0;
 
   while (count1 !== count2) {
     if (count2 < count1 && result & (1 << idx)) {
@@ -13344,19 +14445,19 @@ function minimizeXor(num1, num2) {
 console.log({ minimizeXor: minimizeXor(3, 5) });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number}
  */
 function xorAllNums(nums1, nums2) {
   let result = 0;
 
   if (nums1.length % 2 === 1) {
-    nums2.forEach((num) => result ^= num);
+    nums2.forEach((num) => (result ^= num));
   }
 
   if (nums2.length % 2 === 1) {
-    nums1.forEach((num) => result ^= num);
+    nums1.forEach((num) => (result ^= num));
   }
 
   return result;
@@ -13364,17 +14465,17 @@ function xorAllNums(nums1, nums2) {
 console.log({ xorAllNums: xorAllNums([2, 1, 3], [10, 2, 5, 0]) });
 
 /**
- * @param {number[]} derived 
+ * @param {number[]} derived
  * @returns {boolean}
  */
 function doesValidArrayExist(derived) {
-  return derived.reduce((num, sum) => sum ^= num, 0) === 0;
+  return derived.reduce((num, sum) => (sum ^= num), 0) === 0;
 }
 console.log({ doesValidArrayExist: doesValidArrayExist([1, 1, 0]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function countKDifference(nums, k) {
@@ -13391,11 +14492,12 @@ function countKDifference(nums, k) {
 console.log({ countKDifference: countKDifference([1, 2, 2, 1], 1) });
 
 /**
- * @param {string} num 
+ * @param {string} num
  * @returns {boolean}
  */
 function isBalanced(num) {
-  let evenSum = 0, oddSum = 0;
+  let evenSum = 0,
+    oddSum = 0;
 
   for (let idx = 0; idx < num.length; idx++) {
     if (idx % 2 === 0) evenSum += +num[idx];
@@ -13404,15 +14506,16 @@ function isBalanced(num) {
 
   return evenSum === oddSum;
 }
-console.log({ isBalanced: isBalanced("1234") });
+console.log({ isBalanced: isBalanced('1234') });
 
 /**
- * @param {number[]} arr 
- * @param {number[][]} mat 
+ * @param {number[]} arr
+ * @param {number[][]} mat
  * @returns {number}
  */
 function firstCompleteIndex(arr, mat) {
-  const ROWS = mat.length, COLS = mat[0].length;
+  const ROWS = mat.length,
+    COLS = mat[0].length;
   const numPosition = {};
 
   for (let row = 0; row < ROWS; row++) {
@@ -13429,18 +14532,26 @@ function firstCompleteIndex(arr, mat) {
     rowCount[row]++;
     colCount[col]++;
 
-    if (colCount[col] === ROWS || rowCount[row] === COLS)
-      return idx;
+    if (colCount[col] === ROWS || rowCount[row] === COLS) return idx;
   }
 }
-console.log({ firstCompleteIndex: firstCompleteIndex([1, 3, 4, 2], [[1, 4], [2, 3]]) });
+console.log({
+  firstCompleteIndex: firstCompleteIndex(
+    [1, 3, 4, 2],
+    [
+      [1, 4],
+      [2, 3],
+    ],
+  ),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function gridGame(grid) {
-  let firstRowSum = grid[0].reduce((acc, val) => acc + val, 0), secondRowSum = 0;
+  let firstRowSum = grid[0].reduce((acc, val) => acc + val, 0),
+    secondRowSum = 0;
   let minimumSum = Number.MAX_SAFE_INTEGER;
 
   for (let turnIndex = 0; turnIndex < grid[0].length; ++turnIndex) {
@@ -13451,10 +14562,15 @@ function gridGame(grid) {
 
   return minimumSum;
 }
-console.log({ gridGame: gridGame([[2, 5, 4], [1, 5, 1]]) });
+console.log({
+  gridGame: gridGame([
+    [2, 5, 4],
+    [1, 5, 1],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minElement(nums) {
@@ -13506,10 +14622,15 @@ function countServers(grid) {
 
   return communicableServersCount;
 }
-console.log({ countServers: countServers([[1, 0], [0, 1]]) });
+console.log({
+  countServers: countServers([
+    [1, 0],
+    [0, 1],
+  ]),
+});
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {number}
  */
 function maximumNumberOfStringPairs(words) {
@@ -13523,7 +14644,15 @@ function maximumNumberOfStringPairs(words) {
 
   return count;
 }
-console.log({ maximumNumberOfStringPairs: maximumNumberOfStringPairs(["cd", "ac", "dc", "ca", "zz"]) });
+console.log({
+  maximumNumberOfStringPairs: maximumNumberOfStringPairs([
+    'cd',
+    'ac',
+    'dc',
+    'ca',
+    'zz',
+  ]),
+});
 
 const urlMap = {};
 
@@ -13549,11 +14678,38 @@ function decode(shortUrl) {
 }
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {number}
  */
 function uniqueMorseRepresentations(words) {
-  const MORSE = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."];
+  const MORSE = [
+    '.-',
+    '-...',
+    '-.-.',
+    '-..',
+    '.',
+    '..-.',
+    '--.',
+    '....',
+    '..',
+    '.---',
+    '-.-',
+    '.-..',
+    '--',
+    '-.',
+    '---',
+    '.--.',
+    '--.-',
+    '.-.',
+    '...',
+    '-',
+    '..-',
+    '...-',
+    '.--',
+    '-..-',
+    '-.--',
+    '--..',
+  ];
 
   const seen = new Set();
 
@@ -13564,15 +14720,22 @@ function uniqueMorseRepresentations(words) {
       morseCode.push(MORSE[char.charCodeAt(0) - 97]);
     }
 
-    seen.add(morseCode.join(""));
+    seen.add(morseCode.join(''));
   }
 
   return seen.size;
 }
-console.log({ uniqueMorseRepresentations: uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]) });
+console.log({
+  uniqueMorseRepresentations: uniqueMorseRepresentations([
+    'gin',
+    'zen',
+    'gig',
+    'msg',
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function replaceDigits(s) {
@@ -13588,19 +14751,21 @@ function replaceDigits(s) {
       break;
     }
 
-    const nextChar = String.fromCharCode(currChar.charCodeAt(0) + +s[nextCharPosition]);
+    const nextChar = String.fromCharCode(
+      currChar.charCodeAt(0) + +s[nextCharPosition],
+    );
 
     result.push(currChar, nextChar);
 
     idx += 2;
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ replaceDigits: replaceDigits("a1c1e1") });
+console.log({ replaceDigits: replaceDigits('a1c1e1') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function freqAlphabets(s) {
@@ -13610,7 +14775,7 @@ function freqAlphabets(s) {
   while (idx >= 0) {
     const currentChar = s[idx];
 
-    if (currentChar === "#") {
+    if (currentChar === '#') {
       result.unshift(String.fromCharCode(96 + +`${s[idx - 2]}${s[idx - 1]}`));
       idx -= 3;
     } else {
@@ -13619,12 +14784,12 @@ function freqAlphabets(s) {
     }
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ freqAlphabets: freqAlphabets("10#11#12") });
+console.log({ freqAlphabets: freqAlphabets('10#11#12') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function removeOuterParentheses(s) {
@@ -13632,21 +14797,21 @@ function removeOuterParentheses(s) {
   const updatedString = [];
 
   for (const char of s) {
-    if (char === "(") {
+    if (char === '(') {
       depth++;
       if (depth > 1) updatedString.push(char);
-    } else if (char === ")") {
+    } else if (char === ')') {
       if (depth > 1) updatedString.push(char);
       depth--;
     }
   }
 
-  return updatedString.join("");
+  return updatedString.join('');
 }
-console.log({ removeOuterParentheses: removeOuterParentheses("()()") });
+console.log({ removeOuterParentheses: removeOuterParentheses('()()') });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {boolean}
  */
 function detectCapitalUse(word) {
@@ -13661,19 +14826,24 @@ function detectCapitalUse(word) {
   let allUppercase = word[1] && word[1].toUpperCase() === word[1];
 
   for (let i = 2; i < word.length; i++) {
-    if ((allUppercase && word[i].toLowerCase() === word[i]) || (!allUppercase && word[i].toUpperCase() === word[i])) return false;
+    if (
+      (allUppercase && word[i].toLowerCase() === word[i]) ||
+      (!allUppercase && word[i].toUpperCase() === word[i])
+    )
+      return false;
   }
 
   return true;
 }
-console.log({ detectCapitalUse: detectCapitalUse("Leetcode") });
+console.log({ detectCapitalUse: detectCapitalUse('Leetcode') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxAscendingSum(nums) {
-  let cur = nums[0], maxSum = cur;
+  let cur = nums[0],
+    maxSum = cur;
 
   for (let idx = 1; idx < nums.length; idx++) {
     if (nums[idx - 1] < nums[idx]) cur += nums[idx];
@@ -13686,8 +14856,8 @@ function maxAscendingSum(nums) {
 console.log({ maxAscendingSum: maxAscendingSum([10, 20, 30, 5, 10, 50]) });
 
 /**
- * @param {string} s1 
- * @param {string} s2 
+ * @param {string} s1
+ * @param {string} s2
  * @returns {boolean}
  */
 function areAlmostEqual(s1, s2) {
@@ -13705,10 +14875,10 @@ function areAlmostEqual(s1, s2) {
 
   return indexes.length === 0;
 }
-console.log({ areAlmostEqual: areAlmostEqual("bank", "kanb") });
+console.log({ areAlmostEqual: areAlmostEqual('bank', 'kanb') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function tupleSameProduct(nums) {
@@ -13718,7 +14888,10 @@ function tupleSameProduct(nums) {
   for (let i = 0; i < nums.length; i++) {
     for (let j = i + 1; j < nums.length; j++) {
       const product = nums[i] * nums[j];
-      pairCount.set(product, (pairCount.get(product) || 0) + (productCount.get(product) || 0));
+      pairCount.set(
+        product,
+        (pairCount.get(product) || 0) + (productCount.get(product) || 0),
+      );
       productCount.set(product, (productCount.get(product) || 0) + 1);
     }
   }
@@ -13734,7 +14907,7 @@ function tupleSameProduct(nums) {
 console.log({ tupleSameProduct: tupleSameProduct([2, 3, 4, 6]) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function assignBox(num) {
@@ -13749,8 +14922,8 @@ function assignBox(num) {
 }
 
 /**
- * @param {number} lowLimit 
- * @param {number} highLimit 
+ * @param {number} lowLimit
+ * @param {number} highLimit
  * @returns {number}
  */
 function countBalls(lowLimit, highLimit) {
@@ -13772,8 +14945,8 @@ function countBalls(lowLimit, highLimit) {
 console.log({ countBalls: countBalls(1, 10) });
 
 /**
- * @param {number} limit 
- * @param {number} queries 
+ * @param {number} limit
+ * @param {number} queries
  * @returns {number}
  */
 function queryResults(limit, queries) {
@@ -13796,7 +14969,14 @@ function queryResults(limit, queries) {
 
   return totalCount;
 }
-console.log({ queryResults: queryResults(4, [[1, 4], [2, 5], [1, 3], [3, 4]]) });
+console.log({
+  queryResults: queryResults(4, [
+    [1, 4],
+    [2, 5],
+    [1, 3],
+    [3, 4],
+  ]),
+});
 
 class NumberContainers {
   constructor() {
@@ -13829,11 +15009,12 @@ class NumberContainers {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function countBadPairs(nums) {
-  let totalPairs = 0, goodPairs = 0;
+  let totalPairs = 0,
+    goodPairs = 0;
   const count = {};
 
   for (let idx = 0; idx < nums.length; idx++) {
@@ -13847,7 +15028,7 @@ function countBadPairs(nums) {
 console.log({ countBadPairs: countBadPairs([4, 1, 3, 3]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function clearDigits(s) {
@@ -13858,13 +15039,13 @@ function clearDigits(s) {
     else result.push(char);
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ clearDigits: clearDigits("cb34") });
+console.log({ clearDigits: clearDigits('cb34') });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function minOperations(nums, k) {
@@ -13874,7 +15055,8 @@ function minOperations(nums, k) {
   nums.forEach((num) => minHeap.push(num));
 
   while (minHeap.peek() < k) {
-    const firstNum = minHeap.pop(), secondNum = minHeap.pop();
+    const firstNum = minHeap.pop(),
+      secondNum = minHeap.pop();
     minHeap.push(firstNum * 2 + secondNum);
     numOperation++;
   }
@@ -13905,7 +15087,7 @@ class ProductOfNumbers {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function subarraySum(nums) {
@@ -13931,8 +15113,8 @@ function subarraySum(nums) {
 console.log({ subarraySum: subarraySum([2, 3, 1]) });
 
 /**
- * @param {number[]} timeSeries 
- * @param {number} duration 
+ * @param {number[]} timeSeries
+ * @param {number} duration
  * @returns {number}
  */
 function findPoisonedDuration(timeSeries, duration) {
@@ -13947,7 +15129,7 @@ function findPoisonedDuration(timeSeries, duration) {
 console.log({ findPoisonedDuration: findPoisonedDuration([1, 4], 2) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function arrayPairSum(nums) {
@@ -13964,16 +15146,17 @@ function arrayPairSum(nums) {
 console.log({ arrayPairSum: arrayPairSum([6, 2, 6, 5, 1, 2]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function sumOddLengthSubarrays(arr) {
   let answer = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    const left = i, right = arr.length - i - 1;
+    const left = i,
+      right = arr.length - i - 1;
     answer += arr[i] * (Math.floor(left / 2) + 1) * (Math.floor(right / 2) + 1);
-    answer += arr[i] * (Math.floor((left + 1) / 2)) * (Math.floor((right + 1) / 2));
+    answer += arr[i] * Math.floor((left + 1) / 2) * Math.floor((right + 1) / 2);
   }
 
   return answer;
@@ -13981,7 +15164,9 @@ function sumOddLengthSubarrays(arr) {
 console.log({ sumOddLengthSubarrays: sumOddLengthSubarrays([1, 4, 2, 5, 3]) });
 
 function smallestRange(nums) {
-  let maxVal = -Infinity, rangeStart = 0, rangeEnd = Infinity;
+  let maxVal = -Infinity,
+    rangeStart = 0,
+    rangeEnd = Infinity;
   const minHeap = new MinHeap((a, b) => a.data - b.data);
 
   for (let row = 0; row < nums.length; row++) {
@@ -14009,19 +15194,21 @@ function smallestRange(nums) {
 }
 
 /**
- * @param {string[]} nums 
+ * @param {string[]} nums
  * @returns {string}
  */
 function findDifferentBinaryString(nums) {
   const binaryString = [];
 
   for (let i = 0; i < nums.length; i++) {
-    binaryString.push(nums[i][i] === "0" ? "1" : "0");
+    binaryString.push(nums[i][i] === '0' ? '1' : '0');
   }
 
-  return binaryString.join("");
+  return binaryString.join('');
 }
-console.log({ findDifferentBinaryString: findDifferentBinaryString(["01", "10"]) });
+console.log({
+  findDifferentBinaryString: findDifferentBinaryString(['01', '10']),
+});
 
 class FindElements {
   constructor(root) {
@@ -14043,7 +15230,7 @@ class FindElements {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function duplicateNumbersXOR(nums) {
@@ -14060,16 +15247,17 @@ function duplicateNumbersXOR(nums) {
 console.log({ duplicateNumbersXOR: duplicateNumbersXOR([1, 2, 1, 3]) });
 
 /**
- * @param {number[]} preorder 
- * @param {number[]} postorder 
+ * @param {number[]} preorder
+ * @param {number[]} postorder
  * @returns {TreeNode | null}
  */
 function constructFromPrePost(preorder, postorder) {
-  let preIndex = 0, postIndex = 0;
+  let preIndex = 0,
+    postIndex = 0;
 
   /**
-   * @param {number[]} preorder 
-   * @param {number[]} postorder 
+   * @param {number[]} preorder
+   * @param {number[]} postorder
    * @returns {TreeNode | null}
    */
   function constructTree(preorder, postorder) {
@@ -14090,7 +15278,7 @@ function constructFromPrePost(preorder, postorder) {
 }
 
 /**
- * @param {number[]} candyType 
+ * @param {number[]} candyType
  * @returns {number}
  */
 function distributeCandies(candyType) {
@@ -14101,11 +15289,14 @@ function distributeCandies(candyType) {
 console.log({ distributeCandies: distributeCandies([1, 1, 2, 2, 3, 3]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function numOfSubarrays(arr) {
-  let curSum = 0, evenCount = 0, oddCount = 0, count = 0;
+  let curSum = 0,
+    evenCount = 0,
+    oddCount = 0,
+    count = 0;
   const MOD = 10 ** 9 + 7;
 
   for (const num of arr) {
@@ -14125,14 +15316,14 @@ function numOfSubarrays(arr) {
 console.log({ numOfSubarrays: numOfSubarrays([1, 3, 5]) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {string}
  */
 function intToRoman(num) {
-  const thousands = ["", "M", "MM", "MMM"];
-  const hundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
-  const tens = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
-  const ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+  const thousands = ['', 'M', 'MM', 'MMM'];
+  const hundreds = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'];
+  const tens = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'];
+  const ones = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
   const thousand = thousands[Math.floor(num / 1000)];
   const hundred = hundreds[Math.floor((num % 1000) / 100)];
   const ten = tens[Math.floor((num % 100) / 10)];
@@ -14142,11 +15333,12 @@ function intToRoman(num) {
 console.log({ intToRoman: intToRoman(3749) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxAbsoluteSum(nums) {
-  let minPrefixSum = 0, maxPrefixSum = 0;
+  let minPrefixSum = 0,
+    maxPrefixSum = 0;
   let prefixSum = 0;
 
   for (let i = 0; i < nums.length; i++) {
@@ -14161,7 +15353,7 @@ function maxAbsoluteSum(nums) {
 console.log({ maxAbsoluteSum: maxAbsoluteSum([1, -3, 2, 3, -4]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {boolean}
  */
 function checkPowersOfThree(n) {
@@ -14182,7 +15374,7 @@ function checkPowersOfThree(n) {
 console.log({ checkPowersOfThree: checkPowersOfThree(12) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function coloredCells(n) {
@@ -14191,7 +15383,7 @@ function coloredCells(n) {
 console.log({ coloredCells: coloredCells(2) });
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number[]}
  */
 function findMissingAndRepeatedValues(grid) {
@@ -14217,11 +15409,16 @@ function findMissingAndRepeatedValues(grid) {
 
   return result;
 }
-console.log({ findMissingAndRepeatedValues: findMissingAndRepeatedValues([[1, 3], [2, 2]]) });
+console.log({
+  findMissingAndRepeatedValues: findMissingAndRepeatedValues([
+    [1, 3],
+    [2, 2],
+  ]),
+});
 
 /**
- * @param {number} left 
- * @param {number} right 
+ * @param {number} left
+ * @param {number} right
  * @returns {number[]}
  */
 function closestPrimes(left, right) {
@@ -14248,7 +15445,8 @@ function closestPrimes(left, right) {
     return primes;
   }
 
-  const result = [-1, -1], primes = getPrimes();
+  const result = [-1, -1],
+    primes = getPrimes();
   let diff = right - left + 1;
 
   for (let idx = 1; idx < primes.length; idx++) {
@@ -14264,12 +15462,14 @@ function closestPrimes(left, right) {
 console.log({ closestPrimes: closestPrimes(10, 19) });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {number}
  */
 function countVowelSubstrings(word) {
   const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
-  let left = 0, vowelStart = 0, count = 0;
+  let left = 0,
+    vowelStart = 0,
+    count = 0;
   const freq = new Map();
 
   for (let right = 0; right < word.length; right++) {
@@ -14297,32 +15497,33 @@ function countVowelSubstrings(word) {
 
   return count;
 }
-console.log({ countVowelSubstrings: countVowelSubstrings("aeiouu") });
+console.log({ countVowelSubstrings: countVowelSubstrings('aeiouu') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function numberOfSubstrings(s) {
-  let left = 0, result = 0;
+  let left = 0,
+    result = 0;
   const count = [0, 0, 0];
 
   for (let right = 0; right < s.length; right++) {
-    count[s[right].charCodeAt(0) - "a".charCodeAt(0)]++;
+    count[s[right].charCodeAt(0) - 'a'.charCodeAt(0)]++;
 
     while (count[0] && count[1] && count[2]) {
       result += s.length - right;
-      count[s[left].charCodeAt(0) - "a".charCodeAt(0)]--;
+      count[s[left].charCodeAt(0) - 'a'.charCodeAt(0)]--;
       left++;
     }
   }
 
   return result;
 }
-console.log({ numberOfSubstrings: numberOfSubstrings("abcabc") });
+console.log({ numberOfSubstrings: numberOfSubstrings('abcabc') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function transformArray(nums) {
@@ -14335,7 +15536,7 @@ function transformArray(nums) {
 console.log({ transformArray: transformArray([1, 2, 3, 4, 5]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function pivotIndex(nums) {
@@ -14352,13 +15553,13 @@ function pivotIndex(nums) {
 console.log({ pivotIndex: pivotIndex([1, 7, 3, 6, 5, 6]) });
 
 /**
- * @param {number[]} ranks 
- * @param {number} cars 
+ * @param {number[]} ranks
+ * @param {number} cars
  * @returns {number}
  */
 function repairCars(ranks, cars) {
   /**
-   * @param {number} time 
+   * @param {number} time
    * @returns {number}
    */
   function countRepaired(time) {
@@ -14371,7 +15572,9 @@ function repairCars(ranks, cars) {
     return count;
   }
 
-  let left = 1, right = ranks[0] * cars ** 2, result = -1;
+  let left = 1,
+    right = ranks[0] * cars ** 2,
+    result = -1;
 
   while (left <= right) {
     const mid = left + Math.floor((right - left) / 2);
@@ -14388,7 +15591,7 @@ function repairCars(ranks, cars) {
 console.log({ repairCars: repairCars([4, 2, 3, 1], 10) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function divideArray(nums) {
@@ -14404,11 +15607,13 @@ function divideArray(nums) {
 console.log({ divideArray: divideArray([3, 2, 3, 2, 2, 2]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function longestNiceSubarray(nums) {
-  let maxLength = 0, cur = 0, left = 0;
+  let maxLength = 0,
+    cur = 0,
+    left = 0;
 
   for (let right = 0; right < nums.length; right++) {
     while (cur & nums[right]) {
@@ -14424,11 +15629,12 @@ function longestNiceSubarray(nums) {
 console.log({ longestNiceSubarray: longestNiceSubarray([1, 3, 8, 48, 10]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minOperations(nums) {
-  let idx = 0, count = 0;
+  let idx = 0,
+    count = 0;
 
   while (idx < nums.length - 2) {
     if (nums[idx] === 0) {
@@ -14441,16 +15647,16 @@ function minOperations(nums) {
     idx++;
   }
 
-  return nums.every(num => num === 1) ? count : -1;
+  return nums.every((num) => num === 1) ? count : -1;
 }
 console.log({ minOperations: minOperations([0, 1, 1, 1, 0, 0]) });
 
 /**
- * @param {number[]} arr 
- * @param {number} a 
- * @param {number} b 
- * @param {number} c 
- * @returns {number} 
+ * @param {number[]} arr
+ * @param {number} a
+ * @param {number} b
+ * @param {number} c
+ * @returns {number}
  */
 function countGoodTriplets(arr, a, b, c) {
   let count = 0;
@@ -14461,17 +15667,20 @@ function countGoodTriplets(arr, a, b, c) {
       if (Math.abs(arr[i] - arr[j]) > a) continue;
 
       for (let k = j + 1; k < n; k++) {
-        if (Math.abs(arr[j] - arr[k]) <= b && Math.abs(arr[i] - arr[k]) <= c) count++;
+        if (Math.abs(arr[j] - arr[k]) <= b && Math.abs(arr[i] - arr[k]) <= c)
+          count++;
       }
     }
   }
 
   return count;
 }
-console.log({ countGoodTriplets: countGoodTriplets([3, 0, 1, 1, 9, 7], 7, 2, 3) });
+console.log({
+  countGoodTriplets: countGoodTriplets([3, 0, 1, 1, 9, 7], 7, 2, 3),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function unequalTriplets(nums) {
@@ -14493,7 +15702,7 @@ function unequalTriplets(nums) {
 console.log({ unequalTriplets: unequalTriplets([4, 4, 2, 4, 3]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean[]}
  */
 function prefixesDivBy5(nums) {
@@ -14510,27 +15719,30 @@ function prefixesDivBy5(nums) {
 console.log({ prefixesDivBy5: prefixesDivBy5([0, 1, 1]) });
 
 /**
- * @param {number} n 
- * @param {string[]} commands 
+ * @param {number} n
+ * @param {string[]} commands
  * @returns {number}
  */
 function finalPositionOfSnake(n, commands) {
-  let row = 0, col = 0;
+  let row = 0,
+    col = 0;
 
   for (const command of commands) {
-    if (command === "UP") row--;
-    else if (command === "DOWN") row++;
-    else if (command === "LEFT") col--;
+    if (command === 'UP') row--;
+    else if (command === 'DOWN') row++;
+    else if (command === 'LEFT') col--;
     else col++;
   }
 
   return row * n + col;
 }
-console.log({ finalPositionOfSnake: finalPositionOfSnake(2, ["RIGHT", "DOWN"]) });
+console.log({
+  finalPositionOfSnake: finalPositionOfSnake(2, ['RIGHT', 'DOWN']),
+});
 
 /**
- * @param {number} days 
- * @param {number[][]} meetings 
+ * @param {number} days
+ * @param {number[][]} meetings
  * @returns {number}
  */
 function countDays(days, meetings) {
@@ -14547,11 +15759,17 @@ function countDays(days, meetings) {
 
   return days;
 }
-console.log({ countDays: countDays(10, [[5, 7], [1, 3], [9, 10]]) });
+console.log({
+  countDays: countDays(10, [
+    [5, 7],
+    [1, 3],
+    [9, 10],
+  ]),
+});
 
 /**
- * @param {number} n 
- * @param {number[][]} rectangles 
+ * @param {number} n
+ * @param {number[][]} rectangles
  * @returns {boolean}
  */
 function checkValidCuts(n, rectangles) {
@@ -14562,11 +15780,12 @@ function checkValidCuts(n, rectangles) {
   y.sort((a, b) => a[0] - b[0]);
 
   /**
-   * @param {number[][]} intervals 
+   * @param {number[][]} intervals
    * @returns {number}
    */
   function countNonOverlapping(intervals) {
-    let count = 0, prevEnd = -1;
+    let count = 0,
+      prevEnd = -1;
 
     for (const [start, end] of intervals) {
       if (prevEnd <= start) count++;
@@ -14578,7 +15797,14 @@ function checkValidCuts(n, rectangles) {
 
   return Math.max(countNonOverlapping(x), countNonOverlapping(y)) >= 3;
 }
-console.log({ checkValidCuts: checkValidCuts(5, [[1, 0, 5, 2], [0, 2, 2, 4], [3, 2, 5, 3], [0, 4, 4, 5]]) });
+console.log({
+  checkValidCuts: checkValidCuts(5, [
+    [1, 0, 5, 2],
+    [0, 2, 2, 4],
+    [3, 2, 5, 3],
+    [0, 4, 4, 5],
+  ]),
+});
 
 class NeighborSum {
   constructor(grid) {
@@ -14609,17 +15835,20 @@ class NeighborSum {
     let sum = 0;
 
     if (row - 1 >= 0 && col - 1 >= 0) sum += this.grid[row - 1][col - 1];
-    if (row - 1 >= 0 && col + 1 < this.grid.length) sum += this.grid[row - 1][col + 1];
-    if (row + 1 < this.grid.length && col - 1 >= 0) sum += this.grid[row + 1][col - 1];
-    if (row + 1 < this.grid.length && col + 1 < this.grid[row].length) sum += this.grid[row + 1][col + 1];
+    if (row - 1 >= 0 && col + 1 < this.grid.length)
+      sum += this.grid[row - 1][col + 1];
+    if (row + 1 < this.grid.length && col - 1 >= 0)
+      sum += this.grid[row + 1][col - 1];
+    if (row + 1 < this.grid.length && col + 1 < this.grid[row].length)
+      sum += this.grid[row + 1][col + 1];
 
     return sum;
   }
 }
 
 /**
- * @param {number[][]} grid 
- * @param {number} x 
+ * @param {number[][]} grid
+ * @param {number} x
  * @returns {number}
  */
 function minOperations(grid, x) {
@@ -14631,7 +15860,8 @@ function minOperations(grid, x) {
 
   const nums = grid.flatMap((num) => num).sort((a, b) => a - b);
 
-  let prefix = 0, result = Infinity;
+  let prefix = 0,
+    result = Infinity;
   const totalSum = nums.reduce((sum, num) => (sum += num), 0);
 
   for (let idx = 0; idx < nums.length; idx++) {
@@ -14644,10 +15874,18 @@ function minOperations(grid, x) {
 
   return result;
 }
-console.log({ minOperations: minOperations([[2, 4], [6, 8]], 2) });
+console.log({
+  minOperations: minOperations(
+    [
+      [2, 4],
+      [6, 8],
+    ],
+    2,
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumIndex(nums) {
@@ -14664,7 +15902,10 @@ function minimumIndex(nums) {
     secondMap.set(num, secondMap.get(num) - 1);
     firstMap.set(num, (firstMap.get(num) || 0) + 1);
 
-    if (firstMap.get(num) * 2 > index + 1 && secondMap.get(num) * 2 > nums.length - index - 1) {
+    if (
+      firstMap.get(num) * 2 > index + 1 &&
+      secondMap.get(num) * 2 > nums.length - index - 1
+    ) {
       return index;
     }
   }
@@ -14674,8 +15915,8 @@ function minimumIndex(nums) {
 console.log({ minimumIndex: minimumIndex([1, 2, 2, 2]) });
 
 /**
- * @param {string} patterns 
- * @param {string} word 
+ * @param {string} patterns
+ * @param {string} word
  * @returns {number}
  */
 function numOfStrings(patterns, word) {
@@ -14687,11 +15928,11 @@ function numOfStrings(patterns, word) {
 
   return count;
 }
-console.log({ numOfStrings: numOfStrings(["a", "abc", "bc", "d"], "abc") });
+console.log({ numOfStrings: numOfStrings(['a', 'abc', 'bc', 'd'], 'abc') });
 
 /**
- * @param {number[][]} items1 
- * @param {number[][]} items2 
+ * @param {number[][]} items1
+ * @param {number[][]} items2
  * @returns {number[][]}
  */
 function mergeSimilarItems(items1, items2) {
@@ -14709,19 +15950,33 @@ function mergeSimilarItems(items1, items2) {
 
   return result.sort((a, b) => a[0] - b[0]);
 }
-console.log({ mergeSimilarItems: mergeSimilarItems([[1, 1], [4, 5], [3, 8]], [[3, 1], [1, 5]]) });
+console.log({
+  mergeSimilarItems: mergeSimilarItems(
+    [
+      [1, 1],
+      [4, 5],
+      [3, 8],
+    ],
+    [
+      [3, 1],
+      [1, 5],
+    ],
+  ),
+});
 
 /**
- * @param {number[][]} nums1 
- * @param {number[][]} nums2 
+ * @param {number[][]} nums1
+ * @param {number[][]} nums2
  * @returns {number[][]}
  */
 function mergeArrays(nums1, nums2) {
   const result = [];
-  let first = 0, second = 0;
+  let first = 0,
+    second = 0;
 
   while (first < nums1.length && second < nums2.length) {
-    const firstPair = nums1[first], secondPair = nums2[second];
+    const firstPair = nums1[first],
+      secondPair = nums2[second];
 
     if (firstPair[0] === secondPair[0]) {
       result.push([firstPair[0], firstPair[1] + secondPair[1]]);
@@ -14734,7 +15989,6 @@ function mergeArrays(nums1, nums2) {
       result.push(secondPair);
       second++;
     }
-
   }
 
   while (first < nums1.length) {
@@ -14749,10 +16003,23 @@ function mergeArrays(nums1, nums2) {
 
   return result;
 }
-console.log({ mergeArrays: mergeArrays([[1, 2], [2, 3], [4, 5]], [[1, 4], [3, 2], [4, 1]]) });
+console.log({
+  mergeArrays: mergeArrays(
+    [
+      [1, 2],
+      [2, 3],
+      [4, 5],
+    ],
+    [
+      [1, 4],
+      [3, 2],
+      [4, 1],
+    ],
+  ),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number[]}
  */
 function partitionLabels(s) {
@@ -14763,7 +16030,8 @@ function partitionLabels(s) {
     lastIndex.set(s[idx], idx);
   }
 
-  let start = 0, end = 0;
+  let start = 0,
+    end = 0;
 
   for (let idx = 0; idx < s.length; idx++) {
     start++;
@@ -14777,11 +16045,11 @@ function partitionLabels(s) {
 
   return size;
 }
-console.log({ partitionLabels: partitionLabels("eccbbbbdec") });
+console.log({ partitionLabels: partitionLabels('eccbbbbdec') });
 
 /**
- * @param {number[]} weights 
- * @param {number} k 
+ * @param {number[]} weights
+ * @param {number} k
  * @returns {number}
  */
 function putMarbles(weights, k) {
@@ -14827,11 +16095,12 @@ class OrderedStream {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maximumTripletValue(nums) {
-  let result = 0, left = nums[0];
+  let result = 0,
+    left = nums[0];
 
   for (let j = 1; j < nums.length; j++) {
     if (nums[j] > left) left = nums[j];
@@ -14846,11 +16115,13 @@ function maximumTripletValue(nums) {
 console.log({ maximumTripletValue: maximumTripletValue([12, 6, 1, 2, 7]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maximumTripletValue(nums) {
-  let result = 0, maxDiff = 0, prefixMax = nums[0];
+  let result = 0,
+    maxDiff = 0,
+    prefixMax = nums[0];
 
   for (let k = 1; k < nums.length; k++) {
     result = Math.max(result, maxDiff * nums[k]);
@@ -14863,15 +16134,16 @@ function maximumTripletValue(nums) {
 console.log({ maximumTripletValue: maximumTripletValue([12, 6, 1, 2, 7]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number[]}
  */
 function diStringMatch(s) {
   const result = [];
-  let first = 0, second = s.length;
+  let first = 0,
+    second = s.length;
 
   for (let i = 0; i < s.length; i++) {
-    if (s[i] === "I") result.push(first++);
+    if (s[i] === 'I') result.push(first++);
     else result.push(second--);
   }
 
@@ -14879,10 +16151,10 @@ function diStringMatch(s) {
 
   return result;
 }
-console.log({ diStringMatch: diStringMatch("III") });
+console.log({ diStringMatch: diStringMatch('III') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function reverseDegree(s) {
@@ -14894,10 +16166,10 @@ function reverseDegree(s) {
 
   return score;
 }
-console.log({ reverseDegree: reverseDegree("abc") });
+console.log({ reverseDegree: reverseDegree('abc') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumOperations(nums) {
@@ -14910,11 +16182,13 @@ function minimumOperations(nums) {
 
   return 0;
 }
-console.log({ minimumOperations: minimumOperations([1, 2, 3, 4, 2, 3, 3, 5, 7]) });
+console.log({
+  minimumOperations: minimumOperations([1, 2, 3, 4, 2, 3, 3, 5, 7]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function minOperations(nums, k) {
@@ -14930,7 +16204,7 @@ function minOperations(nums, k) {
 console.log({ minOperations: minOperations([2, 1, 2]) });
 
 /**
- * @param {number[]} cost 
+ * @param {number[]} cost
  * @returns {number[]}
  */
 function minCosts(cost) {
@@ -14946,8 +16220,8 @@ function minCosts(cost) {
 console.log({ minCosts: minCosts([5, 3, 4, 1, 3, 2]) });
 
 /**
- * @param {number} low 
- * @param {number} high 
+ * @param {number} low
+ * @param {number} high
  * @returns {number}
  */
 function countSymmetricIntegers(low, high) {
@@ -14967,12 +16241,13 @@ function countSymmetricIntegers(low, high) {
 console.log({ countSymmetricIntegers: countSymmetricIntegers(1, 100) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function countPartitions(nums) {
   const total = nums.reduce((num, sum) => (sum += num), 0);
-  let count = 0, leftSum = 0;
+  let count = 0,
+    leftSum = 0;
 
   for (let idx = 0; idx < nums.length - 1; idx++) {
     leftSum += nums[idx];
@@ -14986,15 +16261,15 @@ function countPartitions(nums) {
 console.log({ countPartitions: countPartitions([1, 2, 2]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function countGoodNumbers(n) {
   const MOD = 1000000007n;
 
   /**
-   * @param {bigint} base 
-   * @param {bigint} exp 
+   * @param {bigint} base
+   * @param {bigint} exp
    * @returns {bigint}
    */
   function pow(base, exp) {
@@ -15014,22 +16289,24 @@ function countGoodNumbers(n) {
 console.log({ countGoodNumbers: countGoodNumbers(50) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function myAtoi(s) {
   s = s.trim();
 
-  let sign = 1, idx = 0, result = 0;
+  let sign = 1,
+    idx = 0,
+    result = 0;
 
-  if (s[idx] === "-") {
+  if (s[idx] === '-') {
     sign = -1;
     idx++;
-  } else if (s[idx] === "+") {
+  } else if (s[idx] === '+') {
     idx++;
   }
 
-  while (idx < s.length && s[idx] >= "0" && s[idx] <= "9") {
+  while (idx < s.length && s[idx] >= '0' && s[idx] <= '9') {
     result = result * 10 + +s[idx];
 
     if (sign * result > 2 ** 31 - 1) return 2 ** 31 - 1;
@@ -15040,7 +16317,7 @@ function myAtoi(s) {
 
   return sign * result;
 }
-console.log({ myAtoi: myAtoi("42") });
+console.log({ myAtoi: myAtoi('42') });
 
 /**
  * @param {number[]} nums
@@ -15048,12 +16325,12 @@ console.log({ myAtoi: myAtoi("42") });
  * @returns {number}
  */
 function minOperations(nums, k) {
-  return nums.reduce((num, sum) => sum += num, 0) % k;
+  return nums.reduce((num, sum) => (sum += num), 0) % k;
 }
 console.log({ minOperations: minOperations([3, 9, 7], 5) });
 
 /**
- * @param {number[]} answers 
+ * @param {number[]} answers
  * @returns {number}
  */
 function numRabbits(answers) {
@@ -15076,13 +16353,15 @@ function numRabbits(answers) {
 console.log({ numRabbits: numRabbits([1, 1, 2]) });
 
 /**
- * @param {number[]} differences 
- * @param {number} lower 
- * @param {number} upper 
+ * @param {number[]} differences
+ * @param {number} lower
+ * @param {number} upper
  * @returns {number}
  */
 function numberOfArrays(differences, lower, upper) {
-  let start = 0, min = 0, max = 0;
+  let start = 0,
+    min = 0,
+    max = 0;
 
   for (const difference of differences) {
     start += difference;
@@ -15100,11 +16379,15 @@ Array.prototype.snail = function (rowsCount, colsCount) {
   const total = this.length;
   if (rowsCount * colsCount !== total) return [];
 
-  const result = new Array(rowsCount).fill(0).map(() => new Array(colsCount).fill(0));
+  const result = new Array(rowsCount)
+    .fill(0)
+    .map(() => new Array(colsCount).fill(0));
   let isReversed = false;
 
   for (let idx = 0; idx < total; idx++) {
-    const row = !isReversed ? idx % rowsCount : rowsCount - 1 - (idx % rowsCount);
+    const row = !isReversed
+      ? idx % rowsCount
+      : rowsCount - 1 - (idx % rowsCount);
     const col = Math.floor(idx / rowsCount);
 
     result[row][col] = this[idx];
@@ -15116,15 +16399,17 @@ Array.prototype.snail = function (rowsCount, colsCount) {
 };
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function countLargestGroup(n) {
   const digitCount = new Map();
-  let groupCount = 0, largestGroup = 0;
+  let groupCount = 0,
+    largestGroup = 0;
 
   for (let i = 1; i <= n; i++) {
-    let num = i, sum = 0;
+    let num = i,
+      sum = 0;
 
     while (num) {
       sum += num % 10;
@@ -15144,12 +16429,13 @@ function countLargestGroup(n) {
 console.log({ countLargestGroup: countLargestGroup(13) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function countCompleteSubarrays(nums) {
   const totalUnique = new Set(nums).size;
-  let left = 0, result = 0;
+  let left = 0,
+    result = 0;
   const numCount = new Map();
 
   for (let right = 0; right < nums.length; right++) {
@@ -15168,16 +16454,19 @@ function countCompleteSubarrays(nums) {
 
   return result;
 }
-console.log({ countCompleteSubarrays: countCompleteSubarrays([1, 3, 1, 2, 2]) });
+console.log({
+  countCompleteSubarrays: countCompleteSubarrays([1, 3, 1, 2, 2]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} modulo 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} modulo
+ * @param {number} k
  * @returns {number}
  */
 function countInterestingSubarrays(nums, modulo, k) {
-  let res = 0, prefix = 0;
+  let res = 0,
+    prefix = 0;
   const cnt = new Map();
   cnt.set(0, 1);
 
@@ -15189,10 +16478,12 @@ function countInterestingSubarrays(nums, modulo, k) {
 
   return res;
 }
-console.log({ countInterestingSubarrays: countInterestingSubarrays([3, 2, 4], 2, 1) });
+console.log({
+  countInterestingSubarrays: countInterestingSubarrays([3, 2, 4], 2, 1),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function countSubarrays(nums) {
@@ -15207,12 +16498,13 @@ function countSubarrays(nums) {
 console.log({ countSubarrays: countSubarrays([1, 2, 1, 4, 1]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function countSubarrays(nums, k) {
-  let res = 0, total = 0;
+  let res = 0,
+    total = 0;
 
   for (let i = 0, j = 0; j < nums.length; j++) {
     total += nums[j];
@@ -15230,14 +16522,19 @@ function countSubarrays(nums, k) {
 console.log({ countSubarrays: countSubarrays([1, 1, 1], 5) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findNumbers(nums) {
   let count = 0;
 
   for (const num of nums) {
-    if ((num >= 10 && num <= 99) || (num >= 1000 && num <= 9999) || num === 100000) count++;
+    if (
+      (num >= 10 && num <= 99) ||
+      (num >= 1000 && num <= 9999) ||
+      num === 100000
+    )
+      count++;
   }
 
   return count;
@@ -15245,12 +16542,14 @@ function findNumbers(nums) {
 console.log({ findNumbers: findNumbers([12, 345, 2, 6, 7896]) });
 
 /**
- * @param {number} nums 
- * @param {number} k 
+ * @param {number} nums
+ * @param {number} k
  * @returns {number}
  */
 function findMaxAverage(nums, k) {
-  let sum = 0, left = 0, avg = -Infinity;
+  let sum = 0,
+    left = 0,
+    avg = -Infinity;
 
   for (let right = 0; right < nums.length; right++) {
     sum += nums[right];
@@ -15267,8 +16566,8 @@ function findMaxAverage(nums, k) {
 console.log({ findMaxAverage: findMaxAverage([1, 12, -5, -6, 50, 3], 4) });
 
 /**
- * @param {string[]} words 
- * @param {string} separator 
+ * @param {string[]} words
+ * @param {string} separator
  * @returns {string[]}
  */
 function splitWordsBySeparator(words, separator) {
@@ -15280,26 +16579,41 @@ function splitWordsBySeparator(words, separator) {
 
   return result;
 }
-console.log({ splitWordsBySeparator: splitWordsBySeparator(["|||"], "|") });
+console.log({ splitWordsBySeparator: splitWordsBySeparator(['|||'], '|') });
 
 /**
- * @param {number[][]} points 
+ * @param {number[][]} points
  * @returns {boolean}
  */
 function isBoomerang(points) {
-  const first = points[0], second = points[1], third = points[2];
-  const area = (1 / 2) * Math.abs(first[0] * (second[1] - third[1]) + second[0] * (third[1] - first[1]) + third[0] * (first[1] - second[1]));
+  const first = points[0],
+    second = points[1],
+    third = points[2];
+  const area =
+    (1 / 2) *
+    Math.abs(
+      first[0] * (second[1] - third[1]) +
+        second[0] * (third[1] - first[1]) +
+        third[0] * (first[1] - second[1]),
+    );
   return area !== 0;
 }
-console.log({ isBoomerang: isBoomerang([[1, 1], [2, 3], [3, 2]]) });
+console.log({
+  isBoomerang: isBoomerang([
+    [1, 1],
+    [2, 3],
+    [3, 2],
+  ]),
+});
 
 /**
- * @param {number[]} fruits 
+ * @param {number[]} fruits
  * @returns {number}
  */
 function totalFruit(fruits) {
   const typeCount = new Map();
-  let maxCount = 0, left = 0;
+  let maxCount = 0,
+    left = 0;
 
   for (let right = 0; right < fruits.length; right++) {
     const type = fruits[right];
@@ -15322,7 +16636,7 @@ function totalFruit(fruits) {
 console.log({ totalFruit: totalFruit([1, 2, 1]) });
 
 /**
- * @param {number[][]} dominoes 
+ * @param {number[][]} dominoes
  * @returns {number}
  */
 function numEquivDominoPairs(dominoes) {
@@ -15330,35 +16644,45 @@ function numEquivDominoPairs(dominoes) {
   let count = 0;
 
   for (const domino of dominoes) {
-    const val = domino[0] < domino[1] ? domino[0] * 10 + domino[1] : domino[1] * 10 + domino[0];
+    const val =
+      domino[0] < domino[1]
+        ? domino[0] * 10 + domino[1]
+        : domino[1] * 10 + domino[0];
     count += num[val];
     num[val]++;
   }
 
   return count;
 }
-console.log({ numEquivDominoPairs: numEquivDominoPairs([[1, 2], [2, 1], [3, 4], [5, 6]]) });
+console.log({
+  numEquivDominoPairs: numEquivDominoPairs([
+    [1, 2],
+    [2, 1],
+    [3, 4],
+    [5, 6],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function countSegments(s) {
   let segmentCount = 0;
 
   for (let i = 0; i < s.length; i++) {
-    if ((i == 0 || s.charAt(i - 1) == " ") && s.charAt(i) !== " ") {
+    if ((i == 0 || s.charAt(i - 1) == ' ') && s.charAt(i) !== ' ') {
       segmentCount++;
     }
   }
 
   return segmentCount;
 }
-console.log({ countSegments: countSegments("Hello, my name is John") });
+console.log({ countSegments: countSegments('Hello, my name is John') });
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function licenseKeyFormatting(s, k) {
@@ -15368,34 +16692,37 @@ function licenseKeyFormatting(s, k) {
   for (let idx = s.length - 1; idx >= 0; idx--) {
     const char = s[idx];
 
-    if (char !== "-") {
+    if (char !== '-') {
       formattedString.push(char.toUpperCase());
       count++;
 
       if (count === k) {
-        formattedString.push("-");
+        formattedString.push('-');
         count = 0;
       }
     }
   }
 
-  if (formattedString.length && formattedString[formattedString.length - 1] === "-") {
+  if (
+    formattedString.length &&
+    formattedString[formattedString.length - 1] === '-'
+  ) {
     formattedString.pop();
   }
 
-  return formattedString.reverse().join("");
+  return formattedString.reverse().join('');
 }
-console.log({ licenseKeyFormatting: licenseKeyFormatting("5F3Z-2e-9-w", 4) });
+console.log({ licenseKeyFormatting: licenseKeyFormatting('5F3Z-2e-9-w', 4) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function findSecondMinimumValue(root) {
   const uniqueValues = new Set();
 
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    * @returns {void}
    */
   function getValues(node) {
@@ -15419,14 +16746,15 @@ function findSecondMinimumValue(root) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minimumChairs(s) {
-  let minChair = 0, totalChairs = 0;
+  let minChair = 0,
+    totalChairs = 0;
 
   for (const char of s) {
-    if (char === "E") {
+    if (char === 'E') {
       totalChairs++;
       minChair = Math.max(minChair, totalChairs);
     } else totalChairs--;
@@ -15434,16 +16762,18 @@ function minimumChairs(s) {
 
   return minChair;
 }
-console.log({ minimumChairs: minimumChairs("EEEEEEE") });
+console.log({ minimumChairs: minimumChairs('EEEEEEE') });
 
 /**
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @returns {number}
  */
 function minSum(nums1, nums2) {
-  let sum1 = 0, sum2 = 0;
-  let zero1 = 0, zero2 = 0;
+  let sum1 = 0,
+    sum2 = 0;
+  let zero1 = 0,
+    zero2 = 0;
 
   for (const num of nums1) {
     sum1 += num;
@@ -15470,7 +16800,7 @@ function minSum(nums1, nums2) {
 console.log({ minSum: minSum([3, 2, 0, 1, 0], [6, 5, 0]) });
 
 /**
- * @param {number[]} digits 
+ * @param {number[]} digits
  * @returns {number[]}
  */
 function findEvenNumbers(digits) {
@@ -15494,8 +16824,8 @@ function findEvenNumbers(digits) {
 console.log({ findEvenNumbers: findEvenNumbers([2, 1, 3, 0]) });
 
 /**
- * @param {number} a 
- * @param {number} b 
+ * @param {number} a
+ * @param {number} b
  * @returns {number}
  */
 function gcd(a, b) {
@@ -15507,11 +16837,12 @@ function gcd(a, b) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findGCD(nums) {
-  let min = Infinity, max = -Infinity;
+  let min = Infinity,
+    max = -Infinity;
 
   nums.forEach((num) => {
     min = Math.min(min, num);
@@ -15523,11 +16854,11 @@ function findGCD(nums) {
 console.log({ findGCD: findGCD([2, 5, 6, 9, 10]) });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {string}
  */
 function getNum(word) {
-  let result = "";
+  let result = '';
 
   for (const char of word) {
     result += `${char.charCodeAt(0) - 97}`;
@@ -15537,20 +16868,22 @@ function getNum(word) {
 }
 
 /**
- * @param {string} firstWord 
- * @param {string} secondWord 
- * @param {string} targetWord 
+ * @param {string} firstWord
+ * @param {string} secondWord
+ * @param {string} targetWord
  * @returns {boolean}
  */
 function isSumEqual(firstWord, secondWord, targetWord) {
-  const firstNum = getNum(firstWord), secondNum = getNum(secondWord), thirdNum = getNum(targetWord);
+  const firstNum = getNum(firstWord),
+    secondNum = getNum(secondWord),
+    thirdNum = getNum(targetWord);
   return +firstNum + +secondNum === +thirdNum;
 }
-console.log({ isSumEqual: isSumEqual("acb", "cba", "cdb") });
+console.log({ isSumEqual: isSumEqual('acb', 'cba', 'cdb') });
 
 /**
- * @param {string[]} words 
- * @param {number[]} groups 
+ * @param {string[]} words
+ * @param {number[]} groups
  * @returns {string[]}
  */
 function getLongestSubsequence(words, groups) {
@@ -15562,11 +16895,11 @@ function getLongestSubsequence(words, groups) {
 
   return result;
 }
-console.log({ getLongestSubsequence: getLongestSubsequence(["c"], 0) });
+console.log({ getLongestSubsequence: getLongestSubsequence(['c'], 0) });
 
 /**
- * @param {string[]} words 
- * @param {string} s 
+ * @param {string[]} words
+ * @param {string} s
  * @returns {number}
  */
 function countPrefixes(words, s) {
@@ -15575,25 +16908,25 @@ function countPrefixes(words, s) {
     return num;
   }, 0);
 }
-console.log({ countPrefixes: countPrefixes(["a", "a"], "aa") });
+console.log({ countPrefixes: countPrefixes(['a', 'a'], 'aa') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {string}
  */
 function triangleType(nums) {
   nums.sort((a, b) => a - b);
 
-  if (nums[0] + nums[1] <= nums[2]) return "none";
-  else if (nums[0] === nums[2]) return "equilateral";
-  else if (nums[0] === nums[1] || nums[1] === nums[2]) return "isosceles";
-  else return "scalene";
+  if (nums[0] + nums[1] <= nums[2]) return 'none';
+  else if (nums[0] === nums[2]) return 'equilateral';
+  else if (nums[0] === nums[1] || nums[1] === nums[2]) return 'isosceles';
+  else return 'scalene';
 }
 console.log({ triangleType: triangleType([3, 3, 3]) });
 
 /**
- * @param {number[]} nums 
- * @param {number[][]} queries 
+ * @param {number[]} nums
+ * @param {number[][]} queries
  * @returns {boolean}
  */
 function isZeroArray(nums, queries) {
@@ -15621,7 +16954,7 @@ function isZeroArray(nums, queries) {
 console.log({ isZeroArray: isZeroArray([1, 0, 1], [[0, 2]]) });
 
 /**
- * @param {string[]} strs 
+ * @param {string[]} strs
  * @returns {number}
  */
 function maximumValue(strs) {
@@ -15634,11 +16967,13 @@ function maximumValue(strs) {
 
   return maxValue;
 }
-console.log({ maximumValue: maximumValue(["alic3", "bob", "3", "4", "00000"]) });
+console.log({
+  maximumValue: maximumValue(['alic3', 'bob', '3', '4', '00000']),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} original 
+ * @param {number[]} nums
+ * @param {number} original
  * @returns {number}
  */
 function findFinalValue(nums, original) {
@@ -15653,7 +16988,7 @@ function findFinalValue(nums, original) {
 console.log({ findFinalValue: findFinalValue([5, 3, 6, 1, 12], 3) });
 
 /**
- * @param {string[]} words 
+ * @param {string[]} words
  * @returns {number}
  */
 function longestPalindrome(words) {
@@ -15678,15 +17013,16 @@ function longestPalindrome(words) {
 
   return ans << 1;
 }
-console.log({ longestPalindrome: longestPalindrome(["lc", "cl", "gg"]) });
+console.log({ longestPalindrome: longestPalindrome(['lc', 'cl', 'gg']) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function smallestRangeI(nums, k) {
-  let min = Infinity, max = -Infinity;
+  let min = Infinity,
+    max = -Infinity;
 
   for (const num of nums) {
     min = Math.min(min, num);
@@ -15698,7 +17034,7 @@ function smallestRangeI(nums, k) {
 console.log({ smallestRangeI: smallestRangeI([1], 0) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number[]}
  */
 function sumZero(n) {
@@ -15718,7 +17054,7 @@ function sumZero(n) {
 console.log({ sumZero: sumZero(5) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function areOccurrencesEqual(s) {
@@ -15736,15 +17072,15 @@ function areOccurrencesEqual(s) {
 
   return true;
 }
-console.log({ areOccurrencesEqual: areOccurrencesEqual("abacbc") });
+console.log({ areOccurrencesEqual: areOccurrencesEqual('abacbc') });
 
 /**
- * @param {string} text 
- * @param {string} brokenLetters 
+ * @param {string} text
+ * @param {string} brokenLetters
  * @returns {boolean}
  */
 function canBeTypedWords(text, brokenLetters) {
-  const words = text.split(" ");
+  const words = text.split(' ');
   let count = 0;
 
   for (const word of words) {
@@ -15763,15 +17099,16 @@ function canBeTypedWords(text, brokenLetters) {
 
   return count;
 }
-console.log({ canBeTypedWords: canBeTypedWords("hello world", "ad") });
+console.log({ canBeTypedWords: canBeTypedWords('hello world', 'ad') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maxFreqSum(s) {
   const charCount = new Array(26).fill(0);
-  let maxVowelCount = 0, maxConsonantCount = 0;
+  let maxVowelCount = 0,
+    maxConsonantCount = 0;
 
   for (const char of s) {
     const charIndex = char.charCodeAt(0) - 97;
@@ -15790,10 +17127,10 @@ function maxFreqSum(s) {
 
   return maxVowelCount + maxConsonantCount;
 }
-console.log({ maxFreqSum: maxFreqSum("successes") });
+console.log({ maxFreqSum: maxFreqSum('successes') });
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {boolean}
  */
 function satisfiesConditions(grid) {
@@ -15812,7 +17149,7 @@ function satisfiesConditions(grid) {
 console.log({ satisfiesConditions: satisfiesConditions([[1], [2], [3]]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number[]}
  */
 function sortByBits(arr) {
@@ -15820,7 +17157,8 @@ function sortByBits(arr) {
   const bitStore = new Map();
 
   for (const num of arr) {
-    let currentNum = num, count = 0;
+    let currentNum = num,
+      count = 0;
 
     while (currentNum) {
       count += currentNum & 1;
@@ -15845,11 +17183,12 @@ function sortByBits(arr) {
 console.log({ sortByBits: sortByBits([0, 1, 2, 3, 4, 5, 6, 7, 8]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function returnToBoundaryCount(nums) {
-  let movement = 0, count = 0;
+  let movement = 0,
+    count = 0;
 
   for (const num of nums) {
     movement += num;
@@ -15861,12 +17200,13 @@ function returnToBoundaryCount(nums) {
 console.log({ returnToBoundaryCount: returnToBoundaryCount([2, 3, -5]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function sortArrayByParityII(nums) {
   const result = new Array(nums.length);
-  let evenIdx = 0, oddIdx = 1;
+  let evenIdx = 0,
+    oddIdx = 1;
 
   for (const num of nums) {
     if (num % 2 === 0) {
@@ -15883,7 +17223,7 @@ function sortArrayByParityII(nums) {
 console.log({ sortArrayByParityII: sortArrayByParityII([4, 2, 5, 7]) });
 
 /**
- * @param {number} year 
+ * @param {number} year
  * @returns {boolean}
  */
 function isLeapYear(year) {
@@ -15891,11 +17231,11 @@ function isLeapYear(year) {
 }
 
 /**
- * @param {string} date 
+ * @param {string} date
  * @returns {number}
  */
 function getDays(date) {
-  const [year, month, day] = date.split("-");
+  const [year, month, day] = date.split('-');
   const DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   let totalDays = +day;
 
@@ -15913,18 +17253,18 @@ function getDays(date) {
 }
 
 /**
- * @param {string} date1 
- * @param {string} date2 
+ * @param {string} date1
+ * @param {string} date2
  * @returns {number}
  */
 function daysBetweenDates(date1, date2) {
   return Math.abs(getDays(date1) - getDays(date2));
 }
-console.log({ daysBetweenDates: daysBetweenDates("2019-06-29", "2019-06-30") });
+console.log({ daysBetweenDates: daysBetweenDates('2019-06-29', '2019-06-30') });
 
 /**
- * @param {string} s 
- * @param {number[]} distance 
+ * @param {string} s
+ * @param {number[]} distance
  * @returns {boolean}
  */
 function checkDistances(s, distance) {
@@ -15943,20 +17283,30 @@ function checkDistances(s, distance) {
 
   return true;
 }
-console.log({ checkDistances: checkDistances("abaccb", [1, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) });
+console.log({
+  checkDistances: checkDistances(
+    'abaccb',
+    [
+      1, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0,
+    ],
+  ),
+});
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {boolean}
  */
 function isVowel(char) {
-  return char === "a" || char === "e" || char === "i" || char === "o" || char === "u";
+  return (
+    char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u'
+  );
 }
 
 /**
- * @param {string[]} words 
- * @param {number} left 
- * @param {number} right 
+ * @param {string[]} words
+ * @param {number} left
+ * @param {number} right
  * @returns {number}
  */
 function vowelStrings(words, left, right) {
@@ -15969,15 +17319,16 @@ function vowelStrings(words, left, right) {
 
   return count;
 }
-console.log({ vowelStrings: vowelStrings(["are", "amy", "u"], 0, 2) });
+console.log({ vowelStrings: vowelStrings(['are', 'amy', 'u'], 0, 2) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maxDifference(s) {
   const charsCount = new Map();
-  let evenCount = Infinity, oddCount = 0;
+  let evenCount = Infinity,
+    oddCount = 0;
 
   for (const char of s) {
     charsCount.set(char, (charsCount.get(char) || 0) + 1);
@@ -15990,18 +17341,18 @@ function maxDifference(s) {
 
   return oddCount - evenCount;
 }
-console.log({ maxDifference: maxDifference("aaaaabbc") });
+console.log({ maxDifference: maxDifference('aaaaabbc') });
 
 /**
- * @param {number[]} flowerbed 
- * @param {number} n 
+ * @param {number[]} flowerbed
+ * @param {number} n
  * @returns {boolean}
  */
 function canPlaceFlowers(flowerbed, n) {
   for (let i = 0; i < flowerbed.length; i++) {
     if (flowerbed[i] === 0) {
-      const emptyLeft = (i === 0) || (flowerbed[i - 1] === 0);
-      const emptyRight = (i === flowerbed.length - 1) || (flowerbed[i + 1] === 0);
+      const emptyLeft = i === 0 || flowerbed[i - 1] === 0;
+      const emptyRight = i === flowerbed.length - 1 || flowerbed[i + 1] === 0;
 
       if (emptyLeft && emptyRight) {
         flowerbed[i] = 1;
@@ -16016,7 +17367,7 @@ function canPlaceFlowers(flowerbed, n) {
 console.log({ canPlaceFlowers: canPlaceFlowers([1, 0, 0, 0, 1], 1) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxAdjacentDistance(nums) {
@@ -16031,47 +17382,49 @@ function maxAdjacentDistance(nums) {
 console.log({ maxAdjacentDistance: maxAdjacentDistance([1, 2, 4]) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function minMaxDifference(num) {
-  let s = num.toString(), t = s, pos = 0;
+  let s = num.toString(),
+    t = s,
+    pos = 0;
 
-  while (pos < s.length && s[pos] === "9") {
+  while (pos < s.length && s[pos] === '9') {
     pos++;
   }
 
   if (pos < s.length) {
-    s = s.replace(new RegExp(s[pos], "g"), "9");
+    s = s.replace(new RegExp(s[pos], 'g'), '9');
   }
 
-  t = t.replace(new RegExp(t[0], "g"), "0");
+  t = t.replace(new RegExp(t[0], 'g'), '0');
 
   return parseInt(s) - parseInt(t);
 }
 console.log({ minMaxDifference: minMaxDifference(11891) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number[]}
  */
 function getNums(num) {
   const s = num.toString();
-  const maxDigitToReplace = s.split("").find((d) => d !== "9");
+  const maxDigitToReplace = s.split('').find((d) => d !== '9');
   const maxStr = maxDigitToReplace
-    ? s.replace(new RegExp(maxDigitToReplace, "g"), "9")
+    ? s.replace(new RegExp(maxDigitToReplace, 'g'), '9')
     : s;
 
   let minStr = s;
-  if (s[0] !== "1") {
-    minStr = s.replace(new RegExp(s[0], "g"), "1");
+  if (s[0] !== '1') {
+    minStr = s.replace(new RegExp(s[0], 'g'), '1');
   } else {
     const digitToReplace = s
       .slice(1)
-      .split("")
-      .find((d) => d !== "0" && d !== "1");
+      .split('')
+      .find((d) => d !== '0' && d !== '1');
     if (digitToReplace) {
-      minStr = s.replace(new RegExp(digitToReplace, "g"), "0");
+      minStr = s.replace(new RegExp(digitToReplace, 'g'), '0');
     }
   }
 
@@ -16079,7 +17432,7 @@ function getNums(num) {
 }
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function maxDiff(num) {
@@ -16089,11 +17442,12 @@ function maxDiff(num) {
 console.log({ maxDiff: maxDiff(555) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maximumDifference(nums) {
-  let maxDiff = -1, minNum = nums[0];
+  let maxDiff = -1,
+    minNum = nums[0];
 
   for (let idx = 1; idx < nums.length; idx++) {
     if (nums[idx] > minNum) maxDiff = Math.max(maxDiff, nums[idx] - minNum);
@@ -16105,9 +17459,9 @@ function maximumDifference(nums) {
 console.log({ maximumDifference: maximumDifference([7, 1, 5, 4]) });
 
 /**
- * @param {number[][]} mat 
- * @param {number} r 
- * @param {number} c 
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
  * @returns {number[][]}
  */
 function matrixReshape(mat, r, c) {
@@ -16124,16 +17478,26 @@ function matrixReshape(mat, r, c) {
 
   return reshaped;
 }
-console.log({ matrixReshape: matrixReshape([[1, 2], [3, 4]], 1, 4) });
+console.log({
+  matrixReshape: matrixReshape(
+    [
+      [1, 2],
+      [3, 4],
+    ],
+    1,
+    4,
+  ),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function partitionArray(nums, k) {
   nums.sort((a, b) => a - b);
-  let ans = 1, rec = nums[0];
+  let ans = 1,
+    rec = nums[0];
 
   for (const num of nums) {
     if (num - rec > k) {
@@ -16147,12 +17511,12 @@ function partitionArray(nums, k) {
 console.log({ partitionArray: partitionArray([3, 6, 1, 2, 5], 2) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function hasSameDigits(s) {
   while (s.length > 2) {
-    let sum = "";
+    let sum = '';
 
     for (let idx = 0; idx < s.length - 1; idx++) {
       const first = +s[idx],
@@ -16165,11 +17529,11 @@ function hasSameDigits(s) {
 
   return s[0] === s[1];
 }
-console.log({ hasSameDigits: hasSameDigits("3902") });
+console.log({ hasSameDigits: hasSameDigits('3902') });
 
 /**
- * @param {string} word 
- * @param {number} k 
+ * @param {string} word
+ * @param {number} k
  * @returns {number}
  */
 function minimumDeletions(word, k) {
@@ -16197,12 +17561,12 @@ function minimumDeletions(word, k) {
 
   return res;
 }
-console.log({ minimumDeletions: minimumDeletions("aabcaba", 0) });
+console.log({ minimumDeletions: minimumDeletions('aabcaba', 0) });
 
 /**
- * @param {string} s 
- * @param {number} k 
- * @param {string} fill 
+ * @param {string} s
+ * @param {number} k
+ * @param {string} fill
  * @returns {string[]}
  */
 function divideString(s, k, fill) {
@@ -16211,7 +17575,7 @@ function divideString(s, k, fill) {
   let groupCount = 0;
 
   while (groupCount < groups) {
-    result[groupCount] = "";
+    result[groupCount] = '';
 
     for (let idx = 0; idx < k; idx++) {
       result[groupCount] += s[groupCount * k + idx] || fill;
@@ -16222,11 +17586,11 @@ function divideString(s, k, fill) {
 
   return result;
 }
-console.log({ divideString: divideString("abcdefghi", 3, "x") });
+console.log({ divideString: divideString('abcdefghi', 3, 'x') });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number[]}
  */
 function maxSubsequence(nums, k) {
@@ -16246,9 +17610,9 @@ function maxSubsequence(nums, k) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} key 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} key
+ * @param {number} k
  * @returns {number[]}
  */
 function findKDistantIndices(nums, key, k) {
@@ -16265,10 +17629,12 @@ function findKDistantIndices(nums, key, k) {
 
   return indices;
 }
-console.log({ findKDistantIndices: findKDistantIndices([2, 2, 2, 2, 2], 2, 2) });
+console.log({
+  findKDistantIndices: findKDistantIndices([2, 2, 2, 2, 2], 2, 2),
+});
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {number}
  */
 function possibleStringCount(word) {
@@ -16280,14 +17646,14 @@ function possibleStringCount(word) {
 
   return count;
 }
-console.log({ possibleStringCount: possibleStringCount("abbcccc") });
+console.log({ possibleStringCount: possibleStringCount('abbcccc') });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {string}
  */
 function thousandSeparator(n) {
-  if (n === 0) return "0";
+  if (n === 0) return '0';
 
   const result = [];
   let count = 1;
@@ -16295,21 +17661,23 @@ function thousandSeparator(n) {
   while (n) {
     result.unshift(`${n % 10}`);
     n = Math.floor(n / 10);
-    if (count++ % 3 === 0 && n) result.unshift(".");
+    if (count++ % 3 === 0 && n) result.unshift('.');
   }
 
-  return result.join("");
+  return result.join('');
 }
 console.log({ thousandSeparator: thousandSeparator(987) });
 
 /**
- * @param {number[]} widths 
- * @param {string} text 
+ * @param {number[]} widths
+ * @param {string} text
  * @returns {number[]}
  */
 function numberOfLines(widths, text) {
-  const MAX_LINE_WIDTH = 100, CHAR_CODE_OFFSET = 97;
-  let currentLineWidth = 0, lineCount = 0;
+  const MAX_LINE_WIDTH = 100,
+    CHAR_CODE_OFFSET = 97;
+  let currentLineWidth = 0,
+    lineCount = 0;
 
   for (const char of text) {
     const charCode = char.charCodeAt(0);
@@ -16326,36 +17694,51 @@ function numberOfLines(widths, text) {
 
   return [totalLines, currentLineWidth];
 }
-console.log({ numberOfLines: numberOfLines([3, 4, 10, 4, 8, 7, 3, 3, 4, 9, 8, 2, 9, 6, 2, 8, 4, 9, 9, 10, 2, 4, 9, 10, 8, 2], "mqb") });
+console.log({
+  numberOfLines: numberOfLines(
+    [
+      3, 4, 10, 4, 8, 7, 3, 3, 4, 9, 8, 2, 9, 6, 2, 8, 4, 9, 9, 10, 2, 4, 9, 10,
+      8, 2,
+    ],
+    'mqb',
+  ),
+});
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {boolean}
  */
 function isValid(word) {
   if (word.length < 3) return false;
 
-  let hasVowel = false, hasConsonant = false;
+  let hasVowel = false,
+    hasConsonant = false;
 
   for (const char of word) {
     if (/[a-zA-Z]/.test(char)) {
       const ch = char.toLowerCase();
-      if (ch === "a" || ch === "e" || ch === "i" || ch === "o" || ch === "u") hasVowel = true;
+      if (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
+        hasVowel = true;
       else hasConsonant = true;
     } else if (!/\d/.test(char)) return false;
   }
 
   return hasVowel && hasConsonant;
 }
-console.log({ isValid: isValid("234Adas") });
+console.log({ isValid: isValid('234Adas') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maximumLength(nums) {
   let res = 0;
-  const patterns = [[0, 0], [0, 1], [1, 0], [1, 1]];
+  const patterns = [
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1],
+  ];
 
   for (const pattern of patterns) {
     let cnt = 0;
@@ -16374,7 +17757,7 @@ function maximumLength(nums) {
 console.log({ maximumLength: maximumLength([1, 2, 3, 4]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number[]}
  */
 function replaceElements(arr) {
@@ -16391,7 +17774,7 @@ function replaceElements(arr) {
 console.log({ replaceElements: replaceElements([17, 18, 5, 4, 6, 1]) });
 
 /**
- * @param {number[]} arr 
+ * @param {number[]} arr
  * @returns {number}
  */
 function trimMean(arr) {
@@ -16406,10 +17789,14 @@ function trimMean(arr) {
 
   return sum / (arr.length - 2 * limit);
 }
-console.log({ trimMean: trimMean([1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3]) });
+console.log({
+  trimMean: trimMean([
+    1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function greatestLetter(s) {
@@ -16421,52 +17808,55 @@ function greatestLetter(s) {
     if (chars.has(lowercase) && chars.has(uppercase)) return uppercase;
   }
 
-  return "";
+  return '';
 }
-console.log({ greatestLetter: greatestLetter("lEeTcOdE") });
+console.log({ greatestLetter: greatestLetter('lEeTcOdE') });
 
 /**
- * @param {string} num 
+ * @param {string} num
  * @returns {string}
  */
 function removeTrailingZeros(num) {
   let stopIdx = num.length - 1;
 
   while (stopIdx >= 0) {
-    if (num[stopIdx] !== "0") break;
+    if (num[stopIdx] !== '0') break;
     stopIdx--;
   }
 
   return num.slice(0, stopIdx + 1);
 }
-console.log({ removeTrailingZeros: removeTrailingZeros("123") });
+console.log({ removeTrailingZeros: removeTrailingZeros('123') });
 
 /**
- * @param {string} caption 
+ * @param {string} caption
  * @returns {string}
  */
 function generateTag(caption) {
-  const words = caption.trim().split(" ");
+  const words = caption.trim().split(' ');
   const firstWord = words[0].toLowerCase();
-  const result = ["#", firstWord];
+  const result = ['#', firstWord];
 
   for (let idx = 1; idx < words.length; idx++) {
     const currentWord = words[idx];
     if (!currentWord) continue;
-    result.push(`${currentWord[0].toUpperCase()}${currentWord.slice(1).toLowerCase()}`);
+    result.push(
+      `${currentWord[0].toUpperCase()}${currentWord.slice(1).toLowerCase()}`,
+    );
   }
 
-  return result.join("").slice(0, 100);
+  return result.join('').slice(0, 100);
 }
-console.log({ generateTag: generateTag("can I Go There") });
+console.log({ generateTag: generateTag('can I Go There') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxSum(nums) {
   const unique = new Set(nums);
-  let maxNum = -Infinity, hasPositive = false;
+  let maxNum = -Infinity,
+    hasPositive = false;
   let sum = 0;
 
   unique.forEach((num) => {
@@ -16483,14 +17873,14 @@ function maxSum(nums) {
 console.log({ maxSum: maxSum([1, 2, 3, 4, 5]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function minSubsequence(nums) {
   nums.sort((a, b) => b - a);
 
   let currentSum = 0;
-  const sum = nums.reduce((num, sum) => sum += num, 0);
+  const sum = nums.reduce((num, sum) => (sum += num), 0);
   const result = [];
 
   for (let idx = 0; idx < nums.length; idx++) {
@@ -16504,25 +17894,25 @@ function minSubsequence(nums) {
 console.log({ minSubsequence: minSubsequence([4, 3, 10, 9, 8]) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function maximum69Number(num) {
-  const digits = `${num}`.split("");
+  const digits = `${num}`.split('');
 
   for (let idx = 0; idx < digits.length; idx++) {
-    if (digits[idx] === "6") {
-      digits[idx] = "9";
+    if (digits[idx] === '6') {
+      digits[idx] = '9';
       break;
     }
   }
 
-  return +digits.join("");
+  return +digits.join('');
 }
 console.log({ maximum69Number: maximum69Number(9669) });
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {boolean}
  */
 function checkValid(matrix) {
@@ -16544,10 +17934,16 @@ function checkValid(matrix) {
 
   return true;
 }
-console.log({ checkValid: checkValid([[1, 2, 3], [3, 1, 2], [2, 3, 1]]) });
+console.log({
+  checkValid: checkValid([
+    [1, 2, 3],
+    [3, 1, 2],
+    [2, 3, 1],
+  ]),
+});
 
 /**
- * @param {string[][]} board 
+ * @param {string[][]} board
  * @returns {boolean}
  */
 function isValidSudoku(board) {
@@ -16556,7 +17952,7 @@ function isValidSudoku(board) {
   for (let row = 0; row < board.length; row++) {
     for (let col = 0; col < board[row].length; col++) {
       const value = board[row][col];
-      if (value === ".") continue;
+      if (value === '.') continue;
 
       const rowKey = `row${row}_val${value}`;
       const colKey = `col${col}_val${value}`;
@@ -16577,25 +17973,26 @@ function isValidSudoku(board) {
 }
 console.log({
   isValidSudoku: isValidSudoku([
-    ["5", "3", ".", ".", "7", ".", ".", ".", "."],
-    ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-    [".", "9", "8", ".", ".", ".", ".", "6", "."],
-    ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-    ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-    ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-    [".", "6", ".", ".", ".", ".", "2", "8", "."],
-    [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-    [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+    ['5', '3', '.', '.', '7', '.', '.', '.', '.'],
+    ['6', '.', '.', '1', '9', '5', '.', '.', '.'],
+    ['.', '9', '8', '.', '.', '.', '.', '6', '.'],
+    ['8', '.', '.', '.', '6', '.', '.', '.', '3'],
+    ['4', '.', '.', '8', '.', '3', '.', '.', '1'],
+    ['7', '.', '.', '.', '2', '.', '.', '.', '6'],
+    ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
+    ['.', '.', '.', '4', '1', '9', '.', '.', '5'],
+    ['.', '.', '.', '.', '8', '.', '.', '7', '9'],
   ]),
 });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findTheArrayConcVal(nums) {
   const updatedNums = [];
-  let left = 0, right = nums.length - 1;
+  let left = 0,
+    right = nums.length - 1;
 
   while (left < right) {
     const updatedNum = `${nums[left]}${nums[right]}`;
@@ -16611,11 +18008,13 @@ function findTheArrayConcVal(nums) {
 console.log({ findTheArrayConcVal: findTheArrayConcVal([7, 52, 2, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function longestSubarray(nums) {
-  let zeroCount = 0, longestWindow = 0, start = 0;
+  let zeroCount = 0,
+    longestWindow = 0,
+    start = 0;
 
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] === 0) zeroCount++;
@@ -16633,11 +18032,14 @@ function longestSubarray(nums) {
 console.log({ longestSubarray: longestSubarray([1, 1, 0, 1]) });
 
 /**
- * @param {number[][]} mat 
+ * @param {number[][]} mat
  * @returns {number[]}
  */
 function findDiagonalOrder(mat) {
-  let row = 0, column = 0, direction = 1, r = 0;
+  let row = 0,
+    column = 0,
+    direction = 1,
+    r = 0;
   const result = [];
 
   while (row < mat.length && column < mat[0].length) {
@@ -16646,13 +18048,18 @@ function findDiagonalOrder(mat) {
     let newRow = row + (direction === 1 ? -1 : 1);
     let newColumn = column + (direction === 1 ? 1 : -1);
 
-    if (newRow < 0 || newRow === mat.length || newColumn < 0 || newColumn === mat[0].length) {
+    if (
+      newRow < 0 ||
+      newRow === mat.length ||
+      newColumn < 0 ||
+      newColumn === mat[0].length
+    ) {
       if (direction === 1) {
-        row += (column === mat[0].length - 1 ? 1 : 0);
-        column += (column < mat[0].length - 1 ? 1 : 0);
+        row += column === mat[0].length - 1 ? 1 : 0;
+        column += column < mat[0].length - 1 ? 1 : 0;
       } else {
-        column += (row === mat.length - 1 ? 1 : 0);
-        row += (row < mat.length - 1 ? 1 : 0);
+        column += row === mat.length - 1 ? 1 : 0;
+        row += row < mat.length - 1 ? 1 : 0;
       }
 
       direction = 1 - direction;
@@ -16664,18 +18071,27 @@ function findDiagonalOrder(mat) {
 
   return result;
 }
-console.log({ findDiagonalOrder: findDiagonalOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) });
+console.log({
+  findDiagonalOrder: findDiagonalOrder([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]),
+});
 
 /**
- * @param {number[][]} dimensions 
+ * @param {number[][]} dimensions
  * @returns {number}
  */
 function areaOfMaxDiagonal(dimensions) {
-  let maxDiaSq = 0, maxArea = 0;
+  let maxDiaSq = 0,
+    maxArea = 0;
 
   for (const dimension of dimensions) {
-    const length = dimension[0], width = dimension[1];
-    const diaSq = length * length + width * width, area = length * width;
+    const length = dimension[0],
+      width = dimension[1];
+    const diaSq = length * length + width * width,
+      area = length * width;
 
     if (diaSq > maxDiaSq) {
       maxDiaSq = diaSq;
@@ -16687,14 +18103,20 @@ function areaOfMaxDiagonal(dimensions) {
 
   return maxArea;
 }
-console.log({ areaOfMaxDiagonal: areaOfMaxDiagonal([[9, 3], [8, 6]]) });
+console.log({
+  areaOfMaxDiagonal: areaOfMaxDiagonal([
+    [9, 3],
+    [8, 6],
+  ]),
+});
 
 /**
- * @param {number[][]} mat 
+ * @param {number[][]} mat
  * @returns {number[]}
  */
 function rowAndMaximumOnes(mat) {
-  let rowIdx = 0, maxCount = 0;
+  let rowIdx = 0,
+    maxCount = 0;
 
   for (let idx = 0; idx < mat.length; idx++) {
     const row = mat[idx];
@@ -16712,15 +18134,21 @@ function rowAndMaximumOnes(mat) {
 
   return [rowIdx, maxCount];
 }
-console.log({ rowAndMaximumOnes: rowAndMaximumOnes([[0, 1], [1, 0]]) });
+console.log({
+  rowAndMaximumOnes: rowAndMaximumOnes([
+    [0, 1],
+    [1, 0],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function maximizeSum(nums, k) {
-  let maxNum = Math.max(...nums), score = 0;
+  let maxNum = Math.max(...nums),
+    score = 0;
 
   while (k) {
     score += maxNum++;
@@ -16732,12 +18160,13 @@ function maximizeSum(nums, k) {
 console.log({ maximizeSum: maximizeSum([1, 2, 3, 4, 5], 3) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function smallestIndex(nums) {
   for (let idx = 0; idx < nums.length; idx++) {
-    let num = nums[idx], sum = 0;
+    let num = nums[idx],
+      sum = 0;
 
     while (num > 0) {
       sum += num % 10;
@@ -16752,9 +18181,9 @@ function smallestIndex(nums) {
 console.log({ smallestIndex: smallestIndex([1, 3, 2]) });
 
 /**
- * @param {number} x 
- * @param {number} y 
- * @param {number} z 
+ * @param {number} x
+ * @param {number} y
+ * @param {number} z
  * @returns {number}
  */
 function findClosest(x, y, z) {
@@ -16766,7 +18195,7 @@ function findClosest(x, y, z) {
 console.log({ findClosest: findClosest(2, 7, 4) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function smallestEqual(nums) {
@@ -16779,15 +18208,16 @@ function smallestEqual(nums) {
 console.log({ smallestEqual: smallestEqual([0, 1, 2]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number[]}
  */
 function getNoZeroIntegers(n) {
-  let start = 0, end = n;
+  let start = 0,
+    end = n;
   const result = [];
 
   /**
-   * @param {number} num 
+   * @param {number} num
    * @returns {boolean}
    */
   function hasZero(num) {
@@ -16817,7 +18247,7 @@ function getNoZeroIntegers(n) {
 console.log({ getNoZeroIntegers: getNoZeroIntegers(11) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {boolean}
  */
 function canWinNim(n) {
@@ -16826,7 +18256,7 @@ function canWinNim(n) {
 console.log({ canWinNim: canWinNim(4) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function repeatedCharacter(s) {
@@ -16837,12 +18267,12 @@ function repeatedCharacter(s) {
     seen.add(char);
   }
 }
-console.log({ repeatedCharacter: repeatedCharacter("abccbaacz") });
+console.log({ repeatedCharacter: repeatedCharacter('abccbaacz') });
 
 /**
- * @param {number} m 
- * @param {number} n 
- * @param {number[][]} ops 
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} ops
  * @returns {number}
  */
 function maxCount(m, n, ops) {
@@ -16856,49 +18286,59 @@ function maxCount(m, n, ops) {
 
   return minRow * minCol;
 }
-console.log({ maxCount: maxCount(3, 3, [[2, 2], [3, 3]]) });
+console.log({
+  maxCount: maxCount(3, 3, [
+    [2, 2],
+    [3, 3],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minimizedStringLength(s) {
   return new Set(s).size;
 }
-console.log({ minimizedStringLength: minimizedStringLength("aaabc") });
+console.log({ minimizedStringLength: minimizedStringLength('aaabc') });
 
 /**
- * @param {string} title 
+ * @param {string} title
  * @returns {string}
  */
 function capitalizeTitle(title) {
-  const words = title.split(" ");
+  const words = title.split(' ');
 
   for (let idx = 0; idx < words.length; idx++) {
     if (words[idx].length < 3) words[idx] = words[idx].toLowerCase();
-    else words[idx] = `${words[idx][0].toUpperCase()}${words[idx].slice(1).toLowerCase()}`;
+    else
+      words[idx] =
+        `${words[idx][0].toUpperCase()}${words[idx].slice(1).toLowerCase()}`;
   }
 
-  return words.join(" ");
+  return words.join(' ');
 }
-console.log({ capitalizeTitle: capitalizeTitle("i lOve leetcode") });
+console.log({ capitalizeTitle: capitalizeTitle('i lOve leetcode') });
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function getEncryptedString(s, k) {
-  return Array.from(s).map((_, i) => s[(i + k) % s.length]).join('');
+  return Array.from(s)
+    .map((_, i) => s[(i + k) % s.length])
+    .join('');
 }
-console.log({ getEncryptedString: getEncryptedString("dart", 3) });
+console.log({ getEncryptedString: getEncryptedString('dart', 3) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function countDigits(num) {
-  let count = 0, originalNum = num;
+  let count = 0,
+    originalNum = num;
 
   while (num) {
     const digit = num % 10;
@@ -16911,24 +18351,25 @@ function countDigits(num) {
 console.log({ countDigits: countDigits(1248) });
 
 /**
- * @param {number} numerator 
- * @param {number} denominator 
+ * @param {number} numerator
+ * @param {number} denominator
  * @returns {string}
  */
 function fractionToDecimal(numerator, denominator) {
-  if (numerator === 0) return "0";
+  if (numerator === 0) return '0';
 
   let result = '';
 
-  if ((numerator < 0) !== (denominator < 0)) result += '-';
+  if (numerator < 0 !== denominator < 0) result += '-';
 
-  let num = Math.abs(numerator), den = Math.abs(denominator);
+  let num = Math.abs(numerator),
+    den = Math.abs(denominator);
   result += Math.floor(num / den);
   let remainder = num % den;
 
   if (remainder === 0) return result;
 
-  result += ".";
+  result += '.';
 
   const map = new Map();
 
@@ -16950,42 +18391,42 @@ function fractionToDecimal(numerator, denominator) {
 console.log({ fractionToDecimal: fractionToDecimal(4, 333) });
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {boolean}
  */
 function isVowel(char) {
-  const vowels = new Set(["a", "e", "i", "o", "u"]);
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
   return vowels.has(char.toLowerCase());
 }
 
 /**
- * @param {string} sentence 
+ * @param {string} sentence
  * @returns {string}
  */
 function toGoatLatin(sentence) {
-  const words = sentence.split(" ");
+  const words = sentence.split(' ');
   const result = [];
-  let suffix = "";
+  let suffix = '';
 
   for (const word of words) {
-    suffix += "a";
+    suffix += 'a';
 
-    let transformed = "";
+    let transformed = '';
     if (isVowel(word[0])) {
       transformed = word;
     } else {
       transformed = word.slice(1) + word[0];
     }
 
-    result.push(transformed + "ma" + suffix);
+    result.push(transformed + 'ma' + suffix);
   }
 
-  return result.join(" ");
+  return result.join(' ');
 }
-console.log({ toGoatLatin: toGoatLatin("I speak Goat Latin") });
+console.log({ toGoatLatin: toGoatLatin('I speak Goat Latin') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function triangleNumber(nums) {
@@ -16993,7 +18434,8 @@ function triangleNumber(nums) {
   nums.sort((a, b) => a - b);
 
   for (let third = nums.length - 1; third >= 2; third--) {
-    let left = 0, right = third - 1;
+    let left = 0,
+      right = third - 1;
 
     while (left < right) {
       if (nums[left] + nums[right] > nums[third]) {
@@ -17010,7 +18452,7 @@ function triangleNumber(nums) {
 console.log({ triangleNumber: triangleNumber([2, 2, 3, 4]) });
 
 /**
- * @param {number[][]} points 
+ * @param {number[][]} points
  * @returns {number}
  */
 function largestTriangleArea(points) {
@@ -17019,12 +18461,16 @@ function largestTriangleArea(points) {
   for (let i = 0; i < points.length - 2; i++) {
     for (let j = i + 1; j < points.length - 1; j++) {
       for (let k = j + 1; k < points.length; k++) {
-        const point1 = points[i], point2 = points[j], point3 = points[k];
-        const area = 0.5 * Math.abs(
-          point1[0] * (point2[1] - point3[1]) +
-          point2[0] * (point3[1] - point1[1]) +
-          point3[0] * (point1[1] - point2[1])
-        );
+        const point1 = points[i],
+          point2 = points[j],
+          point3 = points[k];
+        const area =
+          0.5 *
+          Math.abs(
+            point1[0] * (point2[1] - point3[1]) +
+              point2[0] * (point3[1] - point1[1]) +
+              point3[0] * (point1[1] - point2[1]),
+          );
         maxArea = Math.max(maxArea, area);
       }
     }
@@ -17032,10 +18478,16 @@ function largestTriangleArea(points) {
 
   return maxArea;
 }
-console.log({ largestTriangleArea: largestTriangleArea([[1, 0], [0, 0], [0, 1]]) });
+console.log({
+  largestTriangleArea: largestTriangleArea([
+    [1, 0],
+    [0, 0],
+    [0, 1],
+  ]),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function sortString(s) {
@@ -17064,12 +18516,12 @@ function sortString(s) {
     }
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ sortString: sortString("rat") });
+console.log({ sortString: sortString('rat') });
 
 /**
- * @param {string} rings 
+ * @param {string} rings
  * @returns {number}
  */
 function countPoints(rings) {
@@ -17095,11 +18547,11 @@ function countPoints(rings) {
 
   return count;
 }
-console.log({ countPoints: countPoints("B0B6G0R6R0R6G9") });
+console.log({ countPoints: countPoints('B0B6G0R6R0R6G9') });
 
 /**
- * @param {number[]} order 
- * @param {number[]} friends 
+ * @param {number[]} order
+ * @param {number[]} friends
  * @returns {number[]}
  */
 function recoverOrder(order, friends) {
@@ -17115,13 +18567,14 @@ function recoverOrder(order, friends) {
 console.log({ recoverOrder: recoverOrder([3, 1, 2, 5, 4], [1, 3, 4]) });
 
 /**
- * @param {number} spell 
- * @param {number[]} potions 
- * @param {number} success 
+ * @param {number} spell
+ * @param {number[]} potions
+ * @param {number} success
  * @returns {number}
  */
 function getIndex(spell, potions, success) {
-  let start = 0, end = potions.length - 1;
+  let start = 0,
+    end = potions.length - 1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -17135,9 +18588,9 @@ function getIndex(spell, potions, success) {
 }
 
 /**
- * @param {number[]} spells 
- * @param {number[]} potions 
- * @param {number} success 
+ * @param {number[]} spells
+ * @param {number[]} potions
+ * @param {number} success
  * @returns {number[]}
  */
 function successfulPairs(spells, potions, success) {
@@ -17151,10 +18604,12 @@ function successfulPairs(spells, potions, success) {
 
   return result;
 }
-console.log({ successfulPairs: successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7) });
+console.log({
+  successfulPairs: successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7),
+});
 
 /**
- * @param {number[][]} tasks 
+ * @param {number[][]} tasks
  * @returns {number}
  */
 function earliestTime(tasks) {
@@ -17166,15 +18621,21 @@ function earliestTime(tasks) {
 
   return minTime;
 }
-console.log({ earliestTime: earliestTime([[1, 6], [2, 3]]) });
+console.log({
+  earliestTime: earliestTime([
+    [1, 6],
+    [2, 3],
+  ]),
+});
 
 /**
- * @param {number} num 
- * @param {number[]} arr 
+ * @param {number} num
+ * @param {number[]} arr
  * @returns {number}
  */
 function getIndex(num, arr) {
-  let start = 0, end = arr.length - 1;
+  let start = 0,
+    end = arr.length - 1;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -17186,9 +18647,9 @@ function getIndex(num, arr) {
 }
 
 /**
- * @param {number[]} arr1 
- * @param {number[]} arr2 
- * @param {number} d 
+ * @param {number[]} arr1
+ * @param {number[]} arr2
+ * @param {number} d
  * @returns {number}
  */
 function findTheDistanceValue(arr1, arr2, d) {
@@ -17207,7 +18668,9 @@ function findTheDistanceValue(arr1, arr2, d) {
 
   return arr1.length - count;
 }
-console.log({ findTheDistanceValue: findTheDistanceValue([4, 5, 8], [10, 9, 1, 8], 2) });
+console.log({
+  findTheDistanceValue: findTheDistanceValue([4, 5, 8], [10, 9, 1, 8], 2),
+});
 
 class MedianFinder {
   constructor() {
@@ -17263,7 +18726,7 @@ class MedianFinder {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function reorganizeString(s) {
@@ -17279,7 +18742,7 @@ function reorganizeString(s) {
   }
 
   if (maxHeap.peek()?.[1] > Math.ceil(s.length / 2)) {
-    return "";
+    return '';
   }
 
   const result = [];
@@ -17298,11 +18761,11 @@ function reorganizeString(s) {
     else previousChar = null;
   }
 
-  return result.join("");
+  return result.join('');
 }
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function largestInteger(num) {
@@ -17318,7 +18781,7 @@ function largestInteger(num) {
   }
 
   const numString = `${num}`;
-  let updatedNum = "";
+  let updatedNum = '';
 
   for (const digit of numString) {
     if (+digit % 2 === 0) {
@@ -17334,12 +18797,13 @@ function largestInteger(num) {
 }
 
 /**
- * @param {CustomFunction} customfunction 
- * @param {number} z 
+ * @param {CustomFunction} customfunction
+ * @param {number} z
  * @returns {number[][]}
  */
 function findSolution(customfunction, z) {
-  let left = 1, right = z;
+  let left = 1,
+    right = z;
   const result = [];
 
   while (left <= z && right >= 1) {
@@ -17357,8 +18821,8 @@ function findSolution(customfunction, z) {
 }
 
 /**
- * @param {string} word1 
- * @param {string} word2 
+ * @param {string} word1
+ * @param {string} word2
  * @returns {boolean}
  */
 function checkAlmostEquivalent(word1, word2) {
@@ -17375,11 +18839,11 @@ function checkAlmostEquivalent(word1, word2) {
 
   return true;
 }
-console.log({ checkAlmostEquivalent: checkAlmostEquivalent("aaaa", "bccb") });
+console.log({ checkAlmostEquivalent: checkAlmostEquivalent('aaaa', 'bccb') });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function sumDivisibleByK(nums, k) {
@@ -17400,11 +18864,12 @@ function sumDivisibleByK(nums, k) {
 console.log({ sumDivisibleByK: sumDivisibleByK([1, 2, 2, 3, 3, 3, 3, 4], 2) });
 
 /**
- * @param {number[]} batteryPercentages 
+ * @param {number[]} batteryPercentages
  * @returns {number}
  */
 function countTestedDevices(batteryPercentages) {
-  let deviceCount = 0, minBattery = 0;
+  let deviceCount = 0,
+    minBattery = 0;
 
   for (let i = 0; i < batteryPercentages.length; i++) {
     let currentBattery = batteryPercentages[i];
@@ -17454,11 +18919,13 @@ function removeAnagrams(words) {
 
   return res;
 }
-console.log({ removeAnagrams: removeAnagrams(["abba", "baba", "bbaa", "cd", "cd"]) });
+console.log({
+  removeAnagrams: removeAnagrams(['abba', 'baba', 'bbaa', 'cd', 'cd']),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {boolean}
  */
 function hasIncreasingSubarrays(nums, k) {
@@ -17487,15 +18954,22 @@ function hasIncreasingSubarrays(nums, k) {
 
   return false;
 }
-console.log({ hasIncreasingSubarrays: hasIncreasingSubarrays([2, 5, 7, 8, 9, 2, 3, 4, 3, 1], 3) });
+console.log({
+  hasIncreasingSubarrays: hasIncreasingSubarrays(
+    [2, 5, 7, 8, 9, 2, 3, 4, 3, 1],
+    3,
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxIncreasingSubarrays(nums) {
   const n = nums.length;
-  let cnt = 1, precnt = 0, ans = 0;
+  let cnt = 1,
+    precnt = 0,
+    ans = 0;
 
   for (let i = 1; i < n; ++i) {
     if (nums[i] > nums[i - 1]) {
@@ -17511,11 +18985,15 @@ function maxIncreasingSubarrays(nums) {
 
   return ans;
 }
-console.log({ maxIncreasingSubarrays: maxIncreasingSubarrays([2, 5, 7, 8, 9, 2, 3, 4, 3, 1]) });
+console.log({
+  maxIncreasingSubarrays: maxIncreasingSubarrays([
+    2, 5, 7, 8, 9, 2, 3, 4, 3, 1,
+  ]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} value 
+ * @param {number[]} nums
+ * @param {number} value
  * @returns {number}
  */
 function findSmallestInteger(nums, value) {
@@ -17535,11 +19013,13 @@ function findSmallestInteger(nums, value) {
 
   return mex;
 }
-console.log({ findSmallestInteger: findSmallestInteger([1, -10, 7, 13, 6, 8], 5) });
+console.log({
+  findSmallestInteger: findSmallestInteger([1, -10, 7, 13, 6, 8], 5),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number[]}
  */
 function topKFrequent(nums, k) {
@@ -17567,8 +19047,8 @@ function topKFrequent(nums, k) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function maxDistinctElements(nums, k) {
@@ -17587,10 +19067,12 @@ function maxDistinctElements(nums, k) {
 
   return cnt;
 }
-console.log({ maxDistinctElements: maxDistinctElements([1, 2, 2, 3, 3, 4], 2) });
+console.log({
+  maxDistinctElements: maxDistinctElements([1, 2, 2, 3, 3, 4], 2),
+});
 
 /**
- * @param {number[]} hours 
+ * @param {number[]} hours
  * @returns {number}
  */
 function countCompleteDayPairs(hours) {
@@ -17607,10 +19089,12 @@ function countCompleteDayPairs(hours) {
 
   return count;
 }
-console.log({ countCompleteDayPairs: countCompleteDayPairs([12, 12, 30, 24, 24]) });
+console.log({
+  countCompleteDayPairs: countCompleteDayPairs([12, 12, 30, 24, 24]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function alternatingSum(nums) {
@@ -17619,7 +19103,7 @@ function alternatingSum(nums) {
 console.log({ alternatingSum: alternatingSum([1, 3, 5, 7]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function evenNumberBitwiseORs(nums) {
@@ -17634,8 +19118,8 @@ function evenNumberBitwiseORs(nums) {
 console.log({ evenNumberBitwiseORs: evenNumberBitwiseORs([1, 2, 3, 4, 5, 6]) });
 
 /**
- * @param {number} num1 
- * @param {number} num2 
+ * @param {number} num1
+ * @param {number} num2
  * @returns {number}
  */
 function countOperations(num1, num2) {
@@ -17656,11 +19140,12 @@ function countOperations(num1, num2) {
 console.log({ countOperations: countOperations(2, 3) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function encrypt(num) {
-  let maxDigit = 0, count = 0;
+  let maxDigit = 0,
+    count = 0;
 
   while (num > 0) {
     maxDigit = Math.max(maxDigit, num % 10);
@@ -17672,7 +19157,7 @@ function encrypt(num) {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function sumOfEncryptedInt(nums) {
@@ -17719,7 +19204,7 @@ class Bank {
 }
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function countValidSelections(nums) {
@@ -17744,7 +19229,7 @@ function countValidSelections(nums) {
 console.log({ countValidSelections: countValidSelections([1, 0, 2, 0, 3]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function smallestNumber(n) {
@@ -17759,7 +19244,7 @@ function smallestNumber(n) {
 console.log({ smallestNumber: smallestNumber(5) });
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number[][]}
  */
 function modifiedMatrix(matrix) {
@@ -17767,7 +19252,8 @@ function modifiedMatrix(matrix) {
   const cols = matrix[0].length;
 
   for (let col = 0; col < cols; col++) {
-    let hasNegativeOne = false, maxValue = -1;
+    let hasNegativeOne = false,
+      maxValue = -1;
 
     for (let row = 0; row < rows; row++) {
       const value = matrix[row][col];
@@ -17787,31 +19273,47 @@ function modifiedMatrix(matrix) {
 
   return matrix;
 }
-console.log({ modifiedMatrix: modifiedMatrix([[3, -1], [5, 2]]) });
+console.log({
+  modifiedMatrix: modifiedMatrix([
+    [3, -1],
+    [5, 2],
+  ]),
+});
 
 /**
- * @param {string} date 
+ * @param {string} date
  * @returns {string}
  */
 function reformatDate(date) {
-  const [day, mon, year] = date.split(" ");
+  const [day, mon, year] = date.split(' ');
 
   const month = {
-    Jan: "01", Feb: "02", Mar: "03", Apr: "04", May: "05", Jun: "06",
-    Jul: "07", Aug: "08", Sep: "09", Oct: "10", Nov: "11", Dec: "12"
+    Jan: '01',
+    Feb: '02',
+    Mar: '03',
+    Apr: '04',
+    May: '05',
+    Jun: '06',
+    Jul: '07',
+    Aug: '08',
+    Sep: '09',
+    Oct: '10',
+    Nov: '11',
+    Dec: '12',
   }[mon];
 
-  return `${year}-${month}-${day.replace(/\D/g, "").padStart(2, "0")}`;
+  return `${year}-${month}-${day.replace(/\D/g, '').padStart(2, '0')}`;
 }
-console.log({ reformatDate: reformatDate("20th Oct 2052") });
+console.log({ reformatDate: reformatDate('20th Oct 2052') });
 
 /**
- * @param {string} colors 
- * @param {number[]} neededTime 
+ * @param {string} colors
+ * @param {number[]} neededTime
  * @returns {number}
  */
 function minCost(colors, neededTime) {
-  let n = colors.length, sum = 0;
+  let n = colors.length,
+    sum = 0;
 
   for (let i = 1; i < n; i++) {
     if (colors[i] === colors[i - 1]) {
@@ -17822,12 +19324,12 @@ function minCost(colors, neededTime) {
 
   return sum;
 }
-console.log({ minCost: minCost("abaac", [1, 2, 3, 4, 5]) });
+console.log({ minCost: minCost('abaac', [1, 2, 3, 4, 5]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
- * @param {number} x 
+ * @param {number[]} nums
+ * @param {number} k
+ * @param {number} x
  * @returns {number[]}
  */
 function findXSum(nums, k, x) {
@@ -17841,9 +19343,7 @@ function findXSum(nums, k, x) {
       cnt.set(nums[j], (cnt.get(nums[j]) || 0) + 1);
     }
 
-    const freq = Array.from(cnt.entries()).map(
-      ([num, count]) => [count, num]
-    );
+    const freq = Array.from(cnt.entries()).map(([num, count]) => [count, num]);
 
     freq.sort((a, b) => (b[0] !== a[0] ? b[0] - a[0] : b[1] - a[1]));
 
@@ -17861,8 +19361,8 @@ function findXSum(nums, k, x) {
 console.log({ findXSum: findXSum([1, 1, 2, 2, 3, 4, 2, 3], 6, 2) });
 
 /**
- * @param {string[]} words1 
- * @param {string[]} words2 
+ * @param {string[]} words1
+ * @param {string[]} words2
  * @returns {number}
  */
 function countWords(words1, words2) {
@@ -17889,33 +19389,40 @@ function countWords(words1, words2) {
 
   return totalCount;
 }
-console.log({ countWords: countWords(["a", "ab"], ["a", "a", "a", "ab"]) });
+console.log({ countWords: countWords(['a', 'ab'], ['a', 'a', 'a', 'ab']) });
 
 /**
- * @param {string[]} emails 
+ * @param {string[]} emails
  * @returns {number}
  */
 function numUniqueEmails(emails) {
   const uniqueEmails = new Set();
 
   for (const email of emails) {
-    const [localPart, domain] = email.split("@");
-    const [localName] = localPart.split("+");
-    const cleanedLocalName = localName.replace(/\./g, "");
+    const [localPart, domain] = email.split('@');
+    const [localName] = localPart.split('+');
+    const cleanedLocalName = localName.replace(/\./g, '');
     const normalizedEmail = `${cleanedLocalName}@${domain}`;
     uniqueEmails.add(normalizedEmail);
   }
 
   return uniqueEmails.size;
 }
-console.log({ numUniqueEmails: numUniqueEmails(["a@leetcode.com", "b@leetcode.com", "c@leetcode.com"]) });
+console.log({
+  numUniqueEmails: numUniqueEmails([
+    'a@leetcode.com',
+    'b@leetcode.com',
+    'c@leetcode.com',
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function findMissingElements(nums) {
-  let minNum = 101, maxNum = 0;
+  let minNum = 101,
+    maxNum = 0;
 
   for (const num of nums) {
     minNum = Math.min(minNum, num);
@@ -17934,8 +19441,8 @@ function findMissingElements(nums) {
 console.log({ findMissingElements: findMissingElements([5, 1]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number[]}
  */
 function maxKDistinct(nums, k) {
@@ -17956,8 +19463,8 @@ function maxKDistinct(nums, k) {
 console.log({ maxKDistinct: maxKDistinct([84, 93, 100, 77, 90], 3) });
 
 /**
- * @param {number[]} costs 
- * @param {number} coins 
+ * @param {number[]} costs
+ * @param {number} coins
  * @returns {number}
  */
 function maxIceCream(costs, coins) {
@@ -17983,12 +19490,13 @@ function maxIceCream(costs, coins) {
 console.log({ maxIceCream: maxIceCream([1, 3, 2, 4, 1], 7) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function getLeastFrequentDigit(n) {
   const digitsCount = new Array(10).fill(0);
-  let minDigit = -1, minDigitCount = Infinity;
+  let minDigit = -1,
+    minDigitCount = Infinity;
 
   while (n) {
     const digit = n % 10;
@@ -18008,7 +19516,7 @@ function getLeastFrequentDigit(n) {
 console.log({ getLeastFrequentDigit: getLeastFrequentDigit(11) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function minDepth(root) {
@@ -18036,14 +19544,15 @@ function minDepth(root) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function getMinimumDifference(root) {
-  let minDiff = Infinity, prevValue = null;
+  let minDiff = Infinity,
+    prevValue = null;
 
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    * @returns {void}
    */
   function inOrder(node) {
@@ -18067,14 +19576,15 @@ function getMinimumDifference(root) {
 }
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function minDiffInBST(root) {
-  let minDiff = Infinity, prevValue = null;
+  let minDiff = Infinity,
+    prevValue = null;
 
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    * @returns {void}
    */
   function inOrder(node) {
@@ -18098,15 +19608,17 @@ function minDiffInBST(root) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maxOperations(s) {
-  let countOne = 0, ans = 0, i = 0;
+  let countOne = 0,
+    ans = 0,
+    i = 0;
 
   while (i < s.length) {
-    if (s[i] === "0") {
-      while (i + 1 < s.length && s[i + 1] === "0") {
+    if (s[i] === '0') {
+      while (i + 1 < s.length && s[i + 1] === '0') {
         i++;
       }
 
@@ -18120,25 +19632,25 @@ function maxOperations(s) {
 
   return ans;
 }
-console.log({ maxOperations: maxOperations("1001101") });
+console.log({ maxOperations: maxOperations('1001101') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minMoves(nums) {
   const maxSum = Math.max(...nums) * nums.length;
-  const sum = nums.reduce((sum, num) => sum += num, 0);
+  const sum = nums.reduce((sum, num) => (sum += num), 0);
   return maxSum - sum;
 }
 console.log({ minMoves: minMoves([2, 1, 3]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function findMiddleIndex(nums) {
-  let totalSum = nums.reduce((sum, num) => sum += num, 0);
+  let totalSum = nums.reduce((sum, num) => (sum += num), 0);
   let sum = 0;
 
   for (let idx = 0; idx < nums.length; idx++) {
@@ -18152,15 +19664,16 @@ function findMiddleIndex(nums) {
 console.log({ findMiddleIndex: findMiddleIndex([2, 3, -1, 8, 4]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function numSub(s) {
-  let consecutive = 0, result = 0;
+  let consecutive = 0,
+    result = 0;
   const MOD = 10 ** 9 + 7;
 
   for (const char of s) {
-    if (char === "1") {
+    if (char === '1') {
       consecutive += 1;
       result = (result + consecutive) % MOD;
     } else consecutive = 0;
@@ -18168,10 +19681,10 @@ function numSub(s) {
 
   return result;
 }
-console.log({ numSub: numSub("0110111") });
+console.log({ numSub: numSub('0110111') });
 
 /**
- * @param {number[]} groupSizes 
+ * @param {number[]} groupSizes
  * @returns {number[][]}
  */
 function groupThePeople(groupSizes) {
@@ -18194,8 +19707,8 @@ function groupThePeople(groupSizes) {
 console.log({ groupThePeople: groupThePeople([2, 2, 1, 1, 1, 1, 1, 1]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {boolean}
  */
 function kLengthApart(nums, k) {
@@ -18213,7 +19726,7 @@ function kLengthApart(nums, k) {
 console.log({ kLengthApart: kLengthApart([0, 1], 1) });
 
 /**
- * @param {number[]} bits 
+ * @param {number[]} bits
  * @returns {boolean}
  */
 function isOneBitCharacter(bits) {
@@ -18228,14 +19741,15 @@ function isOneBitCharacter(bits) {
 console.log({ isOneBitCharacter: isOneBitCharacter([1, 0, 0]) });
 
 /**
- * @param {number[][]} intervals 
+ * @param {number[][]} intervals
  * @returns {number}
  */
 function intersectionSizeTwo(intervals) {
   let res = 0;
   intervals.sort((a, b) => (a[1] !== b[1] ? a[1] - b[1] : b[0] - a[0]));
 
-  let p1 = -1, p2 = -1;
+  let p1 = -1,
+    p2 = -1;
 
   for (const [left, right] of intervals) {
     if (p2 < left) {
@@ -18251,15 +19765,22 @@ function intersectionSizeTwo(intervals) {
 
   return res;
 }
-console.log({ intersectionSizeTwo: intersectionSizeTwo([[1, 3], [3, 7], [8, 9]]) });
+console.log({
+  intersectionSizeTwo: intersectionSizeTwo([
+    [1, 3],
+    [3, 7],
+    [8, 9],
+  ]),
+});
 
 /**
- * @param {number[]} plants 
- * @param {number} capacity 
+ * @param {number[]} plants
+ * @param {number} capacity
  * @returns {number}
  */
 function wateringPlants(plants, capacity) {
-  let steps = 0, usage = 0;
+  let steps = 0,
+    usage = 0;
 
   plants.forEach((plant, position) => {
     if (usage >= plant) {
@@ -18277,11 +19798,13 @@ function wateringPlants(plants, capacity) {
 console.log({ wateringPlants: wateringPlants([2, 2, 3, 3], 5) });
 
 /**
- * @param {number[]} nums 
- * @returns {number} 
+ * @param {number[]} nums
+ * @returns {number}
  */
 function maxSumDivThree(nums) {
-  let total = 0, smallestOne = Infinity, smallestTwo = Infinity;
+  let total = 0,
+    smallestOne = Infinity,
+    smallestTwo = Infinity;
 
   for (const num of nums) {
     total += num;
@@ -18304,13 +19827,14 @@ function maxSumDivThree(nums) {
 console.log({ maxSumDivThree: maxSumDivThree([3, 6, 5, 1, 8]) });
 
 /**
- * @param {number} k 
+ * @param {number} k
  * @returns {number}
  */
 function smallestRepunitDivByK(k) {
   if (k % 2 === 0 || k % 5 === 0) return -1;
 
-  let remainder = 1 % k, count = 1;
+  let remainder = 1 % k,
+    count = 1;
 
   while (remainder !== 0) {
     remainder = (remainder * 10 + 1) % k;
@@ -18322,16 +19846,16 @@ function smallestRepunitDivByK(k) {
 console.log({ smallestRepunitDivByK: smallestRepunitDivByK(5) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {string}
  */
 function generateTheString(n) {
-  return n % 2 === 1 ? "a".repeat(n) : `${"a".repeat(n - 1)}b`;
+  return n % 2 === 1 ? 'a'.repeat(n) : `${'a'.repeat(n - 1)}b`;
 }
 console.log({ generateTheString: generateTheString(7) });
 
 /**
- * @param {string[]} paths 
+ * @param {string[]} paths
  * @returns {string[][]}
  */
 function findDuplicate(paths) {
@@ -18339,11 +19863,11 @@ function findDuplicate(paths) {
   const duplicates = [];
 
   for (const entry of paths) {
-    const [directoryPath, ...fileEntries] = entry.split(" ");
+    const [directoryPath, ...fileEntries] = entry.split(' ');
 
     for (const fileEntry of fileEntries) {
-      const fileName = fileEntry.split("(")[0];
-      const fileContent = fileEntry.split("(")[1].split(")")[0];
+      const fileName = fileEntry.split('(')[0];
+      const fileContent = fileEntry.split('(')[1].split(')')[0];
       const fullFilePath = `${directoryPath}/${fileName}`;
 
       if (!contentToFilePaths.has(fileContent)) {
@@ -18360,10 +19884,16 @@ function findDuplicate(paths) {
 
   return duplicates;
 }
-console.log({ findDuplicate: findDuplicate(["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)"]) });
+console.log({
+  findDuplicate: findDuplicate([
+    'root/a 1.txt(abcd) 2.txt(efgh)',
+    'root/c 3.txt(abcd)',
+    'root/c/d 4.txt(efgh)',
+  ]),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function deleteGreatestValue(grid) {
@@ -18371,7 +19901,8 @@ function deleteGreatestValue(grid) {
     row.sort((a, b) => a - b);
   }
 
-  let totalSum = 0, columnIndex = grid[0].length - 1;
+  let totalSum = 0,
+    columnIndex = grid[0].length - 1;
 
   for (let round = 0; round < grid[0].length; round++) {
     let roundMax = 0;
@@ -18389,7 +19920,7 @@ function deleteGreatestValue(grid) {
 console.log({ deleteGreatestValue: deleteGreatestValue([[10]]) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function gcdOfOddEvenSums(n) {
@@ -18398,7 +19929,7 @@ function gcdOfOddEvenSums(n) {
 console.log({ gcdOfOddEvenSums: gcdOfOddEvenSums(45) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {boolean}
  */
 function isSameAfterReversals(num) {
@@ -18407,15 +19938,16 @@ function isSameAfterReversals(num) {
 console.log({ isSameAfterReversals: isSameAfterReversals(100) });
 
 /**
- * @param {number} left 
- * @param {number} right 
+ * @param {number} left
+ * @param {number} right
  * @returns {number[]}
  */
 function selfDividingNumbers(left, right) {
   const result = [];
 
   for (let num = left; num <= right; num++) {
-    let currentNum = num, isDivisible = true;
+    let currentNum = num,
+      isDivisible = true;
 
     while (currentNum > 0) {
       const digit = currentNum % 10;
@@ -18436,13 +19968,15 @@ function selfDividingNumbers(left, right) {
 console.log({ selfDividingNumbers: selfDividingNumbers(1, 10) });
 
 /**
- * @param {number[]} piles 
+ * @param {number[]} piles
  * @returns {number}
  */
 function maxCoins(piles) {
   piles.sort((a, b) => a - b);
 
-  let count = 0, start = 0, end = piles.length - 1;
+  let count = 0,
+    start = 0,
+    end = piles.length - 1;
 
   while (start < end - 1) {
     count += piles[end - 1];
@@ -18455,12 +19989,13 @@ function maxCoins(piles) {
 console.log({ maxCoins: maxCoins([2, 4, 1, 2, 7, 8]) });
 
 /**
- * @param {string} directions 
+ * @param {string} directions
  * @returns {number}
  */
 function countCollisions(directions) {
   const n = directions.length;
-  let l = 0, r = n - 1;
+  let l = 0,
+    r = n - 1;
 
   while (l < n && directions[l] === 'L') {
     l++;
@@ -18478,7 +20013,7 @@ function countCollisions(directions) {
 
   return res;
 }
-console.log({ countCollisions: countCollisions("RLRSLL") });
+console.log({ countCollisions: countCollisions('RLRSLL') });
 
 /**
  * @param {number} n
@@ -18499,7 +20034,7 @@ function countTriples(n) {
 console.log({ countTriples: countTriples(5) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function specialTriplets(nums) {
@@ -18518,8 +20053,7 @@ function specialTriplets(nums) {
     const lCnt = numPartialCnt.get(target) ?? 0;
 
     numPartialCnt.set(num, (numPartialCnt.get(num) ?? 0) + 1);
-    const rCnt =
-      (numCnt.get(target) ?? 0) - (numPartialCnt.get(target) ?? 0);
+    const rCnt = (numCnt.get(target) ?? 0) - (numPartialCnt.get(target) ?? 0);
 
     ans += (lCnt * rCnt) % MOD;
     ans %= MOD;
@@ -18530,7 +20064,7 @@ function specialTriplets(nums) {
 console.log({ specialTriplets: specialTriplets([6, 3, 6]) });
 
 /**
- * @param {number[]} complexity 
+ * @param {number[]} complexity
  * @returns {number}
  */
 function countPermutations(complexity) {
@@ -18554,8 +20088,8 @@ function countPermutations(complexity) {
 console.log({ countPermutations: countPermutations([1, 2, 3]) });
 
 /**
- * @param {number} n 
- * @param {number[][]} buildings 
+ * @param {number} n
+ * @param {number[][]} buildings
  * @returns {number}
  */
 function countCoveredBuildings(n, buildings) {
@@ -18564,10 +20098,18 @@ function countCoveredBuildings(n, buildings) {
 
   for (const [x, y] of buildings) {
     if (!rowMinMax.has(x)) rowMinMax.set(x, [y, y]);
-    else rowMinMax.set(x, [Math.min(rowMinMax.get(x)[0], y), Math.max(rowMinMax.get(x)[1], y)]);
+    else
+      rowMinMax.set(x, [
+        Math.min(rowMinMax.get(x)[0], y),
+        Math.max(rowMinMax.get(x)[1], y),
+      ]);
 
     if (!colMinMax.has(y)) colMinMax.set(y, [x, x]);
-    else colMinMax.set(y, [Math.min(colMinMax.get(y)[0], x), Math.max(colMinMax.get(y)[1], x)]);
+    else
+      colMinMax.set(y, [
+        Math.min(colMinMax.get(y)[0], x),
+        Math.max(colMinMax.get(y)[1], x),
+      ]);
   }
 
   let count = 0;
@@ -18581,11 +20123,18 @@ function countCoveredBuildings(n, buildings) {
 
   return count;
 }
-console.log({ countCoveredBuildings: countCoveredBuildings(3, [[1, 1], [1, 2], [2, 1], [2, 2]]) });
+console.log({
+  countCoveredBuildings: countCoveredBuildings(3, [
+    [1, 1],
+    [1, 2],
+    [2, 1],
+    [2, 2],
+  ]),
+});
 
 /**
- * @param {number} numberOfUsers 
- * @param {string[][]} events 
+ * @param {number} numberOfUsers
+ * @param {string[][]} events
  * @returns {number[]}
  */
 function countMentions(numberOfUsers, events) {
@@ -18593,7 +20142,7 @@ function countMentions(numberOfUsers, events) {
     const timeA = parseInt(a[1]);
     const timeB = parseInt(b[1]);
     if (timeA !== timeB) return timeA - timeB;
-    return (b[0] === "MESSAGE" ? 0 : 1) - (a[0] === "MESSAGE" ? 0 : 1);
+    return (b[0] === 'MESSAGE' ? 0 : 1) - (a[0] === 'MESSAGE' ? 0 : 1);
   });
 
   const count = new Array(numberOfUsers).fill(0);
@@ -18603,20 +20152,20 @@ function countMentions(numberOfUsers, events) {
     const curTime = parseInt(event[1]);
     const type = event[0];
 
-    if (type === "MESSAGE") {
+    if (type === 'MESSAGE') {
       const target = event[2];
-      if (target === "ALL") {
+      if (target === 'ALL') {
         for (let i = 0; i < numberOfUsers; i++) {
           count[i]++;
         }
-      } else if (target === "HERE") {
+      } else if (target === 'HERE') {
         for (let i = 0; i < numberOfUsers; i++) {
           if (nextOnlineTime[i] <= curTime) {
             count[i]++;
           }
         }
       } else {
-        const users = target.split(" ");
+        const users = target.split(' ');
         for (const user of users) {
           const idx = parseInt(user.substring(2));
           count[idx]++;
@@ -18630,17 +20179,28 @@ function countMentions(numberOfUsers, events) {
 
   return count;
 }
-console.log({ countMentions: countMentions(2, [["MESSAGE", "10", "id1 id0"], ["OFFLINE", "11", "0"], ["MESSAGE", "71", "HERE"]]) });
+console.log({
+  countMentions: countMentions(2, [
+    ['MESSAGE', '10', 'id1 id0'],
+    ['OFFLINE', '11', '0'],
+    ['MESSAGE', '71', 'HERE'],
+  ]),
+});
 
 /**
- * @param {string[]} code 
- * @param {string[]} businessLine 
- * @param {boolean[]} isActive 
+ * @param {string[]} code
+ * @param {string[]} businessLine
+ * @param {boolean[]} isActive
  * @returns {string[]}
  */
 function validateCoupons(code, businessLine, isActive) {
   const VALID_CODE_REGEX = /^[A-Za-z0-9_]+$/;
-  const validBusinessOrder = ["electronics", "grocery", "pharmacy", "restaurant"];
+  const validBusinessOrder = [
+    'electronics',
+    'grocery',
+    'pharmacy',
+    'restaurant',
+  ];
 
   const buckets = {
     electronics: [],
@@ -18667,14 +20227,21 @@ function validateCoupons(code, businessLine, isActive) {
 
   return result;
 }
-console.log({ validateCoupons: validateCoupons(["SAVE20", "", "PHARMA5", "SAVE@20"], ["restaurant", "grocery", "pharmacy", "restaurant"], [true, true, true, true]) });
+console.log({
+  validateCoupons: validateCoupons(
+    ['SAVE20', '', 'PHARMA5', 'SAVE@20'],
+    ['restaurant', 'grocery', 'pharmacy', 'restaurant'],
+    [true, true, true, true],
+  ),
+});
 
 /**
- * @param {number[]} prices 
+ * @param {number[]} prices
  * @returns {number}
  */
 function getDescentPeriods(prices) {
-  let count = 1, streak = 1;
+  let count = 1,
+    streak = 1;
 
   for (let i = 1; i < prices.length; i++) {
     if (prices[i - 1] - prices[i] === 1) streak++;
@@ -18687,7 +20254,7 @@ function getDescentPeriods(prices) {
 console.log({ getDescentPeriods: getDescentPeriods([3, 2, 1, 4]) });
 
 /**
- * @param {number[]} deck 
+ * @param {number[]} deck
  * @returns {number[]}
  */
 function deckRevealedIncreasing(deck) {
@@ -18697,7 +20264,6 @@ function deckRevealedIncreasing(deck) {
 
   for (let i = deck.length - 1; i >= 0; i--) {
     if (deque.length > 0) {
-
       const bottom = deque.pop();
       deque.unshift(bottom);
     }
@@ -18710,7 +20276,7 @@ function deckRevealedIncreasing(deck) {
 console.log({ deckRevealedIncreasing: deckRevealedIncreasing([1, 1000]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maximumStrongPairXor(nums) {
@@ -18735,9 +20301,9 @@ function maximumStrongPairXor(nums) {
 console.log({ maximumStrongPairXor: maximumStrongPairXor([10, 100]) });
 
 /**
- * @param {number[][]} ranges 
- * @param {number} left 
- * @param {number} right 
+ * @param {number[][]} ranges
+ * @param {number} left
+ * @param {number} right
  * @returns {boolean}
  */
 function isCovered(ranges, left, right) {
@@ -18757,10 +20323,20 @@ function isCovered(ranges, left, right) {
 
   return true;
 }
-console.log({ isCovered: isCovered([[1, 2], [3, 4], [5, 6]], 2, 5) });
+console.log({
+  isCovered: isCovered(
+    [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+    ],
+    2,
+    5,
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function sumCounts(nums) {
@@ -18780,8 +20356,8 @@ function sumCounts(nums) {
 console.log({ sumCounts: sumCounts([1, 2, 1]) });
 
 /**
- * @param {string[]} strs 
- * @returns {number} 
+ * @param {string[]} strs
+ * @returns {number}
  */
 function minDeletionSize(strs) {
   let count = 0;
@@ -18790,7 +20366,8 @@ function minDeletionSize(strs) {
 
   for (let col = 0; col < strs[0].length; col++) {
     for (let row = 1; row < strs.length; row++) {
-      const currentChar = strs[row][col], previousChar = strs[row - 1][col];
+      const currentChar = strs[row][col],
+        previousChar = strs[row - 1][col];
       if (currentChar < previousChar) {
         count++;
         break;
@@ -18800,14 +20377,15 @@ function minDeletionSize(strs) {
 
   return count;
 }
-console.log({ minDeletionSize: minDeletionSize(["a", "b"]) });
+console.log({ minDeletionSize: minDeletionSize(['a', 'b']) });
 
 /**
- * @param {string[]} strs 
- * @returns {number} 
+ * @param {string[]} strs
+ * @returns {number}
  */
 function minDeletionSize(strs) {
-  const n = strs.length, m = strs[0].length;
+  const n = strs.length,
+    m = strs[0].length;
   let count = 0;
 
   const isSorted = new Array(n - 1).fill(false);
@@ -18836,14 +20414,15 @@ function minDeletionSize(strs) {
 
   return count;
 }
-console.log({ minDeletionSize: minDeletionSize(["ca", "bb", "ac"]) });
+console.log({ minDeletionSize: minDeletionSize(['ca', 'bb', 'ac']) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function maxProduct(n) {
-  let firstNum = 0, secondNum = 0;
+  let firstNum = 0,
+    secondNum = 0;
 
   while (n) {
     const digit = n % 10;
@@ -18861,13 +20440,14 @@ function maxProduct(n) {
 console.log({ maxProduct: maxProduct(22) });
 
 /**
- * @param {string} s 
- * @param {numstringer} k 
+ * @param {string} s
+ * @param {numstringer} k
  * @returns {number}
  */
 function minDeletion(s, k) {
   const charFreq = new Array(26).fill(0);
-  let deleteCount = 0, count = 0;
+  let deleteCount = 0,
+    count = 0;
 
   for (const char of s) {
     const charCode = char.charCodeAt(0) - 97;
@@ -18886,11 +20466,11 @@ function minDeletion(s, k) {
 
   return deleteCount;
 }
-console.log({ minDeletion: minDeletion("abc", 2) });
+console.log({ minDeletion: minDeletion('abc', 2) });
 
 /**
- * @param {number[]} apple 
- * @param {number[]} capacity 
+ * @param {number[]} apple
+ * @param {number[]} capacity
  * @returns {number}
  */
 function minimumBoxes(apple, capacity) {
@@ -18908,7 +20488,7 @@ function minimumBoxes(apple, capacity) {
 console.log({ minimumBoxes: minimumBoxes([1, 3, 2], [4, 3, 1, 5, 2]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function distinctDifferenceArray(nums) {
@@ -18929,18 +20509,21 @@ function distinctDifferenceArray(nums) {
 
   return diff;
 }
-console.log({ distinctDifferenceArray: distinctDifferenceArray([1, 2, 3, 4, 5]) });
+console.log({
+  distinctDifferenceArray: distinctDifferenceArray([1, 2, 3, 4, 5]),
+});
 
 /**
- * @param {string} customers 
+ * @param {string} customers
  * @returns {number}
  */
 function bestClosingTime(customers) {
-  let minPenaltyFound = 0, currentPenalty = 0;
+  let minPenaltyFound = 0,
+    currentPenalty = 0;
   let bestClosingHour = 0;
 
   for (let hourIdx = 0; hourIdx < customers.length; hourIdx++) {
-    if (customers[hourIdx] === "Y") currentPenalty--;
+    if (customers[hourIdx] === 'Y') currentPenalty--;
     else currentPenalty++;
 
     if (currentPenalty < minPenaltyFound) {
@@ -18951,16 +20534,18 @@ function bestClosingTime(customers) {
 
   return bestClosingHour;
 }
-console.log({ bestClosingTime: bestClosingTime("YYNY") });
+console.log({ bestClosingTime: bestClosingTime('YYNY') });
 
 /**
- * @param {number} n 
- * @param {number[][]} meetings 
+ * @param {number} n
+ * @param {number[][]} meetings
  * @returns {number}
  */
 function mostBooked(n, meetings) {
   const freeRoom = new CustomMinHeap((a, b) => a - b);
-  const busyRoom = new CustomMinHeap((a, b) => a[0] !== b[0] ? a[0] - b[0] : a[1] - b[1]);
+  const busyRoom = new CustomMinHeap((a, b) =>
+    a[0] !== b[0] ? a[0] - b[0] : a[1] - b[1],
+  );
   const meetingCount = new Array(n).fill(0);
 
   for (let i = 0; i < n; i++) {
@@ -18993,7 +20578,8 @@ function mostBooked(n, meetings) {
     meetingCount[roomIndex]++;
   }
 
-  let maxCount = -1, resultRoom = -1;
+  let maxCount = -1,
+    resultRoom = -1;
 
   for (let i = 0; i < n; i++) {
     if (meetingCount[i] > maxCount) {
@@ -19006,25 +20592,25 @@ function mostBooked(n, meetings) {
 }
 
 /**
- * @param {number[]} nums 
- * @returns {number} 
+ * @param {number[]} nums
+ * @returns {number}
  */
 function repeatedNTimes(nums) {
   for (let k = 1; k <= 3; ++k)
     for (let i = 0; i < nums.length - k; ++i)
-      if (nums[i] === nums[i + k])
-        return nums[i];
+      if (nums[i] === nums[i + k]) return nums[i];
 }
 console.log({ repeatedNTimes: repeatedNTimes([1, 2, 3, 3]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function absDifference(nums, k) {
   nums.sort((a, b) => a - b);
-  let firstSum = 0, secondSum = 0;
+  let firstSum = 0,
+    secondSum = 0;
   let count = 0;
 
   while (k) {
@@ -19039,9 +20625,9 @@ function absDifference(nums, k) {
 console.log({ absDifference: absDifference([5, 2, 2, 4], 2) });
 
 /**
- * @param {number} m 
- * @param {number} n 
- * @param {number[][]} indices 
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} indices
  * @returns {number}
  */
 function oddCells(m, n, indices) {
@@ -19053,7 +20639,8 @@ function oddCells(m, n, indices) {
     colCount[col]++;
   }
 
-  let oddRows = 0, oddCols = 0;
+  let oddRows = 0,
+    oddCols = 0;
 
   for (const row of rowCount) {
     if (row & 1) oddRows++;
@@ -19063,21 +20650,28 @@ function oddCells(m, n, indices) {
     if (col & 1) oddCols++;
   }
 
-  const evenRows = m - oddRows, evenCols = n - oddCols;
+  const evenRows = m - oddRows,
+    evenCols = n - oddCols;
 
   return oddRows * evenCols + evenRows * oddCols;
 }
-console.log({ oddCells: oddCells(2, 3, [[0, 1], [1, 1]]) });
+console.log({
+  oddCells: oddCells(2, 3, [
+    [0, 1],
+    [1, 1],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function sumFourDivisors(nums) {
   let totalSum = 0;
 
   for (const num of nums) {
-    let divisorCount = 2, divisorSum = 1 + num;
+    let divisorCount = 2,
+      divisorSum = 1 + num;
 
     for (let i = 2; i * i <= num; i++) {
       if (num % i !== 0) continue;
@@ -19103,7 +20697,7 @@ function sumFourDivisors(nums) {
 console.log({ sumFourDivisors: sumFourDivisors([21, 4, 7]) });
 
 /**
- * @param {number[][]} matrix 
+ * @param {number[][]} matrix
  * @returns {number}
  */
 function maxMatrixSum(matrix) {
@@ -19125,15 +20719,22 @@ function maxMatrixSum(matrix) {
 
   return totalAbsSum - 2 * smallestAbsValue;
 }
-console.log({ maxMatrixSum: maxMatrixSum([[1, -1], [-1, 1]]) });
+console.log({
+  maxMatrixSum: maxMatrixSum([
+    [1, -1],
+    [-1, 1],
+  ]),
+});
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function maxLevelSum(root) {
   const queue = [root];
-  let maxSum = -100001, nodeLevel = 0, level = 1;
+  let maxSum = -100001,
+    nodeLevel = 0,
+    level = 1;
 
   while (queue.length) {
     const levelSize = queue.length;
@@ -19159,8 +20760,8 @@ function maxLevelSum(root) {
 }
 
 /**
- * @param {number[]} coins 
- * @param {number} amount 
+ * @param {number[]} coins
+ * @param {number} amount
  * @returns {number}
  */
 function coinChange(coins, amount) {
@@ -19174,7 +20775,7 @@ function coinChange(coins, amount) {
       if (currentAmount - coin >= 0) {
         minCoins[currentAmount] = Math.min(
           minCoins[currentAmount],
-          minCoins[currentAmount - coin] + 1
+          minCoins[currentAmount - coin] + 1,
         );
       }
     }
@@ -19185,12 +20786,12 @@ function coinChange(coins, amount) {
 console.log({ coinChange: coinChange([1, 2, 5], 11) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {TreeNode | null}
  */
 function subtreeWithAllDeepest(root) {
   /**
-   * @param {TreeNode | null} node 
+   * @param {TreeNode | null} node
    * @returns {[number, TreeNode | null]}
    */
   function dfs(node) {
@@ -19209,11 +20810,12 @@ function subtreeWithAllDeepest(root) {
 }
 
 /**
- * @param {number[][]} rectangles 
+ * @param {number[][]} rectangles
  * @returns {number}
  */
 function countGoodRectangles(rectangles) {
-  let maxSquareSide = 0, countMaxSquares = 0;
+  let maxSquareSide = 0,
+    countMaxSquares = 0;
 
   for (const [width, height] of rectangles) {
     const squareSide = Math.min(width, height);
@@ -19228,10 +20830,17 @@ function countGoodRectangles(rectangles) {
 
   return countMaxSquares;
 }
-console.log({ countGoodRectangles: countGoodRectangles([[5, 8], [3, 9], [5, 12], [16, 5]]) });
+console.log({
+  countGoodRectangles: countGoodRectangles([
+    [5, 8],
+    [3, 9],
+    [5, 12],
+    [16, 5],
+  ]),
+});
 
 /**
- * @param {number} squares 
+ * @param {number} squares
  * @returns {number}
  */
 function separateSquares(squares) {
@@ -19264,12 +20873,17 @@ function separateSquares(squares) {
 
   return (minY + maxY) / 2;
 }
-console.log({ separateSquares: separateSquares([[0, 0, 1], [2, 2, 1]]) });
+console.log({
+  separateSquares: separateSquares([
+    [0, 0, 1],
+    [2, 2, 1],
+  ]),
+});
 
 /**
- * @param {number[]} startTime 
- * @param {number[]} endTime 
- * @param {number} queryTime 
+ * @param {number[]} startTime
+ * @param {number[]} endTime
+ * @param {number} queryTime
  * @returns {number}
  */
 function busyStudent(startTime, endTime, queryTime) {
@@ -19285,12 +20899,13 @@ function busyStudent(startTime, endTime, queryTime) {
 console.log({ busyStudent: busyStudent([4], [4], 4) });
 
 /**
- * @param {number[]} bars 
+ * @param {number[]} bars
  * @returns {number}
  */
 function getLongestConsecutiveRun(bars) {
   bars.sort((a, b) => a - b);
-  let currentRun = 1, maxRun = 1;
+  let currentRun = 1,
+    maxRun = 1;
 
   for (let i = 1; i < bars.length; i++) {
     if (bars[i] === bars[i - 1] + 1) currentRun++;
@@ -19302,10 +20917,10 @@ function getLongestConsecutiveRun(bars) {
 }
 
 /**
- * @param {number} n 
- * @param {number} m 
- * @param {number[]} hBars 
- * @param {number[]} vBars 
+ * @param {number} n
+ * @param {number} m
+ * @param {number[]} hBars
+ * @param {number[]} vBars
  * @returns {number}
  */
 function maximizeSquareHoleArea(n, m, hBars, vBars) {
@@ -19318,8 +20933,8 @@ function maximizeSquareHoleArea(n, m, hBars, vBars) {
 console.log({ maximizeSquareHoleArea: maximizeSquareHoleArea(1, 1, [2], [2]) });
 
 /**
- * @param {number[]} fences 
- * @param {number} border 
+ * @param {number[]} fences
+ * @param {number} border
  * @returns {Set<number>}
  */
 function getEdges(fences, border) {
@@ -19340,10 +20955,10 @@ function getEdges(fences, border) {
 }
 
 /**
- * @param {number} m 
- * @param {number} n 
- * @param {number[]} hFences 
- * @param {number[]} vFences 
+ * @param {number} m
+ * @param {number} n
+ * @param {number[]} hFences
+ * @param {number[]} vFences
  * @returns {number}
  */
 function maximizeSquareArea(m, n, hFences, vFences) {
@@ -19364,8 +20979,8 @@ function maximizeSquareArea(m, n, hFences, vFences) {
 console.log({ maximizeSquareArea: maximizeSquareArea(4, 3, [2, 3], [2]) });
 
 /**
- * @param {number[][]} bottomLeft 
- * @param {number[][]} topRight 
+ * @param {number[][]} bottomLeft
+ * @param {number[][]} topRight
  * @returns {number}
  */
 function largestSquareArea(bottomLeft, topRight) {
@@ -19387,14 +21002,28 @@ function largestSquareArea(bottomLeft, topRight) {
 
   return maxSide * maxSide;
 }
-console.log({ largestSquareArea: largestSquareArea([[1, 1], [2, 2], [3, 1]], [[3, 3], [4, 4], [6, 6]]) });
+console.log({
+  largestSquareArea: largestSquareArea(
+    [
+      [1, 1],
+      [2, 2],
+      [3, 1],
+    ],
+    [
+      [3, 3],
+      [4, 4],
+      [6, 6],
+    ],
+  ),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function largestMagicSquare(grid) {
-  const m = grid.length, n = grid[0].length;
+  const m = grid.length,
+    n = grid[0].length;
 
   const rowSum = Array.from({ length: m }, () => new Array(n));
   for (let i = 0; i < m; i++) {
@@ -19420,8 +21049,7 @@ function largestMagicSquare(grid) {
 
         for (let ii = i + 1; ii < i + edge; ++ii) {
           const sum =
-            rowSum[ii][j + edge - 1] -
-            (j > 0 ? rowSum[ii][j - 1] : 0);
+            rowSum[ii][j + edge - 1] - (j > 0 ? rowSum[ii][j - 1] : 0);
 
           if (sum !== stdSum) {
             check = false;
@@ -19433,8 +21061,7 @@ function largestMagicSquare(grid) {
 
         for (let jj = j; jj < j + edge; ++jj) {
           const sum =
-            colSum[i + edge - 1][jj] -
-            (i > 0 ? colSum[i - 1][jj] : 0);
+            colSum[i + edge - 1][jj] - (i > 0 ? colSum[i - 1][jj] : 0);
 
           if (sum !== stdSum) {
             check = false;
@@ -19444,7 +21071,8 @@ function largestMagicSquare(grid) {
 
         if (!check) continue;
 
-        let d1 = 0, d2 = 0;
+        let d1 = 0,
+          d2 = 0;
 
         for (let k = 0; k < edge; ++k) {
           d1 += grid[i + k][j + k];
@@ -19458,11 +21086,17 @@ function largestMagicSquare(grid) {
 
   return 1;
 }
-console.log({ largestMagicSquare: largestMagicSquare([[5, 1, 3, 1], [9, 3, 3, 1], [1, 3, 3, 8]]) });
+console.log({
+  largestMagicSquare: largestMagicSquare([
+    [5, 1, 3, 1],
+    [9, 3, 3, 1],
+    [1, 3, 3, 8],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
- * @returns {number[]} 
+ * @param {number[]} nums
+ * @returns {number[]}
  */
 function applyOperations(nums) {
   let write = 0;
@@ -19487,7 +21121,7 @@ function applyOperations(nums) {
 console.log({ applyOperations: applyOperations([0, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function minBitwiseArray(nums) {
@@ -19516,12 +21150,14 @@ function minBitwiseArray(nums) {
 console.log({ minBitwiseArray: minBitwiseArray([2, 3, 5, 7]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function minBitwiseArray(nums) {
   for (let i = 0; i < nums.length; i++) {
-    let x = nums[i], res = -1, d = 1;
+    let x = nums[i],
+      res = -1,
+      d = 1;
 
     while ((x & d) !== 0) {
       res = x - d;
@@ -19536,7 +21172,7 @@ function minBitwiseArray(nums) {
 console.log({ minBitwiseArray: minBitwiseArray([2, 3, 5, 7]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumPairRemoval(nums) {
@@ -19570,11 +21206,12 @@ function minimumPairRemoval(nums) {
 console.log({ minimumPairRemoval: minimumPairRemoval([5, 2, 3, 1]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function resultArray(nums) {
-  const arr1 = [nums[0]], arr2 = [nums[1]];
+  const arr1 = [nums[0]],
+    arr2 = [nums[1]];
   let count = 2;
 
   while (count < nums.length) {
@@ -19588,7 +21225,7 @@ function resultArray(nums) {
 console.log({ resultArray: resultArray([2, 1, 3]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function hasTrailingZeros(nums) {
@@ -19603,8 +21240,8 @@ function hasTrailingZeros(nums) {
 console.log({ hasTrailingZeros: hasTrailingZeros([1, 2, 3, 4, 5]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function minimumDifference(nums, k) {
@@ -19621,28 +21258,30 @@ function minimumDifference(nums, k) {
 console.log({ minimumDifference: minimumDifference([90], 1) });
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function reversePrefix(s, k) {
-  const chars = s.split("");
-  let start = 0, end = k - 1;
+  const chars = s.split('');
+  let start = 0,
+    end = k - 1;
 
   while (start < end) {
     [chars[start++], chars[end--]] = [chars[end], chars[start]];
   }
 
-  return chars.join("");
+  return chars.join('');
 }
-console.log({ reversePrefix: reversePrefix("abcd", 2) });
+console.log({ reversePrefix: reversePrefix('abcd', 2) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function mirrorDistance(n) {
-  let reversedNumber = 0, originalNum = n;
+  let reversedNumber = 0,
+    originalNum = n;
 
   while (n) {
     const digit = n % 10;
@@ -19655,9 +21294,9 @@ function mirrorDistance(n) {
 console.log({ mirrorDistance: mirrorDistance(25) });
 
 /**
- * @param {number} num1 
- * @param {number} num2 
- * @param {number} num3 
+ * @param {number} num1
+ * @param {number} num2
+ * @param {number} num3
  * @returns {number}
  */
 function generateKey(num1, num2, num3) {
@@ -19677,11 +21316,12 @@ function generateKey(num1, num2, num3) {
 console.log({ generateKey: generateKey(1, 2, 3) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function removeZeros(n) {
-  let result = 0, multiplier = 1;
+  let result = 0,
+    multiplier = 1;
 
   while (n > 0) {
     const digit = n % 10;
@@ -19695,17 +21335,18 @@ function removeZeros(n) {
 console.log({ removeZeros: removeZeros(1020030) });
 
 /**
- * @param {number} weights 
- * @param {number} days 
+ * @param {number} weights
+ * @param {number} days
  * @returns {number}
  */
 function shipWithinDays(weights, days) {
   /**
-   * @param {number} capacity 
+   * @param {number} capacity
    * @returns {number}
    */
   function requiredDays(capacity) {
-    let daysNeeded = 1, currentLoad = 0;
+    let daysNeeded = 1,
+      currentLoad = 0;
 
     for (const w of weights) {
       if (currentLoad + w > capacity) {
@@ -19721,7 +21362,8 @@ function shipWithinDays(weights, days) {
 
   const maxWeight = Math.max(...weights);
   const totalWeight = weights.reduce((sum, w) => sum + w, 0);
-  let lo = maxWeight, hi = totalWeight;
+  let lo = maxWeight,
+    hi = totalWeight;
 
   while (lo < hi) {
     const mid = lo + Math.floor((hi - lo) / 2);
@@ -19734,12 +21376,13 @@ function shipWithinDays(weights, days) {
 console.log({ shipWithinDays: shipWithinDays([1, 2, 3, 1, 1], 4) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function makeSmallestPalindrome(s) {
-  const letters = s.split("");
-  let start = 0, end = letters.length - 1;
+  const letters = s.split('');
+  let start = 0,
+    end = letters.length - 1;
 
   while (start < end) {
     const leftChar = letters[start];
@@ -19752,16 +21395,17 @@ function makeSmallestPalindrome(s) {
     end--;
   }
 
-  return letters.join("");
+  return letters.join('');
 }
-console.log({ makeSmallestPalindrome: makeSmallestPalindrome("egcfe") });
+console.log({ makeSmallestPalindrome: makeSmallestPalindrome('egcfe') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minStartValue(nums) {
-  let sum = 0, minValue = 0;
+  let sum = 0,
+    minValue = 0;
 
   for (const num of nums) {
     sum += num;
@@ -19773,20 +21417,22 @@ function minStartValue(nums) {
 console.log({ minStartValue: minStartValue([-3, 2, -3, 4, 2]) });
 
 /**
- * @param {string} answerKey 
- * @param {number} k 
+ * @param {string} answerKey
+ * @param {number} k
  * @returns {number}
  */
 function maxConsecutiveAnswers(answerKey, k) {
   const charCount = new Map();
-  let maxCount = 0, left = 0, res = 0;
+  let maxCount = 0,
+    left = 0,
+    res = 0;
 
   for (let right = 0; right < answerKey.length; right++) {
     const char = answerKey[right];
     charCount.set(char, (charCount.get(char) || 0) + 1);
     maxCount = Math.max(maxCount, charCount.get(char));
 
-    while ((right - left + 1) - maxCount > k) {
+    while (right - left + 1 - maxCount > k) {
       const char = answerKey[left];
       charCount.set(char, charCount.get(char) - 1);
       left++;
@@ -19797,10 +21443,10 @@ function maxConsecutiveAnswers(answerKey, k) {
 
   return res;
 }
-console.log({ maxConsecutiveAnswers: maxConsecutiveAnswers("TTFF", 2) });
+console.log({ maxConsecutiveAnswers: maxConsecutiveAnswers('TTFF', 2) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function scoreBalance(s) {
@@ -19821,11 +21467,11 @@ function scoreBalance(s) {
 
   return false;
 }
-console.log({ scoreBalance: scoreBalance("adcb") });
+console.log({ scoreBalance: scoreBalance('adcb') });
 
 /**
- * @param {string[]} letters 
- * @param {string} target 
+ * @param {string[]} letters
+ * @param {string} target
  * @returns {string}
  */
 function nextGreatestLetter(letters, target) {
@@ -19841,14 +21487,15 @@ function nextGreatestLetter(letters, target) {
 
   return letters[left % letters.length];
 }
-console.log({ nextGreatestLetter: nextGreatestLetter(["c", "f", "j"], "a") });
+console.log({ nextGreatestLetter: nextGreatestLetter(['c', 'f', 'j'], 'a') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumCost(nums) {
-  let smallest = 50, secondSmallest = 50;
+  let smallest = 50,
+    secondSmallest = 50;
 
   for (let i = 1; i < nums.length; i++) {
     const value = nums[i];
@@ -19864,7 +21511,7 @@ function minimumCost(nums) {
 console.log({ minimumCost: minimumCost([1, 2, 3, 12]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function sortEvenOdd(nums) {
@@ -19891,7 +21538,7 @@ function sortEvenOdd(nums) {
 console.log({ sortEvenOdd: sortEvenOdd([4, 1, 2, 3]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function isTrionic(nums) {
@@ -19921,7 +21568,7 @@ function isTrionic(nums) {
 console.log({ isTrionic: isTrionic([1, 3, 5, 4, 2, 6]) });
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function findChampion(grid) {
@@ -19938,10 +21585,15 @@ function findChampion(grid) {
 
   return candidate;
 }
-console.log({ findChampion: findChampion([[0, 1], [0, 0]]) });
+console.log({
+  findChampion: findChampion([
+    [0, 1],
+    [0, 0],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function constructTransformedArray(nums) {
@@ -19964,18 +21616,21 @@ function constructTransformedArray(nums) {
 
   return result;
 }
-console.log({ constructTransformedArray: constructTransformedArray([3, -2, 1, 1]) });
+console.log({
+  constructTransformedArray: constructTransformedArray([3, -2, 1, 1]),
+});
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function minRemoval(nums, k) {
   const n = nums.length;
   nums.sort((a, b) => a - b);
 
-  let ans = n, right = 0;
+  let ans = n,
+    right = 0;
 
   for (let left = 0; left < n; left++) {
     while (right < n && nums[right] <= nums[left] * k) {
@@ -19989,12 +21644,13 @@ function minRemoval(nums, k) {
 console.log({ minRemoval: minRemoval([2, 1, 5], 2) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function minimumDeletions(s) {
   const n = s.length;
-  let minDeletions = 0, bCount = 0;
+  let minDeletions = 0,
+    bCount = 0;
 
   for (let i = 0; i < n; i++) {
     if (s[i] === 'b') bCount++;
@@ -20003,10 +21659,10 @@ function minimumDeletions(s) {
 
   return minDeletions;
 }
-console.log({ minimumDeletions: minimumDeletions("aababbab") });
+console.log({ minimumDeletions: minimumDeletions('aababbab') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function longestBalanced(nums) {
@@ -20030,15 +21686,16 @@ function longestBalanced(nums) {
 console.log({ longestBalanced: longestBalanced([2, 5, 4, 3]) });
 
 /**
- * @param {number[][]} grid 
- * @param {number} x 
- * @param {number} y 
- * @param {number} k 
+ * @param {number[][]} grid
+ * @param {number} x
+ * @param {number} y
+ * @param {number} k
  * @returns {number[][]}
  */
 function reverseSubmatrix(grid, x, y, k) {
   for (let col = y; col < y + k; col++) {
-    let start = x, end = x + k - 1;
+    let start = x,
+      end = x + k - 1;
 
     while (start <= end) {
       const temp = grid[start][col];
@@ -20051,10 +21708,20 @@ function reverseSubmatrix(grid, x, y, k) {
 
   return grid;
 }
-console.log({ reverseSubmatrix: reverseSubmatrix([[3, 4, 2, 3], [2, 3, 4, 2],], 0, 2, 2) });
+console.log({
+  reverseSubmatrix: reverseSubmatrix(
+    [
+      [3, 4, 2, 3],
+      [2, 3, 4, 2],
+    ],
+    0,
+    2,
+    2,
+  ),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function longestBalanced(s) {
@@ -20089,14 +21756,17 @@ function longestBalanced(s) {
 
   return maxLength;
 }
-console.log({ longestBalanced: longestBalanced("abbac") });
+console.log({ longestBalanced: longestBalanced('abbac') });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function alternateDigitSum(n) {
-  let sum = 0, sign = 1, temp = n, digits = 0;
+  let sum = 0,
+    sign = 1,
+    temp = n,
+    digits = 0;
 
   while (temp > 0) {
     temp = Math.floor(temp / 10);
@@ -20117,8 +21787,8 @@ function alternateDigitSum(n) {
 console.log({ alternateDigitSum: alternateDigitSum(521) });
 
 /**
- * @param {number} n 
- * @param {number} k 
+ * @param {number} n
+ * @param {number} k
  * @returns {number}
  */
 function sumBase(n, k) {
@@ -20134,7 +21804,7 @@ function sumBase(n, k) {
 console.log({ sumBase: sumBase(34, 6) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function reverseBits(n) {
@@ -20151,7 +21821,7 @@ function reverseBits(n) {
 console.log({ reverseBits: reverseBits(43261596) });
 
 /**
- * @param {number} turnedOn 
+ * @param {number} turnedOn
  * @returns {string[]}
  */
 function readBinaryWatch(turnedOn) {
@@ -20159,11 +21829,11 @@ function readBinaryWatch(turnedOn) {
 
   for (let h = 0; h < 12; h++) {
     for (let m = 0; m < 60; m++) {
-      const hourBits = h.toString(2).split("0").join("").length;
-      const minuteBits = m.toString(2).split("0").join("").length;
+      const hourBits = h.toString(2).split('0').join('').length;
+      const minuteBits = m.toString(2).split('0').join('').length;
 
       if (hourBits + minuteBits === turnedOn) {
-        ans.push(h + ":" + (m < 10 ? "0" : "") + m);
+        ans.push(h + ':' + (m < 10 ? '0' : '') + m);
       }
     }
   }
@@ -20173,7 +21843,7 @@ function readBinaryWatch(turnedOn) {
 console.log({ readBinaryWatch: readBinaryWatch(1) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {boolean}
  */
 function hasAlternatingBits(n) {
@@ -20191,11 +21861,13 @@ function hasAlternatingBits(n) {
 console.log({ hasAlternatingBits: hasAlternatingBits(5) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function countBinarySubstrings(s) {
-  let ans = 0, prev = 0, cur = 1;
+  let ans = 0,
+    prev = 0,
+    cur = 1;
 
   for (let i = 1; i < s.length; i++) {
     if (s[i - 1] !== s[i]) {
@@ -20209,11 +21881,11 @@ function countBinarySubstrings(s) {
 
   return ans + Math.min(prev, cur);
 }
-console.log({ countBinarySubstrings: countBinarySubstrings("00110011") });
+console.log({ countBinarySubstrings: countBinarySubstrings('00110011') });
 
 /**
- * @param {number[]} nums 
- * @param {number[]} queries 
+ * @param {number[]} nums
+ * @param {number[]} queries
  * @returns {number[]}
  */
 function answerQueries(nums, queries) {
@@ -20226,7 +21898,8 @@ function answerQueries(nums, queries) {
   }
 
   return queries.map((query) => {
-    let left = 0, right = prefixSums.length - 1;
+    let left = 0,
+      right = prefixSums.length - 1;
 
     while (left <= right) {
       const mid = left + Math.floor((right - left) / 2);
@@ -20241,7 +21914,7 @@ function answerQueries(nums, queries) {
 console.log({ answerQueries: answerQueries([4, 5, 2, 1], [3, 10, 21]) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {boolean}
  */
 function hasPrimeSetBits(num) {
@@ -20257,8 +21930,8 @@ function hasPrimeSetBits(num) {
 }
 
 /**
- * @param {number} left 
- * @param {number} right 
+ * @param {number} left
+ * @param {number} right
  * @returns {number}
  */
 function countPrimeSetBits(left, right) {
@@ -20273,11 +21946,13 @@ function countPrimeSetBits(left, right) {
 console.log({ countPrimeSetBits: countPrimeSetBits(6, 10) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function binaryGap(n) {
-  let currentIdx = 0, lastOneIdx = -1, maxGap = 0;
+  let currentIdx = 0,
+    lastOneIdx = -1,
+    maxGap = 0;
 
   while (n) {
     if (n & 1) {
@@ -20298,8 +21973,8 @@ function binaryGap(n) {
 console.log({ binaryGap: binaryGap(22) });
 
 /**
- * @param {number[]} aliceSizes 
- * @param {number[]} bobSizes 
+ * @param {number[]} aliceSizes
+ * @param {number[]} bobSizes
  * @returns {number[]}
  */
 function fairCandySwap(aliceSizes, bobSizes) {
@@ -20316,13 +21991,13 @@ function fairCandySwap(aliceSizes, bobSizes) {
 console.log({ fairCandySwap: fairCandySwap([2], [1, 3]) });
 
 /**
- * @param {TreeNode | null} root 
+ * @param {TreeNode | null} root
  * @returns {number}
  */
 function sumRootToLeaf(root) {
   /**
-   * @param {TreeNode | null} node 
-   * @param {number} currentValue 
+   * @param {TreeNode | null} node
+   * @param {number} currentValue
    * @returns {number}
    */
   function dfs(node, currentValue) {
@@ -20341,16 +22016,17 @@ function sumRootToLeaf(root) {
 }
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function concatenatedBinary(n) {
   const MOD = 1_000_000_007;
-  let result = 0, bitCount = 0;
+  let result = 0,
+    bitCount = 0;
 
   for (let num = 1; num <= n; num++) {
     if (isPowerOfTwo(num)) bitCount++;
-    result = (result * (2 ** bitCount) + num) % MOD;
+    result = (result * 2 ** bitCount + num) % MOD;
   }
 
   return result;
@@ -20358,7 +22034,7 @@ function concatenatedBinary(n) {
 console.log({ concatenatedBinary: concatenatedBinary(12) });
 
 /**
- * @param {string} n 
+ * @param {string} n
  * @returns {number}
  */
 function minPartitions(n) {
@@ -20370,21 +22046,23 @@ function minPartitions(n) {
 
   return maxNum;
 }
-console.log({ minPartitions: minPartitions("32") });
+console.log({ minPartitions: minPartitions('32') });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function minimumFlips(n) {
   if (n === 0) return 0;
 
   const k = 32 - Math.clz32(n);
-  let flips = 0, leftMask = 1 << (k - 1), rightMask = 1;
+  let flips = 0,
+    leftMask = 1 << (k - 1),
+    rightMask = 1;
 
   while (leftMask > rightMask) {
-    const leftBit = (n & leftMask) ? 1 : 0;
-    const rightBit = (n & rightMask) ? 1 : 0;
+    const leftBit = n & leftMask ? 1 : 0;
+    const rightBit = n & rightMask ? 1 : 0;
 
     if (leftBit !== rightBit) flips += 2;
 
@@ -20397,12 +22075,13 @@ function minimumFlips(n) {
 console.log({ minimumFlips: minimumFlips(7) });
 
 /**
- * @param {number} x 
- * @param {number} y 
+ * @param {number} x
+ * @param {number} y
  * @returns {number}
  */
 function hammingDistance(x, y) {
-  let updatedNum = x ^ y, result = 0;
+  let updatedNum = x ^ y,
+    result = 0;
 
   while (updatedNum) {
     result += updatedNum & 1;
@@ -20414,20 +22093,20 @@ function hammingDistance(x, y) {
 console.log({ hammingDistance: hammingDistance(1, 4) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function checkOnesSegment(s) {
   for (let idx = 1; idx < s.length; idx++) {
-    if (s[idx - 1] === "0" && s[idx] === "1") return false;
+    if (s[idx - 1] === '0' && s[idx] === '1') return false;
   }
 
   return true;
 }
-console.log({ checkOnesSegment: checkOnesSegment("1001") });
+console.log({ checkOnesSegment: checkOnesSegment('1001') });
 
 /**
- * @param {number[]} bulbs 
+ * @param {number[]} bulbs
  * @returns {number[]}
  */
 function toggleLightBulbs(bulbs) {
@@ -20448,7 +22127,7 @@ function toggleLightBulbs(bulbs) {
 console.log({ toggleLightBulbs: toggleLightBulbs([10, 30, 20, 10]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function residuePrefixes(s) {
@@ -20457,15 +22136,15 @@ function residuePrefixes(s) {
 
   for (let i = 0; i < s.length; i++) {
     seen.add(s[i]);
-    if (seen.size === ((i + 1) % 3)) count++;
+    if (seen.size === (i + 1) % 3) count++;
   }
 
   return count;
 }
-console.log({ residuePrefixes: residuePrefixes("abc") });
+console.log({ residuePrefixes: residuePrefixes('abc') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function majorityFrequencyGroup(s) {
@@ -20476,7 +22155,8 @@ function majorityFrequencyGroup(s) {
   }
 
   const frequencyGroups = new Map();
-  let largestGroupSize = 0, selectedFrequency = 0;
+  let largestGroupSize = 0,
+    selectedFrequency = 0;
 
   for (const [char, frequency] of charFrequency) {
     const group = frequencyGroups.get(frequency) ?? [];
@@ -20492,12 +22172,14 @@ function majorityFrequencyGroup(s) {
     }
   }
 
-  return frequencyGroups.get(selectedFrequency).join("");
+  return frequencyGroups.get(selectedFrequency).join('');
 }
-console.log({ majorityFrequencyGroup: majorityFrequencyGroup("aaabbbccdddde") });
+console.log({
+  majorityFrequencyGroup: majorityFrequencyGroup('aaabbbccdddde'),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function isSubstringPresent(s) {
@@ -20514,10 +22196,10 @@ function isSubstringPresent(s) {
 
   return false;
 }
-console.log({ isSubstringPresent: isSubstringPresent("leetcode") });
+console.log({ isSubstringPresent: isSubstringPresent('leetcode') });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {number}
  */
 function numberOfSpecialChars(word) {
@@ -20528,7 +22210,10 @@ function numberOfSpecialChars(word) {
     const lower = char.toLowerCase();
     const upper = char.toUpperCase();
 
-    if ((char === lower && seen.has(upper)) || (char === upper && seen.has(lower))) {
+    if (
+      (char === lower && seen.has(upper)) ||
+      (char === upper && seen.has(lower))
+    ) {
       counted.add(lower);
     }
 
@@ -20537,10 +22222,10 @@ function numberOfSpecialChars(word) {
 
   return counted.size;
 }
-console.log({ numberOfSpecialChars: numberOfSpecialChars("aaAbcBC") });
+console.log({ numberOfSpecialChars: numberOfSpecialChars('aaAbcBC') });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {boolean}
  */
 function equalFrequency(word) {
@@ -20555,7 +22240,8 @@ function equalFrequency(word) {
     if (letterCounts[i] === 0) continue;
     letterCounts[i]--;
 
-    let minFreq = 101, maxFreq = 0;
+    let minFreq = 101,
+      maxFreq = 0;
 
     for (const freq of letterCounts) {
       if (freq === 0) continue;
@@ -20570,20 +22256,20 @@ function equalFrequency(word) {
 
   return false;
 }
-console.log({ equalFrequency: equalFrequency("abcc") });
+console.log({ equalFrequency: equalFrequency('abcc') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function maxDistinct(s) {
   return new Set(s).size;
 }
-console.log({ maxDistinct: maxDistinct("abab") });
+console.log({ maxDistinct: maxDistinct('abab') });
 
 /**
- * @param {string[]} words 
- * @param {number[]} weights 
+ * @param {string[]} words
+ * @param {number[]} weights
  * @returns {string}
  */
 function mapWordWeights(words, weights) {
@@ -20593,29 +22279,40 @@ function mapWordWeights(words, weights) {
     let totalWeight = 0;
 
     for (const letter of word) {
-      const letterIndex = letter.charCodeAt(0) - "a".charCodeAt(0);
+      const letterIndex = letter.charCodeAt(0) - 'a'.charCodeAt(0);
       totalWeight += weights[letterIndex];
     }
 
     const normalizedWeight = totalWeight % 26;
-    const encodedChar = String.fromCharCode("z".charCodeAt(0) - normalizedWeight);
+    const encodedChar = String.fromCharCode(
+      'z'.charCodeAt(0) - normalizedWeight,
+    );
 
     encodedChars.push(encodedChar);
   }
 
-  return encodedChars.join("");
+  return encodedChars.join('');
 }
-console.log({ mapWordWeights: mapWordWeights(["abcd"], [7, 5, 3, 4, 3, 5, 4, 9, 4, 2, 2, 7, 10, 2, 5, 10, 6, 1, 2, 2, 4, 1, 3, 4, 4, 5]) });
+console.log({
+  mapWordWeights: mapWordWeights(
+    ['abcd'],
+    [
+      7, 5, 3, 4, 3, 5, 4, 9, 4, 2, 2, 7, 10, 2, 5, 10, 6, 1, 2, 2, 4, 1, 3, 4,
+      4, 5,
+    ],
+  ),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function projectionArea(grid) {
   let totalArea = 0;
 
   for (let i = 0; i < grid.length; i++) {
-    let rowMax = 0, colMax = 0;
+    let rowMax = 0,
+      colMax = 0;
 
     for (let j = 0; j < grid.length; j++) {
       if (grid[i][j] > 0) totalArea++;
@@ -20631,8 +22328,8 @@ function projectionArea(grid) {
 console.log({ projectionArea: projectionArea([[2]]) });
 
 /**
- * @param {number[][]} grid 
- * @param {number} k 
+ * @param {number[][]} grid
+ * @param {number} k
  * @returns {number}
  */
 function countSubmatrices(grid, k) {
@@ -20654,14 +22351,23 @@ function countSubmatrices(grid, k) {
 
   return res;
 }
-console.log({ countSubmatrices: countSubmatrices([[7, 6, 3], [6, 6, 1]], 18) });
+console.log({
+  countSubmatrices: countSubmatrices(
+    [
+      [7, 6, 3],
+      [6, 6, 1],
+    ],
+    18,
+  ),
+});
 
 /**
- * @param {string[][]} grid 
+ * @param {string[][]} grid
  * @returns {number}
  */
 function numberOfSubmatrices(grid) {
-  const m = grid.length, n = grid[0].length;
+  const m = grid.length,
+    n = grid[0].length;
   const prefixX = Array.from({ length: m }, () => Array(n).fill(0));
   const prefixY = Array.from({ length: m }, () => Array(n).fill(0));
 
@@ -20671,13 +22377,13 @@ function numberOfSubmatrices(grid) {
         (i > 0 ? prefixX[i - 1][j] : 0) +
         (j > 0 ? prefixX[i][j - 1] : 0) -
         (i > 0 && j > 0 ? prefixX[i - 1][j - 1] : 0) +
-        (grid[i][j] === "X" ? 1 : 0);
+        (grid[i][j] === 'X' ? 1 : 0);
 
       prefixY[i][j] =
         (i > 0 ? prefixY[i - 1][j] : 0) +
         (j > 0 ? prefixY[i][j - 1] : 0) -
         (i > 0 && j > 0 ? prefixY[i - 1][j - 1] : 0) +
-        (grid[i][j] === "Y" ? 1 : 0);
+        (grid[i][j] === 'Y' ? 1 : 0);
     }
   }
 
@@ -20691,10 +22397,15 @@ function numberOfSubmatrices(grid) {
 
   return count;
 }
-console.log({ numberOfSubmatrices: numberOfSubmatrices([["X", "Y", "."], ["Y", ".", "."]]) });
+console.log({
+  numberOfSubmatrices: numberOfSubmatrices([
+    ['X', 'Y', '.'],
+    ['Y', '.', '.'],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function firstUniqueEven(nums) {
@@ -20713,7 +22424,7 @@ function firstUniqueEven(nums) {
 console.log({ firstUniqueEven: firstUniqueEven([3, 4, 2, 5, 4, 6]) });
 
 /**
- * @param {number[][]} mat 
+ * @param {number[][]} mat
  */
 function rotateMatrix(mat) {
   const n = mat.length;
@@ -20730,9 +22441,9 @@ function rotateMatrix(mat) {
 }
 
 /**
- * @param {number[][]} mat 
- * @param {number[][]} target 
- * @returns {boolean} 
+ * @param {number[][]} mat
+ * @param {number[][]} target
+ * @returns {boolean}
  */
 function matricesAreEqual(mat, target) {
   for (let row = 0; row < mat.length; row++) {
@@ -20745,9 +22456,9 @@ function matricesAreEqual(mat, target) {
 }
 
 /**
- * @param {number[][]} mat 
- * @param {number[][]} target 
- * @returns {boolean} 
+ * @param {number[][]} mat
+ * @param {number[][]} target
+ * @returns {boolean}
  */
 function findRotation(mat, target) {
   for (let i = 0; i < 4; i++) {
@@ -20757,14 +22468,27 @@ function findRotation(mat, target) {
 
   return false;
 }
-console.log({ findRotation: findRotation([[0, 1], [1, 0]], [[1, 0], [0, 1]]) });
+console.log({
+  findRotation: findRotation(
+    [
+      [0, 1],
+      [1, 0],
+    ],
+    [
+      [1, 0],
+      [0, 1],
+    ],
+  ),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maximizeExpressionOfThree(nums) {
-  let minNum = 100, firstNum = -100, secondNum = -100;
+  let minNum = 100,
+    firstNum = -100,
+    secondNum = -100;
 
   for (const num of nums) {
     minNum = Math.min(num, minNum);
@@ -20777,15 +22501,18 @@ function maximizeExpressionOfThree(nums) {
 
   return firstNum + secondNum - minNum;
 }
-console.log({ maximizeExpressionOfThree: maximizeExpressionOfThree([1, 4, 2, 5]) });
+console.log({
+  maximizeExpressionOfThree: maximizeExpressionOfThree([1, 4, 2, 5]),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number[][]}
  */
 function constructProductMatrix(grid) {
   const MOD = 12345;
-  const n = grid.length, m = grid[0].length;
+  const n = grid.length,
+    m = grid[0].length;
   const p = Array.from({ length: n }, () => new Array(m).fill(0));
 
   let suffix = 1;
@@ -20808,10 +22535,15 @@ function constructProductMatrix(grid) {
 
   return p;
 }
-console.log({ constructProductMatrix: constructProductMatrix([[1, 2], [3, 4]]) });
+console.log({
+  constructProductMatrix: constructProductMatrix([
+    [1, 2],
+    [3, 4],
+  ]),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {boolean}
  */
 function canPartitionGrid(grid) {
@@ -20850,10 +22582,15 @@ function canPartitionGrid(grid) {
 
   return false;
 }
-console.log({ canPartitionGrid: canPartitionGrid([[1, 4], [2, 3]]) });
+console.log({
+  canPartitionGrid: canPartitionGrid([
+    [1, 4],
+    [2, 3],
+  ]),
+});
 
 /**
- * @param {number[]} nums1 
+ * @param {number[]} nums1
  * @returns {boolean}
  */
 function uniformArray(nums1) {
@@ -20862,8 +22599,8 @@ function uniformArray(nums1) {
 console.log({ uniformArray: uniformArray([2, 3]) });
 
 /**
- * @param {number[][]} mat 
- * @param {number} k 
+ * @param {number[][]} mat
+ * @param {number} k
  * @returns {boolean}
  */
 function areSimilar(mat, k) {
@@ -20881,15 +22618,24 @@ function areSimilar(mat, k) {
 
   return true;
 }
-console.log({ areSimilar: areSimilar([[2, 2], [2, 2]], 3) });
+console.log({
+  areSimilar: areSimilar(
+    [
+      [2, 2],
+      [2, 2],
+    ],
+    3,
+  ),
+});
 
 /**
- * @param {number[]} capacity 
- * @param {number} itemSize 
+ * @param {number[]} capacity
+ * @param {number} itemSize
  * @returns {number}
  */
 function minimumIndex(capacity, itemSize) {
-  let bestIndex = -1, smallestValidCapacity = 101;
+  let bestIndex = -1,
+    smallestValidCapacity = 101;
 
   for (let idx = 0; idx < capacity.length; idx++) {
     const boxCapacity = capacity[idx];
@@ -20907,7 +22653,7 @@ function minimumIndex(capacity, itemSize) {
 console.log({ minimumIndex: minimumIndex([4], 5) });
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number}
  */
 function minimumOperations(grid) {
@@ -20926,11 +22672,18 @@ function minimumOperations(grid) {
 
   return count;
 }
-console.log({ minimumOperations: minimumOperations([[3, 2], [1, 3], [3, 4], [0, 1]]) });
+console.log({
+  minimumOperations: minimumOperations([
+    [3, 2],
+    [1, 3],
+    [3, 4],
+    [0, 1],
+  ]),
+});
 
 /**
- * @param {string} s1 
- * @param {string} s2 
+ * @param {string} s1
+ * @param {string} s2
  * @returns {boolean}
  */
 function canBeEqual(s1, s2) {
@@ -20944,10 +22697,10 @@ function canBeEqual(s1, s2) {
 
   return freq.every((group) => group.every((count) => count === 0));
 }
-console.log({ canBeEqual: canBeEqual("abcd", "cdab") });
+console.log({ canBeEqual: canBeEqual('abcd', 'cdab') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function isPossibleToSplit(nums) {
@@ -20964,7 +22717,7 @@ function isPossibleToSplit(nums) {
 console.log({ isPossibleToSplit: isPossibleToSplit([1, 1, 2, 2, 3, 4]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function minDistinctFreqPair(nums) {
@@ -20979,7 +22732,8 @@ function minDistinctFreqPair(nums) {
   }
 
   for (let i = 1; i < 101; i++) {
-    if (frequency[i] !== 0 && (frequency[minNum] !== frequency[i])) return [minNum, i];
+    if (frequency[i] !== 0 && frequency[minNum] !== frequency[i])
+      return [minNum, i];
   }
 
   return [-1, -1];
@@ -20987,7 +22741,7 @@ function minDistinctFreqPair(nums) {
 console.log({ minDistinctFreqPair: minDistinctFreqPair([7]) });
 
 /**
- * @param {number[][]} nums 
+ * @param {number[][]} nums
  * @returns {number[]}
  */
 function intersection(nums) {
@@ -21007,22 +22761,28 @@ function intersection(nums) {
 
   return result;
 }
-console.log({ intersection: intersection([[1, 2, 3], [4, 5, 6]]) });
+console.log({
+  intersection: intersection([
+    [1, 2, 3],
+    [4, 5, 6],
+  ]),
+});
 
 /**
- * @param {string} char 
+ * @param {string} char
  * @returns {boolean}
  */
 function isLowerCaseChar(char) {
-  return char >= "a" && char <= "z";
+  return char >= 'a' && char <= 'z';
 }
 
 /**
- * @param {string[]} chars 
- * @param {(c: string) => boolean} condition 
+ * @param {string[]} chars
+ * @param {(c: string) => boolean} condition
  */
 function reverseGroup(chars, condition) {
-  let left = 0, right = chars.length - 1;
+  let left = 0,
+    right = chars.length - 1;
 
   while (left < right) {
     if (condition(chars[left]) && condition(chars[right]))
@@ -21033,31 +22793,31 @@ function reverseGroup(chars, condition) {
 }
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function reverseByType(s) {
-  const chars = s.split("");
+  const chars = s.split('');
 
   reverseGroup(chars, isLowerCaseChar);
   reverseGroup(chars, (c) => !isLowerCaseChar(c));
 
-  return chars.join("");
+  return chars.join('');
 }
-console.log({ reverseByType: reverseByType("z") });
+console.log({ reverseByType: reverseByType('z') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function largestEven(s) {
   let lastIndex = -1;
 
   for (let idx = 0; idx < s.length; idx++) {
-    if (s[idx] === "2") lastIndex = idx;
+    if (s[idx] === '2') lastIndex = idx;
   }
 
-  if (lastIndex === -1) return "";
+  if (lastIndex === -1) return '';
 
   const result = [];
 
@@ -21065,17 +22825,17 @@ function largestEven(s) {
     result.push(s[idx]);
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ largestEven: largestEven("1") });
+console.log({ largestEven: largestEven('1') });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {string}
  */
 function trimTrailingVowels(s) {
   let lastIndex = -1;
-  const vowels = new Set("aeiou");
+  const vowels = new Set('aeiou');
 
   for (let idx = s.length - 1; idx >= 0; idx--) {
     if (vowels.has(s[idx])) lastIndex = idx;
@@ -21086,20 +22846,20 @@ function trimTrailingVowels(s) {
 
   return s.slice(0, lastIndex);
 }
-console.log({ trimTrailingVowels: trimTrailingVowels("idea") });
+console.log({ trimTrailingVowels: trimTrailingVowels('idea') });
 
 /**
- * @param {string} time 
+ * @param {string} time
  * @returns {number}
  */
 function getTime(time) {
-  const [h, m] = time.split(":").map(Number);
+  const [h, m] = time.split(':').map(Number);
   return h * 60 + m;
 }
 
 /**
- * @param {string} current 
- * @param {string} correct 
+ * @param {string} current
+ * @param {string} correct
  * @returns {number}
  */
 function convertTime(current, correct) {
@@ -21115,23 +22875,25 @@ function convertTime(current, correct) {
 
   return count;
 }
-console.log({ convertTime: convertTime("11:00", "11:01") });
+console.log({ convertTime: convertTime('11:00', '11:01') });
 
 /**
- * @param {string} date 
+ * @param {string} date
  * @returns {number}
  */
 function getDays(date) {
-  const daysBeforeMonth = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-  const [month, day] = date.split("-").map(Number);
+  const daysBeforeMonth = [
+    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,
+  ];
+  const [month, day] = date.split('-').map(Number);
   return daysBeforeMonth[month - 1] + day;
 }
 
 /**
- * @param {string} arriveAlice 
- * @param {string} leaveAlice 
- * @param {string} arriveBob 
- * @param {string} leaveBob 
+ * @param {string} arriveAlice
+ * @param {string} leaveAlice
+ * @param {string} arriveBob
+ * @param {string} leaveBob
  * @returns {number}
  */
 function countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) {
@@ -21145,20 +22907,22 @@ function countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) {
 
   return overlapStart <= overlapEnd ? overlapEnd - overlapStart + 1 : 0;
 }
-console.log({ countDaysTogether: countDaysTogether("10-01", "10-31", "11-01", "12-31") });
+console.log({
+  countDaysTogether: countDaysTogether('10-01', '10-31', '11-01', '12-31'),
+});
 
 /**
- * @param {string} number 
+ * @param {string} number
  * @returns {string}
  */
 function reformatNumber(number) {
   const digits = [];
 
   for (const char of number) {
-    if (char >= "0" && char <= "9") digits.push(char);
+    if (char >= '0' && char <= '9') digits.push(char);
   }
 
-  if (digits.length <= 3) return digits.join("");
+  if (digits.length <= 3) return digits.join('');
 
   const result = [];
   let i = 0;
@@ -21167,10 +22931,10 @@ function reformatNumber(number) {
     const remaining = digits.length - i;
 
     if (remaining > 4) {
-      result.push(digits[i], digits[i + 1], digits[i + 2], "-");
+      result.push(digits[i], digits[i + 1], digits[i + 2], '-');
       i += 3;
     } else if (remaining === 4) {
-      result.push(digits[i], digits[i + 1], "-", digits[i + 2], digits[i + 3]);
+      result.push(digits[i], digits[i + 1], '-', digits[i + 2], digits[i + 3]);
       i += 4;
     } else {
       if (remaining === 2) {
@@ -21183,9 +22947,9 @@ function reformatNumber(number) {
     }
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ reformatNumber: reformatNumber("1-2") });
+console.log({ reformatNumber: reformatNumber('1-2') });
 
 class ATM {
   constructor() {
@@ -21242,36 +23006,38 @@ function validStrings(n) {
 
     const lastChar = current[current.length - 1];
 
-    if (lastChar !== "0") buildString(current + "0");
+    if (lastChar !== '0') buildString(current + '0');
 
-    buildString(current + "1");
+    buildString(current + '1');
   }
 
-  buildString("");
+  buildString('');
 
   return result;
 }
 console.log({ validStrings: validStrings(15) });
 
 /**
- * @param {string} str 
+ * @param {string} str
  * @returns {number[][]}
  */
 function generateNodes(str) {
   const nodes = [];
-  let depth = 0, i = 0, currNum = 0;
+  let depth = 0,
+    i = 0,
+    currNum = 0;
 
   while (i < str.length) {
     depth = 0;
 
-    while (i < str.length && str[i] === "-") {
+    while (i < str.length && str[i] === '-') {
       depth++;
       i++;
     }
 
     currNum = 0;
 
-    while (i < str.length && str[i] >= "0" && str[i] <= "9") {
+    while (i < str.length && str[i] >= '0' && str[i] <= '9') {
       currNum = currNum * 10 + +str[i];
       i++;
     }
@@ -21283,9 +23049,9 @@ function generateNodes(str) {
 }
 
 /**
- * @param {number[][]} nodes 
- * @param {number} depth 
- * @param {{ i: number;}} indexRef 
+ * @param {number[][]} nodes
+ * @param {number} depth
+ * @param {{ i: number;}} indexRef
  * @returns {TreeNode | null}
  */
 function generateTree(nodes, depth, indexRef) {
@@ -21300,8 +23066,8 @@ function generateTree(nodes, depth, indexRef) {
 }
 
 /**
- * @param {string} traversal 
- * @returns {TreeNode | null} 
+ * @param {string} traversal
+ * @returns {TreeNode | null}
  */
 function recoverFromPreorder(traversal) {
   return generateTree(generateNodes(traversal), 0, { i: 0 });
@@ -21379,12 +23145,21 @@ function getWordScore(word, score) {
   let totalScore = 0;
 
   for (const char of word) {
-    totalScore += score[char.charCodeAt(0) - "a".charCodeAt(0)];
+    totalScore += score[char.charCodeAt(0) - 'a'.charCodeAt(0)];
   }
 
   return totalScore;
 }
-console.log({ maxScoreWords: maxScoreWords(["leetcode"], ["l", "e", "t", "c", "o", "d"], [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]) });
+console.log({
+  maxScoreWords: maxScoreWords(
+    ['leetcode'],
+    ['l', 'e', 't', 'c', 'o', 'd'],
+    [
+      0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+      0,
+    ],
+  ),
+});
 
 /**
  * @param {number[]} heights
@@ -21422,10 +23197,10 @@ class Robot {
     this.pos = [];
     this.dir = [];
     this.toDir = new Map();
-    this.toDir.set(0, "East");
-    this.toDir.set(1, "North");
-    this.toDir.set(2, "West");
-    this.toDir.set(3, "South");
+    this.toDir.set(0, 'East');
+    this.toDir.set(1, 'North');
+    this.toDir.set(2, 'West');
+    this.toDir.set(3, 'South');
 
     for (let i = 0; i < width; ++i) {
       this.pos.push([i, 0]);
@@ -21457,14 +23232,14 @@ class Robot {
   }
 
   getDir() {
-    if (!this.moved) return "East";
+    if (!this.moved) return 'East';
     return this.toDir.get(this.dir[this.idx]);
   }
 }
 
 /**
- * @param {number[]} nums 
- * @param {number[][]} queries 
+ * @param {number[]} nums
+ * @param {number[][]} queries
  * @returns {number}
  */
 function xorAfterQueries(nums, queries) {
@@ -21489,11 +23264,12 @@ function xorAfterQueries(nums, queries) {
 console.log({ xorAfterQueries: xorAfterQueries([1, 1, 1], [[0, 2, 1, 4]]) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function firstMatchingIndex(s) {
-  let start = 0, end = s.length - 1;
+  let start = 0,
+    end = s.length - 1;
 
   while (start <= end) {
     if (s[start] === s[end]) return start;
@@ -21503,22 +23279,25 @@ function firstMatchingIndex(s) {
 
   return -1;
 }
-console.log({ firstMatchingIndex: firstMatchingIndex("abc") });
+console.log({ firstMatchingIndex: firstMatchingIndex('abc') });
 
 /**
- * @param {number} rows 
- * @param {number} cols 
- * @param {number} rCenter 
- * @param {number} cCenter 
+ * @param {number} rows
+ * @param {number} cols
+ * @param {number} rCenter
+ * @param {number} cCenter
  * @returns {number[][]}
  */
 function allCellsDistOrder(rows, cols, rCenter, cCenter) {
   const result = [];
-  const visited = Array.from({ length: rows }, () =>
-    Array(cols).fill(false)
-  );
+  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
   const queue = [];
-  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+  const directions = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
 
   queue.push([rCenter, cCenter]);
   visited[rCenter][cCenter] = true;
@@ -21543,7 +23322,7 @@ function allCellsDistOrder(rows, cols, rCenter, cCenter) {
 console.log({ allCellsDistOrder: allCellsDistOrder(1, 2, 0, 0) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumDistance(nums) {
@@ -21569,7 +23348,7 @@ function minimumDistance(nums) {
 console.log({ minimumDistance: minimumDistance([1, 1, 2]) });
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number[]}
  */
 function findColumnWidth(grid) {
@@ -21579,7 +23358,8 @@ function findColumnWidth(grid) {
     let maxLength = 0;
 
     for (let row = 0; row < grid.length; row++) {
-      let value = grid[row][col], digitCount = 0;
+      let value = grid[row][col],
+        digitCount = 0;
 
       if (value < 0) {
         digitCount++;
@@ -21605,7 +23385,7 @@ function findColumnWidth(grid) {
 console.log({ findColumnWidth: findColumnWidth([[1], [22], [333]]) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minimumDistance(nums) {
@@ -21629,20 +23409,23 @@ function minimumDistance(nums) {
 console.log({ minimumDistance: minimumDistance([3, 2, 2, 7, 4, 5, 2, 7]) });
 
 /**
- * @param {number[][]} matrix 
- * @param {number} k 
+ * @param {number[][]} matrix
+ * @param {number} k
  * @returns {number}
  */
 function kthSmallest(matrix, k) {
   const n = matrix.length;
-  let low = matrix[0][0], high = matrix[n - 1][n - 1];
+  let low = matrix[0][0],
+    high = matrix[n - 1][n - 1];
 
   /**
-   * @param {number} target 
+   * @param {number} target
    * @returns {number}
    */
   function countLessEqual(target) {
-    let count = 0, row = n - 1, col = 0;
+    let count = 0,
+      row = n - 1,
+      col = 0;
 
     while (row >= 0 && col < n) {
       if (matrix[row][col] <= target) {
@@ -21666,9 +23449,9 @@ function kthSmallest(matrix, k) {
 console.log({ kthSmallest: kthSmallest([[-5]], 1) });
 
 /**
- * @param {number[]} nums 
- * @param {number} target 
- * @param {number} start 
+ * @param {number[]} nums
+ * @param {number} target
+ * @param {number} start
  * @returns {number}
  */
 function getMinDistance(nums, target, start) {
@@ -21685,12 +23468,13 @@ function getMinDistance(nums, target, start) {
 console.log({ getMinDistance: getMinDistance([1], 1, 0) });
 
 /**
- * @param {number[][]} brackets 
- * @param {number} income 
+ * @param {number[][]} brackets
+ * @param {number} income
  * @returns {number}
  */
 function calculateTax(brackets, income) {
-  let totalTax = 0, previousLimit = 0;
+  let totalTax = 0,
+    previousLimit = 0;
 
   if (income === 0) return totalTax;
 
@@ -21709,8 +23493,8 @@ function calculateTax(brackets, income) {
 console.log({ calculateTax: calculateTax([[2, 50]], 0) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function sumOfGoodNumbers(nums, k) {
@@ -21730,7 +23514,7 @@ function sumOfGoodNumbers(nums, k) {
 console.log({ sumOfGoodNumbers: sumOfGoodNumbers([2, 1], 1) });
 
 /**
- * @param {number[]} colors 
+ * @param {number[]} colors
  * @returns {number}
  */
 function numberOfAlternatingGroups(colors) {
@@ -21738,18 +23522,22 @@ function numberOfAlternatingGroups(colors) {
   const n = colors.length;
 
   for (let i = 0; i < n; i++) {
-    const prev = colors[(i - 1 + n) % n], curr = colors[i], next = colors[(i + 1) % n];
+    const prev = colors[(i - 1 + n) % n],
+      curr = colors[i],
+      next = colors[(i + 1) % n];
     if (prev !== curr && curr !== next) count++;
   }
 
   return count;
 }
-console.log({ numberOfAlternatingGroups: numberOfAlternatingGroups([1, 1, 1]) });
+console.log({
+  numberOfAlternatingGroups: numberOfAlternatingGroups([1, 1, 1]),
+});
 
 /**
- * @param {string[]} words 
- * @param {string} target 
- * @param {number} startIndex 
+ * @param {string[]} words
+ * @param {string} target
+ * @param {number} startIndex
  * @returns {number}
  */
 function closestTarget(words, target, startIndex) {
@@ -21767,54 +23555,60 @@ function closestTarget(words, target, startIndex) {
 
   return minDistance !== Infinity ? minDistance : -1;
 }
-console.log({ closestTarget: closestTarget(["i", "eat", "leetcode"], "ate", 0) });
+console.log({
+  closestTarget: closestTarget(['i', 'eat', 'leetcode'], 'ate', 0),
+});
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {boolean}
  */
 function checkString(s) {
   for (let i = 0; i < s.length - 1; i++) {
-    if (s[i] === "b" && s[i + 1] === "a") return false;
+    if (s[i] === 'b' && s[i + 1] === 'a') return false;
   }
 
   return true;
 }
-console.log({ checkString: checkString("aaabbb") });
+console.log({ checkString: checkString('aaabbb') });
 
 /**
- * @param {string[]} moves 
+ * @param {string[]} moves
  * @returns {number}
  */
 function furthestDistanceFromOrigin(moves) {
-  let netDisplacement = 0, flexibleMoves = 0;
+  let netDisplacement = 0,
+    flexibleMoves = 0;
 
   for (const move of moves) {
-    if (move === "L") netDisplacement--;
-    else if (move === "R") netDisplacement++;
+    if (move === 'L') netDisplacement--;
+    else if (move === 'R') netDisplacement++;
     else flexibleMoves++;
   }
 
   return Math.abs(netDisplacement) + flexibleMoves;
 }
-console.log({ furthestDistanceFromOrigin: furthestDistanceFromOrigin("_") });
+console.log({ furthestDistanceFromOrigin: furthestDistanceFromOrigin('_') });
 
 /**
- * @param {string} word 
+ * @param {string} word
  * @returns {number}
  */
 function minTimeToType(word) {
-  let totalTime = 0, prevChar = "a";
+  let totalTime = 0,
+    prevChar = 'a';
 
   for (const char of word) {
-    const directDistance = Math.abs(char.charCodeAt(0) - prevChar.charCodeAt(0));
+    const directDistance = Math.abs(
+      char.charCodeAt(0) - prevChar.charCodeAt(0),
+    );
     totalTime += Math.min(directDistance, 26 - directDistance) + 1;
     prevChar = char;
   }
 
   return totalTime;
 }
-console.log({ minTimeToType: minTimeToType("zaybxc") });
+console.log({ minTimeToType: minTimeToType('zaybxc') });
 
 /**
  * @param {string} coordinate1
@@ -21831,11 +23625,12 @@ function checkTwoChessboards(coordinate1, coordinate2) {
 console.log({ checkTwoChessboards: checkTwoChessboards('d1', 'h4') });
 
 /**
- * @param {number[]} position 
+ * @param {number[]} position
  * @returns {number}
  */
 function minCostToMoveChips(position) {
-  let evenPositions = 0, oddPositions = 0;
+  let evenPositions = 0,
+    oddPositions = 0;
 
   for (const pos of position) {
     if (pos % 2 === 0) evenPositions++;
@@ -21904,10 +23699,15 @@ function hasValidPath(grid) {
 
   return dfs(0, 0);
 }
-console.log({ hasValidPath: hasValidPath([[2, 4, 3], [6, 5, 2]]) });
+console.log({
+  hasValidPath: hasValidPath([
+    [2, 4, 3],
+    [6, 5, 2],
+  ]),
+});
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number[][]}
  */
 function onesMinusZeros(grid) {
@@ -21936,18 +23736,23 @@ function onesMinusZeros(grid) {
 
   return result;
 }
-console.log({ onesMinusZeros: onesMinusZeros([[1, 1, 1], [1, 1, 1]]) });
+console.log({
+  onesMinusZeros: onesMinusZeros([
+    [1, 1, 1],
+    [1, 1, 1],
+  ]),
+});
 
 /**
- * @param {number} n 
- * @param {number} limit 
+ * @param {number} n
+ * @param {number} limit
  * @returns {number}
  */
 function distributeCandies(n, limit) {
   if (n > 3 * limit) return 0;
 
   /**
-   * @param {number} x 
+   * @param {number} x
    * @returns {number}
    */
   function comb2(x) {
@@ -21960,11 +23765,12 @@ function distributeCandies(n, limit) {
 console.log({ distributeCandies: distributeCandies(5, 2) });
 
 /**
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 function removePalindromeSub(s) {
-  let left = 0, right = s.length - 1;
+  let left = 0,
+    right = s.length - 1;
 
   while (left < right) {
     if (s[left++] !== s[right--]) return 2;
@@ -21972,10 +23778,10 @@ function removePalindromeSub(s) {
 
   return 1;
 }
-console.log({ removePalindromeSub: removePalindromeSub("baabb") });
+console.log({ removePalindromeSub: removePalindromeSub('baabb') });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function maxRotateFunction(nums) {
@@ -22000,7 +23806,7 @@ function maxRotateFunction(nums) {
 console.log({ maxRotateFunction: maxRotateFunction([4, 3, 2, 6]) });
 
 /**
- * @param {number[][]} grid 
+ * @param {number[][]} grid
  * @returns {number[][]}
  */
 function sortMatrix(grid) {
@@ -22008,7 +23814,6 @@ function sortMatrix(grid) {
 
   for (let i = 0; i < n; i++) {
     const tmp = [];
-
 
     for (let j = 0; i + j < n; j++) {
       tmp.push(grid[i + j][j]);
@@ -22037,7 +23842,12 @@ function sortMatrix(grid) {
 
   return grid;
 }
-console.log({ sortMatrix: sortMatrix([[0, 1], [1, 2]]) });
+console.log({
+  sortMatrix: sortMatrix([
+    [0, 1],
+    [1, 2],
+  ]),
+});
 
 /**
  * @param {number} n
@@ -22069,23 +23879,24 @@ function rotatedDigits(n) {
 console.log({ rotatedDigits: rotatedDigits(10) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function minCost(n) {
-  return n * (n - 1) / 2;
+  return (n * (n - 1)) / 2;
 }
 console.log({ minCost: minCost(5) });
 
 /**
- * @param {ListNode | null} head 
- * @param {number} k 
+ * @param {ListNode | null} head
+ * @param {number} k
  * @returns {ListNode | null}
  */
 function rotateRight(head, k) {
   if (!head || !head.next || k === 0) return head;
 
-  let tail = head, length = 1;
+  let tail = head,
+    length = 1;
 
   while (tail.next) {
     tail = tail.next;
@@ -22110,20 +23921,22 @@ function rotateRight(head, k) {
 }
 
 /**
- * @param {ListNode | null} head 
+ * @param {ListNode | null} head
  * @returns {number}
  */
 function pairSum(head) {
   if (!head) return 0;
 
-  let slow = head, fast = head;
+  let slow = head,
+    fast = head;
 
   while (fast && fast.next) {
     slow = slow.next;
     fast = fast.next.next;
   }
 
-  let prev = null, curr = slow;
+  let prev = null,
+    curr = slow;
 
   while (curr) {
     const next = curr.next;
@@ -22132,7 +23945,8 @@ function pairSum(head) {
     curr = next;
   }
 
-  let left = head, right = prev;
+  let left = head,
+    right = prev;
   let maxSum = 0;
 
   while (right) {
@@ -22145,8 +23959,8 @@ function pairSum(head) {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number}
  */
 function firstStableIndex(nums, k) {
@@ -22161,7 +23975,10 @@ function firstStableIndex(nums, k) {
     prefixMax[i] = Math.max(prefixMax[i - 1], nums[i]);
 
     const rightIndex = n - i - 1;
-    suffixMin[rightIndex] = Math.min(suffixMin[rightIndex + 1], nums[rightIndex]);
+    suffixMin[rightIndex] = Math.min(
+      suffixMin[rightIndex + 1],
+      nums[rightIndex],
+    );
   }
 
   for (let i = 0; i < n; i++) {
@@ -22174,12 +23991,13 @@ function firstStableIndex(nums, k) {
 console.log({ firstStableIndex: firstStableIndex([3, 2, 1], 1) });
 
 /**
- * @param {ListNode | null} headA 
- * @param {ListNode | null} headB 
+ * @param {ListNode | null} headA
+ * @param {ListNode | null} headB
  * @returns {ListNode | null}
  */
 function getIntersectionNode(headA, headB) {
-  let listA = headA, listB = headB;
+  let listA = headA,
+    listB = headB;
 
   while (listA !== listB) {
     listA = listA ? listA.next : headB;
@@ -22190,7 +24008,7 @@ function getIntersectionNode(headA, headB) {
 }
 
 /**
- * @param {number[]} colors 
+ * @param {number[]} colors
  * @returns {number}
  */
 function maxDistance(colors) {
@@ -22198,7 +24016,8 @@ function maxDistance(colors) {
   const n = colors.length;
 
   for (let i = 0; i < n - 1; i++) {
-    if (colors[i] !== colors[n - 1]) distance = Math.max(distance, i, n - 1 - i);
+    if (colors[i] !== colors[n - 1])
+      distance = Math.max(distance, i, n - 1 - i);
   }
 
   return distance;
@@ -22206,7 +24025,7 @@ function maxDistance(colors) {
 console.log({ maxDistance: maxDistance([1, 2, 1, 1, 1]) });
 
 /**
- * @param {number[]} digits 
+ * @param {number[]} digits
  * @returns {number}
  */
 function totalNumbers(digits) {
@@ -22249,7 +24068,7 @@ function totalNumbers(digits) {
 console.log({ totalNumbers: totalNumbers([0, 2, 2]) });
 
 /**
- * @param {number} num 
+ * @param {number} num
  * @returns {number}
  */
 function splitNum(num) {
@@ -22260,7 +24079,9 @@ function splitNum(num) {
     num = Math.floor(num / 10);
   }
 
-  let num1 = 0, num2 = 0, turn = 0;
+  let num1 = 0,
+    num2 = 0,
+    turn = 0;
 
   for (let digit = 0; digit <= 9; digit++) {
     while (freq[digit] > 0) {
@@ -22277,22 +24098,28 @@ function splitNum(num) {
 console.log({ splitNum: splitNum(687) });
 
 /**
- * @param {string[][]} board 
+ * @param {string[][]} board
  * @returns {number}
  */
 function numRookCaptures(board) {
-  let rookRow = 0, rookCol = 0;
+  let rookRow = 0,
+    rookCol = 0;
 
   for (let r = 0; r < 8; r++) {
     for (let c = 0; c < 8; c++) {
-      if (board[r][c] === "R") {
+      if (board[r][c] === 'R') {
         rookRow = r;
         rookCol = c;
       }
     }
   }
 
-  const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+  const directions = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [0, 1],
+  ];
   let count = 0;
 
   for (const [dr, dc] of directions) {
@@ -22300,8 +24127,8 @@ function numRookCaptures(board) {
     let c = rookCol + dc;
 
     while (r >= 0 && r < 8 && c >= 0 && c < 8) {
-      if (board[r][c] === "B") break;
-      if (board[r][c] === "p") {
+      if (board[r][c] === 'B') break;
+      if (board[r][c] === 'p') {
         count++;
         break;
       }
@@ -22315,7 +24142,7 @@ function numRookCaptures(board) {
 }
 
 /**
- * @param {number[][]} tasks 
+ * @param {number[][]} tasks
  * @returns {number}
  */
 function minimumEffort(tasks) {
@@ -22328,7 +24155,13 @@ function minimumEffort(tasks) {
 
   return ans;
 }
-console.log({ minimumEffort: minimumEffort([[1, 2], [2, 4], [4, 8]]) });
+console.log({
+  minimumEffort: minimumEffort([
+    [1, 2],
+    [2, 4],
+    [4, 8],
+  ]),
+});
 
 class TrieNode {
   constructor(char) {
@@ -22348,7 +24181,7 @@ class Trie {
     const index = ch.charCodeAt(0) - 97;
 
     if (index < 0 || index >= 26) {
-      throw new Error("Only a-z supported");
+      throw new Error('Only a-z supported');
     }
 
     return index;
@@ -22407,8 +24240,8 @@ class Trie {
 }
 
 /**
- * @param {number[]} nums 
- * @param {number} limit 
+ * @param {number[]} nums
+ * @param {number} limit
  * @returns {number}
  */
 function minMoves(nums, limit) {
@@ -22443,7 +24276,7 @@ function minMoves(nums, limit) {
 console.log({ minMoves: minMoves([1, 2, 4, 3], 4) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function isGood(nums) {
@@ -22464,7 +24297,7 @@ function isGood(nums) {
 console.log({ isGood: isGood([2, 1, 3]) });
 
 /**
- * @param {number[]} sides 
+ * @param {number[]} sides
  * @returns {number[]}
  */
 function internalAngles(sides) {
@@ -22596,16 +24429,16 @@ function solveNQueens(n) {
 console.log({ solveNQueens: solveNQueens(4) });
 
 /**
- * @param {string[][]} board 
+ * @param {string[][]} board
  */
 function solveSudoku(board) {
   const gridSize = board.length;
   const subGridSize = 3;
 
   /**
-   * @param {number} row 
-   * @param {number} col 
-   * @param {string} digit 
+   * @param {number} row
+   * @param {number} col
+   * @param {string} digit
    * @returns {boolean}
    */
   function canPlaceDigit(row, col, digit) {
@@ -22670,10 +24503,10 @@ function solveSudoku(board) {
  * @returns {string}
  */
 function trafficSignal(timer) {
-  if (timer === 0) return "Green";
-  else if (timer === 30) return "Orange";
-  else if (timer > 30 && timer <= 90) return "Red";
-  return "Invalid";
+  if (timer === 0) return 'Green';
+  else if (timer === 30) return 'Orange';
+  else if (timer > 30 && timer <= 90) return 'Red';
+  return 'Invalid';
 }
 console.log({ trafficSignal: trafficSignal(5) });
 
@@ -22728,7 +24561,7 @@ function isAdjacentDiffAtMostTwo(s) {
 
   return true;
 }
-console.log({ isAdjacentDiffAtMostTwo: isAdjacentDiffAtMostTwo("129") });
+console.log({ isAdjacentDiffAtMostTwo: isAdjacentDiffAtMostTwo('129') });
 
 /**
  * @param {number[][]} matrix
@@ -22752,26 +24585,27 @@ function findDegrees(matrix) {
 console.log({ findDegrees: findDegrees([[0]]) });
 
 /**
- * @param {string[]} events 
+ * @param {string[]} events
  * @returns {number[]}
  */
 function scoreValidator(events) {
-  let score = 0, counter = 0;
+  let score = 0,
+    counter = 0;
 
   for (const event of events) {
     if (counter === 10) break;
 
-    if (event === "W") counter++;
-    else if (event === "WD" || event === "NB") score++;
+    if (event === 'W') counter++;
+    else if (event === 'WD' || event === 'NB') score++;
     else score += Number(event);
   }
 
   return [score, counter];
 }
-console.log({ scoreValidator: scoreValidator(["WD", "NB", "0", "4", "4"]) });
+console.log({ scoreValidator: scoreValidator(['WD', 'NB', '0', '4', '4']) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {boolean}
  */
 function checkPrimeFrequency(nums) {
@@ -22826,8 +24660,8 @@ function winningPlayerCount(n, pick) {
 console.log({ winningPlayerCount: winningPlayerCount(1, [[0, 1]]) });
 
 /**
- * @param {number[]} nums 
- * @param {number} digit 
+ * @param {number[]} nums
+ * @param {number} digit
  * @returns {number}
  */
 function countDigitOccurrences(nums, digit) {
@@ -22842,7 +24676,9 @@ function countDigitOccurrences(nums, digit) {
 
   return count;
 }
-console.log({ countDigitOccurrences: countDigitOccurrences([12, 54, 32, 22], 2) });
+console.log({
+  countDigitOccurrences: countDigitOccurrences([12, 54, 32, 22], 2),
+});
 
 /**
  * @param {string[][]} board
@@ -22863,15 +24699,17 @@ function countBattleships(board) {
 
   return count;
 }
-console.log({ countBattleships: countBattleships([["."]]) });
+console.log({ countBattleships: countBattleships([['.']]) });
 
 /**
  * @param {number[][]} grid
  * @returns {number}
  */
 function minimumArea(grid) {
-  let minRow = Infinity, maxRow = -Infinity;
-  let minCol = Infinity, maxCol = -Infinity;
+  let minRow = Infinity,
+    maxRow = -Infinity;
+  let minCol = Infinity,
+    maxCol = -Infinity;
 
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
@@ -22888,15 +24726,21 @@ function minimumArea(grid) {
 
   return (maxRow - minRow + 1) * (maxCol - minCol + 1);
 }
-console.log({ minimumArea: minimumArea([[0, 1, 0], [1, 0, 1]]) });
+console.log({
+  minimumArea: minimumArea([
+    [0, 1, 0],
+    [1, 0, 1],
+  ]),
+});
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number[]}
  */
 function countOppositeParity(nums) {
   const result = new Array(nums.length);
-  let evenRight = 0, oddRight = 0;
+  let evenRight = 0,
+    oddRight = 0;
 
   for (let i = nums.length - 1; i >= 0; i--) {
     const isOdd = nums[i] & 1;
@@ -22917,7 +24761,8 @@ console.log({ countOppositeParity: countOppositeParity([1, 2, 3, 4]) });
  * @returns {number}
  */
 function nearestValidPoint(x, y, points) {
-  let nearestIndex = -1, manhattanDistance = Infinity;
+  let nearestIndex = -1,
+    manhattanDistance = Infinity;
 
   for (let index = 0; index < points.length; index++) {
     const [pointX, pointY] = points[index];
@@ -22941,7 +24786,7 @@ console.log({ nearestValidPoint: nearestValidPoint(3, 4, [[2, 3]]) });
  * @returns {boolean}
  */
 function isLowercaseLetter(char) {
-  return char >= "a" && char <= "z";
+  return char >= 'a' && char <= 'z';
 }
 
 /**
@@ -22950,20 +24795,14 @@ function isLowercaseLetter(char) {
  */
 function numberOfSpecialChars(word) {
   const ALPHABET_SIZE = 26;
-  const LOWERCASE_A = "a".charCodeAt(0);
-  const UPPERCASE_A = "A".charCodeAt(0);
+  const LOWERCASE_A = 'a'.charCodeAt(0);
+  const UPPERCASE_A = 'A'.charCodeAt(0);
 
   // Stores the last occurrence of each lowercase letter
-  const lastLowercaseIndex = Array.from(
-    { length: ALPHABET_SIZE },
-    () => -1
-  );
+  const lastLowercaseIndex = Array.from({ length: ALPHABET_SIZE }, () => -1);
 
   // Stores the first occurrence of each uppercase letter
-  const firstUppercaseIndex = Array.from(
-    { length: ALPHABET_SIZE },
-    () => -1
-  );
+  const firstUppercaseIndex = Array.from({ length: ALPHABET_SIZE }, () => -1);
 
   for (let index = 0; index < word.length; index++) {
     const char = word[index];
@@ -22997,7 +24836,7 @@ function numberOfSpecialChars(word) {
 
   return specialCharCount;
 }
-console.log({ numberOfSpecialChars: numberOfSpecialChars("aaAbcBC") });
+console.log({ numberOfSpecialChars: numberOfSpecialChars('aaAbcBC') });
 
 /**
  * @param {number[][]} image
@@ -23032,7 +24871,17 @@ function floodFill(image, sr, sc, color) {
 
   return image;
 }
-console.log({ floodFill: floodFill([[0, 0, 0], [0, 0, 0]], 0, 0, 0) });
+console.log({
+  floodFill: floodFill(
+    [
+      [0, 0, 0],
+      [0, 0, 0],
+    ],
+    0,
+    0,
+    0,
+  ),
+});
 
 /**
  * @param {number[][]} matrix
@@ -23047,7 +24896,12 @@ function isToeplitzMatrix(matrix) {
 
   return true;
 }
-console.log({ isToeplitzMatrix: isToeplitzMatrix([[1, 2], [2, 2]]) });
+console.log({
+  isToeplitzMatrix: isToeplitzMatrix([
+    [1, 2],
+    [2, 2],
+  ]),
+});
 
 /**
  * @param {number} mass
@@ -23121,12 +24975,29 @@ function solve(start1, duration1, start2, duration2) {
  * @param {number[]} waterDuration
  * @returns {number}
  */
-function earliestFinishTime(landStartTime, landDuration, waterStartTime, waterDuration) {
-  const landWater = solve(landStartTime, landDuration, waterStartTime, waterDuration);
-  const waterLand = solve(waterStartTime, waterDuration, landStartTime, landDuration);
+function earliestFinishTime(
+  landStartTime,
+  landDuration,
+  waterStartTime,
+  waterDuration,
+) {
+  const landWater = solve(
+    landStartTime,
+    landDuration,
+    waterStartTime,
+    waterDuration,
+  );
+  const waterLand = solve(
+    waterStartTime,
+    waterDuration,
+    landStartTime,
+    landDuration,
+  );
   return Math.min(landWater, waterLand);
 }
-console.log({ earliestFinishTime: earliestFinishTime([2, 8], [4, 1], [6], [3]) });
+console.log({
+  earliestFinishTime: earliestFinishTime([2, 8], [4, 1], [6], [3]),
+});
 
 /**
  * @param {number} num1
@@ -23151,11 +25022,13 @@ function totalWaviness(num1, num2) {
 console.log({ totalWaviness: totalWaviness(120, 130) });
 
 /**
- * @param {number[]} nums 
+ * @param {number[]} nums
  * @returns {number}
  */
 function minAbsoluteDifference(nums) {
-  let lastOne = -1, lastTwo = -1, minDiff = Infinity;
+  let lastOne = -1,
+    lastTwo = -1,
+    minDiff = Infinity;
 
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] === 1) {
@@ -23179,7 +25052,9 @@ console.log({ minAbsoluteDifference: minAbsoluteDifference([1, 0, 1, 0]) });
  * @returns {ListNode | null}
  */
 function swapNodes(head, k) {
-  let first = head, second = head, kthFromStart = head;
+  let first = head,
+    second = head,
+    kthFromStart = head;
 
   for (let i = 1; i < k; i++) {
     first = first.next;
@@ -23200,11 +25075,13 @@ function swapNodes(head, k) {
 }
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function bulbSwitch(n) {
-  let start = 1, end = n, ans = 0;
+  let start = 1,
+    end = n,
+    ans = 0;
 
   while (start <= end) {
     const mid = start + Math.floor((end - start) / 2);
@@ -23224,7 +25101,8 @@ console.log({ bulbSwitch: bulbSwitch(10) });
  * @returns {number}
  */
 function maxTotalValue(nums, k) {
-  let max = 0, min = Infinity;
+  let max = 0,
+    min = Infinity;
 
   for (const num of nums) {
     max = Math.max(max, num);
@@ -23236,8 +25114,8 @@ function maxTotalValue(nums, k) {
 console.log({ maxTotalValue: maxTotalValue([1, 9, 6], 4) });
 
 /**
- * @param {number[]} nums 
- * @param {number} k 
+ * @param {number[]} nums
+ * @param {number} k
  * @returns {number[]}
  */
 function limitOccurrences(nums, k) {
@@ -23258,7 +25136,8 @@ console.log({ limitOccurrences: limitOccurrences([1, 2, 3], 2) });
  * @returns {number}
  */
 function findLengthOfLCIS(nums) {
-  let maxLen = 1, len = 1;
+  let maxLen = 1,
+    len = 1;
 
   for (let i = 1; i < nums.length; i++) {
     if (nums[i - 1] < nums[i]) len++;
@@ -23288,11 +25167,11 @@ function generateParenthesis(n) {
       return;
     }
 
-    if (open < n) build(current + "(", open + 1, close);
-    if (close < open) build(current + ")", open, close + 1);
+    if (open < n) build(current + '(', open + 1, close);
+    if (close < open) build(current + ')', open, close + 1);
   }
 
-  build("", 0, 0);
+  build('', 0, 0);
 
   return result;
 }
@@ -23305,7 +25184,9 @@ console.log({ generateParenthesis: generateParenthesis(8) });
 function deleteMiddle(head) {
   if (!head.next) return null;
 
-  let slow = head, fast = head, prev = null;
+  let slow = head,
+    fast = head,
+    prev = null;
 
   while (fast && fast.next) {
     fast = fast.next.next;
@@ -23326,20 +25207,20 @@ function processStr(s) {
   const result = [];
 
   for (const char of s) {
-    if (char === "*") {
+    if (char === '*') {
       if (result.length) result.pop();
-    } else if (char === "#") result.push(...result.slice());
-    else if (char === "%") result.reverse();
+    } else if (char === '#') result.push(...result.slice());
+    else if (char === '%') result.reverse();
     else result.push(char);
   }
 
-  return result.join("");
+  return result.join('');
 }
-console.log({ processStr: processStr("jw%m*h*njc") });
+console.log({ processStr: processStr('jw%m*h*njc') });
 
 /**
- * @param {string} s 
- * @param {number} k 
+ * @param {string} s
+ * @param {number} k
  * @returns {string}
  */
 function processStr(s, k) {
@@ -23386,7 +25267,7 @@ function processStr(s, k) {
 console.log({ processStr: processStr('jw%m*h*njc') });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 function digitFrequencyScore(n) {
@@ -23494,16 +25375,16 @@ function maxDistance(moves) {
   let empty = 0;
 
   for (const move of moves) {
-    if (move === "L") x--;
-    else if (move === "R") x++;
-    else if (move === "U") y++;
-    else if (move === "D") y--;
+    if (move === 'L') x--;
+    else if (move === 'R') x++;
+    else if (move === 'U') y++;
+    else if (move === 'D') y--;
     else empty++;
   }
 
   return Math.abs(x) + Math.abs(y) + empty;
 }
-console.log({ maxDistance: maxDistance("L_D_") });
+console.log({ maxDistance: maxDistance('L_D_') });
 
 /**
  * @param {number[]} nums
@@ -23573,7 +25454,7 @@ function rearrangeCharacters(s, target) {
 
   return count;
 }
-console.log({ rearrangeCharacters: rearrangeCharacters("abcd", "abcde") });
+console.log({ rearrangeCharacters: rearrangeCharacters('abcd', 'abcde') });
 
 /**
  * @param {number[]} nums
@@ -23600,10 +25481,10 @@ function oddString(words) {
   const countWord = new Map();
 
   for (const word of words) {
-    let str = "";
+    let str = '';
 
     for (let i = 0; i < word.length - 1; i++) {
-      str += word[i + 1].charCodeAt(0) - word[i].charCodeAt(0) + ",";
+      str += word[i + 1].charCodeAt(0) - word[i].charCodeAt(0) + ',';
     }
 
     diffCount.set(str, (diffCount.get(str) || 0) + 1);
@@ -23614,9 +25495,9 @@ function oddString(words) {
     if (cnt === 1) return countWord.get(str);
   }
 
-  return "";
+  return '';
 }
-console.log({ oddString: oddString(["adc", "wzy", "abc"]) });
+console.log({ oddString: oddString(['adc', 'wzy', 'abc']) });
 
 /**
  * @param {number[]} nums
@@ -23639,7 +25520,9 @@ function countMajoritySubarrays(nums, target) {
 
   return ans;
 }
-console.log({ countMajoritySubarrays: countMajoritySubarrays([1, 2, 2, 3], 2) });
+console.log({
+  countMajoritySubarrays: countMajoritySubarrays([1, 2, 2, 3], 2),
+});
 
 /**
  * @param {number[][]} edges
@@ -23653,7 +25536,13 @@ function findCenter(edges) {
     ? firstEdge[0]
     : firstEdge[1];
 }
-console.log({ findCenter: findCenter([[1, 2], [2, 3], [4, 2]]) });
+console.log({
+  findCenter: findCenter([
+    [1, 2],
+    [2, 3],
+    [4, 2],
+  ]),
+});
 
 /**
  * @param {number[]} nums
@@ -23708,9 +25597,9 @@ function distributeCandies(candies, num_people) {
 console.log({ distributeCandies: distributeCandies(7, 4) });
 
 /**
- * @param {number} n 
- * @param {number} w 
- * @param {number} maxWeight 
+ * @param {number} n
+ * @param {number} w
+ * @param {number} maxWeight
  * @returns {number}
  */
 function maxContainers(n, w, maxWeight) {
@@ -23719,14 +25608,15 @@ function maxContainers(n, w, maxWeight) {
 console.log({ maxContainers: maxContainers(2, 3, 15) });
 
 /**
- * @param {number} n 
- * @param {number} x 
+ * @param {number} n
+ * @param {number} x
  * @returns {boolean}
  */
 function validDigit(n, x) {
   if (n === x) return false;
 
-  let hasDigit = false, firstDigit = true;
+  let hasDigit = false,
+    firstDigit = true;
 
   while (n) {
     const digit = n % 10;
@@ -23745,7 +25635,7 @@ function validDigit(n, x) {
 console.log({ validDigit: validDigit(9999, 9) });
 
 /**
- * @param {number} n 
+ * @param {number} n
  * @returns {boolean}
  */
 function divisorGame(n) {

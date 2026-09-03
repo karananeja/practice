@@ -8,24 +8,32 @@
  * @solution_one
  */
 function diagonalDifference(arr) {
-	// Write your code here
-	let principalDiagonalSum = 0, secondaryDiagonalSum = 0;
+  // Write your code here
+  let principalDiagonalSum = 0,
+    secondaryDiagonalSum = 0;
 
-	for (let i = 0; i < arr.length; i++) {
-		for (let j = 0; j < arr.length; j++) {
-			if (i === j) {
-				principalDiagonalSum += arr[i][j];
-			}
-			if ((i + j) === arr.length - 1) {
-				secondaryDiagonalSum += arr[i][j];
-			}
-		}
-	}
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (i === j) {
+        principalDiagonalSum += arr[i][j];
+      }
+      if (i + j === arr.length - 1) {
+        secondaryDiagonalSum += arr[i][j];
+      }
+    }
+  }
 
-	if ((principalDiagonalSum - secondaryDiagonalSum) < 0) return -(principalDiagonalSum - secondaryDiagonalSum);
-	else return principalDiagonalSum - secondaryDiagonalSum;
+  if (principalDiagonalSum - secondaryDiagonalSum < 0)
+    return -(principalDiagonalSum - secondaryDiagonalSum);
+  else return principalDiagonalSum - secondaryDiagonalSum;
 }
-console.log(diagonalDifference([[11, 2, 4], [4, 5, 6], [10, 8, -12]]));
+console.log(
+  diagonalDifference([
+    [11, 2, 4],
+    [4, 5, 6],
+    [10, 8, -12],
+  ]),
+);
 
 /**
  * @problem_two
@@ -36,18 +44,20 @@ console.log(diagonalDifference([[11, 2, 4], [4, 5, 6], [10, 8, -12]]));
  * @solution_two
  */
 function plusMinus(arr) {
-	// Write your code here
-	let positiveCount = 0, negativeCount = 0, zero = 0;
+  // Write your code here
+  let positiveCount = 0,
+    negativeCount = 0,
+    zero = 0;
 
-	for (let i = 0; i < arr.length; i++) {
-		if (arr[i] > 0) positiveCount += 1;
-		else if (arr[i] < 0) negativeCount += 1;
-		else zero += 1;
-	}
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > 0) positiveCount += 1;
+    else if (arr[i] < 0) negativeCount += 1;
+    else zero += 1;
+  }
 
-	console.log(positiveCount / arr.length);
-	console.log(negativeCount / arr.length);
-	console.log(zero / arr.length);
+  console.log(positiveCount / arr.length);
+  console.log(negativeCount / arr.length);
+  console.log(zero / arr.length);
 }
 plusMinus([-4, 3, -9, 0, 4, 1]);
 
@@ -63,20 +73,23 @@ plusMinus([-4, 3, -9, 0, 4, 1]);
  * @solution_three
  */
 function compareTriplets(a, b) {
-	let aliceScore = 0, bobScore = 0, i = 0, result = [];
+  let aliceScore = 0,
+    bobScore = 0,
+    i = 0,
+    result = [];
 
-	while (i < 3) {
-		if (a[i] > b[i]) {
-			aliceScore++;
-		} else if (a[i] < b[i]) {
-			bobScore++;
-		}
-		i++;
-	}
+  while (i < 3) {
+    if (a[i] > b[i]) {
+      aliceScore++;
+    } else if (a[i] < b[i]) {
+      bobScore++;
+    }
+    i++;
+  }
 
-	result.push(aliceScore, bobScore);
+  result.push(aliceScore, bobScore);
 
-	return result;
+  return result;
 }
 console.log(compareTriplets([17, 28, 30], [99, 16, 8]));
 
@@ -89,19 +102,20 @@ console.log(compareTriplets([17, 28, 30], [99, 16, 8]));
  * @solution_three
  */
 function miniMaxSum(arr) {
-	// Write your code here
-	arr.sort((a, b) => a - b);
-	let minSum = 0, maxSum = 0;
+  // Write your code here
+  arr.sort((a, b) => a - b);
+  let minSum = 0,
+    maxSum = 0;
 
-	for (let i = 0; i < arr.length - 1; i++) {
-		minSum += arr[i];
-	}
+  for (let i = 0; i < arr.length - 1; i++) {
+    minSum += arr[i];
+  }
 
-	for (let i = 1; i < arr.length; i++) {
-		maxSum += arr[i];
-	}
+  for (let i = 1; i < arr.length; i++) {
+    maxSum += arr[i];
+  }
 
-	console.log(minSum, maxSum);
+  console.log(minSum, maxSum);
 }
 console.log(miniMaxSum([1, 2, 3, 5, 4]));
 
@@ -115,21 +129,22 @@ console.log(miniMaxSum([1, 2, 3, 5, 4]));
  * @solution_four
  */
 function birthdayCakeCandles(candles) {
-	// Write your code here
-	let count = {}, maxCount = 0;
+  // Write your code here
+  let count = {},
+    maxCount = 0;
 
-	for (let element of candles) {
-		if (count[element]) count[element] += 1;
-		else count[element] = 1;
-	}
+  for (let element of candles) {
+    if (count[element]) count[element] += 1;
+    else count[element] = 1;
+  }
 
-	for (let element in count) {
-		if (maxCount < count[element]) {
-			maxCount = count[element];
-		}
-	}
+  for (let element in count) {
+    if (maxCount < count[element]) {
+      maxCount = count[element];
+    }
+  }
 
-	return maxCount;
+  return maxCount;
 }
 console.log(birthdayCakeCandles([3, 3, 1, 1, 1, 1, 1, 1, 2, 1, 3]));
 
@@ -143,17 +158,22 @@ console.log(birthdayCakeCandles([3, 3, 1, 1, 1, 1, 1, 1, 2, 1, 3]));
  * @solution_five
  */
 function convertTimeFormat(s) {
-	if (s.toLowerCase().includes('pm')) {
-		let timeWithoutPM = s.replace(/pm/i, '');
+  if (s.toLowerCase().includes('pm')) {
+    let timeWithoutPM = s.replace(/pm/i, '');
 
-		if (parseInt(timeWithoutPM.split(':')[0]) < 12) return timeWithoutPM.replace(timeWithoutPM.split(':')[0], (parseInt(timeWithoutPM.split(':')[0]) + 12).toString());
-		else return timeWithoutPM;
-	} else {
-		let timeWithoutAM = s.replace(/am/i, '');
+    if (parseInt(timeWithoutPM.split(':')[0]) < 12)
+      return timeWithoutPM.replace(
+        timeWithoutPM.split(':')[0],
+        (parseInt(timeWithoutPM.split(':')[0]) + 12).toString(),
+      );
+    else return timeWithoutPM;
+  } else {
+    let timeWithoutAM = s.replace(/am/i, '');
 
-		if (parseInt(timeWithoutAM.split(':')[0]) === 12) return timeWithoutAM.replace(timeWithoutAM.split(':')[0], '00');
-		else return timeWithoutAM;
-	}
+    if (parseInt(timeWithoutAM.split(':')[0]) === 12)
+      return timeWithoutAM.replace(timeWithoutAM.split(':')[0], '00');
+    else return timeWithoutAM;
+  }
 }
 console.log(convertTimeFormat('5:20:00PM'));
 
@@ -170,18 +190,19 @@ console.log(convertTimeFormat('5:20:00PM'));
  * @solution_six
  */
 function roundGrades(grades) {
-	let roundedGrades = [];
+  let roundedGrades = [];
 
-	grades.forEach(element => {
-		if (element >= 38) {
-			let quotient = parseInt(element / 5), remainder = parseInt(element % 5);
-			console.log(element, remainder);
-			if (remainder >= 3) roundedGrades.push((quotient + 1) * 5);
-			else roundedGrades.push(element);
-		} else roundedGrades.push(element);
-	});
+  grades.forEach((element) => {
+    if (element >= 38) {
+      let quotient = parseInt(element / 5),
+        remainder = parseInt(element % 5);
+      console.log(element, remainder);
+      if (remainder >= 3) roundedGrades.push((quotient + 1) * 5);
+      else roundedGrades.push(element);
+    } else roundedGrades.push(element);
+  });
 
-	return roundedGrades;
+  return roundedGrades;
 }
 console.log(roundGrades([73, 67, 38, 33]));
 
@@ -196,49 +217,51 @@ console.log(roundGrades([73, 67, 38, 33]));
  * @solution_seven
  */
 function countApplesAndOranges(s, t, a, b, apples, oranges) {
-	// sample input -> s = 7, t = 11, a = 5, b = 15, apples = [-2, 2, 1] and oranges = [5, -6]
-	// sample output -> noOfApples = 1, noOfOranges = 1
-	let noOfApples = 0, noOfOranges = 0;
+  // sample input -> s = 7, t = 11, a = 5, b = 15, apples = [-2, 2, 1] and oranges = [5, -6]
+  // sample output -> noOfApples = 1, noOfOranges = 1
+  let noOfApples = 0,
+    noOfOranges = 0;
 
-	for (const apple of apples) {
-		const appleLocation = a + apple;
-		if (appleLocation >= s && appleLocation <= t) noOfApples++;
-	}
+  for (const apple of apples) {
+    const appleLocation = a + apple;
+    if (appleLocation >= s && appleLocation <= t) noOfApples++;
+  }
 
-	for (const orange of oranges) {
-		const orangeLocation = b + orange;
-		if (orangeLocation >= s && orangeLocation <= t) noOfOranges++;
-	}
+  for (const orange of oranges) {
+    const orangeLocation = b + orange;
+    if (orangeLocation >= s && orangeLocation <= t) noOfOranges++;
+  }
 
-	console.log(noOfApples + '\n' + noOfOranges);
+  console.log(noOfApples + '\n' + noOfOranges);
 }
 countApplesAndOranges(7, 11, 5, 15, [-2, 2, 1], [5, -6]);
 
 /**
  * @problem_eight
- * Maria plays college basketball and wants to go pro. Each season she maintains a record of her play. 
- * She tabulates the number of times she breaks her season record for most points and least points in a game. 
+ * Maria plays college basketball and wants to go pro. Each season she maintains a record of her play.
+ * She tabulates the number of times she breaks her season record for most points and least points in a game.
  * Points scored in the first game establish her record for the season, and she begins counting from there.
  */
 /**
  * @solution_eight
  */
 function breakingRecords(scores) {
-	let maxTimes = 0, minTimes = 0;
-	let min = scores[0];
-	let max = scores[0];
+  let maxTimes = 0,
+    minTimes = 0;
+  let min = scores[0];
+  let max = scores[0];
 
-	for (let i = 0; i < scores.length; i++) {
-		if (scores[i] < min) {
-			min = scores[i];
-			minTimes++;
-		}
-		if (scores[i] > max) {
-			max = scores[i];
-			maxTimes++;
-		}
-	}
-	return [maxTimes, minTimes];
+  for (let i = 0; i < scores.length; i++) {
+    if (scores[i] < min) {
+      min = scores[i];
+      minTimes++;
+    }
+    if (scores[i] > max) {
+      max = scores[i];
+      maxTimes++;
+    }
+  }
+  return [maxTimes, minTimes];
 }
 console.log(breakingRecords([10, 5, 20, 20, 4, 5, 2, 25, 1]));
 
@@ -252,16 +275,16 @@ console.log(breakingRecords([10, 5, 20, 20, 4, 5, 2, 25, 1]));
  * @solution_nine
  */
 function regexStr(str) {
-	/*
-	 * Declare a RegExp object variable named 're'
-	 * It must match a string that starts with 'Mr.', 'Mrs.', 'Ms.', 'Dr.', or 'Er.', 
-	 * followed by one or more letters.
-	 */
-	const re = /^(Mr|Mrs|Ms|Dr|Er)[\.][a-zA-Z]+$/ig;
-	/*
-	 * Do not remove the return statement
-	 */
-	return str.match(re);
+  /*
+   * Declare a RegExp object variable named 're'
+   * It must match a string that starts with 'Mr.', 'Mrs.', 'Ms.', 'Dr.', or 'Er.',
+   * followed by one or more letters.
+   */
+  const re = /^(Mr|Mrs|Ms|Dr|Er)[\.][a-zA-Z]+$/gi;
+  /*
+   * Do not remove the return statement
+   */
+  return str.match(re);
 }
 console.log(!!regexStr('Mr.John'));
 
@@ -273,16 +296,16 @@ console.log(!!regexStr('Mr.John'));
  * @solution_ten
  */
 function regexNumStr(numString) {
-	/*
-	 * Declare a RegExp object variable named 're'
-	 * It must match ALL occurrences of numbers in a string.
-	 */
-	const re = /\d+/ig;
+  /*
+   * Declare a RegExp object variable named 're'
+   * It must match ALL occurrences of numbers in a string.
+   */
+  const re = /\d+/gi;
 
-	/*
-	 * Do not remove the return statement
-	 */
-	return numString.match(re);
+  /*
+   * Do not remove the return statement
+   */
+  return numString.match(re);
 }
 console.log(!!regexNumStr('123'));
 
@@ -300,22 +323,21 @@ console.log(!!regexNumStr('123'));
  * @solution_eleven
  */
 function kangaroo(x1, v1, x2, v2) {
-	// Write your code here
-	if ((x1 - x2) * (v1 - v2) > 0) {
-		return "NO";
-	}
-	if ((x2 - x1) % (v1 - v2) == 0) {
-		return "YES";
-	}
-	else {
-		return "NO";
-	}
+  // Write your code here
+  if ((x1 - x2) * (v1 - v2) > 0) {
+    return 'NO';
+  }
+  if ((x2 - x1) % (v1 - v2) == 0) {
+    return 'YES';
+  } else {
+    return 'NO';
+  }
 }
 console.log(kangaroo(0, 3, 4, 2));
 
 /**
  * @problem_twelve
- * Complete the bonAppetit function in the editor below. It should print Bon Appetit if the bill is fairly split. 
+ * Complete the bonAppetit function in the editor below. It should print Bon Appetit if the bill is fairly split.
  * Otherwise, it should print the integer amount of money that Brian owes Anna.
  * bonAppetit has the following parameter(s):
  * bill: an array of integers representing the cost of each item ordered
@@ -326,17 +348,18 @@ console.log(kangaroo(0, 3, 4, 2));
  * @solution_twelve
  */
 function bonAppetit(bill, k, b) {
-	// Write your code here
-	let billTotal = 0, billSplit = 0;
+  // Write your code here
+  let billTotal = 0,
+    billSplit = 0;
 
-	for (let i = 0; i < bill.length; i++) {
-		if (i !== k) billTotal += bill[i];
-	}
+  for (let i = 0; i < bill.length; i++) {
+    if (i !== k) billTotal += bill[i];
+  }
 
-	billSplit = billTotal / 2;
+  billSplit = billTotal / 2;
 
-	if (billSplit === b) console.log('Bon Appetit');
-	else console.log(b - billSplit);
+  if (billSplit === b) console.log('Bon Appetit');
+  else console.log(b - billSplit);
 }
 bonAppetit([3, 10, 2, 9], 1, 7);
 
@@ -352,31 +375,31 @@ bonAppetit([3, 10, 2, 9], 1, 7);
  * @solution_thirteen
  */
 function birthday(s, d, m) {
-	// Write your code here
-	let count = 0;
-	let sum = 0;
+  // Write your code here
+  let count = 0;
+  let sum = 0;
 
-	for (let i = 0; i < s.length; i++) {
-		sum = s[i];
-		for (let j = 1; j < m; j++) {
-			sum += s[i + j];
-		}
-		if (sum == d) {
-			count++;
-			sum = 0;
-		}
-	}
+  for (let i = 0; i < s.length; i++) {
+    sum = s[i];
+    for (let j = 1; j < m; j++) {
+      sum += s[i + j];
+    }
+    if (sum == d) {
+      count++;
+      sum = 0;
+    }
+  }
 
-	return count;
+  return count;
 }
 console.log(birthday([1, 2, 1, 3, 2], 3, 2));
 
 /**
  * @problem_fourteen
- * Two cats and a mouse are at various positions on a line. You will be given their starting positions. 
- * Your task is to determine which cat will reach the mouse first, assuming the mouse does not move and the cats travel at equal speed. 
+ * Two cats and a mouse are at various positions on a line. You will be given their starting positions.
+ * Your task is to determine which cat will reach the mouse first, assuming the mouse does not move and the cats travel at equal speed.
  * If the cats arrive at the same time, the mouse will be allowed to move and it will escape while they fight.
- * You are given q queries in the form of x, y, and z representing the respective positions for cats A and B, and for mouse C. 
+ * You are given q queries in the form of x, y, and z representing the respective positions for cats A and B, and for mouse C.
  * Complete the function catAndMouse to return the appropriate answer to each query, which will be printed on a new line.
  * If cat A catches the mouse first, print Cat A.
  * If cat B catches the mouse first, print Cat B.
@@ -386,7 +409,11 @@ console.log(birthday([1, 2, 1, 3, 2], 3, 2));
  * @solution_fourteen
  */
 function catAndMouse(x, y, z) {
-	return Math.abs(x - z) === Math.abs(y - z) ? "Mouse C" : Math.abs(x - z) < Math.abs(y - z) ? "Cat A" : "Cat B";
+  return Math.abs(x - z) === Math.abs(y - z)
+    ? 'Mouse C'
+    : Math.abs(x - z) < Math.abs(y - z)
+      ? 'Cat A'
+      : 'Cat B';
 }
 console.log(catAndMouse(1, 2, 3));
 
@@ -398,16 +425,16 @@ console.log(catAndMouse(1, 2, 3));
  * @solution_fifteen
  */
 function divisibleSumPairs(n, k, ar) {
-	// Write your code here
-	let count = 0;
+  // Write your code here
+  let count = 0;
 
-	for (let i = 0; i < n; i++) {
-		for (let j = 0; j < n; j++) {
-			if (i < j && (ar[i] + ar[j]) % k === 0) count++;
-		}
-	}
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (i < j && (ar[i] + ar[j]) % k === 0) count++;
+    }
+  }
 
-	return count;
+  return count;
 }
 console.log(divisibleSumPairs(6, 3, [1, 3, 2, 6, 1, 2]));
 
@@ -422,45 +449,45 @@ console.log(divisibleSumPairs(6, 3, [1, 3, 2, 6, 1, 2]));
  * @solution_sixteen
  */
 function getTotalX(a, b) {
-	// Write your code here
-	let count = 0;
+  // Write your code here
+  let count = 0;
 
-	for (let i = a[a.length - 1]; i <= b[0]; i++) {
-		if (a.every((e) => i % e == 0) && b.every((el) => el % i == 0)) count++;
-	}
+  for (let i = a[a.length - 1]; i <= b[0]; i++) {
+    if (a.every((e) => i % e == 0) && b.every((el) => el % i == 0)) count++;
+  }
 
-	return count;
+  return count;
 }
 console.log(getTotalX([2, 4], [16, 32, 96]));
 
 /**
  * @problem_seventeen
- * Given an array of bird sightings where every element represents a bird type id, determine the id of the most frequently sighted type. 
+ * Given an array of bird sightings where every element represents a bird type id, determine the id of the most frequently sighted type.
  * If more than 1 type has been spotted that maximum amount, return the smallest of their ids.
  */
 /**
  * @solution_seventeen
  */
 function migratoryBirds(arr) {
-	// Write your code here
-	arr = arr.sort((a, b) => a - b);
+  // Write your code here
+  arr = arr.sort((a, b) => a - b);
 
-	let result = [0, 0];
+  let result = [0, 0];
 
-	for (let i = 0; i < arr.length; i++) {
-		let count = 1;
+  for (let i = 0; i < arr.length; i++) {
+    let count = 1;
 
-		for (let j = i + 1; j < arr.length; j++) {
-			if (arr[i] === arr[j]) count += 1;
-		}
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] === arr[j]) count += 1;
+    }
 
-		if (count > result[1]) {
-			result[1] = count;
-			result[0] = arr[i];
-		}
-	}
+    if (count > result[1]) {
+      result[1] = count;
+      result[0] = arr[i];
+    }
+  }
 
-	return result[0];
+  return result[0];
 }
 console.log(migratoryBirds([1, 4, 4, 4, 5, 3]));
 
@@ -474,13 +501,20 @@ console.log(migratoryBirds([1, 4, 4, 4, 5, 3]));
  * @solution_eighteen
  */
 function dayOfProgrammer(year) {
-	// Write your code here
-	const dayOfTheProgrammer = 256;
+  // Write your code here
+  const dayOfTheProgrammer = 256;
 
-	let isLeapYear = year > 1918 ? (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)) : (year % 4 === 0);
-	let numberOfDaysInFirstEightMonths = isLeapYear ? 244 : year === 1918 ? 230 : 243;
+  let isLeapYear =
+    year > 1918
+      ? year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
+      : year % 4 === 0;
+  let numberOfDaysInFirstEightMonths = isLeapYear
+    ? 244
+    : year === 1918
+      ? 230
+      : 243;
 
-	return `${dayOfTheProgrammer - numberOfDaysInFirstEightMonths}.09.${year}`;
+  return `${dayOfTheProgrammer - numberOfDaysInFirstEightMonths}.09.${year}`;
 }
 console.log(dayOfProgrammer(1918));
 
@@ -495,25 +529,27 @@ console.log(dayOfProgrammer(1918));
  * @solution_nineteen
  */
 function sockMerchant(n, arr) {
-	// Write your code here
-	let socksObj = {}, numberOfPairs = 0;
+  // Write your code here
+  let socksObj = {},
+    numberOfPairs = 0;
 
-	for (let value of arr) {
-		if (socksObj[value]) socksObj[value] += 1;
-		else socksObj[value] = 1;
-	}
+  for (let value of arr) {
+    if (socksObj[value]) socksObj[value] += 1;
+    else socksObj[value] = 1;
+  }
 
-	Object.keys(socksObj).forEach(sock => {
-		if (socksObj[sock] % 2 === 0 || socksObj[sock] > 2) numberOfPairs += Math.floor(socksObj[sock] / 2);
-	});
+  Object.keys(socksObj).forEach((sock) => {
+    if (socksObj[sock] % 2 === 0 || socksObj[sock] > 2)
+      numberOfPairs += Math.floor(socksObj[sock] / 2);
+  });
 
-	return numberOfPairs;
+  return numberOfPairs;
 }
 console.log(sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20]));
 
 /**
  * @problem_twenty
- * An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly "steps" steps, for every step it was noted if it was an uphill, U, or a downhill, D step. 
+ * An avid hiker keeps meticulous records of their hikes. During the last hike that took exactly "steps" steps, for every step it was noted if it was an uphill, U, or a downhill, D step.
  * Hikes always start and end at sea level, and each step up or down represents a 1 unit change in altitude. We define the following terms:
  * A mountain is a sequence of consecutive steps above sea level, starting with a step up from sea level and ending with a step down to sea level.
  * A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.
@@ -523,19 +559,21 @@ console.log(sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20]));
  * @solution_twenty
  */
 function countingValleys(steps, path) {
-	// Write your code here
-	let uphillQuantity = 0, isUpHill = false, result = 0;
+  // Write your code here
+  let uphillQuantity = 0,
+    isUpHill = false,
+    result = 0;
 
-	for (let i = 0; i < steps; i++) {
-		isUpHill = (path[i] === 'U');
-		isUpHill ? uphillQuantity++ : uphillQuantity--;
+  for (let i = 0; i < steps; i++) {
+    isUpHill = path[i] === 'U';
+    isUpHill ? uphillQuantity++ : uphillQuantity--;
 
-		if (isUpHill && uphillQuantity === 0) result++;
-	}
+    if (isUpHill && uphillQuantity === 0) result++;
+  }
 
-	return result;
+  return result;
 }
-console.log(countingValleys(8, "UDDDUDUU"));
+console.log(countingValleys(8, 'UDDDUDUU'));
 
 /**
  * @problem_twentyOne
@@ -549,19 +587,19 @@ console.log(countingValleys(8, "UDDDUDUU"));
  * @solution_twentyOne
  */
 function getMoneySpent(keyboards, drives, b) {
-	/*
-	 * Write your code here.
-	 */
-	let max = 0;
+  /*
+   * Write your code here.
+   */
+  let max = 0;
 
-	keyboards.map(keyboard => {
-		drives.map(drive => {
-			let sum = keyboard + drive;
-			if (sum <= b && sum > max) max = sum;
-		});
-	});
+  keyboards.map((keyboard) => {
+    drives.map((drive) => {
+      let sum = keyboard + drive;
+      if (sum <= b && sum > max) max = sum;
+    });
+  });
 
-	return max > 0 ? max : -1;
+  return max > 0 ? max : -1;
 }
 console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
 
@@ -576,37 +614,37 @@ console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
  * @solution_twentyTwo
  */
 function pageCount(n, p) {
-	// Write your code here
-	let result = 0;
+  // Write your code here
+  let result = 0;
 
-	if (n % 2 === 0) {
-		n += 1;
-	}
+  if (n % 2 === 0) {
+    n += 1;
+  }
 
-	result = Math.floor(Math.min((p / 2), ((n - p) / 2)));
-	return result;
+  result = Math.floor(Math.min(p / 2, (n - p) / 2));
+  return result;
 }
 console.log(pageCount(6, 2));
 
 /**
  * @problem_twentyThree
- * A video player plays a game in which the character competes in a hurdle race. 
- * Hurdles are of varying heights, and the characters have a maximum height they can jump. 
- * There is a magic potion they can take that will increase their maximum jump height by 1 unit for each dose. 
+ * A video player plays a game in which the character competes in a hurdle race.
+ * Hurdles are of varying heights, and the characters have a maximum height they can jump.
+ * There is a magic potion they can take that will increase their maximum jump height by 1 unit for each dose.
  * How many doses of the potion must the character take to be able to jump all of the hurdles. If the character can already clear all of the hurdles, return 0.
  */
 /**
  * @solution_twentyThree
  */
 function hurdleRace(k, height) {
-	// Write your code here
-	return k > Math.max(...height) ? 0 : Math.abs(Math.max(...height) - k);
+  // Write your code here
+  return k > Math.max(...height) ? 0 : Math.abs(Math.max(...height) - k);
 }
 console.log(hurdleRace(4, [1, 6, 3, 5, 2]));
 
 /**
  * @problem_twentyFour
- * Complete the designerPdfViewer function in the editor below. 
+ * Complete the designerPdfViewer function in the editor below.
  * designerPdfViewer has the following parameter(s):
  * int h[26]: the heights of each letter
  * string word: a string
@@ -615,17 +653,25 @@ console.log(hurdleRace(4, [1, 6, 3, 5, 2]));
  * @solution_twentyFour
  */
 function designerPdfViewer(h, word) {
-	// Write your code here
-	let maxHeight = 0;
+  // Write your code here
+  let maxHeight = 0;
 
-	for (let i = 0; i < word.length; i++) {
-		let charCodeValue = word.toLowerCase().charCodeAt(i) - 97;
-		if (maxHeight < h[charCodeValue]) maxHeight = h[charCodeValue];
-	}
+  for (let i = 0; i < word.length; i++) {
+    let charCodeValue = word.toLowerCase().charCodeAt(i) - 97;
+    if (maxHeight < h[charCodeValue]) maxHeight = h[charCodeValue];
+  }
 
-	return maxHeight * word.length;
+  return maxHeight * word.length;
 }
-console.log(designerPdfViewer([1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5], "abc"));
+console.log(
+  designerPdfViewer(
+    [
+      1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+      5,
+    ],
+    'abc',
+  ),
+);
 
 /**
  * @problem_twentyFive
@@ -637,58 +683,58 @@ console.log(designerPdfViewer([1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5
  * @solution_twentyFive
  */
 function pickingNumbers(a) {
-	// Write your code here
-	const arr = a.sort((a, b) => a - b);
-	let longestSuite = 0;
-	let increment = 0;
+  // Write your code here
+  const arr = a.sort((a, b) => a - b);
+  let longestSuite = 0;
+  let increment = 0;
 
-	for (let i = 0; i < arr.length; i += increment) {
-		let j = i;
-		let suite = 0;
+  for (let i = 0; i < arr.length; i += increment) {
+    let j = i;
+    let suite = 0;
 
-		while (arr[j] - arr[i] <= 1) {
-			suite++;
-			j++;
-		}
+    while (arr[j] - arr[i] <= 1) {
+      suite++;
+      j++;
+    }
 
-		if (suite > longestSuite) longestSuite = suite;
-		increment = suite === 0 ? 1 : suite;
-	}
+    if (suite > longestSuite) longestSuite = suite;
+    increment = suite === 0 ? 1 : suite;
+  }
 
-	return longestSuite;
+  return longestSuite;
 }
 console.log(pickingNumbers([4, 6, 5, 3, 3, 1]));
 
 /**
  * @problem_twentySix
  * The first line contains an integer, q, denoting the number of function calls.
- * Each of the q subsequent lines defines a dataset for a function call in the form of two space-separated 
+ * Each of the q subsequent lines defines a dataset for a function call in the form of two space-separated
  * integers describing the respective values of n and k.
  */
 /**
  * @solution_twentySix
  */
 function getMaxLessThanK(n, k) {
-	let maxBitWiseNumber = 0;
-	let result;
+  let maxBitWiseNumber = 0;
+  let result;
 
-	for (let i = 0; i <= n; i++) {
-		for (let j = i + 1; j <= n; j++) {
-			result = i & j;
+  for (let i = 0; i <= n; i++) {
+    for (let j = i + 1; j <= n; j++) {
+      result = i & j;
 
-			if (result < k && result > maxBitWiseNumber) {
-				maxBitWiseNumber++;
-			}
-		}
-	}
+      if (result < k && result > maxBitWiseNumber) {
+        maxBitWiseNumber++;
+      }
+    }
+  }
 
-	return maxBitWiseNumber;
+  return maxBitWiseNumber;
 }
 console.log(getMaxLessThanK(5, 2));
 
 /**
  * @problem_twentySeven
- * The Utopian Tree goes through 2 cycles of growth every year. Each spring, it doubles in height. 
+ * The Utopian Tree goes through 2 cycles of growth every year. Each spring, it doubles in height.
  * Each summer, its height increases by 1 meter.
  * A Utopian Tree sapling with a height of 1 meter is planted at the onset of spring. How tall will the tree be after n growth cycles?
  */
@@ -696,24 +742,24 @@ console.log(getMaxLessThanK(5, 2));
  * @solution_twentySeven
  */
 function utopianTree(n) {
-	// Write your code here
-	let heightOfTree = 1;
+  // Write your code here
+  let heightOfTree = 1;
 
-	for (let i = 1; i <= n; i++) {
-		let isSpring = i % 2 !== 0;
+  for (let i = 1; i <= n; i++) {
+    let isSpring = i % 2 !== 0;
 
-		if (isSpring) heightOfTree *= 2;
-		else heightOfTree += 1;
-	}
+    if (isSpring) heightOfTree *= 2;
+    else heightOfTree += 1;
+  }
 
-	return heightOfTree;
+  return heightOfTree;
 }
 console.log(utopianTree(4));
 
 /**
  * @problem_twentyEight
- * A Discrete Mathematics professor has a class of students. 
- * Frustrated with their lack of discipline, the professor decides to cancel class if fewer than some number of students are present when class starts. 
+ * A Discrete Mathematics professor has a class of students.
+ * Frustrated with their lack of discipline, the professor decides to cancel class if fewer than some number of students are present when class starts.
  * Arrival times go from on time (arrivalTime <= 0) to arrived late (arrivalTime > 0).
  * Given the arrival time of each student and a threshold number of attendees, determine if the class is cancelled.
  */
@@ -721,49 +767,49 @@ console.log(utopianTree(4));
  * @solution_twentyEight
  */
 function angryProfessor(k, a) {
-	// Write your code here
-	let arrivedEarly = 0;
+  // Write your code here
+  let arrivedEarly = 0;
 
-	for (let i = 0; i < a.length; i++) {
-		if (a[i] <= 0) arrivedEarly++;
-	}
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] <= 0) arrivedEarly++;
+  }
 
-	return arrivedEarly >= k ? 'NO' : 'YES';
+  return arrivedEarly >= k ? 'NO' : 'YES';
 }
 console.log(angryProfessor(3, [-1, -3, 4, 2]));
 
 /**
  * @problem_twentyNine
- * Lily likes to play games with integers. 
- * She has created a new game where she determines the difference between a number and its reverse. 
+ * Lily likes to play games with integers.
+ * She has created a new game where she determines the difference between a number and its reverse.
  * For instance, given the number 12, its reverse is 21. Their difference is 9. The number 120 reversed is 21, and their difference is 99.
  * She decides to apply her game to decision making. She will look at a numbered range of days and will only go to a movie on a beautiful day.
- * Given a range of numbered days, [i...j] and a number k, determine the number of days in the range that are beautiful. 
- * Beautiful numbers are defined as numbers where |i-reverse(i)| is evenly divisible by k. 
+ * Given a range of numbered days, [i...j] and a number k, determine the number of days in the range that are beautiful.
+ * Beautiful numbers are defined as numbers where |i-reverse(i)| is evenly divisible by k.
  * If a day's value is a beautiful number, it is a beautiful day. Return the number of beautiful days in the range.
  */
 /**
  * @solution_twentyNine
  */
 function beautifulDays(i, j, k) {
-	// Write your code here
-	let beautifulDays = 0;
+  // Write your code here
+  let beautifulDays = 0;
 
-	for (let num = i; num <= j; num++) {
-		let reverseNum = parseInt(num.toString().split('').reverse().join(''));
+  for (let num = i; num <= j; num++) {
+    let reverseNum = parseInt(num.toString().split('').reverse().join(''));
 
-		let differenceOfNum = Math.abs(num - reverseNum);
+    let differenceOfNum = Math.abs(num - reverseNum);
 
-		if (differenceOfNum % k == 0) beautifulDays++;
-	}
+    if (differenceOfNum % k == 0) beautifulDays++;
+  }
 
-	return beautifulDays;
+  return beautifulDays;
 }
 console.log(beautifulDays(20, 23, 6));
 
 /**
  * @problem_thirty
- * Complete the viralAdvertising function in the editor below. 
+ * Complete the viralAdvertising function in the editor below.
  * viralAdvertising has the following parameter(s):
  * int n: the day number to report
  */
@@ -771,17 +817,19 @@ console.log(beautifulDays(20, 23, 6));
  * @solution_thirty
  */
 function viralAdvertising(n) {
-	// Write your code here
-	let count = 5, likedCount = 0, totalCount = 0;
-	const sharedCount = 3;
+  // Write your code here
+  let count = 5,
+    likedCount = 0,
+    totalCount = 0;
+  const sharedCount = 3;
 
-	for (let i = 0; i < n; i++) {
-		likedCount = Math.floor(count / 2);
-		totalCount += likedCount;
-		count = likedCount * sharedCount;
-	}
+  for (let i = 0; i < n; i++) {
+    likedCount = Math.floor(count / 2);
+    totalCount += likedCount;
+    count = likedCount * sharedCount;
+  }
 
-	return totalCount;
+  return totalCount;
 }
 console.log(viralAdvertising(5));
 
@@ -795,8 +843,8 @@ console.log(viralAdvertising(5));
  * @solution_thirtyOne
  */
 function permutationEquation(p) {
-	// Write your code here
-	return p.map((_, index) => p.indexOf(p.indexOf(index + 1) + 1) + 1);
+  // Write your code here
+  return p.map((_, index) => p.indexOf(p.indexOf(index + 1) + 1) + 1);
 }
 console.log(permutationEquation([5, 2, 1, 3, 4]));
 
@@ -810,15 +858,15 @@ console.log(permutationEquation([5, 2, 1, 3, 4]));
  * @solution_thirtyTwo
  */
 function findDigits(n) {
-	// Write your code here
-	let digits = n.toString().split('');
-	let count = 0;
+  // Write your code here
+  let digits = n.toString().split('');
+  let count = 0;
 
-	for (let digit of digits) {
-		if (n % parseInt(digit) === 0) count++;
-	}
+  for (let digit of digits) {
+    if (n % parseInt(digit) === 0) count++;
+  }
 
-	return count;
+  return count;
 }
 console.log(findDigits(124));
 
@@ -835,26 +883,27 @@ console.log(findDigits(124));
  * @solution_thirtyThree
  */
 function jumpingOnClouds(c, k) {
-	let energyLevel = 100, i = 0;
-	let cloudsLength = c.length;
+  let energyLevel = 100,
+    i = 0;
+  let cloudsLength = c.length;
 
-	while (i < cloudsLength) {
-		if (c[i] === 0) {
-			energyLevel -= 1;
-		} else {
-			energyLevel -= 3;
-		}
+  while (i < cloudsLength) {
+    if (c[i] === 0) {
+      energyLevel -= 1;
+    } else {
+      energyLevel -= 3;
+    }
 
-		i += k;
+    i += k;
 
-		if (i === cloudsLength) {
-			break;
-		} else if (i > cloudsLength) {
-			i -= cloudsLength;
-		}
-	}
+    if (i === cloudsLength) {
+      break;
+    } else if (i > cloudsLength) {
+      i -= cloudsLength;
+    }
+  }
 
-	return energyLevel;
+  return energyLevel;
 }
 console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 1, 0], 2));
 
@@ -869,22 +918,22 @@ console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 1, 0], 2));
  * @solution_thirtyFour
  */
 function extraLongFactorials(n) {
-	// Write your code here
-	let fact = BigInt(1);
+  // Write your code here
+  let fact = BigInt(1);
 
-	for (let i = 1; i <= n; i++) {
-		fact *= BigInt(i);
-	}
+  for (let i = 1; i <= n; i++) {
+    fact *= BigInt(i);
+  }
 
-	console.log(fact.toString());
+  console.log(fact.toString());
 }
 extraLongFactorials(25);
 
 /**
  * @problem_thirtyFive
- * You are given a number of sticks of varying lengths. 
- * You will iteratively cut the sticks into smaller sticks, discarding the shortest pieces until there are none left. 
- * At each iteration you will determine the length of the shortest stick remaining, cut that length from each of the longer sticks and then discard all the pieces of that shortest length. 
+ * You are given a number of sticks of varying lengths.
+ * You will iteratively cut the sticks into smaller sticks, discarding the shortest pieces until there are none left.
+ * At each iteration you will determine the length of the shortest stick remaining, cut that length from each of the longer sticks and then discard all the pieces of that shortest length.
  * When all the remaining sticks are the same length, they cannot be shortened so discard them.
  * Given the lengths of n sticks, print the number of sticks that are left before each iteration until there are none left.
  */
@@ -892,20 +941,20 @@ extraLongFactorials(25);
  * @solution_thirtyFive
  */
 function cutTheSticks(arr) {
-	// Write your code here
-	let noOfSticks = [];
+  // Write your code here
+  let noOfSticks = [];
 
-	while (arr.length > 0) {
-		let smallestStick = arr.sort((a, b) => a - b)[0];
+  while (arr.length > 0) {
+    let smallestStick = arr.sort((a, b) => a - b)[0];
 
-		arr = arr.map((ele) => (ele -= smallestStick));
+    arr = arr.map((ele) => (ele -= smallestStick));
 
-		noOfSticks.push(arr.length);
+    noOfSticks.push(arr.length);
 
-		arr = arr.filter((ele) => ele > 0);
-	}
+    arr = arr.filter((ele) => ele > 0);
+  }
 
-	return noOfSticks;
+  return noOfSticks;
 }
 console.log(cutTheSticks([5, 4, 4, 2, 2, 8]));
 
@@ -917,19 +966,20 @@ console.log(cutTheSticks([5, 4, 4, 2, 2, 8]));
  * @solution_thirtySix
  */
 function equalizeArray(arr) {
-	// Write your code here
-	let count = {}, maxCount = 0;
+  // Write your code here
+  let count = {},
+    maxCount = 0;
 
-	for (let element of arr) {
-		if (count[element]) count[element] += 1;
-		else count[element] = 1;
-	}
+  for (let element of arr) {
+    if (count[element]) count[element] += 1;
+    else count[element] = 1;
+  }
 
-	for (let element in count) {
-		if (maxCount < count[element]) maxCount = count[element];
-	}
+  for (let element in count) {
+    if (maxCount < count[element]) maxCount = count[element];
+  }
 
-	return arr.length - maxCount;
+  return arr.length - maxCount;
 }
 console.log(equalizeArray([3, 3, 2, 1, 3]));
 
@@ -948,12 +998,13 @@ console.log(equalizeArray([3, 3, 2, 1, 3]));
  * @solution_thirtySeven
  */
 function squares(a, b) {
-	// Write your code here
-	let sqrtA = Math.ceil(Math.sqrt(a));
-	let sqrtB = Math.ceil(Math.sqrt(b));
+  // Write your code here
+  let sqrtA = Math.ceil(Math.sqrt(a));
+  let sqrtB = Math.ceil(Math.sqrt(b));
 
-	return Math.pow(sqrtB, 2) === b ? Math.abs(sqrtA - sqrtB) + 1 : Math.abs(sqrtA - sqrtB);
-
+  return Math.pow(sqrtB, 2) === b
+    ? Math.abs(sqrtA - sqrtB) + 1
+    : Math.abs(sqrtA - sqrtB);
 }
 console.log(squares(24, 49));
 
@@ -967,16 +1018,18 @@ console.log(squares(24, 49));
  * @solution_thirtyEight
  */
 function minimumDistances(a) {
-	// Write your code here
-	let minimumDistance = [];
+  // Write your code here
+  let minimumDistance = [];
 
-	for (let i = 0; i < a.length; i++) {
-		for (let j = i + 1; j < a.length; j++) {
-			if (a[i] === a[j]) minimumDistance.push(Math.abs(i - j));
-		}
-	}
+  for (let i = 0; i < a.length; i++) {
+    for (let j = i + 1; j < a.length; j++) {
+      if (a[i] === a[j]) minimumDistance.push(Math.abs(i - j));
+    }
+  }
 
-	return minimumDistance.length > 0 ? minimumDistance.sort((a, b) => a - b)[0] : -1;
+  return minimumDistance.length > 0
+    ? minimumDistance.sort((a, b) => a - b)[0]
+    : -1;
 }
 console.log(minimumDistances([3, 2, 1, 2, 3]));
 
@@ -991,41 +1044,41 @@ console.log(minimumDistances([3, 2, 1, 2, 3]));
  * @solution_thirtyNine
  */
 function libraryFine(d1, m1, y1, d2, m2, y2) {
-	// Write your code here
-	if (d1 > d2 && m1 === m2 && y1 === y2) return 15 * (d1 - d2);
+  // Write your code here
+  if (d1 > d2 && m1 === m2 && y1 === y2) return 15 * (d1 - d2);
 
-	if (m1 > m2 && y1 === y2) return 500 * (m1 - m2);
+  if (m1 > m2 && y1 === y2) return 500 * (m1 - m2);
 
-	if (y1 > y2) return 10000;
+  if (y1 > y2) return 10000;
 
-	return 0;
+  return 0;
 }
 console.log(libraryFine(2, 7, 1014, 1, 1, 1015));
 
 /**
  * @problem_forty
- * There is a string, s, of lowercase English letters that is repeated infinitely many times. 
+ * There is a string, s, of lowercase English letters that is repeated infinitely many times.
  * Given an integer, n, find and print the number of letter a's in the first n letters of the infinite string.
  */
 /**
  * @solution_forty
  */
 function repeatedString(s, n) {
-	// Write your code here
-	let count = 0;
-	let repeat = Math.floor(n / s.length);
-	let remain = n - s.length * repeat;
+  // Write your code here
+  let count = 0;
+  let repeat = Math.floor(n / s.length);
+  let remain = n - s.length * repeat;
 
-	for (let i = 0; i <= s.length; i++) {
-		if (s[i] === 'a') count++;
-	}
-	count *= repeat;
+  for (let i = 0; i <= s.length; i++) {
+    if (s[i] === 'a') count++;
+  }
+  count *= repeat;
 
-	for (let i = 0; i < remain; i++) {
-		if (s[i] === 'a') count++;
-	}
+  for (let i = 0; i < remain; i++) {
+    if (s[i] === 'a') count++;
+  }
 
-	return count;
+  return count;
 }
 console.log(repeatedString('aba', 10));
 
@@ -1040,75 +1093,87 @@ console.log(repeatedString('aba', 10));
  * @solution_fortyOne
  */
 function timeInWords(h, m) {
-	// Write your code here
-	const numberToWord = {
-		1: 'one',
-		2: 'two',
-		3: 'three',
-		4: 'four',
-		5: 'five',
-		6: 'six',
-		7: 'seven',
-		8: 'eight',
-		9: 'nine',
-		10: 'ten',
-		11: 'eleven',
-		12: 'twelve',
-		13: 'thirteen',
-		14: 'fourteen',
-		16: 'sixteen',
-		17: 'seventeen',
-		18: 'eighteen',
-		19: 'nineteen',
-		20: 'twenty',
-		21: 'twenty one',
-		22: 'twenty two',
-		23: 'twenty three',
-		24: 'twenty four',
-		25: 'twenty five',
-		26: 'twenty six',
-		27: 'twenty seven',
-		28: 'twenty eight',
-		29: 'twenty nine',
-	};
+  // Write your code here
+  const numberToWord = {
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    10: 'ten',
+    11: 'eleven',
+    12: 'twelve',
+    13: 'thirteen',
+    14: 'fourteen',
+    16: 'sixteen',
+    17: 'seventeen',
+    18: 'eighteen',
+    19: 'nineteen',
+    20: 'twenty',
+    21: 'twenty one',
+    22: 'twenty two',
+    23: 'twenty three',
+    24: 'twenty four',
+    25: 'twenty five',
+    26: 'twenty six',
+    27: 'twenty seven',
+    28: 'twenty eight',
+    29: 'twenty nine',
+  };
 
-	if (m === 0) return `${numberToWord[h]} o' clock`;
-	if (m === 15) return `quarter past ${numberToWord[h]}`;
-	if (m === 30) return `half past ${numberToWord[h]}`;
-	if (m < 30) return `${numberToWord[m]} ${m > 1 ? 'minutes' : 'minute'} past ${numberToWord[h]}`;
-	if (m === 45) return `quarter to ${numberToWord[h + 1]}`;
-	if (m < 60) return `${numberToWord[60 - m]} minutes to ${numberToWord[h + 1]}`;
+  if (m === 0) return `${numberToWord[h]} o' clock`;
+  if (m === 15) return `quarter past ${numberToWord[h]}`;
+  if (m === 30) return `half past ${numberToWord[h]}`;
+  if (m < 30)
+    return `${numberToWord[m]} ${m > 1 ? 'minutes' : 'minute'} past ${numberToWord[h]}`;
+  if (m === 45) return `quarter to ${numberToWord[h + 1]}`;
+  if (m < 60)
+    return `${numberToWord[60 - m]} minutes to ${numberToWord[h + 1]}`;
 }
 console.log(timeInWords(5, 47));
 
 /**
  * @problem_fortyTwo
- * A driver is driving on the freeway. The check engine light of his vehicle is on, and the driver wants to get service immediately. 
+ * A driver is driving on the freeway. The check engine light of his vehicle is on, and the driver wants to get service immediately.
  * Luckily, a service lane runs parallel to the highway. It varies in width along its length.
- * You will be given an array of widths at points along the road (indices), then a list of the indices of entry and exit points. 
+ * You will be given an array of widths at points along the road (indices), then a list of the indices of entry and exit points.
  * Considering each entry and exit point pair, calculate the maximum size vehicle that can travel that segment of the service lane safely.
  */
 /**
  * @solution_fortyTwo
  */
 function serviceLane(n, cases, width) {
-	// Write your code here
-	let minWidth = [];
+  // Write your code here
+  let minWidth = [];
 
-	for (let i = 0; i < cases.length; i++) {
-		let possibleWidths = [];
+  for (let i = 0; i < cases.length; i++) {
+    let possibleWidths = [];
 
-		for (let j = cases[i][0]; j <= cases[i][1] && j < n; j++) possibleWidths.push(width[j]);
+    for (let j = cases[i][0]; j <= cases[i][1] && j < n; j++)
+      possibleWidths.push(width[j]);
 
-		minWidth.push(Math.min(...possibleWidths));
-	}
+    minWidth.push(Math.min(...possibleWidths));
+  }
 
-	return minWidth;
+  return minWidth;
 }
-console.log(serviceLane(8, [[0, 3], [4, 6], [6, 7], [3, 5], [0, 7]], [
-	2, 3, 1, 2,
-	3, 2, 3, 3
-]));
+console.log(
+  serviceLane(
+    8,
+    [
+      [0, 3],
+      [4, 6],
+      [6, 7],
+      [3, 5],
+      [0, 7],
+    ],
+    [2, 3, 1, 2, 3, 2, 3, 3],
+  ),
+);
 
 /**
  * @problem_fortyThree
@@ -1122,15 +1187,15 @@ console.log(serviceLane(8, [[0, 3], [4, 6], [6, 7], [3, 5], [0, 7]], [
  * @solution_fortyThree
  */
 function camelCase(s) {
-	// Write your code here
-	return s.match(/[A-Z]/g) ? s.match(/[A-Z]/g).length + 1 : 1;
+  // Write your code here
+  return s.match(/[A-Z]/g) ? s.match(/[A-Z]/g).length + 1 : 1;
 }
-console.log(camelCase("saveChangesInTheEditor"));
+console.log(camelCase('saveChangesInTheEditor'));
 
 /**
  * @problem_fortyFour
  * Taum is planning to celebrate the birthday of his friend, Diksha.
- * There are two types of gifts that Diksha wants from Taum: one is black and the other is white. 
+ * There are two types of gifts that Diksha wants from Taum: one is black and the other is white.
  * To make her happy, Taum has to buy b black gifts and w white gifts.
  * The cost of each black gift is bc units.
  * The cost of every white gift is wc units.
@@ -1141,22 +1206,22 @@ console.log(camelCase("saveChangesInTheEditor"));
  * @solution_fortyFour
  */
 function taumBday(b, w, bc, wc, z) {
-	// Write your code here
-	b = BigInt(b);
-	w = BigInt(w);
-	bc = BigInt(bc);
-	wc = BigInt(wc);
-	z = BigInt(z);
+  // Write your code here
+  b = BigInt(b);
+  w = BigInt(w);
+  bc = BigInt(bc);
+  wc = BigInt(wc);
+  z = BigInt(z);
 
-	if (bc > wc + z) return ((b + w) * wc + b * z).toString();
-	else if (wc > bc + z) return ((b + w) * bc + w * z).toString();
-	else return (b * bc + w * wc).toString();
+  if (bc > wc + z) return ((b + w) * wc + b * z).toString();
+  else if (wc > bc + z) return ((b + w) * bc + w * z).toString();
+  else return (b * bc + w * wc).toString();
 }
 console.log(taumBday(10, 10, 1, 1, 1));
 
 /**
  * @problem_fortyFive
- * Little Bobby loves chocolate. He frequently goes to his favorite 5 & 10 store, Penny Auntie, to buy them. 
+ * Little Bobby loves chocolate. He frequently goes to his favorite 5 & 10 store, Penny Auntie, to buy them.
  * They are having a promotion at Penny Auntie. If Bobby saves enough wrappers, he can turn them in for a free chocolate.
  * Example
  * n = 15
@@ -1173,15 +1238,16 @@ console.log(taumBday(10, 10, 1, 1, 1));
  * @solution_fortyFive
  */
 function chocolateFeast(n, c, m) {
-	// Write your code here
-	let noOfBars = Math.floor(n / c), noOfWrappers = noOfBars;
+  // Write your code here
+  let noOfBars = Math.floor(n / c),
+    noOfWrappers = noOfBars;
 
-	while (noOfWrappers >= m) {
-		noOfBars += Math.floor(noOfWrappers / m);
-		noOfWrappers = Math.floor(noOfWrappers / m) + (noOfWrappers % m);
-	}
+  while (noOfWrappers >= m) {
+    noOfBars += Math.floor(noOfWrappers / m);
+    noOfWrappers = Math.floor(noOfWrappers / m) + (noOfWrappers % m);
+  }
 
-	return noOfBars;
+  return noOfBars;
 }
 console.log(chocolateFeast(10, 2, 5));
 
@@ -1197,19 +1263,19 @@ console.log(chocolateFeast(10, 2, 5));
  * @solution_fortySix
  */
 function jumpingOnClouds(c) {
-	// Write your code here
-	let count = 0;
+  // Write your code here
+  let count = 0;
 
-	for (let i = 1; i < c.length; i++) {
-		if (c[i + 1] !== 1) {
-			count++;
-			i++;
-		} else {
-			count++;
-		}
-	}
+  for (let i = 1; i < c.length; i++) {
+    if (c[i + 1] !== 1) {
+      count++;
+      i++;
+    } else {
+      count++;
+    }
+  }
 
-	return count;
+  return count;
 }
 console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]));
 
@@ -1225,8 +1291,8 @@ console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 0]));
  * @solution_fortySeven
  */
 function saveThePrisoner(n, m, s) {
-	// Write your code here
-	return (s - 1 + m) % n === 0 ? n : (s - 1 + m) % n;
+  // Write your code here
+  return (s - 1 + m) % n === 0 ? n : (s - 1 + m) % n;
 }
 console.log(saveThePrisoner(7, 19, 2));
 
@@ -1242,18 +1308,18 @@ console.log(saveThePrisoner(7, 19, 2));
  * @solution_fortyEight
  */
 function circularArrayRotation(a, k, queries) {
-	// Write your code here
-	for (let i = 0; i < k; i++) {
-		a.unshift(a.pop());
-	}
+  // Write your code here
+  for (let i = 0; i < k; i++) {
+    a.unshift(a.pop());
+  }
 
-	let result = [];
+  let result = [];
 
-	for (let i of queries) {
-		result.push(a[i]);
-	}
+  for (let i of queries) {
+    result.push(a[i]);
+  }
 
-	return result;
+  return result;
 }
 console.log(circularArrayRotation([1, 2, 3], 2, [0, 1, 2]));
 
@@ -1268,12 +1334,12 @@ console.log(circularArrayRotation([1, 2, 3], 2, [0, 1, 2]));
  * @solution_fortyNine
  */
 function rotLeft(a, d) {
-	// Write your code here
-	for (let i = 0; i < d; i++) {
-		a.push(a.shift());
-	}
+  // Write your code here
+  for (let i = 0; i < d; i++) {
+    a.push(a.shift());
+  }
 
-	return a;
+  return a;
 }
 console.log(rotLeft([1, 2, 3, 4, 5], 4));
 
@@ -1294,17 +1360,17 @@ console.log(rotLeft([1, 2, 3, 4, 5], 4));
  * @solution_fifty
  */
 function workbook(n, k, arr) {
-	// Write your code here
+  // Write your code here
 
-	let pageNumber = 0;
+  let pageNumber = 0;
 
-	for (let i = 0; i < n; i++) {
-		while (!true) { }
+  for (let i = 0; i < n; i++) {
+    while (!true) {}
 
-		let numberOfProblems = arr[i] - k;
-	}
+    let numberOfProblems = arr[i] - k;
+  }
 
-	return { n, k, arr };
+  return { n, k, arr };
 }
 console.log(workbook(5, 3, [4, 2, 6, 1, 10]));
 
@@ -1320,16 +1386,16 @@ console.log(workbook(5, 3, [4, 2, 6, 1, 10]));
  * @solution_fiftyOne
  */
 function appendAndDelete(s, t, k) {
-	// Write your code here
-	for (var i = 0; i < s.length; i++) {
-		if (s[i] !== t[i]) break;
-	}
+  // Write your code here
+  for (var i = 0; i < s.length; i++) {
+    if (s[i] !== t[i]) break;
+  }
 
-	let z = s.length + t.length - i * 2;
+  let z = s.length + t.length - i * 2;
 
-	if (k >= s.length + t.length) return 'Yes';
-	else if (z % 2 === k % 2 && z <= k) return 'Yes';
-	else return 'No';
+  if (k >= s.length + t.length) return 'Yes';
+  else if (z % 2 === k % 2 && z <= k) return 'Yes';
+  else return 'No';
 }
 console.log(appendAndDelete('hackerhappy', 'hackerrank', 9));
 
@@ -1344,38 +1410,39 @@ console.log(appendAndDelete('hackerhappy', 'hackerrank', 9));
  * @solution_fiftyTwo
  */
 function introTutorial(V, arr) {
-	// Write your code here
-	let start = 0, end = arr.length - 1;
+  // Write your code here
+  let start = 0,
+    end = arr.length - 1;
 
-	while (start <= end) {
-		let mid = start + parseInt((end - start) / 2);
+  while (start <= end) {
+    let mid = start + parseInt((end - start) / 2);
 
-		if (arr[mid] === V) return mid;
+    if (arr[mid] === V) return mid;
 
-		arr[mid] > V ? end = mid - 1 : start = mid + 1;
-	}
+    arr[mid] > V ? (end = mid - 1) : (start = mid + 1);
+  }
 
-	return -1;
+  return -1;
 }
 console.log(introTutorial(4, [1, 4, 5, 9, 12]));
 
 /**
-* @problem_fiftyThree
-* Function Description
-* Complete the findMedian function in the editor below.
-* findMedian has the following parameter(s):
-* int arr[n]: an unsorted array of integers
-* Returns
-* int: the median of the array
-*/
+ * @problem_fiftyThree
+ * Function Description
+ * Complete the findMedian function in the editor below.
+ * findMedian has the following parameter(s):
+ * int arr[n]: an unsorted array of integers
+ * Returns
+ * int: the median of the array
+ */
 /**
-* @solution_fiftyThree
-*/
+ * @solution_fiftyThree
+ */
 function findMedian(arr) {
-	// Write your code here
-	arr = arr.sort((a, b) => a - b);
-	let median = (arr.length + 1) / 2;
-	return arr[median - 1];
+  // Write your code here
+  arr = arr.sort((a, b) => a - b);
+  let median = (arr.length + 1) / 2;
+  return arr[median - 1];
 }
 console.log({ median: findMedian([3]) });
 
@@ -1390,30 +1457,31 @@ console.log({ median: findMedian([3]) });
  * @solution_fiftyFour
  */
 function acmTeam(topics) {
-	let maxTopicsKnown = -1, numberOfTeams = 0;
+  let maxTopicsKnown = -1,
+    numberOfTeams = 0;
 
-	for (let i = 0; i < topics.length; i++) {
-		const currentTeam = topics[i];
+  for (let i = 0; i < topics.length; i++) {
+    const currentTeam = topics[i];
 
-		for (let j = i + 1; j < topics.length; j++) {
-			let numberOfTopics = 0;
-			const nextTeam = topics[j];
+    for (let j = i + 1; j < topics.length; j++) {
+      let numberOfTopics = 0;
+      const nextTeam = topics[j];
 
-			for (let k = 0; k < nextTeam.length; k++) {
-				if (currentTeam[k] | nextTeam[k]) {
-					numberOfTopics++;
-				}
-			}
+      for (let k = 0; k < nextTeam.length; k++) {
+        if (currentTeam[k] | nextTeam[k]) {
+          numberOfTopics++;
+        }
+      }
 
-			if (numberOfTopics > maxTopicsKnown) {
-				maxTopicsKnown = numberOfTopics;
-				numberOfTeams = 1;
-			} else if (numberOfTopics === maxTopicsKnown) {
-				numberOfTeams++;
-			}
-		}
-	}
+      if (numberOfTopics > maxTopicsKnown) {
+        maxTopicsKnown = numberOfTopics;
+        numberOfTeams = 1;
+      } else if (numberOfTopics === maxTopicsKnown) {
+        numberOfTeams++;
+      }
+    }
+  }
 
-	return [maxTopicsKnown, numberOfTeams];
+  return [maxTopicsKnown, numberOfTeams];
 }
-console.log({ result: acmTeam(["10101", "11110", "00010"]) });
+console.log({ result: acmTeam(['10101', '11110', '00010']) });

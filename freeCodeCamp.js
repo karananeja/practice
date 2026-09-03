@@ -4,18 +4,21 @@ function spinalCase(str) {
   var regex = /\s+|_+/g;
 
   // Replace low-upper case to low-space-uppercase
-  str = str.replace(/([a-z])([A-Z])/g, "$1 $2");
+  str = str.replace(/([a-z])([A-Z])/g, '$1 $2');
 
   // Replace space and underscore with -
-  return str.replace(regex, "-").toLowerCase();
+  return str.replace(regex, '-').toLowerCase();
 }
 
 console.log(spinalCase('This Is Spinal Tap'));
 
 // Problem - 2
 function translatePigLatin(str) {
-  let vowelRegEx = /[aeiou]/, isVowel = false, consonantStr = '';
-  let vowelsStr = 'way', consonantsStr = 'ay';
+  let vowelRegEx = /[aeiou]/,
+    isVowel = false,
+    consonantStr = '';
+  let vowelsStr = 'way',
+    consonantsStr = 'ay';
 
   let firstVowel = str.match(vowelRegEx);
 
@@ -25,15 +28,13 @@ function translatePigLatin(str) {
   } else if (!str.match(vowelRegEx)) {
     consonantStr = '';
     isVowel = false;
-  }
-  else {
+  } else {
     isVowel = true;
   }
 
   if (isVowel) {
     str += vowelsStr;
-  }
-  else {
+  } else {
     str = str.replace(consonantStr, '');
     str += consonantStr + consonantsStr;
   }
@@ -41,17 +42,18 @@ function translatePigLatin(str) {
   return str;
 }
 
-console.log(translatePigLatin("eight"));
+console.log(translatePigLatin('eight'));
 
 // Problem - 3
 function myReplace(str, before, after) {
-  if (before[0].toUpperCase() === before[0]) after = after.replace(after[0], after[0].toUpperCase());
+  if (before[0].toUpperCase() === before[0])
+    after = after.replace(after[0], after[0].toUpperCase());
   else after = after.replace(after[0], after[0].toLowerCase());
 
   return str.replace(before, after);
 }
 
-console.log(myReplace("He is Sleeping on the couch", "Sleeping", "sitting"));
+console.log(myReplace('He is Sleeping on the couch', 'Sleeping', 'sitting'));
 
 // Problem - 4
 function pairElement(str) {
@@ -67,7 +69,7 @@ function pairElement(str) {
   return pairedElement;
 }
 
-console.log(pairElement("GCG"));
+console.log(pairElement('GCG'));
 
 // Problem - 5
 function smallestCommons(arr) {
@@ -133,7 +135,11 @@ function dropElements(arr, func) {
   return arr;
 }
 
-console.log(dropElements([1, 2, 3, 4], function (n) { return n > 5; }));
+console.log(
+  dropElements([1, 2, 3, 4], function (n) {
+    return n > 5;
+  }),
+);
 
 // Problem - 8
 function steamrollArray(arr) {
@@ -141,14 +147,20 @@ function steamrollArray(arr) {
   return flat.some(Array.isArray) ? steamrollArray(flat) : flat;
 }
 
-console.log(steamrollArray([[["a"]], [["b"]]]));
+console.log(steamrollArray([[['a']], [['b']]]));
 
 // Problem - 9
 function binaryAgent(str) {
   let binString = '';
 
-  str.split(' ').map((bin) => binString += String.fromCharCode(parseInt(bin, 2)));
+  str
+    .split(' ')
+    .map((bin) => (binString += String.fromCharCode(parseInt(bin, 2))));
 
   return binString;
 }
-console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
+console.log(
+  binaryAgent(
+    '01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111',
+  ),
+);

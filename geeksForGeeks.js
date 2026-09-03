@@ -27,7 +27,8 @@ class Celebrity {
 
     const potentialCandidate = persons[persons.length - 1];
 
-    let zeroCount = 0, oneCount = 0;
+    let zeroCount = 0,
+      oneCount = 0;
 
     for (let index = 0; index < n; index++) {
       if (M[potentialCandidate][index] === 0) {
@@ -139,7 +140,8 @@ class MyQueueReversal {
  */
 class NegativeInteger {
   printFirstNegativeInteger(n, k, arr) {
-    const indices = [], answer = [];
+    const indices = [],
+      answer = [];
 
     for (let i = 0; i < k; i++) {
       if (arr[i] < 0) {
@@ -191,7 +193,7 @@ class TreeHeight {
     const ans = Math.max(left, right) + 1;
     return ans;
   }
-};
+}
 
 /**
  * @problem_seven Just complete the function boundary() that takes the root node as input and returns an array containing the boundary values in anti-clockwise.
@@ -205,10 +207,8 @@ class BoundaryTraversal {
 
     nodes.push(root.data);
 
-    if (root.left)
-      this.traverseLeft(root.left, nodes);
-    else
-      this.traverseLeft(root.right, nodes);
+    if (root.left) this.traverseLeft(root.left, nodes);
+    else this.traverseLeft(root.right, nodes);
   }
 
   traverseLeaf(root, nodes) {
@@ -223,10 +223,8 @@ class BoundaryTraversal {
   traverseRight(root, nodes) {
     if (!root || (!root.left && !root.right)) return;
 
-    if (root.right)
-      this.traverseRight(root.right, nodes);
-    else
-      this.traverseRight(root.left, nodes);
+    if (root.right) this.traverseRight(root.right, nodes);
+    else this.traverseRight(root.left, nodes);
 
     nodes.push(root.data);
   }
@@ -300,13 +298,13 @@ class Panagram {
 class AtoI {
   atoi(s) {
     //code here
-    let ans = 0, negative = false;
+    let ans = 0,
+      negative = false;
 
     for (let i = 0; i < s.length; i++) {
       if (s[i] >= '0' && s[i] <= '9') {
         ans = ans * 10 + (s[i] - '0');
-      } else if (s[i] === '-' && i === 0)
-        negative = true;
+      } else if (s[i] === '-' && i === 0) negative = true;
       else {
         return -1;
       }
@@ -379,7 +377,7 @@ class VerticalOrder {
  * @solution_eleven
  */
 class TopView {
-  //Function to return a list of nodes visible from the top view 
+  //Function to return a list of nodes visible from the top view
   //from left to right in Binary Tree.
   topView(root) {
     //your code here
@@ -394,10 +392,12 @@ class TopView {
 
     while (nodesQueue.length) {
       const temp = nodesQueue.shift();
-      const frontNode = temp[0], horizontalDistance = temp[1];
+      const frontNode = temp[0],
+        horizontalDistance = temp[1];
 
       // Initialize if not exist
-      if (!nodesMap[horizontalDistance]) nodesMap[horizontalDistance] = { value: frontNode.data };
+      if (!nodesMap[horizontalDistance])
+        nodesMap[horizontalDistance] = { value: frontNode.data };
 
       if (frontNode.left)
         nodesQueue.push([frontNode.left, horizontalDistance - 1]);
@@ -441,7 +441,7 @@ class LeftView {
 }
 
 /**
- * @problem_thirteen Just complete the function rightView() that takes node as parameter and returns the right view as a list. 
+ * @problem_thirteen Just complete the function rightView() that takes node as parameter and returns the right view as a list.
  */
 /**
  * @solution_thirteen
@@ -475,7 +475,10 @@ class Tour {
   //the complete circle without exhausting its petrol in between.
   tour(p, n) {
     //your code here
-    let deficit = 0, balance = 0, start = 0, i = 0;
+    let deficit = 0,
+      balance = 0,
+      start = 0,
+      i = 0;
 
     while (i < n) {
       balance += p[i].petrol - p[i].distance;
@@ -500,7 +503,8 @@ class Tour {
 class MinMax {
   getMinMax(arr, n) {
     //code here
-    let min = Infinity, max = -Infinity;
+    let min = Infinity,
+      max = -Infinity;
 
     for (let i = 0; i < n; i++) {
       if (min > arr[i]) min = arr[i];
@@ -574,13 +578,15 @@ class BottomView {
 
     if (!root) return ans;
 
-    const nodesMap = {}, nodesQueue = [];
+    const nodesMap = {},
+      nodesQueue = [];
 
     nodesQueue.push([root, 0]);
 
     while (nodesQueue.length) {
       const temp = nodesQueue.shift();
-      const frontNode = temp[0], horizontalDistance = temp[1];
+      const frontNode = temp[0],
+        horizontalDistance = temp[1];
 
       // Initialize if not exist
       nodesMap[horizontalDistance] = frontNode.data;
@@ -611,8 +617,9 @@ class BottomView {
 class FirstNonRepeating {
   firstNonRepeating(A) {
     //code here
-    const count = {}, charQueue = [];
-    let ans = "";
+    const count = {},
+      charQueue = [];
+    let ans = '';
 
     for (let i = 0; i < A.length; i++) {
       const char = A[i];
@@ -629,7 +636,7 @@ class FirstNonRepeating {
         }
 
         if (charQueue.length === 0) {
-          ans += "#";
+          ans += '#';
         }
       }
     }
@@ -687,7 +694,9 @@ class ZigZagTraversal {
 class SumOfLongRootToLeafPath {
   sumOfLongRootToLeafPath(root) {
     //code here
-    let maxLen = 0, sum = 0, maxSum = -Infinity;
+    let maxLen = 0,
+      sum = 0,
+      maxSum = -Infinity;
 
     function solve(root, sum, len) {
       if (!root) {
@@ -734,7 +743,7 @@ class LCA {
 }
 
 /**
- * @problem_twentyThree You don't need to read input or print anything. Complete the function sumK() which takes root node and integer K as input parameters and returns the number of paths that have sum K. 
+ * @problem_twentyThree You don't need to read input or print anything. Complete the function sumK() which takes root node and integer K as input parameters and returns the number of paths that have sum K.
  */
 /**
  * @solution_twentyThree
@@ -789,7 +798,9 @@ class KthAncestor {
     getPaths(root, []);
 
     for (const currentPath of nodePaths) {
-      return currentPath[currentPath.length - 1 - k] ? currentPath[currentPath.length - 1 - k] : -1;
+      return currentPath[currentPath.length - 1 - k]
+        ? currentPath[currentPath.length - 1 - k]
+        : -1;
     }
   }
 
@@ -948,7 +959,8 @@ class BuildTreeWithPostOrder {
 class MinTime {
   getParentMapping(node, start) {
     let targetNode = null;
-    const nodeToParentMap = new Map(), queue = [node];
+    const nodeToParentMap = new Map(),
+      queue = [node];
 
     while (queue.length) {
       const frontNode = queue.shift();
@@ -971,7 +983,8 @@ class MinTime {
 
   infectTree(node, nodeToParent) {
     let timeTaken = 0;
-    const visitedNodes = new Map(), queue = [node];
+    const visitedNodes = new Map(),
+      queue = [node];
     visitedNodes.set(node, true);
 
     while (queue.length) {
@@ -993,7 +1006,10 @@ class MinTime {
           visitedNodes.set(frontNode.right, true);
         }
 
-        if (nodeToParent.get(frontNode) && !visitedNodes.get(nodeToParent.get(frontNode))) {
+        if (
+          nodeToParent.get(frontNode) &&
+          !visitedNodes.get(nodeToParent.get(frontNode))
+        ) {
           flag = true;
           queue.push(nodeToParent.get(frontNode));
           visitedNodes.set(nodeToParent.get(frontNode), true);
@@ -1047,7 +1063,7 @@ class Flatten {
  * @solution_thirty
  */
 class MergeBST {
-  //Function to return a list of integers denoting the node 
+  //Function to return a list of integers denoting the node
   //values of both the BST in a sorted order.
   inorder(root, values) {
     if (!root) return values;
@@ -1061,10 +1077,13 @@ class MergeBST {
 
   mergeArray(nums1, nums2) {
     const mergedNums = [];
-    let first = 0, second = 0, index = 0;
+    let first = 0,
+      second = 0,
+      index = 0;
 
     while (first < nums1.length && second < nums2.length) {
-      if (nums1[first] < nums2[second]) mergedNums[index++] = nums1[first++]; else mergedNums[index++] = nums2[second++];
+      if (nums1[first] < nums2[second]) mergedNums[index++] = nums1[first++];
+      else mergedNums[index++] = nums2[second++];
     }
 
     while (first < nums1.length) {
@@ -1088,7 +1107,7 @@ class MergeBST {
 }
 
 /**
- * @problem_thirtyOne You don't need to read input or print anything. Your task is to complete the function largestBst() that takes the root node of the Binary Tree as its input and returns the size of the largest subtree which is also the BST. If the complete Binary Tree is a BST, return the size of the complete Binary Tree. 
+ * @problem_thirtyOne You don't need to read input or print anything. Your task is to complete the function largestBst() that takes the root node of the Binary Tree as its input and returns the size of the largest subtree which is also the BST. If the complete Binary Tree is a BST, return the size of the complete Binary Tree.
  */
 /**
  * @solution_thirtyOne
@@ -1109,7 +1128,12 @@ class LargestBST {
     currNode.max = Math.max(node.key, right.max);
     currNode.min = Math.min(node.key, left.min);
 
-    if (left.isBST && right.isBST && (node.key > left.max && node.key < right.min))
+    if (
+      left.isBST &&
+      right.isBST &&
+      node.key > left.max &&
+      node.key < right.min
+    )
       currNode.isBST = true;
     else currNode.isBST = false;
 
@@ -1152,12 +1176,16 @@ class IsHeap {
     if (!node.left && !node.right) return true;
 
     if (!node.right) {
-      return (node.data > node.left.data);
+      return node.data > node.left.data;
     } else {
       const left = this.isMaxOrder(node.left);
       const right = this.isMaxOrder(node.right);
-      return (node.data > node.left.data && node.data > node.right.data) && left &&
-        right;
+      return (
+        node.data > node.left.data &&
+        node.data > node.right.data &&
+        left &&
+        right
+      );
     }
   }
 
@@ -1179,7 +1207,8 @@ class MinIncrements {
     let moves = 0;
 
     for (let idx = 1; idx < nums.length; idx++) {
-      const previous = nums[idx - 1], current = nums[idx];
+      const previous = nums[idx - 1],
+        current = nums[idx];
 
       if (current <= previous) {
         const value = Math.max(current, previous + 1);
@@ -1212,10 +1241,11 @@ class MinCost {
     const minHeap = new MinHeap((a, b) => a - b);
     let cost = 0;
 
-    arr.forEach(num => minHeap.push(num));
+    arr.forEach((num) => minHeap.push(num));
 
     while (minHeap.size > 1) {
-      const first = minHeap.pop(), second = minHeap.pop();
+      const first = minHeap.pop(),
+        second = minHeap.pop();
       const sum = first + second;
       cost += sum;
       minHeap.push(sum);
@@ -1248,7 +1278,6 @@ class DisplayContacts {
 
     // Return result
     return trie.getSuggestions(s);
-
   }
 }
 
@@ -1278,7 +1307,12 @@ class RatInMaze {
       return paths;
     }
 
-    const directions = [[1, 0, 'D'], [0, -1, 'L'], [0, 1, 'R'], [-1, 0, 'U']];
+    const directions = [
+      [1, 0, 'D'],
+      [0, -1, 'L'],
+      [0, 1, 'R'],
+      [-1, 0, 'U'],
+    ];
 
     function isValidCell(row, col) {
       const isInsideGrid = row >= 0 && row < size && col >= 0 && col < size;
@@ -1440,7 +1474,7 @@ class IsCycle {
       if (!visited.has(i)) {
         // BFS
         // if (isCyclicBFS(i)) return true;
-        // DFS 
+        // DFS
         if (isCyclicDFS(i, -1)) return true;
       }
     }
@@ -1654,7 +1688,8 @@ class ShortestPath {
 
     if (!visited.has(dest)) return -1;
 
-    let count = 0, node = dest;
+    let count = 0,
+      node = dest;
 
     while (node != src) {
       node = parent[node];

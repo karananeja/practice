@@ -4,7 +4,8 @@ function addMissingNumbers(arr) {
 
   let missingNumbers = [];
 
-  for (let count = arr[0]; count < arr[arr.length - 1]; count++) if (!arr.includes(count)) missingNumbers.push(count);
+  for (let count = arr[0]; count < arr[arr.length - 1]; count++)
+    if (!arr.includes(count)) missingNumbers.push(count);
 
   return missingNumbers.length;
 }
@@ -13,7 +14,8 @@ console.log(addMissingNumbers([-2, 2, 10]));
 
 // Interview question - 2
 function reverseWords(str) {
-  let reverseStrArray = str.split(' '), result = [];
+  let reverseStrArray = str.split(' '),
+    result = [];
 
   for (let i = 0; i < reverseStrArray.length; i++) {
     result.push(reverseStrArray[i].split('').reverse().join(''));
@@ -26,7 +28,8 @@ console.log(reverseWords('Welcome! Guide to learn development'));
 
 // Interview question - 3
 function findUniqueVal(arr) {
-  let count = {}, resultArray = [];
+  let count = {},
+    resultArray = [];
 
   for (let element of arr) {
     if (count[element]) count[element] += 1;
@@ -52,8 +55,8 @@ function findPrimeNumbers(num) {
     if (num % i === 0) isPrime = false;
   }
 
-  if (isPrime) return (`${num} is prime`);
-  else return (`${num} is not prime`);
+  if (isPrime) return `${num} is prime`;
+  else return `${num} is not prime`;
 }
 
 console.log(findPrimeNumbers(859));
