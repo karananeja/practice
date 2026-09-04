@@ -1806,3 +1806,63 @@ class Dijkstra {
     return dis;
   }
 }
+
+/**
+ * @problem_fortyFour Given a weighted, undirected, and connected graph with V vertices and a 2D array edges[][], where each element edges[i] = [u, v, w] represents an edge between vertices u and v with weight w, return the sum of the weights of all edges in the graph's Minimum Spanning Tree (MST).
+ */
+/**
+ * @solution_fortyFour
+ */
+class SpanningTree {
+  spanningTree(V, edges) {
+    // code here
+    const adj = new Map();
+
+    for (let i = 0; i < V; i++) {
+      adj.set(i, []);
+    }
+
+    for (const [u, v, w] of edges) {
+      adj.get(u).push([v, w]);
+      adj.get(v).push([u, w]);
+    }
+
+    const keys = new Array(V).fill(Infinity);
+    const mst = new Array(V).fill(false);
+    const parent = new Array(V).fill(-1);
+
+    keys[0] = 0;
+    parent[0] = -1;
+
+    for (let i = 0; i < V; i++) {
+      let mini = Infinity,
+        u = 0;
+
+      for (let v = 0; v < V; v++) {
+        if (mst[v] == false && keys[v] < mini) {
+          u = v;
+          mini = keys[v];
+        }
+      }
+
+      mst[u] = true;
+
+      for (const node of adj.get(u)) {
+        const [v, w] = node;
+
+        if (mst[v] == false && w < keys[v]) {
+          parent[v] = u;
+          keys[v] = w;
+        }
+      }
+    }
+
+    let sum = 0;
+
+    for (let i = 1; i < V; i++) {
+      sum += keys[i];
+    }
+
+    return sum;
+  }
+}
