@@ -25651,3 +25651,23 @@ function countCommas(n) {
   return n >= 1000 ? n - 1000 + 1 : 0;
 }
 console.log({ countCommas: countCommas(1002) });
+
+/**
+ * @param {number} n
+ * @returns {boolean}
+ */
+function checkDivisibility(n) {
+  const originalNum = n;
+  let sum = 0,
+    product = 1;
+
+  while (n) {
+    const digit = n % 10;
+    sum += digit;
+    product *= digit;
+    n = Math.floor(n / 10);
+  }
+
+  return originalNum % (sum + product) === 0;
+}
+console.log({ checkDivisibility: checkDivisibility(989972) });
