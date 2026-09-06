@@ -25671,3 +25671,29 @@ function checkDivisibility(n) {
   return originalNum % (sum + product) === 0;
 }
 console.log({ checkDivisibility: checkDivisibility(989972) });
+
+/**
+ * @param {number} n
+ * @param {number} t
+ * @returns {number}
+ */
+function smallestNumber(n, t) {
+  for (let number = n; number < n + 10; number++) {
+    let digitProduct = 1,
+      current = number;
+
+    while (current > 0) {
+      const digit = current % 10;
+
+      if (digit === 0) return number;
+
+      digitProduct *= digit;
+      current = Math.floor(current / 10);
+    }
+
+    if (digitProduct % t === 0) return number;
+  }
+
+  return n;
+}
+console.log({ smallestNumber: smallestNumber(99, 8) });
