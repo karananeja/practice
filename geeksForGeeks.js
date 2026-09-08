@@ -1865,4 +1865,50 @@ class SpanningTree {
 
     return sum;
   }
+
+  kruskalSpanningTree(V, edges) {
+    edges.sort((a, b) => a[2] - b[2]);
+
+    const parent = new Array(V);
+    const rank = new Array(V).fill(0);
+
+    for (let i = 0; i < V; i++) {
+      parent[i] = i;
+    }
+
+    function findParent(node) {
+      if (parent[node] === node) {
+        return node;
+      }
+
+      parent[node] = findParent(parent[node]);
+      return parent[node];
+    }
+
+    function unionSet(u, v) {
+      if (rank[u] < rank[v]) {
+        parent[u] = v;
+      } else if (rank[u] > rank[v]) {
+        parent[v] = u;
+      } else {
+        parent[v] = u;
+        rank[u]++;
+      }
+    }
+
+    let sum = 0;
+
+    for (const edge of edges) {
+      const u = findParent(edge[0]);
+      const v = findParent(edge[1]);
+      const wt = edge[2];
+
+      if (u !== v) {
+        sum += wt;
+        unionSet(u, v);
+      }
+    }
+
+    return sum;
+  }
 }
