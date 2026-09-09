@@ -25714,3 +25714,28 @@ function isThree(n) {
   return root > 1;
 }
 console.log({ isThree: isThree(49) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function countDistinctIntegers(nums) {
+  const uniqueNums = new Set(nums);
+
+  for (let num of nums) {
+    let reverse = 0;
+
+    while (num > 0) {
+      const digit = num % 10;
+      num = Math.floor(num / 10);
+      reverse = reverse * 10 + digit;
+    }
+
+    uniqueNums.add(reverse);
+  }
+
+  return uniqueNums.size;
+}
+console.log({
+  countDistinctIntegers: countDistinctIntegers([1, 13, 10, 12, 31]),
+});
