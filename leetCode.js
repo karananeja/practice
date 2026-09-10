@@ -25739,3 +25739,38 @@ function countDistinctIntegers(nums) {
 console.log({
   countDistinctIntegers: countDistinctIntegers([1, 13, 10, 12, 31]),
 });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function punishmentNumber(n) {
+  let res = 0;
+
+  for (let i = 1; i <= n; i++) {
+    const s = (i * i).toString();
+    const target = i;
+
+    /**
+     * @param {number} idx
+     * @param {number} sum
+     * @returns {boolean}
+     */
+    function backtrack(idx, sum) {
+      if (idx === s.length) return sum === target;
+
+      for (let end = idx + 1; end <= s.length; end++) {
+        const val = Number(s.slice(idx, end));
+
+        if (backtrack(end, sum + val)) return true;
+      }
+
+      return false;
+    }
+
+    if (backtrack(0, 0)) res += i * i;
+  }
+
+  return res;
+}
+console.log({ punishmentNumber: punishmentNumber(37) });
