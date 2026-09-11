@@ -25774,3 +25774,26 @@ function punishmentNumber(n) {
   return res;
 }
 console.log({ punishmentNumber: punishmentNumber(37) });
+
+/**
+ * @param {number[][]} intervals
+ * @returns {number}
+ */
+function removeCoveredIntervals(intervals) {
+  intervals.sort((a, b) => (a[0] !== b[0] ? a[0] - b[0] : b[1] - a[1]));
+  let count = 0,
+    maxLength = intervals[0][1];
+
+  for (let i = 1; i < intervals.length; i++) {
+    if (intervals[i][1] <= maxLength) count++;
+    else maxLength = intervals[i][1];
+  }
+
+  return intervals.length - count;
+}
+console.log({
+  removeCoveredIntervals: removeCoveredIntervals([
+    [1, 4],
+    [2, 3],
+  ]),
+});
