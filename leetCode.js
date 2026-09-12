@@ -25797,3 +25797,54 @@ console.log({
     [2, 3],
   ]),
 });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function sumOfPrimesInRange(n) {
+  let reversed = 0,
+    temp = n;
+
+  while (temp > 0) {
+    reversed = reversed * 10 + (temp % 10);
+    temp = Math.floor(temp / 10);
+  }
+
+  /**
+   * @param {number} n
+   * @returns {boolean}
+   */
+  function isPrime(n) {
+    if (n < 2) return false;
+    if (n % 2 === 0) return n === 2;
+    if (n % 3 === 0) return n === 3;
+
+    for (let i = 5; i * i <= n; i += 6) {
+      if (n % i === 0 || n % (i + 2) === 0) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  const start = Math.min(n, reversed);
+  const end = Math.max(n, reversed);
+  let sum = 0;
+
+  if (start <= 2 && end >= 2) sum += 2;
+
+  let firstOdd = Math.max(3, start);
+
+  if (firstOdd % 2 === 0) firstOdd++;
+
+  for (let i = firstOdd; i <= end; i += 2) {
+    if (isPrime(i)) sum += i;
+  }
+
+  return sum;
+}
+console.log({
+  sumOfPrimesInRange: sumOfPrimesInRange(13),
+});
