@@ -25848,3 +25848,28 @@ function sumOfPrimesInRange(n) {
 console.log({
   sumOfPrimesInRange: sumOfPrimesInRange(13),
 });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function sumAndMultiply(n) {
+  let number = 0,
+    digitSum = 0,
+    placeValue = 1;
+
+  while (n > 0) {
+    const digit = n % 10;
+    digitSum += digit;
+
+    if (digit > 0) {
+      number += digit * placeValue;
+      placeValue *= 10;
+    }
+
+    n = Math.floor(n / 10);
+  }
+
+  return number * digitSum;
+}
+console.log({ sumAndMultiply: sumAndMultiply(10203004) });
