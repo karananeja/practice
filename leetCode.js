@@ -25873,3 +25873,27 @@ function sumAndMultiply(n) {
   return number * digitSum;
 }
 console.log({ sumAndMultiply: sumAndMultiply(10203004) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function minimumSwaps(nums) {
+  // Count total number of zeros
+  let totalZeros = 0;
+
+  for (const num of nums) {
+    if (num === 0) totalZeros++;
+  }
+
+  // Count zeros already in their final region (last totalZeros positions)
+  const arrayLength = nums.length;
+  let zerosAlreadyInPlace = 0;
+
+  for (let i = arrayLength - 1; i >= arrayLength - totalZeros; i--) {
+    if (nums[i] === 0) zerosAlreadyInPlace++;
+  }
+
+  return totalZeros - zerosAlreadyInPlace;
+}
+console.log({ minimumSwaps: minimumSwaps([0, 1, 0, 3, 12]) });
