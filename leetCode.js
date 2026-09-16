@@ -25897,3 +25897,22 @@ function minimumSwaps(nums) {
   return totalZeros - zerosAlreadyInPlace;
 }
 console.log({ minimumSwaps: minimumSwaps([0, 1, 0, 3, 12]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function averageValue(nums) {
+  let count = 0,
+    sum = 0;
+
+  for (const num of nums) {
+    if (num % 2 === 0 && num % 3 === 0) {
+      sum += num;
+      count++;
+    }
+  }
+
+  return count ? Math.floor(sum / count) : 0;
+}
+console.log({ averageValue: averageValue([1, 2, 4, 7, 10]) });
