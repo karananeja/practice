@@ -25916,3 +25916,32 @@ function averageValue(nums) {
   return count ? Math.floor(sum / count) : 0;
 }
 console.log({ averageValue: averageValue([1, 2, 4, 7, 10]) });
+
+/**
+ * @param {number} n
+ * @returns {number[]}
+ */
+function decimalRepresentation(n) {
+  let digitCount = 0,
+    remaining = n;
+
+  while (remaining > 0) {
+    remaining = Math.floor(remaining / 10);
+    digitCount++;
+  }
+
+  const components = [];
+  let placeValue = 10 ** (digitCount - 1);
+
+  while (placeValue > 0) {
+    const digit = Math.floor(n / placeValue);
+
+    if (digit !== 0) components.push(digit * placeValue);
+
+    n = n % placeValue;
+    placeValue = Math.floor(placeValue / 10);
+  }
+
+  return components;
+}
+console.log({ decimalRepresentation: decimalRepresentation(102) });
