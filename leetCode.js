@@ -25945,3 +25945,53 @@ function decimalRepresentation(n) {
   return components;
 }
 console.log({ decimalRepresentation: decimalRepresentation(102) });
+
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @param {number} source
+ * @param {number} destination
+ * @returns {boolean}
+ */
+function validPath(n, edges, source, destination) {
+  if (source === destination) return true;
+
+  const graph = Array.from({ length: n }, () => []);
+
+  for (const [u, v] of edges) {
+    graph[u].push(v);
+    graph[v].push(u);
+  }
+
+  const visited = new Set([source]);
+  const queue = [source];
+  let idx = 0;
+
+  while (idx < queue.length) {
+    const currentNode = queue[idx++];
+
+    for (const neighbor of graph[currentNode]) {
+      if (visited.has(neighbor)) continue;
+
+      visited.add(neighbor);
+
+      if (neighbor === destination) return true;
+
+      queue.push(neighbor);
+    }
+  }
+
+  return false;
+}
+console.log({
+  validPath: validPath(
+    3,
+    [
+      [0, 1],
+      [1, 2],
+      [2, 0],
+    ],
+    0,
+    2,
+  ),
+});
