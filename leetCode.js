@@ -25995,3 +25995,12 @@ console.log({
     2,
   ),
 });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function distinctIntegers(n) {
+  return n > 1 ? n - 1 : n;
+}
+console.log({ distinctIntegers: distinctIntegers(1) });
