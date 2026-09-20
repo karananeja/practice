@@ -26004,3 +26004,46 @@ function distinctIntegers(n) {
   return n > 1 ? n - 1 : n;
 }
 console.log({ distinctIntegers: distinctIntegers(1) });
+
+/**
+ * @param {string} s
+ * @returns {string}
+ */
+function smallestPalindrome(s) {
+  const frequency = new Array(26).fill(0);
+
+  for (const char of s) {
+    const charIndex = char.charCodeAt(0) - 'a'.charCodeAt(0);
+    frequency[charIndex]++;
+  }
+
+  const result = [];
+  let centerChar = '';
+
+  for (let i = 0; i < frequency.length; i++) {
+    const count = frequency[i];
+    const currentChar = String.fromCharCode(i + 'a'.charCodeAt(0));
+
+    if (count === 0) continue;
+
+    if (count % 2 !== 0) centerChar = currentChar;
+
+    const halfCount = Math.floor(count / 2);
+
+    for (let copy = 0; copy < halfCount; copy++) {
+      result.push(currentChar);
+    }
+  }
+
+  if (centerChar) result.push(centerChar);
+
+  // Don't mirror the middle character
+  const start = result.length - (centerChar ? 2 : 1);
+
+  for (let i = start; i >= 0; i--) {
+    result.push(result[i]);
+  }
+
+  return result.join('');
+}
+console.log({ smallestPalindrome: smallestPalindrome('acbbbca') });
