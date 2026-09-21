@@ -26047,3 +26047,27 @@ function smallestPalindrome(s) {
   return result.join('');
 }
 console.log({ smallestPalindrome: smallestPalindrome('acbbbca') });
+
+/**
+ * @param {number[]} citations
+ * @returns {number}
+ */
+function hIndex(citations) {
+  const n = citations.length;
+  const count = new Array(n + 1).fill(0);
+
+  for (const citation of citations) {
+    if (citation >= n) count[n]++;
+    else count[citation]++;
+  }
+
+  let papers = 0;
+
+  for (let h = n; h >= 0; h--) {
+    papers += count[h];
+    if (papers >= h) return h;
+  }
+
+  return 0;
+}
+console.log({ hIndex: hIndex([1, 3, 1]) });
