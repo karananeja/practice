@@ -26071,3 +26071,23 @@ function hIndex(citations) {
   return 0;
 }
 console.log({ hIndex: hIndex([1, 3, 1]) });
+
+/**
+ * @param {number[]} citations
+ * @returns {number}
+ */
+function hIndex(citations) {
+  let low = 0,
+    high = citations.length - 1;
+
+  while (low <= high) {
+    const mid = low + Math.floor((high - low) / 2);
+    const papersCount = citations.length - mid;
+
+    if (citations[mid] >= papersCount) high = mid - 1;
+    else low = mid + 1;
+  }
+
+  return citations.length - low;
+}
+console.log({ hIndex: hIndex([1, 3, 1]) });
