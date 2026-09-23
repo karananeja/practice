@@ -26091,3 +26091,29 @@ function hIndex(citations) {
   return citations.length - low;
 }
 console.log({ hIndex: hIndex([1, 3, 1]) });
+
+/**
+ * @param {number} n
+ * @returns {number[]}
+ */
+function lexicalOrder(n) {
+  const result = [];
+  let currentNum = 1;
+
+  for (let num = 0; num < n; num++) {
+    result.push(currentNum);
+
+    if (currentNum * 10 <= n) {
+      currentNum *= 10;
+    } else {
+      while (currentNum % 10 === 9 || currentNum >= n) {
+        currentNum = Math.floor(currentNum / 10);
+      }
+
+      currentNum += 1;
+    }
+  }
+
+  return result;
+}
+console.log({ lexicalOrder: lexicalOrder(13) });
