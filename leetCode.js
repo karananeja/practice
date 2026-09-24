@@ -26117,3 +26117,16 @@ function lexicalOrder(n) {
   return result;
 }
 console.log({ lexicalOrder: lexicalOrder(13) });
+
+/**
+ * @param {number} area
+ * @returns {number[]}
+ */
+function constructRectangle(area) {
+  for (let width = Math.floor(Math.sqrt(area)); width >= 1; width--) {
+    if (area % width === 0) return [area / width, width];
+  }
+
+  return [];
+}
+console.log({ constructRectangle: constructRectangle(10) });
