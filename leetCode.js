@@ -26130,3 +26130,15 @@ function constructRectangle(area) {
   return [];
 }
 console.log({ constructRectangle: constructRectangle(10) });
+
+/**
+ * @param {number} n
+ * @param {number} k
+ * @returns {number}
+ */
+function numberOfChild(n, k) {
+  const trips = Math.floor(k / (n - 1));
+  const steps = k % (n - 1);
+  return trips % 2 === 1 ? n - steps - 1 : steps;
+}
+console.log({ numberOfChild: numberOfChild(3, 5) });
