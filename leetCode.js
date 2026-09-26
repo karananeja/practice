@@ -26142,3 +26142,24 @@ function numberOfChild(n, k) {
   return trips % 2 === 1 ? n - steps - 1 : steps;
 }
 console.log({ numberOfChild: numberOfChild(3, 5) });
+
+/**
+ * @param {string} startTime
+ * @param {string} endTime
+ * @returns {number}
+ */
+function secondsBetweenTimes(startTime, endTime) {
+  /**
+   * @param {string} time
+   * @returns {number}
+   */
+  function getSeconds(time) {
+    const [hours, minutes, seconds] = time.split(':').map(Number);
+    return hours * 3600 + minutes * 60 + seconds;
+  }
+
+  return getSeconds(endTime) - getSeconds(startTime);
+}
+console.log({
+  secondsBetweenTimes: secondsBetweenTimes('12:34:56', '13:00:00'),
+});
