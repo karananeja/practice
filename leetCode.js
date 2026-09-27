@@ -26163,3 +26163,15 @@ function secondsBetweenTimes(startTime, endTime) {
 console.log({
   secondsBetweenTimes: secondsBetweenTimes('12:34:56', '13:00:00'),
 });
+
+/**
+ * @param {number} mainTank
+ * @param {number} additionalTank
+ * @returns {number}
+ */
+function distanceTraveled(mainTank, additionalTank) {
+  return (
+    (mainTank + Math.min(Math.floor((mainTank - 1) / 4), additionalTank)) * 10
+  );
+}
+console.log({ distanceTraveled: distanceTraveled(8, 10) });
