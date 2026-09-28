@@ -26175,3 +26175,62 @@ function distanceTraveled(mainTank, additionalTank) {
   );
 }
 console.log({ distanceTraveled: distanceTraveled(8, 10) });
+
+/**
+ * @param {number} day
+ * @param {number} month
+ * @param {number} year
+ * @returns {string}
+ */
+function dayOfTheWeek(day, month, year) {
+  const week = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+
+  const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  /**
+   * @param {number} y
+   * @returns {boolean}
+   */
+  function isLeap(y) {
+    return y % 400 === 0 || (y % 4 === 0 && y % 100 !== 0);
+  }
+
+  /**
+   * @param {number} y
+   * @returns {number}
+   */
+  function leapYearsUntil(y) {
+    return Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400);
+  }
+
+  let days = 0;
+
+  // Days from complete years since 1971
+  days += (year - 1971) * 365;
+
+  // Extra days from leap years
+  days += leapYearsUntil(year - 1) - leapYearsUntil(1970);
+
+  // Days from complete months in the current year
+  for (let i = 0; i < month - 1; i++) {
+    days += monthDays[i];
+  }
+
+  // Leap day if past February
+  if (isLeap(year) && month > 2) days++;
+
+  // Days in the current month
+  days += day - 1;
+
+  // Jan 1, 1971 was Friday (index 5)
+  return week[(5 + days) % 7];
+}
+console.log({ dayOfTheWeek: dayOfTheWeek(31, 8, 2019) });
