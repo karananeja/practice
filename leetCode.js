@@ -26234,3 +26234,23 @@ function dayOfTheWeek(day, month, year) {
   return week[(5 + days) % 7];
 }
 console.log({ dayOfTheWeek: dayOfTheWeek(31, 8, 2019) });
+
+/**
+ * @param {number} numOnes
+ * @param {number} numZeros
+ * @param {number} numNegOnes
+ * @param {number} k
+ * @returns {number}
+ */
+function kItemsWithMaximumSum(numOnes, numZeros, numNegOnes, k) {
+  const onesTaken = Math.min(numOnes, k);
+  k -= onesTaken;
+
+  const zerosTaken = Math.min(numZeros, k);
+  k -= zerosTaken;
+
+  const negOnesTaken = Math.min(numNegOnes, k);
+
+  return onesTaken - negOnesTaken;
+}
+console.log({ kItemsWithMaximumSum: kItemsWithMaximumSum(1, 1, 48, 45) });
