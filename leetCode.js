@@ -26254,3 +26254,30 @@ function kItemsWithMaximumSum(numOnes, numZeros, numNegOnes, k) {
   return onesTaken - negOnesTaken;
 }
 console.log({ kItemsWithMaximumSum: kItemsWithMaximumSum(1, 1, 48, 45) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number[]}
+ */
+function lastVisitedIntegers(nums) {
+  const ans = [],
+    seen = [];
+  let count = 0;
+
+  for (const num of nums) {
+    if (num !== -1) {
+      seen.push(num);
+      count = 0;
+    } else {
+      count++;
+
+      const idx = seen.length - count;
+
+      if (idx < 0) ans.push(-1);
+      else ans.push(seen[idx]);
+    }
+  }
+
+  return ans;
+}
+console.log({ lastVisitedIntegers: lastVisitedIntegers([1, 2, 1, -1, -1]) });
