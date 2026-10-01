@@ -26281,3 +26281,24 @@ function lastVisitedIntegers(nums) {
   return ans;
 }
 console.log({ lastVisitedIntegers: lastVisitedIntegers([1, 2, 1, -1, -1]) });
+
+/**
+ * @param {string} s
+ * @returns {number}
+ */
+function secondHighest(s) {
+  let first = -1,
+    second = -1;
+
+  for (const ch of s) {
+    const digit = Number(ch);
+
+    if (digit > first) {
+      second = first;
+      first = digit;
+    } else if (digit > second && digit < first) second = digit;
+  }
+
+  return second;
+}
+console.log({ secondHighest: secondHighest('abc1111') });
