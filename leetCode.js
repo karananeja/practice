@@ -26302,3 +26302,43 @@ function secondHighest(s) {
   return second;
 }
 console.log({ secondHighest: secondHighest('abc1111') });
+
+/**
+ * @param {string[]} first
+ * @param {string[]} second
+ * @returns {string}
+ */
+function generateStr(first, second) {
+  if (first.length < second.length) return generateStr(second, first);
+
+  const result = [];
+  let index = 0;
+
+  while (index < first.length) {
+    result.push(first[index]);
+    if (second[index]) result.push(second[index]);
+    index++;
+  }
+
+  return result.join('');
+}
+
+/**
+ * @param {string} s
+ * @returns {string}
+ */
+function reformat(s) {
+  const chars = [],
+    digits = [];
+
+  for (const ch of s) {
+    if (ch >= '0' && ch <= '9') digits.push(ch);
+    else chars.push(ch);
+  }
+
+  const diff = chars.length - digits.length;
+  if (!(diff >= -1 && diff <= 1)) return '';
+
+  return generateStr(chars, digits);
+}
+console.log({ reformat: reformat('ab12c') });
