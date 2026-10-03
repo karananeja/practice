@@ -26342,3 +26342,26 @@ function reformat(s) {
   return generateStr(chars, digits);
 }
 console.log({ reformat: reformat('ab12c') });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function dominantIndex(nums) {
+  let max = 0,
+    secondMax = 0,
+    maxIdx = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+
+    if (num > max) {
+      secondMax = max;
+      max = num;
+      maxIdx = i;
+    } else if (num > secondMax) secondMax = num;
+  }
+
+  return max >= secondMax * 2 ? maxIdx : -1;
+}
+console.log({ dominantIndex: dominantIndex([1, 2, 3, 1, 6]) });
