@@ -26365,3 +26365,42 @@ function dominantIndex(nums) {
   return max >= secondMax * 2 ? maxIdx : -1;
 }
 console.log({ dominantIndex: dominantIndex([1, 2, 3, 1, 6]) });
+
+/**
+ * @param {number[][]} grid
+ * @param {number} k
+ * @returns {number[][]}
+ */
+function shiftGrid(grid, k) {
+  const m = grid.length,
+    n = grid[0].length;
+  const total = m * n;
+
+  k %= total;
+
+  const result = Array.from({ length: m }, () => Array(n));
+
+  for (let i = 0; i < total; i++) {
+    const sourceRow = Math.floor(i / n);
+    const sourceCol = i % n;
+
+    const newIndex = (i + k) % total;
+
+    const newRow = Math.floor(newIndex / n);
+    const newCol = newIndex % n;
+
+    result[newRow][newCol] = grid[sourceRow][sourceCol];
+  }
+
+  return result;
+}
+console.log({
+  shiftGrid: shiftGrid(
+    [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ],
+    1,
+  ),
+});
