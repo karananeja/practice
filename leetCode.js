@@ -26404,3 +26404,27 @@ console.log({
     1,
   ),
 });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function dominantIndices(nums) {
+  let dominantCount = 0,
+    suffixSum = 0,
+    suffixCount = 0;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (suffixCount > 0) {
+      const suffixAverage = suffixSum / suffixCount;
+
+      if (nums[i] > suffixAverage) dominantCount++;
+    }
+
+    suffixSum += nums[i];
+    suffixCount++;
+  }
+
+  return dominantCount;
+}
+console.log({ dominantIndices: dominantIndices([5, 4, 3]) });
