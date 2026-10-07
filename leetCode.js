@@ -26466,3 +26466,35 @@ function maxActiveSectionsAfterTrade(s) {
   return cnt1 + bestGain;
 }
 console.log({ maxActiveSectionsAfterTrade: maxActiveSectionsAfterTrade('01') });
+
+/**
+ * @param {number[][]} logs
+ * @param {number} k
+ * @returns {number[]}
+ */
+function findingUsersActiveMinutes(logs, k) {
+  const uam = new Map();
+
+  for (const [id, time] of logs) {
+    if (!uam.has(id)) uam.set(id, new Set());
+    uam.get(id).add(time);
+  }
+
+  const result = new Array(k).fill(0);
+
+  for (const value of uam.values()) {
+    result[value.size - 1]++;
+  }
+
+  return result;
+}
+console.log({
+  findingUsersActiveMinutes: findingUsersActiveMinutes(
+    [
+      [1, 1],
+      [2, 2],
+      [2, 3],
+    ],
+    4,
+  ),
+});
