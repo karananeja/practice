@@ -26498,3 +26498,35 @@ console.log({
     4,
   ),
 });
+
+/**
+ * @param {string[]} cpdomains
+ * @returns {string[]}
+ */
+function subdomainVisits(cpdomains) {
+  const counts = new Map();
+
+  for (const cpdomain of cpdomains) {
+    const [countStr, domain] = cpdomain.split(' ');
+    const count = Number(countStr);
+
+    const parts = domain.split('.');
+    let cur = '';
+
+    for (let i = parts.length - 1; i >= 0; i--) {
+      cur = parts[i] + (i < parts.length - 1 ? '.' : '') + cur;
+      counts.set(cur, (counts.get(cur) || 0) + count);
+    }
+  }
+
+  const result = [];
+
+  for (const [domain, count] of counts) {
+    result.push(`${count} ${domain}`);
+  }
+
+  return result;
+}
+console.log({
+  subdomainVisits: subdomainVisits(['9001 discuss.leetcode.com']),
+});
