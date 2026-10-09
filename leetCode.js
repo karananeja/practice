@@ -26530,3 +26530,21 @@ function subdomainVisits(cpdomains) {
 console.log({
   subdomainVisits: subdomainVisits(['9001 discuss.leetcode.com']),
 });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function uniqueXorTriplets(nums) {
+  const n = nums.length;
+  if (n <= 2) return n;
+
+  let ans = 1;
+
+  while (ans <= n) {
+    ans <<= 1;
+  }
+
+  return ans;
+}
+console.log({ uniqueXorTriplets: uniqueXorTriplets([3, 1, 2, 4, 5]) });
