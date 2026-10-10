@@ -26548,3 +26548,14 @@ function uniqueXorTriplets(nums) {
   return ans;
 }
 console.log({ uniqueXorTriplets: uniqueXorTriplets([3, 1, 2, 4, 5]) });
+
+/**
+ * @param {number} x
+ * @param {number} y
+ * @returns {string}
+ */
+function winningPlayer(x, y) {
+  const maxMoves = Math.min(x, Math.floor(y / 4));
+  return maxMoves % 2 === 0 ? 'Bob' : 'Alice';
+}
+console.log({ winningPlayer: winningPlayer(4, 11) });
