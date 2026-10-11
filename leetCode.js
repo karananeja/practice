@@ -26559,3 +26559,28 @@ function winningPlayer(x, y) {
   return maxMoves % 2 === 0 ? 'Bob' : 'Alice';
 }
 console.log({ winningPlayer: winningPlayer(4, 11) });
+
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @returns {string}
+ */
+function complexNumberMultiply(num1, num2) {
+  /**
+   * @param {string} complex
+   * @returns {number[]}
+   */
+  function parseComplexNumber(complex) {
+    const [realPart, imaginaryPart] = complex.split('+');
+    return [Number(realPart), Number(imaginaryPart.split('i')[0])];
+  }
+
+  const [real1, imaginary1] = parseComplexNumber(num1);
+  const [real2, imaginary2] = parseComplexNumber(num2);
+
+  const resultReal = real1 * real2 - imaginary1 * imaginary2;
+  const resultImaginary = real1 * imaginary2 + imaginary1 * real2;
+
+  return `${resultReal}+${resultImaginary}i`;
+}
+console.log({ complexNumberMultiply: complexNumberMultiply('1+-1i', '1+-1i') });
