@@ -26584,3 +26584,29 @@ function complexNumberMultiply(num1, num2) {
   return `${resultReal}+${resultImaginary}i`;
 }
 console.log({ complexNumberMultiply: complexNumberMultiply('1+-1i', '1+-1i') });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function countVowelStrings(n) {
+  /**
+   * @param {number} index
+   * @param {number} len
+   * @returns {number}
+   */
+  function backtrack(index, len) {
+    if (len === n) return 1;
+
+    let count = 0;
+
+    for (let i = index; i < 5; i++) {
+      count += backtrack(i, len + 1);
+    }
+
+    return count;
+  }
+
+  return backtrack(0, 0);
+}
+console.log({ countVowelStrings: countVowelStrings(33) });
