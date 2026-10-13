@@ -26610,3 +26610,26 @@ function countVowelStrings(n) {
   return backtrack(0, 0);
 }
 console.log({ countVowelStrings: countVowelStrings(33) });
+
+/**
+ * @param {number[]} nums
+ * @returns {boolean}
+ */
+function predictTheWinner(nums) {
+  /**
+   * @param {number} left
+   * @param {number} right
+   * @returns {number}
+   */
+  function backtrack(left, right) {
+    if (left === right) return nums[left];
+
+    const takeLeft = nums[left] - backtrack(left + 1, right);
+    const takeRight = nums[right] - backtrack(left, right - 1);
+
+    return Math.max(takeLeft, takeRight);
+  }
+
+  return backtrack(0, nums.length - 1) >= 0;
+}
+console.log({ predictTheWinner: predictTheWinner([1, 5, 233, 7]) });
