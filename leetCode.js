@@ -26633,3 +26633,33 @@ function predictTheWinner(nums) {
   return backtrack(0, nums.length - 1) >= 0;
 }
 console.log({ predictTheWinner: predictTheWinner([1, 5, 233, 7]) });
+
+/**
+ * @param {number[]} piles
+ * @returns {boolean}
+ */
+function stoneGame(piles) {
+  const cache = {};
+
+  /**
+   * @param {number} left
+   * @param {number} right
+   * @returns {number}
+   */
+  function backtrack(left, right) {
+    if (left === right) return piles[left];
+
+    const key = `${left}-${right}`;
+
+    if (key in cache) return cache[key];
+
+    const first = piles[left] - backtrack(left + 1, right);
+    const second = piles[right] - backtrack(left, right - 1);
+    cache[key] = first > second ? first : second;
+
+    return cache[key];
+  }
+
+  return backtrack(0, piles.length - 1) >= 0;
+}
+console.log({ stoneGame: stoneGame([5, 3, 4, 5]) });
