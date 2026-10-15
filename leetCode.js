@@ -26663,3 +26663,24 @@ function stoneGame(piles) {
   return backtrack(0, piles.length - 1) >= 0;
 }
 console.log({ stoneGame: stoneGame([5, 3, 4, 5]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function missingInteger(nums) {
+  const unique = new Set(nums);
+  let prefix = nums[0],
+    i = 1;
+
+  while (i < nums.length && nums[i] === nums[i - 1] + 1) {
+    prefix += nums[i++];
+  }
+
+  while (unique.has(prefix)) {
+    prefix++;
+  }
+
+  return prefix;
+}
+console.log({ missingInteger: missingInteger([1, 2, 5, 6, 12, 13, 14]) });
