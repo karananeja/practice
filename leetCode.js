@@ -26684,3 +26684,26 @@ function missingInteger(nums) {
   return prefix;
 }
 console.log({ missingInteger: missingInteger([1, 2, 5, 6, 12, 13, 14]) });
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @returns {number}
+ */
+function largestSumAfterKNegations(nums, k) {
+  nums.sort((a, b) => Math.abs(b) - Math.abs(a));
+
+  for (let i = 0; i < nums.length && k > 0; i++) {
+    if (nums[i] < 0) {
+      nums[i] *= -1;
+      k--;
+    }
+  }
+
+  if (k % 2 === 1) nums[nums.length - 1] *= -1;
+
+  return nums.reduce((sum, num) => sum + num, 0);
+}
+console.log({
+  largestSumAfterKNegations: largestSumAfterKNegations([3, -1, 0, 2], 3),
+});
