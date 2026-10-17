@@ -26707,3 +26707,18 @@ function largestSumAfterKNegations(nums, k) {
 console.log({
   largestSumAfterKNegations: largestSumAfterKNegations([3, -1, 0, 2], 3),
 });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function maximumXOR(nums) {
+  let result = 0;
+
+  for (const num of nums) {
+    result |= num;
+  }
+
+  return result;
+}
+console.log({ maximumXOR: maximumXOR([2, 6]) });
