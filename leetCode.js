@@ -26722,3 +26722,22 @@ function maximumXOR(nums) {
   return result;
 }
 console.log({ maximumXOR: maximumXOR([2, 6]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {boolean}
+ */
+function findSubarrays(nums) {
+  const seenSums = new Set();
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    const currentSum = nums[i] + nums[i + 1];
+
+    if (seenSums.has(currentSum)) return true;
+
+    seenSums.add(currentSum);
+  }
+
+  return false;
+}
+console.log({ findSubarrays: findSubarrays([1, 2, 3, 4, 5]) });
