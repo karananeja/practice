@@ -9498,66 +9498,27 @@ console.log({ addedInteger: addedInteger([5, 7, 3], [2, 6, 8]) });
 /**
  * @param {number[]} nums
  * @param {number} target
- * @returns {number}
- */
-function getFirstOccurrence(nums, target) {
-  let start = 0,
-    end = nums.length - 1,
-    firstOccurrence = -1;
-
-  while (start <= end) {
-    const mid = start + Math.floor((end - start) / 2);
-    if (nums[mid] === target) {
-      firstOccurrence = mid;
-      end = mid - 1;
-    } else if (target > nums[mid]) start = mid + 1;
-    else if (target < nums[mid]) end = mid - 1;
-  }
-
-  return firstOccurrence;
-}
-
-/**
- * @param {number[]} nums
- * @param {number} target
- * @returns {number}
- */
-function getLastOccurrence(nums, target) {
-  let start = 0,
-    end = nums.length - 1,
-    lastOccurrence = -1;
-
-  while (start <= end) {
-    const mid = start + Math.floor((end - start) / 2);
-    if (nums[mid] === target) {
-      lastOccurrence = mid;
-      start = mid + 1;
-    } else if (target > nums[mid]) start = mid + 1;
-    else if (target < nums[mid]) end = mid - 1;
-  }
-
-  return lastOccurrence;
-}
-
-/**
- * @param {number[]} nums
- * @param {number} target
  * @returns {number[]}
  */
 function targetIndices(nums, target) {
-  nums.sort((a, b) => a - b);
+  let cnt1 = 0,
+    cnt2 = 0;
 
-  const firstOccurrence = getFirstOccurrence(nums, target);
-  const lastOccurrence = getLastOccurrence(nums, target);
-  const indices = [];
-
-  if (firstOccurrence === -1 && lastOccurrence === -1) return indices;
-
-  for (let num = firstOccurrence; num <= lastOccurrence; num++) {
-    indices.push(num);
+  for (const num of nums) {
+    if (num < target) {
+      cnt1++;
+    } else if (num === target) {
+      cnt2++;
+    }
   }
 
-  return indices;
+  const res = [];
+
+  for (let i = cnt1; i < cnt1 + cnt2; i++) {
+    res.push(i);
+  }
+
+  return res;
 }
 console.log({ targetIndices: targetIndices([1, 2, 5, 2, 3], 2) });
 
