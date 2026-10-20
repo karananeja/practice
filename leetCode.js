@@ -26702,3 +26702,44 @@ function findSubarrays(nums) {
   return false;
 }
 console.log({ findSubarrays: findSubarrays([1, 2, 3, 4, 5]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function maxSum(nums) {
+  const maxNums = Array.from({ length: 10 }, () => Array(2).fill(0));
+  let maxSum = -1;
+
+  /**
+   * @param {number} digit
+   * @param {number} num
+   */
+  function add(digit, num) {
+    const vals = maxNums[digit];
+
+    if (vals[0] < num) {
+      vals[1] = vals[0];
+      vals[0] = num;
+    } else if (vals[1] < num) vals[1] = num;
+
+    const [first, second] = vals;
+
+    if (second > 0) maxSum = Math.max(maxSum, first + second);
+  }
+
+  for (const num of nums) {
+    let val = num,
+      digit = 0;
+
+    while (val) {
+      digit = Math.max(val % 10, digit);
+      val = Math.floor(val / 10);
+    }
+
+    add(digit, num);
+  }
+
+  return maxSum;
+}
+console.log({ maxSum: maxSum([51, 71, 17, 24, 42]) });
