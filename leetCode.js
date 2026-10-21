@@ -26743,3 +26743,57 @@ function maxSum(nums) {
   return maxSum;
 }
 console.log({ maxSum: maxSum([51, 71, 17, 24, 42]) });
+
+/**
+ * @param {string} licensePlate
+ * @param {string[]} words
+ * @returns {string}
+ */
+function shortestCompletingWord(licensePlate, words) {
+  /**
+   * @param {string} text
+   * @returns {number[]}
+   */
+  function getCounts(text) {
+    const counts = new Array(26).fill(0);
+
+    for (const char of text.toLowerCase()) {
+      const index = char.charCodeAt(0) - 97;
+
+      if (index >= 0 && index < 26) {
+        counts[index]++;
+      }
+    }
+
+    return counts;
+  }
+
+  const target = getCounts(licensePlate);
+  let result = '';
+
+  for (const word of words) {
+    const counts = getCounts(word);
+    let valid = true;
+
+    for (let i = 0; i < target.length; i++) {
+      if (counts[i] < target[i]) {
+        valid = false;
+        break;
+      }
+    }
+
+    if (valid && (!result || word.length < result.length)) {
+      result = word;
+    }
+  }
+
+  return result;
+}
+console.log({
+  shortestCompletingWord: shortestCompletingWord('1s3 PSt', [
+    'step',
+    'steps',
+    'stripe',
+    'stepple',
+  ]),
+});
