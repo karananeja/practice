@@ -26797,3 +26797,23 @@ console.log({
     'stepple',
   ]),
 });
+
+/**
+ * @param {string} s
+ * @returns {string}
+ */
+function getSmallestString(s) {
+  const digits = s.split('');
+
+  for (let i = 0; i < digits.length - 1; i++) {
+    if (+digits[i] % 2 === +digits[i + 1] % 2) {
+      if (digits[i] > digits[i + 1]) {
+        [digits[i], digits[i + 1]] = [digits[i + 1], digits[i]];
+        break;
+      }
+    }
+  }
+
+  return digits.join('');
+}
+console.log({ getSmallestString: getSmallestString('40') });
