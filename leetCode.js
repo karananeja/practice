@@ -26817,3 +26817,25 @@ function getSmallestString(s) {
   return digits.join('');
 }
 console.log({ getSmallestString: getSmallestString('40') });
+
+/**
+ * @param {string} s
+ * @param {number} k
+ * @returns {string}
+ */
+function stringHash(s, k) {
+  const hashedChars = [];
+  let charSum = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    charSum += s[i].charCodeAt(0) - 97;
+
+    if (i % k === k - 1) {
+      hashedChars.push(String.fromCharCode((charSum % 26) + 97));
+      charSum = 0;
+    }
+  }
+
+  return hashedChars.join('');
+}
+console.log({ stringHash: stringHash('abcdefgh', 4) });
