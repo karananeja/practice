@@ -26839,3 +26839,35 @@ function stringHash(s, k) {
   return hashedChars.join('');
 }
 console.log({ stringHash: stringHash('abcdefgh', 4) });
+
+/**
+ * @param {string} tiles
+ * @returns {number}
+ */
+function numTilePossibilities(tiles) {
+  const counts = new Array(26).fill(0);
+
+  for (const char of tiles) {
+    counts[char.charCodeAt(0) - 65]++;
+  }
+
+  let total = 0;
+
+  function dfs() {
+    for (let i = 0; i < counts.length; i++) {
+      counts[i]--;
+
+      if (counts[i] >= 0) {
+        total++;
+        dfs();
+      }
+
+      counts[i]++;
+    }
+  }
+
+  dfs();
+
+  return total;
+}
+console.log({ numTilePossibilities: numTilePossibilities('AABBC') });
