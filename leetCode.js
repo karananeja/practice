@@ -26871,3 +26871,27 @@ function numTilePossibilities(tiles) {
   return total;
 }
 console.log({ numTilePossibilities: numTilePossibilities('AABBC') });
+
+/**
+ * @param {string} s
+ * @returns {number}
+ */
+function maximumLengthSubstring(s) {
+  const freq = new Array(26).fill(0);
+  let left = 0,
+    maxLen = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    freq[s[right].charCodeAt(0) - 97]++;
+
+    while (freq[s[right].charCodeAt(0) - 97] > 2) {
+      freq[s[left].charCodeAt(0) - 97]--;
+      left++;
+    }
+
+    maxLen = Math.max(maxLen, right - left + 1);
+  }
+
+  return maxLen;
+}
+console.log({ maximumLengthSubstring: maximumLengthSubstring('bcbbbcba') });
