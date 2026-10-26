@@ -26895,3 +26895,22 @@ function maximumLengthSubstring(s) {
   return maxLen;
 }
 console.log({ maximumLengthSubstring: maximumLengthSubstring('bcbbbcba') });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function longestSubsequence(nums) {
+  let xor = 0,
+    hasNonZero = false;
+
+  for (const num of nums) {
+    xor ^= num;
+    if (num > 0) hasNonZero = true;
+  }
+
+  if (xor > 0) return nums.length;
+  if (hasNonZero) return nums.length - 1;
+  return 0;
+}
+console.log({ longestSubsequence: longestSubsequence([0, 0, 0, 0, 5]) });
