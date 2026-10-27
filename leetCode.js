@@ -26914,3 +26914,24 @@ function longestSubsequence(nums) {
   return 0;
 }
 console.log({ longestSubsequence: longestSubsequence([0, 0, 0, 0, 5]) });
+
+/**
+ * @param {string} name
+ * @param {string} typed
+ * @returns {boolean}
+ */
+function isLongPressedName(name, typed) {
+  let first = 0,
+    second = 0;
+
+  while (second < typed.length) {
+    if (first < name.length && name[first] === typed[second]) {
+      first++;
+      second++;
+    } else if (first > 0 && typed[second] === name[first - 1]) second++;
+    else return false;
+  }
+
+  return first === name.length;
+}
+console.log({ isLongPressedName: isLongPressedName('abcda', 'aabcd') });
