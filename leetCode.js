@@ -26935,3 +26935,28 @@ function isLongPressedName(name, typed) {
   return first === name.length;
 }
 console.log({ isLongPressedName: isLongPressedName('abcda', 'aabcd') });
+
+/**
+ * @param {number[]} players
+ * @param {number[]} trainers
+ * @returns {number}
+ */
+function matchPlayersAndTrainers(players, trainers) {
+  let matchedPlayers = 0,
+    trainerIndex = 0;
+
+  players.sort((a, b) => a - b);
+  trainers.sort((a, b) => a - b);
+
+  while (trainerIndex < trainers.length && matchedPlayers < players.length) {
+    if (trainers[trainerIndex] >= players[matchedPlayers]) {
+      matchedPlayers++;
+    }
+    trainerIndex++;
+  }
+
+  return matchedPlayers;
+}
+console.log({
+  matchPlayersAndTrainers: matchPlayersAndTrainers([1, 1, 1], [10]),
+});
