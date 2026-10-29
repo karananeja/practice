@@ -26960,3 +26960,39 @@ function matchPlayersAndTrainers(players, trainers) {
 console.log({
   matchPlayersAndTrainers: matchPlayersAndTrainers([1, 1, 1], [10]),
 });
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @returns {number}
+ */
+function largestInteger(nums, k) {
+  const n = nums.length;
+
+  if (k === n) return Math.max(...nums);
+
+  const freq = new Array(51).fill(0);
+
+  for (const num of nums) {
+    freq[num]++;
+  }
+
+  if (k === 1) {
+    for (let i = 50; i >= 0; i--) {
+      if (freq[i] === 1) return i;
+    }
+
+    return -1;
+  }
+
+  const first = nums[0],
+    last = nums[n - 1];
+  let ans = -1;
+
+  if (freq[first] === 1) ans = Math.max(ans, first);
+
+  if (freq[last] === 1) ans = Math.max(ans, last);
+
+  return ans;
+}
+console.log({ largestInteger: largestInteger([10, 12, 9, 7, 10], 3) });
