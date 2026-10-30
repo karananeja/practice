@@ -26996,3 +26996,25 @@ function largestInteger(nums, k) {
   return ans;
 }
 console.log({ largestInteger: largestInteger([10, 12, 9, 7, 10], 3) });
+
+/**
+ * @param {string} s
+ * @param {string[]} words
+ * @returns {boolean}
+ */
+function isPrefixString(s, words) {
+  let pos = 0;
+
+  for (const word of words) {
+    for (const char of word) {
+      if (pos === s.length || s[pos] !== char) return false;
+
+      pos++;
+    }
+
+    if (pos === s.length) return true;
+  }
+
+  return false;
+}
+console.log({ isPrefixString: isPrefixString('a', ['aa', 'aaaa', 'banana']) });
