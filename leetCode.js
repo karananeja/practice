@@ -27018,3 +27018,60 @@ function isPrefixString(s, words) {
   return false;
 }
 console.log({ isPrefixString: isPrefixString('a', ['aa', 'aaaa', 'banana']) });
+
+/**
+ * @param {number} n
+ * @param {number[][]} reservedSeats
+ * @returns {number}
+ */
+function maxNumberOfFamilies(n, reservedSeats) {
+  const rows = {};
+
+  for (const [row, seat] of reservedSeats) {
+    if (!rows[row]) rows[row] = new Set();
+    rows[row].add(seat);
+  }
+
+  let count = n * 2;
+
+  /**
+   * @param {Set<number>} seats
+   * @returns {boolean}
+   */
+  const left = (seats) =>
+    !seats.has(2) && !seats.has(3) && !seats.has(4) && !seats.has(5);
+
+  /**
+   * @param {Set<number>} seats
+   * @returns {boolean}
+   */
+  const right = (seats) =>
+    !seats.has(6) && !seats.has(7) && !seats.has(8) && !seats.has(9);
+
+  /**
+   * @param {Set<number>} seats
+   * @returns {boolean}
+   */
+  const middle = (seats) =>
+    !seats.has(4) && !seats.has(5) && !seats.has(6) && !seats.has(7);
+
+  for (const row of Object.keys(rows)) {
+    const seats = rows[row];
+    const canLeft = left(seats);
+    const canRight = right(seats);
+
+    if (canLeft && canRight) continue;
+    else if (canLeft || canRight || middle(seats)) count--;
+    else count -= 2;
+  }
+
+  return count;
+}
+console.log({
+  maxNumberOfFamilies: maxNumberOfFamilies(4, [
+    [4, 3],
+    [1, 4],
+    [4, 6],
+    [1, 7],
+  ]),
+});
