@@ -27075,3 +27075,24 @@ console.log({
     [1, 7],
   ]),
 });
+
+/**
+ * @param {string} s
+ * @param {string} x
+ * @param {string} y
+ * @returns {string}
+ */
+function rearrangeString(s, x, y) {
+  let prefix = '';
+  let middle = '';
+  let suffix = '';
+
+  for (const c of s) {
+    if (c === y) prefix += c;
+    else if (c === x) suffix += c;
+    else middle += c;
+  }
+
+  return prefix + middle + suffix;
+}
+console.log({ rearrangeString: rearrangeString('aabc', 'a', 'c') });
