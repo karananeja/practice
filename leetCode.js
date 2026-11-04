@@ -27096,3 +27096,30 @@ function rearrangeString(s, x, y) {
   return prefix + middle + suffix;
 }
 console.log({ rearrangeString: rearrangeString('aabc', 'a', 'c') });
+
+/**
+ * @param {string} num
+ * @returns {boolean}
+ */
+function sumGame(num) {
+  const n = num.length;
+  let alice = 0,
+    bob = 0;
+  let left = 0,
+    right = 0;
+
+  for (let i = 0; i < n / 2; i++) {
+    const digit = num[i];
+    if (digit === '?') left++;
+    else alice += Number(digit);
+  }
+
+  for (let i = n / 2; i < n; i++) {
+    const digit = num[i];
+    if (digit === '?') right++;
+    else bob += Number(digit);
+  }
+
+  return alice - bob + ((left - right) / 2) * 9 !== 0;
+}
+console.log({ sumGame: sumGame('25??') });
