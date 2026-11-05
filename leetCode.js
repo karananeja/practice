@@ -27123,3 +27123,28 @@ function sumGame(num) {
   return alice - bob + ((left - right) / 2) * 9 !== 0;
 }
 console.log({ sumGame: sumGame('25??') });
+
+/**
+ * @param {number[]} nums
+ * @param {number} l
+ * @param {number} r
+ * @returns {number}
+ */
+function minimumSumSubarray(nums, l, r) {
+  let sum = Infinity;
+
+  for (let i = 0; i < nums.length; i++) {
+    let current = 0;
+
+    for (let j = i; j < nums.length; j++) {
+      current += nums[j];
+      const count = j - i + 1;
+      if (count >= l && count <= r && current > 0 && current < sum) {
+        sum = current;
+      }
+    }
+  }
+
+  return sum === Infinity ? -1 : sum;
+}
+console.log({ minimumSumSubarray: minimumSumSubarray([3, -2, 1, 4], 2, 3) });
