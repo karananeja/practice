@@ -27148,3 +27148,22 @@ function minimumSumSubarray(nums, l, r) {
   return sum === Infinity ? -1 : sum;
 }
 console.log({ minimumSumSubarray: minimumSumSubarray([3, -2, 1, 4], 2, 3) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function distinctAverages(nums) {
+  nums.sort((a, b) => a - b);
+
+  const avg = new Set();
+  let left = 0,
+    right = nums.length - 1;
+
+  while (left < right) {
+    avg.add((nums[left++] + nums[right--]) / 2);
+  }
+
+  return avg.size;
+}
+console.log({ distinctAverages: distinctAverages([1, 100]) });
