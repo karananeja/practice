@@ -27167,3 +27167,20 @@ function distinctAverages(nums) {
   return avg.size;
 }
 console.log({ distinctAverages: distinctAverages([1, 100]) });
+
+/**
+ * @param {string} s
+ * @returns {number}
+ */
+function countValidPrefixes(s) {
+  let count = 0,
+    diff = 0;
+
+  for (const char of s) {
+    diff += char === '0' ? 1 : -1;
+    if (Math.abs(diff) <= 1) count++;
+  }
+
+  return count;
+}
+console.log({ countValidPrefixes: countValidPrefixes('01') });
