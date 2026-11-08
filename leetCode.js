@@ -27184,3 +27184,27 @@ function countValidPrefixes(s) {
   return count;
 }
 console.log({ countValidPrefixes: countValidPrefixes('01') });
+
+/**
+ * @param {number[]} forts
+ * @returns {number}
+ */
+function captureForts(forts) {
+  let prevIndex = -1,
+    prevValue = 0,
+    res = 0;
+
+  for (let i = 0; i < forts.length; i++) {
+    if (forts[i] === 0) continue;
+
+    if (prevIndex !== -1 && prevValue !== forts[i]) {
+      res = Math.max(res, i - prevIndex - 1);
+    }
+
+    prevIndex = i;
+    prevValue = forts[i];
+  }
+
+  return res;
+}
+console.log({ captureForts: captureForts([1, 0, 0, -1, 0, 0, 0, 0, 1]) });
