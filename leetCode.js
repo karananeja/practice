@@ -27208,3 +27208,19 @@ function captureForts(forts) {
   return res;
 }
 console.log({ captureForts: captureForts([1, 0, 0, -1, 0, 0, 0, 0, 1]) });
+
+/**
+ * @param {number} n
+ * @param {number[]} requests
+ * @returns {number}
+ */
+function elevatorRequests(n, requests) {
+  let time = requests[0];
+
+  for (let i = 1; i < requests.length; i++) {
+    time += Math.abs(requests[i] - requests[i - 1]);
+  }
+
+  return time;
+}
+console.log({ elevatorRequests: elevatorRequests(5, [2, 1, 4, 3]) });
