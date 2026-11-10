@@ -27224,3 +27224,35 @@ function elevatorRequests(n, requests) {
   return time;
 }
 console.log({ elevatorRequests: elevatorRequests(5, [2, 1, 4, 3]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function maxDigitRange(nums) {
+  let maxDiff = 0,
+    result = 0;
+
+  for (const num of nums) {
+    let temp = num;
+    let min = 9,
+      max = 0;
+
+    while (temp) {
+      const digit = temp % 10;
+      min = Math.min(min, digit);
+      max = Math.max(max, digit);
+      temp = Math.floor(temp / 10);
+    }
+
+    const diff = max - min;
+
+    if (diff > maxDiff) {
+      maxDiff = diff;
+      result = num;
+    } else if (diff === maxDiff) result += num;
+  }
+
+  return result;
+}
+console.log({ maxDigitRange: maxDigitRange([5724, 111, 350]) });
