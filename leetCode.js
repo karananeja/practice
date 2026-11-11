@@ -27256,3 +27256,21 @@ function maxDigitRange(nums) {
   return result;
 }
 console.log({ maxDigitRange: maxDigitRange([5724, 111, 350]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {boolean}
+ */
+function isMiddleElementUnique(nums) {
+  const n = nums.length;
+  const middleIndex = Math.floor(n / 2);
+  const middle = nums[middleIndex];
+
+  for (let i = 0; i < n; i++) {
+    if (i === middleIndex) continue;
+    if (nums[i] === middle) return false;
+  }
+
+  return true;
+}
+console.log({ isMiddleElementUnique: isMiddleElementUnique([1, 2, 2]) });
