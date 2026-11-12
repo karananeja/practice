@@ -27274,3 +27274,35 @@ function isMiddleElementUnique(nums) {
   return true;
 }
 console.log({ isMiddleElementUnique: isMiddleElementUnique([1, 2, 2]) });
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function minimumDeletions(nums) {
+  const n = nums.length;
+  let max = -Infinity,
+    min = Infinity,
+    maxI = 0,
+    minI = n;
+
+  for (let i = 0; i < n; i++) {
+    const num = nums[i];
+
+    if (num > max) {
+      max = num;
+      maxI = i;
+    }
+
+    if (num < min) {
+      min = num;
+      minI = i;
+    }
+  }
+
+  const left = Math.min(minI, maxI);
+  const right = Math.max(minI, maxI);
+
+  return Math.min(right + 1, n - left, left + 1 + n - right);
+}
+console.log({ minimumDeletions: minimumDeletions([2, 10, 7, 5, 4, 1, 8, 6]) });
