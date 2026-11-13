@@ -27306,3 +27306,30 @@ function minimumDeletions(nums) {
   return Math.min(right + 1, n - left, left + 1 + n - right);
 }
 console.log({ minimumDeletions: minimumDeletions([2, 10, 7, 5, 4, 1, 8, 6]) });
+
+/**
+ * @param {string} s
+ * @returns {boolean}
+ */
+function checkZeroOnes(s) {
+  let currentOnes = 0,
+    currentZeros = 0;
+  let longestOnes = 0,
+    longestZeros = 0;
+
+  for (const char of s) {
+    if (char === '1') {
+      currentOnes++;
+      currentZeros = 0;
+    } else {
+      currentZeros++;
+      currentOnes = 0;
+    }
+
+    longestOnes = Math.max(longestOnes, currentOnes);
+    longestZeros = Math.max(longestZeros, currentZeros);
+  }
+
+  return longestOnes > longestZeros;
+}
+console.log({ checkZeroOnes: checkZeroOnes('1001') });
