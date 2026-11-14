@@ -27333,3 +27333,22 @@ function checkZeroOnes(s) {
   return longestOnes > longestZeros;
 }
 console.log({ checkZeroOnes: checkZeroOnes('1001') });
+
+/**
+ * @param {number[]} nums1
+ * @returns {boolean}
+ */
+function uniformArray(nums1) {
+  let mv = nums1[0],
+    hasOdd = false;
+
+  for (const v of nums1) {
+    if (v < mv) mv = v;
+    if (v & 1) hasOdd = true;
+  }
+
+  if (mv & 1) return true;
+
+  return !hasOdd;
+}
+console.log({ uniformArray: uniformArray([2, 3]) });
