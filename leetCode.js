@@ -27131,23 +27131,41 @@ console.log({ sumGame: sumGame('25??') });
  * @returns {number}
  */
 function minimumSumSubarray(nums, l, r) {
-  let sum = Infinity;
+  const n = nums.length;
+  const prefix = [0];
 
-  for (let i = 0; i < nums.length; i++) {
-    let current = 0;
+  for (let i = 0; i < n; i++) {
+    prefix[i + 1] = prefix[i] + nums[i];
+  }
 
-    for (let j = i; j < nums.length; j++) {
-      current += nums[j];
-      const count = j - i + 1;
-      if (count >= l && count <= r && current > 0 && current < sum) {
-        sum = current;
-      }
+  const tree = new AVLTree();
+  let answer = Infinity;
+
+  for (let j = 0; j < n; j++) {
+    // Insert newly eligible starting prefix
+    const addIndex = j - l + 1;
+
+    if (addIndex >= 0) {
+      tree.add(prefix[addIndex]);
+    }
+
+    // Remove starting prefixes outside the window
+    const removeIndex = j - r;
+
+    if (removeIndex >= 0) {
+      tree.remove(prefix[removeIndex]);
+    }
+
+    // Find largest prefix strictly smaller than current prefix
+    const predecessor = tree.findPredecessor(prefix[j + 1]);
+
+    if (predecessor !== null) {
+      answer = Math.min(answer, prefix[j + 1] - predecessor);
     }
   }
 
-  return sum === Infinity ? -1 : sum;
+  return answer === Infinity ? -1 : answer;
 }
-console.log({ minimumSumSubarray: minimumSumSubarray([3, -2, 1, 4], 2, 3) });
 
 /**
  * @param {number[]} nums
