@@ -386,3 +386,161 @@ export class Trie {
     return output;
   }
 }
+
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
+    this.height = 1;
+    this.count = 1;
+  }
+}
+
+export class AVLTree {
+  constructor() {
+    this.root = null;
+  }
+
+  getHeight(node) {
+    return node ? node.height : 0;
+  }
+
+  getBalanceFactor(node) {
+    return node ? this.getHeight(node.left) - this.getHeight(node.right) : 0;
+  }
+
+  updateHeight(node) {
+    node.height =
+      1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
+  }
+
+  rightRotate(y) {
+    const x = y.left;
+    const T3 = x.right;
+
+    x.right = y;
+    y.left = T3;
+
+    this.updateHeight(y);
+    this.updateHeight(x);
+
+    return x;
+  }
+
+  leftRotate(x) {
+    const y = x.right;
+    const T2 = y.left;
+
+    y.left = x;
+    x.right = T2;
+
+    this.updateHeight(x);
+    this.updateHeight(y);
+
+    return y;
+  }
+
+  balance(node) {
+    this.updateHeight(node);
+
+    const bf = this.getBalanceFactor(node);
+
+    if (bf > 1) {
+      if (this.getBalanceFactor(node.left) < 0) {
+        node.left = this.leftRotate(node.left);
+      }
+      return this.rightRotate(node);
+    }
+
+    if (bf < -1) {
+      if (this.getBalanceFactor(node.right) > 0) {
+        node.right = this.rightRotate(node.right);
+      }
+      return this.leftRotate(node);
+    }
+
+    return node;
+  }
+
+  insertNode(node, data) {
+    if (!node) return new Node(data);
+
+    if (data < node.data) {
+      node.left = this.insertNode(node.left, data);
+    } else if (data > node.data) {
+      node.right = this.insertNode(node.right, data);
+    } else {
+      node.count++;
+      return node;
+    }
+
+    return this.balance(node);
+  }
+
+  add(data) {
+    this.root = this.insertNode(this.root, data);
+  }
+
+  getMinValueNode(node) {
+    let current = node;
+
+    while (current.left) {
+      current = current.left;
+    }
+
+    return current;
+  }
+
+  deleteNode(node, data, removeAll = false) {
+    if (!node) return null;
+
+    if (data < node.data) {
+      node.left = this.deleteNode(node.left, data, removeAll);
+    } else if (data > node.data) {
+      node.right = this.deleteNode(node.right, data, removeAll);
+    } else {
+      // Handle duplicates
+      if (node.count > 1 && !removeAll) {
+        node.count--;
+        return node;
+      }
+
+      // Zero or one child
+      if (!node.left || !node.right) {
+        return node.left || node.right;
+      }
+
+      // Two children: inorder successor
+      const successor = this.getMinValueNode(node.right);
+
+      node.data = successor.data;
+      node.count = successor.count;
+
+      // Remove the successor completely
+      node.right = this.deleteNode(node.right, successor.data, true);
+    }
+
+    return this.balance(node);
+  }
+
+  remove(data) {
+    this.root = this.deleteNode(this.root, data);
+  }
+
+  findPredecessor(data) {
+    let current = this.root;
+    let result = null;
+
+    while (current) {
+      if (current.data < data) {
+        result = current.data;
+        current = current.right;
+      } else {
+        current = current.left;
+      }
+    }
+
+    return result;
+  }
+}
