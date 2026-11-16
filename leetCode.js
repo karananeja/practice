@@ -27370,3 +27370,24 @@ function uniformArray(nums1) {
   return !hasOdd;
 }
 console.log({ uniformArray: uniformArray([2, 3]) });
+
+/**
+ * @param {string} s
+ * @returns {number}
+ */
+function partitionString(s) {
+  let partitions = 1;
+  const seenCharacters = new Set();
+
+  for (const char of s) {
+    if (seenCharacters.has(char)) {
+      partitions++;
+      seenCharacters.clear();
+    }
+
+    seenCharacters.add(char);
+  }
+
+  return partitions;
+}
+console.log({ partitionString: partitionString('abcdef') });
