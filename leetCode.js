@@ -27391,3 +27391,27 @@ function partitionString(s) {
   return partitions;
 }
 console.log({ partitionString: partitionString('abcdef') });
+
+/**
+ * @param {number[][]} drones
+ * @param {number[]} target
+ * @returns {number}
+ */
+function nearestDrone(drones, target) {
+  let minIndex = -1,
+    minDistance = Infinity;
+  const [tx, ty] = target;
+
+  for (let i = 0; i < drones.length; i++) {
+    const [x, y, r] = drones[i];
+    const distance = Math.abs(x - tx) + Math.abs(y - ty);
+
+    if (minDistance > distance && distance <= r) {
+      minDistance = distance;
+      minIndex = i;
+    }
+  }
+
+  return minIndex;
+}
+console.log({ nearestDrone: nearestDrone([[4, 4, 5]], [8, 6]) });
