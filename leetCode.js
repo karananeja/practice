@@ -27415,3 +27415,20 @@ function nearestDrone(drones, target) {
   return minIndex;
 }
 console.log({ nearestDrone: nearestDrone([[4, 4, 5]], [8, 6]) });
+
+/**
+ * @param {number} n
+ * @returns {number}
+ */
+function countCommas(n) {
+  let p = 1000,
+    res = 0;
+
+  while (p <= n) {
+    res += n - p + 1;
+    p *= 1000;
+  }
+
+  return res;
+}
+console.log({ countCommas: countCommas(1004590) });
