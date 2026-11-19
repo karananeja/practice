@@ -27432,3 +27432,34 @@ function countCommas(n) {
   return res;
 }
 console.log({ countCommas: countCommas(1004590) });
+
+/**
+ * @param {TreeNode | null} root
+ * @returns {number}
+ */
+function averageOfSubtree(root) {
+  let result = 0;
+
+  /**
+   * @param {TreeNode | null} node
+   * @returns {number[]}
+   */
+  function dfs(node) {
+    if (!node) return [0, 0];
+
+    const [leftSum, leftCount] = dfs(node.left);
+    const [rightSum, rightCount] = dfs(node.right);
+
+    const subtreeSum = leftSum + rightSum + node.val;
+    const subtreeCount = leftCount + rightCount + 1;
+    const subtreeAverage = Math.floor(subtreeSum / subtreeCount);
+
+    if (subtreeAverage === node.val) result++;
+
+    return [subtreeSum, subtreeCount];
+  }
+
+  dfs(root);
+
+  return result;
+}
