@@ -27463,3 +27463,11 @@ function averageOfSubtree(root) {
 
   return result;
 }
+
+/**
+ * @param {TreeNode | null} root
+ * @returns {boolean}
+ */
+function checkTree(root) {
+  return root.val === root.left.val + root.right.val;
+}
