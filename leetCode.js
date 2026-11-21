@@ -27471,3 +27471,21 @@ function averageOfSubtree(root) {
 function checkTree(root) {
   return root.val === root.left.val + root.right.val;
 }
+
+/**
+ * @param {number[]} rec1
+ * @param {number[]} rec2
+ * @returns {boolean}
+ */
+function isRectangleOverlap(rec1, rec2) {
+  const [left1, bottom1, right1, top1] = rec1;
+  const [left2, bottom2, right2, top2] = rec2;
+
+  const xOverlap = Math.min(right1, right2) - Math.max(left1, left2);
+  const yOverlap = Math.min(top1, top2) - Math.max(bottom1, bottom2);
+
+  return xOverlap > 0 && yOverlap > 0;
+}
+console.log({
+  isRectangleOverlap: isRectangleOverlap([0, 0, 2, 2], [1, 1, 3, 3]),
+});
