@@ -27489,3 +27489,21 @@ function isRectangleOverlap(rec1, rec2) {
 console.log({
   isRectangleOverlap: isRectangleOverlap([0, 0, 2, 2], [1, 1, 3, 3]),
 });
+
+/**
+ * @param {TreeNode | null} root1
+ * @param {TreeNode | null} root2
+ * @returns {TreeNode | null}
+ */
+function mergeTrees(root1, root2) {
+  if (!root1) return root2;
+  if (!root2) return root1;
+
+  root1.val += root2.val;
+
+  // Assign the results back to root1's children!
+  root1.left = mergeTrees(root1.left, root2.left);
+  root1.right = mergeTrees(root1.right, root2.right);
+
+  return root1;
+}
