@@ -27507,3 +27507,38 @@ function mergeTrees(root1, root2) {
 
   return root1;
 }
+
+/**
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function findShortestSubArray(nums) {
+  const count = {};
+  const first = {};
+
+  let maxFreq = 0;
+  let minLength = nums.length;
+
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+
+    // Store first occurrence
+    if (first[num] === undefined) first[num] = i;
+
+    // Update frequency
+    count[num] = (count[num] || 0) + 1;
+
+    // Current frequency
+    const freq = count[num];
+
+    if (freq > maxFreq) {
+      maxFreq = freq;
+      minLength = i - first[num] + 1;
+    } else if (freq === maxFreq) {
+      minLength = Math.min(minLength, i - first[num] + 1);
+    }
+  }
+
+  return minLength;
+}
+console.log({ findShortestSubArray: findShortestSubArray([6540]) });
