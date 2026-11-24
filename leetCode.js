@@ -27542,3 +27542,32 @@ function findShortestSubArray(nums) {
   return minLength;
 }
 console.log({ findShortestSubArray: findShortestSubArray([6540]) });
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @returns {number}
+ */
+function minOperations(nums, k) {
+  const requiredNumbers = new Set();
+
+  for (let num = 1; num <= k; num++) {
+    requiredNumbers.add(num);
+  }
+
+  let operations = 0;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    const currentNumber = nums[i];
+
+    if (requiredNumbers.size === 0) break;
+
+    if (requiredNumbers.has(currentNumber))
+      requiredNumbers.delete(currentNumber);
+
+    operations++;
+  }
+
+  return operations;
+}
+console.log({ minOperations: minOperations([3, 1, 5, 4, 2], 2) });
