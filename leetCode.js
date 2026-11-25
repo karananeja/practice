@@ -27571,3 +27571,28 @@ function minOperations(nums, k) {
   return operations;
 }
 console.log({ minOperations: minOperations([3, 1, 5, 4, 2], 2) });
+
+/**
+ * @param {string} s
+ * @returns {string}
+ */
+function findValidPair(s) {
+  const frequency = {};
+
+  for (const digit of s) {
+    frequency[digit] = (frequency[digit] || 0) + 1;
+  }
+
+  for (let i = 0; i < s.length - 1; i++) {
+    const first = s[i],
+      second = s[i + 1];
+
+    if (first === second) continue;
+
+    if (frequency[first] === +first && frequency[second] === +second)
+      return `${first}${second}`;
+  }
+
+  return '';
+}
+console.log({ findValidPair: findValidPair('25251555') });
