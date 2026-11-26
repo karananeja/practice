@@ -27596,3 +27596,29 @@ function findValidPair(s) {
   return '';
 }
 console.log({ findValidPair: findValidPair('25251555') });
+
+/**
+ * @param {TreeNode | null} root
+ * @returns {number}
+ */
+function findTilt(root) {
+  let totalTilt = 0;
+
+  /**
+   * @param {TreeNode | null} currentNode
+   * @returns {number}
+   */
+  function getSubtreeSum(currentNode) {
+    if (!currentNode) return 0;
+
+    const leftSum = getSubtreeSum(currentNode.left);
+    const rightSum = getSubtreeSum(currentNode.right);
+    totalTilt += Math.abs(leftSum - rightSum);
+
+    return currentNode.val + leftSum + rightSum;
+  }
+
+  getSubtreeSum(root);
+
+  return totalTilt;
+}
