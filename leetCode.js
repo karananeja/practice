@@ -27622,3 +27622,45 @@ function findTilt(root) {
 
   return totalTilt;
 }
+
+/**
+ * @param {TreeNode | null} root
+ * @param {TreeNode | null} subRoot
+ * @returns {boolean}
+ */
+function isSubtree(root, subRoot) {
+  /**
+   * @param {TreeNode | null} node
+   * @returns {boolean}
+   */
+  function dfs(node) {
+    if (!node) return false;
+
+    const left = dfs(node.left);
+    const right = dfs(node.right);
+    let match = false;
+
+    if (node.val === subRoot.val) match = isSameTree(node, subRoot);
+
+    return left || right || match;
+  }
+
+  /**
+   * @param {TreeNode | null} node
+   * @param {TreeNode | null} subRoot
+   * @returns {boolean}
+   */
+  function isSameTree(node, subRoot) {
+    if (!node && !subRoot) return true;
+    if (!node || !subRoot) return false;
+
+    if (node.val !== subRoot.val) return false;
+
+    const left = isSameTree(node.left, subRoot.left);
+    const right = isSameTree(node.right, subRoot.right);
+
+    return left && right;
+  }
+
+  return dfs(root);
+}
