@@ -27664,3 +27664,27 @@ function isSubtree(root, subRoot) {
 
   return dfs(root);
 }
+
+/**
+ * @param {TreeNode | null} root
+ * @returns {TreeNode | null}
+ */
+function increasingBST(root) {
+  const dummy = new TreeNode();
+  let current = dummy;
+
+  function dfs(node) {
+    if (!node) return;
+
+    dfs(node.left);
+
+    const newNode = new TreeNode(node.val);
+    current = current.right = newNode;
+
+    dfs(node.right);
+  }
+
+  dfs(root);
+
+  return dummy.right;
+}
